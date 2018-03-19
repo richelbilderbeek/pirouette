@@ -17,6 +17,7 @@ run <- function(
   chain_length,
   crown_age,
   rng_seed = 0,
+  verbose = FALSE,
   beast_jar_path = beastier::get_default_beast2_jar_path()
 ) {
   # Create alignment
@@ -42,7 +43,8 @@ run <- function(
     tree_priors = beautier::create_bd_tree_prior(),
     posterior_crown_age = crown_age,
     rng_seed = rng_seed,
-    cleanup = TRUE
+    cleanup = TRUE,
+    verbose = verbose
   )
 
   file.remove(temp_fasta_filename)

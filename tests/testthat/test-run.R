@@ -9,7 +9,7 @@ test_that("use", {
     mutation_rate = 0.1,
     chain_length = 10000,
     crown_age = 15.0,
-    rng_seed = 0
+    rng_seed = 1
   )
   testthat::expect_true(class(posterior) == "multiPhylo")
 
