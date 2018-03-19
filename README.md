@@ -11,7 +11,6 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?br
 
 ## Examples
 
-
 ## Installation
 
 If you use the `devtools` R package, this is easy:
