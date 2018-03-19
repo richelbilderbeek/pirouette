@@ -22,6 +22,8 @@ alignment consists of}
 
 \item{rng_seed}{The random number generator seed used by BEAST2}
 
+\item{verbose}{if TRUE, show more output}
+
 \item{beast_jar_path}{Where the jar 'beast.jar' can be found}
 }
 \value{

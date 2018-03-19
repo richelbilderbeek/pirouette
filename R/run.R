@@ -6,6 +6,7 @@
 #' @param chain_length MCMC chain length
 #' @param crown_age the crown age
 #' @param rng_seed The random number generator seed used by BEAST2
+#' @param verbose if TRUE, show more output
 #' @param beast_jar_path Where the jar 'beast.jar' can be found
 #' @return a posterior of phylogenies
 #' @export
