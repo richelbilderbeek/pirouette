@@ -14,7 +14,6 @@ test_that("sim_alignment: basic", {
   testthat::expect_true(class(alignment) == "DNAbin")
   testthat::expect_true(nrow(alignment) == n_taxa)
   testthat::expect_true(ncol(alignment) == sequence_length)
-  testthat::expect_true(ribir::is_alignment(alignment))
 })
 
 test_that("sim_alignment: abuse", {
