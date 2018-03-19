@@ -23,17 +23,10 @@ sim_alignment <- function(
     stop("parameter 'phylogeny' must be a phylogeny")
   }
   if (sequence_length < 1) {
-    stop(
-      "convert_phylogeny_to_alignment: ",
-      "parameter 'sequence_length' must be ",
-      "a non-zero and positive integer value"
-    )
+    stop("'sequence_length' must be a non-zero and positive integer value")
   }
   if (mutation_rate < 0) {
-    stop(
-      "convert_phylogeny_to_alignment: ",
-      "parameter 'mutation_rate' must be a non-zero and positive value"
-    )
+    stop("parameter 'mutation_rate' must be a non-zero and positive value")
   }
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
@@ -54,5 +47,5 @@ sim_alignment <- function(
   testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))
   testit::assert(ncol(alignment_dnabin) == sequence_length)
 
-  return(alignment_dnabin)
+  alignment_dnabin
 }

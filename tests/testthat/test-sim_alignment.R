@@ -24,7 +24,7 @@ test_that("sim_alignment: abuse", {
       sequence_length = 2,
       mutation_rate = 1
     ),
-    "parameter 'phylogeny' must be a phylogeny" #nolint
+    "'phylogeny' must be a phylogeny" #nolint
   )
 
   expect_error(
@@ -33,7 +33,7 @@ test_that("sim_alignment: abuse", {
       sequence_length = -1, # Must be positive
       mutation_rate = 1
     ),
-    "parameter 'sequence_length' must be a non-zero and positive integer value" # nolint
+    "'sequence_length' must be a non-zero and positive integer value" # nolint
   )
 
   expect_error(
@@ -42,7 +42,7 @@ test_that("sim_alignment: abuse", {
       sequence_length = 2,
       mutation_rate = -1 # Must be positive
     ),
-    "parameter 'mutation_rate' must be a non-zero and positive value" # nolint
+    "'mutation_rate' must be a non-zero and positive value" # nolint
   )
 
   set.seed(42)
