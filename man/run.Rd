@@ -5,7 +5,8 @@
 \title{Creates a posterior from the phylogeny}
 \usage{
 run(phylogeny, sequence_length, mutation_rate, chain_length, crown_age,
-  rng_seed = 0, beast_jar_path = beastier::get_default_beast2_jar_path())
+  rng_seed = 0, verbose = FALSE,
+  beast_jar_path = beastier::get_default_beast2_jar_path())
 }
 \arguments{
 \item{phylogeny}{a phylogeny}
