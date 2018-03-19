@@ -18,7 +18,10 @@ VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Imports:
+    ape,
     babette,
+    geiger,
+    phangorn,
     testit
 Suggests:
     devtools,
