@@ -4,10 +4,24 @@
 \alias{run}
 \title{Creates a posterior from the phylogeny}
 \usage{
-run(phylogeny)
+run(phylogeny, sequence_length, mutation_rate, chain_length, crown_age,
+  rng_seed = 0, beast_jar_path = beastier::get_default_beast2_jar_path())
 }
 \arguments{
 \item{phylogeny}{a phylogeny}
+
+\item{sequence_length}{the number of basepair the simulated DNA
+alignment consists of}
+
+\item{mutation_rate}{the mutation rate per base pair per time unit}
+
+\item{chain_length}{MCMC chain length}
+
+\item{crown_age}{the crown age}
+
+\item{rng_seed}{The random number generator seed used by BEAST2}
+
+\item{beast_jar_path}{Where the jar 'beast.jar' can be found}
 }
 \value{
 a posterior of phylogenies

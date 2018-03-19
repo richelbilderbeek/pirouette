@@ -32,3 +32,5 @@ vignettes/*.pdf
 *.utf8.md
 *.knit.md
 .Rproj.user
+tests/testthat/beast2.xml
+tests/testthat/tmp_pirouette_run.fasta
