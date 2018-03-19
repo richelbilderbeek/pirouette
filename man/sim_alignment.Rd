@@ -22,12 +22,16 @@ an alignment
 Converts a phylogeny to a random DNA alignment
 }
 \examples{
+n_taxa <- 5
+n_base_pairs <- 10
 alignment <- sim_alignment(
-   phylogeny = ape::rcoal(5),
-   sequence_length = 2,
+   phylogeny = ape::rcoal(n_taxa),
+   sequence_length = n_base_pairs,
    mutation_rate = 1
  )
- testit::assert(ribir::is_alignment(alignment))
+ testit::assert(class(alignment) == "DNAbin")
+ testit::assert(nrow(alignment) == n_taxa)
+ testit::assert(ncol(alignment) == n_base_pairs)
 }
 \author{
 Richel Bilderbeek
