@@ -12,6 +12,7 @@ r_github_packages:
   - richelbilderbeek/beastier
   - richelbilderbeek/beautier
   - richelbilderbeek/tracerer
+  - rsetienne/PBD/PBD
   - MangoTheCat/goodpractice
   - KlausVigo/phangorn
 
