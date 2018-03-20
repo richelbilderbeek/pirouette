@@ -82,7 +82,7 @@ per_nuc_p_mut_per_tu <- 0.01
 ### 1. Let the crown age be estimated
 
 ```{r}
-out <- pirouette::run(
+out <- out_1 <- pirouette::run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
   chain_length = n_mcmc_states,
@@ -101,7 +101,7 @@ image(out$alignment)
 The posterior trees `pirouette` created can be visualized:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(out$trees, width = 2)
+babette::plot_densitree(out$trees, width = 2, consensus = true_phylogeny)
 ```
 
 Comparing the nLTT plots:
@@ -116,7 +116,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 ### 2. Let the posterior have a fixed crown age
 
 ```{r}
-out <- pirouette::run(
+out <- out_2 <- pirouette::run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
   chain_length = n_mcmc_states,
@@ -136,7 +136,7 @@ image(out$alignment)
 The posterior trees `pirouette` created can be visualized:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(out$trees, width = 2)
+babette::plot_densitree(out$trees, width = 2, consensus = true_phylogeny)
 ```
 
 Comparing the nLTT plots:
@@ -151,7 +151,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 ### 3. Let the Bayesian analysis have an MRCA prior on all taxa
 
 ```{r}
-out <- pirouette::run(
+out <- out_3 <- pirouette::run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
   chain_length = n_mcmc_states,
@@ -174,7 +174,7 @@ image(out$alignment)
 The posterior trees `pirouette` created can be visualized:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(out$trees, width = 2)
+babette::plot_densitree(out$trees, width = 2, consensus = true_phylogeny)
 ```
 
 Comparing the nLTT plots:
@@ -184,4 +184,33 @@ nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE,
   main = "nLTTs of posterior trees (grey) and true tree (red)"
 )
 nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
+```
+
+## Comparing all trees
+
+Prepare all trees and colors:
+
+ * Red: trees with an estimated crown age (unscaled)
+ * Green: trees with fixed crown age
+ * Blue: trees with MRCA prior, with a distribution around the crown age
+ * Black: true tree (hard to see)
+
+```{r fig.width=7, fig.height=7}
+trees <- c(out_1$trees, out_2$trees, out_3$trees)
+colors <- rep(c("red", "green", "blue"), each = length(trees) / 3)
+for (i in seq(1,50)) {
+  trees <- c(trees, true_phylogeny)
+  colors <- c(colors, "black")
+}
+```
+
+
+
+```{r fig.width=7, fig.height=7}
+phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 1)
+phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 3 / length(trees))
+
+phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 1)
+phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 3 / length(trees))
+
 ```
