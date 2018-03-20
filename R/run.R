@@ -26,6 +26,7 @@ run <- function(
   beast_jar_path = beastier::get_default_beast2_jar_path()
 ) {
   # Create alignment
+  set.seed(rng_seed)
   alignment <- sim_alignment(
     phylogeny = phylogeny,
     sequence_length = sequence_length,

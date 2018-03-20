@@ -68,7 +68,7 @@ in three ways:
 For this analysis, the same parameters will be used:
 
 ```{r}
-n_nucleotides <- 100
+n_nucleotides <- 200
 n_mcmc_states <- 50000
 
 # per-nucleotide chance of a mutation per time unit
