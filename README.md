@@ -9,9 +9,6 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?br
 
  * [babette](https://github.com/richelbilderbeek/babette) creates a Bayesian posterior
 
-Note that `pirouette` is still a working title. Other name contenders
-are `phyrouette`, `palette` and many more...
-
 ## Examples
 
 ```
@@ -27,6 +24,10 @@ devtools::install_github("richelbilderbeek/pirouette")
 ```
 
 To install BEAST2, see [how to install BEAST2](https://github.com/richelbilderbeek/beastier/blob/master/install_beast2.md).
+
+## [FAQ](docs/faq.md)
+
+See the [FAQ](docs/faq.md).
 
 ## There is a feature I miss
 
