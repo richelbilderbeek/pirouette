@@ -4,8 +4,8 @@
 \alias{run}
 \title{Creates a posterior from the phylogeny}
 \usage{
-run(phylogeny, sequence_length, mutation_rate, chain_length, crown_age,
-  rng_seed = 0, verbose = FALSE,
+run(phylogeny, sequence_length, mutation_rate, chain_length, crown_age = NA,
+  mrca_distr = NA, rng_seed = 0, verbose = FALSE,
   beast_jar_path = beastier::get_default_beast2_jar_path())
 }
 \arguments{
@@ -18,7 +18,11 @@ alignment consists of}
 
 \item{chain_length}{MCMC chain length}
 
-\item{crown_age}{the crown age}
+\item{crown_age}{the fixed crown age of the posterior. Set to NA
+to let it be estimated}
+
+\item{mrca_distr}{if MRCA prior used on all taxa.
+Set to NA to not use an MRCA prior}
 
 \item{rng_seed}{The random number generator seed used by BEAST2}
 

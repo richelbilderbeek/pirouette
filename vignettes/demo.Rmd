@@ -26,18 +26,32 @@ Create the true phylogeny:
 
 ```{r}
 rng_seed <- 42
-sirg  <- 0.1
-siri  <- 0.1
-scr <- 0.01
-erg <- 0.0
-eri <- 0.0
-crown_age <- 15
 set.seed(rng_seed)
-true_phylogeny <- PBD::pbd_sim(
-  pars = c(sirg, scr, siri, erg, eri),
-  age = crown_age,
-  soc = 2 # Use crown age
-)$stree_youngest
+crown_age <- 15
+use_simple_tree <- TRUE
+
+true_phylogeny <- NA
+if (use_simple_tree) {
+  true_phylogeny <- TreeSim::sim.bd.age(
+    age = crown_age, 
+    numbsim = 1, 
+    lambda = 0.1, 
+    mu = 0.0, 
+    frac = 1.0, 
+    mrca = TRUE
+  )[[1]]
+} else {
+  sirg  <- 0.1
+  siri  <- 0.1
+  scr <- 0.01
+  erg <- 0.0
+  eri <- 0.0
+  true_phylogeny <- PBD::pbd_sim(
+    pars = c(sirg, scr, siri, erg, eri),
+    age = crown_age,
+    soc = 2 # Use crown age
+  )$stree_youngest
+}
 ```
 
 ```{r fig.width=7, fig.height=7}
@@ -55,7 +69,7 @@ For this analysis, the same parameters will be used:
 
 ```{r}
 n_nucleotides <- 100
-n_mcmc_states <- 10000
+n_mcmc_states <- 50000
 
 # per-nucleotide chance of a mutation per time unit
 per_nuc_p_mut_per_tu <- 0.01

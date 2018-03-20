@@ -6,7 +6,7 @@
 #' @param chain_length MCMC chain length
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
-#' @param mrca_distribution if MRCA prior used on all taxa.
+#' @param mrca_distr if MRCA prior used on all taxa.
 #'   Set to NA to not use an MRCA prior
 #' @param rng_seed The random number generator seed used by BEAST2
 #' @param verbose if TRUE, show more output
@@ -41,9 +41,9 @@ run <- function(
 
   mrca_prior <- NA
   if (beautier:::is_distr(mrca_distr)) {
-    mrca_prior <- create_mrca_prior(
-      alignment_id = get_alignment_id(fasta_filename = temp_fasta_filename),
-      taxa_names = get_taxa_names(filename = temp_fasta_filename),
+    mrca_prior <- beautier::create_mrca_prior(
+      alignment_id = beautier::get_alignment_id(temp_fasta_filename),
+      taxa_names = beautier::get_taxa_names(temp_fasta_filename),
       is_monophyletic = TRUE,
       mrca_distr = mrca_distr
     )
