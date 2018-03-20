@@ -28,9 +28,8 @@ Create the true phylogeny:
 sim_rng_seed <- 42
 alignment_rng_seed <- 42
 beast2_rng_seed <- 42
-
 crown_age <- 15
-use_simple_tree <- FALSE
+use_simple_tree <- TRUE
 
 true_phylogeny <- NA
 
@@ -64,6 +63,7 @@ ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
 
 Now `pirouette` can create a Bayesian posterior from that same tree, 
 in three ways:
+
  1. Let the crown age be estimated
  2. Let the posterior have a fixed crown age
  3. Let the Bayesian analysis have an MRCA prior on all taxa, that
@@ -73,7 +73,7 @@ For this analysis, the same parameters will be used:
 
 ```{r}
 n_nucleotides <- 200
-n_mcmc_states <- 100000
+n_mcmc_states <- 50000
 
 # per-nucleotide chance of a mutation per time unit
 per_nuc_p_mut_per_tu <- 0.01

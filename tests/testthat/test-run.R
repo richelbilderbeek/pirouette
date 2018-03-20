@@ -8,9 +8,7 @@ test_that("use", {
     sequence_length = 10,
     mutation_rate = 0.1,
     chain_length = 10000,
-    crown_age = 15.0,
-    rng_seed = 1
+    crown_age = 15.0
   )
   testthat::expect_true(class(out$trees) == "multiPhylo")
-
 })
