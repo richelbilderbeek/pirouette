@@ -1,0 +1,166 @@
+---
+title: "pirouette demo"
+author: "Richel J.C. Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{pirouette demo}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+Load library:
+
+```{r}
+library(pirouette)
+```
+
+Create the true phylogeny:
+
+```{r}
+rng_seed <- 42
+sirg  <- 0.1
+siri  <- 0.1
+scr <- 0.01
+erg <- 0.0
+eri <- 0.0
+crown_age <- 15
+set.seed(rng_seed)
+true_phylogeny <- PBD::pbd_sim(
+  pars = c(sirg, scr, siri, erg, eri),
+  age = crown_age,
+  soc = 2 # Use crown age
+)$stree_youngest
+```
+
+```{r fig.width=7, fig.height=7}
+ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
+```
+
+Now `pirouette` can create a Bayesian posterior from that same tree, 
+in three ways:
+ 1. Let the crown age be estimated
+ 2. Let the posterior have a fixed crown age
+ 3. Let the Bayesian analysis have an MRCA prior on all taxa, that
+      has a narrow distribution around the crown age
+
+For this analysis, the same parameters will be used:
+
+```{r}
+n_nucleotides <- 100
+n_mcmc_states <- 10000
+
+# per-nucleotide chance of a mutation per time unit
+per_nuc_p_mut_per_tu <- 0.01
+```
+
+### 1. Let the crown age be estimated
+
+```{r}
+out <- pirouette::run(
+  phylogeny = true_phylogeny,
+  sequence_length = n_nucleotides,
+  chain_length = n_mcmc_states,
+  mutation_rate = per_nuc_p_mut_per_tu,
+  rng_seed = rng_seed
+)
+```
+
+The alignment it created can be visualized:
+
+```{r fig.width=7, fig.height=7}
+image(out$alignment)
+```
+
+The posterior trees `pirouette` created can be visualized:
+
+```{r fig.width=7, fig.height=7}
+babette::plot_densitree(out$trees, width = 2)
+```
+
+Comparing the nLTT plots:
+
+```{r fig.width=7, fig.height=7}
+nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
+  main = "nLTTs of posterior trees (grey) and true tree (red)"
+)
+nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
+```
+
+### 2. Let the posterior have a fixed crown age
+
+```{r}
+out <- pirouette::run(
+  phylogeny = true_phylogeny,
+  sequence_length = n_nucleotides,
+  chain_length = n_mcmc_states,
+  mutation_rate = per_nuc_p_mut_per_tu,
+  crown_age = crown_age,
+  rng_seed = rng_seed
+)
+```
+
+The alignment it created can be visualized:
+
+```{r fig.width=7, fig.height=7}
+image(out$alignment)
+```
+
+The posterior trees `pirouette` created can be visualized:
+
+```{r fig.width=7, fig.height=7}
+babette::plot_densitree(out$trees, width = 2)
+```
+
+Comparing the nLTT plots:
+
+```{r fig.width=7, fig.height=7}
+nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
+  main = "nLTTs of posterior trees (grey) and true tree (red)"
+)
+nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
+```
+
+### 3. Let the Bayesian analysis have an MRCA prior on all taxa
+
+```{r}
+out <- pirouette::run(
+  phylogeny = true_phylogeny,
+  sequence_length = n_nucleotides,
+  chain_length = n_mcmc_states,
+  mutation_rate = per_nuc_p_mut_per_tu,
+  mrca_distr = beautier::create_normal_distr(
+    mean = beautier::create_mean_param(value = crown_age),
+    sigma = beautier::create_sigma_param(value = crown_age / 1000.0)
+  ),
+  rng_seed = rng_seed
+)
+```
+
+The alignment it created can be visualized:
+
+```{r fig.width=7, fig.height=7}
+image(out$alignment)
+```
+
+The posterior trees `pirouette` created can be visualized:
+
+```{r fig.width=7, fig.height=7}
+babette::plot_densitree(out$trees, width = 2)
+```
+
+Comparing the nLTT plots:
+
+```{r fig.width=7, fig.height=7}
+nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
+  main = "nLTTs of posterior trees (grey) and true tree (red)"
+)
+nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
+```

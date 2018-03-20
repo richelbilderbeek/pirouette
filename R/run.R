@@ -4,7 +4,10 @@
 #'   alignment consists of
 #' @param mutation_rate the mutation rate per base pair per time unit
 #' @param chain_length MCMC chain length
-#' @param crown_age the crown age
+#' @param crown_age the fixed crown age of the posterior. Set to NA
+#'   to let it be estimated
+#' @param mrca_distribution if MRCA prior used on all taxa.
+#'   Set to NA to not use an MRCA prior
 #' @param rng_seed The random number generator seed used by BEAST2
 #' @param verbose if TRUE, show more output
 #' @param beast_jar_path Where the jar 'beast.jar' can be found
@@ -16,7 +19,8 @@ run <- function(
   sequence_length,
   mutation_rate,
   chain_length,
-  crown_age,
+  crown_age = NA,
+  mrca_distr = NA,
   rng_seed = 0,
   verbose = FALSE,
   beast_jar_path = beastier::get_default_beast2_jar_path()
@@ -35,11 +39,21 @@ run <- function(
     format = "fasta"
   )
 
-  out <- babette::run(
+  mrca_prior <- NA
+  if (beautier:::is_distr(mrca_distr)) {
+    mrca_prior <- create_mrca_prior(
+      alignment_id = get_alignment_id(fasta_filename = temp_fasta_filename),
+      taxa_names = get_taxa_names(filename = temp_fasta_filename),
+      is_monophyletic = TRUE,
+      mrca_distr = mrca_distr
+    )
+  }
+
+  babette_out <- babette::run(
     fasta_filenames = temp_fasta_filename,
     site_models = beautier::create_jc69_site_model(),
     clock_models = beautier::create_strict_clock_model(),
-    mrca_priors = NA,
+    mrca_priors = mrca_prior,
     mcmc = beautier::create_mcmc(chain_length = chain_length),
     tree_priors = beautier::create_bd_tree_prior(),
     posterior_crown_age = crown_age,
@@ -50,6 +64,9 @@ run <- function(
 
   file.remove(temp_fasta_filename)
 
-  posterior <- out[[grep(x = names(out), pattern = "trees")]]
-  posterior
+  list(
+    alignment = alignment,
+    trees = babette_out[[grep(x = names(babette_out), pattern = "trees")]],
+    estimates = babette_out$estimates
+  )
 }
