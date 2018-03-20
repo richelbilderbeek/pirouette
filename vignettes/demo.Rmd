@@ -73,7 +73,7 @@ For this analysis, the same parameters will be used:
 
 ```{r}
 n_nucleotides <- 200
-n_mcmc_states <- 50000
+n_mcmc_states <- 10000
 
 # per-nucleotide chance of a mutation per time unit
 per_nuc_p_mut_per_tu <- 0.01
@@ -101,7 +101,19 @@ image(out$alignment)
 The posterior trees `pirouette` created can be visualized:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(out$trees, width = 2, consensus = true_phylogeny)
+trees <- out$trees
+colors <- rep(c("red", "black"), each = length(out$trees))
+for (i in seq(1, length(out$trees))) {
+  trees <- c(trees, true_phylogeny)
+}
+babette::plot_densitree(
+  trees, 
+  width = 2, 
+  consensus = true_phylogeny, 
+  col = colors, 
+  scaleX = TRUE,
+  alpha = 10 / length(trees)
+)
 ```
 
 Comparing the nLTT plots:
@@ -136,7 +148,18 @@ image(out$alignment)
 The posterior trees `pirouette` created can be visualized:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(out$trees, width = 2, consensus = true_phylogeny)
+trees <- out$trees
+colors <- rep(c("green", "black"), each = length(out$trees))
+for (i in seq(1, length(out$trees))) {
+  trees <- c(trees, true_phylogeny)
+}
+babette::plot_densitree(
+  trees, 
+  width = 2, 
+  consensus = true_phylogeny, 
+  col = colors,
+  alpha = 10 / length(trees)
+)
 ```
 
 Comparing the nLTT plots:
@@ -174,7 +197,18 @@ image(out$alignment)
 The posterior trees `pirouette` created can be visualized:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(out$trees, width = 2, consensus = true_phylogeny)
+trees <- out$trees
+colors <- rep(c("blue", "black"), each = length(out$trees))
+for (i in seq(1, length(out$trees))) {
+  trees <- c(trees, true_phylogeny)
+}
+babette::plot_densitree(
+  trees, 
+  width = 2, 
+  consensus = true_phylogeny, 
+  col = colors,
+  alpha = 10 / length(trees)
+)
 ```
 
 Comparing the nLTT plots:
@@ -193,7 +227,7 @@ Prepare all trees and colors:
  * Red: trees with an estimated crown age (unscaled)
  * Green: trees with fixed crown age
  * Blue: trees with MRCA prior, with a distribution around the crown age
- * Black: true tree (hard to see)
+ * Black: true tree
 
 ```{r fig.width=7, fig.height=7}
 trees <- c(out_1$trees, out_2$trees, out_3$trees)
@@ -208,9 +242,9 @@ for (i in seq(1,50)) {
 
 ```{r fig.width=7, fig.height=7}
 phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 1)
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 3 / length(trees))
+phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 10 / length(trees))
 
 phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 1)
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 3 / length(trees))
+phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 10 / length(trees))
 
 ```
