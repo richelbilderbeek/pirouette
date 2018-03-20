@@ -25,12 +25,16 @@ library(pirouette)
 Create the true phylogeny:
 
 ```{r}
-rng_seed <- 42
-set.seed(rng_seed)
+sim_rng_seed <- 42
+alignment_rng_seed <- 42
+beast2_rng_seed <- 42
+
 crown_age <- 15
-use_simple_tree <- TRUE
+use_simple_tree <- FALSE
 
 true_phylogeny <- NA
+
+set.seed(sim_rng_seed)
 if (use_simple_tree) {
   true_phylogeny <- TreeSim::sim.bd.age(
     age = crown_age, 
@@ -41,8 +45,8 @@ if (use_simple_tree) {
     mrca = TRUE
   )[[1]]
 } else {
-  sirg  <- 0.1
-  siri  <- 0.1
+  sirg  <- 0.2
+  siri  <- 0.2
   scr <- 0.01
   erg <- 0.0
   eri <- 0.0
@@ -69,7 +73,7 @@ For this analysis, the same parameters will be used:
 
 ```{r}
 n_nucleotides <- 200
-n_mcmc_states <- 50000
+n_mcmc_states <- 100000
 
 # per-nucleotide chance of a mutation per time unit
 per_nuc_p_mut_per_tu <- 0.01
@@ -83,7 +87,8 @@ out <- pirouette::run(
   sequence_length = n_nucleotides,
   chain_length = n_mcmc_states,
   mutation_rate = per_nuc_p_mut_per_tu,
-  rng_seed = rng_seed
+  alignment_rng_seed = alignment_rng_seed,
+  beast2_rng_seed = beast2_rng_seed
 )
 ```
 
@@ -117,7 +122,8 @@ out <- pirouette::run(
   chain_length = n_mcmc_states,
   mutation_rate = per_nuc_p_mut_per_tu,
   crown_age = crown_age,
-  rng_seed = rng_seed
+  alignment_rng_seed = alignment_rng_seed,
+  beast2_rng_seed = beast2_rng_seed
 )
 ```
 
@@ -154,7 +160,8 @@ out <- pirouette::run(
     mean = beautier::create_mean_param(value = crown_age),
     sigma = beautier::create_sigma_param(value = crown_age / 1000.0)
   ),
-  rng_seed = rng_seed
+  alignment_rng_seed = alignment_rng_seed,
+  beast2_rng_seed = beast2_rng_seed
 )
 ```
 

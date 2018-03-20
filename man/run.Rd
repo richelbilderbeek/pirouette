@@ -5,8 +5,8 @@
 \title{Creates a posterior from the phylogeny}
 \usage{
 run(phylogeny, sequence_length, mutation_rate, chain_length, crown_age = NA,
-  mrca_distr = NA, rng_seed = 0, verbose = FALSE,
-  beast_jar_path = beastier::get_default_beast2_jar_path())
+  mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
+  verbose = FALSE, beast_jar_path = beastier::get_default_beast2_jar_path())
 }
 \arguments{
 \item{phylogeny}{a phylogeny}
@@ -24,7 +24,10 @@ to let it be estimated}
 \item{mrca_distr}{if MRCA prior used on all taxa.
 Set to NA to not use an MRCA prior}
 
-\item{rng_seed}{The random number generator seed used by BEAST2}
+\item{alignment_rng_seed}{The random number generator seed used
+to generate an alignment}
+
+\item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
 \item{verbose}{if TRUE, show more output}
 

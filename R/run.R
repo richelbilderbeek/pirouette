@@ -8,7 +8,9 @@
 #'   to let it be estimated
 #' @param mrca_distr if MRCA prior used on all taxa.
 #'   Set to NA to not use an MRCA prior
-#' @param rng_seed The random number generator seed used by BEAST2
+#' @param alignment_rng_seed The random number generator seed used
+#'   to generate an alignment
+#' @param beast2_rng_seed The random number generator seed used by BEAST2
 #' @param verbose if TRUE, show more output
 #' @param beast_jar_path Where the jar 'beast.jar' can be found
 #' @return a posterior of phylogenies
@@ -21,12 +23,13 @@ run <- function(
   chain_length,
   crown_age = NA,
   mrca_distr = NA,
-  rng_seed = 0,
+  alignment_rng_seed = 0,
+  beast2_rng_seed = 1,
   verbose = FALSE,
   beast_jar_path = beastier::get_default_beast2_jar_path()
 ) {
   # Create alignment
-  set.seed(rng_seed)
+  set.seed(alignment_rng_seed)
   alignment <- sim_alignment(
     phylogeny = phylogeny,
     sequence_length = sequence_length,
@@ -58,7 +61,7 @@ run <- function(
     mcmc = beautier::create_mcmc(chain_length = chain_length),
     tree_priors = beautier::create_bd_tree_prior(),
     posterior_crown_age = crown_age,
-    rng_seed = rng_seed,
+    rng_seed = beast2_rng_seed,
     cleanup = TRUE,
     verbose = verbose
   )
