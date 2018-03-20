@@ -29,11 +29,10 @@ sim_rng_seed <- 42
 alignment_rng_seed <- 42
 beast2_rng_seed <- 42
 crown_age <- 15
-use_simple_tree <- TRUE
-
-true_phylogeny <- NA
+use_simple_tree <- FALSE
 
 set.seed(sim_rng_seed)
+true_phylogeny <- NA
 if (use_simple_tree) {
   true_phylogeny <- TreeSim::sim.bd.age(
     age = crown_age, 
