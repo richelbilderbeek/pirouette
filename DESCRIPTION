@@ -32,7 +32,8 @@ Suggests:
     nLTT,
     PBD,
     rmarkdown,
-    testthat
+    testthat,
+    TreeSim
 Remotes: 
     jimhester/covr,
     jimhester/lintr,
