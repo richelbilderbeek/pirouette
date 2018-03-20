@@ -30,6 +30,7 @@ Suggests:
     knitr,
     lintr,
     nLTT,
+    PBD,
     rmarkdown,
     testthat
 Remotes: 
