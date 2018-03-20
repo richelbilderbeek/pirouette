@@ -9,7 +9,14 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?br
 
  * [babette](https://github.com/richelbilderbeek/babette) creates a Bayesian posterior
 
+Note that `pirouette` is still a working title. Other name contenders
+are `phyrouette`, `palette` and many more...
+
 ## Examples
+
+```
+None yet
+```
 
 ## Installation
 
