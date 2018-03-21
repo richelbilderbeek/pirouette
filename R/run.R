@@ -36,7 +36,7 @@ run <- function(
     mutation_rate = mutation_rate
   )
   # Save alignment to file
-  temp_fasta_filename <- paste0("tmp_pirouette_run.fasta")
+  temp_fasta_filename <- tempfile(pattern = "pirouette_", fileext = ".fasta")
   phangorn::write.phyDat(
     alignment,
     file = temp_fasta_filename,
