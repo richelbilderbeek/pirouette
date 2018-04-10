@@ -2,6 +2,8 @@
 #' @param phylogeny a phylogeny
 #' @param sequence_length the number of nucleotides to alignment
 #'   will have per taxon
+#' @param root_sequence the DNA sequence at the root of the phylogeny.
+#'   By default, this will consist out of only adenine
 #' @param mutation_rate the rate per nucleotide to change,
 #'   per million years
 #' @return an alignment
@@ -21,6 +23,7 @@
 sim_alignment <- function(
   phylogeny,
   sequence_length,
+  root_sequence = rep("a", sequence_length),
   mutation_rate = 1
 ) {
   if (class(phylogeny) != "phylo") {
@@ -42,7 +45,8 @@ sim_alignment <- function(
   alignment_phydat <- phangorn::simSeq(
     phylogeny,
     l = sequence_length,
-    rate = mutation_rate
+    rate = mutation_rate,
+    rootseq = root_sequence
   )
   testit::assert(class(alignment_phydat) == "phyDat")
 
