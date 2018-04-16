@@ -4,7 +4,7 @@
 \alias{run}
 \title{Creates a posterior from the phylogeny}
 \usage{
-run(phylogeny, sequence_length, mutation_rate, chain_length, crown_age = NA,
+run(phylogeny, sequence_length, mutation_rate, mcmc, crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
   verbose = FALSE, beast_jar_path = beastier::get_default_beast2_jar_path())
 }
@@ -16,7 +16,7 @@ alignment consists of}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
-\item{chain_length}{MCMC chain length}
+\item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}

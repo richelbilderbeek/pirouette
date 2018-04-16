@@ -72,7 +72,7 @@ For this analysis, the same parameters will be used:
 
 ```{r}
 n_nucleotides <- 200
-n_mcmc_states <- 10000
+mcmc <- create_mcmc(chain_length = 10000)
 
 # per-nucleotide chance of a mutation per time unit
 per_nuc_p_mut_per_tu <- 0.01
@@ -84,7 +84,7 @@ per_nuc_p_mut_per_tu <- 0.01
 out <- out_1 <- pirouette::run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
-  chain_length = n_mcmc_states,
+  mcmc = mcmc,
   mutation_rate = per_nuc_p_mut_per_tu,
   alignment_rng_seed = alignment_rng_seed,
   beast2_rng_seed = beast2_rng_seed
@@ -130,7 +130,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 out <- out_2 <- pirouette::run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
-  chain_length = n_mcmc_states,
+  mcmc = mcmc,
   mutation_rate = per_nuc_p_mut_per_tu,
   crown_age = crown_age,
   alignment_rng_seed = alignment_rng_seed,
@@ -176,7 +176,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 out <- out_3 <- pirouette::run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
-  chain_length = n_mcmc_states,
+  mcmc = mcmc,
   mutation_rate = per_nuc_p_mut_per_tu,
   mrca_distr = beautier::create_normal_distr(
     mean = beautier::create_mean_param(value = crown_age),

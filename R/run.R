@@ -3,7 +3,7 @@
 #' @param sequence_length the number of basepair the simulated DNA
 #'   alignment consists of
 #' @param mutation_rate the mutation rate per base pair per time unit
-#' @param chain_length MCMC chain length
+#' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
 #' @param mrca_distr if MRCA prior used on all taxa.
@@ -20,7 +20,7 @@ run <- function(
   phylogeny,
   sequence_length,
   mutation_rate,
-  chain_length,
+  mcmc,
   crown_age = NA,
   mrca_distr = NA,
   alignment_rng_seed = 0,
@@ -28,6 +28,9 @@ run <- function(
   verbose = FALSE,
   beast_jar_path = beastier::get_default_beast2_jar_path()
 ) {
+  if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
+    stop("'beast2_rng_seed' should be NA or non-zero positive")
+  }
   # Create alignment
   set.seed(alignment_rng_seed)
   alignment <- sim_alignment(
@@ -58,7 +61,7 @@ run <- function(
     site_models = beautier::create_jc69_site_model(),
     clock_models = beautier::create_strict_clock_model(),
     mrca_priors = mrca_prior,
-    mcmc = beautier::create_mcmc(chain_length = chain_length),
+    mcmc = mcmc,
     tree_priors = beautier::create_bd_tree_prior(),
     posterior_crown_age = crown_age,
     rng_seed = beast2_rng_seed,

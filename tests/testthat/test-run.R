@@ -7,7 +7,7 @@ test_that("use", {
     phylogeny = phylogeny,
     sequence_length = 10,
     mutation_rate = 0.1,
-    chain_length = 10000,
+    mcmc = beautier::create_mcmc(chain_length = 2000),
     crown_age = 15.0
   )
   testthat::expect_true(class(out$trees) == "multiPhylo")
