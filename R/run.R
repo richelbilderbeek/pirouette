@@ -70,7 +70,8 @@ run <- function(
 
   list(
     alignment = alignment,
-    trees = babette_out[[grep(x = names(babette_out), pattern = "trees")]],
+    # Use c() to convert to multiPhylo. This removes the STATE_x names
+    trees = c(babette_out[[grep(x = names(babette_out), pattern = "trees")]]),
     estimates = babette_out$estimates
   )
 }
