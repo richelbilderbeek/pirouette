@@ -4,13 +4,17 @@
 \alias{sim_alignment}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-sim_alignment(phylogeny, sequence_length, mutation_rate = 1)
+sim_alignment(phylogeny, sequence_length, root_sequence = rep("a",
+  sequence_length), mutation_rate = 1)
 }
 \arguments{
 \item{phylogeny}{a phylogeny}
 
 \item{sequence_length}{the number of nucleotides to alignment
 will have per taxon}
+
+\item{root_sequence}{the DNA sequence at the root of the phylogeny.
+By default, this will consist out of only adenine}
 
 \item{mutation_rate}{the rate per nucleotide to change,
 per million years}
