@@ -5,9 +5,12 @@ Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor
 master|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?branch=master)](https://travis-ci.org/richelbilderbeek/pirouette)|[![Build status](https://ci.appveyor.com/api/projects/status/vr5jkcx975w1ggcn/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/pirouette/branch/master)|[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master)
 develop|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/pirouette)|[![Build status](https://ci.appveyor.com/api/projects/status/vr5jkcx975w1ggcn/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/pirouette/branch/develop)|[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master)
 
-`pirouette` is an R package that combines:
+`pirouette` is an R package that creates a posterior from a phylogeny. 
 
- * [babette](https://github.com/richelbilderbeek/babette) creates a Bayesian posterior
+The heavy lifting is done by these packages:
+
+ * [phangorn](https://github.com/KlausVigo/phangorn): to simulate an alignment from a phylogeny
+ * [babette](https://github.com/richelbilderbeek/babette): to use an alignment to create a posterior
 
 ## Examples
 
