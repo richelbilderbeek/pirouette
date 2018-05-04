@@ -16,7 +16,7 @@
 #' @return a posterior of phylogenies
 #' @export
 #' @author Richel J.C. Bilderbeek
-run <- function(
+pir_run <- function(
   phylogeny,
   sequence_length,
   mutation_rate,
@@ -56,7 +56,7 @@ run <- function(
     )
   }
 
-  babette_out <- babette::run(
+  babette_out <- babette::bbt_run(
     fasta_filenames = temp_fasta_filename,
     site_models = beautier::create_jc69_site_model(),
     clock_models = beautier::create_strict_clock_model(),

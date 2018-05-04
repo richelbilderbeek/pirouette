@@ -1,9 +1,9 @@
-context("run")
+context("pir_run")
 
 test_that("use", {
 
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
-  out <- run(
+  out <- pir_run(
     phylogeny = phylogeny,
     sequence_length = 10,
     mutation_rate = 0.1,
@@ -17,7 +17,7 @@ test_that("use with MRCA distribution", {
 
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
   testthat::expect_silent(
-    run(
+    pir_run(
       phylogeny = phylogeny,
       sequence_length = 10,
       mutation_rate = 0.1,
@@ -32,7 +32,7 @@ test_that("abuse", {
 
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
   testthat::expect_error(
-    run(
+    pir_run(
       phylogeny = phylogeny,
       sequence_length = 10,
       mutation_rate = 0.1,

@@ -81,7 +81,7 @@ per_nuc_p_mut_per_tu <- 0.01
 ### 1. Let the crown age be estimated
 
 ```{r}
-out <- out_1 <- pirouette::run(
+out <- out_1 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
   mcmc = mcmc,
@@ -127,7 +127,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 ### 2. Let the posterior have a fixed crown age
 
 ```{r}
-out <- out_2 <- pirouette::run(
+out <- out_2 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
   mcmc = mcmc,
@@ -173,7 +173,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 ### 3. Let the Bayesian analysis have an MRCA prior on all taxa
 
 ```{r}
-out <- out_3 <- pirouette::run(
+out <- out_3 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
   sequence_length = n_nucleotides,
   mcmc = mcmc,
