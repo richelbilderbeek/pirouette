@@ -61,3 +61,4 @@ Package|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![Codecov
 ## External links
 
  * [BEAST2 GitHub](https://github.com/CompEvol/beast2)
+
