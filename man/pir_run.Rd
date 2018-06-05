@@ -4,7 +4,10 @@
 \alias{pir_run}
 \title{Creates a posterior from the phylogeny}
 \usage{
-pir_run(phylogeny, sequence_length, mutation_rate, mcmc, crown_age = NA,
+pir_run(phylogeny, sequence_length, mutation_rate, mcmc,
+  site_models = beautier::create_jc69_site_model(),
+  clock_models = beautier::create_strict_clock_model(),
+  tree_priors = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
   verbose = FALSE, beast_jar_path = beastier::get_default_beast2_jar_path())
 }
@@ -17,6 +20,12 @@ alignment consists of}
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+
+\item{site_models}{one or more nucleotide substitution models,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_models}{one or more clock models,
+as created by \link[beautier]{create_clock_model}}
 
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
@@ -32,6 +41,9 @@ to generate an alignment}
 \item{verbose}{if TRUE, show more output}
 
 \item{beast_jar_path}{Where the jar 'beast.jar' can be found}
+
+\item{tree_prior}{one or more tree prios,
+as created by \link[beautier]{create_tree_prior}}
 }
 \value{
 a posterior of phylogenies

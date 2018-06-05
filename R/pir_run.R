@@ -8,6 +8,12 @@
 #'   to let it be estimated
 #' @param mrca_distr if MRCA prior used on all taxa.
 #'   Set to NA to not use an MRCA prior
+#' @param site_models one or more nucleotide substitution models,
+#'   as created by \link[beautier]{create_site_model}
+#' @param clock_models one or more clock models,
+#'   as created by \link[beautier]{create_clock_model}
+#' @param tree_prior one or more tree prios,
+#'   as created by \link[beautier]{create_tree_prior}
 #' @param alignment_rng_seed The random number generator seed used
 #'   to generate an alignment
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
@@ -21,6 +27,9 @@ pir_run <- function(
   sequence_length,
   mutation_rate,
   mcmc,
+  site_models = beautier::create_jc69_site_model(),
+  clock_models = beautier::create_strict_clock_model(),
+  tree_priors = beautier::create_bd_tree_prior(),
   crown_age = NA,
   mrca_distr = NA,
   alignment_rng_seed = 0,
@@ -58,11 +67,11 @@ pir_run <- function(
 
   babette_out <- babette::bbt_run(
     fasta_filenames = temp_fasta_filename,
-    site_models = beautier::create_jc69_site_model(),
-    clock_models = beautier::create_strict_clock_model(),
+    site_models = site_models,
+    clock_models = clock_models,
+    tree_priors = tree_priors,
     mrca_priors = mrca_prior,
     mcmc = mcmc,
-    tree_priors = beautier::create_bd_tree_prior(),
     posterior_crown_age = crown_age,
     rng_seed = beast2_rng_seed,
     cleanup = TRUE,
