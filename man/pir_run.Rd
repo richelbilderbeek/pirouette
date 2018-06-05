@@ -27,6 +27,9 @@ as created by \link[beautier]{create_site_model}}
 \item{clock_models}{one or more clock models,
 as created by \link[beautier]{create_clock_model}}
 
+\item{tree_priors}{one or more tree prios,
+as created by \link[beautier]{create_tree_prior}}
+
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
 
@@ -41,9 +44,6 @@ to generate an alignment}
 \item{verbose}{if TRUE, show more output}
 
 \item{beast_jar_path}{Where the jar 'beast.jar' can be found}
-
-\item{tree_prior}{one or more tree prios,
-as created by \link[beautier]{create_tree_prior}}
 }
 \value{
 a posterior of phylogenies
