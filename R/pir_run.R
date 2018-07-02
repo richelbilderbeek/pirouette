@@ -20,6 +20,40 @@
 #' @param verbose if TRUE, show more output
 #' @param beast_jar_path Where the jar 'beast.jar' can be found
 #' @return a posterior of phylogenies
+#' @examples
+#'  # Create a phylogeny
+#'  phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
+#'
+#'  # Create a BEAST2 posterior from this phylogeny's simulated alignment.
+#'  # Estimate the crown age
+#'  out <- pir_run(
+#'    phylogeny = phylogeny,
+#'    sequence_length = 10,
+#'    mutation_rate = 0.1,
+#'    mcmc = beautier::create_mcmc(chain_length = 2000)
+#'  )
+#'  # Trees are estimated after 0, 1000 and 2000 MCMC states
+#'  testit::assert(length(out$trees) == 3)
+#'  testit::assert(nrow(out$estimates) == 3)
+#'
+#'  # Create a BEAST2 posterior from this phylogeny's simulated alignment,
+#'  # now assume a (close-to) fixed crown age
+#'  crown_age <- 15.0
+#'  out <- pir_run(
+#'    phylogeny = phylogeny,
+#'    sequence_length = 10,
+#'    mutation_rate = 0.1,
+#'    mcmc = beautier::create_mcmc(chain_length = 2000),
+#'    mrca_distr = beautier::create_normal_distr(
+#'      mean = create_mean_param(crown_age),
+#'      sigma = create_sigma_param(0.001)
+#'    )
+#'  )
+#'  testit::assert(length(out$trees) == 3)
+#'  testit::assert(nrow(out$estimates) == 3)
+#'  # Estimated crown age (called 'TreeHeight' by BEAST2) is not
+#'  # yet estimated correctly. Increase the MCMC length to achieve this
+#'  testit::assert(!all(abs(crown_age - out$estimates$TreeHeight) == crown_age))
 #' @export
 #' @author Richel J.C. Bilderbeek
 pir_run <- function(
