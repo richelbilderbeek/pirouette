@@ -15,7 +15,7 @@ The heavy lifting is done by these packages:
 ## Examples
 
 ```
-None yet
+None yet!
 ```
 
 ## Installation
