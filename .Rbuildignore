@@ -6,3 +6,4 @@
 ^pics$
 ^scripts$
 ^CONTRIBUTING\.md$
+^pull_upstream\.sh$
