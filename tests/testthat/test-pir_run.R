@@ -6,6 +6,7 @@ test_that("use", {
   out <- pir_run(
     phylogeny = phylogeny,
     sequence_length = 10,
+    root_sequence = "aaaaaaaaaa",
     mutation_rate = 0.1,
     mcmc = beautier::create_mcmc(chain_length = 2000),
     crown_age = 15.0
