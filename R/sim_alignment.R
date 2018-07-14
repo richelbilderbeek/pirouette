@@ -23,20 +23,26 @@
 sim_alignment <- function(
   phylogeny,
   sequence_length,
-  root_sequence = rep("a", sequence_length),
+  root_sequence = paste(rep("a", sequence_length), collapse = ""),
   mutation_rate = 1
 ) {
   if (class(phylogeny) != "phylo") {
     stop("parameter 'phylogeny' must be a phylogeny")
   }
+  if (!is.null(geiger::is.extinct(phylogeny))) {
+    stop("phylogeny must not contain extant species")
+  }
   if (sequence_length < 1) {
     stop("'sequence_length' must be a non-zero and positive integer value")
   }
+  if (nchar(root_sequence) != sequence_length) {
+    stop("length of 'root_sequence' must equals 'sequence_length'")
+  }
+  if (!pir_is_dna_seq(root_sequence)) {
+    stop("'root_sequence' must be a lowercase DNA sequence")
+  }
   if (mutation_rate < 0) {
     stop("parameter 'mutation_rate' must be a non-zero and positive value")
-  }
-  if (!is.null(geiger::is.extinct(phylogeny))) {
-    stop("phylogeny must not contain extant species")
   }
 
   # Jukes-Cantor 1969 model:
@@ -46,7 +52,7 @@ sim_alignment <- function(
     phylogeny,
     l = sequence_length,
     rate = mutation_rate,
-    rootseq = root_sequence
+    rootseq = strsplit(root_sequence, split = "")[[1]]
   )
   testit::assert(class(alignment_phydat) == "phyDat")
 

@@ -4,7 +4,8 @@
 \alias{pir_run}
 \title{Creates a posterior from the phylogeny}
 \usage{
-pir_run(phylogeny, sequence_length, mutation_rate, mcmc,
+pir_run(phylogeny, sequence_length, root_sequence = paste(rep("a",
+  sequence_length), collapse = ""), mutation_rate, mcmc,
   site_models = beautier::create_jc69_site_model(),
   clock_models = beautier::create_strict_clock_model(),
   tree_priors = beautier::create_bd_tree_prior(), crown_age = NA,
@@ -16,6 +17,9 @@ pir_run(phylogeny, sequence_length, mutation_rate, mcmc,
 
 \item{sequence_length}{the number of basepair the simulated DNA
 alignment consists of}
+
+\item{root_sequence}{the DNA sequence at the root of the phylogeny.
+By default, this will consist out of only adenine}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 

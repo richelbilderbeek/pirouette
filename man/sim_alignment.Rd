@@ -4,8 +4,8 @@
 \alias{sim_alignment}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-sim_alignment(phylogeny, sequence_length, root_sequence = rep("a",
-  sequence_length), mutation_rate = 1)
+sim_alignment(phylogeny, sequence_length, root_sequence = paste(rep("a",
+  sequence_length), collapse = ""), mutation_rate = 1)
 }
 \arguments{
 \item{phylogeny}{a phylogeny}

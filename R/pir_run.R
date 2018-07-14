@@ -2,6 +2,8 @@
 #' @param phylogeny a phylogeny
 #' @param sequence_length the number of basepair the simulated DNA
 #'   alignment consists of
+#' @param root_sequence the DNA sequence at the root of the phylogeny.
+#'   By default, this will consist out of only adenine
 #' @param mutation_rate the mutation rate per base pair per time unit
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param crown_age the fixed crown age of the posterior. Set to NA
@@ -59,6 +61,7 @@
 pir_run <- function(
   phylogeny,
   sequence_length,
+  root_sequence = paste(rep("a", sequence_length), collapse = ""),
   mutation_rate,
   mcmc,
   site_models = beautier::create_jc69_site_model(),
@@ -79,6 +82,7 @@ pir_run <- function(
   alignment <- sim_alignment(
     phylogeny = phylogeny,
     sequence_length = sequence_length,
+    root_sequence = root_sequence,
     mutation_rate = mutation_rate
   )
   # Save alignment to file
