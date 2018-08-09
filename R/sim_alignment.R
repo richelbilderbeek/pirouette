@@ -22,7 +22,7 @@
 #' @export
 sim_alignment <- function(
   phylogeny,
-  sequence_length,
+  sequence_length, #i am adding a space
   root_sequence = rep("a", sequence_length),
   mutation_rate = 1
 ) {
