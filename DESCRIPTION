@@ -23,6 +23,7 @@ Imports:
     beautier,
     geiger,
     phangorn,
+    stringr,
     testit
 Suggests:
     devtools,
