@@ -10,7 +10,8 @@ pir_run(phylogeny, sequence_length, root_sequence = paste(rep("a",
   clock_models = beautier::create_strict_clock_model(),
   tree_priors = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
-  verbose = FALSE, beast_jar_path = beastier::get_default_beast2_jar_path())
+  verbose = FALSE,
+  beast_jar_path = beastier::get_default_beast2_jar_path())
 }
 \arguments{
 \item{phylogeny}{a phylogeny}

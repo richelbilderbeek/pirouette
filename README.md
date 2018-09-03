@@ -15,7 +15,11 @@ The heavy lifting is done by these packages:
 ## Examples
 
 ```
-None yet!
+out <- pirouette::pir_run(
+  phylogeny = ape::rcoal(3),
+  sequence_length = 10,
+  mutation_rate = 0.1,
+)
 ```
 
 ## Installation
