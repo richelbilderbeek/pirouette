@@ -9,7 +9,6 @@
 #'   testit::assert(!pirouette:::pir_is_dna_seq("xxxx"))
 #'   testit::assert(!pirouette:::pir_is_dna_seq(""))
 #' @author Richel J.C. Bilderbeek
-pir_is_dna_seq <- function(s)
-{
-  stringr::str_match(s, "[acgt]*")[1,1] != ""
+pir_is_dna_seq <- function(s) {
+  stringr::str_match(s, "[acgt]*")[1, 1] != ""
 }
