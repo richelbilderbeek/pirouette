@@ -20,7 +20,8 @@
 #'   to generate an alignment
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
 #' @param verbose if TRUE, show more output
-#' @param beast_jar_path Where the jar 'beast.jar' can be found
+#' @param beast2_path Path to the BEAST2 binary (\code{beast})
+#'   or jar file (\code{beast.jar})
 #' @return a posterior of phylogenies
 #' @examples
 #'  # Create a phylogeny
@@ -72,7 +73,7 @@ pir_run <- function(
   alignment_rng_seed = 0,
   beast2_rng_seed = 1,
   verbose = FALSE,
-  beast_jar_path = beastier::get_default_beast2_jar_path()
+  beast2_path = beastier::get_default_beast2_path()
 ) {
   if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
     stop("'beast2_rng_seed' should be NA or non-zero positive")
@@ -113,7 +114,8 @@ pir_run <- function(
     posterior_crown_age = crown_age,
     rng_seed = beast2_rng_seed,
     cleanup = TRUE,
-    verbose = verbose
+    verbose = verbose,
+    beast2_path = beast2_path
   )
 
   file.remove(temp_fasta_filename)
