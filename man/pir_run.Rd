@@ -10,7 +10,7 @@ pir_run(phylogeny, sequence_length, root_sequence = paste(rep("a",
   clock_models = beautier::create_strict_clock_model(),
   tree_priors = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
-  verbose = FALSE, beast_path = beastier::get_default_beast2_path())
+  verbose = FALSE, beast2_path = beastier::get_default_beast2_path())
 }
 \arguments{
 \item{phylogeny}{a phylogeny}
@@ -47,7 +47,7 @@ to generate an alignment}
 
 \item{verbose}{if TRUE, show more output}
 
-\item{beast_path}{Path to the BEAST2 binary (\code{beast})
+\item{beast2_path}{Path to the BEAST2 binary (\code{beast})
 or jar file (\code{beast.jar})}
 }
 \value{
