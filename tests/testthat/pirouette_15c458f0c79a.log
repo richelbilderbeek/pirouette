@@ -1,0 +1,54 @@
+#
+#model:
+#
+#<?xml version="1.0" encoding="UTF-8" standalone="no"?><input id="posterior" spec="beast.core.util.CompoundDistribution">
+#    <distribution id="prior" spec="beast.core.util.CompoundDistribution">
+#        <distribution id="BirthDeath.t:pirouette_15c458f0c79a" spec="beast.evolution.speciation.BirthDeathGernhard08Model">
+#            <parameter id="BDDeathRate.t:pirouette_15c458f0c79a" lower="0.0" name="relativeDeathRate" upper="1.0">0.5</parameter>
+#            <parameter id="BDBirthRate.t:pirouette_15c458f0c79a" lower="0.0" name="birthDiffRate" upper="10000.0">1.0</parameter>
+#            <tree IsLabelledNewick="true" adjustTipHeights="false" id="Tree.t:pirouette_15c458f0c79a" newick="(B:15,(C:3.295122563,(A:2.518745185,D:2.518745185):0.7763773778):11.70487744);" spec="beast.util.TreeParser">
+#                <taxonset id="TaxonSet" spec="beast.evolution.alignment.TaxonSet">
+#                    <taxon id="A" spec="beast.evolution.alignment.Taxon"/>
+#                    <taxon id="B" spec="beast.evolution.alignment.Taxon"/>
+#                    <taxon id="C" spec="beast.evolution.alignment.Taxon"/>
+#                    <taxon id="D" spec="beast.evolution.alignment.Taxon"/>
+#                </taxonset>
+#            </tree>
+#        </distribution>
+#        <prior id="BirthRatePrior.t:pirouette_15c458f0c79a" name="distribution" x="@BDBirthRate.t:pirouette_15c458f0c79a">
+#            <Uniform id="Uniform.100" name="distr" upper="Infinity"/>
+#        </prior>
+#        <prior id="DeathRatePrior.t:pirouette_15c458f0c79a" name="distribution" x="@BDDeathRate.t:pirouette_15c458f0c79a">
+#            <Uniform id="Uniform.101" name="distr" upper="Infinity"/>
+#        </prior>
+#        <prior id="ClockPrior.c:pirouette_15c458f0c79a" name="distribution">
+#            <parameter id="clockRate.c:pirouette_15c458f0c79a" name="x">1.0</parameter>
+#            <Uniform id="Uniform.150" name="distr" upper="Infinity"/>
+#        </prior>
+#        <distribution id="auto_name_1.prior" monophyletic="true" spec="beast.math.distributions.MRCAPrior" tree="@Tree.t:pirouette_15c458f0c79a">
+#            <taxonset id="auto_name_1" spec="beast.evolution.alignment.TaxonSet">
+#                <taxon id="A1" spec="beast.evolution.alignment.Taxon"/>
+#                <taxon id="B1" spec="beast.evolution.alignment.Taxon"/>
+#                <taxon id="C1" spec="beast.evolution.alignment.Taxon"/>
+#                <taxon id="D1" spec="beast.evolution.alignment.Taxon"/>
+#            </taxonset>
+#            <Uniform id="Uniform.151" name="distr" upper="16.0"/>
+#        </distribution>
+#    </distribution>
+#    <distribution id="likelihood" spec="beast.core.util.CompoundDistribution" useThreads="true">
+#        <distribution data="@pirouette_15c458f0c79a" id="treeLikelihood.pirouette_15c458f0c79a" spec="beast.evolution.likelihood.ThreadedTreeLikelihood" tree="@Tree.t:pirouette_15c458f0c79a">
+#            <siteModel id="SiteModel.s:pirouette_15c458f0c79a" spec="beast.evolution.sitemodel.SiteModel">
+#                <parameter estimate="false" id="mutationRate.s:pirouette_15c458f0c79a" name="mutationRate">1.0</parameter>
+#                <parameter estimate="false" id="gammaShape.s:pirouette_15c458f0c79a" name="shape">1.0</parameter>
+#                <parameter estimate="false" id="proportionInvariant.s:pirouette_15c458f0c79a" lower="0.0" name="proportionInvariant" upper="1.0">0.0</parameter>
+#                <substModel id="JC69.s:pirouette_15c458f0c79a" spec="beast.evolution.substitutionmodel.JukesCantor"/>
+#            </siteModel>
+#            <branchRateModel clock.rate="@clockRate.c:pirouette_15c458f0c79a" id="StrictClock.c:pirouette_15c458f0c79a" spec="beast.evolution.branchratemodel.StrictClockModel"/>
+#        </distribution>
+#    </distribution>
+#</input>
+#
+Sample	posterior	likelihood	prior	treeLikelihood	TreeHeight	BirthDeath	BDBirthRate	BDDeathRate	logP(mrca(auto_name_1))	mrcatime(auto_name_1)	clockRate
+0	-96.66320186027656	-55.42379641712825	-41.239405443148314	-55.42379641712825	15.000000003	-38.46681672090853	1.0	0.5	-2.772588722239781	15.000000003	1.0
+1000	-51.42851985694429	-39.6426359119159	-11.785883945028385	-39.6426359119159	8.011911010783942	-9.013295222788603	0.22958157740221305	0.8745468229621682	-2.772588722239781	8.011911010783942	0.5699516903055405
+2000	-44.81581969607328	-38.713703311450324	-6.1021163846229545	-38.713703311450324	1.5229579942217901	-3.3295276623831738	0.48847992391389666	0.22529976536790164	-2.772588722239781	1.5229579942217901	5.498184938696358
