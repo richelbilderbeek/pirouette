@@ -75,6 +75,15 @@ pir_run <- function(
   verbose = FALSE,
   beast2_path = beastier::get_default_beast2_path()
 ) {
+  if (!pir_is_dna_seq(root_sequence)) {
+    stop("'root_sequence' should be a lower-case DNA character string")
+  }
+  if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {
+    stop(
+      "'sequence_length' must be NULL ",
+      "or equal the number of characters in 'root_sequence'"
+    )
+  }
   if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
     stop("'beast2_rng_seed' should be NA or non-zero positive")
   }
