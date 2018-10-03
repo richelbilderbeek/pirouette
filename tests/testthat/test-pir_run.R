@@ -72,3 +72,26 @@ test_that("abuse", {
     "'root_sequence' should be a lower-case DNA character string"
   )
 })
+
+test_that("new interface", {
+
+  phylogeny <- ape::read.tree(text = "((A:1,B:1):1,C:2);")
+
+  expect_warning(
+    pir_run(
+      phylogeny = phylogeny,
+      sequence_length = 4,
+      root_sequence = "aaaa",
+      mutation_rate = 0.1,
+      mcmc = beautier::create_mcmc(chain_length = 2000),
+      crown_age = 15.0
+
+    ),
+    paste0(
+      "'sequence_length' will be removed from the interface ",
+      "in a future version. The number of characters in 'root_sequence' ",
+      "will be used instead"
+    )
+  )
+
+})

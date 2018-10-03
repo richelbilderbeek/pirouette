@@ -84,6 +84,14 @@ pir_run <- function(
       "or equal the number of characters in 'root_sequence'"
     )
   }
+  if (is.numeric(sequence_length)) {
+    warning(
+      "'sequence_length' will be removed from the interface ",
+      "in a future version. The number of characters in 'root_sequence' ",
+      "will be used instead"
+    )
+  }
+
   if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
     stop("'beast2_rng_seed' should be NA or non-zero positive")
   }
