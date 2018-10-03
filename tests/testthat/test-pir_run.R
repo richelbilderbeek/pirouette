@@ -16,7 +16,7 @@ test_that("use", {
 
 test_that("use with MRCA distribution", {
 
-  phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testthat::expect_silent(
     pir_run(
       phylogeny = phylogeny,
