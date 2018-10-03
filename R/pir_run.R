@@ -62,7 +62,7 @@
 pir_run <- function(
   phylogeny,
   sequence_length = NULL,
-  root_sequence,
+  root_sequence = create_mono_nuc_dna(length = sequence_length),
   mutation_rate,
   mcmc,
   site_models = beautier::create_jc69_site_model(),

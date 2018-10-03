@@ -4,9 +4,9 @@
 \alias{pir_run}
 \title{Creates a posterior from the phylogeny}
 \usage{
-pir_run(phylogeny, sequence_length, root_sequence = paste(rep("a",
-  sequence_length), collapse = ""), mutation_rate, mcmc,
-  site_models = beautier::create_jc69_site_model(),
+pir_run(phylogeny, sequence_length = NULL,
+  root_sequence = create_mono_nuc_dna(length = sequence_length),
+  mutation_rate, mcmc, site_models = beautier::create_jc69_site_model(),
   clock_models = beautier::create_strict_clock_model(),
   tree_priors = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
