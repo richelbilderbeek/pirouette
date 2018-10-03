@@ -1,23 +1,26 @@
 context("sim_alignment")
 
 test_that("sim_alignment: basic", {
-  n_taxa <- 5
-  sequence_length <- 10
-  phylogeny <- ape::rcoal(n_taxa)
+  n_taxa <- 3
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
+  sequence_length <- 10
 
   alignment <- sim_alignment(
     phylogeny = phylogeny,
-    sequence_length = sequence_length,
-    root_sequence = "aaaaaaaaaa",
+    sequence_length = NULL,
+    root_sequence = create_mono_nuc_dna(length = sequence_length),
     mutation_rate = 1
   )
-  testthat::expect_true(class(alignment) == "DNAbin")
-  testthat::expect_true(nrow(alignment) == n_taxa)
-  testthat::expect_true(ncol(alignment) == sequence_length)
+  expect_true(class(alignment) == "DNAbin")
+  expect_true(nrow(alignment) == n_taxa)
+  expect_true(ncol(alignment) == sequence_length)
 })
 
 test_that("sim_alignment: abuse", {
+
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+
   expect_error(
     sim_alignment(
       phylogeny = "not a phylogeny",
@@ -29,16 +32,7 @@ test_that("sim_alignment: abuse", {
 
   expect_error(
     sim_alignment(
-      phylogeny = ape::rcoal(5),
-      sequence_length = -1, # Must be positive
-      mutation_rate = 1
-    ),
-    "'sequence_length' must be a non-zero and positive integer value" # nolint
-  )
-
-  expect_error(
-    sim_alignment(
-      phylogeny = ape::rcoal(5),
+      phylogeny = phylogeny,
       sequence_length = 10,
       root_sequence = "acgt",
       mutation_rate = 1
@@ -48,7 +42,7 @@ test_that("sim_alignment: abuse", {
 
   expect_error(
     sim_alignment(
-      phylogeny = ape::rcoal(5),
+      phylogeny = phylogeny,
       sequence_length = 4,
       root_sequence = "XXXX",
       mutation_rate = 1
@@ -58,8 +52,9 @@ test_that("sim_alignment: abuse", {
 
   expect_error(
     sim_alignment(
-      phylogeny = ape::rcoal(5),
+      phylogeny = phylogeny,
       sequence_length = 2,
+      root_sequence = "aa",
       mutation_rate = -1 # Must be positive
     ),
     "'mutation_rate' must be a non-zero and positive value" # nolint
@@ -76,6 +71,26 @@ test_that("sim_alignment: abuse", {
       mutation_rate = 1
     ),
     "phylogeny must not contain extant species"
+  )
+
+})
+
+test_that("new interface", {
+
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+
+  expect_warning(
+    sim_alignment(
+      phylogeny = phylogeny,
+      sequence_length = 4,
+      root_sequence = "aaaa",
+      mutation_rate = 0.1
+    ),
+    paste0(
+      "'sequence_length' will be removed from the interface ",
+      "in a future version. The number of characters in 'root_sequence' ",
+      "will be used instead"
+    )
   )
 
 })

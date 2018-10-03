@@ -61,8 +61,8 @@
 #' @author Richel J.C. Bilderbeek
 pir_run <- function(
   phylogeny,
-  sequence_length,
-  root_sequence = paste(rep("a", sequence_length), collapse = ""),
+  sequence_length = NULL,
+  root_sequence,
   mutation_rate,
   mcmc,
   site_models = beautier::create_jc69_site_model(),

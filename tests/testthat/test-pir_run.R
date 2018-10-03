@@ -5,8 +5,8 @@ test_that("use", {
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
   out <- pir_run(
     phylogeny = phylogeny,
-    sequence_length = 10,
-    root_sequence = "aaaaaaaaaa",
+    sequence_length = NULL,
+    root_sequence = create_blocked_dna(length = 8),
     mutation_rate = 0.1,
     mcmc = beautier::create_mcmc(chain_length = 2000),
     crown_age = 15.0
@@ -20,7 +20,8 @@ test_that("use with MRCA distribution", {
   testthat::expect_silent(
     pir_run(
       phylogeny = phylogeny,
-      sequence_length = 10,
+      sequence_length = NULL,
+      root_sequence = create_blocked_dna(length = 8),
       mutation_rate = 0.1,
       mcmc = beautier::create_mcmc(chain_length = 2000),
       crown_age = 15.0,
@@ -52,7 +53,8 @@ test_that("abuse", {
   expect_error(
     pir_run(
       phylogeny = phylogeny,
-      sequence_length = 10,
+      sequence_length = NULL,
+      root_sequence = create_blocked_dna(length = 4),
       mutation_rate = 0.1,
       mcmc = beautier::create_mcmc(chain_length = 2000),
       crown_age = 15.0,

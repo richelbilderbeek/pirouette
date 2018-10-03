@@ -32,10 +32,7 @@ sim_alignment <- function(
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
-  if (sequence_length < 1) {
-    stop("'sequence_length' must be a non-zero and positive integer value")
-  }
-  if (nchar(root_sequence) != sequence_length) {
+  if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {
     stop("length of 'root_sequence' must equals 'sequence_length'")
   }
   if (!pir_is_dna_seq(root_sequence)) {
@@ -44,13 +41,20 @@ sim_alignment <- function(
   if (mutation_rate < 0) {
     stop("parameter 'mutation_rate' must be a non-zero and positive value")
   }
+  if (is.numeric(sequence_length)) {
+    warning(
+      "'sequence_length' will be removed from the interface ",
+      "in a future version. The number of characters in 'root_sequence' ",
+      "will be used instead"
+    )
+  }
 
   # Jukes-Cantor 1969 model:
   #  * equal base frequencies
   #  * equal transition rates
   alignment_phydat <- phangorn::simSeq(
     phylogeny,
-    l = sequence_length,
+    l = nchar(root_sequence),
     rate = mutation_rate,
     rootseq = strsplit(root_sequence, split = "")[[1]]
   )
@@ -59,7 +63,7 @@ sim_alignment <- function(
   alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
 
   testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))
-  testit::assert(ncol(alignment_dnabin) == sequence_length)
+  testit::assert(ncol(alignment_dnabin) == nchar(root_sequence))
 
   alignment_dnabin
 }

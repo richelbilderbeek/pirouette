@@ -5,10 +5,10 @@
 \title{Create a 'blocked' DNA sequence, which is a sequence
 with four equal-sized nucleotide sections}
 \usage{
-create_blocked_dna(n)
+create_blocked_dna(length)
 }
 \arguments{
-\item{n}{number of nucleotides. Must be a multitude of four.}
+\item{length}{number of nucleotides. Must be a multitude of four.}
 }
 \description{
 Create a 'blocked' DNA sequence, which is a sequence
