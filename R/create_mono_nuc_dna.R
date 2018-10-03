@@ -9,6 +9,8 @@
 #'     create_mono_nuc_dna(nucleotide = "c", length = 5),
 #'     "ccccc"
 #'   )
+#' @seealso Use \link{create_blocked_dna} to create
+#'   a DNA sequence of four equally-sized mono-noculeotide block
 #' @export
 create_mono_nuc_dna <- function(
   length,
