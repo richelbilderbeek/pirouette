@@ -29,31 +29,7 @@ sim_rng_seed <- 42
 alignment_rng_seed <- 42
 beast2_rng_seed <- 42
 crown_age <- 15
-use_simple_tree <- FALSE
-
-set.seed(sim_rng_seed)
-true_phylogeny <- NA
-if (use_simple_tree) {
-  true_phylogeny <- TreeSim::sim.bd.age(
-    age = crown_age, 
-    numbsim = 1, 
-    lambda = 0.1, 
-    mu = 0.0, 
-    frac = 1.0, 
-    mrca = TRUE
-  )[[1]]
-} else {
-  sirg  <- 0.2
-  siri  <- 0.2
-  scr <- 0.01
-  erg <- 0.0
-  eri <- 0.0
-  true_phylogeny <- PBD::pbd_sim(
-    pars = c(sirg, scr, siri, erg, eri),
-    age = crown_age,
-    soc = 2 # Use crown age
-  )$stree_youngest
-}
+true_phylogeny <- ape::read.tree(text = "((A:7, B:7):8, C:15);")
 ```
 
 ```{r fig.width=7, fig.height=7}
@@ -83,7 +59,8 @@ per_nuc_p_mut_per_tu <- 0.01
 ```{r}
 out <- out_1 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
-  sequence_length = n_nucleotides,
+  sequence_length = NULL,
+  root_sequence = create_blocked_dna(length = n_nucleotides),
   mcmc = mcmc,
   mutation_rate = per_nuc_p_mut_per_tu,
   alignment_rng_seed = alignment_rng_seed,
@@ -129,7 +106,8 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 ```{r}
 out <- out_2 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
-  sequence_length = n_nucleotides,
+  sequence_length = NULL,
+  root_sequence = create_blocked_dna(length = n_nucleotides),
   mcmc = mcmc,
   mutation_rate = per_nuc_p_mut_per_tu,
   crown_age = crown_age,
@@ -175,7 +153,8 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 ```{r}
 out <- out_3 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
-  sequence_length = n_nucleotides,
+  sequence_length = NULL,
+  root_sequence = create_blocked_dna(length = n_nucleotides),
   mcmc = mcmc,
   mutation_rate = per_nuc_p_mut_per_tu,
   mrca_distr = beautier::create_normal_distr(
