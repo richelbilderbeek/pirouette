@@ -21,4 +21,3 @@ test_that("abuse", {
     "'length' must be a positive non-zero number"
   )
 })
-
