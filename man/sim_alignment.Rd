@@ -20,7 +20,7 @@ By default, this will consist out of only adenine}
 per million years}
 }
 \value{
-an alignment
+an alignment of type \code{DNAbin}
 }
 \description{
 Converts a phylogeny to a random DNA alignment

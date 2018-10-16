@@ -6,7 +6,7 @@
 #'   By default, this will consist out of only adenine
 #' @param mutation_rate the rate per nucleotide to change,
 #'   per million years
-#' @return an alignment
+#' @return an alignment of type \code{DNAbin}
 #' @examples
 #' n_taxa <- 5
 #' n_base_pairs <- 10
