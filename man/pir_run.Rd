@@ -6,11 +6,13 @@
 \usage{
 pir_run(phylogeny, sequence_length = NULL,
   root_sequence = create_mono_nuc_dna(length = sequence_length),
-  mutation_rate, mcmc, site_models = beautier::create_jc69_site_model(),
-  clock_models = beautier::create_strict_clock_model(),
-  tree_priors = beautier::create_bd_tree_prior(), crown_age = NA,
+  mutation_rate, mcmc, site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  tree_prior = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
-  verbose = FALSE, beast2_path = beastier::get_default_beast2_path())
+  verbose = FALSE, beast2_path = beastier::get_default_beast2_path(),
+  site_models = "deprecated", clock_models = "deprecated",
+  tree_priors = "deprecated")
 }
 \arguments{
 \item{phylogeny}{a phylogeny}
@@ -24,15 +26,6 @@ By default, this will consist out of only adenine}
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
-
-\item{site_models}{one or more nucleotide substitution models,
-as created by \link[beautier]{create_site_model}}
-
-\item{clock_models}{one or more clock models,
-as created by \link[beautier]{create_clock_model}}
-
-\item{tree_priors}{one or more tree prios,
-as created by \link[beautier]{create_tree_prior}}
 
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
@@ -49,6 +42,15 @@ to generate an alignment}
 
 \item{beast2_path}{Path to the BEAST2 binary (\code{beast})
 or jar file (\code{beast.jar})}
+
+\item{site_models}{one or more nucleotide substitution models,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_models}{one or more clock models,
+as created by \link[beautier]{create_clock_model}}
+
+\item{tree_priors}{one or more tree prios,
+as created by \link[beautier]{create_tree_prior}}
 }
 \value{
 a posterior of phylogenies

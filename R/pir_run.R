@@ -65,16 +65,30 @@ pir_run <- function(
   root_sequence = create_mono_nuc_dna(length = sequence_length),
   mutation_rate,
   mcmc,
-  site_models = beautier::create_jc69_site_model(),
-  clock_models = beautier::create_strict_clock_model(),
-  tree_priors = beautier::create_bd_tree_prior(),
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  tree_prior = beautier::create_bd_tree_prior(),
   crown_age = NA,
   mrca_distr = NA,
   alignment_rng_seed = 0,
   beast2_rng_seed = 1,
   verbose = FALSE,
-  beast2_path = beastier::get_default_beast2_path()
+  beast2_path = beastier::get_default_beast2_path(),
+  site_models = "deprecated",
+  clock_models = "deprecated",
+  tree_priors = "deprecated"
 ) {
+  # Check for deprecated argument names
+  calls <- names(sapply(match.call(), deparse))[-1]
+  if (any("site_models" %in% calls)) {
+    stop("'site_models' is deprecated, use 'site_model' instead.")
+  }
+  if (any("clock_models" %in% calls)) {
+    stop("'clock_models' is deprecated, use 'clock_model' instead.")
+  }
+  if (any("tree_priors" %in% calls)) {
+    stop("'tree_priors' is deprecated, use 'tree_prior' instead.")
+  }
   if (!pir_is_dna_seq(root_sequence)) {
     stop("'root_sequence' should be a lower-case DNA character string")
   }
@@ -122,13 +136,12 @@ pir_run <- function(
   }
 
   babette_out <- babette::bbt_run(
-    fasta_filenames = temp_fasta_filename,
-    site_models = site_models,
-    clock_models = clock_models,
-    tree_priors = tree_priors,
-    mrca_priors = mrca_prior,
+    fasta_filename = temp_fasta_filename,
+    site_model = site_model,
+    clock_model = clock_model,
+    tree_prior = tree_prior,
+    mrca_prior = mrca_prior,
     mcmc = mcmc,
-    posterior_crown_age = crown_age,
     rng_seed = beast2_rng_seed,
     cleanup = TRUE,
     verbose = verbose,

@@ -13,7 +13,7 @@ Description:
 License: GPL-3 | file LICENSE
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
