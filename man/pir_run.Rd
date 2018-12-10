@@ -27,6 +27,15 @@ By default, this will consist out of only adenine}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
+\item{site_model}{a nucleotide substitution model,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
+
+\item{tree_prior}{a tree prior,
+as created by \link[beautier]{create_tree_prior}}
+
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
 
@@ -43,14 +52,11 @@ to generate an alignment}
 \item{beast2_path}{Path to the BEAST2 binary (\code{beast})
 or jar file (\code{beast.jar})}
 
-\item{site_models}{one or more nucleotide substitution models,
-as created by \link[beautier]{create_site_model}}
+\item{site_models}{deprecated}
 
-\item{clock_models}{one or more clock models,
-as created by \link[beautier]{create_clock_model}}
+\item{clock_models}{deprecated}
 
-\item{tree_priors}{one or more tree prios,
-as created by \link[beautier]{create_tree_prior}}
+\item{tree_priors}{deprecated}
 }
 \value{
 a posterior of phylogenies

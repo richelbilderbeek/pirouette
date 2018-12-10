@@ -10,11 +10,11 @@
 #'   to let it be estimated
 #' @param mrca_distr if MRCA prior used on all taxa.
 #'   Set to NA to not use an MRCA prior
-#' @param site_models one or more nucleotide substitution models,
+#' @param site_model a nucleotide substitution model,
 #'   as created by \link[beautier]{create_site_model}
-#' @param clock_models one or more clock models,
+#' @param clock_model a clock model,
 #'   as created by \link[beautier]{create_clock_model}
-#' @param tree_priors one or more tree prios,
+#' @param tree_prior a tree prior,
 #'   as created by \link[beautier]{create_tree_prior}
 #' @param alignment_rng_seed The random number generator seed used
 #'   to generate an alignment
@@ -22,6 +22,9 @@
 #' @param verbose if TRUE, show more output
 #' @param beast2_path Path to the BEAST2 binary (\code{beast})
 #'   or jar file (\code{beast.jar})
+#' @param site_models deprecated
+#' @param clock_models deprecated
+#' @param tree_priors deprecated
 #' @return a posterior of phylogenies
 #' @examples
 #'  # Create a phylogeny
