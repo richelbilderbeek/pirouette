@@ -13,7 +13,7 @@ create_bd_tree <- function(
   lambda <- parameters$lambda
   mu <- parameters$mu
   seed <- parameters$seed
-  age  <- parameters$crown_age
+  age  <- beautier:::get_phylo_crown_age(mbd_tree)
   soc  <- 2 # Use crown age
   testit::assert(!is.null(lambda))
   testit::assert(!is.null(mu))
