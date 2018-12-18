@@ -10,8 +10,12 @@ r_packages:
 r_github_packages:
   - jimhester/covr
   - jimhester/lintr
+  - richelbilderbeek/babette
   - richelbilderbeek/beastier
   - richelbilderbeek/beautier
+  - richelbilderbeek/mauricer
+  - richelbilderbeek/mcbette
+  - richelbilderbeek/razzo
   - richelbilderbeek/tracerer
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
