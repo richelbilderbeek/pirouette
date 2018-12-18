@@ -24,7 +24,8 @@ Imports:
     geiger,
     phangorn,
     stringr,
-    testit
+    testit,
+    tidyr
 Suggests:
     devtools,
     ggplot2,
