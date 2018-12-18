@@ -8,5 +8,6 @@ pir_run <- function(
   phylogeny,
   mcmc
 ) {
+  twin_tree <- create_twin_tree(phylogeny)
   create_pir_run_test_output()
 }
