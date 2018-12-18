@@ -2,14 +2,12 @@
 % Please edit documentation in R/create_twin_tree.R
 \name{create_twin_tree}
 \alias{create_twin_tree}
-\title{Create a twin tree
-#@export}
+\title{Create a twin tree}
 \usage{
 create_twin_tree(phylogeny)
 }
 \description{
 Create a twin tree
-#@export
 }
 \author{
 Richel J.C. Bilderbeek

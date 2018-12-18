@@ -1,5 +1,5 @@
 #' Create a twin tree
-#' #@export
+#' @export
 #' @author Richel J.C. Bilderbeek
 create_twin_tree <- function(phylogeny) {
   create_bd_tree(
