@@ -1,3 +1,36 @@
+#' Meaure the error BEAST2 makes from a known phylogeny
+#' @param phylogeny a phylogeny
+#' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
+#' @return a data frame with errors
+#' @export
+#' @author Richel J.C. Bilderbeek
+pir_run <- function(
+  phylogeny,
+  mcmc
+) {
+
+  df <- data.frame(tree = c("true", "true", "twin", "twin"))
+  df$inference_model <- c("generative", "best", "generative", "best")
+  df$inference_model_weight <- c(0.5, 0.4, 0.6, 0.3)
+  df$site_model <- c("JC69", "HKY", "JC69", "GTR")
+  df$clock_model <- c("strict", "strict", "strict", "RLN")
+  df$tree_prior <- c("BD", "Yule", "BD", "CCP")
+  df$error_1 <- c(0.1, 0.2, 0.3, 0.4)
+  df$error_2 <- c(0.11, 0.23, 0.35, 0.47)
+  df$error_3 <- c(0.12, 0.24, 0.36, 0.48)
+
+  df$tree <- as.factor(df$tree)
+  df$inference_model <- as.factor(df$inference_model)
+  df$site_model <- as.factor(df$site_model)
+  df$clock_model <- as.factor(df$clock_model)
+  df$tree_prior <- as.factor(df$tree_prior)
+
+  df
+}
+
+
+
+
 #' Creates a posterior from the phylogeny
 #' @param phylogeny a phylogeny
 #' @param sequence_length the number of basepair the simulated DNA
@@ -62,101 +95,101 @@
 #'  testit::assert(!all(abs(crown_age - out$estimates$TreeHeight) == crown_age))
 #' @export
 #' @author Richel J.C. Bilderbeek
-pir_run <- function(
-  phylogeny,
-  sequence_length = NULL,
-  root_sequence = create_mono_nuc_dna(length = sequence_length),
-  mutation_rate,
-  mcmc,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
-  tree_prior = beautier::create_bd_tree_prior(),
-  crown_age = NA,
-  mrca_distr = NA,
-  alignment_rng_seed = 0,
-  beast2_rng_seed = 1,
-  verbose = FALSE,
-  beast2_path = beastier::get_default_beast2_path(),
-  site_models = "deprecated",
-  clock_models = "deprecated",
-  tree_priors = "deprecated"
-) {
-  # Check for deprecated argument names
-  calls <- names(sapply(match.call(), deparse))[-1]
-  if (any("site_models" %in% calls)) {
-    stop("'site_models' is deprecated, use 'site_model' instead.")
-  }
-  if (any("clock_models" %in% calls)) {
-    stop("'clock_models' is deprecated, use 'clock_model' instead.")
-  }
-  if (any("tree_priors" %in% calls)) {
-    stop("'tree_priors' is deprecated, use 'tree_prior' instead.")
-  }
-  if (!pir_is_dna_seq(root_sequence)) {
-    stop("'root_sequence' should be a lower-case DNA character string")
-  }
-  if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {
-    stop(
-      "'sequence_length' must be NULL ",
-      "or equal the number of characters in 'root_sequence'"
-    )
-  }
-  if (is.numeric(sequence_length)) {
-    warning(
-      "'sequence_length' will be removed from the interface ",
-      "in a future version. The number of characters in 'root_sequence' ",
-      "will be used instead"
-    )
-  }
-
-  if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
-    stop("'beast2_rng_seed' should be NA or non-zero positive")
-  }
-  # Create alignment
-  set.seed(alignment_rng_seed)
-  alignment <- sim_alignment(
-    phylogeny = phylogeny,
-    sequence_length = sequence_length,
-    root_sequence = root_sequence,
-    mutation_rate = mutation_rate
-  )
-  # Save alignment to file
-  temp_fasta_filename <- tempfile(pattern = "pirouette_", fileext = ".fasta")
-  phangorn::write.phyDat(
-    alignment,
-    file = temp_fasta_filename,
-    format = "fasta"
-  )
-
-  mrca_prior <- NA
-  if (beautier:::is_distr(mrca_distr)) {
-    mrca_prior <- beautier::create_mrca_prior(
-      alignment_id = beautier::get_alignment_id(temp_fasta_filename),
-      taxa_names = beautier::get_taxa_names(temp_fasta_filename),
-      is_monophyletic = TRUE,
-      mrca_distr = mrca_distr
-    )
-  }
-
-  babette_out <- babette::bbt_run(
-    fasta_filename = temp_fasta_filename,
-    site_model = site_model,
-    clock_model = clock_model,
-    tree_prior = tree_prior,
-    mrca_prior = mrca_prior,
-    mcmc = mcmc,
-    rng_seed = beast2_rng_seed,
-    cleanup = TRUE,
-    verbose = verbose,
-    beast2_path = beast2_path
-  )
-
-  file.remove(temp_fasta_filename)
-
-  list(
-    alignment = alignment,
-    # Use c() to convert to multiPhylo. This removes the STATE_x names
-    trees = c(babette_out[[grep(x = names(babette_out), pattern = "trees")]]),
-    estimates = babette_out$estimates
-  )
-}
+# pir_run <- function(
+#   phylogeny,
+#   sequence_length = NULL,
+#   root_sequence = create_mono_nuc_dna(length = sequence_length),
+#   mutation_rate,
+#   mcmc,
+#   site_model = beautier::create_jc69_site_model(),
+#   clock_model = beautier::create_strict_clock_model(),
+#   tree_prior = beautier::create_bd_tree_prior(),
+#   crown_age = NA,
+#   mrca_distr = NA,
+#   alignment_rng_seed = 0,
+#   beast2_rng_seed = 1,
+#   verbose = FALSE,
+#   beast2_path = beastier::get_default_beast2_path(),
+#   site_models = "deprecated",
+#   clock_models = "deprecated",
+#   tree_priors = "deprecated"
+# ) {
+#   # Check for deprecated argument names
+#   calls <- names(sapply(match.call(), deparse))[-1]
+#   if (any("site_models" %in% calls)) {
+#     stop("'site_models' is deprecated, use 'site_model' instead.")
+#   }
+#   if (any("clock_models" %in% calls)) {
+#     stop("'clock_models' is deprecated, use 'clock_model' instead.")
+#   }
+#   if (any("tree_priors" %in% calls)) {
+#     stop("'tree_priors' is deprecated, use 'tree_prior' instead.")
+#   }
+#   if (!pir_is_dna_seq(root_sequence)) {
+#     stop("'root_sequence' should be a lower-case DNA character string")
+#   }
+#   if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {
+#     stop(
+#       "'sequence_length' must be NULL ",
+#       "or equal the number of characters in 'root_sequence'"
+#     )
+#   }
+#   if (is.numeric(sequence_length)) {
+#     warning(
+#       "'sequence_length' will be removed from the interface ",
+#       "in a future version. The number of characters in 'root_sequence' ",
+#       "will be used instead"
+#     )
+#   }
+#
+#   if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
+#     stop("'beast2_rng_seed' should be NA or non-zero positive")
+#   }
+#   # Create alignment
+#   set.seed(alignment_rng_seed)
+#   alignment <- sim_alignment(
+#     phylogeny = phylogeny,
+#     sequence_length = sequence_length,
+#     root_sequence = root_sequence,
+#     mutation_rate = mutation_rate
+#   )
+#   # Save alignment to file
+#   temp_fasta_filename <- tempfile(pattern = "pirouette_", fileext = ".fasta")
+#   phangorn::write.phyDat(
+#     alignment,
+#     file = temp_fasta_filename,
+#     format = "fasta"
+#   )
+#
+#   mrca_prior <- NA
+#   if (beautier:::is_distr(mrca_distr)) {
+#     mrca_prior <- beautier::create_mrca_prior(
+#       alignment_id = beautier::get_alignment_id(temp_fasta_filename),
+#       taxa_names = beautier::get_taxa_names(temp_fasta_filename),
+#       is_monophyletic = TRUE,
+#       mrca_distr = mrca_distr
+#     )
+#   }
+#
+#   babette_out <- babette::bbt_run(
+#     fasta_filename = temp_fasta_filename,
+#     site_model = site_model,
+#     clock_model = clock_model,
+#     tree_prior = tree_prior,
+#     mrca_prior = mrca_prior,
+#     mcmc = mcmc,
+#     rng_seed = beast2_rng_seed,
+#     cleanup = TRUE,
+#     verbose = verbose,
+#     beast2_path = beast2_path
+#   )
+#
+#   file.remove(temp_fasta_filename)
+#
+#   list(
+#     alignment = alignment,
+#     # Use c() to convert to multiPhylo. This removes the STATE_x names
+#     trees = c(babette_out[[grep(x = names(babette_out), pattern = "trees")]]),
+#     estimates = babette_out$estimates
+#   )
+# }

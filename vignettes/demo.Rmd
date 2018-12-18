@@ -16,24 +16,78 @@ knitr::opts_chunk$set(
 )
 ```
 
-Load library:
+The goal of `pirouette` is to estimate the error BEAST2 makes from a known 
+phylogeny. This phylogeny can be created using a non-BEAST speciation model,
+for example the PBD or MBD models.
 
 ```{r}
 library(pirouette)
 ```
 
-Create the true phylogeny:
+In this demo, we use a simple 'true' phylogeny:
 
 ```{r}
+true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
+```
+
+As this vignette is a demo (and not a thorough research), we use an MCMC
+chain that is short:
+
+```{r}
+mcmc <- create_mcmc(chain_length = 5000, store_every = 1000)
+```
+
+Here we measure the error:
+
+```{r}
+errors <- pir_run(
+  true_phylogeny,
+  mcmc = mcmc
+)
+testit::assert("tree" %in% names(errors))
+testit::assert("true" %in% errors$tree)
+testit::assert("twin" %in% errors$tree)
+
+testit::assert("inference_model" %in% names(errors))
+testit::assert("generative" %in% errors$inference_model)
+testit::assert("best" %in% errors$inference_model)
+
+testit::assert("inference_model_weight" %in% names(errors))
+
+testit::assert("site_model" %in% names(errors))
+testit::assert("JC69" %in% errors$site_model)
+
+testit::assert("clock_model" %in% names(errors))
+testit::assert("strict" %in% errors$clock_model)
+
+testit::assert("tree_prior" %in% names(errors))
+testit::assert("BD" %in% errors$tree_prior)
+
+testit::assert("error" %in% names(errors))
+```
+
+Here we show the errors as a table:
+
+```{r}
+knitr::kable(head(errors))
+```
+
+Here we plot the error:
+
+```{r}
+pir_plot(errors)
+```
+
+
+```{fr}
 sim_rng_seed <- 42
 alignment_rng_seed <- 42
 beast2_rng_seed <- 42
 crown_age <- 15
-true_phylogeny <- ape::read.tree(text = "((A:7, B:7):8, C:15);")
 ```
 
 ```{r fig.width=7, fig.height=7}
-ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
 ```
 
 Now `pirouette` can create a Bayesian posterior from that same tree, 
@@ -46,7 +100,7 @@ in three ways:
 
 For this analysis, the same parameters will be used:
 
-```{r}
+```
 n_nucleotides <- 200
 mcmc <- beautier::create_mcmc(chain_length = 10000)
 
@@ -56,7 +110,7 @@ per_nuc_p_mut_per_tu <- 0.01
 
 ### 1. Let the crown age be estimated
 
-```{r}
+```
 out <- out_1 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
   sequence_length = NULL,
@@ -76,7 +130,7 @@ image(out$alignment)
 
 The posterior trees `pirouette` created can be visualized:
 
-```{r fig.width=7, fig.height=7}
+```
 trees <- out$trees
 colors <- rep(c("red", "black"), each = length(out$trees))
 for (i in seq(1, length(out$trees))) {
@@ -94,7 +148,7 @@ babette::plot_densitree(
 
 Comparing the nLTT plots:
 
-```{r fig.width=7, fig.height=7}
+```
 nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
   main = "nLTTs of posterior trees (grey) and true tree (red)"
 )
@@ -103,7 +157,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 
 ### 2. Let the posterior have a fixed crown age
 
-```{r}
+```
 out <- out_2 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
   sequence_length = NULL,
@@ -118,13 +172,13 @@ out <- out_2 <- pirouette::pir_run(
 
 The alignment it created can be visualized:
 
-```{r fig.width=7, fig.height=7}
+```
 image(out$alignment)
 ```
 
 The posterior trees `pirouette` created can be visualized:
 
-```{r fig.width=7, fig.height=7}
+```
 trees <- out$trees
 colors <- rep(c("green", "black"), each = length(out$trees))
 for (i in seq(1, length(out$trees))) {
@@ -141,7 +195,7 @@ babette::plot_densitree(
 
 Comparing the nLTT plots:
 
-```{r fig.width=7, fig.height=7}
+```
 nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
   main = "nLTTs of posterior trees (grey) and true tree (red)"
 )
@@ -150,7 +204,7 @@ nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
 
 ### 3. Let the Bayesian analysis have an MRCA prior on all taxa
 
-```{r}
+```
 out <- out_3 <- pirouette::pir_run(
   phylogeny = true_phylogeny,
   sequence_length = NULL,
@@ -168,13 +222,13 @@ out <- out_3 <- pirouette::pir_run(
 
 The alignment it created can be visualized:
 
-```{r fig.width=7, fig.height=7}
+```
 image(out$alignment)
 ```
 
 The posterior trees `pirouette` created can be visualized:
 
-```{r fig.width=7, fig.height=7}
+```
 trees <- out$trees
 colors <- rep(c("blue", "black"), each = length(out$trees))
 for (i in seq(1, length(out$trees))) {
@@ -191,7 +245,7 @@ babette::plot_densitree(
 
 Comparing the nLTT plots:
 
-```{r fig.width=7, fig.height=7}
+```
 nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
   main = "nLTTs of posterior trees (grey) and true tree (red)"
 )
@@ -207,7 +261,7 @@ Prepare all trees and colors:
  * Blue: trees with MRCA prior, with a distribution around the crown age
  * Black: true tree
 
-```{r fig.width=7, fig.height=7}
+```
 trees <- c(out_1$trees, out_2$trees, out_3$trees)
 colors <- rep(c("red", "green", "blue"), each = length(trees) / 3)
 for (i in seq(1,50)) {
@@ -218,7 +272,7 @@ for (i in seq(1,50)) {
 
 
 
-```{r fig.width=7, fig.height=7}
+```
 phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 1)
 phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 10 / length(trees))
 
