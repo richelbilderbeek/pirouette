@@ -27,6 +27,8 @@ before_install:
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
   - sudo apt-get update
   - sudo apt-get install -y libmagick++-dev
+  # Rmpfr
+  - sudo apt install -qq libmpfr-dev
 
 before_script:
   - sudo apt-get install -qq oracle-java8-installer # Java 8
