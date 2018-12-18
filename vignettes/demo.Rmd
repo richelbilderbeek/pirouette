@@ -35,7 +35,7 @@ As this vignette is a demo (and not a thorough research), we use an MCMC
 chain that is short:
 
 ```{r}
-mcmc <- create_mcmc(chain_length = 5000, store_every = 1000)
+mcmc <- beautier::create_mcmc(chain_length = 5000, store_every = 1000)
 ```
 
 Here we measure the error:
@@ -45,26 +45,6 @@ errors <- pir_run(
   true_phylogeny,
   mcmc = mcmc
 )
-testit::assert("tree" %in% names(errors))
-testit::assert("true" %in% errors$tree)
-testit::assert("twin" %in% errors$tree)
-
-testit::assert("inference_model" %in% names(errors))
-testit::assert("generative" %in% errors$inference_model)
-testit::assert("best" %in% errors$inference_model)
-
-testit::assert("inference_model_weight" %in% names(errors))
-
-testit::assert("site_model" %in% names(errors))
-testit::assert("JC69" %in% errors$site_model)
-
-testit::assert("clock_model" %in% names(errors))
-testit::assert("strict" %in% errors$clock_model)
-
-testit::assert("tree_prior" %in% names(errors))
-testit::assert("BD" %in% errors$tree_prior)
-
-testit::assert("error" %in% names(errors))
 ```
 
 Here we show the errors as a table:
