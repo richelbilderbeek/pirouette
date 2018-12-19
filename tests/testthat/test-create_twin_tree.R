@@ -83,7 +83,7 @@ test_that("node distances should remain in the same order, 4 taxa", {
   #
   # Note that the tree and twin tree do look similar in shape.
   # Qustion is: why does the test think something is wrong?
-  tree <- ape::read.tree(text = "(t2:1.9827033,((t4:0.2338486712,t3:0.2338486712):0.4930762889,t1:0.7269249601):1.25577834);")
+  tree <- ape::read.tree(text = "(t2:1.9827033,((t4:0.2338486712,t3:0.2338486712):0.4930762889,t1:0.7269249601):1.25577834);") # nolint indeed this is a long line, but it is what the brute-force below generated
   ape::plot.phylo(tree)
   twin_tree <- create_twin_tree(tree)
   ape::plot.phylo(twin_tree)
