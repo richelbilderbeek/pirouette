@@ -28,7 +28,7 @@ test_that("use", {
   expect_equal(ape::Ntip(tree), ape::Ntip(twin_tree))
 })
 
-test_that("node distances should remain in the same order, 4 taxa, comb", {
+test_that("node distances should remain in the same order, 4 taxa, easy", {
 
   # Or:
   #  - taxa that are closest, should remain closest in the twin tree
@@ -37,7 +37,31 @@ test_that("node distances should remain in the same order, 4 taxa, comb", {
   tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   twin_tree <- create_twin_tree(tree)
   n_tips <- ape::Ntip(tree)
-  # Only care about nodes that are tips
+  # Only care about node distances between tips
+  expect_equal(
+    order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
+    order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
+  )
+})
+
+test_that("node distances should remain in the same order, 4 taxa, hard", {
+
+  tree <- ape::read.tree(text = "((A:2, (B:1, C:1):1):1, D:3);")
+  twin_tree <- create_twin_tree(tree)
+  n_tips <- ape::Ntip(tree)
+  # Only care about node distances between tips
+  expect_equal(
+    order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
+    order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
+  )
+})
+
+test_that("node distances should remain in the same order, 4 taxa, harder", {
+
+  tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
+  twin_tree <- create_twin_tree(tree)
+  n_tips <- ape::Ntip(tree)
+  # Only care about node distances between tips
   expect_equal(
     order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
     order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
@@ -64,7 +88,7 @@ test_that("node distances should remain in the same order, 4 taxa", {
   twin_tree <- create_twin_tree(tree)
   ape::plot.phylo(twin_tree)
   n_tips <- ape::Ntip(tree)
-  # Only care about nodes that are tips
+  # Only care about node distances between tips
   expect_equal(
     order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
     order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
