@@ -22,8 +22,8 @@ r_github_packages:
   - richelbilderbeek/razzo
   - richelbilderbeek/tracerer
   - richelbilderbeek/nLTT
-  - rsetienne/PBD/PBD
   - xl0418/dododo
+  - rsetienne/PBD/PBD
 
 before_install:
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
@@ -39,9 +39,6 @@ before_script:
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint
   - sudo pip install proselint
-  # markdown-link-check, temporarily removed due to CERT_UNTRUSTED
-  #- sudo apt-get install npm
-  #- sudo npm install -g markdown-link-check
 
 after_success:
   - Rscript -e 'lintr::lint_package()'
