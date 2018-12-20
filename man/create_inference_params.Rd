@@ -4,15 +4,38 @@
 \alias{create_inference_params}
 \title{Creates a set of parameters used in the Bayesian inference.}
 \usage{
-create_inference_params(mcmc, rng_seed = 0)
+create_inference_params(site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  tree_prior = beautier::create_bd_tree_prior(), mrca_prior = NA,
+  mcmc = beautier::create_mcmc(), rng_seed = NA,
+  beast2_path = beastier::get_default_beast2_path(), verbose = FALSE)
 }
 \arguments{
+\item{site_model}{a nucleotide substitution model,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
+
+\item{tree_prior}{a tree prior,
+as created by \link[beautier]{create_tree_prior}}
+
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
 \item{rng_seed}{the random number generator seed
 used in the Bayesian inference.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{beast2_path}{Path to the
+BEAST2 jar file (\code{beast.jar})
+or BEAST2 binary file '(\code{beast})'.
+Use \link[beastier]{get_default_beast2_jar_path} for the default
+BEAST2 jar file path.
+Use \link[beastier]{get_default_beast2_bin_path} for the default
+BEAST2 binary file path.}
+
+\item{verbose}{if TRUE, show more output}
 }
 \description{
 Creates a set of parameters used in the Bayesian inference.

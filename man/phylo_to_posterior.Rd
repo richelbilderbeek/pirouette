@@ -4,12 +4,7 @@
 \alias{phylo_to_posterior}
 \title{Creates a posterior from the phylogeny}
 \usage{
-phylo_to_posterior(phylogeny, alignment_params, mcmc,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
-  tree_prior = beautier::create_bd_tree_prior(), crown_age = NA,
-  mrca_distr = NA, beast2_rng_seed = 1, verbose = FALSE,
-  beast2_path = beastier::get_default_beast2_path())
+phylo_to_posterior(phylogeny, alignment_params, inference_params)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -17,34 +12,10 @@ phylo_to_posterior(phylogeny, alignment_params, mcmc,
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
-\item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
-
-\item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
-
-\item{clock_model}{a clock model,
-as created by \link[beautier]{create_clock_model}}
-
-\item{tree_prior}{a tree prior,
-as created by \link[beautier]{create_tree_prior}}
-
-\item{crown_age}{the fixed crown age of the posterior. Set to NA
-to let it be estimated}
-
-\item{mrca_distr}{if MRCA prior used on all taxa.
-Set to NA to not use an MRCA prior}
-
-\item{beast2_rng_seed}{The random number generator seed used by BEAST2}
-
-\item{verbose}{if TRUE, show more output}
-
-\item{beast2_path}{Path to the
-BEAST2 jar file (\code{beast.jar})
-or BEAST2 binary file '(\code{beast})'.
-Use \link[beastier]{get_default_beast2_jar_path} for the default
-BEAST2 jar file path.
-Use \link[beastier]{get_default_beast2_bin_path} for the default
-BEAST2 binary file path.}
+\item{inference_params}{parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
+The Bayesian inference is handled by the \link[babette]{babette}
+R package, that calls the phylogenetic tool \code{BEAST2}.}
 }
 \value{
 a posterior of phylogenies
