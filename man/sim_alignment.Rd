@@ -26,12 +26,12 @@ Converts a phylogeny to a random DNA alignment
 }
 \examples{
 n_taxa <- 5
-n_base_pairs <- 10
+n_base_pairs <- 4
 alignment <- sim_alignment(
    phylogeny = ape::rcoal(n_taxa),
    alignment_params = create_alignment_params(
-     sequence_length = n_base_pairs,
-     mutation_rate = 1
+     root_sequence = create_blocked_dna(length = n_base_pairs),
+     mutation_rate = 0.1
    )
  )
  testit::assert(class(alignment) == "DNAbin")
