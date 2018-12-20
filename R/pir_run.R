@@ -7,5 +7,5 @@ pir_run <- function(
   phylogeny,
   mcmc
 ) {
-  create_pir_run_test_output()
+  create_pir_run_test_output() # nolint pirouette function
 }
