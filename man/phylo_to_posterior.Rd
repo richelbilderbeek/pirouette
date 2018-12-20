@@ -10,15 +10,12 @@ phylo_to_posterior(phylogeny, sequence_length = NULL,
   clock_model = beautier::create_strict_clock_model(),
   tree_prior = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
-  verbose = FALSE, beast2_path = beastier::get_default_beast2_path(),
-  site_models = "deprecated", clock_models = "deprecated",
-  tree_priors = "deprecated")
+  verbose = FALSE, beast2_path = beastier::get_default_beast2_path())
 }
 \arguments{
-\item{phylogeny}{a phylogeny}
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{sequence_length}{the number of basepair the simulated DNA
-alignment consists of}
+\item{sequence_length}{the length of each DNA sequence in an alignment}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of only adenine}
@@ -49,55 +46,19 @@ to generate an alignment}
 
 \item{verbose}{if TRUE, show more output}
 
-\item{beast2_path}{Path to the BEAST2 binary (\code{beast})
-or jar file (\code{beast.jar})}
-
-\item{site_models}{deprecated}
-
-\item{clock_models}{deprecated}
-
-\item{tree_priors}{deprecated}
+\item{beast2_path}{Path to the
+BEAST2 jar file (\code{beast.jar})
+or BEAST2 binary file '(\code{beast})'.
+Use \link[beastier]{get_default_beast2_jar_path} for the default
+BEAST2 jar file path.
+Use \link[beastier]{get_default_beast2_bin_path} for the default
+BEAST2 binary file path.}
 }
 \value{
 a posterior of phylogenies
 }
 \description{
 Creates a posterior from the phylogeny
-}
-\examples{
- # Create a phylogeny
- phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
-
- # Create a BEAST2 posterior from this phylogeny's simulated alignment.
- # Estimate the crown age
- out <- pir_run(
-   phylogeny = phylogeny,
-   sequence_length = 10,
-   mutation_rate = 0.1,
-   mcmc = beautier::create_mcmc(chain_length = 2000)
- )
- # Trees are estimated after 0, 1000 and 2000 MCMC states
- testit::assert(length(out$trees) == 3)
- testit::assert(nrow(out$estimates) == 3)
-
- # Create a BEAST2 posterior from this phylogeny's simulated alignment,
- # now assume a (close-to) fixed crown age
- crown_age <- 15.0
- out <- pir_run(
-   phylogeny = phylogeny,
-   sequence_length = 10,
-   mutation_rate = 0.1,
-   mcmc = beautier::create_mcmc(chain_length = 2000),
-   mrca_distr = beautier::create_normal_distr(
-     mean = create_mean_param(crown_age),
-     sigma = create_sigma_param(0.001)
-   )
- )
- testit::assert(length(out$trees) == 3)
- testit::assert(nrow(out$estimates) == 3)
- # Estimated crown age (called 'TreeHeight' by BEAST2) is not
- # yet estimated correctly. Increase the MCMC length to achieve this
- testit::assert(!all(abs(crown_age - out$estimates$TreeHeight) == crown_age))
 }
 \author{
 Richel J.C. Bilderbeek

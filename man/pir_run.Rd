@@ -7,7 +7,7 @@
 pir_run(phylogeny, mcmc)
 }
 \arguments{
-\item{phylogeny}{a phylogeny}
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 }

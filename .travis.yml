@@ -4,7 +4,6 @@ cache: packages
 r_packages:
   - devtools
   - ggplot2
-  - TreeSim
   - xml2
 
 r_github_packages:

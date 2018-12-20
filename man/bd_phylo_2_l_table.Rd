@@ -7,7 +7,7 @@
 bd_phylo_2_l_table(phylo)
 }
 \arguments{
-\item{phylo}{a phylogeny}
+\item{phylo}{a phylogeny of class \link[ape]{phylo}}
 }
 \value{
 the L table

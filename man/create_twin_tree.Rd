@@ -6,6 +6,9 @@
 \usage{
 create_twin_tree(phylogeny)
 }
+\arguments{
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+}
 \description{
 Create a twin tree
 }

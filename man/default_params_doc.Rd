@@ -5,17 +5,22 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(alignment, bd_mutation_rate, bd_tree, bd_tree_filename,
-  brts, chain_length, clock_model, crown_age, fasta_filename, filename,
+default_params_doc(alignment, alignment_rng_seed, bd_mutation_rate,
+  bd_tree, bd_tree_filename, beast2_path, beast2_rng_seed, brts,
+  chain_length, clock_model, crown_age, fasta_filename, filename,
   folder_name, init_speciation_rate, init_extinction_rate, lambda,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mu, mutation_rate, nu,
-  nu_events, parameters, parameter_filename, parameters_filename, phylo,
-  posterior_trees, precision, project_folder_name, q, sample_interval,
-  seed, sequence_length, sim_pars, sim_phylo, site_model, sub_chain_length,
-  tree, tree_filename, trees_filename, verbose)
+  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, mrca_distr, mu,
+  mutation_rate, nu, nu_events, parameters, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, sub_chain_length, tree,
+  tree_filename, tree_prior, trees_filename, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
+
+\item{alignment_rng_seed}{The random number generator seed used
+to generate an alignment}
 
 \item{bd_mutation_rate}{the mutation rate when creating an alignment
 from a BD tree}
@@ -25,14 +30,25 @@ process}
 
 \item{bd_tree_filename}{name of the file that stores a BD twin tree}
 
+\item{beast2_path}{Path to the
+BEAST2 jar file (\code{beast.jar})
+or BEAST2 binary file '(\code{beast})'.
+Use \link[beastier]{get_default_beast2_jar_path} for the default
+BEAST2 jar file path.
+Use \link[beastier]{get_default_beast2_bin_path} for the default
+BEAST2 binary file path.}
+
+\item{beast2_rng_seed}{The random number generator seed used by BEAST2}
+
 \item{brts}{set of branching times}
 
 \item{chain_length}{something}
 
-\item{clock_model}{Name of the clock model that has
-to be used for the inference. Valid names are 'strict' and 'rln'.}
+\item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
 
-\item{crown_age}{The crown age of the tree.}
+\item{crown_age}{the fixed crown age of the posterior. Set to NA
+to let it be estimated}
 
 \item{fasta_filename}{name of a FASTA file}
 
@@ -53,9 +69,14 @@ from a MBD tree}
 
 \item{mbd_tree}{an MBD tree}
 
+\item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+
+\item{mrca_distr}{if MRCA prior used on all taxa.
+Set to NA to not use an MRCA prior}
+
 \item{mu}{per-species extinction rate}
 
-\item{mutation_rate}{something}
+\item{mutation_rate}{the mutation rate per base pair per time unit}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
 
@@ -68,7 +89,9 @@ present in the simulated tree}
 
 \item{parameters_filename}{full path to a 'parameters.csv' file}
 
-\item{phylo}{a phylogeny}
+\item{phylo}{a phylogeny of class \link[ape]{phylo}}
+
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{posterior_trees}{phylogenetic trees in a BEAST2 posterior,
 of class \code{multiphylo}}
@@ -78,7 +101,8 @@ of class \code{multiphylo}}
 \item{project_folder_name}{project folder name,
 will be the full path to \code{razzo_project}}
 
-\item{q}{something}
+\item{root_sequence}{the DNA sequence at the root of the phylogeny.
+By default, this will consist out of only adenine}
 
 \item{sample_interval}{the interval at which the MCMC algorithm
 makes a measurement}
@@ -91,19 +115,22 @@ makes a measurement}
 
 \item{sim_phylo}{something}
 
-\item{site_model}{Name of the site model that
-has to be used for the inference. Valid names are 'jc69' and 'gtr'.}
+\item{site_model}{a nucleotide substitution model,
+as created by \link[beautier]{create_site_model}}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
 
-\item{tree}{an ultrametric phylogenetic tree of class \code{phylo}}
+\item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 
 \item{tree_filename}{name of the phylogeny file}
 
+\item{tree_prior}{a tree prior,
+as created by \link[beautier]{create_tree_prior}}
+
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
 
-\item{verbose}{give more output}
+\item{verbose}{if TRUE, show more output}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

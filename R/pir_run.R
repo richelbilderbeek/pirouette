@@ -1,6 +1,5 @@
 #' Meaure the error BEAST2 makes from a known phylogeny
-#' @param phylogeny a phylogeny
-#' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
+#' @inheritParams default_params_doc
 #' @return a data frame with errors
 #' @export
 #' @author Richel J.C. Bilderbeek

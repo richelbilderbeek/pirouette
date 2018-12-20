@@ -21,8 +21,11 @@ Imports:
     ape,
     babette,
     beautier,
+    DDD,
+    dododo,
     geiger,
     phangorn,
+    rappdirs,
     stringr,
     TESS,
     testit,
@@ -35,8 +38,7 @@ Suggests:
     nLTT,
     PBD,
     rmarkdown,
-    testthat,
-    TreeSim
+    testthat
 Remotes: 
     jimhester/covr,
     jimhester/lintr,
