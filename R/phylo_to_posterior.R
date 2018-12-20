@@ -4,25 +4,35 @@
 #' @author Richel J.C. Bilderbeek
 phylo_to_posterior <- function(
   phylogeny,
-  root_sequence = create_mono_nuc_dna(length = sequence_length),
-  mutation_rate,
+  alignment_params,
   mcmc,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   tree_prior = beautier::create_bd_tree_prior(),
   crown_age = NA,
   mrca_distr = NA,
-  alignment_rng_seed = 0,
   beast2_rng_seed = 1,
   verbose = FALSE,
   beast2_path = beastier::get_default_beast2_path()
 ) {
-  if (!is_dna_seq(root_sequence)) {
-    stop("'root_sequence' should be a lower-case DNA character string")
-  }
+  tryCatch(
+    check_alignment_params(alignment_params),
+    error = function(msg) {
+      msg <- paste0(
+        "'alignment_params' must be a set of alignment parameters. ",
+        msg
+      )
+      stop(msg)
+    }
+  )
   if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
     stop("'beast2_rng_seed' should be NA or non-zero positive")
   }
+
+  root_sequence <- alignment_params$root_sequence
+  mutation_rate <- alignment_params$mutation_rate
+  alignment_rng_seed <- alignment_params$rng_seed
+
   # Create alignment
   set.seed(alignment_rng_seed)
   alignment <- sim_alignment(

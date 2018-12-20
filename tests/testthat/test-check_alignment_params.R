@@ -10,7 +10,6 @@ test_that("use", {
       )
     )
   )
-
   expect_error(
     check_alignment_params(
       create_alignment_params(
@@ -28,5 +27,15 @@ test_that("use", {
       )
     ),
     "'mutation_rate' must be a non-zero and positive value"
+  )
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        root_sequence = "acgt",
+        mutation_rate = 0.1,
+        rng_seed = "nonsense"
+      )
+    ),
+    "'rng_seed' must be a number"
   )
 })

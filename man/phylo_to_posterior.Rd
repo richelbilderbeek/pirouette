@@ -4,21 +4,18 @@
 \alias{phylo_to_posterior}
 \title{Creates a posterior from the phylogeny}
 \usage{
-phylo_to_posterior(phylogeny, root_sequence = create_mono_nuc_dna(length
-  = sequence_length), mutation_rate, mcmc,
+phylo_to_posterior(phylogeny, alignment_params, mcmc,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   tree_prior = beautier::create_bd_tree_prior(), crown_age = NA,
-  mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
-  verbose = FALSE, beast2_path = beastier::get_default_beast2_path())
+  mrca_distr = NA, beast2_rng_seed = 1, verbose = FALSE,
+  beast2_path = beastier::get_default_beast2_path())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
-
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{alignment_params}{parameters to simulate an alignment,
+as can be created by \link{create_alignment_params}}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
@@ -36,9 +33,6 @@ to let it be estimated}
 
 \item{mrca_distr}{if MRCA prior used on all taxa.
 Set to NA to not use an MRCA prior}
-
-\item{alignment_rng_seed}{The random number generator seed used
-to generate an alignment}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 

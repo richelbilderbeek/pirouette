@@ -4,13 +4,16 @@
 \alias{create_alignment_params}
 \title{Create the parameters for the alignment simulation}
 \usage{
-create_alignment_params(root_sequence, mutation_rate)
+create_alignment_params(root_sequence, mutation_rate, rng_seed = 0)
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of only adenine}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
+
+\item{rng_seed}{the random number generator seed as used in the
+simulation of an alignment}
 }
 \value{
 a list of alignment parameters

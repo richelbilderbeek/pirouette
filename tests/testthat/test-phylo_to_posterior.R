@@ -7,8 +7,10 @@ test_that("use", {
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
   out <- phylo_to_posterior(
     phylogeny = phylogeny,
-    root_sequence = create_blocked_dna(length = 8),
-    mutation_rate = 0.1,
+    alignment_params = create_alignment_params(
+      root_sequence = create_blocked_dna(length = 8),
+      mutation_rate = 0.1
+    ),
     mcmc = beautier::create_mcmc(chain_length = 2000),
     crown_age = 15.0
   )
@@ -18,12 +20,15 @@ test_that("use", {
 test_that("abuse", {
 
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
+  alignment_params <- create_alignment_params(
+    root_sequence = create_blocked_dna(length = 4),
+    mutation_rate = 0.1
+  )
 
   expect_error(
     phylo_to_posterior(
       phylogeny = phylogeny,
-      root_sequence = create_blocked_dna(length = 4),
-      mutation_rate = 0.1,
+      alignment_params = alignment_params,
       mcmc = beautier::create_mcmc(chain_length = 2000),
       crown_age = 15.0,
       beast2_rng_seed = -123456789
@@ -34,10 +39,9 @@ test_that("abuse", {
   expect_error(
     phylo_to_posterior(
       phylogeny = phylogeny,
-      root_sequence = "nonsense",
-      mutation_rate = 0.1,
+      alignment_params = "nonsense",
       mcmc = beautier::create_mcmc(chain_length = 2000)
     ),
-    "'root_sequence' should be a lower-case DNA character string"
+    "'alignment_params' must be a set of alignment parameters"
   )
 })

@@ -18,11 +18,19 @@ check_alignment_params <- function(
       "Tip: use 'create_alignment_params'"
     )
   }
-
+  if (!"rng_seed" %in% names(alignment_params)) {
+    stop(
+      "'rng_seed' must be an element of an 'alignment_params'. ",
+      "Tip: use 'create_alignment_params'"
+    )
+  }
   if (!is_dna_seq(alignment_params$root_sequence)) {
     stop("'root_sequence' must be a lowercase DNA character string")
   }
   if (alignment_params$mutation_rate < 0) {
     stop("'mutation_rate' must be a non-zero and positive value")
+  }
+  if (!is.numeric(alignment_params$rng_seed)) {
+    stop("'rng_seed' must be a number")
   }
 }
