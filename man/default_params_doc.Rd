@@ -60,8 +60,10 @@ to let it be estimated}
 
 \item{folder_name}{name of the main folder}
 
-\item{inference_params}{parameters for the \link[babette]{babette},
-as can be created by \link{create_inference_params}}
+\item{inference_params}{parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
+The Bayesian inference is handled by the \link[babette]{babette}
+R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{init_speciation_rate}{a speciation rate}
 

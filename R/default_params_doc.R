@@ -27,8 +27,10 @@
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
-#' @param inference_params parameters for the \link[babette]{babette},
-#'   as can be created by \link{create_inference_params}
+#' @param inference_params parameters for the Bayesian inference,
+#'   as can be created by \link{create_inference_params}.
+#'   The Bayesian inference is handled by the \link[babette]{babette}
+#'   R package, that calls the phylogenetic tool \code{BEAST2}.
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate

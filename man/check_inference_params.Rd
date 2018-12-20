@@ -8,8 +8,10 @@ Throws if these are invalid}
 check_inference_params(inference_params)
 }
 \arguments{
-\item{inference_params}{parameters for the \link[babette]{babette},
-as can be created by \link{create_inference_params}}
+\item{inference_params}{parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
+The Bayesian inference is handled by the \link[babette]{babette}
+R package, that calls the phylogenetic tool \code{BEAST2}.}
 }
 \description{
 Check if the inference parameters are valid.

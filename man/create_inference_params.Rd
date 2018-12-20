@@ -2,18 +2,20 @@
 % Please edit documentation in R/create_inference_params.R
 \name{create_inference_params}
 \alias{create_inference_params}
-\title{Creates a set of parameters used in the \link[babette]{babette} inference}
+\title{Creates a set of parameters used in the Bayesian inference.}
 \usage{
 create_inference_params(mcmc, rng_seed = 0)
 }
 \arguments{
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
-\item{rng_seed}{the random number generator seed used in the
-\link[babette]{babette} inference}
+\item{rng_seed}{the random number generator seed
+used in the Bayesian inference.
+The Bayesian inference is handled by the \link[babette]{babette}
+R package, that calls the phylogenetic tool \code{BEAST2}.}
 }
 \description{
-Creates a set of parameters used in the \link[babette]{babette} inference
+Creates a set of parameters used in the Bayesian inference.
 }
 \author{
 Richel J.C. Bilderbeek
