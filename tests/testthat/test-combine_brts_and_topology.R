@@ -83,6 +83,8 @@ test_that("all the tree features (but the branching times) are preserved", {
 
 test_that("abuse", {
 
+  skip("Rewrite to not depend on razzo")
+
   parameters <- razzo::open_parameters_file(
     razzo::get_path("parameters.csv")
   )
