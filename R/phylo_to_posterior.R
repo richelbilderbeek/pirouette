@@ -29,17 +29,10 @@ phylo_to_posterior <- function(
     stop("'beast2_rng_seed' should be NA or non-zero positive")
   }
 
-  root_sequence <- alignment_params$root_sequence
-  mutation_rate <- alignment_params$mutation_rate
-  alignment_rng_seed <- alignment_params$rng_seed
-
-  # Create alignment
-  set.seed(alignment_rng_seed)
+  # Create alignment, sets alignment RNG seed in 'sim_alignment'
   alignment <- sim_alignment(
     phylogeny = phylogeny,
-    sequence_length = sequence_length,
-    root_sequence = root_sequence,
-    mutation_rate = mutation_rate
+    alignment_params = alignment_params
   )
   # Save alignment to file
   temp_fasta_filename <- tempfile(pattern = "pirouette_", fileext = ".fasta")

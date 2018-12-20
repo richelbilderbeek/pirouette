@@ -43,8 +43,11 @@ sim_alignment <- function(
     }
   )
 
+
   root_sequence <- alignment_params$root_sequence
 
+
+  set.seed(alignment_params$rng_seed)
 
   # Jukes-Cantor 1969 model:
   #  * equal base frequencies
