@@ -1,5 +1,7 @@
 #' Creates a set of parameters used in the \link[babette]{babette} inference
 #' @inheritParams default_params_doc
+#' @param rng_seed the random number generator seed used in the
+#'   \link[babette]{babette} inference
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_inference_params <- function(

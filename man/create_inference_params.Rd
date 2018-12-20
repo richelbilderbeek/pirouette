@@ -8,6 +8,9 @@ create_inference_params(mcmc, rng_seed = 0)
 }
 \arguments{
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+
+\item{rng_seed}{the random number generator seed used in the
+\link[babette]{babette} inference}
 }
 \description{
 Creates a set of parameters used in the \link[babette]{babette} inference
