@@ -2,7 +2,7 @@ context("test-create_pir_run_test_output")
 
 test_that("use", {
 
-  errors <- create_pir_run_test_output()
+  errors <- create_pir_run_test_output(add_twin = TRUE, add_best = TRUE)
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)

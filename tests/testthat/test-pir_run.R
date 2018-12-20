@@ -1,6 +1,6 @@
 context("pir_run")
 
-test_that("use", {
+test_that("default use: generative only", {
 
   true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   errors <- pir_run(
@@ -10,12 +10,10 @@ test_that("use", {
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
-  expect_true("twin" %in% errors$tree)
 
   expect_true("inference_model" %in% names(errors))
   expect_true(is.factor(errors$inference_model))
   expect_true("generative" %in% errors$inference_model)
-  expect_true("best" %in% errors$inference_model)
 
   expect_true("inference_model_weight" %in% names(errors))
   expect_true(!is.factor(errors$inference_model_weight))

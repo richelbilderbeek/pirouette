@@ -1,8 +1,13 @@
 #' Create the same output of \link{pir_run}
 #' to be used for testing
+#' @param add_twin add rows for twin tree
+#' @param add_best add rows for best inference model
 #' @author Richel J.C. Bilderbeek
 #' @export
-create_pir_run_test_output <- function() {
+create_pir_run_test_output <- function(
+  add_twin = FALSE,
+  add_best = FALSE
+) {
 
   df <- data.frame(tree = c("true", "true", "twin", "twin"))
 
@@ -21,5 +26,8 @@ create_pir_run_test_output <- function() {
   df$clock_model <- as.factor(df$clock_model)
   df$tree_prior <- as.factor(df$tree_prior)
 
-  df
+  rows <- seq(1, 4)
+  if (!add_twin) rows <- rows[c(-3, -4)]
+  if (!add_best) rows <- rows[c(-2, -4)]
+  df[rows, ]
 }

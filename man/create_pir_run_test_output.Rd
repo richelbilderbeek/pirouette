@@ -5,7 +5,12 @@
 \title{Create the same output of \link{pir_run}
 to be used for testing}
 \usage{
-create_pir_run_test_output()
+create_pir_run_test_output(add_twin = FALSE, add_best = FALSE)
+}
+\arguments{
+\item{add_twin}{add rows for twin tree}
+
+\item{add_best}{add rows for best inference model}
 }
 \description{
 Create the same output of \link{pir_run}
