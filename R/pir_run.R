@@ -24,7 +24,7 @@ pir_run <- function(
     tree_prior = "BD"
   )
   error_col_names <- paste0("error_", seq(1, length(nltts)))
-  df[ , error_col_names] <- 0.0
+  df[, error_col_names] <- 0.0
 
   from_col_idx <- which(colnames(df) == "error_1")
   df[1, from_col_idx:ncol(df)] <- nltts
