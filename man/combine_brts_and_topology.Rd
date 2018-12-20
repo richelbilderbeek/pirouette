@@ -6,6 +6,11 @@
 \usage{
 combine_brts_and_topology(brts, tree)
 }
+\arguments{
+\item{brts}{set of branching times}
+
+\item{tree}{an ultrametric phylogenetic tree of class \code{phylo}}
+}
 \value{
 a tree
 }

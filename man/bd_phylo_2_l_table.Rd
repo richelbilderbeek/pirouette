@@ -6,6 +6,9 @@
 \usage{
 bd_phylo_2_l_table(phylo)
 }
+\arguments{
+\item{phylo}{a phylogeny}
+}
 \value{
 the L table
 }

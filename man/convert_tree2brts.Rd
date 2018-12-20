@@ -6,6 +6,11 @@
 \usage{
 convert_tree2brts(tree, precision = 8)
 }
+\arguments{
+\item{tree}{an ultrametric phylogenetic tree of class \code{phylo}}
+
+\item{precision}{define the precision of the approximation.}
+}
 \value{
 the branching times
 }
