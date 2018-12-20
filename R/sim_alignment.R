@@ -22,9 +22,8 @@
 #' @export
 sim_alignment <- function(
   phylogeny,
-  sequence_length,
-  root_sequence = paste(rep("a", sequence_length), collapse = ""),
-  mutation_rate = 1
+  root_sequence,
+  mutation_rate
 ) {
   if (class(phylogeny) != "phylo") {
     stop("parameter 'phylogeny' must be a phylogeny")
@@ -32,21 +31,11 @@ sim_alignment <- function(
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
-  if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {
-    stop("length of 'root_sequence' must equals 'sequence_length'")
-  }
   if (!pir_is_dna_seq(root_sequence)) {
     stop("'root_sequence' must be a lowercase DNA sequence")
   }
   if (mutation_rate < 0) {
     stop("parameter 'mutation_rate' must be a non-zero and positive value")
-  }
-  if (is.numeric(sequence_length)) {
-    warning(
-      "'sequence_length' will be removed from the interface ",
-      "in a future version. The number of characters in 'root_sequence' ",
-      "will be used instead"
-    )
   }
 
   # Jukes-Cantor 1969 model:
