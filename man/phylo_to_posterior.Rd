@@ -4,9 +4,9 @@
 \alias{phylo_to_posterior}
 \title{Creates a posterior from the phylogeny}
 \usage{
-phylo_to_posterior(phylogeny, sequence_length = NULL,
-  root_sequence = create_mono_nuc_dna(length = sequence_length),
-  mutation_rate, mcmc, site_model = beautier::create_jc69_site_model(),
+phylo_to_posterior(phylogeny, root_sequence = create_mono_nuc_dna(length
+  = sequence_length), mutation_rate, mcmc,
+  site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   tree_prior = beautier::create_bd_tree_prior(), crown_age = NA,
   mrca_distr = NA, alignment_rng_seed = 0, beast2_rng_seed = 1,
@@ -14,8 +14,6 @@ phylo_to_posterior(phylogeny, sequence_length = NULL,
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
-
-\item{sequence_length}{the length of each DNA sequence in an alignment}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of only adenine}

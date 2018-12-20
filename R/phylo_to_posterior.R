@@ -4,7 +4,6 @@
 #' @author Richel J.C. Bilderbeek
 phylo_to_posterior <- function(
   phylogeny,
-  sequence_length = NULL,
   root_sequence = create_mono_nuc_dna(length = sequence_length),
   mutation_rate,
   mcmc,
@@ -18,25 +17,9 @@ phylo_to_posterior <- function(
   verbose = FALSE,
   beast2_path = beastier::get_default_beast2_path()
 ) {
-  # Check for deprecated argument names
-  calls <- names(sapply(match.call(), deparse))[-1]
   if (!is_dna_seq(root_sequence)) {
     stop("'root_sequence' should be a lower-case DNA character string")
   }
-  if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {
-    stop(
-      "'sequence_length' must be NULL ",
-      "or equal the number of characters in 'root_sequence'"
-    )
-  }
-  if (is.numeric(sequence_length)) {
-    warning(
-      "'sequence_length' will be removed from the interface ",
-      "in a future version. The number of characters in 'root_sequence' ",
-      "will be used instead"
-    )
-  }
-
   if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
     stop("'beast2_rng_seed' should be NA or non-zero positive")
   }
