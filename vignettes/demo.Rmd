@@ -31,11 +31,23 @@ true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
 ```
 
-As this vignette is a demo (and not a thorough research), we use an MCMC
-chain that is short:
+As this vignette is a demo (and not a thorough research), 
+we'll use a short alignment:
 
 ```{r}
-mcmc <- beautier::create_mcmc(chain_length = 5000, store_every = 1000)
+alignment_params <- create_alignment_params(
+  root_sequence = create_blocked_dna(length = 20),
+  mutation_rate = 1.0 / beautier:::get_phylo_crown_age(true_phylogeny)
+)
+```
+
+we use an MCMC chain that is short:
+
+```{r}
+inference_params <- create_inference_params(
+  mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000),
+  rng_seed = 42
+)
 ```
 
 Here we measure the error:
@@ -43,7 +55,8 @@ Here we measure the error:
 ```{r}
 errors <- pir_run(
   true_phylogeny,
-  mcmc = mcmc
+  alignment_params = alignment_params,
+  inference_params = inference_params
 )
 ```
 
@@ -55,208 +68,6 @@ knitr::kable(head(errors))
 
 Here we plot the error:
 
-```{r}
-pir_plot(errors)
-```
-
-
-```{fr}
-sim_rng_seed <- 42
-alignment_rng_seed <- 42
-beast2_rng_seed <- 42
-crown_age <- 15
-```
-
 ```{r fig.width=7, fig.height=7}
-```
-
-Now `pirouette` can create a Bayesian posterior from that same tree, 
-in three ways:
-
- 1. Let the crown age be estimated
- 2. Let the posterior have a fixed crown age
- 3. Let the Bayesian analysis have an MRCA prior on all taxa, that
-      has a narrow distribution around the crown age
-
-For this analysis, the same parameters will be used:
-
-```
-n_nucleotides <- 200
-mcmc <- beautier::create_mcmc(chain_length = 10000)
-
-# per-nucleotide chance of a mutation per time unit
-per_nuc_p_mut_per_tu <- 0.01
-```
-
-### 1. Let the crown age be estimated
-
-```
-out <- out_1 <- pirouette::pir_run(
-  phylogeny = true_phylogeny,
-  sequence_length = NULL,
-  root_sequence = create_blocked_dna(length = n_nucleotides),
-  mcmc = mcmc,
-  mutation_rate = per_nuc_p_mut_per_tu,
-  alignment_rng_seed = alignment_rng_seed,
-  beast2_rng_seed = beast2_rng_seed
-)
-```
-
-The alignment it created can be visualized:
-
-```
-image(out$alignment)
-```
-
-The posterior trees `pirouette` created can be visualized:
-
-```
-trees <- out$trees
-colors <- rep(c("red", "black"), each = length(out$trees))
-for (i in seq(1, length(out$trees))) {
-  trees <- c(trees, true_phylogeny)
-}
-babette::plot_densitree(
-  trees, 
-  width = 2, 
-  consensus = true_phylogeny, 
-  col = colors, 
-  scaleX = TRUE,
-  alpha = 10 / length(trees)
-)
-```
-
-Comparing the nLTT plots:
-
-```
-nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
-  main = "nLTTs of posterior trees (grey) and true tree (red)"
-)
-nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
-```
-
-### 2. Let the posterior have a fixed crown age
-
-```
-out <- out_2 <- pirouette::pir_run(
-  phylogeny = true_phylogeny,
-  sequence_length = NULL,
-  root_sequence = create_blocked_dna(length = n_nucleotides),
-  mcmc = mcmc,
-  mutation_rate = per_nuc_p_mut_per_tu,
-  crown_age = crown_age,
-  alignment_rng_seed = alignment_rng_seed,
-  beast2_rng_seed = beast2_rng_seed
-)
-```
-
-The alignment it created can be visualized:
-
-```
-image(out$alignment)
-```
-
-The posterior trees `pirouette` created can be visualized:
-
-```
-trees <- out$trees
-colors <- rep(c("green", "black"), each = length(out$trees))
-for (i in seq(1, length(out$trees))) {
-  trees <- c(trees, true_phylogeny)
-}
-babette::plot_densitree(
-  trees, 
-  width = 2, 
-  consensus = true_phylogeny, 
-  col = colors,
-  alpha = 10 / length(trees)
-)
-```
-
-Comparing the nLTT plots:
-
-```
-nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
-  main = "nLTTs of posterior trees (grey) and true tree (red)"
-)
-nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
-```
-
-### 3. Let the Bayesian analysis have an MRCA prior on all taxa
-
-```
-out <- out_3 <- pirouette::pir_run(
-  phylogeny = true_phylogeny,
-  sequence_length = NULL,
-  root_sequence = create_blocked_dna(length = n_nucleotides),
-  mcmc = mcmc,
-  mutation_rate = per_nuc_p_mut_per_tu,
-  mrca_distr = beautier::create_normal_distr(
-    mean = beautier::create_mean_param(value = crown_age),
-    sigma = beautier::create_sigma_param(value = crown_age / 1000.0)
-  ),
-  alignment_rng_seed = alignment_rng_seed,
-  beast2_rng_seed = beast2_rng_seed
-)
-```
-
-The alignment it created can be visualized:
-
-```
-image(out$alignment)
-```
-
-The posterior trees `pirouette` created can be visualized:
-
-```
-trees <- out$trees
-colors <- rep(c("blue", "black"), each = length(out$trees))
-for (i in seq(1, length(out$trees))) {
-  trees <- c(trees, true_phylogeny)
-}
-babette::plot_densitree(
-  trees, 
-  width = 2, 
-  consensus = true_phylogeny, 
-  col = colors,
-  alpha = 10 / length(trees)
-)
-```
-
-Comparing the nLTT plots:
-
-```
-nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
-  main = "nLTTs of posterior trees (grey) and true tree (red)"
-)
-nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
-```
-
-## Comparing all trees
-
-Prepare all trees and colors:
-
- * Red: trees with an estimated crown age (unscaled)
- * Green: trees with fixed crown age
- * Blue: trees with MRCA prior, with a distribution around the crown age
- * Black: true tree
-
-```
-trees <- c(out_1$trees, out_2$trees, out_3$trees)
-colors <- rep(c("red", "green", "blue"), each = length(trees) / 3)
-for (i in seq(1,50)) {
-  trees <- c(trees, true_phylogeny)
-  colors <- c(colors, "black")
-}
-```
-
-
-
-```
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 1)
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 10 / length(trees))
-
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 1)
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 10 / length(trees))
-
+pir_plot(errors)
 ```

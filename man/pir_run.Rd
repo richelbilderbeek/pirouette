@@ -4,12 +4,18 @@
 \alias{pir_run}
 \title{Meaure the error BEAST2 makes from a known phylogeny}
 \usage{
-pir_run(phylogeny, mcmc)
+pir_run(phylogeny, alignment_params, inference_params)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+\item{alignment_params}{parameters to simulate an alignment,
+as can be created by \link{create_alignment_params}}
+
+\item{inference_params}{parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
+The Bayesian inference is handled by the \link[babette]{babette}
+R package, that calls the phylogenetic tool \code{BEAST2}.}
 }
 \value{
 a data frame with errors
