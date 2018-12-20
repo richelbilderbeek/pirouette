@@ -21,6 +21,16 @@ a list of alignment parameters
 \description{
 Create the parameters for the alignment simulation
 }
+\examples{
+n_base_pairs <- 4
+alignment_params <- create_alignment_params(
+   root_sequence = create_blocked_dna(length = n_base_pairs),
+   mutation_rate = 0.1
+ )
+ testit::assert("root_sequence" \%in\% names(alignment_params))
+ testit::assert("mutation_rate" \%in\% names(alignment_params))
+ testit::assert("rng_seed" \%in\% names(alignment_params))
+}
 \author{
 Richel J.C. Bilderbeek
 }
