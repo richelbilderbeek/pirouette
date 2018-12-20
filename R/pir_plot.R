@@ -7,7 +7,9 @@ pir_plot <- function(pir_out) {
 
   df <- pir_out
   first_col_index <- which(names(df) == "error_1")
-  df_long <- tidyr::gather(df, "error_index", "error_value", first_col_index:ncol(df))
+  df_long <- tidyr::gather(
+    df, "error_index", "error_value", first_col_index:ncol(df)
+  )
 
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable

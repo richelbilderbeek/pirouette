@@ -14,4 +14,3 @@ test_that("abuse", {
     "'rng_seed' should be NA or non-zero positive"
   )
 })
-

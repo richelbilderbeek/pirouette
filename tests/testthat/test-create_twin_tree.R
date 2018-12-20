@@ -76,9 +76,10 @@ test_that("node distances should remain in the same order, 4 taxa", {
   #  - taxa that are farthest, should remain farthest in the twin tree
 
   # These work:
-  #tree <- ape::read.tree(text = "((A:2, (B:1, C:1):1):1, D:3);")
-  #tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
-
+  #
+  # tree <- ape::read.tree(text = "((A:2, (B:1, C:1):1):1, D:3);") # nolint put commented code here as example
+  # tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);") # nolint put commented code here as example
+  #
   # This one fails.
   #
   # Note that the tree and twin tree do look similar in shape.

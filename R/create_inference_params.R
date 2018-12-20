@@ -14,6 +14,6 @@ create_inference_params <- function(
     mcmc = mcmc,
     rng_seed = rng_seed
   )
-  check_inference_params(inference_params)
+  check_inference_params(inference_params) # nolint pirouette function
   inference_params
 }
