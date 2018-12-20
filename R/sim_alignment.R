@@ -1,11 +1,5 @@
 #' Converts a phylogeny to a random DNA alignment
-#' @param phylogeny a phylogeny
-#' @param sequence_length the number of nucleotides to alignment
-#'   will have per taxon
-#' @param root_sequence the DNA sequence at the root of the phylogeny.
-#'   By default, this will consist out of only adenine
-#' @param mutation_rate the rate per nucleotide to change,
-#'   per million years
+#' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @examples
 #' n_taxa <- 5

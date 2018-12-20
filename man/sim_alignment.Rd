@@ -7,16 +7,10 @@
 sim_alignment(phylogeny, alignment_params)
 }
 \arguments{
-\item{phylogeny}{a phylogeny}
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{sequence_length}{the number of nucleotides to alignment
-will have per taxon}
-
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
-
-\item{mutation_rate}{the rate per nucleotide to change,
-per million years}
+\item{alignment_params}{parameters to simulate an alignment,
+as can be created by \link{create_alignment_params}}
 }
 \value{
 an alignment of type \code{DNAbin}
