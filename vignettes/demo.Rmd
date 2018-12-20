@@ -31,8 +31,8 @@ true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
 ```
 
-As this vignette is a demo (and not a thorough research), we use an MCMC
-chain that is short:
+As this vignette is a demo (and not a thorough research), 
+we'll use a short alignment:
 
 ```{r}
 alignment_params <- create_alignment_params(
@@ -41,9 +41,13 @@ alignment_params <- create_alignment_params(
 )
 ```
 
+we use an MCMC chain that is short:
+
 ```{r}
-mcmc <- beautier::create_mcmc(chain_length = 5000, store_every = 1000)
-inference_params <- create_inference_params(mcmc = mcmc)
+inference_params <- create_inference_params(
+  mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000),
+  rng_seed = 42
+)
 ```
 
 Here we measure the error:
