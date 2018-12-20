@@ -135,6 +135,9 @@ as created by \link[beautier]{create_tree_prior}}
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{inference_params}{parameters for the \link[babette]{babette},
+as can be created by \link{create_inference_params}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
