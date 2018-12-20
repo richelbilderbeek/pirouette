@@ -5,28 +5,23 @@ Branch|[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)|[![AppVeyor
 master|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?branch=master)](https://travis-ci.org/richelbilderbeek/pirouette)|[![Build status](https://ci.appveyor.com/api/projects/status/vr5jkcx975w1ggcn/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/pirouette/branch/master)|[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master)
 develop|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/pirouette)|[![Build status](https://ci.appveyor.com/api/projects/status/vr5jkcx975w1ggcn/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/pirouette/branch/develop)|[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master)
 
-`pirouette` is an R package that creates a posterior from a phylogeny. 
+
+
+`pirouette` is an R package that estimates the error BEAST2 makes from a given 
+phylogeny. This phylogeny can be created using any (non-BEAST) speciation model,
+for example the Protracted Birth-Death or Multiple-Birth-Death models.
 
 The heavy lifting is done by these packages:
 
  * [phangorn](https://github.com/KlausVigo/phangorn): to simulate an alignment from a phylogeny
  * [babette](https://github.com/richelbilderbeek/babette): to use an alignment to create a posterior
 
-## Examples
-
-```
-out <- pirouette::pir_run(
-  phylogeny = ape::rcoal(3),
-  sequence_length = 10,
-  mutation_rate = 0.1,
-)
-```
-
 ## Installation
 
 If you use the `devtools` R package, this is easy:
 
 ```
+devtools::install_github("KlausVigo/phangorn", ref = "devel")
 devtools::install_github("richelbilderbeek/pirouette")
 ```
 
