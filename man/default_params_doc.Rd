@@ -5,19 +5,23 @@
 \title{This function does nothing. It is intended to inherit is parameters'
 documentation.}
 \usage{
-default_params_doc(alignment, alignment_rng_seed, bd_mutation_rate,
-  bd_tree, bd_tree_filename, beast2_path, beast2_rng_seed, brts,
-  chain_length, clock_model, crown_age, fasta_filename, filename,
-  folder_name, init_speciation_rate, init_extinction_rate, lambda,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, mrca_distr, mu,
-  mutation_rate, nu, nu_events, parameters, parameter_filename,
-  parameters_filename, phylo, phylogeny, posterior_trees, precision,
-  project_folder_name, root_sequence, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, sub_chain_length, tree,
-  tree_filename, tree_prior, trees_filename, verbose)
+default_params_doc(alignment, alignment_params, alignment_rng_seed,
+  bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
+  beast2_rng_seed, brts, chain_length, clock_model, crown_age,
+  fasta_filename, filename, folder_name, init_speciation_rate,
+  init_extinction_rate, lambda, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
+  mcmc, mrca_distr, mu, mutation_rate, nu, nu_events, parameters,
+  parameter_filename, parameters_filename, phylo, phylogeny,
+  posterior_trees, precision, project_folder_name, root_sequence,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  sub_chain_length, tree, tree_filename, tree_prior, trees_filename,
+  verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
+
+\item{alignment_params}{parameters to simulate an alignment,
+as can be created by \link{create_alignment_params}}
 
 \item{alignment_rng_seed}{The random number generator seed used
 to generate an alignment}
@@ -25,8 +29,8 @@ to generate an alignment}
 \item{bd_mutation_rate}{the mutation rate when creating an alignment
 from a BD tree}
 
-\item{bd_tree}{a phylogent of class \code{phylo}, created by a Birth Death
-process}
+\item{bd_tree}{a phylogent of class \link[ape]{phylo},
+created by a Birth Death process}
 
 \item{bd_tree_filename}{name of the file that stores a BD twin tree}
 

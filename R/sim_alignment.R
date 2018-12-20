@@ -22,8 +22,7 @@
 #' @export
 sim_alignment <- function(
   phylogeny,
-  root_sequence,
-  mutation_rate
+  alignment_params
 ) {
   if (class(phylogeny) != "phylo") {
     stop("parameter 'phylogeny' must be a phylogeny")
@@ -31,12 +30,19 @@ sim_alignment <- function(
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
-  if (!is_dna_seq(root_sequence)) {
-    stop("'root_sequence' must be a lowercase DNA sequence")
-  }
-  if (mutation_rate < 0) {
-    stop("parameter 'mutation_rate' must be a non-zero and positive value")
-  }
+  tryCatch(
+    check_alignment_params(alignment_params),
+    error = function(msg) {
+      msg <- paste0(
+        "'alignment_params' must be a set of alignment parameters. ",
+        msg
+      )
+      stop(msg)
+    }
+  )
+
+  root_sequence <- alignment_params$root_sequence
+
 
   # Jukes-Cantor 1969 model:
   #  * equal base frequencies
@@ -44,7 +50,7 @@ sim_alignment <- function(
   alignment_phydat <- phangorn::simSeq(
     phylogeny,
     l = nchar(root_sequence),
-    rate = mutation_rate,
+    rate = alignment_params$mutation_rate,
     rootseq = strsplit(root_sequence, split = "")[[1]]
   )
   testit::assert(class(alignment_phydat) == "phyDat")

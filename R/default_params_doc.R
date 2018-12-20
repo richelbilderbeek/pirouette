@@ -1,12 +1,14 @@
 #' This function does nothing. It is intended to inherit is parameters'
 #' documentation.
 #' @param alignment a DNA alignment
+#' @param alignment_params parameters to simulate an alignment,
+#'   as can be created by \link{create_alignment_params}
 #' @param alignment_rng_seed The random number generator seed used
 #'   to generate an alignment
 #' @param bd_mutation_rate the mutation rate when creating an alignment
 #'   from a BD tree
-#' @param bd_tree a phylogent of class \code{phylo}, created by a Birth Death
-#'   process
+#' @param bd_tree a phylogent of class \link[ape]{phylo},
+#'   created by a Birth Death process
 #' @param bd_tree_filename name of the file that stores a BD twin tree
 #' @param beast2_path Path to the
 #'   BEAST2 jar file (\code{beast.jar})
@@ -76,6 +78,7 @@
 #'
 default_params_doc <- function(
   alignment,
+  alignment_params,
   alignment_rng_seed,
   bd_mutation_rate,
   bd_tree,

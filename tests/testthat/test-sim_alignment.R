@@ -8,8 +8,10 @@ test_that("sim_alignment: basic", {
 
   alignment <- sim_alignment(
     phylogeny = phylogeny,
-    root_sequence = create_mono_nuc_dna(length = sequence_length),
-    mutation_rate = 1
+    alignment_params = create_alignment_params(
+      root_sequence = create_mono_nuc_dna(length = sequence_length),
+      mutation_rate = 1
+    )
   )
   expect_true(class(alignment) == "DNAbin")
   expect_true(nrow(alignment) == n_taxa)
@@ -19,11 +21,15 @@ test_that("sim_alignment: basic", {
 test_that("sim_alignment: abuse", {
 
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = 4),
+    mutation_rate = 1
+  )
 
   expect_error(
     sim_alignment(
       phylogeny = "not a phylogeny",
-      mutation_rate = 1
+      alignment_params = alignment_params
     ),
     "'phylogeny' must be a phylogeny" #nolint
   )
@@ -31,29 +37,19 @@ test_that("sim_alignment: abuse", {
   expect_error(
     sim_alignment(
       phylogeny = phylogeny,
-      root_sequence = "XXXX",
-      mutation_rate = 1
+      alignment_params = "nonsense"
     ),
-    "'root_sequence' must be a lowercase DNA sequence"
-  )
-
-  expect_error(
-    sim_alignment(
-      phylogeny = phylogeny,
-      root_sequence = "aa",
-      mutation_rate = -1 # Must be positive
-    ),
-    "'mutation_rate' must be a non-zero and positive value" # nolint
+    "'alignment_params' must be a set of alignment parameters"
   )
 
   set.seed(42)
   p_with_extant <- ape::rtree(5)
   testit::assert(geiger::is.extinct(p_with_extant))
 
-  testthat::expect_error(
+  expect_error(
     sim_alignment(
       phylogeny = p_with_extant,
-      mutation_rate = 1
+      alignment_params = alignment_params
     ),
     "phylogeny must not contain extant species"
   )
