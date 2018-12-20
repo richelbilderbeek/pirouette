@@ -20,7 +20,7 @@ phylo_to_posterior <- function(
 ) {
   # Check for deprecated argument names
   calls <- names(sapply(match.call(), deparse))[-1]
-  if (!pir_is_dna_seq(root_sequence)) {
+  if (!is_dna_seq(root_sequence)) {
     stop("'root_sequence' should be a lower-case DNA character string")
   }
   if (is.numeric(sequence_length) && nchar(root_sequence) != sequence_length) {

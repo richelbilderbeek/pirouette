@@ -31,7 +31,7 @@ sim_alignment <- function(
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
-  if (!pir_is_dna_seq(root_sequence)) {
+  if (!is_dna_seq(root_sequence)) {
     stop("'root_sequence' must be a lowercase DNA sequence")
   }
   if (mutation_rate < 0) {
