@@ -28,3 +28,5 @@ tests/testthat/beast2.xml
 tests/testthat/tmp_pirouette_run.fasta
 inst/doc
 tests/testthat/*.trees
+vignettes/*.html
+vignettes/*.R
