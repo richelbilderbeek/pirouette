@@ -24,6 +24,7 @@ Imports:
     geiger,
     phangorn,
     stringr,
+    TESS,
     testit,
     tidyr
 Suggests:
