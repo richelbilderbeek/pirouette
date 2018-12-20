@@ -20,6 +20,9 @@ as created by \link[beautier]{create_clock_model}}
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}
 
+\item{mrca_prior}{an MRCA prior,
+as created by \link[beautier]{create_mrca_prior}}
+
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
 \item{rng_seed}{the random number generator seed

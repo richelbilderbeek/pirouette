@@ -39,8 +39,8 @@
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
 #'   from a MBD tree
 #' @param mbd_tree an MBD tree
-#' @param mrca_distr if MRCA prior used on all taxa.
-#'   Set to NA to not use an MRCA prior
+#' @param mrca_prior an MRCA prior,
+#'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
 #' @param mutation_rate the mutation rate per base pair per time unit
 #' @param nu the rate at which a multiple-birth specation is triggered
@@ -103,7 +103,7 @@ default_params_doc <- function(
   mbd_mutation_rate,
   mbd_tree,
   mcmc,
-  mrca_distr,
+  mrca_prior,
   mu,
   mutation_rate,
   nu,

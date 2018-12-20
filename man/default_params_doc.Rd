@@ -10,7 +10,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_rng_seed, brts, chain_length, clock_model, crown_age,
   fasta_filename, filename, folder_name, inference_params,
   init_speciation_rate, init_extinction_rate, lambda, mbd_l_matrix,
-  mbd_mutation_rate, mbd_tree, mcmc, mrca_distr, mu, mutation_rate, nu,
+  mbd_mutation_rate, mbd_tree, mcmc, mrca_prior, mu, mutation_rate, nu,
   nu_events, parameters, parameter_filename, parameters_filename, phylo,
   phylogeny, posterior_trees, precision, project_folder_name,
   root_sequence, sample_interval, seed, sequence_length, sim_pars,
@@ -80,8 +80,8 @@ from a MBD tree}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
-\item{mrca_distr}{if MRCA prior used on all taxa.
-Set to NA to not use an MRCA prior}
+\item{mrca_prior}{an MRCA prior,
+as created by \link[beautier]{create_mrca_prior}}
 
 \item{mu}{per-species extinction rate}
 
