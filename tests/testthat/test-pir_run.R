@@ -5,7 +5,13 @@ test_that("default use: generative only", {
   true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   errors <- pir_run(
     true_phylogeny,
-    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    alignment_params = create_alignment_params(
+      root_sequence = "acgt",
+      mutation_rate = 0.01
+    ),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    )
   )
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
