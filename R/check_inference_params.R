@@ -1,5 +1,6 @@
 #' Check if the inference parameters are valid.
 #' Throws if these are invalid
+#' @inheritParams default_params_doc
 #' @author Richel J.C. Bilderbeek
 check_inference_params <- function(
   inference_params

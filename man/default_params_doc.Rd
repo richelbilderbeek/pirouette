@@ -8,14 +8,14 @@ documentation.}
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
   beast2_rng_seed, brts, chain_length, clock_model, crown_age,
-  fasta_filename, filename, folder_name, init_speciation_rate,
-  init_extinction_rate, lambda, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
-  mcmc, mrca_distr, mu, mutation_rate, nu, nu_events, parameters,
-  parameter_filename, parameters_filename, phylo, phylogeny,
-  posterior_trees, precision, project_folder_name, root_sequence,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  sub_chain_length, tree, tree_filename, tree_prior, trees_filename,
-  verbose)
+  fasta_filename, filename, folder_name, inference_params,
+  init_speciation_rate, init_extinction_rate, lambda, mbd_l_matrix,
+  mbd_mutation_rate, mbd_tree, mcmc, mrca_distr, mu, mutation_rate, nu,
+  nu_events, parameters, parameter_filename, parameters_filename, phylo,
+  phylogeny, posterior_trees, precision, project_folder_name,
+  root_sequence, sample_interval, seed, sequence_length, sim_pars,
+  sim_phylo, site_model, sub_chain_length, tree, tree_filename, tree_prior,
+  trees_filename, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -59,6 +59,9 @@ to let it be estimated}
 \item{filename}{the file's name, without the path}
 
 \item{folder_name}{name of the main folder}
+
+\item{inference_params}{parameters for the \link[babette]{babette},
+as can be created by \link{create_inference_params}}
 
 \item{init_speciation_rate}{a speciation rate}
 
@@ -135,9 +138,6 @@ as created by \link[beautier]{create_tree_prior}}
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{inference_params}{parameters for the \link[babette]{babette},
-as can be created by \link{create_inference_params}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

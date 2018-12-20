@@ -93,6 +93,7 @@ default_params_doc <- function(
   fasta_filename,
   filename,
   folder_name,
+  inference_params,
   init_speciation_rate,
   init_extinction_rate,
   lambda,
