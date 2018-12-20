@@ -64,6 +64,6 @@ knitr::kable(head(errors))
 
 Here we plot the error:
 
-```{r}
+```{r fig.width=7, fig.height=7}
 pir_plot(errors)
 ```

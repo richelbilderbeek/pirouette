@@ -2,14 +2,39 @@ context("test-check_alignment_params")
 
 test_that("use", {
 
+  alignment_params <- create_alignment_params(
+    root_sequence = "acgt",
+    mutation_rate = 0.1
+  )
+
+  # OK
   expect_silent(
     check_alignment_params(
-      create_alignment_params(
-        root_sequence = "acgt",
-        mutation_rate = 0.1
-      )
+      alignment_params
     )
   )
+
+  # Wrong parameter names
+  expect_error(
+    check_alignment_params(
+      alignment_params[-1]
+    ),
+    "'root_sequence' must be an element of an 'alignment_params'"
+  )
+  expect_error(
+    check_alignment_params(
+      alignment_params[-2]
+    ),
+    "'mutation_rate' must be an element of an 'alignment_params'"
+  )
+  expect_error(
+    check_alignment_params(
+      alignment_params[-3]
+    ),
+    "'rng_seed' must be an element of an 'alignment_params'"
+  )
+
+  # Wrong parameter values
   expect_error(
     check_alignment_params(
       create_alignment_params(
