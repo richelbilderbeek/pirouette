@@ -12,8 +12,10 @@
 #' n_base_pairs <- 10
 #' alignment <- sim_alignment(
 #'    phylogeny = ape::rcoal(n_taxa),
-#'    sequence_length = n_base_pairs,
-#'    mutation_rate = 1
+#'    alignment_params = create_alignment_params(
+#'      sequence_length = n_base_pairs,
+#'      mutation_rate = 1
+#'    )
 #'  )
 #'  testit::assert(class(alignment) == "DNAbin")
 #'  testit::assert(nrow(alignment) == n_taxa)
