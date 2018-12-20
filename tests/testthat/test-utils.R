@@ -29,6 +29,8 @@ test_that("get_gen_models", {
 
 test_that("bd_phylo_2_l_table", {
 
+  skip("Rewrite to not depend on razzo")
+
   parameters <- razzo::open_parameters_file(razzo::get_path("parameters.csv"))
 
   mbd_sim <- razzo::create_mbd_tree(

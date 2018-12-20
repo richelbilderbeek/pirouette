@@ -27,7 +27,6 @@ Imports:
     mbd,
     phangorn,
     rappdirs,
-    razzo,
     stringr,
     TESS,
     testit,

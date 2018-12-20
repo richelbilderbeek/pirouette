@@ -2,6 +2,8 @@ context("create_bd_tree")
 
 test_that("use", {
 
+  skip("Rewrite to not depend on razzo")
+
   parameters <- razzo::open_parameters_file(razzo::get_path("parameters.csv"))
   parameters$seed <- 1
   mbd_tree <- ape::read.tree(file = razzo::get_path("mbd.tree"))

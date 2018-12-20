@@ -2,6 +2,8 @@ context("combine_brts_and_topology")
 
 test_that("check usage with brts coming from the same tree", {
 
+  skip("Rewrite to not depend on razzo")
+
   parameters <- razzo::open_parameters_file(
     razzo::get_path("parameters.csv")
   )
