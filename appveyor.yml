@@ -31,6 +31,8 @@ build_script:
   - travis-tool.sh install_github jimhester/covr
   - travis-tool.sh install_github jimhester/lintr
   - travis-tool.sh install_github MangoTheCat/goodpractice
+  - travis-tool.sh install_github Giappo/mbd
+  - travis-tool.sh install_github xl0418/dododo
 
 test_script:
   - travis-tool.sh run_tests
