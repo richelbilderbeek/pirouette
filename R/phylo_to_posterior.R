@@ -5,15 +5,7 @@
 phylo_to_posterior <- function(
   phylogeny,
   alignment_params,
-  mcmc,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
-  tree_prior = beautier::create_bd_tree_prior(),
-  crown_age = NA,
-  mrca_distr = NA,
-  beast2_rng_seed = 1,
-  verbose = FALSE,
-  beast2_path = beastier::get_default_beast2_path()
+  inference_params
 ) {
   tryCatch(
     check_alignment_params(alignment_params),
@@ -25,9 +17,16 @@ phylo_to_posterior <- function(
       stop(msg)
     }
   )
-  if (!is.na(beast2_rng_seed) && !(beast2_rng_seed > 0)) {
-    stop("'beast2_rng_seed' should be NA or non-zero positive")
-  }
+  tryCatch(
+    check_inference_params(inference_params),
+    error = function(msg) {
+      msg <- paste0(
+        "'inference_params' must be a set of inference parameters. ",
+        msg
+      )
+      stop(msg)
+    }
+  )
 
   # Create alignment, sets alignment RNG seed in 'sim_alignment'
   alignment <- sim_alignment(
@@ -42,27 +41,17 @@ phylo_to_posterior <- function(
     format = "fasta"
   )
 
-  mrca_prior <- NA
-  if (beautier:::is_distr(mrca_distr)) {
-    mrca_prior <- beautier::create_mrca_prior(
-      alignment_id = beautier::get_alignment_id(temp_fasta_filename),
-      taxa_names = beautier::get_taxa_names(temp_fasta_filename),
-      is_monophyletic = TRUE,
-      mrca_distr = mrca_distr
-    )
-  }
-
   babette_out <- babette::bbt_run(
     fasta_filename = temp_fasta_filename,
-    site_model = site_model,
-    clock_model = clock_model,
-    tree_prior = tree_prior,
-    mrca_prior = mrca_prior,
-    mcmc = mcmc,
-    rng_seed = beast2_rng_seed,
+    site_model = inference_params$site_model,
+    clock_model = inference_params$clock_model,
+    tree_prior = inference_params$tree_prior,
+    mrca_prior = inference_params$mrca_prior,
+    mcmc = inference_params$mcmc,
+    rng_seed = inference_params$rng_seed,
     cleanup = TRUE,
-    verbose = verbose,
-    beast2_path = beast2_path
+    verbose = inference_params$verbose,
+    beast2_path = inference_params$beast2_path
   )
 
   file.remove(temp_fasta_filename)

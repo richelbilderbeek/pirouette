@@ -5,11 +5,20 @@
 check_inference_params <- function(
   inference_params
 ) {
-  if (!"rng_seed" %in% inference_params) {
-
+  argument_names <- c(
+    "site_model", "clock_model", "tree_prior", "mrca_prior", "mcmc",
+    "rng_seed", "beast2_path", "verbose"
+  )
+  for (arg_name in argument_names) {
+    if (!arg_name %in% names(inference_params)) {
+      stop(
+        "'", arg_name, "' must be an element of an 'inference_params'. ",
+        "Tip: use 'create_inference_params'"
+      )
+    }
   }
   rng_seed <- inference_params$rng_seed
-  if (rng_seed <= 0) {
+  if (!beautier:::is_one_na(rng_seed) && rng_seed <= 0) {
     stop("'rng_seed' should be NA or non-zero positive")
   }
 }

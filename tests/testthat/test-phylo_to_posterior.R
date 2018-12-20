@@ -11,8 +11,9 @@ test_that("use", {
       root_sequence = create_blocked_dna(length = 8),
       mutation_rate = 0.1
     ),
-    mcmc = beautier::create_mcmc(chain_length = 2000),
-    crown_age = 15.0
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000)
+    )
   )
   testthat::expect_true(class(out$trees) == "multiPhylo")
 })
@@ -29,18 +30,16 @@ test_that("abuse", {
     phylo_to_posterior(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      mcmc = beautier::create_mcmc(chain_length = 2000),
-      crown_age = 15.0,
-      beast2_rng_seed = -123456789
-
+      inference_params = "nonsense"
     ),
-    "'beast2_rng_seed' should be NA or non-zero positive"
+    "'inference_params' must be a set of inference parameters."
   )
+
   expect_error(
     phylo_to_posterior(
       phylogeny = phylogeny,
       alignment_params = "nonsense",
-      mcmc = beautier::create_mcmc(chain_length = 2000)
+      inference_params = create_inference_params()
     ),
     "'alignment_params' must be a set of alignment parameters"
   )
