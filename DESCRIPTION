@@ -40,13 +40,3 @@ Suggests:
     PBD,
     rmarkdown,
     testthat
-Remotes: 
-    jimhester/covr,
-    jimhester/lintr,
-    richelbilderbeek/babette,
-    richelbilderbeek/beautier,
-    richelbilderbeek/beastier,
-    richelbilderbeek/nLTT,
-    richelbilderbeek/tracerer,
-    MangoTheCat/goodpractice,
-    KlausVigo/phangorn

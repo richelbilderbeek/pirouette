@@ -13,12 +13,12 @@ r_github_packages:
   - jimhester/lintr
   - KlausVigo/phangorn
   - MangoTheCat/goodpractice
-  - richelbilderbeek/babette
-  - richelbilderbeek/beastier
-  - richelbilderbeek/beautier
-  - richelbilderbeek/mauricer
+  - ropensci/babette
+  - ropensci/beastier
+  - ropensci/beautier
+  - ropensci/mauricer
   - richelbilderbeek/mcbette
-  - richelbilderbeek/tracerer
+  - ropensci/tracerer
   - richelbilderbeek/nLTT
   - xl0418/dododo
   - rsetienne/PBD/PBD

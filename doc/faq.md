@@ -2,7 +2,7 @@
 
 ## How to install BEAST2?
 
-See [how to install BEAST2](https://github.com/richelbilderbeek/beastier/blob/master/install_beast2.md).
+See [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md).
 
 ## How can I indicate a feature that I miss?
 
