@@ -6,6 +6,9 @@
 \usage{
 create_clock_model_from_name(clock_model_name)
 }
+\arguments{
+\item{clock_model_name}{name of a clock model}
+}
 \description{
 Create a clock model from name
 }

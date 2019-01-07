@@ -7,16 +7,16 @@ documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
-  beast2_rng_seed, brts, chain_length, clock_model, crown_age,
-  fasta_filename, filename, folder_name, inference_params,
+  beast2_rng_seed, brts, chain_length, clock_model, clock_model_name,
+  crown_age, fasta_filename, filename, folder_name, inference_params,
   init_speciation_rate, init_extinction_rate, lambda, mbd_l_matrix,
   mbd_mutation_rate, mbd_tree, mcmc, model_selection, model_selections,
   mrca_prior, mu, mutation_rate, nu, nu_events, parameters,
   parameter_filename, parameters_filename, phylo, phylogeny,
   posterior_trees, precision, project_folder_name, root_sequence,
   sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  sub_chain_length, tree, tree_filename, tree_prior, trees_filename,
-  verbose)
+  site_model_name, sub_chain_length, tree, tree_filename, tree_prior,
+  tree_prior_name, trees_filename, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -51,6 +51,8 @@ BEAST2 binary file path.}
 
 \item{clock_model}{a clock model,
 as created by \link[beautier]{create_clock_model}}
+
+\item{clock_model_name}{name of a clock model}
 
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
@@ -138,6 +140,8 @@ makes a measurement}
 \item{site_model}{a nucleotide substitution model,
 as created by \link[beautier]{create_site_model}}
 
+\item{site_model_name}{name of a site model}
+
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
 
@@ -147,6 +151,8 @@ algorithm to estimate the marginal likelihood}
 
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}
+
+\item{tree_prior_name}{name of a tree prior}
 
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
 

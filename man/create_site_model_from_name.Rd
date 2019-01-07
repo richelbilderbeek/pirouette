@@ -6,6 +6,9 @@
 \usage{
 create_site_model_from_name(site_model_name)
 }
+\arguments{
+\item{site_model_name}{name of a site model}
+}
 \description{
 Create a site model from name
 }

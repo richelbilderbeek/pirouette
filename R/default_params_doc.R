@@ -22,6 +22,7 @@
 #' @param chain_length something
 #' @param clock_model a clock model,
 #'   as created by \link[beautier]{create_clock_model}
+#' @param clock_model_name name of a clock model
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
 #' @param fasta_filename name of a FASTA file
@@ -74,11 +75,13 @@
 #' @param sim_phylo something
 #' @param site_model a nucleotide substitution model,
 #'   as created by \link[beautier]{create_site_model}
+#' @param site_model_name name of a site model
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
 #' @param tree_prior a tree prior,
 #'   as created by \link[beautier]{create_tree_prior}
+#' @param tree_prior_name name of a tree prior
 #' @param tree_filename name of the phylogeny file
 #' @param trees_filename name of the BEAST2 posterior phylogenies file
 #' @param verbose if TRUE, show more output
@@ -99,6 +102,7 @@ default_params_doc <- function(
   brts,
   chain_length,
   clock_model,
+  clock_model_name,
   crown_age,
   fasta_filename,
   filename,
@@ -133,10 +137,12 @@ default_params_doc <- function(
   sim_pars,
   sim_phylo,
   site_model,
+  site_model_name,
   sub_chain_length,
   tree,
   tree_filename,
   tree_prior,
+  tree_prior_name,
   trees_filename,
   verbose
 ) {

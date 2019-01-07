@@ -1,4 +1,5 @@
 #' Create a site model from name
+#' @inheritParams default_params_doc
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_site_model_from_name <- function(site_model_name) {

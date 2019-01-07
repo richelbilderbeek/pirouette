@@ -1,4 +1,5 @@
 #' Create a clock model from name
+#' @inheritParams default_params_doc
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_clock_model_from_name <- function(clock_model_name) {

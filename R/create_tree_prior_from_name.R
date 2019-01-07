@@ -1,4 +1,5 @@
 #' Create a tree prior from name
+#' @inheritParams default_params_doc
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_tree_prior_from_name <- function(tree_prior_name) {

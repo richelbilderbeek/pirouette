@@ -6,6 +6,9 @@
 \usage{
 create_tree_prior_from_name(tree_prior_name)
 }
+\arguments{
+\item{tree_prior_name}{name of a tree prior}
+}
 \description{
 Create a tree prior from name
 }
