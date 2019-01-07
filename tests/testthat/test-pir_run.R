@@ -42,26 +42,6 @@ test_that("generative only", {
   expect_true(!is.factor(errors$error_1))
 })
 
-test_that("most_evidence only", {
-
-  if (!beastier::is_on_travis()) return()
-
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  errors <- pir_run(
-    phylogeny = phylogeny,
-    alignment_params = create_alignment_params(
-      root_sequence = "acgt",
-      mutation_rate = 0.01
-    ),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    model_selections = "most_evidence"
-  )
-  expect_true("most_evidence" %in% errors$inference_model)
-  expect_true(errors$inference_model_weight > 0.0)
-})
-
 test_that("generative and most_evidence", {
 
   if (!beastier::is_on_travis()) return()
