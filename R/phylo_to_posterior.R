@@ -56,6 +56,8 @@ phylo_to_posterior <- function(
   file.remove(temp_fasta_filename)
 
   list(
+    alignment_params = alignment_params,
+    inference_params = inference_params,
     alignment = alignment,
     # Use c() to convert to multiPhylo. This removes the STATE_x names
     trees = c(babette_out[[grep(x = names(babette_out), pattern = "trees")]]),

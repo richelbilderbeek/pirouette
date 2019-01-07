@@ -55,9 +55,9 @@ pir_run_one <- function(
     tree = "true",
     inference_model = model_selection,
     inference_model_weight = NA,
-    site_model = "JC69",
-    clock_model = "strict",
-    tree_prior = "BD"
+    site_model = posterior$inference_params$site_model$name,
+    clock_model = posterior$inference_params$clock_model$name,
+    tree_prior = posterior$inference_params$tree_prior$name
   )
   error_col_names <- paste0("error_", seq(1, length(nltts)))
   df[, error_col_names] <- 0.0
