@@ -4,13 +4,19 @@
 \alias{create_inference_params}
 \title{Creates a set of parameters used in the Bayesian inference.}
 \usage{
-create_inference_params(site_model = beautier::create_jc69_site_model(),
+create_inference_params(model_selection = "generative",
+  site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   tree_prior = beautier::create_bd_tree_prior(), mrca_prior = NA,
   mcmc = beautier::create_mcmc(), rng_seed = NA,
   beast2_path = beastier::get_default_beast2_path(), verbose = FALSE)
 }
 \arguments{
+\item{model_selection}{one or more ways to select the models used in
+inference, for example, \code{generative} picks the generative
+model, where \code{most_evidence} picks the model with most
+evidence. See \link{get_model_selections} for a list of}
+
 \item{site_model}{a nucleotide substitution model,
 as created by \link[beautier]{create_site_model}}
 

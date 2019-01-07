@@ -10,12 +10,12 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_rng_seed, brts, chain_length, clock_model, crown_age,
   fasta_filename, filename, folder_name, inference_params,
   init_speciation_rate, init_extinction_rate, lambda, mbd_l_matrix,
-  mbd_mutation_rate, mbd_tree, mcmc, mrca_prior, mu, mutation_rate, nu,
-  nu_events, parameters, parameter_filename, parameters_filename, phylo,
-  phylogeny, posterior_trees, precision, project_folder_name,
-  root_sequence, sample_interval, seed, sequence_length, sim_pars,
-  sim_phylo, site_model, sub_chain_length, tree, tree_filename, tree_prior,
-  trees_filename, verbose)
+  mbd_mutation_rate, mbd_tree, mcmc, model_selection, mrca_prior, mu,
+  mutation_rate, nu, nu_events, parameters, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, sub_chain_length, tree,
+  tree_filename, tree_prior, trees_filename, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -79,6 +79,11 @@ from a MBD tree}
 \item{mbd_tree}{an MBD tree}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+
+\item{model_selection}{one or more ways to select the models used in
+inference, for example, \code{generative} picks the generative
+model, where \code{most_evidence} picks the model with most
+evidence. See \link{get_model_selections} for a list of}
 
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}

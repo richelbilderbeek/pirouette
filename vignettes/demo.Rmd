@@ -92,7 +92,7 @@ to use. Next to the known generative model (JC69 and strict clock),
 here we use the inference model that has the highest evidence (also
 called 'marginal likelihood'):
 
-```
+```{r}
 inference_params <- create_inference_params(
   models = c("generative", "most_evidence"),
   mcmc = mcmc,
