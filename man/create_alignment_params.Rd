@@ -4,13 +4,21 @@
 \alias{create_alignment_params}
 \title{Create the parameters for the alignment simulation}
 \usage{
-create_alignment_params(root_sequence, mutation_rate, rng_seed = 0)
+create_alignment_params(root_sequence, mutation_rate,
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(), rng_seed = 0)
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of only adenine}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
+
+\item{site_model}{a nucleotide substitution model,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
 
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}

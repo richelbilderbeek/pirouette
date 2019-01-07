@@ -17,11 +17,17 @@
 create_alignment_params <- function(
   root_sequence,
   mutation_rate,
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0
 ) {
-  list(
+  alignment_params <- list(
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
+    site_model = site_model,
+    clock_model = clock_model,
     rng_seed = rng_seed
   )
+  check_alignment_params(alignment_params = alignment_params) # nolint pirouette function
+  alignment_params
 }

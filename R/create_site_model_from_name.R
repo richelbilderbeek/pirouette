@@ -1,0 +1,15 @@
+#' Create a site model from name
+#' @author Richel J.C. Bilderbeek
+#' @export
+create_site_model_from_name <- function(site_model_name) {
+  if (site_model_name == "JC69") {
+    beautier::create_jc69_site_model()
+  } else if (site_model_name == "HKY") {
+    beautier::create_hky_site_model()
+  } else if (site_model_name == "TN93") {
+    beautier::create_tn93_site_model()
+  } else {
+    testit::assert(site_model_name == "GTR")
+    beautier::create_gtr_site_model()
+  }
+}

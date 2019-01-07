@@ -1,22 +1,16 @@
-#' Creates a posterior from the phylogeny
+#' Creates a posterior from an alignment
 #' @inheritParams default_params_doc
-#' @return a posterior of phylogenies
+#' @return a list of:
+#' \itemize{
+#'   \item \code{trees}: the phylogenies in the posterior,
+#'     as a \link[ape]{multiphylo}
+#'   \item \code{estimates}: the BEAST2 estimates, as a \link{data.frame}
+#' }
 #' @author Richel J.C. Bilderbeek
-phylo_to_posterior <- function(
-  phylogeny,
-  alignment_params,
+alignment_to_posterior_trees <- function(
+  alignment,
   inference_params
 ) {
-  tryCatch(
-    check_alignment_params(alignment_params),
-    error = function(msg) {
-      msg <- paste0(
-        "'alignment_params' must be a set of alignment parameters. ",
-        msg
-      )
-      stop(msg)
-    }
-  )
   tryCatch(
     check_inference_params(inference_params),
     error = function(msg) {
@@ -28,11 +22,6 @@ phylo_to_posterior <- function(
     }
   )
 
-  # Create alignment, sets alignment RNG seed in 'sim_alignment'
-  alignment <- sim_alignment(
-    phylogeny = phylogeny,
-    alignment_params = alignment_params
-  )
   # Save alignment to file
   temp_fasta_filename <- tempfile(pattern = "pirouette_", fileext = ".fasta")
   phangorn::write.phyDat(
@@ -55,12 +44,5 @@ phylo_to_posterior <- function(
 
   file.remove(temp_fasta_filename)
 
-  list(
-    alignment_params = alignment_params,
-    inference_params = inference_params,
-    alignment = alignment,
-    # Use c() to convert to multiPhylo. This removes the STATE_x names
-    trees = c(babette_out[[grep(x = names(babette_out), pattern = "trees")]]),
-    estimates = babette_out$estimates
-  )
+  c(babette_out[[grep(x = names(babette_out), pattern = "trees")]])
 }
