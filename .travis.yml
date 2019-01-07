@@ -38,6 +38,10 @@ before_script:
   # proselint
   - sudo pip install proselint
 
+script:
+  - travis_wait 50 R CMD build .
+  - travis_wait 50 R CMD check *tar.gz
+
 after_success:
   - Rscript -e 'lintr::lint_package()'
   - Rscript -e 'covr::codecov()'
