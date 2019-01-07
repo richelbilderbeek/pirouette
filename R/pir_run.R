@@ -55,6 +55,7 @@ pir_run <- function(
   df <- data.frame()
   for (model_selection in model_selections) {
     this_df <- pir_run_one(
+      phylogeny = phylogeny,
       alignment = alignment,
       alignment_params = alignment_params,
       inference_params = inference_params,
@@ -81,6 +82,7 @@ pir_run <- function(
 #' @author Richel J.C. Bilderbeek
 #' @noRd
 pir_run_one <- function(
+  phylogeny,
   alignment,
   alignment_params,
   inference_params,
