@@ -41,11 +41,10 @@ alignment_params <- create_alignment_params(
 )
 ```
 
-we use an MCMC chain that is short:
+We use an MCMC chain that is short:
 
 ```{r}
 mcmc <- beautier::create_mcmc(chain_length = 5000, store_every = 1000)
-
 ```
 
 ## Only use the generative model in inference
@@ -90,15 +89,7 @@ pir_plot(errors)
 Again, there are multiple ways to select for which inference model(s)
 to use. Next to the known generative model (JC69 and strict clock),
 here we use the inference model that has the highest evidence (also
-called 'marginal likelihood'):
-
-```{r}
-inference_params <- create_inference_params(
-  models = c("generative", "most_evidence"),
-  mcmc = mcmc,
-  rng_seed = 42
-)
-```
+called 'marginal likelihood'). 
 
 Here we measure the baseline error, from the generative model,
 and the error that BEAST2 makes
@@ -108,7 +99,8 @@ when the inference model is the one with most evidence:
 errors <- pir_run(
   true_phylogeny,
   alignment_params = alignment_params,
-  inference_params = inference_params
+  inference_params = inference_params,
+  model_selections = c("generative", "most_evidence")
 )
 ```
 

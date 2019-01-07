@@ -12,7 +12,7 @@ create_inference_params(model_selection = "generative",
   beast2_path = beastier::get_default_beast2_path(), verbose = FALSE)
 }
 \arguments{
-\item{model_selection}{one or more ways to select the models used in
+\item{model_selection}{one ways to select the models used in
 inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}

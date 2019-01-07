@@ -4,7 +4,8 @@
 \alias{pir_run}
 \title{Meaure the error BEAST2 makes from a known phylogeny}
 \usage{
-pir_run(phylogeny, alignment_params, inference_params)
+pir_run(phylogeny, alignment_params, inference_params,
+  model_selections = "generative")
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -16,6 +17,11 @@ as can be created by \link{create_alignment_params}}
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{model_selections}{one or more ways to select the models used in
+inference, for example, \code{generative} picks the generative
+model, where \code{most_evidence} picks the model with most
+evidence. See \link{get_model_selections} for a list of}
 }
 \value{
 a data frame with errors

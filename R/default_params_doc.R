@@ -39,7 +39,11 @@
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
 #'   from a MBD tree
 #' @param mbd_tree an MBD tree
-#' @param model_selection one or more ways to select the models used in
+#' @param model_selection one ways to select the models used in
+#'   inference, for example, \code{generative} picks the generative
+#'   model, where \code{most_evidence} picks the model with most
+#'   evidence. See \link{get_model_selections} for a list of
+#' @param model_selections one or more ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
 #'   evidence. See \link{get_model_selections} for a list of
@@ -108,6 +112,7 @@ default_params_doc <- function(
   mbd_tree,
   mcmc,
   model_selection,
+  model_selections,
   mrca_prior,
   mu,
   mutation_rate,

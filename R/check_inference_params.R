@@ -6,7 +6,7 @@ check_inference_params <- function(
   inference_params
 ) {
   argument_names <- c(
-    "model_selection", "site_model", "clock_model", "tree_prior", "mrca_prior",
+    "site_model", "clock_model", "tree_prior", "mrca_prior",
     "mcmc", "rng_seed", "beast2_path", "verbose"
   )
   for (arg_name in argument_names) {
@@ -16,9 +16,6 @@ check_inference_params <- function(
         "Tip: use 'create_inference_params'"
       )
     }
-  }
-  if (!all(inference_params$model_selection %in% get_model_selections())) {
-    stop("All values of 'model_selection' must be in 'get_model_selections()'")
   }
   rng_seed <- inference_params$rng_seed
   if (!beautier:::is_one_na(rng_seed) && rng_seed <= 0) {
