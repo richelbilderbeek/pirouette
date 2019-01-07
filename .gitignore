@@ -30,3 +30,4 @@ inst/doc
 tests/testthat/*.trees
 vignettes/*.html
 vignettes/*.R
+*.trees
