@@ -24,6 +24,7 @@ Imports:
     DDD,
     dododo,
     geiger,
+    mauricer,
     mbd,
     phangorn,
     rappdirs,
