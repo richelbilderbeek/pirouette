@@ -20,6 +20,7 @@ BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Imports:
     ape,
     babette,
+    beastier,
     beautier,
     DDD,
     dododo,
@@ -31,7 +32,8 @@ Imports:
     stringr,
     TESS,
     testit,
-    tidyr
+    tidyr,
+    tracerer
 Suggests:
     devtools,
     ggplot2,
