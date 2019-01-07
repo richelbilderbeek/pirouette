@@ -27,6 +27,7 @@ Imports:
     geiger,
     mauricer,
     mbd,
+    mcbette,
     phangorn,
     rappdirs,
     stringr,
