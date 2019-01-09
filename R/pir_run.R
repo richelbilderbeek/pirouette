@@ -1,8 +1,9 @@
-#' Meaure the error BEAST2 makes from a known phylogeny.
+#' Measure the error BEAST2 makes from a known phylogeny.
+#'
 #' From a phylogeny of (un)known speciation model,
 #' an alignment is created using a known site model and clock model,
 #' as given by \code{alignment_params}.
-#' From the model selection parameters in \code{model_selection_params},
+#' From the model selection parameters in \code{model_select_params},
 #' models are selected to run BEAST2 with. One such model is to use
 #' the generative site and clock model the alignment is created,
 #' @inheritParams default_params_doc
@@ -124,13 +125,13 @@ pir_run_one <- function(
   } else if (model_selection == "most_evidence") {
     testit::assert(!is.null(marg_liks))
     best_row_index <- which(marg_liks$weight == max(marg_liks$weight))
-    inference_params$site_model <- create_site_model_from_name(
+    inference_params$site_model <- beautier::create_site_model_from_name(
       marg_liks$site_model_name[best_row_index]
     )
-    inference_params$clock_model <- create_clock_model_from_name(
+    inference_params$clock_model <- beautier::create_clock_model_from_name(
       marg_liks$clock_model_name[best_row_index]
     )
-    inference_params$tree_prior <- create_tree_prior_from_name(
+    inference_params$tree_prior <- beautier::create_tree_prior_from_name(
       marg_liks$tree_prior_name[best_row_index]
     )
   }

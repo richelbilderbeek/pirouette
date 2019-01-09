@@ -8,6 +8,11 @@ Will \link{stop} if not.}
 \usage{
 check_model_select_params(model_select_params)
 }
+\arguments{
+\item{model_select_params}{parameters to select a model (a combination
+of site model, clock model and tree prior),
+as can be created by \link{create_model_select_params}}
+}
 \value{
 nothing. Will \link{stop} if the object is not
 }

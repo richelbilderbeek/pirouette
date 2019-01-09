@@ -2,13 +2,7 @@
 % Please edit documentation in R/pir_run.R
 \name{pir_run}
 \alias{pir_run}
-\title{Meaure the error BEAST2 makes from a known phylogeny.
-From a phylogeny of (un)known speciation model,
-an alignment is created using a known site model and clock model,
-as given by \code{alignment_params}.
-From the model selection parameters in \code{model_selection_params},
-models are selected to run BEAST2 with. One such model is to use
-the generative site and clock model the alignment is created,}
+\title{Measure the error BEAST2 makes from a known phylogeny.}
 \usage{
 pir_run(phylogeny, alignment_params,
   model_select_params = create_gen_model_select_params(alignment_params),
@@ -20,6 +14,10 @@ pir_run(phylogeny, alignment_params,
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
+\item{model_select_params}{parameters to select a model (a combination
+of site model, clock model and tree prior),
+as can be created by \link{create_model_select_params}}
+
 \item{inference_params}{parameters for the Bayesian inference,
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
@@ -29,11 +27,10 @@ R package, that calls the phylogenetic tool \code{BEAST2}.}
 a data frame with errors
 }
 \description{
-Meaure the error BEAST2 makes from a known phylogeny.
 From a phylogeny of (un)known speciation model,
 an alignment is created using a known site model and clock model,
 as given by \code{alignment_params}.
-From the model selection parameters in \code{model_selection_params},
+From the model selection parameters in \code{model_select_params},
 models are selected to run BEAST2 with. One such model is to use
 the generative site and clock model the alignment is created,
 }

@@ -22,6 +22,8 @@
 #' @param chain_length something
 #' @param clock_model a clock model,
 #'   as created by \link[beautier]{create_clock_model}
+#' @param clock_models a list of one or more clock models,
+#'   as created by \link[beautier]{create_clock_model}
 #' @param clock_model_name name of a clock model
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
@@ -46,9 +48,9 @@
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
 #'   evidence. See \link{get_model_selections} for a list of
-#' @param model_selection_params parameters to select a model (a combination
+#' @param model_select_params parameters to select a model (a combination
 #'   of site model, clock model and tree prior),
-#'   as can be created by \link{create_model_selection_params}
+#'   as can be created by \link{create_model_select_params}
 #' @param model_selections one or more ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
@@ -80,11 +82,15 @@
 #' @param sim_phylo something
 #' @param site_model a nucleotide substitution model,
 #'   as created by \link[beautier]{create_site_model}
+#' @param site_models a list of one or more site models,
+#'   as created by \link[beautier]{create_site_model}
 #' @param site_model_name name of a site model
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
 #' @param tree_prior a tree prior,
+#'   as created by \link[beautier]{create_tree_prior}
+#' @param tree_priors a list of one or more tree priors,
 #'   as created by \link[beautier]{create_tree_prior}
 #' @param tree_prior_name name of a tree prior
 #' @param tree_filename name of the phylogeny file
@@ -106,7 +112,7 @@ default_params_doc <- function(
   beast2_rng_seed,
   brts,
   chain_length,
-  clock_model,
+  clock_model, clock_models,
   clock_model_name,
   crown_age,
   fasta_filename,
@@ -122,8 +128,8 @@ default_params_doc <- function(
   mbd_tree,
   mcmc,
   model_selection,
-  model_selection_params,
   model_selections,
+  model_select_params,
   mrca_prior,
   mu,
   mutation_rate,
@@ -143,12 +149,12 @@ default_params_doc <- function(
   sequence_length,
   sim_pars,
   sim_phylo,
-  site_model,
+  site_model, site_models,
   site_model_name,
   sub_chain_length,
   tree,
   tree_filename,
-  tree_prior,
+  tree_prior, tree_priors,
   tree_prior_name,
   trees_filename,
   verbose

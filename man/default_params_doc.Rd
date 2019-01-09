@@ -7,16 +7,17 @@ documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
-  beast2_rng_seed, brts, chain_length, clock_model, clock_model_name,
-  crown_age, fasta_filename, filename, folder_name, generative_tree_prior,
-  inference_params, init_speciation_rate, init_extinction_rate, lambda,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, model_selection,
-  model_selection_params, model_selections, mrca_prior, mu, mutation_rate,
-  nu, nu_events, parameters, parameter_filename, parameters_filename,
-  phylo, phylogeny, posterior_trees, precision, project_folder_name,
-  root_sequence, sample_interval, seed, sequence_length, sim_pars,
-  sim_phylo, site_model, site_model_name, sub_chain_length, tree,
-  tree_filename, tree_prior, tree_prior_name, trees_filename, verbose)
+  beast2_rng_seed, brts, chain_length, clock_model, clock_models,
+  clock_model_name, crown_age, fasta_filename, filename, folder_name,
+  generative_tree_prior, inference_params, init_speciation_rate,
+  init_extinction_rate, lambda, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
+  mcmc, model_selection, model_selections, model_select_params, mrca_prior,
+  mu, mutation_rate, nu, nu_events, parameters, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_prior,
+  tree_priors, tree_prior_name, trees_filename, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -50,6 +51,9 @@ BEAST2 binary file path.}
 \item{chain_length}{something}
 
 \item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
+
+\item{clock_models}{a list of one or more clock models,
 as created by \link[beautier]{create_clock_model}}
 
 \item{clock_model_name}{name of a clock model}
@@ -91,14 +95,14 @@ inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}
 
-\item{model_selection_params}{parameters to select a model (a combination
-of site model, clock model and tree prior),
-as can be created by \link{create_model_selection_params}}
-
 \item{model_selections}{one or more ways to select the models used in
 inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}
+
+\item{model_select_params}{parameters to select a model (a combination
+of site model, clock model and tree prior),
+as can be created by \link{create_model_select_params}}
 
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}
@@ -147,6 +151,9 @@ makes a measurement}
 \item{site_model}{a nucleotide substitution model,
 as created by \link[beautier]{create_site_model}}
 
+\item{site_models}{a list of one or more site models,
+as created by \link[beautier]{create_site_model}}
+
 \item{site_model_name}{name of a site model}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
@@ -157,6 +164,9 @@ algorithm to estimate the marginal likelihood}
 \item{tree_filename}{name of the phylogeny file}
 
 \item{tree_prior}{a tree prior,
+as created by \link[beautier]{create_tree_prior}}
+
+\item{tree_priors}{a list of one or more tree priors,
 as created by \link[beautier]{create_tree_prior}}
 
 \item{tree_prior_name}{name of a tree prior}

@@ -20,27 +20,24 @@ BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Imports:
     ape,
     babette,
-    beastier,
     beautier,
     DDD,
     dododo,
     geiger,
-    mauricer,
-    mbd,
     mcbette,
     phangorn,
     rappdirs,
     stringr,
     TESS,
     testit,
-    tidyr,
-    tracerer
+    tidyr
 Suggests:
     devtools,
     ggplot2,
     knitr,
     lintr,
     nLTT,
+    mauricer,
     PBD,
     rmarkdown,
     testthat
