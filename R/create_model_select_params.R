@@ -125,7 +125,7 @@ create_gen_model_select_params <- function(
 #'   testthat::expect_true(length(model_select_params$tree_priors) > 1)
 #' @author Richel J.C. Bilderbeek
 #' @export
-create_most_evidence_model_select_params <- function(
+create_most_evidence_model_select_params <- function( # nolint indeed a long function name
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors()
