@@ -2,7 +2,10 @@
 % Please edit documentation in R/create_alignment_params.R
 \name{create_alignment_params}
 \alias{create_alignment_params}
-\title{Create the parameters for the alignment simulation}
+\title{Create the parameters for the alignment simulation.
+The site model and clock models will be used and
+their combination will be called the generative model
+of the alignment}
 \usage{
 create_alignment_params(root_sequence, mutation_rate,
   site_model = beautier::create_jc69_site_model(),
@@ -27,7 +30,10 @@ simulation of an alignment}
 a list of alignment parameters
 }
 \description{
-Create the parameters for the alignment simulation
+Create the parameters for the alignment simulation.
+The site model and clock models will be used and
+their combination will be called the generative model
+of the alignment
 }
 \examples{
 n_base_pairs <- 4

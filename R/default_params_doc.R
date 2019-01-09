@@ -28,6 +28,8 @@
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
+#' @param generative_tree_prior the (assumed) tree prior that generated
+#'   the phylogeny.
 #' @param inference_params parameters for the Bayesian inference,
 #'   as can be created by \link{create_inference_params}.
 #'   The Bayesian inference is handled by the \link[babette]{babette}
@@ -44,6 +46,9 @@
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
 #'   evidence. See \link{get_model_selections} for a list of
+#' @param model_selection_params parameters to select a model (a combination
+#'   of site model, clock model and tree prior),
+#'   as can be created by \link{create_model_selection_params}
 #' @param model_selections one or more ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
@@ -107,6 +112,7 @@ default_params_doc <- function(
   fasta_filename,
   filename,
   folder_name,
+  generative_tree_prior,
   inference_params,
   init_speciation_rate,
   init_extinction_rate,
@@ -116,6 +122,7 @@ default_params_doc <- function(
   mbd_tree,
   mcmc,
   model_selection,
+  model_selection_params,
   model_selections,
   mrca_prior,
   mu,

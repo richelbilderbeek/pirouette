@@ -2,10 +2,17 @@
 % Please edit documentation in R/pir_run.R
 \name{pir_run}
 \alias{pir_run}
-\title{Meaure the error BEAST2 makes from a known phylogeny}
+\title{Meaure the error BEAST2 makes from a known phylogeny.
+From a phylogeny of (un)known speciation model,
+an alignment is created using a known site model and clock model,
+as given by \code{alignment_params}.
+From the model selection parameters in \code{model_selection_params},
+models are selected to run BEAST2 with. One such model is to use
+the generative site and clock model the alignment is created,}
 \usage{
-pir_run(phylogeny, alignment_params, inference_params,
-  model_selections = "generative")
+pir_run(phylogeny, alignment_params,
+  model_select_params = create_gen_model_select_params(alignment_params),
+  inference_params)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -17,17 +24,18 @@ as can be created by \link{create_alignment_params}}
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
-
-\item{model_selections}{one or more ways to select the models used in
-inference, for example, \code{generative} picks the generative
-model, where \code{most_evidence} picks the model with most
-evidence. See \link{get_model_selections} for a list of}
 }
 \value{
 a data frame with errors
 }
 \description{
-Meaure the error BEAST2 makes from a known phylogeny
+Meaure the error BEAST2 makes from a known phylogeny.
+From a phylogeny of (un)known speciation model,
+an alignment is created using a known site model and clock model,
+as given by \code{alignment_params}.
+From the model selection parameters in \code{model_selection_params},
+models are selected to run BEAST2 with. One such model is to use
+the generative site and clock model the alignment is created,
 }
 \author{
 Richel J.C. Bilderbeek

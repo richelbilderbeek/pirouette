@@ -1,12 +1,14 @@
 digraph G
 {
   babette -> beastier;
-  babette -> mauricer;
+  babette -> mauricer [style=dotted];
   mauricer -> beastier;
   beastier -> tracerer;
   beastier -> beautier;
   lumier -> beautier;
   mcbette -> babette;
   pirouette -> babette;
-  pirouette -> mcbette;
+  pirouette -> mcbette [style=dotted];
+  pirouette -> mbd;
+  mbd -> dododo;
 }

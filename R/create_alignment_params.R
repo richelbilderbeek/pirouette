@@ -1,4 +1,7 @@
-#' Create the parameters for the alignment simulation
+#' Create the parameters for the alignment simulation.
+#' The site model and clock models will be used and
+#' their combination will be called the generative model
+#' of the alignment
 #' @inheritParams default_params_doc
 #' @param rng_seed the random number generator seed as used in the
 #'   simulation of an alignment

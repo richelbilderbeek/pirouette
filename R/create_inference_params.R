@@ -17,6 +17,9 @@ create_inference_params <- function(
   beast2_path = beastier::get_default_beast2_path(),
   verbose = FALSE
 ) {
+  beautier::check_site_model(site_model)
+  beautier::check_clock_model(clock_model)
+  beautier::check_tree_prior(tree_prior)
   inference_params <- list(
     model_selection = model_selection,
     site_model = site_model,

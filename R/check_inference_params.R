@@ -17,6 +17,10 @@ check_inference_params <- function(
       )
     }
   }
+  beautier::check_site_model(inference_params$site_model)
+  beautier::check_clock_model(inference_params$clock_model)
+  beautier::check_tree_prior(inference_params$tree_prior)
+
   rng_seed <- inference_params$rng_seed
   if (!beautier:::is_one_na(rng_seed) && rng_seed <= 0) {
     stop("'rng_seed' should be NA or non-zero positive")

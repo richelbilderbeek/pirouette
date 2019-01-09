@@ -1,4 +1,10 @@
-#' Meaure the error BEAST2 makes from a known phylogeny
+#' Meaure the error BEAST2 makes from a known phylogeny.
+#' From a phylogeny of (un)known speciation model,
+#' an alignment is created using a known site model and clock model,
+#' as given by \code{alignment_params}.
+#' From the model selection parameters in \code{model_selection_params},
+#' models are selected to run BEAST2 with. One such model is to use
+#' the generative site and clock model the alignment is created,
 #' @inheritParams default_params_doc
 #' @return a data frame with errors
 #' @export
@@ -6,8 +12,8 @@
 pir_run <- function(
   phylogeny,
   alignment_params,
-  inference_params,
-  model_selections = "generative"
+  model_select_params = create_gen_model_select_params(alignment_params),
+  inference_params
 ) {
   tryCatch(
     check_alignment_params(alignment_params),
@@ -29,7 +35,17 @@ pir_run <- function(
       stop(msg)
     }
   )
-  if (!all(model_selections %in% get_model_selections())) {
+  tryCatch(
+    check_model_select_params(model_select_params),
+    error = function(msg) {
+      msg <- paste0(
+        "'inference_params' must be a set of inference parameters. ",
+        msg
+      )
+      stop(msg)
+    }
+  )
+  if (!all(model_select_params$model_selections %in% get_model_selections())) {
     stop("All values of 'model_selections' must be in 'get_model_selections()'")
   }
 
@@ -48,12 +64,17 @@ pir_run <- function(
 
   # Estimate marginal likelihoods if needed
   marg_liks <- NULL
-  if ("most_evidence" %in% model_selections) {
-    marg_liks <- mcbette::est_marg_liks(fasta_filename = temp_fasta_filename)
+  if ("most_evidence" %in% model_select_params$model_selections) {
+    marg_liks <- mcbette::est_marg_liks(
+      fasta_filename = temp_fasta_filename,
+      site_models = model_select_params$site_models,
+      clock_models = model_select_params$clock_models,
+      tree_priors = model_select_params$tree_priors
+    )
   }
 
   df <- data.frame()
-  for (model_selection in model_selections) {
+  for (model_selection in model_select_params$model_selections) {
     this_df <- pir_run_one(
       phylogeny = phylogeny,
       alignment = alignment,
@@ -127,9 +148,9 @@ pir_run_one <- function(
     tree = "true",
     inference_model = model_selection,
     inference_model_weight = NA,
-    site_model = inference_params$site_model$name,
-    clock_model = inference_params$clock_model$name,
-    tree_prior = inference_params$tree_prior$name
+    site_model = inference_params$site_models$name,
+    clock_model = inference_params$clock_models$name,
+    tree_prior = inference_params$tree_priors$name
   )
   error_col_names <- paste0("error_", seq(1, length(nltts)))
   df[, error_col_names] <- 0.0

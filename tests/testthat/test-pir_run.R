@@ -3,16 +3,19 @@ context("pir_run")
 test_that("generative only", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    root_sequence = "acgt",
+    mutation_rate = 0.01
+  )
   errors <- pir_run(
     phylogeny = phylogeny,
-    alignment_params = create_alignment_params(
-      root_sequence = "acgt",
-      mutation_rate = 0.01
+    alignment_params = alignment_params,
+    model_select_params = create_gen_model_select_params(
+      alignment_params = alignment_params
     ),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    model_selections = "generative"
+    )
   )
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
@@ -53,10 +56,15 @@ test_that("generative and most_evidence", {
       root_sequence = "acgt",
       mutation_rate = 0.01
     ),
+    model_select_params = create_model_select_params(
+      model_selections = c("generative", "most_evidence"),
+      site_models = beautier::create_site_models()[[1]],
+      clock_models = beautier::create_clock_models()[[1]],
+      tree_priors = beautier::create_tree_priors()[[1]]
+    ),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    model_selections = c("generative", "most_evidence")
+    )
   )
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(all(errors$inference_model_weight > 0.0))
