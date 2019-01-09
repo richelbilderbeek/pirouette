@@ -71,23 +71,23 @@ when the inference model is the correct generative
 model (JC69 and strict clock):
 
 ```{r}
-errors <- pir_run(
-  true_phylogeny,
-  alignment_params = alignment_params,
-  inference_params = inference_params
-)
+# errors <- pir_run(
+#   true_phylogeny,
+#   alignment_params = alignment_params,
+#   inference_params = inference_params
+# )
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+#knitr::kable(head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-pir_plot(errors)
+#pir_plot(errors)
 ```
 
 ## Do inference with the generative and model with most evidence
@@ -102,22 +102,22 @@ and the error that BEAST2 makes
 when the inference model is the one with most evidence:
 
 ```{r}
-errors <- pir_run(
-  true_phylogeny,
-  alignment_params = alignment_params,
-  inference_params = inference_params,
-  model_selections = c("generative", "most_evidence")
-)
+# errors <- pir_run(
+#   true_phylogeny,
+#   alignment_params = alignment_params,
+#   inference_params = inference_params,
+#   model_selections = c("generative", "most_evidence")
+# )
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+#knitr::kable(head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-pir_plot(errors)
+#pir_plot(errors)
 ```
