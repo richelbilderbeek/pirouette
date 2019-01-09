@@ -73,6 +73,8 @@ pir_run <- function(
       tree_priors = model_select_params$tree_priors
     )
   }
+  # Create a list of all model combinations needed
+  models <- collect_models(model_select_params)
 
   df <- data.frame()
   for (model_selection in model_select_params$model_selections) {
@@ -90,7 +92,12 @@ pir_run <- function(
         marg_liks$clock_model_name == as.character(this_df$clock_model) &
         marg_liks$tree_prior_name == as.character(this_df$tree_prior)
       )
-      this_df$inference_model_weight <- marg_liks$weight[marg_liks_row]
+      # if there is no row, 'which' returns a zero-length vector
+      # Happens when the generative model is not part of the models
+      # under selection
+      if (length(marg_liks_row) != 0) {
+        this_df$inference_model_weight <- marg_liks$weight[marg_liks_row]
+      }
     }
     df <- rbind(df, this_df)
   }
