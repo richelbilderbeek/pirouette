@@ -15,9 +15,6 @@
 #' ones created by BEAST2.
 #'
 #' @inheritParams default_params_doc
-#' @param alignment_filename name of the file a simulated alignment is
-#'   saved to. By default, this file will cleaned up by the
-#'   operating system
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets
 #' @export

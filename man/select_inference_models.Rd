@@ -15,6 +15,9 @@ as can be created by \link{create_alignment_params}}
 to select an inference model
 (a combination of site model, clock model and tree prior),
 as can be created by \link{create_model_select_param}}
+
+\item{marg_liks}{a data frame with marginal likelihoods/evidences.
+A test data frame can be created by \link{create_test_marg_liks}}
 }
 \value{
 a list of inference models,

@@ -23,10 +23,6 @@ as can be created by \link{create_model_select_param}}
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
-
-\item{alignment_filename}{name of the file a simulated alignment is
-saved to. By default, this file will cleaned up by the
-operating system}
 }
 \value{
 a data frame with errors, with as many rows as model selection

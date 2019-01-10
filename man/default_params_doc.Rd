@@ -10,13 +10,14 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_rng_seed, brts, chain_length, clock_model, clock_models,
   clock_model_name, crown_age, fasta_filename, filename, folder_name,
   inference_param, init_speciation_rate, init_extinction_rate, lambda,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, model_selection,
-  model_select_params, mrca_prior, mu, mutation_rate, nu, nu_events,
-  parameters, parameter_filename, parameters_filename, phylo, phylogeny,
-  posterior_trees, precision, project_folder_name, root_sequence,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_prior, tree_priors, tree_prior_name, trees_filename, type, verbose)
+  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
+  model_selection, model_select_param, model_select_params, mrca_prior, mu,
+  mutation_rate, nu, nu_events, parameters, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_prior,
+  tree_priors, tree_prior_name, trees_filename, type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -77,6 +78,9 @@ R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{lambda}{per-lineage speciation rate}
 
+\item{marg_liks}{a data frame with marginal likelihoods/evidences.
+A test data frame can be created by \link{create_test_marg_liks}}
+
 \item{mbd_l_matrix}{the L matrix of an MBD tree}
 
 \item{mbd_mutation_rate}{the mutation rate when creating an alignment
@@ -90,6 +94,10 @@ from a MBD tree}
 inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}
+
+\item{model_select_param}{one parameter set to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
 
 \item{model_select_params}{a list of one or more parameter sets
 to select an inference model
@@ -173,10 +181,6 @@ as created by \link[beautier]{create_tree_prior}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{model_select_param}{one parameter set to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

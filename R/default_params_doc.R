@@ -37,6 +37,8 @@
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
+#' @param marg_liks a data frame with marginal likelihoods/evidences.
+#'   A test data frame can be created by \link{create_test_marg_liks}
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param mbd_l_matrix the L matrix of an MBD tree
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
@@ -126,11 +128,13 @@ default_params_doc <- function(
   init_speciation_rate,
   init_extinction_rate,
   lambda,
+  marg_liks,
   mbd_l_matrix,
   mbd_mutation_rate,
   mbd_tree,
   mcmc,
   model_selection,
+  model_select_param,
   model_select_params,
   mrca_prior,
   mu,
