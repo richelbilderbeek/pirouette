@@ -2,7 +2,7 @@
 % Please edit documentation in R/select_inference_models.R
 \name{select_inference_models}
 \alias{select_inference_models}
-\title{Select inference model}
+\title{Select inference models.}
 \usage{
 select_inference_models(alignment_params, model_select_params,
   marg_liks = NULL)
@@ -16,6 +16,64 @@ to select an inference model
 (a combination of site model, clock model and tree prior),
 as can be created by \link{create_model_select_param}}
 }
+\value{
+a list of inference models,
+  with the same length as \code{model_select_params}.
+  Each element of this list has one site model, clock model and tree prior.
+}
 \description{
-Select inference model
+This selection is determined by the one or more model selection parameters.
+}
+\examples{
+  # Select to use the generative model
+  alignment_params <- create_alignment_params()
+
+  model_select_params <- list( # must be a list
+    create_gen_model_select_param(
+      alignment_params = alignment_params
+    )
+  )
+
+  inference_models <- select_inference_models(
+    alignment_params = alignment_params,
+    model_select_params = model_select_params
+  )
+  testthat::expect_equal(length(inference_models), 1)
+  inference_model <- inference_models[[1]]
+  testthat::expect_equal(inference_model$site_model, alignment_params$site_model)
+  testthat::expect_equal(inference_model$clock_model, alignment_params$clock_model)
+
+
+ # Select to use the model with the highest evidence/marginal likelihood
+ alignment_params <- create_alignment_params()
+   model_select_params <- list( # Must be a list
+     create_best_model_select_param()
+   )
+
+ # Use a fake table of evidences/marginal likelihoods, as this
+ # is a costly calculation
+ marg_liks <- create_test_marg_liks()
+
+ inference_models <- select_inference_models(
+   alignment_params = alignment_params,
+   model_select_params = model_select_params,
+   marg_liks = marg_liks
+ )
+ expect_equal(length(inference_models), 1)
+ inference_model <- inference_models[[1]]
+
+ # Should pick the inference model with the highest evidence
+ most_evidence_row <- which(marg_liks$weight == max(marg_liks$weight))
+ expect_equal(
+   marg_liks$site_model_name[most_evidence_row],
+   inference_model$site_model$name
+ )
+ expect_equal(
+   marg_liks$clock_model_name[most_evidence_row],
+   inference_model$clock_model$name
+ )
+ expect_equal(
+   marg_liks$tree_prior_name[most_evidence_row],
+   inference_model$tree_prior$name
+ )
 }

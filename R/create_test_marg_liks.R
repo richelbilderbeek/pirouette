@@ -1,5 +1,22 @@
 #' Create a testing marginal likelihoods data frame.
 #'
+#' @inheritParams default_params_doc
+#' @return a data frame
+#' @examples
+#'   df <- create_test_marg_liks()
+#'
+#'   testthat::expect_true("site_model_name" %in% names(df))
+#'   testthat::expect_true("clock_model_name" %in% names(df))
+#'   testthat::expect_true("tree_prior_name" %in% names(df))
+#'   testthat::expect_true("marg_log_lik" %in% names(df))
+#'   testthat::expect_true("marg_log_lik_sd" %in% names(df))
+#'   testthat::expect_true("weight" %in% names(df))
+#'
+#'   # Log likelihoods are zero or less
+#'   testthat::expect_true(all(df$marg_log_lik <= 0.0))
+#'
+#'   # Sum of all weights is one hundred percent
+#'   testthat::expect_equal(sum(df$weight), 1.0)
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_test_marg_liks <- function(
