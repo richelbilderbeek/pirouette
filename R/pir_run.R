@@ -93,6 +93,8 @@ pir_run <- function(
     clock_model = rep(NA, n_rows),
     tree_prior = rep(NA, n_rows)
   )
+  error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
+  df[ , error_col_names] <- NA
 
   for (i in seq_along(inference_models)) {
     model_select_param <- model_select_params[[i]]
@@ -106,8 +108,6 @@ pir_run <- function(
     df$clock_model[i] <- inference_model$clock_model$name
     df$tree_prior[i] <- inference_model$tree_prior$name
 
-    error_col_names <- paste0("error_", seq(1, length(nltts)))
-    df[ , error_col_names] <- 0.0
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts
   }
