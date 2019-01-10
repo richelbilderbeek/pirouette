@@ -47,10 +47,12 @@ alignment_params <- create_alignment_params(
 )
 ```
 
-We use an MCMC chain that is short:
+Also the inference is kept short, using a short MCMC chain:
 
 ```{r}
-mcmc <- beautier::create_mcmc(chain_length = 5000, store_every = 1000)
+inference_param <- create_inference_param(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+)
 ```
 
 ## Only use the generative model in inference
@@ -60,9 +62,10 @@ In the simplest case, which is the default,
 we will do our inference with the generative model only:
 
 ```{r}
-inference_param <- create_inference_param(
-  mcmc = mcmc,
-  rng_seed = 42
+model_select_params <- list(
+  create_gen_model_select_param(
+    alignment_params = alignment_params
+  )
 )
 ```
 
@@ -71,23 +74,24 @@ when the inference model is the correct generative
 model (JC69 and strict clock):
 
 ```{r}
-# errors <- pir_run(
-#   true_phylogeny,
-#   alignment_params = alignment_params,
-#   inference_param = inference_param
-# )
+errors <- pir_run(
+  true_phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_param = inference_param
+)
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-#knitr::kable(head(errors))
+knitr::kable(head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-#pir_plot(errors)
+pir_plot(errors)
 ```
 
 ## Do inference with the generative and model with most evidence
@@ -102,22 +106,40 @@ and the error that BEAST2 makes
 when the inference model is the one with most evidence:
 
 ```{r}
-# errors <- pir_run(
-#   true_phylogeny,
-#   alignment_params = alignment_params,
-#   inference_param = inference_param,
-#   model_selections = c("generative", "most_evidence")
-# )
+model_select_params = list(
+  create_gen_model_select_param(
+    alignment_params = alignment_params
+  ),
+  create_best_model_select_param(
+    site_models = beautier::create_site_models()[3],
+    clock_models = beautier::create_clock_models()[2],
+    tree_priors = beautier::create_tree_priors()[5]
+  )
+)
+```
+
+Note that we select the model with the heighest evidence from a set of
+just one model (JC69, strict, Yule).
+
+Run this setup:
+
+```{r}
+errors <- pir_run(
+  true_phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_param = inference_param
+)
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-#knitr::kable(head(errors))
+knitr::kable(head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-#pir_plot(errors)
+pir_plot(errors)
 ```

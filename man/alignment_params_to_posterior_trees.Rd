@@ -2,7 +2,7 @@
 % Please edit documentation in R/alignment_params_to_posterior_trees.R
 \name{alignment_params_to_posterior_trees}
 \alias{alignment_params_to_posterior_trees}
-\title{Creates a posterior from an alignment}
+\title{Creates a posterior of phylogenies from a known alignment.}
 \usage{
 alignment_params_to_posterior_trees(alignment_params, site_model,
   clock_model, tree_prior, inference_param)
@@ -34,7 +34,7 @@ a list of:
 }
 }
 \description{
-Creates a posterior from an alignment
+Creates a posterior of phylogenies from a known alignment.
 }
 \author{
 Richel J.C. Bilderbeek
