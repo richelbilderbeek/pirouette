@@ -134,6 +134,13 @@ create_best_model_select_param <- function( # nolint indeed a long function name
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors()
 ) {
+  testit::assert(beautier::are_site_models(site_models))
+  testit::assert(beautier::are_clock_models(clock_models))
+  testit::assert(beautier::are_tree_priors(tree_priors))
+  testit::assert(!beautier::is_site_model(site_models))
+  testit::assert(!beautier::is_clock_model(clock_models))
+  testit::assert(!beautier::is_tree_prior(tree_priors))
+
   create_model_select_param(
     type = "most_evidence",
     site_models = site_models,

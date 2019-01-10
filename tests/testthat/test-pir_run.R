@@ -2,7 +2,8 @@ context("pir_run")
 
 test_that("generative only", {
 
-  skip("WIP")
+  if (!beastier::is_on_travis()) return()
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
     mutation_rate = 0.01
@@ -47,11 +48,9 @@ test_that("generative only", {
   expect_true(!is.factor(errors$error_1))
 })
 
-test_that("generative and most_evidence", {
+test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
-
-  skip("WIP")
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   errors <- pir_run(
@@ -60,11 +59,12 @@ test_that("generative and most_evidence", {
       root_sequence = "acgt",
       mutation_rate = 0.01
     ),
-    model_select_params = create_model_select_param(
-      model_selections = c("generative", "most_evidence"),
-      site_models = beautier::create_site_models()[[1]],
-      clock_models = beautier::create_clock_models()[[1]],
-      tree_priors = beautier::create_tree_priors()[[1]]
+    model_select_params = list(
+      create_best_model_select_param(
+        site_models = beautier::create_site_models()[1],
+        clock_models = beautier::create_clock_models()[1],
+        tree_priors = beautier::create_tree_priors()[1]
+      )
     ),
     inference_param = create_inference_param(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)

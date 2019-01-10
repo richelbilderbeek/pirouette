@@ -47,7 +47,7 @@ pir_run <- function(
   # Estimate marginal likelihoods if needed
   marg_liks <- NULL
   for (model_select_param in model_select_params) {
-    if ("most_evidence" %in% model_select_param$model_selections) {
+    if ("most_evidence" %in% model_select_param$type) {
       marg_liks <- mcbette::est_marg_liks(
         fasta_filename = alignment_params$fasta_filename,
         site_models = model_select_param$site_models,
