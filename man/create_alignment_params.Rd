@@ -7,9 +7,10 @@ The site model and clock models will be used and
 their combination will be called the generative model
 of the alignment}
 \usage{
-create_alignment_params(root_sequence, mutation_rate,
+create_alignment_params(root_sequence = "acgt", mutation_rate = 0,
   site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(), rng_seed = 0)
+  clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
+  fasta_filename = tempfile(pattern = "pirouette_", fileext = ".fasta"))
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
@@ -25,6 +26,8 @@ as created by \link[beautier]{create_clock_model}}
 
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}
+
+\item{fasta_filename}{name of a FASTA file}
 }
 \value{
 a list of alignment parameters

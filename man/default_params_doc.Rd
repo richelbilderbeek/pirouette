@@ -100,9 +100,10 @@ inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}
 
-\item{model_select_params}{parameters to select a model (a combination
-of site model, clock model and tree prior),
-as can be created by \link{create_model_select_params}}
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
 
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}
@@ -174,6 +175,10 @@ as created by \link[beautier]{create_tree_prior}}
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{model_select_param}{one parameter set to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

@@ -6,10 +6,9 @@ test_that("generative model selection creates one model combination", {
   alignment_params <- create_alignment_params(
     root_sequence = "acgt", mutation_rate = 0.01
   )
-  model_select_params <- create_gen_model_select_params(alignment_params)
-  names(model_select_params)
-  length(model_select_params$tree_priors)
+  model_select_params <- create_gen_model_select_param(alignment_params)
 
+  # Check its content
   models <- collect_models(model_select_params)
   expect_equal(1, length(models))
   model <- models[[1]]
@@ -36,9 +35,14 @@ test_that("generative model selection creates one model combination", {
 test_that("most-evidence model selection creates all combinations", {
 
   # Pick the model with most evidence to be used in inference
-  model_select_params <- create_most_evidence_model_select_params()
+  model_select_params <- create_best_model_select_param()
 
   models <- collect_models(model_select_params)
 
-  expect_true(length(models) >= 8)
+  n_site_models <- length(beautier::create_site_models())
+  n_clock_models <- length(beautier::create_clock_models())
+  n_tree_priors <- length(beautier::create_tree_priors())
+  n_models <- n_site_models * n_clock_models * n_tree_priors
+
+  expect_equal(length(models), n_models)
 })

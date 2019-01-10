@@ -48,9 +48,13 @@
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
 #'   evidence. See \link{get_model_selections} for a list of
-#' @param model_select_params parameters to select a model (a combination
-#'   of site model, clock model and tree prior),
-#'   as can be created by \link{create_model_select_params}
+#' @param model_select_param one parameter set to select an inference model
+#'   (a combination of site model, clock model and tree prior),
+#'   as can be created by \link{create_model_select_param}
+#' @param model_select_params a list of one or more parameter sets
+#'   to select an inference model
+#'   (a combination of site model, clock model and tree prior),
+#'   as can be created by \link{create_model_select_param}
 #' @param model_selections one or more ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most

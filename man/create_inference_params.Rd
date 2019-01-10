@@ -2,30 +2,13 @@
 % Please edit documentation in R/create_inference_params.R
 \name{create_inference_params}
 \alias{create_inference_params}
-\title{Creates a set of parameters used in the Bayesian inference.}
+\title{Creates the parameters all BEAST2 runs share.}
 \usage{
-create_inference_params(model_selection = "generative",
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
-  tree_prior = beautier::create_bd_tree_prior(), mrca_prior = NA,
+create_inference_params(mrca_prior = NA,
   mcmc = beautier::create_mcmc(), rng_seed = NA,
   beast2_path = beastier::get_default_beast2_path(), verbose = FALSE)
 }
 \arguments{
-\item{model_selection}{one ways to select the models used in
-inference, for example, \code{generative} picks the generative
-model, where \code{most_evidence} picks the model with most
-evidence. See \link{get_model_selections} for a list of}
-
-\item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
-
-\item{clock_model}{a clock model,
-as created by \link[beautier]{create_clock_model}}
-
-\item{tree_prior}{a tree prior,
-as created by \link[beautier]{create_tree_prior}}
-
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}
 
@@ -47,7 +30,8 @@ BEAST2 binary file path.}
 \item{verbose}{if TRUE, show more output}
 }
 \description{
-Creates a set of parameters used in the Bayesian inference.
+These are for example, the MRCA prior, the MCMC, the RNG seed
+and the path to BEAST2.
 }
 \author{
 Richel J.C. Bilderbeek

@@ -2,24 +2,24 @@
 % Please edit documentation in R/check_model_select_params.R
 \name{check_model_select_params}
 \alias{check_model_select_params}
-\title{Checks if the argument is a valid model selection parameters structure,
-as created by \link{create_model_select_params}.
-Will \link{stop} if not.}
+\title{Checks if the argument is a valid list of one or more
+model selection parameter sets.}
 \usage{
 check_model_select_params(model_select_params)
 }
 \arguments{
-\item{model_select_params}{parameters to select a model (a combination
-of site model, clock model and tree prior),
-as can be created by \link{create_model_select_params}}
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
 }
 \value{
 nothing. Will \link{stop} if the object is not
 }
 \description{
-Checks if the argument is a valid model selection parameters structure,
-as created by \link{create_model_select_params}.
 Will \link{stop} if not.
+Valid model selection parameter sets can be created
+by \link{create_model_select_param}.
 }
 \author{
 Richel J.C. Bilderbeek

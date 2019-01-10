@@ -5,7 +5,7 @@
 \title{Measure the error BEAST2 makes from a known phylogeny.}
 \usage{
 pir_run(phylogeny, alignment_params,
-  model_select_params = create_gen_model_select_params(alignment_params),
+  model_select_params = create_gen_model_select_param(alignment_params),
   inference_params)
 }
 \arguments{
@@ -14,25 +14,39 @@ pir_run(phylogeny, alignment_params,
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
-\item{model_select_params}{parameters to select a model (a combination
-of site model, clock model and tree prior),
-as can be created by \link{create_model_select_params}}
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
 
 \item{inference_params}{parameters for the Bayesian inference,
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{alignment_filename}{name of the file a simulated alignment is
+saved to. By default, this file will cleaned up by the
+operating system}
 }
 \value{
-a data frame with errors
+a data frame with errors, with as many rows as model selection
+  parameter sets
 }
 \description{
 From a phylogeny of (un)known speciation model,
 an alignment is created using a known site model and clock model,
 as given by \code{alignment_params}.
-From the model selection parameters in \code{model_select_params},
-models are selected to run BEAST2 with. One such model is to use
-the generative site and clock model the alignment is created,
+}
+\details{
+From each of the one or more model selection parameters in
+\code{model_select_params}, one inference model is concluded.
+One such parameter setup is to use the generative site and clock model
+the alignment is created with (\code{"generative"}), or use the model
+that has the most evidence (\code{"most evidence"}).
+
+Each inference model is used to run BEAST2 and measures the
+difference between the known/true/given phylogeny and the
+ones created by BEAST2.
 }
 \author{
 Richel J.C. Bilderbeek

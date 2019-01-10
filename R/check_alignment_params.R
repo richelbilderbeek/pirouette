@@ -9,7 +9,7 @@ check_alignment_params <- function(
 ) {
   argument_names <- c(
     "root_sequence", "mutation_rate", "rng_seed",
-    "site_model", "clock_model"
+    "site_model", "clock_model", "fasta_filename"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(alignment_params)) {

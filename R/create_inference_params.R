@@ -1,4 +1,7 @@
-#' Creates a set of parameters used in the Bayesian inference.
+#' Creates the parameters all BEAST2 runs share.
+#'
+#' These are for example, the MRCA prior, the MCMC, the RNG seed
+#' and the path to BEAST2.
 #' @inheritParams default_params_doc
 #' @param rng_seed the random number generator seed
 #'   used in the Bayesian inference.
@@ -7,24 +10,24 @@
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_inference_params <- function(
-  model_selection = "generative",
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
-  tree_prior = beautier::create_bd_tree_prior(),
+  #model_selection = "generative",
+  #site_model = beautier::create_jc69_site_model(),
+  #clock_model = beautier::create_strict_clock_model(),
+  #tree_prior = beautier::create_bd_tree_prior(),
   mrca_prior = NA,
   mcmc = beautier::create_mcmc(),
   rng_seed = NA,
   beast2_path = beastier::get_default_beast2_path(),
   verbose = FALSE
 ) {
-  beautier::check_site_model(site_model)
-  beautier::check_clock_model(clock_model)
-  beautier::check_tree_prior(tree_prior)
+  #beautier::check_site_model(site_model)
+  #beautier::check_clock_model(clock_model)
+  #beautier::check_tree_prior(tree_prior)
   inference_params <- list(
-    model_selection = model_selection,
-    site_model = site_model,
-    clock_model = clock_model,
-    tree_prior = tree_prior,
+    #model_selection = model_selection,
+    #site_model = site_model,
+    #clock_model = clock_model,
+    #tree_prior = tree_prior,
     mrca_prior = mrca_prior,
     mcmc = mcmc,
     rng_seed = rng_seed,
