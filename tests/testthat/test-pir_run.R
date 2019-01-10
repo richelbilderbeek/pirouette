@@ -88,13 +88,11 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(mutation_rate = 0.01)
+
   errors <- pir_run(
-    phylogeny = phylogeny,
-    alignment_params = create_alignment_params(
-      root_sequence = "acgt",
-      mutation_rate = 0.01
-    ),
+    phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
+    alignment_params = alignment_params,
     model_select_params = list(
       create_gen_model_select_param(
         alignment_params = alignment_params
@@ -123,14 +121,10 @@ test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(
-    root_sequence = "acgt",
-    mutation_rate = 0.01
-  )
+  alignment_params <- create_alignment_params(mutation_rate = 0.01)
 
   errors <- pir_run(
-    phylogeny = phylogeny,
+    phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
     alignment_params = alignment_params,
     model_select_params = list(
       create_gen_model_select_param(

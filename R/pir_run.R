@@ -22,7 +22,7 @@
 pir_run <- function(
   phylogeny,
   alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params),
+  model_select_params = list(create_gen_model_select_param(alignment_params)),
   inference_param # The shared BEAST2 setup parameters
 ) {
   # Check the inputs
@@ -180,8 +180,8 @@ pir_run_check_inputs <- function(
     check_model_select_params(model_select_params),
     error = function(msg) {
       msg <- paste0(
-        "'inference_param' must be a list of one or more inference parameter ",
-        "sets.\n",
+        "'model_select_params' must be a list of one or more model selection ",
+        "parameters sets.\n",
         "Actual value: ", msg
       )
       stop(msg)
