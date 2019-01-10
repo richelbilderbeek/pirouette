@@ -21,30 +21,30 @@
 #'   alignment_params <- create_alignment_params(
 #'     root_sequence = "acgt", mutation_rate = 0.01
 #'   )
-#'   model_select_params <- create_gen_model_select_param(alignment_params)
+#'   model_select_param <- create_gen_model_select_param(alignment_params)
 #'   # In such a case, the site model and clock models of the alignment is
 #'   # stored in the model selection parameters
 #'   testthat::expect_equal(
 #'     alignment_params$site_model,
-#'     model_select_params$site_model
+#'     model_select_param$site_models[[1]]
 #'   )
 #'   testthat::expect_equal(
 #'     alignment_params$clock_model,
-#'     model_select_params$clock_model
+#'     model_select_param$clock_models[[1]]
 #'   )
 #'   # By default, a birth-death model is assumed to underly the phylogeny
 #'   testthat::expect_equal(
-#'     model_select_params$tree_prior,
+#'     model_select_param$tree_priors[[1]],
 #'     beautier::create_bd_tree_prior()
 #'   )
 #'
 #'   # Pick the model with most evidence to be used in inference
-#'   model_select_params <- create_best_model_select_param()
+#'   model_select_param <- create_best_model_select_param()
 #'   # In such a case, multiple site models, clock models
 #'   #  and tree priors are tested
-#'   testthat::expect_true(length(model_select_params$site_models) > 1)
-#'   testthat::expect_true(length(model_select_params$clock_models) > 1)
-#'   testthat::expect_true(length(model_select_params$tree_priors) > 1)
+#'   testthat::expect_true(length(model_select_param$site_models) > 1)
+#'   testthat::expect_true(length(model_select_param$clock_models) > 1)
+#'   testthat::expect_true(length(model_select_param$tree_priors) > 1)
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_model_select_param <- function(
@@ -56,16 +56,16 @@ create_model_select_param <- function(
   beautier::check_site_models(site_models)
   beautier::check_clock_models(clock_models)
   beautier::check_tree_priors(tree_priors)
-  model_select_params <- list(
+  model_select_param <- list(
     type = type,
     site_models = site_models,
     clock_models = clock_models,
     tree_priors = tree_priors
   )
-  beautier::check_site_models(model_select_params$site_models)
-  beautier::check_clock_models(model_select_params$clock_models)
-  beautier::check_tree_priors(model_select_params$tree_priors)
-  model_select_params
+  beautier::check_site_models(model_select_param$site_models)
+  beautier::check_clock_models(model_select_param$clock_models)
+  beautier::check_tree_priors(model_select_param$tree_priors)
+  model_select_param
 }
 
 #' Create model selection parameters
@@ -78,20 +78,20 @@ create_model_select_param <- function(
 #'   alignment_params <- create_alignment_params(
 #'     root_sequence = "acgt", mutation_rate = 0.01
 #'   )
-#'   model_select_params <- create_gen_model_select_param(alignment_params)
+#'   model_select_param <- create_gen_model_select_param(alignment_params)
 #'   # In such a case, the site model and clock models of the alignment is
 #'   # stored in the model selection parameters
 #'   testthat::expect_equal(
 #'     alignment_params$site_model,
-#'     model_select_params$site_model
+#'     model_select_param$site_models[[1]]
 #'   )
 #'   testthat::expect_equal(
 #'     alignment_params$clock_model,
-#'     model_select_params$clock_model
+#'     model_select_param$clock_models[[1]]
 #'   )
 #'   # By default, a birth-death model is assumed to underly the phylogeny
 #'   testthat::expect_equal(
-#'     model_select_params$tree_prior,
+#'     model_select_param$tree_priors[[1]],
 #'     beautier::create_bd_tree_prior()
 #'   )
 #' @author Richel J.C. Bilderbeek
@@ -102,16 +102,16 @@ create_gen_model_select_param <- function(
 ) {
   check_alignment_params(alignment_params)
   beautier::check_tree_prior(tree_prior)
-  model_select_params <- create_model_select_param(
+  model_select_param <- create_model_select_param(
     type = "generative",
     site_models = list(alignment_params$site_model),
     clock_models = list(alignment_params$clock_model),
     tree_priors = list(tree_prior)
   )
-  testit::assert(length(model_select_params$site_models) == 1)
-  testit::assert(length(model_select_params$clock_models) == 1)
-  testit::assert(length(model_select_params$tree_priors) == 1)
-  model_select_params
+  testit::assert(length(model_select_param$site_models) == 1)
+  testit::assert(length(model_select_param$clock_models) == 1)
+  testit::assert(length(model_select_param$tree_priors) == 1)
+  model_select_param
 }
 
 #' Create model selection parameters
@@ -121,12 +121,12 @@ create_gen_model_select_param <- function(
 #' @inheritParams default_params_doc
 #' @examples
 #'   # Pick the model with most evidence to be used in inference
-#'   model_select_params <- create_best_model_select_param()
+#'   model_select_param <- create_best_model_select_param()
 #'   # In such a case, multiple site models, clock models
 #'   #  and tree priors are tested
-#'   testthat::expect_true(length(model_select_params$site_models) > 1)
-#'   testthat::expect_true(length(model_select_params$clock_models) > 1)
-#'   testthat::expect_true(length(model_select_params$tree_priors) > 1)
+#'   testthat::expect_true(length(model_select_param$site_models) > 1)
+#'   testthat::expect_true(length(model_select_param$clock_models) > 1)
+#'   testthat::expect_true(length(model_select_param$tree_priors) > 1)
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_best_model_select_param <- function( # nolint indeed a long function name

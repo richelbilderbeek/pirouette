@@ -28,20 +28,20 @@ The tree prior underlying the phylogeny is assumed to be a Birth-Death prior.
   alignment_params <- create_alignment_params(
     root_sequence = "acgt", mutation_rate = 0.01
   )
-  model_select_params <- create_gen_model_select_param(alignment_params)
+  model_select_param <- create_gen_model_select_param(alignment_params)
   # In such a case, the site model and clock models of the alignment is
   # stored in the model selection parameters
   testthat::expect_equal(
     alignment_params$site_model,
-    model_select_params$site_model
+    model_select_param$site_models[[1]]
   )
   testthat::expect_equal(
     alignment_params$clock_model,
-    model_select_params$clock_model
+    model_select_param$clock_models[[1]]
   )
   # By default, a birth-death model is assumed to underly the phylogeny
   testthat::expect_equal(
-    model_select_params$tree_prior,
+    model_select_param$tree_priors[[1]],
     beautier::create_bd_tree_prior()
   )
 }

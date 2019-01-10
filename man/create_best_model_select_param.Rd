@@ -30,12 +30,12 @@ tree priors.
 }
 \examples{
   # Pick the model with most evidence to be used in inference
-  model_select_params <- create_best_model_select_param()
+  model_select_param <- create_best_model_select_param()
   # In such a case, multiple site models, clock models
   #  and tree priors are tested
-  testthat::expect_true(length(model_select_params$site_models) > 1)
-  testthat::expect_true(length(model_select_params$clock_models) > 1)
-  testthat::expect_true(length(model_select_params$tree_priors) > 1)
+  testthat::expect_true(length(model_select_param$site_models) > 1)
+  testthat::expect_true(length(model_select_param$clock_models) > 1)
+  testthat::expect_true(length(model_select_param$tree_priors) > 1)
 }
 \author{
 Richel J.C. Bilderbeek

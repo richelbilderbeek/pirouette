@@ -27,9 +27,9 @@ test_that("abuse", {
 
   expect_error(
     pirouette:::check_model_select_param(
-      create_model_select_param(model_selections = "nonsense")
+      create_model_select_param(type = "nonsense")
     ),
-    "All elements of 'model_select_params\\$model_selections' must be in 'get_model_selections\\(\\)'" # nolint long indeed
+    "All elements of 'model_select_param\\$type' must be in 'get_model_selections\\(\\)'" # nolint long indeed
   )
 
   expect_error(

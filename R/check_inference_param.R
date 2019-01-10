@@ -6,7 +6,6 @@ check_inference_param <- function(
   inference_param
 ) {
   argument_names <- c(
-    # "site_model", "clock_model", "tree_prior",
     "mrca_prior", "mcmc", "rng_seed", "beast2_path", "verbose"
   )
   for (arg_name in argument_names) {
@@ -17,10 +16,6 @@ check_inference_param <- function(
       )
     }
   }
-  #beautier::check_site_model(inference_param$site_model)
-  #beautier::check_clock_model(inference_param$clock_model)
-  #beautier::check_tree_prior(inference_param$tree_prior)
-
   rng_seed <- inference_param$rng_seed
   if (!beautier:::is_one_na(rng_seed) && rng_seed <= 0) {
     stop("'rng_seed' should be NA or non-zero positive")

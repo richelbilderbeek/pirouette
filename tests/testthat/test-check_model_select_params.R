@@ -36,7 +36,7 @@ test_that("abuse", {
     pirouette:::check_model_select_params(
       create_best_model_select_param()
     ),
-    "'model_selections' must be an element of a 'model_select_param'"
+    "'type' must be an element of a 'model_select_param'"
   )
 
 })

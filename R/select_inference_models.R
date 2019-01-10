@@ -41,23 +41,25 @@
 #'    model_select_params = model_select_params,
 #'    marg_liks = marg_liks
 #'  )
-#'  expect_equal(length(inference_models), 1)
+#'  testthat::expect_equal(length(inference_models), 1)
 #'  inference_model <- inference_models[[1]]
 #'
 #'  # Should pick the inference model with the highest evidence
 #'  most_evidence_row <- which(marg_liks$weight == max(marg_liks$weight))
-#'  expect_equal(
+#'  testthat::expect_equal(
 #'    marg_liks$site_model_name[most_evidence_row],
 #'    inference_model$site_model$name
 #'  )
-#'  expect_equal(
+#'  testthat::expect_equal(
 #'    marg_liks$clock_model_name[most_evidence_row],
 #'    inference_model$clock_model$name
 #'  )
-#'  expect_equal(
+#'  testthat::expect_equal(
 #'    marg_liks$tree_prior_name[most_evidence_row],
 #'    inference_model$tree_prior$name
 #'  )
+#' @author Richel J.C. Bilderbeek
+#' @export
 select_inference_models <- function(
   alignment_params,
   model_select_params,
@@ -79,7 +81,9 @@ select_inference_models <- function(
       inference_model$site_model <- alignment_params$site_model
       inference_model$clock_model <- alignment_params$clock_model
 
-      testit::assert(beautier::is_tree_prior(model_select_param$tree_priors[[1]]))
+      testit::assert(
+        beautier::is_tree_prior(model_select_param$tree_priors[[1]])
+      )
       inference_model$tree_prior <- model_select_param$tree_priors[[1]]
       testit::assert(beautier::is_tree_prior(inference_model$tree_prior))
     } else {

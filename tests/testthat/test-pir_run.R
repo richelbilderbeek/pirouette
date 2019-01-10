@@ -50,7 +50,7 @@ test_that("generative only", {
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
-  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 })
 
 test_that("most_evidence", {
@@ -81,7 +81,7 @@ test_that("most_evidence", {
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
-  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 })
 
 test_that("generative and most_evidence, generative not in most_evidence", {
@@ -116,7 +116,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
-  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 })
 
 test_that("generative and most_evidence, generative in most_evidence", {
@@ -152,6 +152,6 @@ test_that("generative and most_evidence, generative in most_evidence", {
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
-  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
 })

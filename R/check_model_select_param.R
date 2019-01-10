@@ -19,9 +19,9 @@ check_model_select_param <- function(
       )
     }
   }
-  if (!all(model_select_param$model_selections %in% get_model_selections())) {
+  if (!all(model_select_param$type %in% get_model_selections())) {
     stop(
-      "All elements of 'model_select_param$model_selections' ",
+      "All elements of 'model_select_param$type' ",
       "must be in 'get_model_selections()'"
     )
   }

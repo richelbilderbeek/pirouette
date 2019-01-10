@@ -61,13 +61,19 @@ pir_run <- function(
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
-  testit::assert(all(c("site_model", "clock_model", "tree_prior") %in% names(inference_models[[1]])))
+  testit::assert(
+    all(c("site_model", "clock_model", "tree_prior") %in%
+    names(inference_models[[1]]))
+  )
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(inference_models)) {
     inference_model <- inference_models[[i]]
-    testit::assert(all(c("site_model", "clock_model", "tree_prior") %in% names(inference_model)))
+    testit::assert(
+      all(c("site_model", "clock_model", "tree_prior") %in%
+      names(inference_model))
+    )
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
@@ -91,7 +97,7 @@ pir_run <- function(
     tree_prior = rep(NA, n_rows)
   )
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
-  df[ , error_col_names] <- NA
+  df[, error_col_names] <- NA
 
   for (i in seq_along(inference_models)) {
     model_select_param <- model_select_params[[i]]
