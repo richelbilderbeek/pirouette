@@ -46,6 +46,11 @@ test_that("generative only", {
 
   expect_true("error_1" %in% names(errors))
   expect_true(!is.factor(errors$error_1))
+
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
 })
 
 test_that("most_evidence", {
@@ -72,6 +77,11 @@ test_that("most_evidence", {
   )
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(all(errors$inference_model_weight > 0.0))
+
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
 })
 
 test_that("generative and most_evidence, generative not in most_evidence", {
@@ -102,6 +112,11 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(is.na(errors$inference_model_weight[1]))
   expect_true(is.numeric(errors$inference_model_weight[2]))
+
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
 })
 
 test_that("generative and most_evidence, generative in most_evidence", {
@@ -133,4 +148,10 @@ test_that("generative and most_evidence, generative in most_evidence", {
   )
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(is.numeric(errors$inference_model_weight[1]))
+
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[ , col_first_error:col_last_error] > 0.0))
+
 })
