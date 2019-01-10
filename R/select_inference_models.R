@@ -5,9 +5,13 @@ select_inference_models <- function(
   model_select_params,
   marg_liks = NULL
 ) {
+  check_model_select_params(model_select_params)
+
   inference_models <- list()
   for (i in seq_along(model_select_params)) {
     model_select_param <- model_select_params[[i]]
+    check_model_select_param(model_select_param)
+
     inference_model <- list()
 
     if (model_select_param$type == "generative") {
@@ -16,7 +20,10 @@ select_inference_models <- function(
       testit::assert(!is.null(alignment_params$clock_model))
       inference_model$site_model <- alignment_params$site_model
       inference_model$clock_model <- alignment_params$clock_model
-      inference_model$tree_prior <- model_select_param$tree_prior
+
+      testit::assert(beautier::is_tree_prior(model_select_param$tree_priors[[1]]))
+      inference_model$tree_prior <- model_select_param$tree_priors[[1]]
+      testit::assert(beautier::is_tree_prior(inference_model$tree_prior))
     } else {
       # Pick the one with the highest evidence
       testit::assert(model_select_param$type == "most_evidence")
@@ -32,6 +39,7 @@ select_inference_models <- function(
         marg_liks$tree_prior_name[best_row_index]
       )
     }
+    testit::assert(beautier::is_tree_prior(inference_model$tree_prior))
     inference_models[[i]] <- inference_model
   }
   testit::assert(length(inference_models) == length(model_select_params))

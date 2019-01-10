@@ -32,8 +32,8 @@
 #' @param folder_name name of the main folder
 #' @param generative_tree_prior the (assumed) tree prior that generated
 #'   the phylogeny.
-#' @param inference_params parameters for the Bayesian inference,
-#'   as can be created by \link{create_inference_params}.
+#' @param inference_param one set of parameters for the Bayesian inference,
+#'   as can be created by \link{create_inference_param}.
 #'   The Bayesian inference is handled by the \link[babette]{babette}
 #'   R package, that calls the phylogenetic tool \code{BEAST2}.
 #' @param init_speciation_rate a speciation rate
@@ -123,7 +123,7 @@ default_params_doc <- function(
   filename,
   folder_name,
   generative_tree_prior,
-  inference_params,
+  inference_param,
   init_speciation_rate,
   init_extinction_rate,
   lambda,

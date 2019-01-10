@@ -6,7 +6,7 @@
 \usage{
 pir_run(phylogeny, alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
-  inference_params)
+  inference_param)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -19,8 +19,8 @@ to select an inference model
 (a combination of site model, clock model and tree prior),
 as can be created by \link{create_model_select_param}}
 
-\item{inference_params}{parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
+\item{inference_param}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 

@@ -8,7 +8,7 @@ check_model_select_param <- function(
   model_select_param
 ) {
   argument_names <- c(
-    "model_selections",
+    "type",
     "site_models", "clock_models", "tree_priors"
   )
   for (arg_name in argument_names) {

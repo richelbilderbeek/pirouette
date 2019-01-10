@@ -9,7 +9,7 @@ phylo_to_errors <- function(
   site_model,
   clock_model,
   tree_prior,
-  inference_params
+  inference_param
 ) {
   # Run
   trees <- alignment_params_to_posterior_trees(
@@ -17,7 +17,7 @@ phylo_to_errors <- function(
     site_model = site_model,
     clock_model = clock_model,
     tree_prior = tree_prior,
-    inference_params = inference_params
+    inference_param = inference_param
   )
 
   # Measure error by comparing true tree with BEAST2 posterior trees

@@ -12,14 +12,14 @@ alignment_params_to_posterior_trees <- function(
   site_model,
   clock_model,
   tree_prior,
-  inference_params
+  inference_param
 ) {
   check_alignment_params(alignment_params)
   tryCatch(
-    check_inference_params(inference_params),
+    check_inference_param(inference_param),
     error = function(msg) {
       msg <- paste0(
-        "'inference_params' must be a set of inference parameters. ",
+        "'inference_param' must be a set of inference parameters. ",
         msg
       )
       stop(msg)
@@ -31,11 +31,11 @@ alignment_params_to_posterior_trees <- function(
     site_model = site_model,
     clock_model = clock_model,
     tree_prior = tree_prior,
-    mrca_prior = inference_params$mrca_prior,
-    mcmc = inference_params$mcmc,
-    rng_seed = inference_params$rng_seed,
-    verbose = inference_params$verbose,
-    beast2_path = inference_params$beast2_path
+    mrca_prior = inference_param$mrca_prior,
+    mcmc = inference_param$mcmc,
+    rng_seed = inference_param$rng_seed,
+    verbose = inference_param$verbose,
+    beast2_path = inference_param$beast2_path
   )
 
   c(babette_out[[grep(x = names(babette_out), pattern = "trees")]])

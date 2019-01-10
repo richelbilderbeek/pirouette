@@ -5,7 +5,7 @@
 \title{Measure the error BEAST2 makes from a true phylogeny}
 \usage{
 phylo_to_errors(phylogeny, alignment_params, site_model, clock_model,
-  tree_prior, inference_params)
+  tree_prior, inference_param)
 }
 \description{
 Measure the error BEAST2 makes from a true phylogeny

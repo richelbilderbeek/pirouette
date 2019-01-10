@@ -26,14 +26,14 @@ pir_run <- function(
   phylogeny,
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
-  inference_params # The shared BEAST2 setup parameters
+  inference_param # The shared BEAST2 setup parameters
 ) {
   # Check the inputs
   pir_run_check_inputs(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_params = inference_params
+    inference_param = inference_param
   )
 
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -61,7 +61,6 @@ pir_run <- function(
   inference_models <- select_inference_models(
     alignment_params = alignment_params, # Both need alignment file
     model_select_params = model_select_params, # To pick which one
-    inference_params = inference_params, # Shared BEAST2 params
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
@@ -79,7 +78,7 @@ pir_run <- function(
       site_model = inference_model$site_model,
       clock_model = inference_model$clock_model,
       tree_prior = inference_model$tree_prior,
-      inference_params = inference_params
+      inference_param = inference_param
     )
   }
   testit::assert(length(inference_models) == length(errorses))
@@ -101,16 +100,16 @@ pir_run <- function(
     nltts <- errorses[[i]]
 
     df$tree[i] <- "true"
-    df$inference_model[i] <- model_select_param$model_selection
+    df$inference_model[i] <- model_select_param$type
     df$inference_model_weight[i] <- NA
     df$site_model[i] <- inference_model$site_model$name
     df$clock_model[i] <- inference_model$clock_model$name
     df$tree_prior[i] <- inference_model$tree_prior$name
 
     error_col_names <- paste0("error_", seq(1, length(nltts)))
-    this_df[i, error_col_names] <- 0.0
-    from_col_idx <- which(colnames(this_df) == "error_1")
-    df[i, from_col_idx:ncol(this_df)] <- nltts
+    df[ , error_col_names] <- 0.0
+    from_col_idx <- which(colnames(df) == "error_1")
+    df[i, from_col_idx:ncol(df)] <- nltts
   }
 
   # Add evidence (marginal likelihoods) in columns
@@ -130,48 +129,15 @@ pir_run <- function(
       }
     }
   }
+
+  df$tree <- as.factor(df$tree)
+  df$inference_model <- as.factor(df$inference_model)
+  df$site_model <- as.factor(df$site_model)
+  df$clock_model <- as.factor(df$clock_model)
+  df$tree_prior <- as.factor(df$tree_prior)
+
   df
 }
-
-#' Meaure the error BEAST2 makes from a known phylogeny
-#' using one inference model selection strategy
-#' @inheritParams default_params_doc
-#' @return a data frame with errors
-#' @author Richel J.C. Bilderbeek
-#' @noRd
-pir_run_one <- function(
-  phylogeny,
-  alignment_params,
-  site_model = site_model,
-  clock_model = clock_model,
-  tree_prior = tree_prior,
-  inference_params,
-  model_selection,
-  marg_liks = NULL
-) {
-  testit::assert(length(model_selection) == 1)
-  if (!model_selection %in% get_model_selections()) {
-    stop("'model_selection' must be in 'get_model_selections()'")
-  }
-
-
-  df <- data.frame(
-    tree = "true",
-    inference_model = model_selection,
-    inference_model_weight = NA,
-    site_model = inference_params$site_models$name,
-    clock_model = inference_params$clock_models$name,
-    tree_prior = inference_params$tree_priors$name
-  )
-  error_col_names <- paste0("error_", seq(1, length(nltts)))
-  df[, error_col_names] <- 0.0
-
-  from_col_idx <- which(colnames(df) == "error_1")
-  df[1, from_col_idx:ncol(df)] <- nltts
-  df
-}
-
-
 
 #' Checks the \link{pir_run} inputs.
 #'
@@ -185,7 +151,7 @@ pir_run_check_inputs <- function(
   phylogeny,
   alignment_params,
   model_select_params,
-  inference_params
+  inference_param
 ) {
   tryCatch(
     check_alignment_params(alignment_params),
@@ -198,10 +164,10 @@ pir_run_check_inputs <- function(
     }
   )
   tryCatch(
-    check_inference_params(inference_params),
+    check_inference_param(inference_param),
     error = function(msg) {
       msg <- paste0(
-        "'inference_params' must be a set of inference parameters.\n",
+        "'inference_param' must be a set of inference parameters.\n",
         "Actual value: ", msg
       )
       stop(msg)
@@ -211,7 +177,7 @@ pir_run_check_inputs <- function(
     check_model_select_params(model_select_params),
     error = function(msg) {
       msg <- paste0(
-        "'inference_params' must be a list of one or more inference parameter ",
+        "'inference_param' must be a list of one or more inference parameter ",
         "sets.\n",
         "Actual value: ", msg
       )

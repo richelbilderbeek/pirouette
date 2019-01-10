@@ -5,7 +5,6 @@ test_that("generative only", {
   skip("WIP")
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
-    root_sequence = "acgt",
     mutation_rate = 0.01
   )
   errors <- pir_run(
@@ -16,7 +15,7 @@ test_that("generative only", {
         alignment_params = alignment_params
       )
     ),
-    inference_params = create_inference_params(
+    inference_param = create_inference_param(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
@@ -67,7 +66,7 @@ test_that("generative and most_evidence", {
       clock_models = beautier::create_clock_models()[[1]],
       tree_priors = beautier::create_tree_priors()[[1]]
     ),
-    inference_params = create_inference_params(
+    inference_param = create_inference_param(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
