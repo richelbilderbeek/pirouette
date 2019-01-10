@@ -30,8 +30,6 @@
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
-#' @param generative_tree_prior the (assumed) tree prior that generated
-#'   the phylogeny.
 #' @param inference_param one set of parameters for the Bayesian inference,
 #'   as can be created by \link{create_inference_param}.
 #'   The Bayesian inference is handled by the \link[babette]{babette}
@@ -55,10 +53,6 @@
 #'   to select an inference model
 #'   (a combination of site model, clock model and tree prior),
 #'   as can be created by \link{create_model_select_param}
-#' @param model_selections one or more ways to select the models used in
-#'   inference, for example, \code{generative} picks the generative
-#'   model, where \code{most_evidence} picks the model with most
-#'   evidence. See \link{get_model_selections} for a list of
 #' @param mrca_prior an MRCA prior,
 #'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
@@ -99,6 +93,12 @@
 #' @param tree_prior_name name of a tree prior
 #' @param tree_filename name of the phylogeny file
 #' @param trees_filename name of the BEAST2 posterior phylogenies file
+#' @param type one or more ways to select the models used in inference:
+#'   \itemize{
+#'     \item \code{"generative"}: pick the generative model
+#'     \item \code{most_evidence} picks the model with most evidence
+#'   }
+#'   See \link{get_model_selections} for a list.
 #' @param verbose if TRUE, show more output
 #' @author Documentation by Giovanni Laudanno,
 #'   use of this function by Richel J.C. Bilderbeek
@@ -122,7 +122,6 @@ default_params_doc <- function(
   fasta_filename,
   filename,
   folder_name,
-  generative_tree_prior,
   inference_param,
   init_speciation_rate,
   init_extinction_rate,
@@ -132,7 +131,6 @@ default_params_doc <- function(
   mbd_tree,
   mcmc,
   model_selection,
-  model_selections,
   model_select_params,
   mrca_prior,
   mu,
@@ -161,6 +159,7 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   trees_filename,
+  type,
   verbose
 ) {
   # Nothing

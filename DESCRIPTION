@@ -27,6 +27,7 @@ Imports:
     mcbette,
     phangorn,
     rappdirs,
+    Rmpfr,
     stringr,
     TESS,
     testit,

@@ -9,15 +9,14 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
   beast2_rng_seed, brts, chain_length, clock_model, clock_models,
   clock_model_name, crown_age, fasta_filename, filename, folder_name,
-  generative_tree_prior, inference_param, init_speciation_rate,
-  init_extinction_rate, lambda, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
-  mcmc, model_selection, model_selections, model_select_params, mrca_prior,
-  mu, mutation_rate, nu, nu_events, parameters, parameter_filename,
-  parameters_filename, phylo, phylogeny, posterior_trees, precision,
-  project_folder_name, root_sequence, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_prior,
-  tree_priors, tree_prior_name, trees_filename, verbose)
+  inference_param, init_speciation_rate, init_extinction_rate, lambda,
+  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, model_selection,
+  model_select_params, mrca_prior, mu, mutation_rate, nu, nu_events,
+  parameters, parameter_filename, parameters_filename, phylo, phylogeny,
+  posterior_trees, precision, project_folder_name, root_sequence,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  site_models, site_model_name, sub_chain_length, tree, tree_filename,
+  tree_prior, tree_priors, tree_prior_name, trees_filename, type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -67,9 +66,6 @@ to let it be estimated}
 
 \item{folder_name}{name of the main folder}
 
-\item{generative_tree_prior}{the (assumed) tree prior that generated
-the phylogeny.}
-
 \item{inference_param}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
@@ -91,11 +87,6 @@ from a MBD tree}
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
 \item{model_selection}{one ways to select the models used in
-inference, for example, \code{generative} picks the generative
-model, where \code{most_evidence} picks the model with most
-evidence. See \link{get_model_selections} for a list of}
-
-\item{model_selections}{one or more ways to select the models used in
 inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}
@@ -173,6 +164,13 @@ as created by \link[beautier]{create_tree_prior}}
 \item{tree_prior_name}{name of a tree prior}
 
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
+
+\item{type}{one or more ways to select the models used in inference:
+\itemize{
+  \item \code{"generative"}: pick the generative model
+  \item \code{most_evidence} picks the model with most evidence
+}
+See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
 

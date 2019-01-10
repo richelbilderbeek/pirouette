@@ -10,6 +10,13 @@ create_model_select_param(type = "generative",
   tree_priors = beautier::create_tree_priors())
 }
 \arguments{
+\item{type}{one or more ways to select the models used in inference:
+\itemize{
+  \item \code{"generative"}: pick the generative model
+  \item \code{most_evidence} picks the model with most evidence
+}
+See \link{get_model_selections} for a list.}
+
 \item{site_models}{a list of one or more site models,
 as created by \link[beautier]{create_site_model}}
 
