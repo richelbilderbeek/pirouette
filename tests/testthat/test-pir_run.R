@@ -103,3 +103,34 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   expect_true(is.na(errors$inference_model_weight[1]))
   expect_true(is.numeric(errors$inference_model_weight[2]))
 })
+
+test_that("generative and most_evidence, generative in most_evidence", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    root_sequence = "acgt",
+    mutation_rate = 0.01
+  )
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = list(
+      create_gen_model_select_param(
+        alignment_params = alignment_params
+      ),
+      create_best_model_select_param(
+        site_models = list(alignment_params$site_model),
+        clock_models = list(alignment_params$clock_model),
+        tree_priors = list(beautier::create_bd_tree_prior())
+      )
+    ),
+    inference_param = create_inference_param(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    )
+  )
+  expect_true("most_evidence" %in% errors$inference_model)
+  expect_true(is.numeric(errors$inference_model_weight[1]))
+})
