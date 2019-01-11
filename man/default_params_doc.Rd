@@ -51,6 +51,11 @@ BEAST2 binary file path.}
 \item{clock_model}{a clock model,
 as created by \link[beautier]{create_clock_model}}
 
+\item{clock_models}{a list of one or more clock models,
+as created by \link[beautier]{create_clock_model}}
+
+\item{clock_model_name}{name of a clock model}
+
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
 
@@ -60,8 +65,8 @@ to let it be estimated}
 
 \item{folder_name}{name of the main folder}
 
-\item{inference_params}{parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
+\item{inference_param}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 
@@ -71,6 +76,9 @@ R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{lambda}{per-lineage speciation rate}
 
+\item{marg_liks}{a data frame with marginal likelihoods/evidences.
+A test data frame can be created by \link{create_test_marg_liks}}
+
 \item{mbd_l_matrix}{the L matrix of an MBD tree}
 
 \item{mbd_mutation_rate}{the mutation rate when creating an alignment
@@ -79,6 +87,20 @@ from a MBD tree}
 \item{mbd_tree}{an MBD tree}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+
+\item{model_selection}{one ways to select the models used in
+inference, for example, \code{generative} picks the generative
+model, where \code{most_evidence} picks the model with most
+evidence. See \link{get_model_selections} for a list of}
+
+\item{model_select_param}{one parameter set to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
+
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
 
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}
@@ -124,6 +146,11 @@ makes a measurement}
 \item{site_model}{a nucleotide substitution model,
 as created by \link[beautier]{create_site_model}}
 
+\item{site_models}{a list of one or more site models,
+as created by \link[beautier]{create_site_model}}
+
+\item{site_model_name}{name of a site model}
+
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
 
@@ -134,7 +161,19 @@ algorithm to estimate the marginal likelihood}
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}
 
+\item{tree_priors}{a list of one or more tree priors,
+as created by \link[beautier]{create_tree_prior}}
+
+\item{tree_prior_name}{name of a tree prior}
+
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
+
+\item{type}{one or more ways to select the models used in inference:
+\itemize{
+  \item \code{"generative"}: pick the generative model
+  \item \code{most_evidence} picks the model with most evidence
+}
+See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
 }

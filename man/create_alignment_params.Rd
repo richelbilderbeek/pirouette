@@ -2,9 +2,15 @@
 % Please edit documentation in R/create_alignment_params.R
 \name{create_alignment_params}
 \alias{create_alignment_params}
-\title{Create the parameters for the alignment simulation}
+\title{Create the parameters for the alignment simulation.
+The site model and clock models will be used and
+their combination will be called the generative model
+of the alignment}
 \usage{
-create_alignment_params(root_sequence, mutation_rate, rng_seed = 0)
+create_alignment_params(root_sequence = "acgt", mutation_rate = 0,
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
+  fasta_filename = tempfile(pattern = "pirouette_", fileext = ".fasta"))
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
@@ -12,14 +18,25 @@ By default, this will consist out of only adenine}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
+\item{site_model}{a nucleotide substitution model,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
+
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}
+
+\item{fasta_filename}{name of a FASTA file}
 }
 \value{
 a list of alignment parameters
 }
 \description{
-Create the parameters for the alignment simulation
+Create the parameters for the alignment simulation.
+The site model and clock models will be used and
+their combination will be called the generative model
+of the alignment
 }
 \examples{
 n_base_pairs <- 4

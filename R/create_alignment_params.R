@@ -1,4 +1,7 @@
-#' Create the parameters for the alignment simulation
+#' Create the parameters for the alignment simulation.
+#' The site model and clock models will be used and
+#' their combination will be called the generative model
+#' of the alignment
 #' @inheritParams default_params_doc
 #' @param rng_seed the random number generator seed as used in the
 #'   simulation of an alignment
@@ -15,13 +18,21 @@
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_alignment_params <- function(
-  root_sequence,
-  mutation_rate,
-  rng_seed = 0
+  root_sequence = "acgt",
+  mutation_rate = 0.0,
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  rng_seed = 0,
+  fasta_filename = tempfile(pattern = "pirouette_", fileext = ".fasta")
 ) {
-  list(
+  alignment_params <- list(
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
-    rng_seed = rng_seed
+    site_model = site_model,
+    clock_model = clock_model,
+    rng_seed = rng_seed,
+    fasta_filename = fasta_filename
   )
+  check_alignment_params(alignment_params = alignment_params) # nolint pirouette function
+  alignment_params
 }
