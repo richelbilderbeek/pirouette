@@ -24,6 +24,12 @@ for example the PBD or MBD models.
 library(pirouette)
 ```
 
+```{r}
+if (!mauricer::is_beast2_pkg_installed("NS")) {
+  mauricer::install_beast2_pkg("NS")
+}
+```
+
 In this demo, we use a simple 'true' phylogeny:
 
 ```{r}
@@ -31,25 +37,20 @@ true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
 ```
 
-As this vignette is a demo (and not a thorough research), we use an MCMC
-chain that is short:
+As this vignette is a demo (and not a thorough research), 
+we'll use a short alignment:
 
 ```{r}
-mcmc <- beautier::create_mcmc(chain_length = 5000, store_every = 1000)
-```
-
-Here we measure the error:
-
-```{r}
-errors <- pir_run(
-  true_phylogeny,
-  mcmc = mcmc
+alignment_params <- create_alignment_params(
+  root_sequence = create_blocked_dna(length = 20),
+  mutation_rate = 1.0 / beautier:::get_phylo_crown_age(true_phylogeny)
 )
 ```
 
-Here we show the errors as a table:
+Also the inference is kept short, using a short MCMC chain:
 
 ```{r}
+<<<<<<< HEAD
 knitr::kable(head(errors))
 ```
 
@@ -99,164 +100,98 @@ out <- out_1 <- pirouette::pir_run(
   mutation_rate = per_nuc_p_mut_per_tu,
   alignment_rng_seed = alignment_rng_seed,
   beast2_rng_seed = beast2_rng_seed
+=======
+inference_param <- create_inference_param(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+>>>>>>> 7a192614618c42bf487743de7dfd2bd45b18c570
 )
 ```
 
-The alignment it created can be visualized:
+## Only use the generative model in inference
 
-```
-image(out$alignment)
-```
+There are multiple ways to select for an inference model.
+In the simplest case, which is the default, 
+we will do our inference with the generative model only:
 
-The posterior trees `pirouette` created can be visualized:
-
-```
-trees <- out$trees
-colors <- rep(c("red", "black"), each = length(out$trees))
-for (i in seq(1, length(out$trees))) {
-  trees <- c(trees, true_phylogeny)
-}
-babette::plot_densitree(
-  trees, 
-  width = 2, 
-  consensus = true_phylogeny, 
-  col = colors, 
-  scaleX = TRUE,
-  alpha = 10 / length(trees)
+```{r}
+model_select_params <- list(
+  create_gen_model_select_param(
+    alignment_params = alignment_params
+  )
 )
 ```
 
-Comparing the nLTT plots:
+Here we measure the baseline error: the error that BEAST2 makes
+when the inference model is the correct generative 
+model (JC69 and strict clock):
 
-```
-nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
-  main = "nLTTs of posterior trees (grey) and true tree (red)"
-)
-nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
-```
-
-### 2. Let the posterior have a fixed crown age
-
-```
-out <- out_2 <- pirouette::pir_run(
-  phylogeny = true_phylogeny,
-  sequence_length = NULL,
-  root_sequence = create_blocked_dna(length = n_nucleotides),
-  mcmc = mcmc,
-  mutation_rate = per_nuc_p_mut_per_tu,
-  crown_age = crown_age,
-  alignment_rng_seed = alignment_rng_seed,
-  beast2_rng_seed = beast2_rng_seed
+```{r}
+errors <- pir_run(
+  true_phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_param = inference_param
 )
 ```
 
-The alignment it created can be visualized:
+Here we show the errors as a table:
 
-```
-image(out$alignment)
-```
-
-The posterior trees `pirouette` created can be visualized:
-
-```
-trees <- out$trees
-colors <- rep(c("green", "black"), each = length(out$trees))
-for (i in seq(1, length(out$trees))) {
-  trees <- c(trees, true_phylogeny)
-}
-babette::plot_densitree(
-  trees, 
-  width = 2, 
-  consensus = true_phylogeny, 
-  col = colors,
-  alpha = 10 / length(trees)
-)
+```{r}
+knitr::kable(head(errors))
 ```
 
-Comparing the nLTT plots:
+Here we plot the error:
 
-```
-nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
-  main = "nLTTs of posterior trees (grey) and true tree (red)"
-)
-nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
+```{r fig.width=7, fig.height=7}
+pir_plot(errors)
 ```
 
-### 3. Let the Bayesian analysis have an MRCA prior on all taxa
+## Do inference with the generative and model with most evidence
 
-```
-out <- out_3 <- pirouette::pir_run(
-  phylogeny = true_phylogeny,
-  sequence_length = NULL,
-  root_sequence = create_blocked_dna(length = n_nucleotides),
-  mcmc = mcmc,
-  mutation_rate = per_nuc_p_mut_per_tu,
-  mrca_distr = beautier::create_normal_distr(
-    mean = beautier::create_mean_param(value = crown_age),
-    sigma = beautier::create_sigma_param(value = crown_age / 1000.0)
+Again, there are multiple ways to select for which inference model(s)
+to use. Next to the known generative model (JC69 and strict clock),
+here we use the inference model that has the highest evidence (also
+called 'marginal likelihood'). 
+
+Here we measure the baseline error, from the generative model,
+and the error that BEAST2 makes
+when the inference model is the one with most evidence:
+
+```{r}
+model_select_params = list(
+  create_gen_model_select_param(
+    alignment_params = alignment_params
   ),
-  alignment_rng_seed = alignment_rng_seed,
-  beast2_rng_seed = beast2_rng_seed
+  create_best_model_select_param(
+    site_models = beautier::create_site_models()[3],
+    clock_models = beautier::create_clock_models()[2],
+    tree_priors = beautier::create_tree_priors()[5]
+  )
 )
 ```
 
-The alignment it created can be visualized:
+Note that we select the model with the heighest evidence from a set of
+just one model (JC69, strict, Yule).
 
-```
-image(out$alignment)
-```
+Run this setup:
 
-The posterior trees `pirouette` created can be visualized:
-
-```
-trees <- out$trees
-colors <- rep(c("blue", "black"), each = length(out$trees))
-for (i in seq(1, length(out$trees))) {
-  trees <- c(trees, true_phylogeny)
-}
-babette::plot_densitree(
-  trees, 
-  width = 2, 
-  consensus = true_phylogeny, 
-  col = colors,
-  alpha = 10 / length(trees)
+```{r}
+errors <- pir_run(
+  true_phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_param = inference_param
 )
 ```
 
-Comparing the nLTT plots:
+Here we show the errors as a table:
 
-```
-nLTT::nltts_plot(phylogenies = out$trees, plot_nltts = TRUE, 
-  main = "nLTTs of posterior trees (grey) and true tree (red)"
-)
-nLTT::nltt_lines(phy = true_phylogeny, col = "red",  lwd = 3)
+```{r}
+knitr::kable(head(errors))
 ```
 
-## Comparing all trees
+Here we plot the error:
 
-Prepare all trees and colors:
-
- * Red: trees with an estimated crown age (unscaled)
- * Green: trees with fixed crown age
- * Blue: trees with MRCA prior, with a distribution around the crown age
- * Black: true tree
-
-```
-trees <- c(out_1$trees, out_2$trees, out_3$trees)
-colors <- rep(c("red", "green", "blue"), each = length(trees) / 3)
-for (i in seq(1,50)) {
-  trees <- c(trees, true_phylogeny)
-  colors <- c(colors, "black")
-}
-```
-
-
-
-```
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 1)
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, alpha = 10 / length(trees))
-
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 1)
-phangorn::densiTree(trees, consensus = true_phylogeny, col = colors, scaleX = TRUE, alpha = 10 / length(trees))
-
+```{r fig.width=7, fig.height=7}
+pir_plot(errors)
 ```

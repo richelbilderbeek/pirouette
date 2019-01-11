@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 context("test-phylo_to_posterior")
 
 load_tree <- function(model = "mbd", seed = 1) {
@@ -72,3 +73,5 @@ test_that("abuse", {
     "'alignment_params' must be a set of alignment parameters"
   )
 })
+=======
+>>>>>>> 7a192614618c42bf487743de7dfd2bd45b18c570

@@ -2,20 +2,47 @@
 % Please edit documentation in R/pir_run.R
 \name{pir_run}
 \alias{pir_run}
-\title{Meaure the error BEAST2 makes from a known phylogeny}
+\title{Measure the error BEAST2 makes from a known phylogeny.}
 \usage{
-pir_run(phylogeny, mcmc)
+pir_run(phylogeny, alignment_params,
+  model_select_params = list(create_gen_model_select_param(alignment_params)),
+  inference_param)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+\item{alignment_params}{parameters to simulate an alignment,
+as can be created by \link{create_alignment_params}}
+
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
+
+\item{inference_param}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_param}.
+The Bayesian inference is handled by the \link[babette]{babette}
+R package, that calls the phylogenetic tool \code{BEAST2}.}
 }
 \value{
-a data frame with errors
+a data frame with errors, with as many rows as model selection
+  parameter sets
 }
 \description{
-Meaure the error BEAST2 makes from a known phylogeny
+From a phylogeny of (un)known speciation model,
+an alignment is created using a known site model and clock model,
+as given by \code{alignment_params}.
+}
+\details{
+From each of the one or more model selection parameters in
+\code{model_select_params}, one inference model is concluded.
+One such parameter setup is to use the generative site and clock model
+the alignment is created with (\code{"generative"}), or use the model
+that has the most evidence (\code{"most evidence"}).
+
+Each inference model is used to run BEAST2 and measures the
+difference between the known/true/given phylogeny and the
+ones created by BEAST2.
 }
 \author{
 Richel J.C. Bilderbeek

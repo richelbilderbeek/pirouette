@@ -2,8 +2,9 @@
 % Please edit documentation in R/check_alignment_params.R
 \name{check_alignment_params}
 \alias{check_alignment_params}
-\title{Checks if the argument is a valid alignment parameters structure.
-Will \link{stop} if not}
+\title{Checks if the argument is a valid alignment parameters structure,
+as created by \link{create_alignment_params}.
+Will \link{stop} if not.}
 \usage{
 check_alignment_params(alignment_params)
 }
@@ -15,8 +16,9 @@ as can be created by \link{create_alignment_params}}
 nothing. Will \link{stop} if nit
 }
 \description{
-Checks if the argument is a valid alignment parameters structure.
-Will \link{stop} if not
+Checks if the argument is a valid alignment parameters structure,
+as created by \link{create_alignment_params}.
+Will \link{stop} if not.
 }
 \author{
 Richel J.C. Bilderbeek
