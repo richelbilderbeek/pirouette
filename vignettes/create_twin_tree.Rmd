@@ -38,6 +38,3 @@ babette::plot_densitree(
   alpha = 0.5
 )
 ```
-
-wefw
-
