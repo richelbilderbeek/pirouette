@@ -20,7 +20,6 @@ r_github_packages:
   - richelbilderbeek/mcbette
   - richelbilderbeek/tracerer
   - richelbilderbeek/nLTT
-  - xl0418/dododo
   - rsetienne/PBD/PBD
 
 before_install:
