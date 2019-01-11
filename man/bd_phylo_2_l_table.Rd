@@ -16,5 +16,5 @@ the L table
 Convert bd phylo to L table. Don't use for mbd.
 }
 \author{
-Xu Liang, Giovanni Laudanno, Richel J.C. Bilderbeek
+Xu Liang, Giovanni Laudanno
 }

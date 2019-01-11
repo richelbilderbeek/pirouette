@@ -7,17 +7,15 @@ documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
-  beast2_rng_seed, brts, chain_length, clock_model, clock_models,
-  clock_model_name, crown_age, fasta_filename, filename, folder_name,
-  inference_param, init_speciation_rate, init_extinction_rate, lambda,
-  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
-  model_selection, model_select_param, model_select_params, mrca_prior, mu,
-  mutation_rate, nu, nu_events, parameters, parameter_filename,
-  parameters_filename, phylo, phylogeny, posterior_trees, precision,
-  project_folder_name, root_sequence, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_prior,
-  tree_priors, tree_prior_name, trees_filename, type, verbose)
+  beast2_rng_seed, brts, chain_length, clock_model, crown_age,
+  fasta_filename, filename, folder_name, inference_params,
+  init_speciation_rate, init_extinction_rate, lambda, mbd_l_matrix,
+  mbd_mutation_rate, mbd_tree, mcmc, mrca_prior, mu, mutation_rate, nu,
+  nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
+  posterior_trees, precision, project_folder_name, root_sequence,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  sub_chain_length, tree, tree_filename, tree_prior, trees_filename,
+  verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -116,8 +114,6 @@ as created by \link[beautier]{create_mrca_prior}}
 \item{nu_events}{the number of nu-triggered events that have to be
 present in the simulated tree}
 
-\item{parameters}{the razzo parameters}
-
 \item{parameter_filename}{full path to a 'parameters.csv' file}
 
 \item{parameters_filename}{full path to a 'parameters.csv' file}
@@ -131,8 +127,7 @@ of class \code{multiphylo}}
 
 \item{precision}{define the precision of the approximation.}
 
-\item{project_folder_name}{project folder name,
-will be the full path to \code{razzo_project}}
+\item{project_folder_name}{project folder name}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of only adenine}

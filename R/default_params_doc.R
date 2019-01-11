@@ -62,7 +62,6 @@
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
 #'  present in the simulated tree
-#' @param parameters the razzo parameters
 #' @param parameter_filename full path to a 'parameters.csv' file
 #' @param parameters_filename full path to a 'parameters.csv' file
 #' @param phylo a phylogeny of class \link[ape]{phylo}
@@ -70,8 +69,7 @@
 #' @param posterior_trees phylogenetic trees in a BEAST2 posterior,
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
-#' @param project_folder_name project folder name,
-#'   will be the full path to \code{razzo_project}
+#' @param project_folder_name project folder name
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of only adenine
 #' @param sample_interval the interval at which the MCMC algorithm
@@ -141,7 +139,6 @@ default_params_doc <- function(
   mutation_rate,
   nu,
   nu_events,
-  parameters,
   parameter_filename,
   parameters_filename,
   phylo,
