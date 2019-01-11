@@ -60,7 +60,7 @@ pir_plot(errors)
 ```
 
 
-```{fr}
+```{r}
 sim_rng_seed <- 42
 alignment_rng_seed <- 42
 beast2_rng_seed <- 42

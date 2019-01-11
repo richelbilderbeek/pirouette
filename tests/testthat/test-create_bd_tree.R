@@ -19,10 +19,10 @@ load_tree <- function(model = "mbd", seed = 1) {
 
 test_that("use", {
 
-  mbd_tree <- load_tree(model = "mbd", seed = 1)
+  phylogeny <- load_tree(model = "mbd", seed = 1)
 
   bd_sim <- create_bd_tree(
-    mbd_tree = mbd_tree,
+    phylogeny = phylogeny,
     seed = 1
   )
   bd_tree <- bd_sim$bd_tree
@@ -31,7 +31,7 @@ test_that("use", {
   expect_equal(class(bd_tree), "phylo")
   expect_equal(
     max(ape::branching.times(bd_tree)),
-    max(ape::branching.times(mbd_tree))
+    max(ape::branching.times(phylogeny))
   )
   expect_equal(class(bd_l_matrix), "matrix")
   expect_equal(

@@ -37,9 +37,9 @@ test_that("get_clock_models", {
 
 test_that("bd_phylo_2_l_table", {
 
-  mbd_tree <- load_tree(model = "mbd", seed = 1)
+  phylogeny <- load_tree(model = "mbd", seed = 1)
   bd_sim <- create_bd_tree(
-    mbd_tree = mbd_tree,
+    phylogeny = phylogeny,
     seed = 1
   )
   bd_tree <- bd_sim$bd_tree

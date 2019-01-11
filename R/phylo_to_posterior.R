@@ -49,7 +49,6 @@ phylo_to_posterior <- function(
     mrca_prior = inference_params$mrca_prior,
     mcmc = inference_params$mcmc,
     rng_seed = inference_params$rng_seed,
-    cleanup = TRUE,
     verbose = inference_params$verbose,
     beast2_path = inference_params$beast2_path
   )

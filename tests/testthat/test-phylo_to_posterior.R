@@ -1,10 +1,38 @@
 context("test-phylo_to_posterior")
 
+load_tree <- function(model = "mbd", seed = 1) {
+  filename <- system.file(
+    file.path(
+      "extdata",
+      "models",
+      model
+    ),
+    paste0("tree_", seed),
+    package = "pirouette"
+  )
+  if (!file.exists(filename)) {
+    stop("This file does not exist! Try with different model name and/or seed.")
+  }
+  tree <- ape::read.tree(file = filename)
+  tree
+}
+
 test_that("use", {
 
-  if (!beastier::is_on_ci()) return()
-
   phylogeny <- ape::read.tree(text = "(((A:1,B:1):1,C:2):1,D:3);")
+  out <- phylo_to_posterior(
+    phylogeny = phylogeny,
+    alignment_params = create_alignment_params(
+      root_sequence = create_blocked_dna(length = 8),
+      mutation_rate = 0.1
+    ),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000)
+    )
+  )
+  testthat::expect_true(class(out$trees) == "multiPhylo")
+
+  phylogeny <- load_tree(model = "mbd", seed = 1)
   out <- phylo_to_posterior(
     phylogeny = phylogeny,
     alignment_params = create_alignment_params(
