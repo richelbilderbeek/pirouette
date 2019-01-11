@@ -15,31 +15,22 @@ convert_tree2brts <- function(tree, precision = 8) {
   brts
 }
 
-#' @title Site models in Razzo
-#' @description Site models in Razzo
+#' @title Site models
+#' @description Site models
 #' @inheritParams default_params_doc
 #' @return the site models
 #' @author Giovanni Laudanno
 get_site_models <- function() {
-  c("jc69", "gtr")
+  beautier::get_site_model_names()
 }
 
-#' @title Clock models in Razzo
-#' @description Clock models in Razzo
+#' @title Clock models
+#' @description Clock models
 #' @inheritParams default_params_doc
 #' @return the clock models
 #' @author Giovanni Laudanno
 get_clock_models <- function() {
-  c("strict", "rln")
-}
-
-#' @title Generative models in Razzo
-#' @description Generative models in Razzo
-#' @inheritParams default_params_doc
-#' @return the generative models
-#' @author Giovanni Laudanno
-get_gen_models <- function() {
-  c("bd", "mbd")
+  beautier::get_clock_model_names()
 }
 
 #' @title Convert bd phylo to L table

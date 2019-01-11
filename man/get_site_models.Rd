@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_site_models}
 \alias{get_site_models}
-\title{Site models in Razzo}
+\title{Site models}
 \usage{
 get_site_models()
 }
@@ -10,7 +10,7 @@ get_site_models()
 the site models
 }
 \description{
-Site models in Razzo
+Site models
 }
 \author{
 Giovanni Laudanno

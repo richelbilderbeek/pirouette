@@ -6,43 +6,39 @@
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_bd_tree <- function(
-  parameters,
   mbd_tree,
-  mbd_l_matrix
+  seed
 ) {
-  lambda <- parameters$lambda
-  mu <- parameters$mu
-  seed <- parameters$seed
   age  <- beautier:::get_phylo_crown_age(mbd_tree)
-  soc  <- 2 # Use crown age
-  testit::assert(!is.null(lambda))
-  testit::assert(!is.null(mu))
-  testit::assert(!is.null(seed))
-  testit::assert(!is.null(age))
-  testit::assert(!is.null(soc))
+  mbd_brts <- sort(
+    convert_tree2brts(mbd_tree),
+    decreasing = TRUE
+  )
+  n_tips <- ape::Ntip(mbd_tree)
+  soc <- 1 + n_tips - length(mbd_brts)
+  testit::assert(soc == 1 | soc == 2)
+  difference <- log(n_tips) / age
+  mu <- 0.1
+  lambda <- mu + difference
 
-  mbd_brts <- DDD::L2brts(unname(mbd_l_matrix))
-  set.seed(seed)
-  { # nolint indeed bracket incorrect, is to scope the sink, which is thanks to DDD
-    # Suppress output of DDD
-    if (rappdirs::app_dir()$os != "win") {
-      sink(file.path(rappdirs::user_cache_dir(), "ddd"))
-    } else {
-      sink(rappdirs::user_cache_dir())
-    }
-    # TODO: Issue #52: check the quality of inference of lambda and mu provided by bd_ML # nolint
-    bd_pars <- DDD::bd_ML(
-      brts = sort(mbd_brts, decreasing = TRUE),
-      cond = 1, #conditioning on stem or crown age # nolint
-      initparsopt = c(lambda, mu),
-      idparsopt = 1:2,
-      missnumspec = 0,
-      tdmodel = 0,
-      btorph = 1,
-      soc = soc
-    )
-    sink()
+  if (rappdirs::app_dir()$os != "win") {
+    sink(file.path(rappdirs::user_cache_dir(), "ddd"))
+  } else {
+    sink(rappdirs::user_cache_dir())
   }
+  # TODO: Issue #52: check the quality of inference of lambda and mu provided by bd_ML # nolint
+  bd_pars <- DDD::bd_ML(
+    brts = sort(mbd_brts, decreasing = TRUE),
+    cond = 1, #conditioning on stem or crown age # nolint
+    initparsopt = c(lambda, mu),
+    idparsopt = 1:2,
+    missnumspec = 0,
+    tdmodel = 0,
+    btorph = 1,
+    soc = soc
+  )
+  sink()
+
   lambda_bd <- as.numeric(unname(bd_pars[1]))
   mu_bd <- as.numeric(unname(bd_pars[2]))
   testit::assert(!is.null(lambda_bd))

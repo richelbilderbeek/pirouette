@@ -1,21 +1,29 @@
 context("create_bd_tree")
 
+load_tree <- function(model = "mbd", seed = 1) {
+  filename <- system.file(
+    file.path(
+      "extdata",
+      "models",
+      model
+    ),
+    paste0("tree_", seed),
+    package = "pirouette"
+  )
+  if (!file.exists(filename)) {
+    stop("This file does not exist! Try with different model name and/or seed.")
+  }
+  tree <- ape::read.tree(file = filename)
+  tree
+}
+
 test_that("use", {
 
-  skip("Rewrite to not depend on razzo")
-
-  parameters <- razzo::open_parameters_file(razzo::get_path("parameters.csv"))
-  parameters$seed <- 1
-  mbd_tree <- ape::read.tree(file = razzo::get_path("mbd.tree"))
-  mbd_l_matrix <- as.matrix(
-    utils::read.csv(file = razzo::get_path("mbd_l_matrix.csv")))
-  # Remove the first column?
-  mbd_l_matrix <- mbd_l_matrix[, -1]
+  mbd_tree <- load_tree(model = "mbd", seed = 1)
 
   bd_sim <- create_bd_tree(
-    parameters = parameters,
     mbd_tree = mbd_tree,
-    mbd_l_matrix = mbd_l_matrix
+    seed = 1
   )
   bd_tree <- bd_sim$bd_tree
   bd_l_matrix <- bd_sim$bd_l_matrix

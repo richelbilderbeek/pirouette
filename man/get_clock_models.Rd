@@ -2,7 +2,7 @@
 % Please edit documentation in R/utils.R
 \name{get_clock_models}
 \alias{get_clock_models}
-\title{Clock models in Razzo}
+\title{Clock models}
 \usage{
 get_clock_models()
 }
@@ -10,7 +10,7 @@ get_clock_models()
 the clock models
 }
 \description{
-Clock models in Razzo
+Clock models
 }
 \author{
 Giovanni Laudanno
