@@ -13,7 +13,21 @@ alignment_params_to_posterior_trees <- function( # nolint indeed a long name
   site_model,
   clock_model,
   tree_prior,
-  inference_param
+  inference_param,
+  beast2_input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
+  beast2_output_log_filename = tempfile(
+    pattern = "beast2_", fileext = "log"
+  ),
+  beast2_output_trees_filenames = tempfile(
+    pattern = paste0(
+      "beast2_",
+      beautier::get_alignment_ids(fasta_filename), "_"
+    ),
+    fileext = ".trees"
+  ),
+  beast2_output_state_filename = tempfile(
+    pattern = "beast2_", fileext = ".xml.state"
+  )
 ) {
   check_alignment_params(alignment_params)
   tryCatch(
@@ -36,6 +50,10 @@ alignment_params_to_posterior_trees <- function( # nolint indeed a long name
     mcmc = inference_param$mcmc,
     rng_seed = inference_param$rng_seed,
     verbose = inference_param$verbose,
+    beast2_input_filename = beast2_input_filename,
+    beast2_output_log_filename = beast2_output_log_filename,
+    beast2_output_trees_filenames = beast2_output_trees_filenames,
+    beast2_output_state_filename = beast2_output_state_filename,
     beast2_path = inference_param$beast2_path
   )
 
