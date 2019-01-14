@@ -41,30 +41,30 @@ As this vignette is a demo (and not a thorough research),
 we'll use a short alignment:
 
 ```{r}
-alignment_params <- create_alignment_params(
-  root_sequence = create_blocked_dna(length = 20),
-  mutation_rate = 1.0 / beautier:::get_phylo_crown_age(true_phylogeny)
-)
+# alignment_params <- create_alignment_params(
+#   root_sequence = create_blocked_dna(length = 20),
+#   mutation_rate = 1.0 / beautier:::get_phylo_crown_age(true_phylogeny)
+# )
 ```
 
 Also the inference is kept short, using a short MCMC chain:
 
 ```{r}
-knitr::kable(head(errors))
+# knitr::kable(head(errors))
 ```
 
 Here we plot the error:
 
 ```{r}
-pir_plot(errors)
+# pir_plot(errors)
 ```
 
 
 ```{r}
-sim_rng_seed <- 42
-alignment_rng_seed <- 42
-beast2_rng_seed <- 42
-crown_age <- 15
+# sim_rng_seed <- 42
+# alignment_rng_seed <- 42
+# beast2_rng_seed <- 42
+# crown_age <- 15
 ```
 
 ```{r fig.width=7, fig.height=7}
@@ -113,11 +113,11 @@ In the simplest case, which is the default,
 we will do our inference with the generative model only:
 
 ```{r}
-model_select_params <- list(
-  create_gen_model_select_param(
-    alignment_params = alignment_params
-  )
-)
+# model_select_params <- list(
+#   create_gen_model_select_param(
+#     alignment_params = alignment_params
+#   )
+# )
 ```
 
 Here we measure the baseline error: the error that BEAST2 makes
@@ -125,24 +125,24 @@ when the inference model is the correct generative
 model (JC69 and strict clock):
 
 ```{r}
-errors <- pir_run(
-  true_phylogeny,
-  alignment_params = alignment_params,
-  model_select_params = model_select_params,
-  inference_param = inference_param
-)
+# errors <- pir_run(
+#   true_phylogeny,
+#   alignment_params = alignment_params,
+#   model_select_params = model_select_params,
+#   inference_param = inference_param
+# )
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+# knitr::kable(head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-pir_plot(errors)
+# pir_plot(errors)
 ```
 
 ## Do inference with the generative and model with most evidence
@@ -157,16 +157,16 @@ and the error that BEAST2 makes
 when the inference model is the one with most evidence:
 
 ```{r}
-model_select_params = list(
-  create_gen_model_select_param(
-    alignment_params = alignment_params
-  ),
-  create_best_model_select_param(
-    site_models = beautier::create_site_models()[3],
-    clock_models = beautier::create_clock_models()[2],
-    tree_priors = beautier::create_tree_priors()[5]
-  )
-)
+# model_select_params = list(
+#   create_gen_model_select_param(
+#     alignment_params = alignment_params
+#   ),
+#   create_best_model_select_param(
+#     site_models = beautier::create_site_models()[3],
+#     clock_models = beautier::create_clock_models()[2],
+#     tree_priors = beautier::create_tree_priors()[5]
+#   )
+# )
 ```
 
 Note that we select the model with the heighest evidence from a set of
