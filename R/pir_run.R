@@ -49,7 +49,9 @@ pir_run <- function(
         fasta_filename = alignment_params$fasta_filename,
         site_models = model_select_param$site_models,
         clock_models = model_select_param$clock_models,
-        tree_priors = model_select_param$tree_priors
+        tree_priors = model_select_param$tree_priors,
+        epsilon = model_select_param$epsilon,
+        verbose = model_select_param$verbose
       )
     }
   }

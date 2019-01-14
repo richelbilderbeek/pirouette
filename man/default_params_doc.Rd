@@ -178,6 +178,11 @@ as created by \link[beautier]{create_tree_prior}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{epsilon}{measure of relative accuracy when estimating a model's
+evidence (also known as marginal likelihood).
+Smaller values result in more precise estimations, that take
+longer to compute}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

@@ -4,10 +4,10 @@
 \alias{create_model_select_param}
 \title{Create model selection parameters.}
 \usage{
-create_model_select_param(type = "generative",
+create_model_select_param(type,
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
-  tree_priors = beautier::create_tree_priors())
+  tree_priors = beautier::create_tree_priors(), epsilon = 1e-12)
 }
 \arguments{
 \item{type}{one or more ways to select the models used in inference:
@@ -25,6 +25,11 @@ as created by \link[beautier]{create_clock_model}}
 
 \item{tree_priors}{a list of one or more tree priors,
 as created by \link[beautier]{create_tree_prior}}
+
+\item{epsilon}{measure of relative accuracy when estimating a model's
+evidence (also known as marginal likelihood).
+Smaller values result in more precise estimations, that take
+longer to compute}
 }
 \description{
 Determine the strategy to select between multiple models to
