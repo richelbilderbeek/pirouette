@@ -50,7 +50,6 @@ alignment_params <- create_alignment_params(
 Also the inference is kept short, using a short MCMC chain:
 
 ```{r}
-<<<<<<< HEAD
 knitr::kable(head(errors))
 ```
 
