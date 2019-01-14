@@ -2,10 +2,7 @@
 % Please edit documentation in R/create_model_select_param.R
 \name{create_gen_model_select_param}
 \alias{create_gen_model_select_param}
-\title{Create model selection parameters
-in which the generative model of the alignmnent is (rightfully)
-assumed to underly its creation.
-The tree prior underlying the phylogeny is assumed to be a Birth-Death prior.}
+\title{Select the generative model to be used in inference}
 \usage{
 create_gen_model_select_param(alignment_params,
   tree_prior = beautier::create_bd_tree_prior())
@@ -44,6 +41,10 @@ The tree prior underlying the phylogeny is assumed to be a Birth-Death prior.
     model_select_param$tree_priors[[1]],
     beautier::create_bd_tree_prior()
   )
+}
+\seealso{
+\link{create_model_select_param} contains an overview
+  of all model selection possible
 }
 \author{
 Richel J.C. Bilderbeek

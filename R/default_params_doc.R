@@ -27,6 +27,10 @@
 #' @param clock_model_name name of a clock model
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
+#' @param epsilon	measure of relative accuracy when estimating a model's
+#'   evidence (also known as marginal likelihood).
+#'   Smaller values result in more precise estimations, that take
+#'   longer to compute
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -119,6 +123,7 @@ default_params_doc <- function(
   clock_model, clock_models,
   clock_model_name,
   crown_age,
+  epsilon,
   fasta_filename,
   filename,
   folder_name,

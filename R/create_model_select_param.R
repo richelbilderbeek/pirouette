@@ -48,10 +48,11 @@
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_model_select_param <- function(
-  type = "generative",
+  type,
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
-  tree_priors = beautier::create_tree_priors()
+  tree_priors = beautier::create_tree_priors(),
+  epsilon = 1e-12
 ) {
   beautier::check_site_models(site_models)
   beautier::check_clock_models(clock_models)
@@ -60,7 +61,8 @@ create_model_select_param <- function(
     type = type,
     site_models = site_models,
     clock_models = clock_models,
-    tree_priors = tree_priors
+    tree_priors = tree_priors,
+    epsilon = epsilon
   )
   beautier::check_site_models(model_select_param$site_models)
   beautier::check_clock_models(model_select_param$clock_models)
@@ -68,11 +70,15 @@ create_model_select_param <- function(
   model_select_param
 }
 
+#' Select the generative model to be used in inference
+#'
 #' Create model selection parameters
 #' in which the generative model of the alignmnent is (rightfully)
 #' assumed to underly its creation.
 #' The tree prior underlying the phylogeny is assumed to be a Birth-Death prior.
 #' @inheritParams default_params_doc
+#' @seealso \link{create_model_select_param} contains an overview
+#'   of all model selection possible
 #' @examples
 #'   # Pick the generative model
 #'   alignment_params <- create_alignment_params(
@@ -106,7 +112,8 @@ create_gen_model_select_param <- function(
     type = "generative",
     site_models = list(alignment_params$site_model),
     clock_models = list(alignment_params$clock_model),
-    tree_priors = list(tree_prior)
+    tree_priors = list(tree_prior),
+    epsilon = NA
   )
   testit::assert(length(model_select_param$site_models) == 1)
   testit::assert(length(model_select_param$clock_models) == 1)
@@ -119,6 +126,8 @@ create_gen_model_select_param <- function(
 #' from a set of any combination of site models, clock models and
 #' tree priors.
 #' @inheritParams default_params_doc
+#' @seealso \link{create_model_select_param} contains an overview
+#'   of all model selection possible
 #' @examples
 #'   # Pick the model with most evidence to be used in inference
 #'   model_select_param <- create_best_model_select_param()
@@ -132,7 +141,8 @@ create_gen_model_select_param <- function(
 create_best_model_select_param <- function( # nolint indeed a long function name
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
-  tree_priors = beautier::create_tree_priors()
+  tree_priors = beautier::create_tree_priors(),
+  epsilon = 1e-12
 ) {
   testit::assert(beautier::are_site_models(site_models))
   testit::assert(beautier::are_clock_models(clock_models))
@@ -145,6 +155,7 @@ create_best_model_select_param <- function( # nolint indeed a long function name
     type = "most_evidence",
     site_models = site_models,
     clock_models = clock_models,
-    tree_priors = tree_priors
+    tree_priors = tree_priors,
+    epsilon = epsilon
   )
 }
