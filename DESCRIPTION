@@ -32,6 +32,7 @@ Imports:
     testit,
     tidyr
 Suggests:
+    becosys,
     devtools,
     ggplot2,
     knitr,
