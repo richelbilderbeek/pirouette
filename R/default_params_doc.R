@@ -123,6 +123,7 @@ default_params_doc <- function(
   clock_model, clock_models,
   clock_model_name,
   crown_age,
+  epsilon,
   fasta_filename,
   filename,
   folder_name,

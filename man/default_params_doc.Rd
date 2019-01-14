@@ -8,9 +8,9 @@ documentation.}
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
   beast2_rng_seed, brts, chain_length, clock_model, clock_models,
-  clock_model_name, crown_age, fasta_filename, filename, folder_name,
-  inference_param, init_speciation_rate, init_extinction_rate, lambda,
-  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
+  clock_model_name, crown_age, epsilon, fasta_filename, filename,
+  folder_name, inference_param, init_speciation_rate, init_extinction_rate,
+  lambda, marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
   model_selection, model_select_param, model_select_params, mrca_prior, mu,
   mutation_rate, nu, nu_events, parameter_filename, parameters_filename,
   phylo, phylogeny, posterior_trees, precision, project_folder_name,
@@ -60,6 +60,11 @@ as created by \link[beautier]{create_clock_model}}
 
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
+
+\item{epsilon}{measure of relative accuracy when estimating a model's
+evidence (also known as marginal likelihood).
+Smaller values result in more precise estimations, that take
+longer to compute}
 
 \item{fasta_filename}{name of a FASTA file}
 
@@ -178,11 +183,6 @@ as created by \link[beautier]{create_tree_prior}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{epsilon}{measure of relative accuracy when estimating a model's
-evidence (also known as marginal likelihood).
-Smaller values result in more precise estimations, that take
-longer to compute}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
