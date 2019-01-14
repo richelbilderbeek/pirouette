@@ -68,11 +68,15 @@ create_model_select_param <- function(
   model_select_param
 }
 
+#' Select the generative model to be used in inference
+#'
 #' Create model selection parameters
 #' in which the generative model of the alignmnent is (rightfully)
 #' assumed to underly its creation.
 #' The tree prior underlying the phylogeny is assumed to be a Birth-Death prior.
 #' @inheritParams default_params_doc
+#' @seealso \link{create_model_select_param} contains an overview
+#'   of all model selection possible
 #' @examples
 #'   # Pick the generative model
 #'   alignment_params <- create_alignment_params(
@@ -119,6 +123,8 @@ create_gen_model_select_param <- function(
 #' from a set of any combination of site models, clock models and
 #' tree priors.
 #' @inheritParams default_params_doc
+#' @seealso \link{create_model_select_param} contains an overview
+#'   of all model selection possible
 #' @examples
 #'   # Pick the model with most evidence to be used in inference
 #'   model_select_param <- create_best_model_select_param()

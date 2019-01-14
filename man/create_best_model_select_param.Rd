@@ -37,6 +37,10 @@ tree priors.
   testthat::expect_true(length(model_select_param$clock_models) > 1)
   testthat::expect_true(length(model_select_param$tree_priors) > 1)
 }
+\seealso{
+\link{create_model_select_param} contains an overview
+  of all model selection possible
+}
 \author{
 Richel J.C. Bilderbeek
 }

@@ -1,0 +1,229 @@
+---
+title: "Tutorial"
+author: "Richel J.C. Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette demonstrates the `pirouette` package, 
+with a focus on the research questions that `pirouette` can answer.
+
+# Main question
+
+The main question that `pirouette` answers is:
+
+> What is the error BEAST2 makes in inferring a given phylogeny?
+
+The same question, but from the point of view of a theoretician:
+
+> Would we know the true phylogeny in nature,
+> how well would we be able to infer it 
+> from a DNA alignment?
+
+# Inferring a simplest world
+
+Let's assume we know speciation (we don't) and we assume that speciation
+is as simple as possible (it is not). 
+
+In that simplest world:
+
+ * Speciation follows a (constant-rate) birth-death process
+ * DNA sequences of all species have the same mutation rate
+ * In DNA mutations, mutation rates between all nucleotides are equal
+
+We can now try to answer `pirouette`'s main question: 
+
+> Would we know the true phylogeny in nature,
+> how well would we be able to infer it 
+> from a DNA alignment?
+
+Here we go, the true phylogeny of the world:
+
+```{r fig.width=7, fig.height=7}
+set.seed(42)
+phylogeny <- becosys::bd_sim(
+  bd_params = becosys::create_bd_params(spec_rate = 1.0,  ext_rate = 0.1),
+  crown_age = 2.0,
+  conditioned_on = "non_extinction"
+)$reconstructed_tree
+ape::plot.phylo(main = "The True Phylogeny", phylogeny)
+```
+ 
+This phylogeny cannot be measured in nature directly. Instead, we can measure 
+(and align) the DNA sequences of our species. 
+
+`pirouette` needs an approximate idea of how an alignment in nature behaves.
+
+What we do know (or: assumed in our simples world) 
+is (1) that the DNA sequences of all species have the same 
+mutation rate, and (2) In DNA mutations, mutation rates between all nucleotides 
+are equal. This amounts to (1) the clock model is a strict clock model, 
+and (2) the site model is a Jukes-Cantor model.
+
+What we need to have approximately right is a mutation rate, which must not
+be too low, nor too high.
+A mutation rate that is too low (e.g. zero) would result in an uninformative 
+alignment (e.g. all species would have the same sequence). 
+A mutation rate that is too high, results in uninformative alignments as well,
+consisting of random noise.
+
+What we do for convenience is specify an ancestral DNA sequence
+that is simple and easy to interpret visually, as well 
+as an RNG seed:
+
+```{r}
+alignment_params = pirouette::create_alignment_params(
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  mutation_rate = 0.3,
+  root_sequence = "aaaaaaaaccccccccggggggggtttttttt", 
+  rng_seed = 314
+)
+```
+
+From here, we can already predict the DNA alignment `pirouette` will generate:
+
+```{r fig.width=7, fig.height=7}
+alignment <- pirouette::sim_alignment(
+  phylogeny = phylogeny, 
+  alignment_params = alignment_params
+) 
+ape::image.DNAbin(
+  alignment,
+  main = "A Possibly-True Alignment",
+  legend = FALSE
+)
+```
+
+Back to our main question:
+
+> Would we know the true phylogeny in nature,
+> how well would we be able to infer it 
+> from a DNA alignment?
+
+To infer a phylogeny from an alignment, we need:
+
+ * a way to select inference parameters
+ * a general setup for our inference
+
+We select our inference parameters based on our knowledge of the
+generative model. The generative model is the model we followed in simulating
+the DNA alignment. We do need to specify a tree prior, we we know,
+due to our knowledge of The Simplest World.
+
+```{r}
+gen_model_select_param <- pirouette::create_gen_model_select_param(
+  alignment_params = alignment_params,
+  tree_prior = beautier::create_bd_tree_prior()
+)
+```
+
+The general setup for our inference can be tuned. For example,
+to have a shorter MCMC run and a specific RNG seed:
+
+```{r}
+inference_param <- pirouette::create_inference_param(
+  mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
+  rng_seed = 271
+)
+```
+
+Now we have all in place to do a `pirouette` run:
+
+```{r}
+df <- pirouette::pir_run(
+  phylogeny = phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = list(gen_model_select_param),
+  inference_param = inference_param
+)
+knitr::kable(df)
+```
+
+# Doing inference with the best tree prior
+
+From the Simplest World scenarion, we drop one piece of knowledge:
+we assumre we do not know the tree prior anymore. We do still know
+The True Phylogeny, but do not know the speciation model that generated 
+it (even though we generated the phylogeny using a birth-death model).
+
+> Would we know the true phylogeny in nature,
+> how well would we be able to infer it 
+> from a DNA alignment?
+
+So, again, here is the true phylogeny:
+
+```{r}
+ape::plot.phylo(main = "The True Phylogeny", phylogeny)
+```
+
+Also, the alignment it generated in the Simplest World
+as well is still equally valid:
+
+```{r fig.width=7, fig.height=7}
+ape::image.DNAbin(
+  alignment,
+  main = "A Possibly-True Alignment",
+  legend = FALSE
+)
+```
+
+Because we do not know the true tree prior, we instruct `pirouette`
+to use the best model to do inference. This best model is determined
+on the evidence (also: marginal likelihood) for a model in generating
+the alignment. We can specify the set of models `pirouette` can pick from.
+In this case, we let `pirouette` pick from all (only two!) model combinations
+of one site model (JC69), one clock model (strict) and two tree priors: 
+
+```{r}
+best_model_select_param <- pirouette::create_best_model_select_param(
+  site_models = list(beautier::create_jc69_site_model()),
+  clock_models = list(beautier::create_strict_clock_model()),
+  tree_priors = list(
+    beautier::create_yule_tree_prior(),
+    beautier::create_bd_tree_prior()  
+  )
+)
+```
+
+Now we again have all in place to do a `pirouette` run:
+
+```{r}
+df <- pirouette::pir_run(
+  phylogeny = phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = list(best_model_select_param),
+  inference_param = inference_param
+)
+knitr::kable(df)
+```
+
+We can also specify our complete knowledge at the same time:
+
+ * the generative model is JC69, strict and BD
+ * pick the best inference model
+
+```{r}
+df <- pirouette::pir_run(
+  phylogeny = phylogeny,
+  alignment_params = alignment_params,
+  model_select_params = list(gen_model_select_param, best_model_select_param),
+  inference_param = inference_param
+)
+knitr::kable(df)
+```
+
+```{r}
+pirouette::pir_plot(df)
+```
