@@ -6,12 +6,10 @@
 \usage{
 alignment_params_to_posterior_trees(alignment_params, site_model,
   clock_model, tree_prior, inference_param,
-  beast2_input_filename = tempfile(pattern = "beast2_", fileext =
-  ".xml"), beast2_output_log_filename = tempfile(pattern = "beast2_",
-  fileext = "log"), beast2_output_trees_filenames = tempfile(pattern =
-  paste0("beast2_", beautier::get_alignment_ids(fasta_filename), "_"),
-  fileext = ".trees"), beast2_output_state_filename = tempfile(pattern =
-  "beast2_", fileext = ".xml.state"))
+  beast2_input_filename = tempfile(fileext = ".xml"),
+  beast2_output_log_filename = tempfile(fileext = "log"),
+  beast2_output_trees_filenames = tempfile(fileext = ".trees"),
+  beast2_output_state_filename = tempfile(fileext = ".xml.state"))
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
