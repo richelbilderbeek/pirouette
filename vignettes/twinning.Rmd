@@ -1,0 +1,90 @@
+---
+title: "Twinning"
+author: "Richel J.C. Bilderbeek"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Twinning}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+`pirouette` has the option to investigate the error BEAST2 makes
+on a twin tree. A twin tree is a tree with the same topology as the
+original phylogeny, yet where the branch lengths follow a birth-death
+branch length distribution.
+
+Twinning is useful to separate the effect of an unknown tree 
+prior (i.e. speciation model) on a phylogeny's shape from the 
+noise (the minimal error) made by BEAST2.
+
+In this example, the following tree is used:
+
+```{r}
+phylogeny <- ape::read.tree(text = "((A:1, B:1):1, (C:1, D:1):1);")
+ape::plot.phylo(phylogeny)
+```
+
+This phylogeny follows a speciation model unknown to BEAST2, as two
+speciation events happened at exactly the same time. Such a phylogeny
+will have a likelihood of zero for all of the BEAST2 tree priors.
+
+Twinning:
+
+```{r}
+twinning_params <- pirouette::create_twinning_params(
+  rng_seed = 42
+)
+```
+
+```{r}
+alignment_params = pirouette::create_alignment_params(
+  root_sequence = pirouette::create_blocked_dna(length = 100),
+  mutation_rate = 1.0 / pirouette::get_crown_age(phylogeny)
+)
+```
+
+We assume we know 
+
+```{r}
+gen_model_select_param <- pirouette::create_gen_model_select_param(
+  alignment_params = alignment_params,
+  tree_prior = beautier::create_bd_tree_prior()
+)
+best_model_select_param <- pirouette::create_best_model_select_param(
+  site_models = list(beautier::create_jc69_site_model()),
+  clock_models = list(beautier::create_strict_clock_model()),
+  tree_priors = list(
+    beautier::create_yule_tree_prior(),
+    beautier::create_bd_tree_prior()  
+  ),
+  epsilon = 0.1
+)
+model_select_params <- list(gen_model_select_param, best_model_select_param)
+```
+
+```{r}
+inference_param <- create_inference_param(
+  mrca_prior = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
+  rng_seed = 42
+)
+```
+
+Run:
+
+```{r}
+df <- pirouette::pir_run(
+  phylogeny = phylogeny,
+  twinning_params = twinning_params,
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_param = inference_param 
+)
+```
