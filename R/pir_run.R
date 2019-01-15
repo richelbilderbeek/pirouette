@@ -97,6 +97,7 @@ pir_run_tree <- function(
         epsilon = model_select_param$epsilon,
         verbose = model_select_param$verbose
       )
+      write.csv(x = marg_liks, file = model_select_param$marg_lik_filename)
     }
   }
 

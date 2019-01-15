@@ -103,7 +103,6 @@ test_that("most_evidence", {
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
-  skip("TODO: Issue #24")
   expect_true(file.exists(model_select_params[[1]]$marg_lik_filename))
 })
 
