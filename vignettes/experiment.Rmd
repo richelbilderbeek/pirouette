@@ -88,7 +88,7 @@ model_select_param <- pirouette::create_gen_model_select_param(
   tree_prior = beautier::create_bd_tree_prior()
 )
 inference_param <- pirouette::create_inference_param(
-  mcmc = beautier::create_mcmc(chain_length = 200000, store_every = 1000)
+  mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000)
 )
 errors <- list()
 for (i in seq_along(ext_rates)) {
