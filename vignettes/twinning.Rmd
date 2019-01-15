@@ -29,7 +29,7 @@ In this example, the following tree is used:
 
 ```{r}
 phylogeny <- ape::read.tree(text = "((A:1, B:1):1, (C:1, D:1):1);")
-ape::plot.phylo(phylogeny)
+ape::plot.phylo(phylogeny, main = "The True Phylogeny")
 ```
 
 This phylogeny follows a speciation model unknown to BEAST2, as two
@@ -87,4 +87,13 @@ df <- pirouette::pir_run(
   model_select_params = model_select_params,
   inference_param = inference_param 
 )
+```
+See all:
+
+```{r}
+ape::plot.phylo(phylogeny, main = "The True Phylogeny")
+```
+
+```{r}
+twinning_params$
 ```
