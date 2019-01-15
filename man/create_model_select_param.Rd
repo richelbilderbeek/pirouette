@@ -7,7 +7,8 @@
 create_model_select_param(type,
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
-  tree_priors = beautier::create_tree_priors(), epsilon = 1e-12)
+  tree_priors = beautier::create_tree_priors(), epsilon = 1e-12,
+  marg_lik_filename = tempfile(fileext = ".csv"))
 }
 \arguments{
 \item{type}{one or more ways to select the models used in inference:

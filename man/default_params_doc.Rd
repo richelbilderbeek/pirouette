@@ -10,17 +10,17 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
   chain_length, clock_model, clock_models, clock_model_name, crown_age,
-  epsilon, fasta_filename, filename, folder_name, inference_param,
-  init_speciation_rate, init_extinction_rate, lambda, marg_liks,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, model_selection,
-  model_select_param, model_select_params, mrca_prior, mu, mutation_rate,
-  nu, nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
-  posterior_trees, precision, project_folder_name, root_sequence,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_prior, tree_priors, tree_prior_name, tree_type, trees_filename,
-  twin_alignment_filename, twin_tree_filename, twinning_params, type,
-  verbose)
+  epsilon, fasta_filename, filename, folder_name, inference_model,
+  inference_param, init_speciation_rate, init_extinction_rate, lambda,
+  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
+  model_selection, model_select_param, model_select_params, mrca_prior, mu,
+  mutation_rate, nu, nu_events, parameter_filename, parameters_filename,
+  phylo, phylogeny, posterior_trees, precision, project_folder_name,
+  root_sequence, sample_interval, seed, sequence_length, sim_pars,
+  sim_phylo, site_model, site_models, site_model_name, sub_chain_length,
+  tree, tree_filename, tree_prior, tree_priors, tree_prior_name, tree_type,
+  trees_filename, twin_alignment_filename, twin_tree_filename,
+  twinning_params, type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -102,6 +102,10 @@ longer to compute}
 \item{filename}{the file's name, without the path}
 
 \item{folder_name}{name of the main folder}
+
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
 
 \item{inference_param}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_param}.

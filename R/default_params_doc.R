@@ -58,6 +58,9 @@
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
+#' @param inference_model an inference model, which is a combination
+#'   of site model, clock model, tree prior and BEAST2 input and
+#'   input filenames.
 #' @param inference_param one set of parameters for the Bayesian inference,
 #'   as can be created by \link{create_inference_param}.
 #'   The Bayesian inference is handled by the \link[babette]{babette}
@@ -164,6 +167,7 @@ default_params_doc <- function(
   fasta_filename,
   filename,
   folder_name,
+  inference_model,
   inference_param,
   init_speciation_rate,
   init_extinction_rate,
