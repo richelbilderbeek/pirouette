@@ -8,6 +8,48 @@
 
 ![pirouette dependencies](pirouette.png)
 
+### Where is the alignment created by `pirouette` stored?
+
+```{r}
+create_alignment_params(...)$fasta_filename
+```
+
+### Where is the twin phylogeny created by `pirouette` stored?
+
+```{r}
+create_twinning_params(...)$twin_tree_filename
+```
+
+### Where is the twin alignment created by `pirouette` stored?
+
+```{r}
+create_twinning_params(...)$twin_alignent_filename
+```
+
+### Where are the BEAST2 input (`.xml`) files created by `pirouette` stored?
+
+```{r}
+pir_run(...)$input_filename
+```
+
+### Where are the posterior parameter estimates (`.log`) files created by `pirouette` stored?
+
+```{r}
+pir_run(...)$log_filename
+```
+
+### Where are the posterior trees (`.trees`) files created by `pirouette` stored?
+
+```{r}
+pir_run(...)$trees_filename
+```
+
+### Where are the final posterior states (`.xml.state`) files created by `pirouette` stored?
+
+```{r}
+pir_run(...)$state_filename
+```
+
 ## Why the name?
 
 `pirouette` started out as a working title, as it is an elegant
