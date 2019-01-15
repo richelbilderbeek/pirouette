@@ -24,17 +24,13 @@
 phylo_to_errors <- function(
   phylogeny,
   alignment_params,
-  site_model,
-  clock_model,
-  tree_prior,
+  inference_model,
   inference_param
 ) {
   # Run
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
-    site_model = site_model,
-    clock_model = clock_model,
-    tree_prior = tree_prior,
+    inference_model = inference_model,
     inference_param = inference_param
   )
 

@@ -62,8 +62,6 @@ test_that("generative only", {
   expect_true("log_filename" %in% names(errors))
   expect_true("trees_filename" %in% names(errors))
   expect_true("state_filename" %in% names(errors))
-
-  skip("TODO: fix Issue #23")
   expect_false(is.na(errors$input_filename))
   expect_false(is.na(errors$log_filename))
   expect_false(is.na(errors$trees_filename))

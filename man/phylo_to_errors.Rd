@@ -4,23 +4,14 @@
 \alias{phylo_to_errors}
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
-phylo_to_errors(phylogeny, alignment_params, site_model, clock_model,
-  tree_prior, inference_param)
+phylo_to_errors(phylogeny, alignment_params, inference_model,
+  inference_param)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
-
-\item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
-
-\item{clock_model}{a clock model,
-as created by \link[beautier]{create_clock_model}}
-
-\item{tree_prior}{a tree prior,
-as created by \link[beautier]{create_tree_prior}}
 
 \item{inference_param}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_param}.

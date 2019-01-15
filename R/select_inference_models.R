@@ -73,6 +73,10 @@ select_inference_models <- function(
     check_model_select_param(model_select_param) # nolint pirouette function
 
     inference_model <- list()
+    inference_model$input_filename <- tempfile(fileext = ".xml")
+    inference_model$log_filename <- tempfile(fileext = ".log")
+    inference_model$trees_filename <- tempfile(fileext = ".trees")
+    inference_model$state_filename <- tempfile(fileext = ".xml.state")
 
     if (model_select_param$type == "generative") {
       # Pick the one from the alignment
@@ -101,7 +105,7 @@ select_inference_models <- function(
         marg_liks$tree_prior_name[best_row_index]
       )
     }
-    testit::assert(beautier::is_tree_prior(inference_model$tree_prior))
+    check_inference_model(inference_model)
     inference_models[[i]] <- inference_model
   }
   testit::assert(length(inference_models) == length(model_select_params))

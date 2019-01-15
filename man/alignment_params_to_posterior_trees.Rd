@@ -4,58 +4,17 @@
 \alias{alignment_params_to_posterior_trees}
 \title{Creates a posterior of phylogenies from a known alignment.}
 \usage{
-alignment_params_to_posterior_trees(alignment_params, site_model,
-  clock_model, tree_prior, inference_param,
-  beast2_input_filename = tempfile(fileext = ".xml"),
-  beast2_output_log_filename = tempfile(fileext = "log"),
-  beast2_output_trees_filenames = tempfile(fileext = ".trees"),
-  beast2_output_state_filename = tempfile(fileext = ".xml.state"))
+alignment_params_to_posterior_trees(alignment_params, inference_model,
+  inference_param)
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
-\item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
-
-\item{clock_model}{a clock model,
-as created by \link[beautier]{create_clock_model}}
-
-\item{tree_prior}{a tree prior,
-as created by \link[beautier]{create_tree_prior}}
-
 \item{inference_param}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
-
-\item{beast2_input_filename}{path of the BEAST2 configuration file.
-By default, this file is put in a temporary folder with a random filename,
-as the user needs not read it: it is used as input of BEAST2.
-Specifying a \code{beast2_input_filename} allows
-to store that file in a more permanently stored location.}
-
-\item{beast2_output_log_filename}{name of the log file created by BEAST2,
-containing the parameter estimates in time.
-By default, this file is put a temporary folder with a random filename,
-as the user needs not read it.
-Specifying a beast2_output_log_filename allows to store that file
-in a more permanently stored location.}
-
-\item{beast2_output_trees_filenames}{name of the one or more trees files
-created by BEAST2, one per alignment.
-By default, these files are put a temporary folder with a random filename,
-as the user needs not read it: its content is parsed and
-compared to a true phylogeny to obtain the inference errors.
-Specifying \code{beast2_output_trees_filenames} allows to store
-these one or more files in a more permanently stored location.}
-
-\item{beast2_output_state_filename}{name of the final state file
-created by BEAST2, containing the operator acceptances.
-By default, this file is put a temporary folder with a random filename,
-as the user needs not read it.
-Specifying a beast2_output_state_filename allows to store
-that file in a more permanently stored location.}
 }
 \value{
 a list of:

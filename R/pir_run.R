@@ -47,7 +47,7 @@ pir_run <- function(
     twin_tree <- create_twin_tree(phylogeny)
     ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
     twin_alignment_params <- alignment_params
-    twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename
+    twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
 
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
@@ -107,26 +107,18 @@ pir_run_tree <- function(
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
-  testit::assert(
-    all(c("site_model", "clock_model", "tree_prior") %in%
-    names(inference_models[[1]]))
-  )
+  check_inference_model(inference_models[[1]])
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(inference_models)) {
     inference_model <- inference_models[[i]]
-    testit::assert(
-      all(c("site_model", "clock_model", "tree_prior") %in%
-      names(inference_model))
-    )
+    check_inference_model(inference_model)
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      site_model = inference_model$site_model,
-      clock_model = inference_model$clock_model,
-      tree_prior = inference_model$tree_prior,
+      inference_model = inference_model,
       inference_param = inference_param
     )
   }
@@ -161,6 +153,11 @@ pir_run_tree <- function(
     df$site_model[i] <- inference_model$site_model$name
     df$clock_model[i] <- inference_model$clock_model$name
     df$tree_prior[i] <- inference_model$tree_prior$name
+
+    df$input_filename[i] <- inference_model$input_filename
+    df$log_filename[i] <- inference_model$log_filename
+    df$trees_filename[i] <- inference_model$trees_filename
+    df$state_filename[i] <- inference_model$state_filename
 
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts
