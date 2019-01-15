@@ -1,22 +1,5 @@
 context("utils")
 
-load_tree <- function(model = "mbd", seed = 1) {
-  filename <- system.file(
-    file.path(
-      "extdata",
-      "models",
-      model
-    ),
-    paste0("tree_", seed),
-    package = "pirouette"
-  )
-  if (!file.exists(filename)) {
-    stop("This file does not exist! Try with different model name and/or seed.")
-  }
-  tree <- ape::read.tree(file = filename)
-  tree
-}
-
 test_that("get_site_models", {
   expect_true(
     length(get_site_models()) > 0 # nolint internal function
@@ -37,9 +20,9 @@ test_that("get_clock_models", {
 
 test_that("bd_phylo_2_l_table", {
 
-  mbd_tree <- load_tree(model = "mbd", seed = 1)
+  phylogeny <- load_tree(tree_model = "mbd", seed = 1)
   bd_sim <- create_bd_tree(
-    mbd_tree = mbd_tree,
+    phylogeny = phylogeny,
     seed = 1
   )
   bd_tree <- bd_sim$bd_tree

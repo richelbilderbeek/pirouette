@@ -8,7 +8,7 @@
 #'   \item \code{estimates}: the BEAST2 estimates, as a \link{data.frame}
 #' }
 #' @author Richel J.C. Bilderbeek
-alignment_params_to_posterior_trees <- function( # nolint indeed a long name
+alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
   inference_model,
   inference_param
