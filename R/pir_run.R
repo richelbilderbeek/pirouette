@@ -163,7 +163,8 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
-        "Actual value: ", msg
+        "Error message: ", msg, "\n",
+        "Actual value: ", alignment_params
       )
       stop(msg)
     }
@@ -173,7 +174,8 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'inference_param' must be a set of inference parameters.\n",
-        "Actual value: ", msg
+        "Error message: ", msg, "\n",
+        "Actual value: ", inference_param
       )
       stop(msg)
     }
@@ -184,7 +186,8 @@ pir_run_check_inputs <- function(
       msg <- paste0(
         "'model_select_params' must be a list of one or more model selection ",
         "parameters sets.\n",
-        "Actual value: ", msg
+        "Error message: ", msg, "\n",
+        "Actual value: ", model_select_params
       )
       stop(msg)
     }
