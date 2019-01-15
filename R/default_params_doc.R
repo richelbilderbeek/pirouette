@@ -68,6 +68,8 @@
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
+#' @param marg_lik_filename name of the file the marginal
+#'   likelihoods (also known as 'evidences') are saved to
 #' @param marg_liks a data frame with marginal likelihoods/evidences.
 #'   A test data frame can be created by \link{create_test_marg_liks}
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
@@ -172,6 +174,7 @@ default_params_doc <- function(
   init_speciation_rate,
   init_extinction_rate,
   lambda,
+  marg_lik_filename,
   marg_liks,
   mbd_l_matrix,
   mbd_mutation_rate,

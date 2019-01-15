@@ -12,15 +12,16 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   chain_length, clock_model, clock_models, clock_model_name, crown_age,
   epsilon, fasta_filename, filename, folder_name, inference_model,
   inference_param, init_speciation_rate, init_extinction_rate, lambda,
-  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
-  model_selection, model_select_param, model_select_params, mrca_prior, mu,
-  mutation_rate, nu, nu_events, parameter_filename, parameters_filename,
-  phylo, phylogeny, posterior_trees, precision, project_folder_name,
-  root_sequence, sample_interval, seed, sequence_length, sim_pars,
-  sim_phylo, site_model, site_models, site_model_name, sub_chain_length,
-  tree, tree_filename, tree_prior, tree_priors, tree_prior_name, tree_type,
-  trees_filename, twin_alignment_filename, twin_tree_filename,
-  twinning_params, type, verbose)
+  marg_lik_filename, marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
+  mcmc, model_selection, model_select_param, model_select_params,
+  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_prior,
+  tree_priors, tree_prior_name, tree_type, trees_filename,
+  twin_alignment_filename, twin_tree_filename, twinning_params, type,
+  verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -117,6 +118,9 @@ R package, that calls the phylogenetic tool \code{BEAST2}.}
 \item{init_extinction_rate}{an extinction rate}
 
 \item{lambda}{per-lineage speciation rate}
+
+\item{marg_lik_filename}{name of the file the marginal
+likelihoods (also known as 'evidences') are saved to}
 
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}

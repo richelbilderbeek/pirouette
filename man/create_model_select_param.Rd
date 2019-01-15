@@ -31,6 +31,9 @@ as created by \link[beautier]{create_tree_prior}}
 evidence (also known as marginal likelihood).
 Smaller values result in more precise estimations, that take
 longer to compute}
+
+\item{marg_lik_filename}{name of the file the marginal
+likelihoods (also known as 'evidences') are saved to}
 }
 \description{
 Determine the strategy to select between multiple models to
