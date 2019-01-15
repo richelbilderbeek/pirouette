@@ -70,7 +70,7 @@ select_inference_models <- function(
   inference_models <- list()
   for (i in seq_along(model_select_params)) {
     model_select_param <- model_select_params[[i]]
-    check_model_select_param(model_select_param)
+    check_model_select_param(model_select_param) # nolint pirouette function
 
     inference_model <- list()
 

@@ -19,7 +19,7 @@ alignment_params_to_posterior_trees <- function( # nolint indeed a long name
   beast2_output_trees_filenames = tempfile(fileext = ".trees"),
   beast2_output_state_filename = tempfile(fileext = ".xml.state")
 ) {
-  check_alignment_params(alignment_params)
+  check_alignment_params(alignment_params) # nolint pirouette function
   tryCatch(
     check_inference_param(inference_param),
     error = function(msg) {

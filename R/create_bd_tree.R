@@ -11,7 +11,7 @@ create_bd_tree <- function(
 ) {
   age  <- beautier:::get_phylo_crown_age(mbd_tree)
   mbd_brts <- sort(
-    convert_tree2brts(mbd_tree),
+    convert_tree2brts(mbd_tree), # nolint pirouette function
     decreasing = TRUE
   )
   n_tips <- ape::Ntip(mbd_tree)
@@ -56,7 +56,7 @@ create_bd_tree <- function(
     age = age,
     MRCA = TRUE
   )[[1]]
-  bd_brts0 <- convert_tree2brts(bd_tree0) # nolint internal function
+  bd_brts0 <- convert_tree2brts(bd_tree0) # nolint pirouette function
 
   bd_tree <- combine_brts_and_topology(
     brts = bd_brts0,

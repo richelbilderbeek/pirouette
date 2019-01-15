@@ -14,6 +14,6 @@ check_model_select_params <- function(
     stop("'model_select_params' must be a list")
   }
   for (model_select_param in model_select_params) {
-    check_model_select_param(model_select_param)
+    check_model_select_param(model_select_param) # nolint pirouette function
   }
 }

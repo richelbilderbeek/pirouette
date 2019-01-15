@@ -27,7 +27,7 @@ sim_alignment <- function(
     stop("phylogeny must not contain extant species")
   }
   tryCatch(
-    check_alignment_params(alignment_params),
+    check_alignment_params(alignment_params),  # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters. ",
