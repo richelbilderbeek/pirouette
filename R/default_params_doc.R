@@ -119,6 +119,8 @@
 #' @param tree_priors a list of one or more tree priors,
 #'   as created by \link[beautier]{create_tree_prior}
 #' @param tree_prior_name name of a tree prior
+#' @param tree_type type of tree, can be \code{true} for the true
+#'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
 #' @param trees_filename name of the BEAST2 posterior phylogenies file
 #' @param twinning_params can be \code{NA} if no twinning is desired,
@@ -195,6 +197,7 @@ default_params_doc <- function(
   tree_filename,
   tree_prior, tree_priors,
   tree_prior_name,
+  tree_type,
   trees_filename,
   twinning_params,
   type,

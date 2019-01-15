@@ -75,6 +75,7 @@ pir_run_tree <- function(
   model_select_params = list(create_gen_model_select_param(alignment_params)),
   inference_param # The shared BEAST2 setup parameters
 ) {
+  testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     fasta_filename = alignment_params$fasta_filename,

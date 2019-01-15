@@ -18,7 +18,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   posterior_trees, precision, project_folder_name, root_sequence,
   sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
   site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_prior, tree_priors, tree_prior_name, trees_filename,
+  tree_prior, tree_priors, tree_prior_name, tree_type, trees_filename,
   twinning_params, type, verbose)
 }
 \arguments{
@@ -202,6 +202,9 @@ as created by \link[beautier]{create_tree_prior}}
 as created by \link[beautier]{create_tree_prior}}
 
 \item{tree_prior_name}{name of a tree prior}
+
+\item{tree_type}{type of tree, can be \code{true} for the true
+phylogeny, and \code{twin} for its twin tree}
 
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
 

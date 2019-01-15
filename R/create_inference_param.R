@@ -16,6 +16,8 @@ create_inference_param <- function(
   beast2_path = beastier::get_default_beast2_path(),
   verbose = FALSE
 ) {
+  beautier::check_mcmc(mcmc)
+  beautier::check_mrca_prior(mrca_prior)
   inference_param <- list(
     mrca_prior = mrca_prior,
     mcmc = mcmc,

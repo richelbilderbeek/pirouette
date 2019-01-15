@@ -11,6 +11,9 @@ pir_run_tree(phylogeny, tree_type = "true", alignment_params,
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
+\item{tree_type}{type of tree, can be \code{true} for the true
+phylogeny, and \code{twin} for its twin tree}
+
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
