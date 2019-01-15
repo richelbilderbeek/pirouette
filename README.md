@@ -20,12 +20,28 @@ The heavy lifting is done by these packages:
 
 If you use the `devtools` R package, this is easy:
 
-```
+```{r}
 devtools::install_github("KlausVigo/phangorn", ref = "devel")
 devtools::install_github("richelbilderbeek/pirouette")
 ```
 
-To install BEAST2, see [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md).
+To install the non-CRAN prerequisites, do this:
+
+```{r}
+devtools::install_github("ropensci/beautier")
+devtools::install_github("ropensci/tracerer")
+devtools::install_github("ropensci/beastier")
+devtools::install_github("ropensci/mauricer")
+devtools::install_github("ropensci/babette")
+devtools::install_github("richelbilderbeek/mcbette")
+```
+
+To install BEAST2, see [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md)
+or use:
+
+```{r}
+beastier::install_beast2()
+```
 
 ## [FAQ](docs/faq.md)
 
