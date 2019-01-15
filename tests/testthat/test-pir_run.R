@@ -162,3 +162,42 @@ test_that("generative and most_evidence, generative in most_evidence", {
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
 })
+
+test_that("generative with twin", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    mutation_rate = 0.01
+  )
+  twinning_params <- create_twinning_params()
+
+  # Remove files, just to be sure
+  file.remove(twinning_params$twin_tree_filename)
+  file.remove(twinning_params$twin_alignent_filename)
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    twinning_params = twinning_params,
+    alignment_params = alignment_params,
+    model_select_params = list(
+      create_gen_model_select_param(
+        alignment_params = alignment_params
+      )
+    ),
+    inference_param = create_inference_param(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    )
+  )
+
+  expect_true("tree" %in% names(errors))
+  expect_true(is.factor(errors$tree))
+  expect_true("true" %in% errors$tree)
+  expect_true("twin" %in% errors$tree)
+
+  # Files created
+  testit::assert(file.exists(twinning_params$twin_tree_filename))
+  skip("TODO: fix Issue #23")
+  testit::assert(file.exists(twinning_params$twin_alignent_filename))
+})
