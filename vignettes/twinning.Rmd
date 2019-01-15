@@ -72,7 +72,7 @@ model_select_params <- list(gen_model_select_param, best_model_select_param)
 
 ```{r}
 inference_param <- pirouette::create_inference_param(
-  mrca_prior = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
+  mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
   rng_seed = 42
 )
 ```
