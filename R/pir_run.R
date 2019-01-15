@@ -45,8 +45,9 @@ pir_run <- function(
   # Run for the twin tree
   if (!beautier:::is_one_na(twinning_params)) {
     twin_tree <- create_twin_tree(phylogeny)
+    ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
     twin_alignment_params <- alignment_params
-    twin_alignment_params$fasta_filename <- twinning_params$twin_tree_filename
+    twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename
 
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,

@@ -23,7 +23,6 @@ test_that("generative only", {
     )
   )
   # Files created
-  # Alignment
   testit::assert(file.exists(alignment_params$fasta_filename))
 
   # Return value
@@ -175,7 +174,7 @@ test_that("generative with twin", {
 
   # Remove files, just to be sure
   file.remove(twinning_params$twin_tree_filename)
-  file.remove(twinning_params$twin_alignent_filename)
+  file.remove(twinning_params$twin_alignment_filename)
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -191,13 +190,13 @@ test_that("generative with twin", {
     )
   )
 
+  # Files created
+  testit::assert(file.exists(twinning_params$twin_tree_filename))
+  testit::assert(file.exists(twinning_params$twin_alignment_filename))
+
+  # Return value
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
   expect_true("twin" %in% errors$tree)
-
-  # Files created
-  testit::assert(file.exists(twinning_params$twin_tree_filename))
-  skip("TODO: fix Issue #23")
-  testit::assert(file.exists(twinning_params$twin_alignent_filename))
 })

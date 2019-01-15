@@ -23,7 +23,7 @@ create_twinning_params(...)$twin_tree_filename
 ### Where is the twin alignment created by `pirouette` stored?
 
 ```{r}
-create_twinning_params(...)$twin_alignent_filename
+create_twinning_params(...)$twin_alignment_filename
 ```
 
 ### Where are the BEAST2 input (`.xml`) files created by `pirouette` stored?
