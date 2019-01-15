@@ -6,15 +6,15 @@
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_bd_tree <- function(
-  mbd_tree,
+  phylogeny,
   seed
 ) {
-  age  <- beautier:::get_phylo_crown_age(mbd_tree)
+  age  <- beautier:::get_phylo_crown_age(phylogeny)
   mbd_brts <- sort(
-    convert_tree2brts(mbd_tree),
+    convert_tree2brts(phylogeny),
     decreasing = TRUE
   )
-  n_tips <- ape::Ntip(mbd_tree)
+  n_tips <- ape::Ntip(phylogeny)
   soc <- 1 + n_tips - length(mbd_brts)
   testit::assert(soc == 1 | soc == 2)
   difference <- log(n_tips) / age
@@ -60,7 +60,7 @@ create_bd_tree <- function(
 
   bd_tree <- combine_brts_and_topology(
     brts = bd_brts0,
-    tree = mbd_tree
+    tree = phylogeny
   )
 
   bd_l_matrix <- bd_phylo_2_l_table(bd_tree) # nolint
