@@ -13,7 +13,7 @@ pir_run(phylogeny, twinning_params = NA, alignment_params,
 
 \item{twinning_params}{can be \code{NA} if no twinning is desired,
 or can be the twinning parameters,
-as can be created by \link{create_twinning_param}}
+as can be created by \link{create_twinning_params}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}

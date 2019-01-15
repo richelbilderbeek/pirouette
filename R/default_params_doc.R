@@ -125,7 +125,7 @@
 #' @param trees_filename name of the BEAST2 posterior phylogenies file
 #' @param twinning_params can be \code{NA} if no twinning is desired,
 #'   or can be the twinning parameters,
-#'   as can be created by \link{create_twinning_param}
+#'   as can be created by \link{create_twinning_params}
 #' @param type one or more ways to select the models used in inference:
 #'   \itemize{
 #'     \item \code{"generative"}: pick the generative model

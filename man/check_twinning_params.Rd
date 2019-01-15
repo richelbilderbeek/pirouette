@@ -11,7 +11,7 @@ check_twinning_params(twinning_params)
 \arguments{
 \item{twinning_params}{can be \code{NA} if no twinning is desired,
 or can be the twinning parameters,
-as can be created by \link{create_twinning_param}}
+as can be created by \link{create_twinning_params}}
 }
 \value{
 nothing. Will \link{stop} if nit
