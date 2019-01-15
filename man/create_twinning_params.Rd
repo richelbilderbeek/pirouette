@@ -14,6 +14,12 @@ create_twinning_params(rng_seed = 0,
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the
 simulation of a twin tree}
+
+\item{twin_tree_filename}{name of the (\code{.newick}) file the twin
+tree will be saved to}
+
+\item{twin_alignment_filename}{name of the FASTA file the twin
+alignment will be saved to}
 }
 \value{
 a twinning parameter set
