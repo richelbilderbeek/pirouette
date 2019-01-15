@@ -13,9 +13,13 @@ alignment_params_to_posterior_trees <- function( # nolint indeed a long name
   site_model,
   clock_model,
   tree_prior,
-  inference_param
+  inference_param,
+  beast2_input_filename = tempfile(fileext = ".xml"),
+  beast2_output_log_filename = tempfile(fileext = "log"),
+  beast2_output_trees_filenames = tempfile(fileext = ".trees"),
+  beast2_output_state_filename = tempfile(fileext = ".xml.state")
 ) {
-  check_alignment_params(alignment_params)
+  check_alignment_params(alignment_params) # nolint pirouette function
   tryCatch(
     check_inference_param(inference_param),
     error = function(msg) {
@@ -36,6 +40,10 @@ alignment_params_to_posterior_trees <- function( # nolint indeed a long name
     mcmc = inference_param$mcmc,
     rng_seed = inference_param$rng_seed,
     verbose = inference_param$verbose,
+    beast2_input_filename = beast2_input_filename,
+    beast2_output_log_filename = beast2_output_log_filename,
+    beast2_output_trees_filenames = beast2_output_trees_filenames,
+    beast2_output_state_filename = beast2_output_state_filename,
     beast2_path = inference_param$beast2_path
   )
 

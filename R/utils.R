@@ -46,7 +46,7 @@ bd_phylo_2_l_table <- function(
   l_names <- c("birth_time", "parent", "id", "death_time")
 
   # compute the relative branching times
-  brt <- convert_tree2brts(phylo)
+  brt <- convert_tree2brts(phylo) # nolint pirouette function
 
   if (min(brt) < 0) {
     brt <- brt + abs(min(brt))

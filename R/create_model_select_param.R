@@ -106,7 +106,7 @@ create_gen_model_select_param <- function(
   alignment_params,
   tree_prior = beautier::create_bd_tree_prior()
 ) {
-  check_alignment_params(alignment_params)
+  check_alignment_params(alignment_params) # nolint pirouette function
   beautier::check_tree_prior(tree_prior)
   model_select_param <- create_model_select_param(
     type = "generative",

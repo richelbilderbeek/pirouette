@@ -4,12 +4,10 @@
 \alias{create_twin_tree}
 \title{Create a twin tree}
 \usage{
-create_twin_tree(phylogeny, seed)
+create_twin_tree(phylogeny)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
-
-\item{seed}{a random number generator seed}
 }
 \description{
 Create a twin tree
