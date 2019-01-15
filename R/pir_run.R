@@ -33,7 +33,48 @@ pir_run <- function(
     model_select_params = model_select_params,
     inference_param = inference_param
   )
+  # Run for the true tree
+  df <- pir_run_tree(
+    phylogeny = phylogeny,
+    tree_type = "true",
+    alignment_params = alignment_params,
+    model_select_params = model_select_params,
+    inference_param = inference_param
+  )
 
+  # Run for the twin tree
+  if (!is.na(twinning_params)) {
+    twin_tree <- create_twin_tree(phylogeny)
+    twin_alignment_params <- alignment_params
+    alignment_params$fasta_filename <- twinning_params$twin_tree_filename
+
+    df_twin <- pir_run_tree(
+      phylogeny = twin_tree,
+      tree_type = "twin",
+      alignment_params = twin_alignment_params,
+      model_select_params = model_select_params,
+      inference_param = inference_param
+    )
+    df <- rbind(df, df_twin)
+  }
+  df
+}
+
+#' Measure the error BEAST2 makes from a phylogeny
+#'
+#' The phylogeny can be the true tree or its twin.
+#' @inheritParams default_params_doc
+#' @return a data frame with errors, with as many rows as model selection
+#'   parameter sets
+#' @export
+#' @author Richel J.C. Bilderbeek
+pir_run_tree <- function(
+  phylogeny,
+  tree_type = "true",
+  alignment_params,
+  model_select_params = list(create_gen_model_select_param(alignment_params)),
+  inference_param # The shared BEAST2 setup parameters
+) {
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     fasta_filename = alignment_params$fasta_filename,
@@ -107,7 +148,7 @@ pir_run <- function(
     inference_model <- inference_models[[i]]
     nltts <- errorses[[i]]
 
-    df$tree[i] <- "true"
+    df$tree[i] <- tree_type
     df$inference_model[i] <- model_select_param$type
     df$inference_model_weight[i] <- NA
     df$site_model[i] <- inference_model$site_model$name

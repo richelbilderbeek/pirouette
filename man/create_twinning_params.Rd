@@ -8,7 +8,8 @@ their combination will be called the generative model
 of the twinning}
 \usage{
 create_twinning_params(rng_seed = 0,
-  twin_tree_filename = tempfile(fileext = ".newick"))
+  twin_tree_filename = tempfile(fileext = ".newick"),
+  twin_alignent_filename = tempfile(fileext = ".fasta"))
 }
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the

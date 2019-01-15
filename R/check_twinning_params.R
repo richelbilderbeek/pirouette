@@ -7,7 +7,9 @@
 check_twinning_params <- function(
   twinning_params
 ) {
-  argument_names <- c("rng_seed", "twin_tree_filename")
+  argument_names <- c(
+    "rng_seed", "twin_tree_filename", "twin_alignent_filename"
+  )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(twinning_params)) {
       stop(
@@ -21,6 +23,9 @@ check_twinning_params <- function(
   }
   if (!is.character(twinning_params$twin_tree_filename)) {
     stop("'twin_tree_filename' must be a character vector")
+  }
+  if (!is.character(twinning_params$twin_alignent_filename)) {
+    stop("'twin_alignent_filename' must be a character vector")
   }
 
 }
