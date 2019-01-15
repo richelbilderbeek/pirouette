@@ -23,7 +23,7 @@ create_alignment_params <- function(
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,
-  fasta_filename = tempfile(pattern = "pirouette_", fileext = ".fasta")
+  fasta_filename = tempfile(fileext = ".fasta")
 ) {
   alignment_params <- list(
     root_sequence = root_sequence,

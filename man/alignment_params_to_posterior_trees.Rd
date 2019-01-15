@@ -11,6 +11,10 @@ alignment_params_to_posterior_trees(alignment_params, inference_model,
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
+
 \item{inference_param}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}

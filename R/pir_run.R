@@ -21,6 +21,7 @@
 #' @author Richel J.C. Bilderbeek
 pir_run <- function(
   phylogeny,
+  twinning_params = NA,
   alignment_params,
   model_select_params = list(create_gen_model_select_param(alignment_params)),
   inference_param # The shared BEAST2 setup parameters
@@ -32,7 +33,50 @@ pir_run <- function(
     model_select_params = model_select_params,
     inference_param = inference_param
   )
+  # Run for the true tree
+  df <- pir_run_tree(
+    phylogeny = phylogeny,
+    tree_type = "true",
+    alignment_params = alignment_params,
+    model_select_params = model_select_params,
+    inference_param = inference_param
+  )
 
+  # Run for the twin tree
+  if (!beautier:::is_one_na(twinning_params)) {
+    twin_tree <- create_twin_tree(phylogeny)
+    ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
+    twin_alignment_params <- alignment_params
+    twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
+
+    df_twin <- pir_run_tree(
+      phylogeny = twin_tree,
+      tree_type = "twin",
+      alignment_params = twin_alignment_params,
+      model_select_params = model_select_params,
+      inference_param = inference_param
+    )
+    df <- rbind(df, df_twin)
+  }
+  df
+}
+
+#' Measure the error BEAST2 makes from a phylogeny
+#'
+#' The phylogeny can be the true tree or its twin.
+#' @inheritParams default_params_doc
+#' @return a data frame with errors, with as many rows as model selection
+#'   parameter sets
+#' @export
+#' @author Richel J.C. Bilderbeek
+pir_run_tree <- function(
+  phylogeny,
+  tree_type = "true",
+  alignment_params,
+  model_select_params = list(create_gen_model_select_param(alignment_params)),
+  inference_param # The shared BEAST2 setup parameters
+) {
+  testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     fasta_filename = alignment_params$fasta_filename,
@@ -53,6 +97,9 @@ pir_run <- function(
         epsilon = model_select_param$epsilon,
         verbose = model_select_param$verbose
       )
+      utils::write.csv(
+        x = marg_liks, file = model_select_param$marg_lik_filename
+      )
     }
   }
 
@@ -63,26 +110,18 @@ pir_run <- function(
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
-  testit::assert(
-    all(c("site_model", "clock_model", "tree_prior") %in%
-    names(inference_models[[1]]))
-  )
+  check_inference_model(inference_models[[1]])
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(inference_models)) {
     inference_model <- inference_models[[i]]
-    testit::assert(
-      all(c("site_model", "clock_model", "tree_prior") %in%
-      names(inference_model))
-    )
+    check_inference_model(inference_model)
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      site_model = inference_model$site_model,
-      clock_model = inference_model$clock_model,
-      tree_prior = inference_model$tree_prior,
+      inference_model = inference_model,
       inference_param = inference_param
     )
   }
@@ -96,8 +135,13 @@ pir_run <- function(
     inference_model_weight = rep(NA, n_rows),
     site_model = rep(NA, n_rows),
     clock_model = rep(NA, n_rows),
-    tree_prior = rep(NA, n_rows)
+    tree_prior = rep(NA, n_rows),
+    input_filename = rep(NA, n_rows),
+    log_filename = rep(NA, n_rows),
+    trees_filename = rep(NA, n_rows),
+    state_filename = rep(NA, n_rows)
   )
+
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
   df[, error_col_names] <- NA
 
@@ -106,12 +150,17 @@ pir_run <- function(
     inference_model <- inference_models[[i]]
     nltts <- errorses[[i]]
 
-    df$tree[i] <- "true"
+    df$tree[i] <- tree_type
     df$inference_model[i] <- model_select_param$type
     df$inference_model_weight[i] <- NA
     df$site_model[i] <- inference_model$site_model$name
     df$clock_model[i] <- inference_model$clock_model$name
     df$tree_prior[i] <- inference_model$tree_prior$name
+
+    df$input_filename[i] <- inference_model$input_filename
+    df$log_filename[i] <- inference_model$log_filename
+    df$trees_filename[i] <- inference_model$trees_filename
+    df$state_filename[i] <- inference_model$state_filename
 
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts
@@ -163,7 +212,8 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
-        "Actual value: ", msg
+        "Error message: ", msg, "\n",
+        "Actual value: ", alignment_params
       )
       stop(msg)
     }
@@ -173,7 +223,8 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'inference_param' must be a set of inference parameters.\n",
-        "Actual value: ", msg
+        "Error message: ", msg, "\n",
+        "Actual value: ", inference_param
       )
       stop(msg)
     }
@@ -184,7 +235,8 @@ pir_run_check_inputs <- function(
       msg <- paste0(
         "'model_select_params' must be a list of one or more model selection ",
         "parameters sets.\n",
-        "Actual value: ", msg
+        "Error message: ", msg, "\n",
+        "Actual value: ", model_select_params
       )
       stop(msg)
     }

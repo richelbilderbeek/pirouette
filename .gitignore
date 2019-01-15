@@ -31,3 +31,4 @@ tests/testthat/*.trees
 vignettes/*.html
 vignettes/*.R
 *.trees
+*.posterior.log

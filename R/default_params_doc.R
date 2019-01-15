@@ -58,6 +58,9 @@
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
+#' @param inference_model an inference model, which is a combination
+#'   of site model, clock model, tree prior and BEAST2 input and
+#'   input filenames.
 #' @param inference_param one set of parameters for the Bayesian inference,
 #'   as can be created by \link{create_inference_param}.
 #'   The Bayesian inference is handled by the \link[babette]{babette}
@@ -65,6 +68,8 @@
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
+#' @param marg_lik_filename name of the file the marginal
+#'   likelihoods (also known as 'evidences') are saved to
 #' @param marg_liks a data frame with marginal likelihoods/evidences.
 #'   A test data frame can be created by \link{create_test_marg_liks}
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
@@ -120,8 +125,17 @@
 #' @param tree_priors a list of one or more tree priors,
 #'   as created by \link[beautier]{create_tree_prior}
 #' @param tree_prior_name name of a tree prior
+#' @param tree_type type of tree, can be \code{true} for the true
+#'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
 #' @param trees_filename name of the BEAST2 posterior phylogenies file
+#' @param twin_alignment_filename name of the FASTA file the twin
+#'   alignment will be saved to
+#' @param twin_tree_filename  name of the (\code{.newick}) file the twin
+#'   tree will be saved to
+#' @param twinning_params can be \code{NA} if no twinning is desired,
+#'   or can be the twinning parameters,
+#'   as can be created by \link{create_twinning_params}
 #' @param type one or more ways to select the models used in inference:
 #'   \itemize{
 #'     \item \code{"generative"}: pick the generative model
@@ -156,10 +170,12 @@ default_params_doc <- function(
   fasta_filename,
   filename,
   folder_name,
+  inference_model,
   inference_param,
   init_speciation_rate,
   init_extinction_rate,
   lambda,
+  marg_lik_filename,
   marg_liks,
   mbd_l_matrix,
   mbd_mutation_rate,
@@ -194,7 +210,11 @@ default_params_doc <- function(
   tree_model,
   tree_prior, tree_priors,
   tree_prior_name,
+  tree_type,
   trees_filename,
+  twin_alignment_filename,
+  twin_tree_filename,
+  twinning_params,
   type,
   verbose
 ) {

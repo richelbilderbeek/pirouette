@@ -10,16 +10,18 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
   chain_length, clock_model, clock_models, clock_model_name, crown_age,
-  epsilon, fasta_filename, filename, folder_name, inference_param,
-  init_speciation_rate, init_extinction_rate, lambda, marg_liks,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, model_selection,
-  model_select_param, model_select_params, mrca_prior, mu, mutation_rate,
-  nu, nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
-  posterior_trees, precision, project_folder_name, root_sequence,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, trees_filename,
-  type, verbose)
+  epsilon, fasta_filename, filename, folder_name, inference_model,
+  inference_param, init_speciation_rate, init_extinction_rate, lambda,
+  marg_lik_filename, marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
+  mcmc, model_selection, model_select_param, model_select_params,
+  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_model, tree_prior,
+  tree_priors, tree_prior_name, tree_type, trees_filename,
+  twin_alignment_filename, twin_tree_filename, twinning_params, type,
+  verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -102,6 +104,10 @@ longer to compute}
 
 \item{folder_name}{name of the main folder}
 
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
+
 \item{inference_param}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
@@ -112,6 +118,9 @@ R package, that calls the phylogenetic tool \code{BEAST2}.}
 \item{init_extinction_rate}{an extinction rate}
 
 \item{lambda}{per-lineage speciation rate}
+
+\item{marg_lik_filename}{name of the file the marginal
+likelihoods (also known as 'evidences') are saved to}
 
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}
@@ -205,7 +214,20 @@ as created by \link[beautier]{create_tree_prior}}
 
 \item{tree_prior_name}{name of a tree prior}
 
+\item{tree_type}{type of tree, can be \code{true} for the true
+phylogeny, and \code{twin} for its twin tree}
+
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
+
+\item{twin_alignment_filename}{name of the FASTA file the twin
+alignment will be saved to}
+
+\item{twin_tree_filename}{name of the (\code{.newick}) file the twin
+tree will be saved to}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 
 \item{type}{one or more ways to select the models used in inference:
 \itemize{

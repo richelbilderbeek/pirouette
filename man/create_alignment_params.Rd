@@ -10,7 +10,7 @@ of the alignment}
 create_alignment_params(root_sequence = "acgt", mutation_rate = 0,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
-  fasta_filename = tempfile(pattern = "pirouette_", fileext = ".fasta"))
+  fasta_filename = tempfile(fileext = ".fasta"))
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
