@@ -8,6 +8,8 @@ test_that("generative only", {
   alignment_params <- create_alignment_params(
     mutation_rate = 0.01
   )
+  file.remove(alignment_params$fasta_filename)
+
   errors <- pir_run(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
@@ -20,6 +22,11 @@ test_that("generative only", {
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
+  # Files created
+  # Alignment
+  testit::assert(file.exists(alignment_params$fasta_filename))
+
+  # Return value
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
@@ -51,6 +58,8 @@ test_that("generative only", {
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+
+
 })
 
 test_that("most_evidence", {
