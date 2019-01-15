@@ -140,8 +140,13 @@ pir_run_tree <- function(
     inference_model_weight = rep(NA, n_rows),
     site_model = rep(NA, n_rows),
     clock_model = rep(NA, n_rows),
-    tree_prior = rep(NA, n_rows)
+    tree_prior = rep(NA, n_rows),
+    input_filename = rep(NA, n_rows),
+    log_filename = rep(NA, n_rows),
+    trees_filename = rep(NA, n_rows),
+    state_filename = rep(NA, n_rows)
   )
+
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
   df[, error_col_names] <- NA
 

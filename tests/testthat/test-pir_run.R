@@ -58,11 +58,16 @@ test_that("generative only", {
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
-  skip("TODO: fix Issue #23")
   expect_true("input_filename" %in% names(errors))
   expect_true("log_filename" %in% names(errors))
   expect_true("trees_filename" %in% names(errors))
   expect_true("state_filename" %in% names(errors))
+
+  skip("TODO: fix Issue #23")
+  expect_false(is.na(errors$input_filename))
+  expect_false(is.na(errors$log_filename))
+  expect_false(is.na(errors$trees_filename))
+  expect_false(is.na(errors$state_filename))
 })
 
 test_that("most_evidence", {
