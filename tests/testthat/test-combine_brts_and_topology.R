@@ -1,25 +1,5 @@
 context("combine_brts_and_topology")
 
-<<<<<<< HEAD
-=======
-load_tree <- function(model = "mbd", seed = 1) {
-  filename <- system.file(
-    file.path(
-      "extdata",
-      "models",
-      model
-    ),
-    paste0("tree_", seed),
-    package = "pirouette"
-  )
-  if (!file.exists(filename)) {
-    stop("This file does not exist! Try with different model name and/or seed.")
-  }
-  tree <- ape::read.tree(file = filename)
-  tree
-}
-
->>>>>>> a42cf5595f931aa81cbd1d0b58618ef63b2e8746
 test_that("check usage with brts coming from the same tree", {
 
   max_seed <- 5
@@ -55,7 +35,7 @@ test_that("all the tree features (but the branching times) are preserved", {
 
   max_seed <- 5
   for (seed in 1:max_seed) {
-    tree <- load_tree(model = "mbd", seed = seed)
+    tree <- load_tree(tree_model = "mbd", seed = seed)
 
     brts <- sort(c(
       age <- max(pirouette:::convert_tree2brts(tree)),
@@ -88,7 +68,7 @@ test_that("all the tree features (but the branching times) are preserved", {
 
 test_that("abuse", {
 
-  tree <- load_tree(model = "mbd", seed = 1)
+  tree <- load_tree(tree_model = "mbd", seed = 1)
   brts0 <- pirouette:::convert_tree2brts(tree)
   brts <- brts0[1:floor(length(brts0) / 2)]
 

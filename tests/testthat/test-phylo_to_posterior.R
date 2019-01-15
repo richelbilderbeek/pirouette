@@ -15,7 +15,7 @@ test_that("use", {
   )
   testthat::expect_true(class(out$trees) == "multiPhylo")
 
-  phylogeny <- load_tree(model = "mbd", seed = 1)
+  phylogeny <- load_tree(tree_model = "mbd", seed = 1)
   out <- phylo_to_posterior(
     phylogeny = phylogeny,
     alignment_params = create_alignment_params(

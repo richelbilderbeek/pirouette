@@ -124,12 +124,12 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-errors <- pir_run(
-  true_phylogeny,
-  alignment_params = alignment_params,
-  model_select_params = model_select_params,
-  inference_param = inference_param
-)
+# errors <- pir_run(
+#   true_phylogeny,
+#   alignment_params = alignment_params,
+#   model_select_params = model_select_params,
+#   inference_param = inference_param
+# )
 ```
 
 Here we show the errors as a table:

@@ -18,7 +18,8 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   posterior_trees, precision, project_folder_name, root_sequence,
   sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
   site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_prior, tree_priors, tree_prior_name, trees_filename, type, verbose)
+  tree_model, tree_prior, tree_priors, tree_prior_name, trees_filename,
+  type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -193,6 +194,8 @@ algorithm to estimate the marginal likelihood}
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 
 \item{tree_filename}{name of the phylogeny file}
+
+\item{tree_model}{model used to simulate the tree}
 
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}

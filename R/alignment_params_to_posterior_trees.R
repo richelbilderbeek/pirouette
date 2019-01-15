@@ -8,18 +8,13 @@
 #'   \item \code{estimates}: the BEAST2 estimates, as a \link{data.frame}
 #' }
 #' @author Richel J.C. Bilderbeek
-alignment_params_to_posterior_trees <- function( # nolint indeed a long name
+alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
-  site_model,
-  clock_model,
-  tree_prior,
-  inference_param,
-  beast2_input_filename = tempfile(fileext = ".xml"),
-  beast2_output_log_filename = tempfile(fileext = "log"),
-  beast2_output_trees_filenames = tempfile(fileext = ".trees"),
-  beast2_output_state_filename = tempfile(fileext = ".xml.state")
+  inference_model,
+  inference_param
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
+  check_inference_model(inference_model) # nolint pirouette function
   tryCatch(
     check_inference_param(inference_param),
     error = function(msg) {
@@ -33,17 +28,17 @@ alignment_params_to_posterior_trees <- function( # nolint indeed a long name
   testit::assert(file.exists(alignment_params$fasta_filename))
   babette_out <- babette::bbt_run(
     fasta_filename = alignment_params$fasta_filename,
-    site_model = site_model,
-    clock_model = clock_model,
-    tree_prior = tree_prior,
+    site_model = inference_model$site_model,
+    clock_model = inference_model$clock_model,
+    tree_prior = inference_model$tree_prior,
     mrca_prior = inference_param$mrca_prior,
     mcmc = inference_param$mcmc,
     rng_seed = inference_param$rng_seed,
     verbose = inference_param$verbose,
-    beast2_input_filename = beast2_input_filename,
-    beast2_output_log_filename = beast2_output_log_filename,
-    beast2_output_trees_filenames = beast2_output_trees_filenames,
-    beast2_output_state_filename = beast2_output_state_filename,
+    beast2_input_filename = inference_model$input_filename,
+    beast2_output_log_filename = inference_model$log_filename,
+    beast2_output_trees_filenames = inference_model$trees_filename,
+    beast2_output_state_filename = inference_model$state_filename,
     beast2_path = inference_param$beast2_path
   )
 

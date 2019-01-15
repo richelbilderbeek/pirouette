@@ -2,12 +2,12 @@
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno
 #' @export
-load_tree <- function(model = "mbd", seed = 1) {
+load_tree <- function(tree_model = "mbd", seed = 1) {
   filename <- system.file(
     file.path(
       "extdata",
       "models",
-      model
+      tree_model
     ),
     paste0("tree_", seed),
     package = "pirouette"
