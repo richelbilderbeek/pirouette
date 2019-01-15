@@ -18,7 +18,8 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   posterior_trees, precision, project_folder_name, root_sequence,
   sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
   site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_prior, tree_priors, tree_prior_name, trees_filename, type, verbose)
+  tree_prior, tree_priors, tree_prior_name, trees_filename,
+  twinning_params, type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -203,6 +204,10 @@ as created by \link[beautier]{create_tree_prior}}
 \item{tree_prior_name}{name of a tree prior}
 
 \item{trees_filename}{name of the BEAST2 posterior phylogenies file}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_param}}
 
 \item{type}{one or more ways to select the models used in inference:
 \itemize{
