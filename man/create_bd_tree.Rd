@@ -5,10 +5,10 @@
 \title{Create an BD twin tree from an MBD tree
 and save it as a file}
 \usage{
-create_bd_tree(phylogeny, seed)
+create_bd_tree(mbd_tree, seed)
 }
 \arguments{
-\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{mbd_tree}{an MBD tree}
 
 \item{seed}{a random number generator seed}
 }

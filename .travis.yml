@@ -43,9 +43,9 @@ script:
   - travis_wait 50 R CMD check *tar.gz
 
 after_success:
-  #- Rscript -e 'lintr::lint_package()'
-  #- Rscript -e 'covr::codecov()'
-  #- Rscript -e 'goodpractice::gp()'
+  - Rscript -e 'lintr::lint_package()'
+  - Rscript -e 'covr::codecov()'
+  - Rscript -e 'goodpractice::gp()'
   #- proselint *.md | egrep -v "typography\.symbols\.curly_quotes"
   # temporarily removed due to CERT_UNTRUSTED
   #- ./scripts/check_dead_links

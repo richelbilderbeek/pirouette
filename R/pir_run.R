@@ -159,7 +159,7 @@ pir_run_check_inputs <- function(
   inference_param
 ) {
   tryCatch(
-    check_alignment_params(alignment_params),
+    check_alignment_params(alignment_params), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
@@ -169,7 +169,7 @@ pir_run_check_inputs <- function(
     }
   )
   tryCatch(
-    check_inference_param(inference_param),
+    check_inference_param(inference_param), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
         "'inference_param' must be a set of inference parameters.\n",
@@ -179,7 +179,7 @@ pir_run_check_inputs <- function(
     }
   )
   tryCatch(
-    check_model_select_params(model_select_params),
+    check_model_select_params(model_select_params), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
         "'model_select_params' must be a list of one or more model selection ",

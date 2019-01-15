@@ -1,5 +1,25 @@
 context("combine_brts_and_topology")
 
+<<<<<<< HEAD
+=======
+load_tree <- function(model = "mbd", seed = 1) {
+  filename <- system.file(
+    file.path(
+      "extdata",
+      "models",
+      model
+    ),
+    paste0("tree_", seed),
+    package = "pirouette"
+  )
+  if (!file.exists(filename)) {
+    stop("This file does not exist! Try with different model name and/or seed.")
+  }
+  tree <- ape::read.tree(file = filename)
+  tree
+}
+
+>>>>>>> a42cf5595f931aa81cbd1d0b58618ef63b2e8746
 test_that("check usage with brts coming from the same tree", {
 
   max_seed <- 5

@@ -2,6 +2,7 @@ context("test-phylo_to_nltts")
 
 test_that("use", {
 
+<<<<<<< HEAD
   n_base_pairs <- 4
   seed <- 1
   phylogeny <- load_tree(model = "mbd", seed = seed)
@@ -67,4 +68,7 @@ test_that("abuse", {
     ),
     "'seed' must be a number"
   )
+=======
+  if (!beastier::is_on_ci()) return()
+>>>>>>> a42cf5595f931aa81cbd1d0b58618ef63b2e8746
 })

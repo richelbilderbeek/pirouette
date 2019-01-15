@@ -10,6 +10,30 @@
 #' @param bd_tree a phylogent of class \link[ape]{phylo},
 #'   created by a Birth Death process
 #' @param bd_tree_filename name of the file that stores a BD twin tree
+#' @param beast2_input_filename path of the BEAST2 configuration file.
+#'   By default, this file is put in a temporary folder with a random filename,
+#'   as the user needs not read it: it is used as input of BEAST2.
+#'   Specifying a \code{beast2_input_filename} allows
+#'   to store that file in a more permanently stored location.
+#' @param beast2_output_log_filename name of the log file created by BEAST2,
+#'   containing the parameter estimates in time.
+#'   By default, this file is put a temporary folder with a random filename,
+#'   as the user needs not read it.
+#'   Specifying a beast2_output_log_filename allows to store that file
+#'   in a more permanently stored location.
+#' @param beast2_output_state_filename name of the final state file
+#'   created by BEAST2, containing the operator acceptances.
+#'   By default, this file is put a temporary folder with a random filename,
+#'   as the user needs not read it.
+#'   Specifying a beast2_output_state_filename allows to store
+#'   that file in a more permanently stored location.
+#' @param beast2_output_trees_filenames	name of the one or more trees files
+#'   created by BEAST2, one per alignment.
+#'   By default, these files are put a temporary folder with a random filename,
+#'   as the user needs not read it: its content is parsed and
+#'   compared to a true phylogeny to obtain the inference errors.
+#'   Specifying \code{beast2_output_trees_filenames} allows to store
+#'   these one or more files in a more permanently stored location.
 #' @param beast2_path Path to the
 #'   BEAST2 jar file (\code{beast.jar})
 #'   or BEAST2 binary file '(\code{beast})'.
@@ -116,6 +140,10 @@ default_params_doc <- function(
   bd_mutation_rate,
   bd_tree,
   bd_tree_filename,
+  beast2_input_filename,
+  beast2_output_log_filename,
+  beast2_output_state_filename,
+  beast2_output_trees_filenames,
   beast2_path,
   beast2_rng_seed,
   brts,

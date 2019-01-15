@@ -65,12 +65,12 @@ select_inference_models <- function(
   model_select_params,
   marg_liks = NULL
 ) {
-  check_model_select_params(model_select_params)
+  check_model_select_params(model_select_params) # nolint pirouette function
 
   inference_models <- list()
   for (i in seq_along(model_select_params)) {
     model_select_param <- model_select_params[[i]]
-    check_model_select_param(model_select_param)
+    check_model_select_param(model_select_param) # nolint pirouette function
 
     inference_model <- list()
 
