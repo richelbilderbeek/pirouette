@@ -119,6 +119,7 @@
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
+#' @param tree_model model used to simulate the tree
 #' @param tree_prior a tree prior,
 #'   as created by \link[beautier]{create_tree_prior}
 #' @param tree_priors a list of one or more tree priors,
@@ -206,6 +207,7 @@ default_params_doc <- function(
   sub_chain_length,
   tree,
   tree_filename,
+  tree_model,
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
