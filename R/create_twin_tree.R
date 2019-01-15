@@ -2,12 +2,9 @@
 #' @inheritParams default_params_doc
 #' @export
 #' @author Richel J.C. Bilderbeek
-create_twin_tree <- function(
-  phylogeny,
-  seed
-) {
+create_twin_tree <- function(phylogeny) {
   create_bd_tree(
-    phylogeny = phylogeny,
-    seed = seed
+    mbd_tree = phylogeny,
+    seed = 42
   )$bd_tree
 }
