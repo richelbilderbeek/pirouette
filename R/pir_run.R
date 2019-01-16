@@ -44,7 +44,7 @@ pir_run <- function(
 
   # Run for the twin tree
   if (!beautier:::is_one_na(twinning_params)) {
-    twin_tree <- create_twin_tree(phylogeny)
+    twin_tree <- create_twin_tree(phylogeny) # nolint beautier function
     ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
     twin_alignment_params <- alignment_params
     twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
@@ -110,13 +110,13 @@ pir_run_tree <- function(
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
-  check_inference_model(inference_models[[1]])
+  check_inference_model(inference_models[[1]]) # nolint pirouette function
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(inference_models)) {
     inference_model <- inference_models[[i]]
-    check_inference_model(inference_model)
+    check_inference_model(inference_model) # nolint pirouette function
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
