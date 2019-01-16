@@ -7,7 +7,8 @@
 check_inference_model(x)
 }
 \arguments{
-\item{x}{object to be checked to be an inference model}
+\item{x}{object to be checked to be an inference model,
+as can be created by \link{create_inference_model}}
 }
 \value{
 nothing.
