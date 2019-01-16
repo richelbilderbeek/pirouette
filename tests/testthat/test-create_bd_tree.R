@@ -14,11 +14,7 @@ test_that("use", {
   expect_equal(class(bd_tree), "phylo")
   expect_equal(
     max(ape::branching.times(bd_tree)),
-<<<<<<< HEAD
     max(ape::branching.times(phylogeny))
-=======
-    max(ape::branching.times(mbd_tree))
->>>>>>> a42cf5595f931aa81cbd1d0b58618ef63b2e8746
   )
   expect_equal(class(bd_l_matrix), "matrix")
   expect_equal(
