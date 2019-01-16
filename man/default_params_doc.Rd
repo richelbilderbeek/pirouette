@@ -18,8 +18,8 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   parameters_filename, phylo, phylogeny, posterior_trees, precision,
   project_folder_name, root_sequence, sample_interval, seed,
   sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_model, tree_prior,
-  tree_priors, tree_prior_name, tree_type, trees_filename,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
+  tree_prior, tree_priors, tree_prior_name, tree_type, trees_filename,
   twin_alignment_filename, twin_tree_filename, twinning_params, type,
   verbose)
 }
