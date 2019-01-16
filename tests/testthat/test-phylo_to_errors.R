@@ -2,6 +2,8 @@ context("test-phylo_to_errors")
 
 test_that("use", {
 
+  skip("WIP Giappo")
+
   n_base_pairs <- 4
   seed <- 1
   phylogeny <- load_tree(tree_model = "mbd", seed = seed)
@@ -32,6 +34,8 @@ test_that("use", {
 })
 
 test_that("abuse", {
+
+  skip("WIP Giappo")
 
   mcmc <- create_mcmc(chain_length = 2000)
   n_base_pairs <- 4
