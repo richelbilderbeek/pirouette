@@ -13,7 +13,7 @@ test_that("abuse", {
   inference_param2$verbose <- inference_param$verbose
   expect_error(
     check_inference_param(inference_param2),
-    "'beast2_path' must be an element of an 'inference_param'. Tip: use 'create_inference_param'"
+    "'beast2_path' must be an element of an 'inference_param'. Tip: use 'create_inference_param'" # nolint long string
   )
 
   inference_param3 <- inference_param
