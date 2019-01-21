@@ -2,8 +2,6 @@ context("pir_run")
 
 test_that("generative only", {
 
-  if (!beastier::is_on_travis()) return()
-
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
     mutation_rate = 0.01
@@ -70,8 +68,6 @@ test_that("generative only", {
 
 test_that("most_evidence", {
 
-  if (!beastier::is_on_travis()) return()
-
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   model_select_params <- list(
     create_best_model_select_param(
@@ -108,8 +104,6 @@ test_that("most_evidence", {
 
 test_that("generative and most_evidence, generative not in most_evidence", {
 
-  if (!beastier::is_on_travis()) return()
-
   alignment_params <- create_alignment_params(mutation_rate = 0.01)
 
   errors <- pir_run(
@@ -140,8 +134,6 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 })
 
 test_that("generative and most_evidence, generative in most_evidence", {
-
-  if (!beastier::is_on_travis()) return()
 
   alignment_params <- create_alignment_params(mutation_rate = 0.01)
 
