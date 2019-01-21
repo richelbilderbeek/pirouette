@@ -72,40 +72,40 @@ select_inference_models <- function(
     model_select_param <- model_select_params[[i]]
     check_model_select_param(model_select_param) # nolint pirouette function
 
-    inference_model <- list()
-    inference_model$input_filename <- tempfile(fileext = ".xml")
-    inference_model$log_filename <- tempfile(fileext = ".log")
-    inference_model$trees_filename <- tempfile(fileext = ".trees")
-    inference_model$state_filename <- tempfile(fileext = ".xml.state")
+    site_model <- NULL
+    clock_model <- NULL
+    tree_prior <- NULL
 
     if (model_select_param$type == "generative") {
       # Pick the one from the alignment
       testit::assert(!is.null(alignment_params$site_model))
       testit::assert(!is.null(alignment_params$clock_model))
-      inference_model$site_model <- alignment_params$site_model
-      inference_model$clock_model <- alignment_params$clock_model
-
       testit::assert(
         beautier::is_tree_prior(model_select_param$tree_priors[[1]])
       )
-      inference_model$tree_prior <- model_select_param$tree_priors[[1]]
-      testit::assert(beautier::is_tree_prior(inference_model$tree_prior))
+      site_model <- alignment_params$site_model
+      clock_model <- alignment_params$clock_model
+      tree_prior <- model_select_param$tree_priors[[1]]
     } else {
       # Pick the one with the highest evidence
       testit::assert(model_select_param$type == "most_evidence")
       testit::assert(!is.null(marg_liks))
       best_row_index <- which(marg_liks$weight == max(marg_liks$weight))
-      inference_model$site_model <- beautier::create_site_model_from_name(
+      site_model <- beautier::create_site_model_from_name(
         marg_liks$site_model_name[best_row_index]
       )
-      inference_model$clock_model <- beautier::create_clock_model_from_name(
+      clock_model <- beautier::create_clock_model_from_name(
         marg_liks$clock_model_name[best_row_index]
       )
-      inference_model$tree_prior <- beautier::create_tree_prior_from_name(
+      tree_prior <- beautier::create_tree_prior_from_name(
         marg_liks$tree_prior_name[best_row_index]
       )
     }
-    check_inference_model(inference_model)
+    inference_model <- create_inference_model(
+      site_model = site_model,
+      clock_model = clock_model,
+      tree_prior = tree_prior
+    )
     inference_models[[i]] <- inference_model
   }
   testit::assert(length(inference_models) == length(model_select_params))

@@ -13,7 +13,7 @@ r_github_packages:
   - jimhester/lintr
   - KlausVigo/phangorn
   - MangoTheCat/goodpractice
-  - ropensci/beautier@develop
+  - ropensci/beautier
   - ropensci/tracerer
   - ropensci/beastier
   - ropensci/mauricer
@@ -31,8 +31,8 @@ before_install:
   - sudo apt install -qq libmpfr-dev
 
 before_script:
-  - sudo apt-get install -qq oracle-java8-installer # Java 8
-  - sudo apt-get install oracle-java8-set-default
+  - # sudo apt-get install -qq oracle-java8-installer # Java 8
+  - # sudo apt-get install oracle-java8-set-default
   - Rscript -e "beastier::install_beast2()"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint
@@ -45,7 +45,7 @@ script:
 after_success:
   - Rscript -e 'lintr::lint_package()'
   - Rscript -e 'covr::codecov()'
-  - Rscript -e 'goodpractice::gp()'
+  #- Rscript -e 'goodpractice::gp()'
   #- proselint *.md | egrep -v "typography\.symbols\.curly_quotes"
   # temporarily removed due to CERT_UNTRUSTED
   #- ./scripts/check_dead_links
