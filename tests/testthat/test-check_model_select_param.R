@@ -49,4 +49,28 @@ test_that("abuse", {
       create_model_select_param(tree_priors = "nonsense")
     )
   )
+
+  model_select_param <- create_model_select_param(type = "generative")
+  model_select_param$site_models <- "nonsense"
+  expect_error(
+    pirouette:::check_model_select_param(
+      model_select_param
+    )
+  )
+
+  model_select_param <- create_model_select_param(type = "generative")
+  model_select_param$clock_models <- "nonsense"
+  expect_error(
+    pirouette:::check_model_select_param(
+      model_select_param
+    )
+  )
+
+  model_select_param <- create_model_select_param(type = "generative")
+  model_select_param$tree_priors <- "nonsense"
+  expect_error(
+    pirouette:::check_model_select_param(
+      model_select_param
+    )
+  )
 })

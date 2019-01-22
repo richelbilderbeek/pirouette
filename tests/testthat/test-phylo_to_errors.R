@@ -42,32 +42,3 @@ test_that("use", {
     all(nltts > 0) & all(nltts < 1)
   )
 })
-
-test_that("abuse", {
-
-  skip("WIP Giappo")
-
-  mcmc <- create_mcmc(chain_length = 2000)
-  n_base_pairs <- 4
-  seed <- 1
-  phylogeny <- load_tree(tree_model = "mbd", seed = seed)
-
-  expect_error(
-    phylo_to_nltts(
-      phylogeny = c(3, 2, 1),
-      mcmc = mcmc,
-      n_base_pairs = n_base_pairs,
-      seed = seed
-    ),
-    "parameter 'phylogeny' must be a phylogeny"
-  )
-  expect_error(
-    phylo_to_nltts(
-      phylogeny = load_tree(tree_model = "mbd", seed = seed),
-      mcmc = mcmc,
-      n_base_pairs = n_base_pairs,
-      seed = "nonsense"
-    ),
-    "'seed' must be a number"
-  )
-})
