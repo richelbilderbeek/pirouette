@@ -2,6 +2,7 @@ context("test-phylo_to_errors")
 
 test_that("use", {
 
+  # ISSUE #42: TODO Richel
   skip("For Richel: the check on fasta file existence will always fail")
 
   n_base_pairs <- 4

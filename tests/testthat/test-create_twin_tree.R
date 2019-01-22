@@ -1,10 +1,5 @@
 context("test-create_twin_tree")
 
-is_on_travis <- function() {
-  is_it_on_travis <- Sys.getenv("TRAVIS") != ""
-  is_it_on_travis
-}
-
 dist_nodes <- function(tree, precision = 12) {
   DDD::roundn(
     ape::dist.nodes(tree),
@@ -113,7 +108,7 @@ test_that("node distances should remain in the same order, brute-force", {
   # Or:
   #  - taxa that are closest, should remain closest in the twin tree
   #  - taxa that are farthest, should remain farthest in the twin tree
-  max_i <- 5 + is_on_travis() * 95
+  max_i <- 5 + beastier::is_on_travis() * 95
   for (i in seq(1, max_i)) {
     set.seed(i)
     tree <- beastier:::create_random_phylogeny(n_taxa = 4)
