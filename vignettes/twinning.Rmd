@@ -51,23 +51,38 @@ alignment_params = pirouette::create_alignment_params(
 )
 ```
 
-We assume we know 
+We select our inference models in two ways:
+
+  1. Using the generative model: we use the same site and clock model
+     the alignment was created with. We do have to specify a BEAST2
+     tree prior that is closest to what we think generated the phylogeny
+  2. (for non-Windows users only) Using the inference model that
+     has the most evidence (also: marginal likelihood) from a set of inference
+     models. In this example, we pick all combinations of the one
+     correct site model, the one correct clock model and two tree
+     priors.
 
 ```{r}
+model_select_params <- list()
+
 gen_model_select_param <- pirouette::create_gen_model_select_param(
   alignment_params = alignment_params,
   tree_prior = beautier::create_bd_tree_prior()
 )
-best_model_select_param <- pirouette::create_best_model_select_param(
-  site_models = list(beautier::create_jc69_site_model()),
-  clock_models = list(beautier::create_strict_clock_model()),
-  tree_priors = list(
-    beautier::create_yule_tree_prior(),
-    beautier::create_bd_tree_prior()  
-  ),
-  epsilon = 0.1
-)
-model_select_params <- list(gen_model_select_param, best_model_select_param)
+model_select_params[[1]] <- gen_model_select_param 
+  
+if (rappdirs::app_dir()$os != "win") {
+  best_model_select_param <- pirouette::create_best_model_select_param(
+    site_models = list(beautier::create_jc69_site_model()),
+    clock_models = list(beautier::create_strict_clock_model()),
+    tree_priors = list(
+      beautier::create_yule_tree_prior(),
+      beautier::create_bd_tree_prior()  
+    ),
+    epsilon = 0.1
+  )
+  model_select_params[[2]] <- best_model_select_param 
+}
 ```
 
 ```{r}
