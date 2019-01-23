@@ -136,10 +136,10 @@ pir_run_tree <- function(
     site_model = rep(NA, n_rows),
     clock_model = rep(NA, n_rows),
     tree_prior = rep(NA, n_rows),
-    input_filename = rep(NA, n_rows),
-    log_filename = rep(NA, n_rows),
-    trees_filename = rep(NA, n_rows),
-    state_filename = rep(NA, n_rows)
+    beast2_input_filename = rep(NA, n_rows),
+    beast2_log_filename = rep(NA, n_rows),
+    beast2_trees_filename = rep(NA, n_rows),
+    beast2_state_filename = rep(NA, n_rows)
   )
 
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
@@ -157,10 +157,10 @@ pir_run_tree <- function(
     df$clock_model[i] <- inference_model$clock_model$name
     df$tree_prior[i] <- inference_model$tree_prior$name
 
-    df$input_filename[i] <- inference_model$input_filename
-    df$log_filename[i] <- inference_model$log_filename
-    df$trees_filename[i] <- inference_model$trees_filename
-    df$state_filename[i] <- inference_model$state_filename
+    df$beast2_input_filename[i] <- inference_model$beast2_input_filename
+    df$beast2_log_filename[i] <- inference_model$beast2_log_filename
+    df$beast2_trees_filename[i] <- inference_model$beast2_trees_filename
+    df$beast2_state_filename[i] <- inference_model$beast2_state_filename
 
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts

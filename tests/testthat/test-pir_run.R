@@ -58,14 +58,14 @@ test_that("generative only", {
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
-  expect_true("input_filename" %in% names(errors))
-  expect_true("log_filename" %in% names(errors))
-  expect_true("trees_filename" %in% names(errors))
-  expect_true("state_filename" %in% names(errors))
-  expect_false(is.na(errors$input_filename))
-  expect_false(is.na(errors$log_filename))
-  expect_false(is.na(errors$trees_filename))
-  expect_false(is.na(errors$state_filename))
+  expect_true("beast2_input_filename" %in% names(errors))
+  expect_true("beast2_log_filename" %in% names(errors))
+  expect_true("beast2_trees_filename" %in% names(errors))
+  expect_true("beast2_state_filename" %in% names(errors))
+  expect_false(is.na(errors$beast2_input_filename))
+  expect_false(is.na(errors$beast2_log_filename))
+  expect_false(is.na(errors$beast2_trees_filename))
+  expect_false(is.na(errors$beast2_state_filename))
 })
 
 test_that("most_evidence", {

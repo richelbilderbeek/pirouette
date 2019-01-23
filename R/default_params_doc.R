@@ -128,7 +128,6 @@
 #' @param tree_type type of tree, can be \code{true} for the true
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
-#' @param trees_filename name of the BEAST2 posterior phylogenies file
 #' @param twin_alignment_filename name of the FASTA file the twin
 #'   alignment will be saved to
 #' @param twin_tree_filename  name of the (\code{.newick}) file the twin
@@ -211,7 +210,6 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
-  trees_filename,
   twin_alignment_filename,
   twin_tree_filename,
   twinning_params,

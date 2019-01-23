@@ -5,10 +5,10 @@
 \title{Create an inference model.}
 \usage{
 create_inference_model(site_model, clock_model, tree_prior,
-  input_filename = tempfile(fileext = ".xml"),
-  log_filename = tempfile(fileext = ".log"),
-  trees_filename = tempfile(fileext = ".trees"),
-  state_filename = tempfile(fileext = ".xml.state"))
+  beast2_input_filename = tempfile(fileext = ".xml"),
+  beast2_log_filename = tempfile(fileext = ".log"),
+  beast2_trees_filename = tempfile(fileext = ".trees"),
+  beast2_state_filename = tempfile(fileext = ".xml.state"))
 }
 \arguments{
 \item{site_model}{a nucleotide substitution model,
@@ -20,7 +20,11 @@ as created by \link[beautier]{create_clock_model}}
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}
 
-\item{trees_filename}{name of the BEAST2 posterior phylogenies file}
+\item{beast2_input_filename}{path of the BEAST2 configuration file.
+By default, this file is put in a temporary folder with a random filename,
+as the user needs not read it: it is used as input of BEAST2.
+Specifying a \code{beast2_input_filename} allows
+to store that file in a more permanently stored location.}
 }
 \value{
 an inference model

@@ -29,25 +29,25 @@ create_twinning_params(...)$twin_alignment_filename
 ### Where are the BEAST2 input (`.xml`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$input_filename
+pir_run(...)$beast2_input_filename
 ```
 
-### Where are the posterior parameter estimates (`.log`) files created by `pirouette` stored?
+### Where are the BEAST2 posterior parameter estimates (`.log`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$log_filename
+pir_run(...)$beast2_log_filename
 ```
 
-### Where are the posterior trees (`.trees`) files created by `pirouette` stored?
+### Where are the BEAST2 posterior trees (`.trees`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$trees_filename
+pir_run(...)$beast2_trees_filename
 ```
 
-### Where are the final posterior states (`.xml.state`) files created by `pirouette` stored?
+### Where are the BEAST2  final posterior states (`.xml.state`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$state_filename
+pir_run(...)$beast2_state_filename
 ```
 
 ## Why the name?
