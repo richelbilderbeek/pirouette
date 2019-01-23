@@ -15,7 +15,10 @@ test_that("use", {
       alignment_params = alignment_params,
       model_select_params = model_select_params,
       inference_param = create_inference_param(
-        mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+        mcmc = beautier::create_mcmc(
+          chain_length = 2000,
+          store_every = 1000
+        )
       )
     )
   )
