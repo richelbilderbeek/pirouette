@@ -1,4 +1,4 @@
-context("combine_brts_and_topology")
+context("test-combine_brts_and_topology")
 
 test_that("check usage with brts coming from the same tree", {
 

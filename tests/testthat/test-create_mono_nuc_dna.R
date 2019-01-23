@@ -1,4 +1,4 @@
-context("create_mono_nuc_dna")
+context("test-create_mono_nuc_dna")
 
 test_that("use", {
   expect_equal(create_mono_nuc_dna(nucleotide = "a", length = 1), "a")

@@ -14,7 +14,22 @@ test_that("abuse", {
   )
   expect_error(
     create_twinning_params(
+      twin_model = 42
+    )
+  )
+  expect_error(
+    create_twinning_params(
+      twin_model = "nonsense"
+    )
+  )
+  expect_error(
+    create_twinning_params(
       twin_tree_filename = NA
+    )
+  )
+  expect_error(
+    create_twinning_params(
+      twin_alignment_filename = 42
     )
   )
 })

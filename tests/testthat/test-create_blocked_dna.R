@@ -1,4 +1,4 @@
-context("create_blocked_dna")
+context("test-create_blocked_dna")
 
 test_that("use", {
   expect_equal(
