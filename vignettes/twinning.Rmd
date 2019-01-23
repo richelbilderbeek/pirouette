@@ -47,7 +47,7 @@ twinning_params <- pirouette::create_twinning_params(
 ```{r}
 alignment_params = pirouette::create_alignment_params(
   root_sequence = pirouette::create_blocked_dna(length = 100),
-  mutation_rate = 1.0 / pirouette::get_crown_age(phylogeny)
+  mutation_rate = 1.0 / beautier::get_phylo_crown_age(phylogeny)
 )
 ```
 
