@@ -2,12 +2,14 @@
 % Please edit documentation in R/list_model_select_params.R
 \name{list_model_select_params}
 \alias{list_model_select_params}
-\title{Determine if the string is a lowercase DNA sequence}
+\title{Make sure that model_select_params is a list
+#' @inheritParams default_params_doc}
 \usage{
 list_model_select_params(model_select_params)
 }
 \description{
-Determine if the string is a lowercase DNA sequence
+Make sure that model_select_params is a list
+#' @inheritParams default_params_doc
 }
 \author{
 Giovanni Laudanno

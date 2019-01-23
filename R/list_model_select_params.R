@@ -1,4 +1,5 @@
-#' Determine if the string is a lowercase DNA sequence
+#' Make sure that model_select_params is a list
+#' #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno
 list_model_select_params <- function(model_select_params) {
   if (length(model_select_params) > 1) {

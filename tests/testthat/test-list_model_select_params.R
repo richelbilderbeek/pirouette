@@ -1,13 +1,13 @@
 context("test-list_model_select_params")
 
 test_that("use", {
-  model_select_params <- create_gen_model_select_param(
-    alignment_params = alignment_params,
-    tree_prior = beautier::create_bd_tree_prior()
-  )
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
     mutation_rate = 0.01
+  )
+  model_select_params <- create_gen_model_select_param(
+    alignment_params = alignment_params,
+    tree_prior = beautier::create_bd_tree_prior()
   )
   expect_silent(
     errors <- pir_run(
