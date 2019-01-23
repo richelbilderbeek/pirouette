@@ -25,6 +25,7 @@ Imports:
     geiger,
     mcbette,
     phangorn,
+    phytools,
     rappdirs,
     Rmpfr,
     stringr,
