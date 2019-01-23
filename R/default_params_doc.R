@@ -43,6 +43,10 @@
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
 #' @param brts set of branching times
+#' @param burn_in_fraction the fraction of the posterior trees (starting
+#'   from the ones generated first)
+#'   that will be discarded,
+#'   must be a value from 0.0 (keep all), to 1.0 (discard all).
 #' @param chain_length something
 #' @param clock_model a clock model,
 #'   as created by \link[beautier]{create_clock_model}
@@ -55,6 +59,16 @@
 #'   evidence (also known as marginal likelihood).
 #'   Smaller values result in more precise estimations, that take
 #'   longer to compute
+#' @param error_function function that determines the error between
+#'   a given phylogeny and a the trees in a Bayesian posterior.
+#'   The function must have two arguments:
+#'   \itemize{
+#'     \item the one given phylogeny, of class \link[ape]{phylo}
+#'     \item one or more posterior trees, of class \link[ape]{multiphylo}
+#'   }
+#'   The function must return as many errors as there are posterior
+#'   trees given. The error must be lowest between identical trees.
+#'   See \link{get_nltt_error_function} for an example error function.
 #' @param error_measure_params parameter set to specify how the
 #'   error between the given phylogeny and the Bayesian
 #'   posterior is determined.
@@ -166,11 +180,13 @@ default_params_doc <- function(
   beast2_path,
   beast2_rng_seed,
   brts,
+  burn_in_fraction,
   chain_length,
   clock_model, clock_models,
   clock_model_name,
   crown_age,
   epsilon,
+  error_function,
   error_measure_params,
   fasta_filename,
   filename,

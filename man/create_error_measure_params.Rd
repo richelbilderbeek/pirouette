@@ -9,11 +9,24 @@ create_error_measure_params(burn_in_fraction = 0.1,
   error_function = get_nltt_error_function())
 }
 \arguments{
-\item{rng_seed}{the random number generator seed as used in the
-simulation of a twin tree}
+\item{burn_in_fraction}{the fraction of the posterior trees (starting
+from the ones generated first)
+that will be discarded,
+must be a value from 0.0 (keep all), to 1.0 (discard all).}
+
+\item{error_function}{function that determines the error between
+a given phylogeny and a the trees in a Bayesian posterior.
+The function must have two arguments:
+\itemize{
+  \item the one given phylogeny, of class \link[ape]{phylo}
+  \item one or more posterior trees, of class \link[ape]{multiphylo}
+}
+The function must return as many errors as there are posterior
+trees given. The error must be lowest between identical trees.
+See \link{get_nltt_error_function} for an example error function.}
 }
 \value{
-a error_measure parameter set
+an error measurement parameter set
 }
 \description{
 Create the parameters to specify hwo the error
@@ -21,8 +34,8 @@ between teh given phylogeny and the Bayesian posterior trees is measured.
 }
 \examples{
  error_measure_params <- create_error_measure_params()
- testit::assert("rng_seed" \%in\% names(error_measure_params))
- testit::assert("twin_tree_filename" \%in\% names(error_measure_params))
+ testit::assert("burn_in_fraction" \%in\% names(error_measure_params))
+ testit::assert("error_function" \%in\% names(error_measure_params))
 }
 \author{
 Richel J.C. Bilderbeek

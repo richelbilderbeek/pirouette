@@ -1,13 +1,11 @@
 #' Create the parameters to specify hwo the error
 #' between teh given phylogeny and the Bayesian posterior trees is measured.
 #' @inheritParams default_params_doc
-#' @param rng_seed the random number generator seed as used in the
-#'   simulation of a twin tree
-#' @return a error_measure parameter set
+#' @return an error measurement parameter set
 #' @examples
 #'  error_measure_params <- create_error_measure_params()
-#'  testit::assert("rng_seed" %in% names(error_measure_params))
-#'  testit::assert("twin_tree_filename" %in% names(error_measure_params))
+#'  testit::assert("burn_in_fraction" %in% names(error_measure_params))
+#'  testit::assert("error_function" %in% names(error_measure_params))
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_error_measure_params <- function(
