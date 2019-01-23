@@ -17,7 +17,7 @@ r_github_packages:
   - ropensci/tracerer
   - ropensci/beastier
   - ropensci/mauricer
-  - ropensci/babette
+  - ropensci/babette@develop
   - richelbilderbeek/mcbette
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
