@@ -121,7 +121,12 @@ The function must have two arguments:
 }
 The function must return as many errors as there are posterior
 trees given. The error must be lowest between identical trees.
-See \link{get_nltt_error_function} for an example error function.}
+Example functions are:
+\itemize{
+  \item \link{get_gamma_error_function}: use the absolute difference
+    in gamma statistic
+  \item \link{get_nltt_error_function}: use the nLTT statistic
+}}
 
 \item{error_measure_params}{parameter set to specify how the
 error between the given phylogeny and the Bayesian

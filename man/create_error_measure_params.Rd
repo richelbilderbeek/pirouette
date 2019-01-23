@@ -23,7 +23,12 @@ The function must have two arguments:
 }
 The function must return as many errors as there are posterior
 trees given. The error must be lowest between identical trees.
-See \link{get_nltt_error_function} for an example error function.}
+Example functions are:
+\itemize{
+  \item \link{get_gamma_error_function}: use the absolute difference
+    in gamma statistic
+  \item \link{get_nltt_error_function}: use the nLTT statistic
+}}
 }
 \value{
 an error measurement parameter set
@@ -33,9 +38,22 @@ Create the parameters to specify hwo the error
 between teh given phylogeny and the Bayesian posterior trees is measured.
 }
 \examples{
+ # Default
  error_measure_params <- create_error_measure_params()
  testit::assert("burn_in_fraction" \%in\% names(error_measure_params))
  testit::assert("error_function" \%in\% names(error_measure_params))
+
+ # Use the nLTT statistic with a burn-in of 10\%
+ error_measure_params <- create_error_measure_params(
+   burn_in_fraction = 0.1,
+   error_function = get_nltt_error_function()
+ )
+
+ # Use the gamma statistic with a burn-in of 20\%
+ error_measure_params <- create_error_measure_params(
+   burn_in_fraction = 0.2,
+   error_function = get_gamma_error_function()
+ )
 }
 \author{
 Richel J.C. Bilderbeek
