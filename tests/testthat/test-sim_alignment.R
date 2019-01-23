@@ -1,4 +1,4 @@
-context("sim_alignment")
+context("test-sim_alignment")
 
 test_that("sim_alignment: basic", {
   n_taxa <- 3

@@ -1,4 +1,4 @@
-context("utils")
+context("test-utils")
 
 test_that("get_site_models", {
   expect_true(
@@ -71,4 +71,15 @@ test_that("bd_phylo_2_l_table", {
   created_col_names <- colnames(test_bd_l_matrix)
   expected_col_names <- c("birth_time", "parent", "id", "death_time")
   expect_equal(created_col_names, expected_col_names)
+
+  # test brt <- brt + abs(min(brt))
+  minus_bd_l_matrix <- bd_l_matrix
+  minus_bd_l_matrix[, 1] <- minus_bd_l_matrix[, 1] - 10
+  new_minus_bd_l_matrix <- bd_phylo_2_l_table(DDD::L2phylo(
+    minus_bd_l_matrix,
+    dropextinct = FALSE
+  ))
+  expect_true(
+    all.equal(minus_bd_l_matrix, new_minus_bd_l_matrix)
+  )
 })

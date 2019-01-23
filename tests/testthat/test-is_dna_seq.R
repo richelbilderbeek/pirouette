@@ -1,4 +1,4 @@
-context("is_dna_seq")
+context("test-is_dna_seq")
 
 test_that("use", {
   expect_true(is_dna_seq("aaaa"))
