@@ -66,6 +66,39 @@ test_that("generative only", {
   expect_true(n_errors < 11) # due to burn-in
 })
 
+test_that("generative, short, gamma", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    mutation_rate = 0.01
+  )
+  file.remove(alignment_params$fasta_filename)
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = list(
+      create_gen_model_select_param(
+        alignment_params = alignment_params
+      )
+    ),
+    inference_param = create_inference_param(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    ),
+    error_measure_params = create_error_measure_params(
+      burn_in_fraction = 0.0,
+      error_function = get_gamma_error_function()
+    )
+  )
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  n_errors <- col_last_error - col_first_error + 1
+})
+
 test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
