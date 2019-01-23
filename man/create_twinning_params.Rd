@@ -7,13 +7,15 @@ The site model and clock models will be used and
 their combination will be called the generative model
 of the twinning}
 \usage{
-create_twinning_params(rng_seed = 0,
+create_twinning_params(rng_seed = 0, twin_model = "bd",
   twin_tree_filename = tempfile(fileext = ".newick"),
   twin_alignment_filename = tempfile(fileext = ".fasta"))
 }
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the
 simulation of a twin tree}
+
+\item{twin_model}{the model you want to use to generate the twin tree}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}

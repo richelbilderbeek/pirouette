@@ -8,7 +8,7 @@ check_twinning_params <- function(
   twinning_params
 ) {
   argument_names <- c(
-    "rng_seed", "twin_tree_filename", "twin_alignment_filename"
+    "rng_seed", "twin_model", "twin_tree_filename", "twin_alignment_filename"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(twinning_params)) {
@@ -20,6 +20,12 @@ check_twinning_params <- function(
   }
   if (!is.numeric(twinning_params$rng_seed)) {
     stop("'rng_seed' must be a number")
+  }
+  if (!is.character(twinning_params$twin_model)) {
+    stop("'twin_model' must be a character vector")
+  }
+  if (!(twinning_params$twin_model %in% get_twin_models())) {
+   stop("This twin model is not implemented")
   }
   if (!is.character(twinning_params$twin_tree_filename)) {
     stop("'twin_tree_filename' must be a character vector")

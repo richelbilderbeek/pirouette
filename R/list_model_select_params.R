@@ -1,5 +1,5 @@
 #' Make sure that model_select_params is a list
-#' #' @inheritParams default_params_doc
+#' @inheritParams default_params_doc
 #' @author Giovanni Laudanno
 list_model_select_params <- function(model_select_params) {
   expected_names <- names(

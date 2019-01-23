@@ -1,4 +1,4 @@
-context("create_bd_tree")
+context("test-create_bd_tree")
 
 test_that("use", {
 
@@ -8,8 +8,8 @@ test_that("use", {
     phylogeny = phylogeny,
     seed = 1
   )
-  bd_tree <- bd_sim$bd_tree
-  bd_l_matrix <- bd_sim$bd_l_matrix
+  bd_tree <- bd_sim$tree
+  bd_l_matrix <- bd_sim$l_matrix
 
   expect_equal(class(bd_tree), "phylo")
   expect_equal(

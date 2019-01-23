@@ -2,14 +2,18 @@
 % Please edit documentation in R/list_model_select_params.R
 \name{list_model_select_params}
 \alias{list_model_select_params}
-\title{Make sure that model_select_params is a list
-#' @inheritParams default_params_doc}
+\title{Make sure that model_select_params is a list}
 \usage{
 list_model_select_params(model_select_params)
 }
+\arguments{
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
+}
 \description{
 Make sure that model_select_params is a list
-#' @inheritParams default_params_doc
 }
 \author{
 Giovanni Laudanno
