@@ -27,6 +27,13 @@
 #'   as the user needs not read it.
 #'   Specifying a beast2_output_state_filename allows to store
 #'   that file in a more permanently stored location.
+#' @param beast2_output_trees_filename name of a trees files
+#'   created by BEAST2.
+#'   By default, this file is put a temporary folder with a random filename,
+#'   as the user needs not read it: its content is parsed and
+#'   compared to a true phylogeny to obtain the inference errors.
+#'   Specifying \code{beast2_output_trees_filename} allows to store
+#'   this file in a more permanently stored location.
 #' @param beast2_output_trees_filenames	name of the one or more trees files
 #'   created by BEAST2, one per alignment.
 #'   By default, these files are put a temporary folder with a random filename,
@@ -43,6 +50,10 @@
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
 #' @param brts set of branching times
+#' @param burn_in_fraction the fraction of the posterior trees (starting
+#'   from the ones generated first)
+#'   that will be discarded,
+#'   must be a value from 0.0 (keep all), to 1.0 (discard all).
 #' @param chain_length something
 #' @param clock_model a clock model,
 #'   as created by \link[beautier]{create_clock_model}
@@ -55,6 +66,26 @@
 #'   evidence (also known as marginal likelihood).
 #'   Smaller values result in more precise estimations, that take
 #'   longer to compute
+#' @param error_function function that determines the error between
+#'   a given phylogeny and a the trees in a Bayesian posterior.
+#'   The function must have two arguments:
+#'   \itemize{
+#'     \item the one given phylogeny, of class \link[ape]{phylo}
+#'     \item one or more posterior trees, of class \link[ape]{multiphylo}
+#'   }
+#'   The function must return as many errors as there are posterior
+#'   trees given. The error must be lowest between identical trees.
+#'   Example functions are:
+#'   \itemize{
+#'     \item \link{get_gamma_error_function}: use the absolute difference
+#'       in gamma statistic
+#'     \item \link{get_nltt_error_function}: use the nLTT statistic
+#'   }
+#' @param error_measure_params parameter set to specify how the
+#'   error between the given phylogeny and the Bayesian
+#'   posterior is determined.
+#'   Use \link{create_error_measure_params} to create such
+#'   a parameter set
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -128,7 +159,6 @@
 #' @param tree_type type of tree, can be \code{true} for the true
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
-#' @param trees_filename name of the BEAST2 posterior phylogenies file
 #' @param twin_alignment_filename name of the FASTA file the twin
 #'   alignment will be saved to
 #' @param twin_tree_filename  name of the (\code{.newick}) file the twin
@@ -158,15 +188,19 @@ default_params_doc <- function(
   beast2_input_filename,
   beast2_output_log_filename,
   beast2_output_state_filename,
+  beast2_output_trees_filename,
   beast2_output_trees_filenames,
   beast2_path,
   beast2_rng_seed,
   brts,
+  burn_in_fraction,
   chain_length,
   clock_model, clock_models,
   clock_model_name,
   crown_age,
   epsilon,
+  error_function,
+  error_measure_params,
   fasta_filename,
   filename,
   folder_name,
@@ -211,7 +245,6 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
-  trees_filename,
   twin_alignment_filename,
   twin_tree_filename,
   twinning_params,

@@ -35,10 +35,11 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     mcmc = inference_param$mcmc,
     rng_seed = inference_param$rng_seed,
     verbose = inference_param$verbose,
-    beast2_input_filename = inference_model$input_filename,
-    beast2_output_log_filename = inference_model$log_filename,
-    beast2_output_trees_filenames = inference_model$trees_filename,
-    beast2_output_state_filename = inference_model$state_filename,
+    beast2_input_filename = inference_model$beast2_input_filename,
+    beast2_output_log_filename = inference_model$beast2_output_log_filename,
+    beast2_output_trees_filenames =
+      inference_model$beast2_output_trees_filename,
+    beast2_output_state_filename = inference_model$beast2_output_state_filename,
     beast2_path = inference_param$beast2_path
   )
 

@@ -25,12 +25,14 @@ Imports:
     geiger,
     mcbette,
     phangorn,
+    phytools,
     rappdirs,
     Rmpfr,
     stringr,
     TESS,
     testit,
-    tidyr
+    tidyr,
+    tracerer
 Suggests:
     becosys,
     devtools,

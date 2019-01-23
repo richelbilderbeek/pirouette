@@ -19,11 +19,16 @@ test_that("generative only", {
       )
     ),
     inference_param = create_inference_param(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    )
+      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+    ),
+    error_measure_params = create_error_measure_params()
   )
   # Files created
   testit::assert(file.exists(alignment_params$fasta_filename))
+  testit::assert(file.exists(errors$beast2_input_filename))
+  testit::assert(file.exists(errors$beast2_output_log_filename))
+  testit::assert(file.exists(errors$beast2_output_trees_filename))
+  testit::assert(file.exists(errors$beast2_output_state_filename))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -57,15 +62,41 @@ test_that("generative only", {
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  n_errors <- col_last_error - col_first_error + 1
+  expect_true(n_errors < 11) # due to burn-in
+})
 
-  expect_true("input_filename" %in% names(errors))
-  expect_true("log_filename" %in% names(errors))
-  expect_true("trees_filename" %in% names(errors))
-  expect_true("state_filename" %in% names(errors))
-  expect_false(is.na(errors$input_filename))
-  expect_false(is.na(errors$log_filename))
-  expect_false(is.na(errors$trees_filename))
-  expect_false(is.na(errors$state_filename))
+test_that("generative, short, gamma", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    mutation_rate = 0.01
+  )
+  file.remove(alignment_params$fasta_filename)
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = list(
+      create_gen_model_select_param(
+        alignment_params = alignment_params
+      )
+    ),
+    inference_param = create_inference_param(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    ),
+    error_measure_params = create_error_measure_params(
+      burn_in_fraction = 0.0,
+      error_function = get_gamma_error_function()
+    )
+  )
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  n_errors <- col_last_error - col_first_error + 1
 })
 
 test_that("most_evidence", {

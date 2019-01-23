@@ -5,7 +5,8 @@
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
 phylo_to_errors(phylogeny, alignment_params, inference_model,
-  inference_param)
+  inference_param = create_inference_param(),
+  error_measure_params = create_error_measure_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -21,6 +22,12 @@ input filenames.}
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{error_measure_params}{parameter set to specify how the
+error between the given phylogeny and the Bayesian
+posterior is determined.
+Use \link{create_error_measure_params} to create such
+a parameter set}
 }
 \description{
 The supplied phylogeny (\code{phylogeny}) is the true/known phylogeny.

@@ -6,9 +6,11 @@ r_packages:
   - ggplot2
   - xml2
 
+bioc_packages:
+  - ggtree
+
 r_github_packages:
   - Giappo/mbd
-  - GuangchuangYu/ggtree
   - jimhester/covr
   - jimhester/lintr
   - KlausVigo/phangorn
@@ -17,11 +19,12 @@ r_github_packages:
   - ropensci/tracerer
   - ropensci/beastier
   - ropensci/mauricer
-  - ropensci/babette
+  - ropensci/babette@develop
   - richelbilderbeek/mcbette
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
+
 
 before_install:
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
@@ -31,8 +34,6 @@ before_install:
   - sudo apt install -qq libmpfr-dev
 
 before_script:
-  - # sudo apt-get install -qq oracle-java8-installer # Java 8
-  - # sudo apt-get install oracle-java8-set-default
   - Rscript -e "beastier::install_beast2()"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint

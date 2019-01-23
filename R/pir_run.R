@@ -25,6 +25,7 @@ pir_run <- function(
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
   inference_param # The shared BEAST2 setup parameters
+  error_measure_params = create_error_measure_params()
 ) {
   # List model_select_params
   model_select_params <- list_model_select_params(model_select_params)
@@ -34,7 +35,8 @@ pir_run <- function(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_param = inference_param
+    inference_param = inference_param,
+    error_measure_params = error_measure_params
   )
   # Run for the true tree
   df <- pir_run_tree(
@@ -42,7 +44,8 @@ pir_run <- function(
     tree_type = "true",
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_param = inference_param
+    inference_param = inference_param,
+    error_measure_params = error_measure_params
   )
 
   # Run for the twin tree
@@ -77,7 +80,8 @@ pir_run_tree <- function(
   tree_type = "true",
   alignment_params,
   model_select_params = list(create_gen_model_select_param(alignment_params)),
-  inference_param # The shared BEAST2 setup parameters
+  inference_param = create_inference_param(),
+  error_measure_params = create_error_measure_params()
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -125,7 +129,9 @@ pir_run_tree <- function(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       inference_model = inference_model,
-      inference_param = inference_param
+      inference_param = inference_param,
+      error_measure_params = error_measure_params
+
     )
   }
   testit::assert(length(inference_models) == length(errorses))
@@ -139,10 +145,10 @@ pir_run_tree <- function(
     site_model = rep(NA, n_rows),
     clock_model = rep(NA, n_rows),
     tree_prior = rep(NA, n_rows),
-    input_filename = rep(NA, n_rows),
-    log_filename = rep(NA, n_rows),
-    trees_filename = rep(NA, n_rows),
-    state_filename = rep(NA, n_rows)
+    beast2_input_filename = rep(NA, n_rows),
+    beast2_output_log_filename = rep(NA, n_rows),
+    beast2_output_trees_filename = rep(NA, n_rows),
+    beast2_output_state_filename = rep(NA, n_rows)
   )
 
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
@@ -160,10 +166,13 @@ pir_run_tree <- function(
     df$clock_model[i] <- inference_model$clock_model$name
     df$tree_prior[i] <- inference_model$tree_prior$name
 
-    df$input_filename[i] <- inference_model$input_filename
-    df$log_filename[i] <- inference_model$log_filename
-    df$trees_filename[i] <- inference_model$trees_filename
-    df$state_filename[i] <- inference_model$state_filename
+    df$beast2_input_filename[i] <- inference_model$beast2_input_filename
+    df$beast2_output_log_filename[i] <-
+      inference_model$beast2_output_log_filename
+    df$beast2_output_trees_filename[i] <-
+      inference_model$beast2_output_trees_filename
+    df$beast2_output_state_filename[i] <-
+      inference_model$beast2_output_state_filename
 
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts
@@ -208,13 +217,15 @@ pir_run_check_inputs <- function(
   phylogeny,
   alignment_params,
   model_select_params,
-  inference_param
+  inference_param,
+  error_measure_params
 ) {
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
+        "Tip: use 'create_alignment_params'\n",
         "Error message: ", msg, "\n",
         "Actual value: ", alignment_params
       )
@@ -226,6 +237,7 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'inference_param' must be a set of inference parameters.\n",
+        "Tip: use 'create_inference_param'\n",
         "Error message: ", msg, "\n",
         "Actual value: ", inference_param
       )
@@ -237,7 +249,21 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'model_select_params' must be a list of one or more model selection ",
+        "Tip: use 'create_model_select_params'\n",
         "parameters sets.\n",
+        "Error message: ", msg, "\n",
+        "Actual value: ", model_select_params
+      )
+      stop(msg)
+    }
+  )
+  tryCatch(
+    check_error_measure_params(error_measure_params), # nolint pirouette function
+    error = function(msg) {
+      msg <- paste0(
+        "'error_measure_params' must be a set of error measurement ",
+        "parameters.\n",
+        "Tip: use 'create_error_measure_params'\n",
         "Error message: ", msg, "\n",
         "Actual value: ", model_select_params
       )

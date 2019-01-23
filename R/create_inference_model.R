@@ -12,10 +12,10 @@ create_inference_model <- function(
   site_model,
   clock_model,
   tree_prior,
-  input_filename = tempfile(fileext = ".xml"),
-  log_filename = tempfile(fileext = ".log"),
-  trees_filename = tempfile(fileext = ".trees"),
-  state_filename = tempfile(fileext = ".xml.state")
+  beast2_input_filename = tempfile(fileext = ".xml"),
+  beast2_output_log_filename = tempfile(fileext = ".log"),
+  beast2_output_trees_filename = tempfile(fileext = ".trees"),
+  beast2_output_state_filename = tempfile(fileext = ".xml.state")
 ) {
   beautier::check_clock_model(clock_model)
   beautier::check_site_model(site_model)
@@ -25,10 +25,10 @@ create_inference_model <- function(
     site_model = site_model,
     clock_model = clock_model,
     tree_prior = tree_prior,
-    input_filename = input_filename,
-    log_filename = log_filename,
-    trees_filename = trees_filename,
-    state_filename = state_filename
+    beast2_input_filename = beast2_input_filename,
+    beast2_output_log_filename = beast2_output_log_filename,
+    beast2_output_trees_filename = beast2_output_trees_filename,
+    beast2_output_state_filename = beast2_output_state_filename
   )
   check_inference_model(inference_model) # nolint pirouette function
   inference_model
