@@ -30,7 +30,8 @@ Imports:
     stringr,
     TESS,
     testit,
-    tidyr
+    tidyr,
+    tracerer
 Suggests:
     becosys,
     devtools,
