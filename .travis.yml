@@ -9,7 +9,6 @@ r_packages:
 bioc_packages:
   - ggtree
 
-# Use bioc_packages instead of GuangchuangYu/ggtree@9416b852753df0957f812840b9b5eda74b37d9b3
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
