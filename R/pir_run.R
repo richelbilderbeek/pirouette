@@ -23,9 +23,12 @@ pir_run <- function(
   phylogeny,
   twinning_params = NA,
   alignment_params,
-  model_select_params = list(create_gen_model_select_param(alignment_params)),
+  model_select_params = create_gen_model_select_param(alignment_params),
   inference_param # The shared BEAST2 setup parameters
 ) {
+  # List model_select_params
+  model_select_params <- list_model_select_params(model_select_params)
+
   # Check the inputs
   pir_run_check_inputs(
     phylogeny = phylogeny,
