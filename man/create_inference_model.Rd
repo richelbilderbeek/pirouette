@@ -6,9 +6,9 @@
 \usage{
 create_inference_model(site_model, clock_model, tree_prior,
   beast2_input_filename = tempfile(fileext = ".xml"),
-  beast2_log_filename = tempfile(fileext = ".log"),
-  beast2_trees_filename = tempfile(fileext = ".trees"),
-  beast2_state_filename = tempfile(fileext = ".xml.state"))
+  beast2_output_log_filename = tempfile(fileext = ".log"),
+  beast2_output_trees_filename = tempfile(fileext = ".trees"),
+  beast2_output_state_filename = tempfile(fileext = ".xml.state"))
 }
 \arguments{
 \item{site_model}{a nucleotide substitution model,
@@ -25,6 +25,20 @@ By default, this file is put in a temporary folder with a random filename,
 as the user needs not read it: it is used as input of BEAST2.
 Specifying a \code{beast2_input_filename} allows
 to store that file in a more permanently stored location.}
+
+\item{beast2_output_log_filename}{name of the log file created by BEAST2,
+containing the parameter estimates in time.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it.
+Specifying a beast2_output_log_filename allows to store that file
+in a more permanently stored location.}
+
+\item{beast2_output_state_filename}{name of the final state file
+created by BEAST2, containing the operator acceptances.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it.
+Specifying a beast2_output_state_filename allows to store
+that file in a more permanently stored location.}
 }
 \value{
 an inference model

@@ -35,19 +35,19 @@ pir_run(...)$beast2_input_filename
 ### Where are the BEAST2 posterior parameter estimates (`.log`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$beast2_log_filename
+pir_run(...)$beast2_output_log_filename
 ```
 
 ### Where are the BEAST2 posterior trees (`.trees`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$beast2_trees_filename
+pir_run(...)$beast2_output_trees_filename
 ```
 
 ### Where are the BEAST2  final posterior states (`.xml.state`) files created by `pirouette` stored?
 
 ```{r}
-pir_run(...)$beast2_state_filename
+pir_run(...)$beast2_output_state_filename
 ```
 
 ## Why the name?

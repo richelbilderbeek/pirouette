@@ -12,8 +12,8 @@ check_inference_model <- function(
 ) {
   argument_names <- c(
     "site_model", "clock_model", "tree_prior", "beast2_input_filename",
-    "beast2_log_filename",
-    "beast2_trees_filename", "beast2_state_filename"
+    "beast2_output_log_filename",
+    "beast2_output_trees_filename", "beast2_output_state_filename"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(x)) {
