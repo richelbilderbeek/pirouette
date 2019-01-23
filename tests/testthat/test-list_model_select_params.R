@@ -19,7 +19,8 @@ test_that("use", {
           chain_length = 2000,
           store_every = 1000
         )
-      )
+      ),
+      error_measure_params = create_error_measure_params()
     )
   )
 })
