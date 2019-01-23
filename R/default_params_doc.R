@@ -183,6 +183,7 @@ default_params_doc <- function(
   beast2_input_filename,
   beast2_output_log_filename,
   beast2_output_state_filename,
+  beast2_output_trees_filename,
   beast2_output_trees_filenames,
   beast2_path,
   beast2_rng_seed,

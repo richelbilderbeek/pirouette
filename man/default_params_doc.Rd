@@ -8,9 +8,9 @@ documentation.}
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_input_filename,
   beast2_output_log_filename, beast2_output_state_filename,
-  beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
-  burn_in_fraction, chain_length, clock_model, clock_models,
-  clock_model_name, crown_age, epsilon, error_function,
+  beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
+  beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
+  clock_models, clock_model_name, crown_age, epsilon, error_function,
   error_measure_params, fasta_filename, filename, folder_name,
   inference_model, inference_param, init_speciation_rate,
   init_extinction_rate, lambda, marg_lik_filename, marg_liks, mbd_l_matrix,
@@ -60,6 +60,14 @@ By default, this file is put a temporary folder with a random filename,
 as the user needs not read it.
 Specifying a beast2_output_state_filename allows to store
 that file in a more permanently stored location.}
+
+\item{beast2_output_trees_filename}{name of a trees files
+created by BEAST2.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it: its content is parsed and
+compared to a true phylogeny to obtain the inference errors.
+Specifying \code{beast2_output_trees_filename} allows to store
+this file in a more permanently stored location.}
 
 \item{beast2_output_trees_filenames}{name of the one or more trees files
 created by BEAST2, one per alignment.
@@ -258,14 +266,6 @@ as can be created by \link{create_twinning_params}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{beast2_output_trees_filename}{name of a trees files
-created by BEAST2.
-By default, this file is put a temporary folder with a random filename,
-as the user needs not read it: its content is parsed and
-compared to a true phylogeny to obtain the inference errors.
-Specifying \code{beast2_output_trees_filename} allows to store
-this file in a more permanently stored location.}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
