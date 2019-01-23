@@ -33,6 +33,15 @@ get_clock_models <- function() {
   beautier::get_clock_model_names()
 }
 
+#' @title Twin models
+#' @description Twin models
+#' @inheritParams default_params_doc
+#' @return the twin models
+#' @author Giovanni Laudanno
+get_twin_models <- function() {
+  c("bd", "yule")
+}
+
 #' @title Convert bd phylo to L table
 #' @description Convert bd phylo to L table. Don't use for mbd.
 #' @inheritParams default_params_doc

@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_bd_tree.R
 \name{create_bd_tree}
 \alias{create_bd_tree}
-\title{Create an BD twin tree from an MBD tree
+\title{Create an BD twin tree from a phylogeny
 and save it as a file}
 \usage{
 create_bd_tree(phylogeny, seed)
@@ -14,10 +14,10 @@ create_bd_tree(phylogeny, seed)
 }
 \value{
 a twin BD tree of class \code{phylo},
-  obtained from the corresponding MBD tree.
+  obtained from the corresponding phylogeny.
 }
 \description{
-Create an BD twin tree from an MBD tree
+Create an BD twin tree from a phylogeny
 and save it as a file
 }
 \author{

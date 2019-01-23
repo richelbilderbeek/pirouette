@@ -4,14 +4,16 @@
 \alias{create_twin_tree}
 \title{Create a twin tree}
 \usage{
-create_twin_tree(phylogeny)
+create_twin_tree(phylogeny, twin_model = "bd")
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{twin_model}{the model you want to use to generate the twin tree}
 }
 \description{
 Create a twin tree
 }
 \author{
-Richel J.C. Bilderbeek
+Richel J.C. Bilderbeek, Giovanni Laudanno
 }

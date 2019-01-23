@@ -21,8 +21,8 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
   site_models, site_model_name, sub_chain_length, tree, tree_filename,
   tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
-  twin_alignment_filename, twin_tree_filename, twinning_params, type,
-  verbose)
+  twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
+  type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -255,6 +255,8 @@ phylogeny, and \code{twin} for its twin tree}
 
 \item{twin_alignment_filename}{name of the FASTA file the twin
 alignment will be saved to}
+
+\item{twin_model}{the model you want to use to generate the twin tree}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}

@@ -18,6 +18,15 @@ test_that("get_clock_models", {
   )
 })
 
+test_that("get_twin_models", {
+  expect_true(
+    length(get_twin_models()) > 0 # nolint internal function
+  )
+  expect_true(
+    is.character(get_twin_models()) # nolint internal function
+  )
+})
+
 test_that("bd_phylo_2_l_table", {
 
   phylogeny <- load_tree(tree_model = "mbd", seed = 1)
@@ -25,8 +34,8 @@ test_that("bd_phylo_2_l_table", {
     phylogeny = phylogeny,
     seed = 1
   )
-  bd_tree <- bd_sim$bd_tree
-  bd_l_matrix <- bd_sim$bd_l_matrix
+  bd_tree <- bd_sim$tree
+  bd_l_matrix <- bd_sim$l_matrix
 
   # test phylo -> L -> phylo
   bd_test_tree <- DDD::L2phylo(
