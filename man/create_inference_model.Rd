@@ -33,6 +33,14 @@ as the user needs not read it.
 Specifying a beast2_output_log_filename allows to store that file
 in a more permanently stored location.}
 
+\item{beast2_output_trees_filename}{name of a trees files
+created by BEAST2.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it: its content is parsed and
+compared to a true phylogeny to obtain the inference errors.
+Specifying \code{beast2_output_trees_filename} allows to store
+this file in a more permanently stored location.}
+
 \item{beast2_output_state_filename}{name of the final state file
 created by BEAST2, containing the operator acceptances.
 By default, this file is put a temporary folder with a random filename,

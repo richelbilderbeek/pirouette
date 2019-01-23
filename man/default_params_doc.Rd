@@ -258,6 +258,14 @@ as can be created by \link{create_twinning_params}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{beast2_output_trees_filename}{name of a trees files
+created by BEAST2.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it: its content is parsed and
+compared to a true phylogeny to obtain the inference errors.
+Specifying \code{beast2_output_trees_filename} allows to store
+this file in a more permanently stored location.}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
