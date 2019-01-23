@@ -34,6 +34,7 @@ Imports:
 Suggests:
     becosys,
     devtools,
+    magrittr,
     ggplot2,
     knitr,
     lintr,
