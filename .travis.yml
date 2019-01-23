@@ -4,7 +4,6 @@ cache: packages
 r_packages:
   - devtools
   - ggplot2
-  - magrittr
   - xml2
 
 bioc_packages:
@@ -34,9 +33,6 @@ before_install:
   - sudo apt-get install -y libmagick++-dev
   # Rmpfr
   - sudo apt install -qq libmpfr-dev
-  # magrittr
-  - R --version
-  - Rscript -e 'install.packages("magrittr", repos="http://cran.us.r-project.org")'
 
 before_script:
   - Rscript -e "beastier::install_beast2()"
