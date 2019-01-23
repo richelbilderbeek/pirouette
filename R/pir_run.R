@@ -24,14 +24,16 @@ pir_run <- function(
   twinning_params = NA,
   alignment_params,
   model_select_params = list(create_gen_model_select_param(alignment_params)),
-  inference_param # The shared BEAST2 setup parameters
+  inference_param = create_inference_param(),
+  error_measure_params = create_error_measure_params()
 ) {
   # Check the inputs
   pir_run_check_inputs(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_param = inference_param
+    inference_param = inference_param,
+    error_measure_params = error_measure_params
   )
   # Run for the true tree
   df <- pir_run_tree(
@@ -208,13 +210,15 @@ pir_run_check_inputs <- function(
   phylogeny,
   alignment_params,
   model_select_params,
-  inference_param
+  inference_param,
+  error_measure_params
 ) {
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
+        "Tip: use 'create_alignment_params'\n",
         "Error message: ", msg, "\n",
         "Actual value: ", alignment_params
       )
@@ -226,6 +230,7 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'inference_param' must be a set of inference parameters.\n",
+        "Tip: use 'create_inference_param'\n",
         "Error message: ", msg, "\n",
         "Actual value: ", inference_param
       )
@@ -237,7 +242,21 @@ pir_run_check_inputs <- function(
     error = function(msg) {
       msg <- paste0(
         "'model_select_params' must be a list of one or more model selection ",
+        "Tip: use 'create_model_select_params'\n",
         "parameters sets.\n",
+        "Error message: ", msg, "\n",
+        "Actual value: ", model_select_params
+      )
+      stop(msg)
+    }
+  )
+  tryCatch(
+    check_error_measure_params(error_measure_params), # nolint pirouette function
+    error = function(msg) {
+      msg <- paste0(
+        "'error_measure_params' must be a set of error measurement ",
+        "parameters.\n",
+        "Tip: use 'create_error_measure_params'\n",
         "Error message: ", msg, "\n",
         "Actual value: ", model_select_params
       )

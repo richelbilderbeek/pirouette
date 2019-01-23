@@ -10,16 +10,16 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
   chain_length, clock_model, clock_models, clock_model_name, crown_age,
-  epsilon, fasta_filename, filename, folder_name, inference_model,
-  inference_param, init_speciation_rate, init_extinction_rate, lambda,
-  marg_lik_filename, marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
-  mcmc, model_selection, model_select_param, model_select_params,
-  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
-  parameters_filename, phylo, phylogeny, posterior_trees, precision,
-  project_folder_name, root_sequence, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
-  tree_prior, tree_priors, tree_prior_name, tree_type,
+  epsilon, error_measure_params, fasta_filename, filename, folder_name,
+  inference_model, inference_param, init_speciation_rate,
+  init_extinction_rate, lambda, marg_lik_filename, marg_liks, mbd_l_matrix,
+  mbd_mutation_rate, mbd_tree, mcmc, model_selection, model_select_param,
+  model_select_params, mrca_prior, mu, mutation_rate, nu, nu_events,
+  parameter_filename, parameters_filename, phylo, phylogeny,
+  posterior_trees, precision, project_folder_name, root_sequence,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  site_models, site_model_name, sub_chain_length, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_tree_filename, twinning_params, type,
   verbose)
 }
@@ -97,6 +97,12 @@ to let it be estimated}
 evidence (also known as marginal likelihood).
 Smaller values result in more precise estimations, that take
 longer to compute}
+
+\item{error_measure_params}{parameter set to specify how the
+error between the given phylogeny and the Bayesian
+posterior is determined.
+Use \link{create_error_measure_params} to create such
+a parameter set}
 
 \item{fasta_filename}{name of a FASTA file}
 

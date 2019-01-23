@@ -6,7 +6,8 @@
 \usage{
 pir_run(phylogeny, twinning_params = NA, alignment_params,
   model_select_params = list(create_gen_model_select_param(alignment_params)),
-  inference_param)
+  inference_param = create_inference_param(),
+  error_measure_params = create_error_measure_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -27,6 +28,12 @@ as can be created by \link{create_model_select_param}}
 as can be created by \link{create_inference_param}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{error_measure_params}{parameter set to specify how the
+error between the given phylogeny and the Bayesian
+posterior is determined.
+Use \link{create_error_measure_params} to create such
+a parameter set}
 }
 \value{
 a data frame with errors, with as many rows as model selection

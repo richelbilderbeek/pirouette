@@ -55,6 +55,11 @@
 #'   evidence (also known as marginal likelihood).
 #'   Smaller values result in more precise estimations, that take
 #'   longer to compute
+#' @param error_measure_params parameter set to specify how the
+#'   error between the given phylogeny and the Bayesian
+#'   posterior is determined.
+#'   Use \link{create_error_measure_params} to create such
+#'   a parameter set
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -166,6 +171,7 @@ default_params_doc <- function(
   clock_model_name,
   crown_age,
   epsilon,
+  error_measure_params,
   fasta_filename,
   filename,
   folder_name,
