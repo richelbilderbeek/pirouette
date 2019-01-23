@@ -19,11 +19,16 @@ test_that("generative only", {
       )
     ),
     inference_param = create_inference_param(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    )
+      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+    ),
+    error_measure_params = create_error_measure_params()
   )
   # Files created
   testit::assert(file.exists(alignment_params$fasta_filename))
+  testit::assert(file.exists(errors$beast2_input_filename))
+  testit::assert(file.exists(errors$beast2_output_log_filename))
+  testit::assert(file.exists(errors$beast2_output_trees_filename))
+  testit::assert(file.exists(errors$beast2_output_state_filename))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -57,15 +62,8 @@ test_that("generative only", {
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
-
-  expect_true("beast2_input_filename" %in% names(errors))
-  expect_true("beast2_output_log_filename" %in% names(errors))
-  expect_true("beast2_output_trees_filename" %in% names(errors))
-  expect_true("beast2_output_state_filename" %in% names(errors))
-  expect_false(is.na(errors$beast2_input_filename))
-  expect_false(is.na(errors$beast2_output_log_filename))
-  expect_false(is.na(errors$beast2_output_trees_filename))
-  expect_false(is.na(errors$beast2_output_state_filename))
+  n_errors <- col_last_error - col_first_error + 1
+  expect_true(n_errors < 11) # due to burn-in
 })
 
 test_that("most_evidence", {

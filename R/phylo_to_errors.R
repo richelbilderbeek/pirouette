@@ -25,7 +25,8 @@ phylo_to_errors <- function(
   phylogeny,
   alignment_params,
   inference_model,
-  inference_param
+  inference_param = create_inference_param(),
+  error_measure_params = create_error_measure_params()
 ) {
   # Run
   trees <- alignment_params_to_posterior_trees(
@@ -33,7 +34,13 @@ phylo_to_errors <- function(
     inference_model = inference_model,
     inference_param = inference_param
   )
-
   # Measure error by comparing true tree with BEAST2 posterior trees
-  nLTT::nltts_diff(tree = phylogeny, trees = trees)
+  # Old version: nLTT::nltts_diff(tree = phylogeny, trees = trees)
+  all_errors <- error_measure_params$error_function(phylogeny, trees)
+
+  # Then remove the burn-in
+  tracerer::remove_burn_in(
+    trace = all_errors,
+    burn_in_fraction = error_measure_params$burn_in_fraction
+  )
 }

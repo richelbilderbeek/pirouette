@@ -41,7 +41,8 @@ pir_run <- function(
     tree_type = "true",
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_param = inference_param
+    inference_param = inference_param,
+    error_measure_params = error_measure_params
   )
 
   # Run for the twin tree
@@ -76,7 +77,8 @@ pir_run_tree <- function(
   tree_type = "true",
   alignment_params,
   model_select_params = list(create_gen_model_select_param(alignment_params)),
-  inference_param # The shared BEAST2 setup parameters
+  inference_param = create_inference_param(),
+  error_measure_params = create_error_measure_params()
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -124,7 +126,9 @@ pir_run_tree <- function(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       inference_model = inference_model,
-      inference_param = inference_param
+      inference_param = inference_param,
+      error_measure_params = error_measure_params
+
     )
   }
   testit::assert(length(inference_models) == length(errorses))
