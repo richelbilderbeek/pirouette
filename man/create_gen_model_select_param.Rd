@@ -4,7 +4,8 @@
 \alias{create_gen_model_select_param}
 \title{Select the generative model to be used in inference}
 \usage{
-create_gen_model_select_param(alignment_params,
+
+  create_gen_model_select_param(alignment_params = create_alignment_params(),
   tree_prior = beautier::create_bd_tree_prior())
 }
 \arguments{
