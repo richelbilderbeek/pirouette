@@ -28,7 +28,7 @@ pir_run <- function(
   error_measure_params = create_error_measure_params()
 ) {
   # List model_select_params
-  model_select_params <- list_model_select_params(model_select_params)
+  model_select_params <- list_model_select_params(model_select_params) # nolint pirouette function
 
   # Check the inputs
   pir_run_check_inputs(
