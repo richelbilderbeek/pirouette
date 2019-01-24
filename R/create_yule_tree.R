@@ -7,7 +7,7 @@ create_yule_tree <- function(
   phylogeny,
   seed
 ) {
-  age <- beautier::get_phylo_crown_age(phylogeny)
+  age <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
     convert_tree2brts(phylogeny), # nolint pirouette function
     decreasing = TRUE
