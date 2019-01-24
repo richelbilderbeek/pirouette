@@ -105,8 +105,8 @@ test_that("generative, short, MRCA prior", {
   )
   file.remove(alignment_params$fasta_filename)
 
-  skip("After fixing https://github.com/ropensci/beautier/issues/75")
-  # Needs https://github.com/ropensci/beautier/issues/75 fixed
+  crown_age <- 10.0
+
   errors <- pir_run(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
@@ -117,7 +117,7 @@ test_that("generative, short, MRCA prior", {
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
       mrca_prior = create_mrca_prior(
         is_monophyletic = TRUE,
-        mrca_distr = create_normal_distr(mean = 10.0, sigma = 0.01)
+        mrca_distr = create_normal_distr(mean = crown_age, sigma = 0.01)
       )
     ),
     error_measure_params = create_error_measure_params(
@@ -126,7 +126,13 @@ test_that("generative, short, MRCA prior", {
     )
   )
   # Measure if crown ages are indeed around 10.0
+  trees <- tracerer::parse_beast_trees(errors$beast2_output_trees_filename)
+  last_tree <- tail(trees, n = 1)[[1]]
+
+  expect_true(get_crown_age(last_tree) < 1.1 * crown_age)
+  expect_true(get_crown_age(last_tree) > 0.9 * crown_age)
 })
+
 test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
