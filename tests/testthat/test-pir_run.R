@@ -64,7 +64,7 @@ test_that("generative only", {
   expect_true(n_errors < 11) # due to burn-in
 })
 
-test_that("generative, short, gamma", {
+test_that("generative, short, gamma statistic", {
 
   if (!beastier::is_on_travis()) return()
 
@@ -95,6 +95,38 @@ test_that("generative, short, gamma", {
   n_errors <- col_last_error - col_first_error + 1
 })
 
+test_that("generative, short, MRCA prior", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    mutation_rate = 0.01
+  )
+  file.remove(alignment_params$fasta_filename)
+
+  skip("After fixing https://github.com/ropensci/beautier/issues/75")
+  # Needs https://github.com/ropensci/beautier/issues/75 fixed
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = create_gen_model_select_param(
+      alignment_params = alignment_params
+    ),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
+      mrca_prior = create_mrca_prior(
+        is_monophyletic = TRUE,
+        mrca_distr = create_normal_distr(mean = 10.0, sigma = 0.01)
+      )
+    ),
+    error_measure_params = create_error_measure_params(
+      burn_in_fraction = 0.0,
+      error_function = get_gamma_error_function()
+    )
+  )
+  # Measure if crown ages are indeed around 10.0
+})
 test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
