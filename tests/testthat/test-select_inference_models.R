@@ -3,8 +3,10 @@ context("test-select_inference_models")
 test_that("generative", {
 
   alignment_params <- create_alignment_params()
-  model_select_params <- create_gen_model_select_param(
-    alignment_params = alignment_params
+  model_select_params <- list(
+      create_gen_model_select_param(
+      alignment_params = alignment_params
+    )
   )
 
   inference_models <- select_inference_models(
@@ -23,7 +25,7 @@ test_that("generative", {
 test_that("most_evidence", {
 
   alignment_params <- create_alignment_params()
-  model_select_params <- create_best_model_select_param()
+  model_select_params <- list(create_best_model_select_param())
 
   # Fake a marg_liks
   marg_liks <- create_test_marg_liks()
