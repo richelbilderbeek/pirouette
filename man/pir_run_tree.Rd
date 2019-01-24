@@ -5,7 +5,7 @@
 \title{Measure the error BEAST2 makes from a phylogeny}
 \usage{
 pir_run_tree(phylogeny, tree_type = "true", alignment_params,
-  model_select_params = list(create_gen_model_select_param(alignment_params)),
+  model_select_params = create_gen_model_select_param(alignment_params),
   inference_param = create_inference_param(),
   error_measure_params = create_error_measure_params())
 }

@@ -26,10 +26,8 @@
 #'   errors <- pir_run(
 #'     phylogeny = phylogeny,
 #'     alignment_params = alignment_params,
-#'     model_select_params = list(
-#'       create_gen_model_select_param(
-#'         alignment_params = alignment_params
-#'       )
+#'     model_select_params = create_gen_model_select_param(
+#'       alignment_params = alignment_params
 #'     ),
 #'     inference_param = create_inference_param(
 #'       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
@@ -98,7 +96,7 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  model_select_params = list(create_gen_model_select_param(alignment_params)),
+  model_select_params = create_gen_model_select_param(alignment_params),
   inference_param = create_inference_param(),
   error_measure_params = create_error_measure_params()
 ) {

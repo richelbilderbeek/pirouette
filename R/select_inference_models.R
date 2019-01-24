@@ -10,10 +10,8 @@
 #'   # Select to use the generative model
 #'   alignment_params <- create_alignment_params()
 #'
-#'   model_select_params <- list( # must be a list
-#'     create_gen_model_select_param(
-#'       alignment_params = alignment_params
-#'     )
+#'   model_select_params <- create_gen_model_select_param(
+#'     alignment_params = alignment_params
 #'   )
 #'
 #'   inference_models <- select_inference_models(
@@ -28,9 +26,8 @@
 #'
 #'  # Select to use the model with the highest evidence/marginal likelihood
 #'  alignment_params <- create_alignment_params()
-#'    model_select_params <- list( # Must be a list
-#'      create_best_model_select_param()
-#'    )
+#'  model_select_params <- create_best_model_select_param()
+#'
 #'
 #'  # Use a fake table of evidences/marginal likelihoods, as this
 #'  # is a costly calculation

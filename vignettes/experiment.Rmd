@@ -96,7 +96,7 @@ for (i in seq_along(ext_rates)) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
-    model_select_params = list(model_select_param),
+    model_select_params = model_select_param,
     inference_param = inference_param 
   )
   errors[[i]] <- df

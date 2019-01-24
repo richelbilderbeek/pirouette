@@ -62,10 +62,8 @@ In the simplest case, which is the default,
 we will do our inference with the generative model only:
 
 ```{r}
-model_select_params <- list(
-  create_gen_model_select_param(
-    alignment_params = alignment_params
-  )
+model_select_params <- create_gen_model_select_param(
+  alignment_params = alignment_params
 )
 ```
 
