@@ -16,7 +16,24 @@
 #'
 #' @inheritParams default_params_doc
 #' @return a data frame with errors, with as many rows as model selection
-#'   parameter sets
+#'   parameter sets.
+#'   Tip: use \link{pir_plot} to display it
+#' @examples
+#'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+#'   alignment_params <- create_alignment_params(
+#'     mutation_rate = 0.01
+#'   )
+#'   errors <- pir_run(
+#'     phylogeny = phylogeny,
+#'     alignment_params = alignment_params,
+#'     model_select_params = create_gen_model_select_param(
+#'       alignment_params = alignment_params
+#'     ),
+#'     inference_params = create_inference_params(
+#'       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+#'     )
+#'   )
+#'   pir_plot(errors)
 #' @export
 #' @author Richel J.C. Bilderbeek
 pir_run <- function(
@@ -24,18 +41,18 @@ pir_run <- function(
   twinning_params = NA,
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
-  inference_param, # The shared BEAST2 setup parameters
+  inference_params = create_inference_params(),
   error_measure_params = create_error_measure_params()
 ) {
   # List model_select_params
-  model_select_params <- list_model_select_params(model_select_params)
+  model_select_params <- list_model_select_params(model_select_params) # nolint pirouette function
 
   # Check the inputs
   pir_run_check_inputs(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_param = inference_param,
+    inference_params = inference_params,
     error_measure_params = error_measure_params
   )
   # Run for the true tree
@@ -44,7 +61,7 @@ pir_run <- function(
     tree_type = "true",
     alignment_params = alignment_params,
     model_select_params = model_select_params,
-    inference_param = inference_param,
+    inference_params = inference_params,
     error_measure_params = error_measure_params
   )
 
@@ -60,7 +77,7 @@ pir_run <- function(
       tree_type = "twin",
       alignment_params = twin_alignment_params,
       model_select_params = model_select_params,
-      inference_param = inference_param
+      inference_params = inference_params
     )
     df <- rbind(df, df_twin)
   }
@@ -79,8 +96,8 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  model_select_params = list(create_gen_model_select_param(alignment_params)),
-  inference_param = create_inference_param(),
+  model_select_params = create_gen_model_select_param(alignment_params),
+  inference_params = create_inference_params(),
   error_measure_params = create_error_measure_params()
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
@@ -129,7 +146,7 @@ pir_run_tree <- function(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       inference_model = inference_model,
-      inference_param = inference_param,
+      inference_params = inference_params,
       error_measure_params = error_measure_params
 
     )
@@ -217,7 +234,7 @@ pir_run_check_inputs <- function(
   phylogeny,
   alignment_params,
   model_select_params,
-  inference_param,
+  inference_params,
   error_measure_params
 ) {
   tryCatch(
@@ -233,13 +250,13 @@ pir_run_check_inputs <- function(
     }
   )
   tryCatch(
-    check_inference_param(inference_param), # nolint pirouette function
+    check_inference_params(inference_params), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
-        "'inference_param' must be a set of inference parameters.\n",
-        "Tip: use 'create_inference_param'\n",
+        "'inference_params' must be a set of inference parameters.\n",
+        "Tip: use 'create_inference_params'\n",
         "Error message: ", msg, "\n",
-        "Actual value: ", inference_param
+        "Actual value: ", inference_params
       )
       stop(msg)
     }

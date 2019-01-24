@@ -13,7 +13,7 @@ test_that("abuse", {
         clock_model = beautier::create_strict_clock_model(),
         tree_prior = beautier::create_tree_prior_bd()
       ),
-      inference_param = "nonsense"
+      inference_params = "nonsense"
     )
   )
 })

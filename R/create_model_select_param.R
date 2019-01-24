@@ -105,7 +105,7 @@ create_model_select_param <- function(
 #' @author Richel J.C. Bilderbeek
 #' @export
 create_gen_model_select_param <- function(
-  alignment_params,
+  alignment_params = create_alignment_params(),
   tree_prior = beautier::create_bd_tree_prior()
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function

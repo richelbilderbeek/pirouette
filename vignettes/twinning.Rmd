@@ -47,7 +47,7 @@ twinning_params <- pirouette::create_twinning_params(
 ```{r}
 alignment_params = pirouette::create_alignment_params(
   root_sequence = pirouette::create_blocked_dna(length = 100),
-  mutation_rate = 1.0 / beautier::get_phylo_crown_age(phylogeny)
+  mutation_rate = 1.0 / beautier::get_crown_age(phylogeny)
 )
 ```
 
@@ -86,7 +86,7 @@ if (rappdirs::app_dir()$os != "win") {
 ```
 
 ```{r}
-inference_param <- pirouette::create_inference_param(
+inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
   rng_seed = 42
 )
@@ -101,7 +101,7 @@ Run:
 #   twinning_params = twinning_params,
 #   alignment_params = alignment_params,
 #   model_select_params = model_select_params,
-#   inference_param = inference_param 
+#   inference_params = inference_params 
 # )
 ```
 

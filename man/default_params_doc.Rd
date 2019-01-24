@@ -12,7 +12,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
   clock_models, clock_model_name, crown_age, epsilon, error_function,
   error_measure_params, fasta_filename, filename, folder_name,
-  inference_model, inference_param, init_speciation_rate,
+  inference_model, inference_params, init_speciation_rate,
   init_extinction_rate, lambda, marg_lik_filename, marg_liks, mbd_l_matrix,
   mbd_mutation_rate, mbd_tree, mcmc, model_selection, model_select_param,
   model_select_params, mrca_prior, mu, mutation_rate, nu, nu_events,
@@ -144,8 +144,8 @@ a parameter set}
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
-\item{inference_param}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_param}.
+\item{inference_params}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 

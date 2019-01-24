@@ -5,7 +5,7 @@
 \title{Creates a posterior of phylogenies from a known alignment.}
 \usage{
 alignment_params_to_posterior_trees(alignment_params, inference_model,
-  inference_param)
+  inference_params)
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
@@ -15,8 +15,8 @@ as can be created by \link{create_alignment_params}}
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
-\item{inference_param}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_param}.
+\item{inference_params}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 }

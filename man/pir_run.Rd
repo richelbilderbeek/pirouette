@@ -6,7 +6,8 @@
 \usage{
 pir_run(phylogeny, twinning_params = NA, alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
-  inference_param, error_measure_params = create_error_measure_params())
+  inference_params = create_inference_params(),
+  error_measure_params = create_error_measure_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -23,8 +24,8 @@ to select an inference model
 (a combination of site model, clock model and tree prior),
 as can be created by \link{create_model_select_param}}
 
-\item{inference_param}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_param}.
+\item{inference_params}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 
@@ -36,7 +37,8 @@ a parameter set}
 }
 \value{
 a data frame with errors, with as many rows as model selection
-  parameter sets
+  parameter sets.
+  Tip: use \link{pir_plot} to display it
 }
 \description{
 From a phylogeny of (un)known speciation model,
@@ -53,6 +55,23 @@ that has the most evidence (\code{"most evidence"}).
 Each inference model is used to run BEAST2 and measures the
 difference between the known/true/given phylogeny and the
 ones created by BEAST2.
+}
+\examples{
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    mutation_rate = 0.01
+  )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = create_gen_model_select_param(
+      alignment_params = alignment_params
+    ),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    )
+  )
+  pir_plot(errors)
 }
 \author{
 Richel J.C. Bilderbeek

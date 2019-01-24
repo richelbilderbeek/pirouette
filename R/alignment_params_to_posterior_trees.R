@@ -11,15 +11,15 @@
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
   inference_model,
-  inference_param
+  inference_params
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_inference_model(inference_model) # nolint pirouette function
   tryCatch(
-    check_inference_param(inference_param),
+    check_inference_params(inference_params),
     error = function(msg) {
       msg <- paste0(
-        "'inference_param' must be a set of inference parameters. ",
+        "'inference_params' must be a set of inference parameters. ",
         msg
       )
       stop(msg)
@@ -31,16 +31,16 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     site_model = inference_model$site_model,
     clock_model = inference_model$clock_model,
     tree_prior = inference_model$tree_prior,
-    mrca_prior = inference_param$mrca_prior,
-    mcmc = inference_param$mcmc,
-    rng_seed = inference_param$rng_seed,
-    verbose = inference_param$verbose,
+    mrca_prior = inference_params$mrca_prior,
+    mcmc = inference_params$mcmc,
+    rng_seed = inference_params$rng_seed,
+    verbose = inference_params$verbose,
     beast2_input_filename = inference_model$beast2_input_filename,
     beast2_output_log_filename = inference_model$beast2_output_log_filename,
     beast2_output_trees_filenames =
       inference_model$beast2_output_trees_filename,
     beast2_output_state_filename = inference_model$beast2_output_state_filename,
-    beast2_path = inference_param$beast2_path
+    beast2_path = inference_params$beast2_path
   )
 
   c(babette_out[[grep(x = names(babette_out), pattern = "trees")]])

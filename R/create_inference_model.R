@@ -3,7 +3,7 @@
 #' An inference model is a combination of a site model, clock
 #' model and tree prior. An inference model is also the part
 #' of the BEAST2 setups that differ; the part that is shared
-#' is created by \link{create_inference_param})
+#' is created by \link{create_inference_params})
 #' @inheritParams default_params_doc
 #' @return an inference model
 #' @export

@@ -31,7 +31,7 @@ test_that("use", {
       clock_model = beautier::create_strict_clock_model(),
       tree_prior = beautier::create_tree_prior_bd()
     ),
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000)
     )
   )

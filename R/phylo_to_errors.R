@@ -9,10 +9,10 @@
 #'    \item a site model (\code{site_model})
 #'    \item a clock model (\code{clock_model})
 #'    \item a tree prior (\code{tree_prior})
-#'    \item an MRCA prior (\code{inference_param$mrca_prior})
-#'    \item an MCMC setup (\code{inference_param$mcmc})
-#'    \item a BEAST2 RNG seed (\code{inference_param$rng_seed})
-#'    \item a BEAST2 path (\code{inference_param$beast2_path})
+#'    \item an MRCA prior (\code{inference_params$mrca_prior})
+#'    \item an MCMC setup (\code{inference_params$mcmc})
+#'    \item a BEAST2 RNG seed (\code{inference_params$rng_seed})
+#'    \item a BEAST2 path (\code{inference_params$beast2_path})
 #' }
 #'
 #' The posterior phylogenies are compared to the true/known phylogeny
@@ -25,14 +25,14 @@ phylo_to_errors <- function(
   phylogeny,
   alignment_params,
   inference_model,
-  inference_param = create_inference_param(),
+  inference_params = create_inference_params(),
   error_measure_params = create_error_measure_params()
 ) {
   # Run
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
     inference_model = inference_model,
-    inference_param = inference_param
+    inference_params = inference_params
   )
   # Measure error by comparing true tree with BEAST2 posterior trees
   # Old version: nLTT::nltts_diff(tree = phylogeny, trees = trees)

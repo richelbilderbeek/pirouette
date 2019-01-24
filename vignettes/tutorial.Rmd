@@ -133,7 +133,7 @@ The general setup for our inference can be tuned. For example,
 to have a shorter MCMC run and a specific RNG seed:
 
 ```{r}
-inference_param <- pirouette::create_inference_param(
+inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
   rng_seed = 271
 )
@@ -145,8 +145,8 @@ Now we have all in place to do a `pirouette` run:
 df <- pirouette::pir_run(
   phylogeny = phylogeny,
   alignment_params = alignment_params,
-  model_select_params = list(gen_model_select_param),
-  inference_param = inference_param
+  model_select_params = gen_model_select_param,
+  inference_params = inference_params
 )
 knitr::kable(df)
 ```
@@ -202,20 +202,23 @@ best_model_select_param <- pirouette::create_best_model_select_param(
     beautier::create_yule_tree_prior(),
     beautier::create_bd_tree_prior()  
   ),
-  epsilon = 0.1
+  epsilon = 100.0
 )
 ```
 
 Now we again have all in place to do a `pirouette` run:
 
-```{r}
-# df <- pirouette::pir_run(
-#   phylogeny = phylogeny,
-#   alignment_params = alignment_params,
-#   model_select_params = list(best_model_select_param),
-#   inference_param = inference_param
-# )
-# knitr::kable(df)
+```{r fig.width=7, fig.height=7}
+if (rappdirs::app_dir()$os != "win") {
+  df <- pirouette::pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = best_model_select_param,
+    inference_params = inference_params
+  )
+  knitr::kable(df)
+  pirouette::pir_plot(df)
+}
 ```
 
 We can also specify our complete knowledge at the same time:
@@ -223,18 +226,15 @@ We can also specify our complete knowledge at the same time:
  * the generative model is JC69, strict and BD
  * pick the best inference model
 
-```{r}
-# df <- pirouette::pir_run(
-#   phylogeny = phylogeny,
-#   alignment_params = alignment_params,
-#   model_select_params = list(gen_model_select_param, best_model_select_param),
-#   inference_param = inference_param
-# )
-# knitr::kable(df)
-```
-
-Or in a violin plot:
-
 ```{r fig.width=7, fig.height=7}
-# pirouette::pir_plot(df)
+if (rappdirs::app_dir()$os != "win") {
+  df <- pirouette::pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = list(gen_model_select_param, best_model_select_param),
+    inference_params = inference_params
+  )
+  knitr::kable(df)
+  pirouette::pir_plot(df)
+}
 ```
