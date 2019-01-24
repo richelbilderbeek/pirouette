@@ -24,7 +24,7 @@ pir_run <- function(
   twinning_params = NA,
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
-  inference_param, # The shared BEAST2 setup parameters
+  inference_param = create_inference_param(),
   error_measure_params = create_error_measure_params()
 ) {
   # List model_select_params
