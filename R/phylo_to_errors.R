@@ -32,7 +32,7 @@ phylo_to_errors <- function(
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
     inference_model = inference_model,
-    inference_params = inference_param
+    inference_params = inference_params
   )
   # Measure error by comparing true tree with BEAST2 posterior trees
   # Old version: nLTT::nltts_diff(tree = phylogeny, trees = trees)

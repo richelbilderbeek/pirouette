@@ -146,7 +146,7 @@ df <- pirouette::pir_run(
   phylogeny = phylogeny,
   alignment_params = alignment_params,
   model_select_params = gen_model_select_param,
-  inference_params = inference_param
+  inference_params = inference_params
 )
 knitr::kable(df)
 ```
@@ -214,7 +214,7 @@ if (rappdirs::app_dir()$os != "win") {
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = best_model_select_param,
-    inference_params = inference_param
+    inference_params = inference_params
   )
   knitr::kable(df)
   pirouette::pir_plot(df)
@@ -232,7 +232,7 @@ if (rappdirs::app_dir()$os != "win") {
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = list(gen_model_select_param, best_model_select_param),
-    inference_params = inference_param
+    inference_params = inference_params
   )
   knitr::kable(df)
   pirouette::pir_plot(df)

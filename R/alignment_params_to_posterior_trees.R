@@ -11,7 +11,7 @@
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
   inference_model,
-  inference_param
+  inference_params
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_inference_model(inference_model) # nolint pirouette function
