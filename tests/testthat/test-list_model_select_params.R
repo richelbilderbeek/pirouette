@@ -17,7 +17,7 @@ test_that("use", {
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       model_select_params = model_select_params,
-      inference_param = create_inference_param(
+      inference_params = create_inference_params(
         mcmc = beautier::create_mcmc(
           chain_length = 2000,
           store_every = 1000

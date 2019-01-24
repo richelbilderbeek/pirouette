@@ -5,7 +5,7 @@
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
 phylo_to_errors(phylogeny, alignment_params, inference_model,
-  inference_param = create_inference_param(),
+  inference_params = create_inference_params(),
   error_measure_params = create_error_measure_params())
 }
 \arguments{
@@ -18,8 +18,8 @@ as can be created by \link{create_alignment_params}}
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
-\item{inference_param}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_param}.
+\item{inference_params}{one set of parameters for the Bayesian inference,
+as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 
@@ -40,10 +40,10 @@ Using the setup itemized below, the posterior phylogengies are generated:
    \item a site model (\code{site_model})
    \item a clock model (\code{clock_model})
    \item a tree prior (\code{tree_prior})
-   \item an MRCA prior (\code{inference_param$mrca_prior})
-   \item an MCMC setup (\code{inference_param$mcmc})
-   \item a BEAST2 RNG seed (\code{inference_param$rng_seed})
-   \item a BEAST2 path (\code{inference_param$beast2_path})
+   \item an MRCA prior (\code{inference_params$mrca_prior})
+   \item an MCMC setup (\code{inference_params$mcmc})
+   \item a BEAST2 RNG seed (\code{inference_params$rng_seed})
+   \item a BEAST2 path (\code{inference_params$beast2_path})
 }
 
 The posterior phylogenies are compared to the true/known phylogeny

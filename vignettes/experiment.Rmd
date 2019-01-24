@@ -87,7 +87,7 @@ model_select_param <- pirouette::create_gen_model_select_param(
   alignment_params = alignment_params,
   tree_prior = beautier::create_bd_tree_prior()
 )
-inference_param <- pirouette::create_inference_param(
+inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000)
 )
 errors <- list()
@@ -97,7 +97,7 @@ for (i in seq_along(ext_rates)) {
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = model_select_param,
-    inference_param = inference_param 
+    inference_params = inference_params 
   )
   errors[[i]] <- df
 }

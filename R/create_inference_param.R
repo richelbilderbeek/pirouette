@@ -11,7 +11,7 @@
 #'   R package, that calls the phylogenetic tool \code{BEAST2}.
 #' @author Richel J.C. Bilderbeek
 #' @export
-create_inference_param <- function(
+create_inference_params <- function(
   mrca_prior = NA,
   mcmc = beautier::create_mcmc(),
   rng_seed = NA,
@@ -20,13 +20,13 @@ create_inference_param <- function(
 ) {
   beautier::check_mcmc(mcmc)
   beautier::check_mrca_prior(mrca_prior)
-  inference_param <- list(
+  inference_params <- list(
     mrca_prior = mrca_prior,
     mcmc = mcmc,
     rng_seed = rng_seed,
     beast2_path = beast2_path,
     verbose = verbose
   )
-  check_inference_param(inference_param) # nolint pirouette function
-  inference_param
+  check_inference_params(inference_params) # nolint pirouette function
+  inference_params
 }

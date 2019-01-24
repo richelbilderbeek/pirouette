@@ -16,7 +16,7 @@ test_that("generative only", {
     model_select_params = create_gen_model_select_param(
       alignment_params = alignment_params
     ),
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
     ),
     error_measure_params = create_error_measure_params()
@@ -80,7 +80,7 @@ test_that("generative, short, gamma", {
     model_select_params = create_gen_model_select_param(
       alignment_params = alignment_params
     ),
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     ),
     error_measure_params = create_error_measure_params(
@@ -116,7 +116,7 @@ test_that("most_evidence", {
       mutation_rate = 0.01
     ),
     model_select_params = model_select_params,
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
@@ -150,7 +150,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
         tree_priors = beautier::create_tree_priors()[5]
       )
     ),
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
@@ -183,7 +183,7 @@ test_that("generative and most_evidence, generative in most_evidence", {
         tree_priors = list(beautier::create_bd_tree_prior())
       )
     ),
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
@@ -218,7 +218,7 @@ test_that("generative with twin", {
     model_select_params = create_gen_model_select_param(
       alignment_params = alignment_params
     ),
-    inference_param = create_inference_param(
+    inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )

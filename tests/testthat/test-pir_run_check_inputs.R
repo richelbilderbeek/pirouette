@@ -12,7 +12,7 @@ test_that("use", {
       tree_prior = beautier::create_bd_tree_prior()
     )
   )
-  inference_param <- create_inference_param(
+  inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
   error_measure_params <- create_error_measure_params()
@@ -21,7 +21,7 @@ test_that("use", {
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       model_select_params = model_select_params,
-      inference_param = inference_param,
+      inference_params = inference_params,
       error_measure_params = error_measure_params
     )
   )
@@ -40,7 +40,7 @@ test_that("abuse", {
       tree_prior = beautier::create_bd_tree_prior()
     )
   )
-  inference_param <- create_inference_param(
+  inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
   error_measure_params <- create_error_measure_params()
@@ -51,7 +51,7 @@ test_that("abuse", {
       phylogeny = phylogeny,
       alignment_params = model_select_params,
       model_select_params = model_select_params,
-      inference_param = inference_param,
+      inference_params = inference_params,
       error_measure_params = error_measure_params
     )
   )
@@ -60,7 +60,7 @@ test_that("abuse", {
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       model_select_params = model_select_params,
-      inference_param = alignment_params,
+      inference_params = alignment_params,
       error_measure_params = error_measure_params
     )
   )
@@ -69,7 +69,7 @@ test_that("abuse", {
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       model_select_params = alignment_params,
-      inference_param = inference_param,
+      inference_params = inference_params,
       error_measure_params = error_measure_params
     )
   )
@@ -78,7 +78,7 @@ test_that("abuse", {
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       model_select_params = model_select_params,
-      inference_param = inference_param,
+      inference_params = inference_params,
       error_measure_params = inference_param
     )
   )
