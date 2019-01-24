@@ -106,8 +106,8 @@ test_that("most_evidence", {
     tree_priors = beautier::create_tree_priors()[5],
     epsilon = 100.0
   )
-  file.remove(model_select_params[[1]]$marg_lik_filename)
-  testit::assert(!file.exists(model_select_params[[1]]$marg_lik_filename))
+  file.remove(model_select_params$marg_lik_filename)
+  testit::assert(!file.exists(model_select_params$marg_lik_filename))
 
   errors <- pir_run(
     phylogeny = phylogeny,
