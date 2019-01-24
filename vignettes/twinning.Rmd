@@ -86,7 +86,7 @@ if (rappdirs::app_dir()$os != "win") {
 ```
 
 ```{r}
-inference_param <- pirouette::create_inference_param(
+inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
   rng_seed = 42
 )

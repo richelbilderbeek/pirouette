@@ -133,7 +133,7 @@ The general setup for our inference can be tuned. For example,
 to have a shorter MCMC run and a specific RNG seed:
 
 ```{r}
-inference_param <- pirouette::create_inference_param(
+inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
   rng_seed = 271
 )
