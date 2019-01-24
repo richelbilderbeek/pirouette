@@ -262,14 +262,27 @@ pir_run_check_inputs <- function(
     }
   )
   tryCatch(
-    check_model_select_params(model_select_params), # nolint pirouette function
+    pirouette:::check_model_select_params(model_select_params[[1]]), # nolint pirouette function
     error = function(msg) {
       msg <- paste0(
-        "'model_select_params' must be a list of one or more model selection ",
+        "'model_select_params[[1]]' must be a list of a model selection ",
         "Tip: use 'create_model_select_params'\n",
         "parameters sets.\n",
         "Error message: ", msg, "\n",
-        "Actual value: ", model_select_params
+        "Actual value: ", model_select_params[[1]]
+      )
+      stop(msg)
+    }
+  )
+  tryCatch(
+    pirouette:::check_model_select_params(model_select_params[[2]]), # nolint pirouette function
+    error = function(msg) {
+      msg <- paste0(
+        "'model_select_params[[2]]' must be a list of a model selection ",
+        "Tip: use 'create_model_select_params'\n",
+        "parameters sets.\n",
+        "Error message: ", msg, "\n",
+        "Actual value: ", model_select_params[[2]]
       )
       stop(msg)
     }
