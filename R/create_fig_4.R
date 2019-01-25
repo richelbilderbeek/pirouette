@@ -4,7 +4,7 @@
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_fig_4 <- function() {
-  phylogeny <- ape::read.tree(text = "((A:4, B:4):1, (C:4, D165:4) :1);")
+  phylogeny <- ape::read.tree(text = "((A:4, B:4):1, (C:4, D:4) :1);")
   alignment_params <- create_alignment_params(
     root_sequence = create_blocked_dna(length = 1000),
     mutation_rate = 0.1

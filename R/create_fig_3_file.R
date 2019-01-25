@@ -7,12 +7,12 @@ create_fig_3_file <- function(
   project_folder_name = getwd()
 ) {
   # create figure
-  fig_3 <- create_fig_3(project_folder_name) # nolint internal function
+  fig_3 <- create_fig_3() # nolint internal function
 
   # save output
   results_folder <- file.path(
     project_folder_name,
-    results
+    "results"
   )
   # No warning if folder already exists
   dir.create(results_folder, showWarnings = FALSE)
