@@ -11,4 +11,4 @@ module load GCCcore/4.9.3
 module load XZ/5.2.2-foss-2016a
 module load R
 module load ImageMagick
-Rscript -e "pirouette::create_fig_2_file()" 
+Rscript create_fig_2.R
