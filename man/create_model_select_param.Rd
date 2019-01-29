@@ -8,7 +8,7 @@ create_model_select_param(type,
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors(), epsilon = 1e-12,
-  marg_lik_filename = tempfile(fileext = ".csv"))
+  verbose = FALSE, marg_lik_filename = tempfile(fileext = ".csv"))
 }
 \arguments{
 \item{type}{one or more ways to select the models used in inference:
@@ -31,6 +31,8 @@ as created by \link[beautier]{create_tree_prior}}
 evidence (also known as marginal likelihood).
 Smaller values result in more precise estimations, that take
 longer to compute}
+
+\item{verbose}{if TRUE, show more output}
 
 \item{marg_lik_filename}{name of the file the marginal
 likelihoods (also known as 'evidences') are saved to}
