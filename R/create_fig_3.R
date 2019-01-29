@@ -9,12 +9,11 @@ create_fig_3 <- function() {
     root_sequence = create_blocked_dna(length = 1000),
     mutation_rate = 0.1
   )
-  model_select_param <- create_best_model_select_param()
-  errors <- pir_run(
+  model_select_param <- create_best_model_select_param() # nolint pirouette function
+  errors <- pir_run( # nolint pirouette function
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     model_select_params = model_select_param
   )
-  figure_3 <- pir_plot(errors)
-  figure_3
+  pir_plot(errors) # nolint pirouette function
 }

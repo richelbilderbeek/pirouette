@@ -18,6 +18,5 @@ create_fig_2 <- function() {
     alignment_params = alignment_params,
     model_select_params = model_select_param
   )
-  figure_2 <- pir_plot(errors)
-  figure_2
+  pir_plot(errors) # nolint pirouette function
 }
