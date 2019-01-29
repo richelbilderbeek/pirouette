@@ -19,3 +19,26 @@ create_fig_4 <- function() {
   )
   pir_plot(errors) # nolint pirouette function
 }
+
+#' Create figure 4 file
+#' @inheritParams default_params_doc
+#' @return the name of the file the plot is saved to
+#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @export
+create_fig_4_file <- function(
+  fig_4_filename = "figure_4.png"
+) {
+  # create figure
+  fig_4 <- create_fig_4() # nolint internal function
+
+  # save output
+  ggplot2::ggsave(
+    filename = fig_4_filename,
+    plot = fig_4
+  )
+  fig_4_filename
+}
+
+# Run
+library(pirouette)
+create_fig_4_file()

@@ -1,14 +1,14 @@
 #!/bin/bash
-# Script to create figure 2 in the current folder
+# Script to create figure 3 in the current folder
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --ntasks=1
 #SBATCH --mem=1G
-#SBATCH --job-name=create_fig_2
-#SBATCH --output=create_fig_2.log
+#SBATCH --job-name=create_fig_3
+#SBATCH --output=create_fig_3.log
 module load GCCcore/4.9.3 
 module load XZ/5.2.2-foss-2016a
 module load R
 module load ImageMagick
-Rscript create_fig_2.R
+Rscript create_fig_3.R
