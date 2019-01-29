@@ -17,3 +17,26 @@ create_fig_3 <- function() {
   )
   pir_plot(errors) # nolint pirouette function
 }
+
+#' Create figure 3 file
+#' @inheritParams default_params_doc
+#' @return the name of the file the plot is saved to
+#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @export
+create_fig_3_file <- function(
+  fig_3_filename = "figure_3.png"
+) {
+  # create figure
+  fig_3 <- create_fig_3() # nolint internal function
+
+  # save output
+  ggplot2::ggsave(
+    filename = fig_3_filename,
+    plot = fig_3
+  )
+  fig_3_filename
+}
+
+# Run
+library(pirouette)
+create_fig_3_file()
