@@ -1,5 +1,5 @@
 #!/bin/bash
-# Script to create figure 2
+# Script to create figure 2 in the current folder
 #SBATCH --time=1:00:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1

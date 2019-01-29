@@ -41,4 +41,5 @@ create_fig_2_file <- function(
 }
 
 # Run
+library(pirouette)
 create_fig_2_file()
