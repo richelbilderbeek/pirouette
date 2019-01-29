@@ -6,7 +6,7 @@
 \usage{
 
   create_gen_model_select_param(alignment_params = create_alignment_params(),
-  tree_prior = beautier::create_bd_tree_prior())
+  tree_prior = beautier::create_bd_tree_prior(), verbose = FALSE)
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
@@ -14,6 +14,8 @@ as can be created by \link{create_alignment_params}}
 
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \description{
 Create model selection parameters
