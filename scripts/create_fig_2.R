@@ -27,14 +27,14 @@ create_fig_2 <- function() {
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_fig_2_file <- function(
-  filename = "figure_2.png"
+  fig_2_filename = "figure_2.png"
 ) {
   # create figure
   fig_2 <- create_fig_2() # nolint internal function
 
   # save output
   ggplot2::ggsave(
-    filename = filename,
+    filename = fig_2_filename,
     plot = fig_2
   )
   fig_2_filename
