@@ -8,17 +8,19 @@
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_experiment <- function(
-  rng_seed = 0,
-  twin_model = "bd",
-  twin_tree_filename = tempfile(fileext = ".newick"),
-  twin_alignment_filename = tempfile(fileext = ".fasta")
+  model_type = "generative",
+  run_if = "always",
+  do_measure_evidence = FALSE,
+  inference_model = beautier::create_inference_model(),
+  beast2_options = beastier::create_beast2_options()
 ) {
   experiment <- list(
-    rng_seed = rng_seed,
-    twin_model = twin_model,
-    twin_tree_filename = twin_tree_filename,
-    twin_alignment_filename = twin_alignment_filename
+    model_type = model_type,
+    run_if = run_if,
+    do_measure_evidence = do_measure_evidence,
+    inference_model = inference_model,
+    beast2_options = beast2_options
   )
-  check_experiment(experiment = experiment) # nolint pirouette function
+  check_experiment(experiment) # nolint pirouette function
   experiment
 }

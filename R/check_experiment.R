@@ -10,7 +10,8 @@ check_experiment <- function(
   experiment
 ) {
   argument_names <- c(
-    "rng_seed", "twin_model", "twin_tree_filename", "twin_alignment_filename"
+    "model_type", "run_if", "do_measure_evidence",  "inference_model",
+    "beast2_options"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(experiment)) {
@@ -20,20 +21,15 @@ check_experiment <- function(
       )
     }
   }
-  if (!is.numeric(experiment$rng_seed)) {
-    stop("'rng_seed' must be a number")
+  if (!experiment$model_type %in% c("generative", "candidate")) {
+    stop("'model_type' must be either \"generative\" or \"candidate\"")
   }
-  if (!is.character(experiment$twin_model)) {
-    stop("'twin_model' must be a character vector")
+  if (!experiment$run_if %in% c("always", "best_candidate")) {
+    stop("'run_if' must be either \"always\" or \"best_candidate\"")
   }
-  if (!(experiment$twin_model %in% get_twin_models())) {
-   stop("This twin model is not implemented")
+  if (!experiment$do_measure_evidence %in% c(TRUE, FALSE)) {
+    stop("'do_measure_evidence' must be either TRUE or FALSE")
   }
-  if (!is.character(experiment$twin_tree_filename)) {
-    stop("'twin_tree_filename' must be a character vector")
-  }
-  if (!is.character(experiment$twin_alignment_filename)) {
-    stop("'twin_alignment_filename' must be a character vector")
-  }
-
+  beautier::check_inference_model(experiment$inference_model)
+  beastier::check_beast2_options(experiment$beast2_options)
 }
