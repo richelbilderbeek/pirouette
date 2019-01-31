@@ -26,9 +26,11 @@ select models to do an inference on.
 `generative`|`always`        |`FALSE`           |Any
 `candaiate` |`best_candidate`|`TRUE`            |Any
 
-
-
 We call each model
+
+```{r}
+library(pirouette)
+```
 
 
 ## 1. Only run the generative model
@@ -49,17 +51,24 @@ testit::assert(generative_model$tree_prior$name == "yule")
 
 We create one experiment:
 
-```
+```{r}
 experiment <- create_experiment(
   model_type = "generative",
   run_if = "always",
   do_measure_evidence = FALSE,
   inference_model = generative_model
 )
+experiments <- list(experiment)
+check_experiments(experiments)
 
+```
+
+Then run `pirouette`:
+
+```
 pir_run(
   # ...
-  experiments = experiment
+  experiments = experiments
 )
 ```
 
@@ -89,7 +98,7 @@ testit::assert(inference_model_2$tree_prior$name == "birth_death")
 
 We create one experiment per inference model:
 
-```
+```{r}
 experiment_1 <- create_experiment(
   model_type = "candidate",
   run_if = "best_candidate",
@@ -103,7 +112,10 @@ experiment_2 <- create_experiment(
   inference_model = inference_model_2
 )
 experiments <- list(experiment_1, experiment_2)
+check_experiments(experiments)
+```
 
+```
 pir_run(
   # ...
   experiments = experiments
@@ -147,7 +159,7 @@ testit::assert(inference_model_3$tree_prior$name == "yule")
 
 We create one experiment per inference model:
 
-```
+```{r}
 experiment_1 <- create_experiment(
   model_type = "generative",
   run_if = "always",
@@ -167,7 +179,10 @@ experiment_3 <- create_experiment(
   inference_model = inference_model_3
 )
 experiments <- list(experiment_1, experiment_2, experiment_3)
+check_experiments(experiments)
+```
 
+```
 pir_run(
   # ...
   experiments = experiments
