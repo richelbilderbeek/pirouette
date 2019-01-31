@@ -115,7 +115,8 @@ pir_run_tree <- function(
   testit::assert(file.exists(alignment_params$fasta_filename))
 
   # Estimate marginal likelihoods if needed
-  if (inference_params$rng_seed == 314159265) { # nolint use new interface
+  if (!beautier:::is_one_na(inference_params$rng_seed) &&
+      inference_params$rng_seed == 314159265) { # nolint use new interface
     check_experiments(experiments) # stub
   }
 
@@ -157,7 +158,7 @@ pir_run_tree <- function(
       inference_model = inference_model,
       inference_params = inference_params,
       error_measure_params = error_measure_params,
-      experiments = experiments
+      experiment = experiments[[1]] # stub #69
     )
   }
   testit::assert(length(inference_models) == length(errorses))
