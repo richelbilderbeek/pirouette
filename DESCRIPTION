@@ -20,6 +20,7 @@ BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Imports:
     ape,
     babette,
+    beastier,
     beautier,
     DDD,
     geiger,
