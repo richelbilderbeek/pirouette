@@ -34,6 +34,26 @@ check_experiment <- function(
   if (!experiment$do_measure_evidence %in% c(TRUE, FALSE)) {
     stop("'do_measure_evidence' must be either TRUE or FALSE")
   }
-  beautier::check_inference_model(experiment$inference_model)
-  beastier::check_beast2_options(experiment$beast2_options)
+  tryCatch(
+    beautier::check_inference_model(experiment$inference_model),
+    error = function(e) {
+      stop(
+        "'inference_model' must be a valid inference model\n",
+        "Tip: use 'beautier::create_inference_model'.\n",
+        "Error: ", e$message, "\n",
+        "Value: ", experiment$inference_model
+      )
+    }
+  )
+  tryCatch(
+    beastier::check_beast2_options(experiment$beast2_options),
+    error = function(e) {
+      stop(
+        "'beast2_options' must be valid BEAST2 options.\n",
+        "Tip: use 'beastier::create_beast2_options'.\n",
+        "Error: ", e$message, "\n",
+        "Value: ", experiment$beast2_options
+      )
+    }
+  )
 }

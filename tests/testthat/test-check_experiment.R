@@ -74,7 +74,6 @@ test_that("wrong parameter values", {
     ),
     "'do_measure_evidence' must be either TRUE or FALSE"
   )
-  skip("WIP, #69")
   expect_error(
     check_experiment(
       create_experiment(
@@ -89,7 +88,7 @@ test_that("wrong parameter values", {
         beast2_options = "nonsense"
       )
     ),
-    "'beast2_options' must be a valid inference model"
+    "'beast2_options' must be valid BEAST2 options"
   )
 
 })
