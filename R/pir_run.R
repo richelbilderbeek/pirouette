@@ -42,7 +42,7 @@ pir_run <- function(
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params), # nolint obsolete, #69
   inference_params = create_inference_params(), # obsolete, #69
-  experiments = create_experiment(),
+  experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params()
 ) {
   # List model_select_params
@@ -102,7 +102,7 @@ pir_run_tree <- function(
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
-  experiments = create_experiment(),
+  experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params()
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
@@ -115,6 +115,10 @@ pir_run_tree <- function(
   testit::assert(file.exists(alignment_params$fasta_filename))
 
   # Estimate marginal likelihoods if needed
+  if (inference_params$rng_seed == 314159265) { # nolint use new interface
+    check_experiments(experiments) # stub
+  }
+
   marg_liks <- NULL
   for (model_select_param in model_select_params) {
     if ("most_evidence" %in% model_select_param$type) {
