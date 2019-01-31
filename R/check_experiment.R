@@ -9,8 +9,6 @@
 check_experiment <- function(
   experiment
 ) {
-  return()
-
   argument_names <- c(
     "rng_seed", "twin_model", "twin_tree_filename", "twin_alignment_filename"
   )
