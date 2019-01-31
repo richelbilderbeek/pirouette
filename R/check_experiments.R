@@ -22,7 +22,7 @@ check_experiments <- function(
   for (i in seq_along(experiments)) {
     experiment <- experiments[[i]]
     tryCatch(
-      check_experiment(experiment),
+      check_experiment(experiment), # nolint pirouette function
       error = function(e) {
         stop(
           "'experiments[[", i, "]] invalid.\n",

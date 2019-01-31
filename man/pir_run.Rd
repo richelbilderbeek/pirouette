@@ -7,7 +7,7 @@
 pir_run(phylogeny, twinning_params = NA, alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
-  experiments = create_experiment(),
+  experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params())
 }
 \arguments{
