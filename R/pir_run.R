@@ -40,8 +40,9 @@ pir_run <- function(
   phylogeny,
   twinning_params = NA,
   alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params),
-  inference_params = create_inference_params(),
+  model_select_params = create_gen_model_select_param(alignment_params), # nolint obsolete, #69
+  inference_params = create_inference_params(), # obsolete, #69
+  experiments = create_experiment(),
   error_measure_params = create_error_measure_params()
 ) {
   # List model_select_params
@@ -51,8 +52,9 @@ pir_run <- function(
   pir_run_check_inputs(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
-    model_select_params = model_select_params,
-    inference_params = inference_params,
+    model_select_params = model_select_params, # obsolete, #69
+    inference_params = inference_params, # obsolete, #69
+    experiments = experiments,
     error_measure_params = error_measure_params
   )
   # Run for the true tree
@@ -60,8 +62,9 @@ pir_run <- function(
     phylogeny = phylogeny,
     tree_type = "true",
     alignment_params = alignment_params,
-    model_select_params = model_select_params,
-    inference_params = inference_params,
+    model_select_params = model_select_params, # obsolete, #69
+    inference_params = inference_params, # obsolete, #69
+    experiments = experiments,
     error_measure_params = error_measure_params
   )
 
@@ -76,8 +79,9 @@ pir_run <- function(
       phylogeny = twin_tree,
       tree_type = "twin",
       alignment_params = twin_alignment_params,
-      model_select_params = model_select_params,
-      inference_params = inference_params
+      model_select_params = model_select_params, # obsolete, #69
+      inference_params = inference_params, # obsolete, #69
+      experiments = experiments
     )
     df <- rbind(df, df_twin)
   }
@@ -98,6 +102,7 @@ pir_run_tree <- function(
   alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
+  experiments = create_experiment(),
   error_measure_params = create_error_measure_params()
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
@@ -147,8 +152,8 @@ pir_run_tree <- function(
       alignment_params = alignment_params,
       inference_model = inference_model,
       inference_params = inference_params,
-      error_measure_params = error_measure_params
-
+      error_measure_params = error_measure_params,
+      experiments = experiments
     )
   }
   testit::assert(length(inference_models) == length(errorses))
@@ -235,15 +240,16 @@ pir_run_check_inputs <- function(
   alignment_params,
   model_select_params,
   inference_params,
+  experiments,
   error_measure_params
 ) {
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
-    error = function(msg) {
+    error = function(e) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
         "Tip: use 'create_alignment_params'\n",
-        "Error message: ", msg, "\n",
+        "Error message: ", e$message, "\n",
         "Actual value: ", alignment_params
       )
       stop(msg)
@@ -251,11 +257,11 @@ pir_run_check_inputs <- function(
   )
   tryCatch(
     check_inference_params(inference_params), # nolint pirouette function
-    error = function(msg) {
+    error = function(e) {
       msg <- paste0(
         "'inference_params' must be a set of inference parameters.\n",
         "Tip: use 'create_inference_params'\n",
-        "Error message: ", msg, "\n",
+        "Error message: ", e$message, "\n",
         "Actual value: ", inference_params
       )
       stop(msg)
@@ -263,12 +269,12 @@ pir_run_check_inputs <- function(
   )
   tryCatch(
     check_model_select_params(model_select_params), # nolint pirouette function
-    error = function(msg) {
+    error = function(e) {
       msg <- paste0(
         "'model_select_params' must be a list of one or more model selection ",
         "Tip: use 'create_model_select_params'\n",
         "parameters sets.\n",
-        "Error message: ", msg, "\n",
+        "Error message: ", e$message, "\n",
         "Actual value: ", model_select_params
       )
       stop(msg)
@@ -276,13 +282,26 @@ pir_run_check_inputs <- function(
   )
   tryCatch(
     check_error_measure_params(error_measure_params), # nolint pirouette function
-    error = function(msg) {
+    error = function(e) {
       msg <- paste0(
         "'error_measure_params' must be a set of error measurement ",
         "parameters.\n",
         "Tip: use 'create_error_measure_params'\n",
-        "Error message: ", msg, "\n",
+        "Error message: ", e$message, "\n",
         "Actual value: ", model_select_params
+      )
+      stop(msg)
+    }
+  )
+  tryCatch(
+    check_experiment(experiments), # nolint pirouette function
+    error = function(e) {
+      msg <- paste0(
+        "'experiments' must be one experiment or a list of one or more ",
+        "experiments.\n",
+        "Tip: use 'create_experiments'\n",
+        "Error message: ", e$message, "\n",
+        "Actual value: ", experiments
       )
       stop(msg)
     }
