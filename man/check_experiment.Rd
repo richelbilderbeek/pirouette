@@ -7,7 +7,7 @@
 check_experiment(experiment)
 }
 \arguments{
-\item{experiment}{a \link[pirouette] experiment,
+\item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}
 }
 \value{
