@@ -9,6 +9,7 @@
 #'  experiment <- create_experiment()
 #'  testthat::expect_silent(check_experiment(create_experiment()))
 #' @author Richel J.C. Bilderbeek
+#' @export
 check_experiment <- function(
   experiment
 ) {
