@@ -4,18 +4,15 @@
 \alias{create_experiment}
 \title{Create a \link{pirouette} experiment.}
 \usage{
-create_experiment(rng_seed = 0, twin_model = "bd",
-  twin_tree_filename = tempfile(fileext = ".newick"),
-  twin_alignment_filename = tempfile(fileext = ".fasta"))
+create_experiment(model_type = "generative", run_if = "always",
+  do_measure_evidence = FALSE,
+  inference_model = beautier::create_inference_model(),
+  beast2_options = beastier::create_beast2_options())
 }
 \arguments{
-\item{twin_model}{the model you want to use to generate the twin tree}
-
-\item{twin_tree_filename}{name of the (\code{.newick}) file the twin
-tree will be saved to}
-
-\item{twin_alignment_filename}{name of the FASTA file the twin
-alignment will be saved to}
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
 }
 \value{
 a \link{pirouette} experiment.
