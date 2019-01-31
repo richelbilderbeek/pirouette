@@ -1,10 +1,16 @@
-#' Create a \link{pirouette} experiment.
+#' Create a valid \link{pirouette} experiment.
+#'
+#' The arguments are checked by \link{check_experiment}.
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} experiment.
 #' @examples
 #'  experiment <- create_experiment()
-#'  testit::assert("rng_seed" %in% names(experiment))
-#'  testit::assert("twin_tree_filename" %in% names(experiment))
+#'  testthat::expect_silent(check_experiment(create_experiment()))
+#'  testit::assert("model_type" %in% names(experiment))
+#'  testit::assert("run_if" %in% names(experiment))
+#'  testit::assert("do_measure_evidence" %in% names(experiment))
+#'  testit::assert("inference_model" %in% names(experiment))
+#'  testit::assert("beast2_options" %in% names(experiment))
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_experiment <- function(

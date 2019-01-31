@@ -15,6 +15,8 @@
 #'   as the user needs not read it: it is used as input of BEAST2.
 #'   Specifying a \code{beast2_input_filename} allows
 #'   to store that file in a more permanently stored location.
+#' @param beast2_options BEAST2 options,
+#'   as can be created by \link[beastier]{create_beast2_options}
 #' @param beast2_output_log_filename name of the log file created by BEAST2,
 #'   containing the parameter estimates in time.
 #'   By default, this file is put a temporary folder with a random filename,
@@ -62,6 +64,9 @@
 #' @param clock_model_name name of a clock model
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
+#' @param do_measure_evidence boolean to indicate if the
+#'   evidence (aka marginal likelihood) of an experiment must be
+#'   measured
 #' @param epsilon	measure of relative accuracy when estimating a model's
 #'   evidence (also known as marginal likelihood).
 #'   Smaller values result in more precise estimations, that take
@@ -123,6 +128,15 @@
 #'   to select an inference model
 #'   (a combination of site model, clock model and tree prior),
 #'   as can be created by \link{create_model_select_param}
+#' @param model_type type of inference model supplied for an experiment.
+#'   Possible values:
+#'   \itemize{
+#'     \item \code{generative}: the inference model is (or is assumed to be)
+#'       the inference model underlying the phylogeny
+#'     \item \code{candidate}: the inference model is a candidate model,
+#'       that competes with other models for having the most
+#'       evidence (aka highest marginal likelihood)
+#'   }
 #' @param mrca_prior an MRCA prior,
 #'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
@@ -140,6 +154,14 @@
 #' @param project_folder_name project folder name
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of only adenine
+#' @param run_if the condition for an experiment's inference model to be run.
+#'   Possible values:
+#'   \itemize{
+#'     \item \code{always}: always
+#'     \item \code{best_candidate}: if the inference model is the
+#'       candidate model with the most evidence (aka highest marginal
+#'       likelihood)
+#'   }
 #' @param sample_interval the interval at which the MCMC algorithm
 #'   makes a measurement
 #' @param sequence_length the length of each DNA sequence in an alignment
@@ -191,6 +213,7 @@ default_params_doc <- function(
   bd_tree,
   bd_tree_filename,
   beast2_input_filename,
+  beast2_options,
   beast2_output_log_filename,
   beast2_output_state_filename,
   beast2_output_trees_filename,
@@ -203,6 +226,7 @@ default_params_doc <- function(
   clock_model, clock_models,
   clock_model_name,
   crown_age,
+  do_measure_evidence,
   epsilon,
   error_function,
   error_measure_params,
@@ -224,6 +248,7 @@ default_params_doc <- function(
   model_selection,
   model_select_param,
   model_select_params,
+  model_type,
   mrca_prior,
   mu,
   mutation_rate,
@@ -237,6 +262,7 @@ default_params_doc <- function(
   precision,
   project_folder_name,
   root_sequence,
+  run_if,
   sample_interval,
   seed,
   sequence_length,

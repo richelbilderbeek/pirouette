@@ -18,6 +18,10 @@ Will \link{stop} if not.
 A valid \link{pirouette} experiment
 can be created by \link{create_experiment}.
 }
+\examples{
+ experiment <- create_experiment()
+ testthat::expect_silent(check_experiment(create_experiment()))
+}
 \author{
 Richel J.C. Bilderbeek
 }
