@@ -294,7 +294,7 @@ pir_run_check_inputs <- function(
     }
   )
   tryCatch(
-    check_experiment(experiments), # nolint pirouette function
+    check_experiments(experiments), # nolint pirouette function
     error = function(e) {
       msg <- paste0(
         "'experiments' must be one experiment or a list of one or more ",

@@ -15,7 +15,7 @@ test_that("use", {
   inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
-  experiments <- create_experiment()
+  experiments <- list(create_experiment())
   error_measure_params <- create_error_measure_params()
   expect_silent(
     pir_run_check_inputs(
@@ -45,7 +45,7 @@ test_that("abuse", {
   inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
-  experiments <- create_experiment()
+  experiments <- list(create_experiment())
   error_measure_params <- create_error_measure_params()
 
   # Exact error messages checked by 'pir_run_check_inputs'

@@ -2,6 +2,7 @@
 
 export(bd_phylo_2_l_table)
 export(check_experiment)
+export(check_experiments)
 export(combine_brts_and_topology)
 export(create_alignment_params)
 export(create_bd_tree)
