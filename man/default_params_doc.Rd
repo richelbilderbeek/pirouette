@@ -11,8 +11,8 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
   beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
   clock_models, clock_model_name, crown_age, epsilon, error_function,
-  error_measure_params, fasta_filename, filename, folder_name,
-  inference_model, inference_params, init_speciation_rate,
+  error_measure_params, experiment, experiments, fasta_filename, filename,
+  folder_name, inference_model, inference_params, init_speciation_rate,
   init_extinction_rate, lambda, marg_lik_filename, marg_liks, mbd_l_matrix,
   mbd_mutation_rate, mbd_tree, mcmc, model_selection, model_select_param,
   model_select_params, mrca_prior, mu, mutation_rate, nu, nu_events,
@@ -133,6 +133,12 @@ error between the given phylogeny and the Bayesian
 posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
+
+\item{experiment}{a \link[pirouette] experiment,
+as can be created by \link{create_experiment}}
+
+\item{experiments}{a list of one or more \link[pirouette] experiments,
+as can be created by \link{create_experiment}}
 
 \item{fasta_filename}{name of a FASTA file}
 

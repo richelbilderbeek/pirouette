@@ -86,6 +86,10 @@
 #'   posterior is determined.
 #'   Use \link{create_error_measure_params} to create such
 #'   a parameter set
+#' @param experiment a \link[pirouette] experiment,
+#'   as can be created by \link{create_experiment}
+#' @param experiments a list of one or more \link[pirouette] experiments,
+#'   as can be created by \link{create_experiment}
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -202,6 +206,7 @@ default_params_doc <- function(
   epsilon,
   error_function,
   error_measure_params,
+  experiment, experiments,
   fasta_filename,
   filename,
   folder_name,
