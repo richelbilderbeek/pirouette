@@ -15,6 +15,7 @@ test_that("use", {
   inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
+  experiments <- list(create_experiment())
   error_measure_params <- create_error_measure_params()
   expect_silent(
     pir_run_check_inputs(
@@ -22,6 +23,7 @@ test_that("use", {
       alignment_params = alignment_params,
       model_select_params = model_select_params,
       inference_params = inference_params,
+      experiments = experiments,
       error_measure_params = error_measure_params
     )
   )
@@ -43,15 +45,28 @@ test_that("abuse", {
   inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
+  experiments <- list(create_experiment())
   error_measure_params <- create_error_measure_params()
 
   # Exact error messages checked by 'pir_run_check_inputs'
   expect_error(
     pir_run_check_inputs(
       phylogeny = phylogeny,
-      alignment_params = model_select_params,
+      alignment_params = "nonsense",
       model_select_params = model_select_params,
       inference_params = inference_params,
+      experiments = experiments,
+      error_measure_params = error_measure_params
+    ),
+    "'alignment_params'"
+  )
+  expect_error(
+    pir_run_check_inputs(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params,
+      model_select_params = "nonsense",
+      inference_params = inference_params,
+      experiments = experiments,
       error_measure_params = error_measure_params
     )
   )
@@ -60,16 +75,8 @@ test_that("abuse", {
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       model_select_params = model_select_params,
-      inference_params = alignment_params,
-      error_measure_params = error_measure_params
-    )
-  )
-  expect_error(
-    pir_run_check_inputs(
-      phylogeny = phylogeny,
-      alignment_params = alignment_params,
-      model_select_params = alignment_params,
-      inference_params = inference_params,
+      inference_params = "nonsense",
+      experiments = experiments,
       error_measure_params = error_measure_params
     )
   )
@@ -79,7 +86,32 @@ test_that("abuse", {
       alignment_params = alignment_params,
       model_select_params = model_select_params,
       inference_params = inference_params,
-      error_measure_params = inference_param
-    )
+      experiments = "nonsense",
+      error_measure_params = error_measure_params
+    ),
+    "'experiments'"
+  )
+  expect_error(
+    pir_run_check_inputs(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params,
+      model_select_params = model_select_params,
+      inference_params = inference_params,
+      experiments = experiments,
+      error_measure_params = "nonsense"
+    ),
+    "'error_measure_params'"
+  )
+  skip("Issue #73")
+  expect_error(
+    pir_run_check_inputs(
+      phylogeny = "nonsense",
+      alignment_params = alignment_params,
+      model_select_params = model_select_params,
+      inference_params = inference_params,
+      experiments = experiments,
+      error_measure_params = error_measure_params
+    ),
+    "'phylogeny' must be of class 'phylo'"
   )
 })
