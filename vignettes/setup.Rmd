@@ -35,7 +35,7 @@ We call each model
 
 `model_type`|`run_if`        |`measure_evidence`|`beautier::inference_model`
 ------------|----------------|------------------|---------------------------
-`generative`|`always`        |[irrelevant]      |`generative_model`
+`generative`|`always`        |`FALSE`           |`generative_model`
 
 We assume we know the generative model, which
 happens to be the BEAUti default:
@@ -53,7 +53,7 @@ We create one experiment:
 experiment <- create_experiment(
   model_type = "generative",
   run_if = "always",
-  do_measure_evidence = "irrelevant",
+  do_measure_evidence = FALSE,
   inference_model = generative_model
 )
 
@@ -67,8 +67,8 @@ pir_run(
 
 `model_type`|`run_if`        |`measure_evidence`|`beautier::inference_model`
 ------------|----------------|------------------|---------------------------
-`candidate` |`best_candidate`|TRUE              |`inference_model_1`
-`candidate` |`best_candidate`|TRUE              |`inference_model_2`
+`candidate` |`best_candidate`|`TRUE`            |`inference_model_1`
+`candidate` |`best_candidate`|`TRUE`            |`inference_model_2`
 
 This time we have two models that compete: a Yule and a Birth-Death model.
 
@@ -114,9 +114,9 @@ pir_run(
 
 `model_type`|`run_if`        |`measure_evidence`|`beautier::inference_model`
 ------------|----------------|------------------|---------------------------
-`generative`|`always`        |TRUE              |`generative_model`
-`candidate` |`best_candidate`|TRUE              |`inference_model_2`
-`candidate` |`best_candidate`|TRUE              |`inference_model_3`
+`generative`|`always`        |`TRUE`            |`generative_model`
+`candidate` |`best_candidate`|`TRUE`            |`inference_model_2`
+`candidate` |`best_candidate`|`TRUE`            |`inference_model_3`
 
 This time, we know the generative model:
 
