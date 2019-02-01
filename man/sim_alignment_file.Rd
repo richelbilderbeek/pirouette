@@ -24,11 +24,11 @@ The simulation is performed by \link{sim_alignment}.
  fasta_filename <- tempfile()
  testit::assert(!file.exists(fasta_filename))
  alignment <- sim_alignment_file(
-   fasta_filename = fasta_filename,
    phylogeny = ape::rcoal(n_taxa),
    alignment_params = create_alignment_params(
      root_sequence = create_blocked_dna(length = n_base_pairs),
-     mutation_rate = 0.1
+     mutation_rate = 0.1,
+     fasta_filename = fasta_filename
    )
  )
  testit::assert(file.exists(fasta_filename))
