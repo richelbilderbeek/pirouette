@@ -33,11 +33,13 @@ check_error_measure_params <- function(
   }
 
   # check if error_function is indeed a function with at least 2 parameters
-  arguments <- capture.output(str(args(error_measure_params$error_function)))
+  arguments <- utils::capture.output(
+    utils::str(args(error_measure_params$error_function))
+  )
   n_commas <- stringr::str_count(string = arguments, pattern = ",")
   if (!(n_commas > 0)) {
     stop(
-      "'error_function' must have at least two arguments"
+      "'error_function' must be a function with at least two arguments"
     )
   }
 
@@ -60,7 +62,7 @@ check_error_measure_params <- function(
   )
   if (!all(test_errors == 0)) {
     stop(
-      "'error_function' should return no error if applied to identical trees" # nolint long string
+      "'error_function' must be a function that is lowest for identical trees" # nolint long string
     )
   }
 }

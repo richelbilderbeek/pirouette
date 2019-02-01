@@ -48,7 +48,6 @@ test_that("use", {
     "'burn_in_fraction' must be between 0.0 and 1.0"
   )
 
-  skip("TODO: check if error_function is indeed a function")
   expect_error(
     check_error_measure_params(
       create_error_measure_params(
@@ -71,47 +70,10 @@ test_that("use", {
     check_error_measure_params(
       create_error_measure_params(
         error_function = function(tree, trees) {
-          1.0 - nLTT::nltts_diff
+          1.0 - nLTT::nltts_diff(tree = tree, trees = trees)
         }
       )
     ),
     "'error_function' must be a function that is lowest for identical trees"
   )
-
-  # 'error_function' must be a function
-  error_measure_params <- list()
-  error_measure_params$burn_in_fraction <- 0.1
-  error_measure_params$error_function <- c(0.1, 0.2)
-  expect_error(
-    check_error_measure_params(error_measure_params = error_measure_params),
-    "'error_function' must be a function"
-  )
-
-  # 'error_function' must have at least two arguments
-  error_measure_params <- list()
-  error_measure_params$burn_in_fraction <- 0.1
-  error_measure_params$error_function <- function(x) {
-    x ^ 2
-  }
-  expect_error(
-    check_error_measure_params(error_measure_params = error_measure_params),
-    "'error_function' must have at least two arguments"
-  )
-
-  # 'error_function' should return no error if applied to identical trees
-  error_measure_params <- list()
-  error_measure_params$burn_in_fraction <- 0.1
-  error_measure_params$error_function <- function(
-    tree,
-    trees
-  ) {
-    set.seed(42)
-    diff <- ape::Ntip(tree) - runif(n = length(trees), min = 0, max = 1)
-    diff
-  }
-  expect_error(
-    check_error_measure_params(error_measure_params = error_measure_params),
-    "'error_function' should return no error if applied to identical trees"
-  )
-
 })
