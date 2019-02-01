@@ -20,10 +20,11 @@
 #' @author Richel Bilderbeek
 #' @export
 sim_alignment_file <- function(
-  fasta_filename,
   phylogeny,
   alignment_params
 ) {
+  fasta_filename <- alignment_params$fasta_filename
+
   # Simulate
   alignment <- sim_alignment(
     phylogeny = phylogeny,
