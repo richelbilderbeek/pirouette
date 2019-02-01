@@ -247,6 +247,9 @@ pir_run_check_inputs <- function(
   experiments,
   error_measure_params
 ) {
+  if (!beautier::is_phylo(phylogeny)) {
+    stop("'phylogeny' must be of class 'phylo'")
+  }
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
     error = function(e) {

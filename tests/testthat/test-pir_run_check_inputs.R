@@ -102,7 +102,6 @@ test_that("abuse", {
     ),
     "'error_measure_params'"
   )
-  skip("Issue #73")
   expect_error(
     pir_run_check_inputs(
       phylogeny = "nonsense",
