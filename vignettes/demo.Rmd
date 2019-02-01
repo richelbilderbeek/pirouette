@@ -43,7 +43,9 @@ we'll use a short alignment:
 ```{r}
 alignment_params <- create_alignment_params(
   root_sequence = create_blocked_dna(length = 20),
-  mutation_rate = 1.0 / beautier::get_crown_age(true_phylogeny)
+  mutation_rate = create_standard_mutation_rate(
+    crown_age = beautier::get_crown_age(true_phylogeny)
+  )
 )
 ```
 
