@@ -10,5 +10,4 @@ digraph G
   pirouette -> babette;
   pirouette -> mcbette [style=dotted];
   pirouette -> mbd;
-  mbd -> dododo;
 }

@@ -90,7 +90,6 @@ Submit an Issue. Or send an email to Richel Bilderbeek.
 ### How to create the dependency graph from the `.dot` file?
 
 ```
-dot -Tps dependencies.dot -o dependencies.ps
-convert dependencies.ps dependencies.png
+dot -Tps dependencies.dot -o dependencies.ps; convert dependencies.ps dependencies.png
 ```
 

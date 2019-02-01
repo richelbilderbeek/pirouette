@@ -11,7 +11,8 @@
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
   inference_model,
-  inference_params
+  inference_params,
+  experiment = create_experiment()
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_inference_model(inference_model) # nolint pirouette function
@@ -25,6 +26,8 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
       stop(msg)
     }
   )
+  check_experiment(experiment)
+
   testit::assert(file.exists(alignment_params$fasta_filename))
   babette_out <- babette::bbt_run(
     fasta_filename = alignment_params$fasta_filename,

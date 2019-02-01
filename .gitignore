@@ -32,3 +32,5 @@ vignettes/*.html
 vignettes/*.R
 *.trees
 *.posterior.log
+*.log
+results/

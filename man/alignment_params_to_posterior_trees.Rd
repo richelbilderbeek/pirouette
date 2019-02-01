@@ -5,7 +5,7 @@
 \title{Creates a posterior of phylogenies from a known alignment.}
 \usage{
 alignment_params_to_posterior_trees(alignment_params, inference_model,
-  inference_params)
+  inference_params, experiment = create_experiment())
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
@@ -19,6 +19,9 @@ input filenames.}
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{experiment}{a \link{pirouette} experiment,
+as can be created by \link{create_experiment}}
 }
 \value{
 a list of:

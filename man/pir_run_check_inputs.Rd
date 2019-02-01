@@ -5,7 +5,7 @@
 \title{Checks the \link{pir_run} inputs.}
 \usage{
 pir_run_check_inputs(phylogeny, alignment_params, model_select_params,
-  inference_params, error_measure_params)
+  inference_params, experiments, error_measure_params)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -22,6 +22,9 @@ as can be created by \link{create_model_select_param}}
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{experiments}{a list of one or more \link{pirouette} experiments,
+as can be created by \link{create_experiment}}
 
 \item{error_measure_params}{parameter set to specify how the
 error between the given phylogeny and the Bayesian
