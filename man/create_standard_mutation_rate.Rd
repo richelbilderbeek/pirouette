@@ -4,11 +4,10 @@
 \alias{create_standard_mutation_rate}
 \title{Create the parameters for the mutation rate}
 \usage{
-create_standard_mutation_rate(crown_age)
+create_standard_mutation_rate(phylogeny)
 }
 \arguments{
-\item{crown_age}{the fixed crown age of the posterior. Set to NA
-to let it be estimated}
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 }
 \value{
 the mutation rate

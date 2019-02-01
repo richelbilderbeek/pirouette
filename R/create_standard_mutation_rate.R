@@ -4,10 +4,11 @@
 #' @export
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 create_standard_mutation_rate <- function(
-  crown_age
+  phylogeny
 ) {
-  testit::assert(is.numeric(crown_age))
-  testit::assert(crown_age > 0)
+  testit::assert(beautier::is_phylo(phylogeny))
+  crown_age <- beautier::get_crown_age(phylogeny)
+  testit::assert(crown_age > .Machine$double.xmin)
   mutation_rate <- 1.0 / crown_age
   mutation_rate
 }
