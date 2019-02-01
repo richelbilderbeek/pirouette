@@ -27,7 +27,7 @@ test_that("abuse", {
     cond = 1,
     seed = 1
   )$reconstructed_tree
-  phylogeny$edge.length <- (phylogeny$edge.length * 10 ^ -305) * (1 / 10000)
+  phylogeny$edge.length <- (phylogeny$edge.length * 10 ^ -305) * (1 / 10000) # nolint cannot be snake_case
   expect_error(
     create_standard_mutation_rate(phylogeny = phylogeny)
   )
