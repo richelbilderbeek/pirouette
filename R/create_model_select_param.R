@@ -53,6 +53,7 @@ create_model_select_param <- function(
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors(),
   epsilon = 1e-12,
+  verbose = FALSE,
   marg_lik_filename = tempfile(fileext = ".csv")
 ) {
   beautier::check_site_models(site_models)
@@ -64,6 +65,7 @@ create_model_select_param <- function(
     clock_models = clock_models,
     tree_priors = tree_priors,
     epsilon = epsilon,
+    verbose = verbose,
     marg_lik_filename = marg_lik_filename
   )
   beautier::check_site_models(model_select_param$site_models)
@@ -106,7 +108,8 @@ create_model_select_param <- function(
 #' @export
 create_gen_model_select_param <- function(
   alignment_params = create_alignment_params(),
-  tree_prior = beautier::create_bd_tree_prior()
+  tree_prior = beautier::create_bd_tree_prior(),
+  verbose = FALSE
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   beautier::check_tree_prior(tree_prior)
@@ -115,7 +118,8 @@ create_gen_model_select_param <- function(
     site_models = list(alignment_params$site_model),
     clock_models = list(alignment_params$clock_model),
     tree_priors = list(tree_prior),
-    epsilon = NA
+    epsilon = NA,
+    verbose = verbose
   )
   testit::assert(length(model_select_param$site_models) == 1)
   testit::assert(length(model_select_param$clock_models) == 1)
@@ -145,6 +149,7 @@ create_best_model_select_param <- function( # nolint indeed a long function name
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors(),
   epsilon = 1e-12,
+  verbose = FALSE,
   marg_lik_filename = tempfile(fileext = ".csv")
 ) {
   testit::assert(beautier::are_site_models(site_models))
@@ -160,6 +165,7 @@ create_best_model_select_param <- function( # nolint indeed a long function name
     clock_models = clock_models,
     tree_priors = tree_priors,
     epsilon = epsilon,
+    verbose = verbose,
     marg_lik_filename = marg_lik_filename
   )
 }

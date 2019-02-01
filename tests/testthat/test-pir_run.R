@@ -64,7 +64,7 @@ test_that("generative only", {
   expect_true(n_errors < 11) # due to burn-in
 })
 
-test_that("generative, short, gamma", {
+test_that("generative, short, gamma statistic", {
 
   if (!beastier::is_on_travis()) return()
 
@@ -93,6 +93,44 @@ test_that("generative, short, gamma", {
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
   n_errors <- col_last_error - col_first_error + 1
+})
+
+test_that("generative, short, MRCA prior", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    mutation_rate = 0.01
+  )
+  file.remove(alignment_params$fasta_filename)
+
+  crown_age <- 10.0
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
+    model_select_params = create_gen_model_select_param(
+      alignment_params = alignment_params
+    ),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
+      mrca_prior = create_mrca_prior(
+        is_monophyletic = TRUE,
+        mrca_distr = create_normal_distr(mean = crown_age, sigma = 0.01)
+      )
+    ),
+    error_measure_params = create_error_measure_params(
+      burn_in_fraction = 0.0,
+      error_function = get_gamma_error_function()
+    )
+  )
+  # Measure if crown ages are indeed around 10.0
+  trees <- tracerer::parse_beast_trees(errors$beast2_output_trees_filename)
+  last_tree <- tail(trees, n = 1)[[1]]
+
+  expect_true(get_crown_age(last_tree) < 1.1 * crown_age)
+  expect_true(get_crown_age(last_tree) > 0.9 * crown_age)
 })
 
 test_that("most_evidence", {

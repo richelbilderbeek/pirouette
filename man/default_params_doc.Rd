@@ -7,20 +7,21 @@ documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_input_filename,
-  beast2_output_log_filename, beast2_output_state_filename,
+  beast2_options, beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
   beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
-  clock_models, clock_model_name, crown_age, epsilon, error_function,
-  error_measure_params, fasta_filename, filename, folder_name,
-  inference_model, inference_params, init_speciation_rate,
-  init_extinction_rate, lambda, marg_lik_filename, marg_liks, mbd_l_matrix,
-  mbd_mutation_rate, mbd_tree, mcmc, model_selection, model_select_param,
-  model_select_params, mrca_prior, mu, mutation_rate, nu, nu_events,
-  parameter_filename, parameters_filename, phylo, phylogeny,
-  posterior_trees, precision, project_folder_name, root_sequence,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
+  clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
+  error_function, error_measure_params, experiment, experiments,
+  fasta_filename, filename, folder_name, inference_model, inference_params,
+  init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
+  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
+  model_selection, model_select_param, model_select_params, model_type,
+  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, run_if, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
+  tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
   type, verbose)
 }
@@ -46,6 +47,9 @@ By default, this file is put in a temporary folder with a random filename,
 as the user needs not read it: it is used as input of BEAST2.
 Specifying a \code{beast2_input_filename} allows
 to store that file in a more permanently stored location.}
+
+\item{beast2_options}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}}
 
 \item{beast2_output_log_filename}{name of the log file created by BEAST2,
 containing the parameter estimates in time.
@@ -107,6 +111,10 @@ as created by \link[beautier]{create_clock_model}}
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
 
+\item{do_measure_evidence}{boolean to indicate if the
+evidence (aka marginal likelihood) of an experiment must be
+measured}
+
 \item{epsilon}{measure of relative accuracy when estimating a model's
 evidence (also known as marginal likelihood).
 Smaller values result in more precise estimations, that take
@@ -133,6 +141,12 @@ error between the given phylogeny and the Bayesian
 posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
+
+\item{experiment}{a \link{pirouette} experiment,
+as can be created by \link{create_experiment}}
+
+\item{experiments}{a list of one or more \link{pirouette} experiments,
+as can be created by \link{create_experiment}}
 
 \item{fasta_filename}{name of a FASTA file}
 
@@ -184,6 +198,16 @@ to select an inference model
 (a combination of site model, clock model and tree prior),
 as can be created by \link{create_model_select_param}}
 
+\item{model_type}{type of inference model supplied for an experiment.
+Possible values:
+\itemize{
+  \item \code{generative}: the inference model is (or is assumed to be)
+    the inference model underlying the phylogeny
+  \item \code{candidate}: the inference model is a candidate model,
+    that competes with other models for having the most
+    evidence (aka highest marginal likelihood)
+}}
+
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}
 
@@ -213,6 +237,15 @@ of class \code{multiphylo}}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of only adenine}
+
+\item{run_if}{the condition for an experiment's inference model to be run.
+Possible values:
+\itemize{
+  \item \code{always}: always
+  \item \code{best_candidate}: if the inference model is the
+    candidate model with the most evidence (aka highest marginal
+    likelihood)
+}}
 
 \item{sample_interval}{the interval at which the MCMC algorithm
 makes a measurement}
