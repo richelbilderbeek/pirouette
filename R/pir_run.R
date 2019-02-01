@@ -117,7 +117,8 @@ pir_run_tree <- function(
   # Estimate marginal likelihoods if needed
   if (!beautier:::is_one_na(inference_params$rng_seed) &&
       inference_params$rng_seed == 314159265) { # nolint use new interface
-    check_experiments(experiments) # stub
+    # STUB
+    check_experiments(experiments) # nolint pirouette function
   }
 
   marg_liks <- NULL
