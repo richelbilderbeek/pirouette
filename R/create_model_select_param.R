@@ -19,7 +19,8 @@
 #' @examples
 #'   # Pick the generative model
 #'   alignment_params <- create_alignment_params(
-#'     root_sequence = "acgt", mutation_rate = 0.01
+#'     root_sequence = "acgt",
+#'     mutation_rate = 0.01
 #'   )
 #'   model_select_param <- create_gen_model_select_param(alignment_params)
 #'   # In such a case, the site model and clock models of the alignment is
@@ -86,7 +87,8 @@ create_model_select_param <- function(
 #' @examples
 #'   # Pick the generative model
 #'   alignment_params <- create_alignment_params(
-#'     root_sequence = "acgt", mutation_rate = 0.01
+#'     root_sequence = "acgt",
+#'     mutation_rate = 0.01
 #'   )
 #'   model_select_param <- create_gen_model_select_param(alignment_params)
 #'   # In such a case, the site model and clock models of the alignment is

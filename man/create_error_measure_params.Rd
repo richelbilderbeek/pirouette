@@ -2,8 +2,8 @@
 % Please edit documentation in R/create_error_measure_params.R
 \name{create_error_measure_params}
 \alias{create_error_measure_params}
-\title{Create the parameters to specify hwo the error
-between teh given phylogeny and the Bayesian posterior trees is measured.}
+\title{Create the parameters to specify how the error
+between the given phylogeny and the Bayesian posterior trees is measured.}
 \usage{
 create_error_measure_params(burn_in_fraction = 0.1,
   error_function = get_nltt_error_function())
@@ -34,8 +34,8 @@ Example functions are:
 an error measurement parameter set
 }
 \description{
-Create the parameters to specify hwo the error
-between teh given phylogeny and the Bayesian posterior trees is measured.
+Create the parameters to specify how the error
+between the given phylogeny and the Bayesian posterior trees is measured.
 }
 \examples{
  # Default

@@ -48,7 +48,6 @@ test_that("use", {
     "'burn_in_fraction' must be between 0.0 and 1.0"
   )
 
-  skip("TODO: check if error_function is indeed a function")
   expect_error(
     check_error_measure_params(
       create_error_measure_params(
@@ -71,11 +70,10 @@ test_that("use", {
     check_error_measure_params(
       create_error_measure_params(
         error_function = function(tree, trees) {
-          1.0 - nLTT::nltts_diff
+          1.0 - nLTT::nltts_diff(tree = tree, trees = trees)
         }
       )
     ),
     "'error_function' must be a function that is lowest for identical trees"
   )
-
 })

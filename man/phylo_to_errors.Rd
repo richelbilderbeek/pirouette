@@ -6,6 +6,7 @@
 \usage{
 phylo_to_errors(phylogeny, alignment_params, inference_model,
   inference_params = create_inference_params(),
+  experiment = create_experiment(),
   error_measure_params = create_error_measure_params())
 }
 \arguments{
@@ -22,6 +23,9 @@ input filenames.}
 as can be created by \link{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
+
+\item{experiment}{a \link{pirouette} experiment,
+as can be created by \link{create_experiment}}
 
 \item{error_measure_params}{parameter set to specify how the
 error between the given phylogeny and the Bayesian

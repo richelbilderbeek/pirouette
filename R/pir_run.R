@@ -108,7 +108,6 @@ pir_run_tree <- function(
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
-    fasta_filename = alignment_params$fasta_filename,
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
@@ -248,6 +247,9 @@ pir_run_check_inputs <- function(
   experiments,
   error_measure_params
 ) {
+  if (!beautier::is_phylo(phylogeny)) {
+    stop("'phylogeny' must be of class 'phylo'")
+  }
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
     error = function(e) {
