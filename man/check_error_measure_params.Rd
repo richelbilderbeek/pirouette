@@ -24,5 +24,5 @@ as created by \link{create_error_measure_params}.
 Will \link{stop} if not.
 }
 \author{
-Richel J.C. Bilderbeek
+Richel J.C. Bilderbeek, Giovanni Laudanno
 }

@@ -22,6 +22,7 @@ Imports:
     babette,
     beastier,
     beautier,
+    mauricer,
     DDD,
     geiger,
     mcbette,
@@ -41,7 +42,6 @@ Suggests:
     knitr,
     lintr,
     nLTT,
-    mauricer,
     PBD,
     rmarkdown,
     testthat

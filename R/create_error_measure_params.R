@@ -1,5 +1,5 @@
-#' Create the parameters to specify hwo the error
-#' between teh given phylogeny and the Bayesian posterior trees is measured.
+#' Create the parameters to specify how the error
+#' between the given phylogeny and the Bayesian posterior trees is measured.
 #' @inheritParams default_params_doc
 #' @return an error measurement parameter set
 #' @examples

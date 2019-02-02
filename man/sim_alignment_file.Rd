@@ -4,11 +4,9 @@
 \alias{sim_alignment_file}
 \title{Simulates a DNA alignment and saves it to a FASTA file.}
 \usage{
-sim_alignment_file(fasta_filename, phylogeny, alignment_params)
+sim_alignment_file(phylogeny, alignment_params)
 }
 \arguments{
-\item{fasta_filename}{name of a FASTA file}
-
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
@@ -26,11 +24,11 @@ The simulation is performed by \link{sim_alignment}.
  fasta_filename <- tempfile()
  testit::assert(!file.exists(fasta_filename))
  alignment <- sim_alignment_file(
-   fasta_filename = fasta_filename,
    phylogeny = ape::rcoal(n_taxa),
    alignment_params = create_alignment_params(
      root_sequence = create_blocked_dna(length = n_base_pairs),
-     mutation_rate = 0.1
+     mutation_rate = 0.1,
+     fasta_filename = fasta_filename
    )
  )
  testit::assert(file.exists(fasta_filename))
