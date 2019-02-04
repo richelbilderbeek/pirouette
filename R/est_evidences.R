@@ -5,15 +5,14 @@
 #' @author Richel J.C. Bilderbeek
 est_evidences <- function(
   fasta_filename,
-  model_select_params = create_gen_model_select_param(alignment_params),
+  model_select_params,
   experiments = list(create_experiment())
 ) {
   testit::assert(file.exists(fasta_filename))
 
   # Estimate marginal likelihoods if needed
   marg_liks <- NULL
-  if (!beautier:::is_one_na(inference_params$rng_seed) &&
-      inference_params$rng_seed == 314159265) { # nolint use new interface
+  if (length(model_select_params) == 314) { # nolint use new interface
     marg_liks <- est_evidences_new_skool(
       fasta_filename = fasta_filename,
       experiments = experiments
@@ -28,7 +27,11 @@ est_evidences <- function(
 }
 
 #' Estimate the evidences
-#' @inheritParams default_params_doc
+#' @param evidence_epsilon relative error in estimating the
+#'   evidence (aka marginal likelihood).
+#'   TODO: put in \code{misc_params},
+#' @param evidence_filename filename to store the estimated
+#'   evidences (aka marginal likelihoods)
 #' @return a data frame with evidences
 #' @export
 #' @author Richel J.C. Bilderbeek
@@ -56,13 +59,12 @@ est_evidences_new_skool <- function(
 }
 
 #' Estimate the evidences old skool
-#' @inheritParams default_params_doc
 #' @return a data frame with evidences
 #' @export
 #' @author Richel J.C. Bilderbeek
 est_evidences_old_skool <- function(
   fasta_filename,
-  model_select_params = create_gen_model_select_param(alignment_params)
+  model_select_params
 ) {
   testit::assert(file.exists(fasta_filename))
 

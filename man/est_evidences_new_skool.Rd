@@ -9,10 +9,12 @@ est_evidences_new_skool(fasta_filename,
   evidence_filename = tempfile(fileext = ".csv"))
 }
 \arguments{
-\item{fasta_filename}{name of a FASTA file}
+\item{evidence_epsilon}{relative error in estimating the
+evidence (aka marginal likelihood).
+TODO: put in \code{misc_params},}
 
-\item{experiments}{a list of one or more \link{pirouette} experiments,
-as can be created by \link{create_experiment}}
+\item{evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods)}
 }
 \value{
 a data frame with evidences

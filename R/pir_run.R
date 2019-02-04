@@ -92,11 +92,6 @@ pir_run <- function(
 #'
 #' The phylogeny can be the true tree or its twin.
 #' @inheritParams default_params_doc
-#' @param evidence_epsilon relative error in estimating the
-#'   evidence (aka marginal likelihood).
-#'   TODO: put in \code{misc_params},
-#' @param evidence_filename filename to store the estimated
-#'   evidences (aka marginal likelihoods)
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets
 #' @export

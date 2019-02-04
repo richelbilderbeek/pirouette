@@ -4,8 +4,7 @@
 \alias{est_evidences}
 \title{Estimate the evidences}
 \usage{
-est_evidences(fasta_filename,
-  model_select_params = create_gen_model_select_param(alignment_params),
+est_evidences(fasta_filename, model_select_params,
   experiments = list(create_experiment()))
 }
 \arguments{

@@ -4,16 +4,7 @@
 \alias{est_evidences_old_skool}
 \title{Estimate the evidences old skool}
 \usage{
-est_evidences_old_skool(fasta_filename,
-  model_select_params = create_gen_model_select_param(alignment_params))
-}
-\arguments{
-\item{fasta_filename}{name of a FASTA file}
-
-\item{model_select_params}{a list of one or more parameter sets
-to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
+est_evidences_old_skool(fasta_filename, model_select_params)
 }
 \value{
 a data frame with evidences
