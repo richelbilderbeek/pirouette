@@ -15,15 +15,17 @@ test_that("use", {
   expect_silent(
     errors <- pir_run(
       phylogeny = phylogeny,
-      alignment_params = alignment_params,
-      model_select_params = model_select_params,
-      inference_params = create_inference_params(
-        mcmc = beautier::create_mcmc(
-          chain_length = 2000,
-          store_every = 1000
-        )
-      ),
-      error_measure_params = create_error_measure_params()
+      pir_params = create_pir_params(
+        alignment_params = alignment_params,
+        model_select_params = model_select_params,
+        inference_params = create_inference_params(
+          mcmc = beautier::create_mcmc(
+            chain_length = 2000,
+            store_every = 1000
+          )
+        ),
+        error_measure_params = create_error_measure_params()
+      )
     )
   )
 })
