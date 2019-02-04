@@ -17,10 +17,10 @@ r_github_packages:
   - MangoTheCat/goodpractice
   - ropensci/beautier
   - ropensci/tracerer
-  - ropensci/beastier
+  - ropensci/beastier@develop
   - ropensci/mauricer
   - ropensci/babette
-  - richelbilderbeek/mcbette@develop
+  - richelbilderbeek/mcbette
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys

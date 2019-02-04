@@ -10,6 +10,10 @@
 #' @param bd_tree a phylogent of class \link[ape]{phylo},
 #'   created by a Birth Death process
 #' @param bd_tree_filename name of the file that stores a BD twin tree
+#' @param beast2_bin_path path to BEAST2 binary file. The use of the
+#'   binary BEAST2 file is required for estimation of the evidence (aka
+#'   marginal likelihood). The default BEAST2 binary path can be
+#'   obtained using \link[beastier]{get_default_beast2_bin_path}
 #' @param beast2_input_filename path of the BEAST2 configuration file.
 #'   By default, this file is put in a temporary folder with a random filename,
 #'   as the user needs not read it: it is used as input of BEAST2.
@@ -100,6 +104,10 @@
 #'   posterior is determined.
 #'   Use \link{create_error_measure_params} to create such
 #'   a parameter set
+#' @param est_evidence_mcmc MCMC used in the estimation of
+#'   the evidence (aka marginal likelihood).
+#'   The MCMC must be a Nested Sampling MCMC,
+#'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
 #' @param experiment a \link{pirouette} experiment,
 #'   as can be created by \link{create_experiment}
 #' @param experiments a list of one or more \link{pirouette} experiments,
@@ -221,6 +229,7 @@ default_params_doc <- function(
   bd_mutation_rate,
   bd_tree,
   bd_tree_filename,
+  beast2_bin_path,
   beast2_input_filename,
   beast2_options,
   beast2_options_inference,
@@ -241,6 +250,7 @@ default_params_doc <- function(
   epsilon,
   error_function,
   error_measure_params,
+  est_evidence_mcmc,
   experiment, experiments,
   fasta_filename,
   filename,

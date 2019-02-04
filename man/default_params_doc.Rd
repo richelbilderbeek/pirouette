@@ -6,23 +6,24 @@
 documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
-  bd_mutation_rate, bd_tree, bd_tree_filename, beast2_input_filename,
-  beast2_options, beast2_options_inference, beast2_options_est_evidence,
-  beast2_output_log_filename, beast2_output_state_filename,
-  beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
-  beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
-  clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
-  error_function, error_measure_params, experiment, experiments,
-  fasta_filename, filename, folder_name, inference_model, inference_params,
-  init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
-  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
-  model_selection, model_select_param, model_select_params, model_type,
-  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
-  parameters_filename, phylo, phylogeny, posterior_trees, precision,
-  project_folder_name, root_sequence, run_if, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
-  tree_prior, tree_priors, tree_prior_name, tree_type,
+  bd_mutation_rate, bd_tree, bd_tree_filename, beast2_bin_path,
+  beast2_input_filename, beast2_options, beast2_options_inference,
+  beast2_options_est_evidence, beast2_output_log_filename,
+  beast2_output_state_filename, beast2_output_trees_filename,
+  beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
+  burn_in_fraction, chain_length, clock_model, clock_models,
+  clock_model_name, crown_age, do_measure_evidence, epsilon,
+  error_function, error_measure_params, est_evidence_mcmc, experiment,
+  experiments, fasta_filename, filename, folder_name, inference_model,
+  inference_params, init_speciation_rate, init_extinction_rate, lambda,
+  marg_lik_filename, marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
+  mcmc, model_selection, model_select_param, model_select_params,
+  model_type, mrca_prior, mu, mutation_rate, nu, nu_events,
+  parameter_filename, parameters_filename, phylo, phylogeny,
+  posterior_trees, precision, project_folder_name, root_sequence, run_if,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  site_models, site_model_name, sub_chain_length, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
   type, verbose)
 }
@@ -42,6 +43,11 @@ from a BD tree}
 created by a Birth Death process}
 
 \item{bd_tree_filename}{name of the file that stores a BD twin tree}
+
+\item{beast2_bin_path}{path to BEAST2 binary file. The use of the
+binary BEAST2 file is required for estimation of the evidence (aka
+marginal likelihood). The default BEAST2 binary path can be
+obtained using \link[beastier]{get_default_beast2_bin_path}}
 
 \item{beast2_input_filename}{path of the BEAST2 configuration file.
 By default, this file is put in a temporary folder with a random filename,
@@ -153,6 +159,11 @@ error between the given phylogeny and the Bayesian
 posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
+
+\item{est_evidence_mcmc}{MCMC used in the estimation of
+the evidence (aka marginal likelihood).
+The MCMC must be a Nested Sampling MCMC,
+as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
 
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}

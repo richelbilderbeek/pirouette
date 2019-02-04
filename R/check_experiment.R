@@ -15,7 +15,7 @@ check_experiment <- function(
 ) {
   argument_names <- c(
     "model_type", "run_if", "do_measure_evidence",  "inference_model",
-    "beast2_options"
+    "beast2_options", "est_evidence_mcmc", "beast2_bin_path"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(experiment)) {
@@ -56,4 +56,19 @@ check_experiment <- function(
       )
     }
   )
+  if (!beautier::is_nested_sampling_mcmc(experiment$est_evidence_mcmc)) {
+    stop(
+      "'est_evidence_mcmc' must be a Nested Sampling MCMC.\n",
+      "Tip: use 'beautier::create_nested_sampling_mcmc'\n",
+      "Value: ", experiment$est_evidence_mcmc
+    )
+  }
+  if (!beastier::is_bin_path(experiment$beast2_bin_path)) {
+    stop(
+      "'beast2_bin_path' must be a path to a BEAST2 binary file.\n",
+      "Tip: use 'beastier::get_default_beast2_bin_path'\n",
+      "Value: ", experiment$beast2_bin_path
+    )
+  }
+
 }
