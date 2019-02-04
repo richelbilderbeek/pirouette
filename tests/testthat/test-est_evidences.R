@@ -2,6 +2,7 @@ context("test-est_evidences")
 
 test_that("old skool versus new skool", {
 
+  if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
 
   # Create an alignment
@@ -34,7 +35,8 @@ test_that("old skool versus new skool", {
     model_type = "candidate",
     run_if = "best_candidate",
     do_measure_evidence = TRUE,
-    inference_model = beautier::create_inference_model(site_model = beautier::create_jc69_site_model(),
+    inference_model = beautier::create_inference_model(
+      site_model = beautier::create_jc69_site_model(),
       clock_model = beautier::create_strict_clock_model(),
       tree_prior = beautier::create_yule_tree_prior(),
       mcmc = create_mcmc_nested_sampling(epsilon = 100.0)
