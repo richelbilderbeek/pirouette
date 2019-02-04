@@ -13,17 +13,18 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
   burn_in_fraction, chain_length, clock_model, clock_models,
   clock_model_name, crown_age, do_measure_evidence, epsilon,
-  error_function, error_measure_params, est_evidence_mcmc, experiment,
-  experiments, fasta_filename, filename, folder_name, inference_model,
-  inference_params, init_speciation_rate, init_extinction_rate, lambda,
-  marg_lik_filename, marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree,
-  mcmc, model_selection, model_select_param, model_select_params,
-  model_type, mrca_prior, mu, mutation_rate, nu, nu_events,
-  parameter_filename, parameters_filename, phylo, phylogeny,
-  posterior_trees, precision, project_folder_name, root_sequence, run_if,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
+  error_function, error_measure_params, est_evidence_mcmc,
+  evidence_epsilon, evidence_filename, experiment, experiments,
+  fasta_filename, filename, folder_name, inference_model, inference_params,
+  init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
+  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
+  model_selection, model_select_param, model_select_params, model_type,
+  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
+  parameters_filename, phylo, phylogeny, posterior_trees, precision,
+  project_folder_name, root_sequence, run_if, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
+  tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
   type, verbose)
 }
@@ -164,6 +165,13 @@ a parameter set}
 the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
 as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+
+\item{evidence_epsilon}{relative error in estimating the
+evidence (aka marginal likelihood).
+TODO: put in \code{misc_params},}
+
+\item{evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods)}
 
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}
