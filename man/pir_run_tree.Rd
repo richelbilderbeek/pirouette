@@ -8,7 +8,9 @@ pir_run_tree(phylogeny, tree_type = "true", alignment_params,
   model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
   experiments = list(create_experiment()),
-  error_measure_params = create_error_measure_params())
+  error_measure_params = create_error_measure_params(),
+  evidence_epsilon = 1e-12, evidence_filename = tempfile(fileext =
+  ".csv"))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -37,6 +39,13 @@ error between the given phylogeny and the Bayesian
 posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
+
+\item{evidence_epsilon}{relative error in estimating the
+evidence (aka marginal likelihood).
+TODO: put in \code{misc_params},}
+
+\item{evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods)}
 }
 \value{
 a data frame with errors, with as many rows as model selection
