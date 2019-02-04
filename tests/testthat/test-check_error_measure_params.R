@@ -76,4 +76,22 @@ test_that("use", {
     ),
     "'error_function' must be a function that is lowest for identical trees"
   )
+
+  # Wrong parameter values
+  expect_error(
+    check_error_measure_params(
+      create_error_measure_params(
+        error_function = "nonsense"
+      )
+    ),
+    "'error_function' must be a function"
+  )
+  expect_error(
+    check_error_measure_params(
+      create_error_measure_params(
+        error_function = function(only_one_param) { only_one_param }
+      )
+    ),
+    "'error_function' must be a function with at least two arguments"
+  )
 })
