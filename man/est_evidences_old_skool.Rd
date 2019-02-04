@@ -6,6 +6,14 @@
 \usage{
 est_evidences_old_skool(fasta_filename, model_select_params)
 }
+\arguments{
+\item{fasta_filename}{name of a FASTA file}
+
+\item{model_select_params}{a list of one or more parameter sets
+to select an inference model
+(a combination of site model, clock model and tree prior),
+as can be created by \link{create_model_select_param}}
+}
 \value{
 a data frame with evidences
 }

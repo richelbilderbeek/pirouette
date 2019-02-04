@@ -27,6 +27,7 @@ est_evidences <- function(
 }
 
 #' Estimate the evidences
+#' @inheritParams default_params_doc
 #' @param evidence_epsilon relative error in estimating the
 #'   evidence (aka marginal likelihood).
 #'   TODO: put in \code{misc_params},
@@ -59,6 +60,7 @@ est_evidences_new_skool <- function(
 }
 
 #' Estimate the evidences old skool
+#' @inheritParams default_params_doc
 #' @return a data frame with evidences
 #' @export
 #' @author Richel J.C. Bilderbeek
