@@ -57,6 +57,9 @@ est_evidences_new_skool <- function(
   }
 
   testit::assert(length(inference_models) == length(beast2_optionses))
+  if(length(inference_models) == 0) {
+    return(NULL)
+  }
   testit::assert(length(inference_models) > 0)
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)

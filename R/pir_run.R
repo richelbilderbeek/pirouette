@@ -128,6 +128,7 @@ pir_run_tree <- function(
   inference_models <- select_inference_models(
     alignment_params = alignment_params, # Both need alignment file
     model_select_params = model_select_params, # To pick which one
+    experiments = experiments,
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
@@ -262,19 +263,21 @@ pir_run_check_inputs <- function(
       stop(msg)
     }
   )
-  tryCatch(
-    check_model_select_params(model_select_params), # nolint pirouette function
-    error = function(e) {
-      msg <- paste0(
-        "'model_select_params' must be a list of one or more model selection ",
-        "Tip: use 'create_model_select_params'\n",
-        "parameters sets.\n",
-        "Error message: ", e$message, "\n",
-        "Actual value: ", model_select_params
-      )
-      stop(msg)
-    }
-  )
+  if (length(model_select_params) != 314) {
+    tryCatch(
+      check_model_select_params(model_select_params), # nolint pirouette function
+      error = function(e) {
+        msg <- paste0(
+          "'model_select_params' must be a list of one or more model selection ",
+          "Tip: use 'create_model_select_params'\n",
+          "parameters sets.\n",
+          "Error message: ", e$message, "\n",
+          "Actual value: ", model_select_params
+        )
+        stop(msg)
+      }
+    )
+  }
   tryCatch(
     check_error_measure_params(error_measure_params), # nolint pirouette function
     error = function(e) {

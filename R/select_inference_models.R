@@ -60,6 +60,52 @@
 select_inference_models <- function(
   alignment_params,
   model_select_params,
+  experiments = list(create_experiment()),
+  marg_liks = NULL
+) {
+  check_model_select_params(model_select_params) # nolint pirouette function
+
+  inference_models <- list()
+  if (length(model_select_params) == 314) { # nolint use new interface
+    inference_models <- select_inference_models_new_skool(
+      experiments = experiments,
+      marg_liks = marg_liks
+    )
+  } else {
+    inference_models <- select_inference_models_old_skool(
+      alignment_params = alignment_params,
+      model_select_params = model_select_params,
+      marg_liks = marg_liks
+    )
+  }
+  inference_models
+}
+
+#' Select inference models using the new skool interface
+#' @inheritParams default_params_doc
+#' @return a list of inference models,
+#'   with the same length as \code{model_select_params}.
+#'   Each element of this list has one site model, clock model and tree prior.
+#' @author Richel J.C. Bilderbeek
+#' @noRd
+select_inference_models_new_skool <- function(
+  experiments = list(create_experiment()),
+  marg_liks = NULL
+) {
+  inference_models <- list()
+  inference_models
+}
+
+#' Select inference models using the old skool interface
+#' @inheritParams default_params_doc
+#' @return a list of inference models,
+#'   with the same length as \code{model_select_params}.
+#'   Each element of this list has one site model, clock model and tree prior.
+#' @author Richel J.C. Bilderbeek
+#' @noRd
+select_inference_models_old_skool <- function(
+  alignment_params,
+  model_select_params,
   marg_liks = NULL
 ) {
   check_model_select_params(model_select_params) # nolint pirouette function
