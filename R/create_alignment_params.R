@@ -18,7 +18,7 @@
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_alignment_params <- function(
-  root_sequence = "acgt",
+  root_sequence = pirouette::create_blocked_dna(1000),
   mutation_rate = 0.0,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
