@@ -98,7 +98,7 @@ select_inference_models <- function(
         marg_liks$tree_prior_name[best_row_index]
       )
     }
-    inference_model <- create_inference_model(
+    inference_model <- create_old_skool_inference_model(
       site_model = site_model,
       clock_model = clock_model,
       tree_prior = tree_prior

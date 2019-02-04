@@ -15,7 +15,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   experiment = create_experiment()
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
-  check_inference_model(inference_model) # nolint pirouette function
+  check_old_skool_inference_model(inference_model) # nolint pirouette function
   tryCatch(
     check_inference_params(inference_params),
     error = function(msg) {

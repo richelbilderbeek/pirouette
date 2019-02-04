@@ -8,7 +8,7 @@
 #' @return an inference model
 #' @export
 #' @author Richel J.C. Bilderbeek
-create_inference_model <- function(
+create_old_skool_inference_model <- function(
   site_model,
   clock_model,
   tree_prior,
@@ -30,6 +30,6 @@ create_inference_model <- function(
     beast2_output_trees_filename = beast2_output_trees_filename,
     beast2_output_state_filename = beast2_output_state_filename
   )
-  check_inference_model(inference_model) # nolint pirouette function
+  check_old_skool_inference_model(inference_model) # nolint pirouette function
   inference_model
 }

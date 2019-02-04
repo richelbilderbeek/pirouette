@@ -3,11 +3,11 @@
 #' Calls \link{stop} if \code{x} is not a valid inference model,
 #' will do nothing otherwise
 #' @param x object to be checked to be an inference model,
-#'   as can be created by \link{create_inference_model}
+#'   as can be created by \link{create_old_skool_inference_model}
 #' @return nothing.
 #'   Calls \link{stop} if \code{x} is not a valid inference model
 #' @author Richel J.C. Bilderbeek
-check_inference_model <- function(
+check_old_skool_inference_model <- function(
   x
 ) {
   argument_names <- c(

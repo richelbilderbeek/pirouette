@@ -43,7 +43,7 @@ We assume we know the generative model, which
 happens to be the BEAUti default:
 
 ```{r}
-generative_model <- beautier::create_inference_model()
+generative_model <- create_old_skool_inference_model()
 testit::assert(generative_model$site_model$name == "JC69")
 testit::assert(generative_model$clock_model$name == "strict")
 testit::assert(generative_model$tree_prior$name == "yule")
@@ -83,12 +83,12 @@ This time we have two models that compete: a Yule and a Birth-Death model.
 
 
 ```{r}
-inference_model_1 <- beautier::create_inference_model()
+inference_model_1 <- create_old_skool_inference_model()
 testit::assert(inference_model_1$site_model$name == "JC69")
 testit::assert(inference_model_1$clock_model$name == "strict")
 testit::assert(inference_model_1$tree_prior$name == "yule")
 
-inference_model_2 <- beautier::create_inference_model(
+inference_model_2 <- create_old_skool_inference_model(
   tree_prior = beautier::create_bd_tree_prior()
 )
 testit::assert(inference_model_2$site_model$name == "JC69")
@@ -133,7 +133,7 @@ pir_run(
 This time, we know the generative model:
 
 ```{r}
-generative_model <- beautier::create_inference_model()
+generative_model <- create_old_skool_inference_model()
 testit::assert(generative_model$site_model$name == "JC69")
 testit::assert(generative_model$clock_model$name == "strict")
 testit::assert(generative_model$tree_prior$name == "yule")
@@ -142,14 +142,14 @@ testit::assert(generative_model$tree_prior$name == "yule")
 But there are two competing models, with different site models: 
 
 ```{r}
-inference_model_2 <- beautier::create_inference_model(
+inference_model_2 <- create_old_skool_inference_model(
   site_model = beautier::create_hky_site_model()
 )
 testit::assert(inference_model_2$site_model$name == "HKY")
 testit::assert(inference_model_2$clock_model$name == "strict")
 testit::assert(inference_model_2$tree_prior$name == "yule")
 
-inference_model_3 <- beautier::create_inference_model(
+inference_model_3 <- create_old_skool_inference_model(
   site_model = beautier::create_tn93_site_model()
 )
 testit::assert(inference_model_3$site_model$name == "TN93")

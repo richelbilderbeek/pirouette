@@ -131,13 +131,13 @@ pir_run_tree <- function(
     marg_liks = marg_liks # For most evidence
   )
   testit::assert(length(inference_models) == length(model_select_params))
-  check_inference_model(inference_models[[1]]) # nolint pirouette function
+  check_old_skool_inference_model(inference_models[[1]]) # nolint pirouette function
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(inference_models)) {
     inference_model <- inference_models[[i]]
-    check_inference_model(inference_model) # nolint pirouette function
+    check_old_skool_inference_model(inference_model) # nolint pirouette function
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,

@@ -46,17 +46,31 @@ est_evidences_new_skool <- function(
   check_experiments(experiments) # nolint pirouette function
   inference_models <- list()
   beast2_optionses <- list()
+  i <- 1
+  for (experiment in experiments) {
+    if (experiment$do_measure_evidence) {
+      testit::assert(is_nested_sampling_mcmc(experiment$inference_model$mcmc))
+      inference_models[[i]] <- experiment$inference_model
+      beast2_optionses[[i]] <- experiment$beast2_options
+      i <- i + 1
+    }
+  }
 
   testit::assert(length(inference_models) == length(beast2_optionses))
+  testit::assert(length(inference_models) > 0)
+  beautier::check_inference_models(inference_models)
+  beastier::check_beast2_optionses(beast2_optionses)
   marg_liks <- mcbette::est_marg_liks_from_models(
     fasta_filename = fasta_filename,
     inference_models = inference_models,
     beast2_optionses = beast2_optionses,
-    epsilon = evidence_epsilon
+    epsilon = evidence_epsilon,
+    verbose = TRUE
   )
   utils::write.csv(
     x = marg_liks, file = evidence_filename
   )
+  marg_liks
 }
 
 #' Estimate the evidences old skool

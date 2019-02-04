@@ -36,13 +36,19 @@ test_that("old skool versus new skool", {
     do_measure_evidence = TRUE,
     inference_model = beautier::create_inference_model(site_model = beautier::create_jc69_site_model(),
       clock_model = beautier::create_strict_clock_model(),
-      tree_prior = beautier::create_yule_tree_prior()
+      tree_prior = beautier::create_yule_tree_prior(),
+      mcmc = create_mcmc_nested_sampling(epsilon = 100.0)
+    ),
+    beast2_options = beastier::create_beast2_options(
+      beast2_path = beastier::get_default_beast2_bin_path()
     )
   )
   experiment_2 <- experiment_1
   experiment_2$inference_model$site_model <- beautier::create_hky_site_model()
   experiments <- list(experiment_1, experiment_2)
   check_experiments(experiments)
+  beautier::check_inference_model(experiment_1$inference_model)
+  beautier::check_inference_model(experiment_2$inference_model)
 
   # Run old skool
   df_old_skool <- est_evidences(
@@ -51,10 +57,12 @@ test_that("old skool versus new skool", {
     experiments = list()
   )
 
+  # Run new skool
   df_new_skool <- est_evidences(
     fasta_filename = fasta_filename,
     model_select_params = as.list(seq(1, 314)),
-    experiments = list()
+    experiments = experiments
   )
-  expect_equal(df_old_skool, df_new_skool)
+  # Use big tolerance, as there is much stochasticity involved
+  expect_equal(df_old_skool, df_new_skool, tolerance = 2.0)
 })
