@@ -10,7 +10,7 @@
 #'  testit::assert("run_if" %in% names(experiment))
 #'  testit::assert("do_measure_evidence" %in% names(experiment))
 #'  testit::assert("inference_model" %in% names(experiment))
-#'  testit::assert("beast2_options" %in% names(experiment))
+#'  testit::assert("beast2_options_inference" %in% names(experiment))
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_experiment <- function(
@@ -18,7 +18,7 @@ create_experiment <- function(
   run_if = "always",
   do_measure_evidence = FALSE,
   inference_model = beautier::create_inference_model(),
-  beast2_options = beastier::create_beast2_options()
+  beast2_options_inference = beastier::create_beast2_options()
 ) {
   experiment <- list(
     model_type = model_type,

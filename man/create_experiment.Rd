@@ -7,7 +7,7 @@
 create_experiment(model_type = "generative", run_if = "always",
   do_measure_evidence = FALSE,
   inference_model = beautier::create_inference_model(),
-  beast2_options = beastier::create_beast2_options())
+  beast2_options_inference = beastier::create_beast2_options())
 }
 \arguments{
 \item{model_type}{type of inference model supplied for an experiment.
@@ -37,8 +37,10 @@ measured}
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
-\item{beast2_options}{BEAST2 options,
-as can be created by \link[beastier]{create_beast2_options}}
+\item{beast2_options_inference}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}.
+The MCMC must be a normal MCMC,
+as can be created by \link[beautier]{create_mcmc}.}
 }
 \value{
 a \link{pirouette} experiment.
@@ -53,7 +55,7 @@ The arguments are checked by \link{check_experiment}.
  testit::assert("run_if" \%in\% names(experiment))
  testit::assert("do_measure_evidence" \%in\% names(experiment))
  testit::assert("inference_model" \%in\% names(experiment))
- testit::assert("beast2_options" \%in\% names(experiment))
+ testit::assert("beast2_options_inference" \%in\% names(experiment))
 }
 \author{
 Richel J.C. Bilderbeek

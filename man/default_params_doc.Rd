@@ -7,7 +7,8 @@ documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
   bd_mutation_rate, bd_tree, bd_tree_filename, beast2_input_filename,
-  beast2_options, beast2_output_log_filename, beast2_output_state_filename,
+  beast2_options, beast2_options_inference, beast2_options_est_evidence,
+  beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
   beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
   clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
@@ -50,6 +51,17 @@ to store that file in a more permanently stored location.}
 
 \item{beast2_options}{BEAST2 options,
 as can be created by \link[beastier]{create_beast2_options}}
+
+\item{beast2_options_inference}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}.
+The MCMC must be a normal MCMC,
+as can be created by \link[beautier]{create_mcmc}.}
+
+\item{beast2_options_est_evidence}{BEAST2 options to estimate
+the evidence (aka marginal likelihood),
+as can be created by \link[beastier]{create_beast2_options}.
+The MCMC must be a Nested Sampling MCMC,
+as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
 
 \item{beast2_output_log_filename}{name of the log file created by BEAST2,
 containing the parameter estimates in time.

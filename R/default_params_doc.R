@@ -17,6 +17,15 @@
 #'   to store that file in a more permanently stored location.
 #' @param beast2_options BEAST2 options,
 #'   as can be created by \link[beastier]{create_beast2_options}
+#' @param beast2_options_inference BEAST2 options,
+#'   as can be created by \link[beastier]{create_beast2_options}.
+#'   The MCMC must be a normal MCMC,
+#'   as can be created by \link[beautier]{create_mcmc}.
+#' @param beast2_options_est_evidence BEAST2 options to estimate
+#'   the evidence (aka marginal likelihood),
+#'   as can be created by \link[beastier]{create_beast2_options}.
+#'   The MCMC must be a Nested Sampling MCMC,
+#'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
 #' @param beast2_output_log_filename name of the log file created by BEAST2,
 #'   containing the parameter estimates in time.
 #'   By default, this file is put a temporary folder with a random filename,
@@ -214,6 +223,8 @@ default_params_doc <- function(
   bd_tree_filename,
   beast2_input_filename,
   beast2_options,
+  beast2_options_inference,
+  beast2_options_est_evidence,
   beast2_output_log_filename,
   beast2_output_state_filename,
   beast2_output_trees_filename,
