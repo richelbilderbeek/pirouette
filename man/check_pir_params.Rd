@@ -7,6 +7,9 @@
 check_pir_params(pir_params, max_evidence_epsilon = 1e-04)
 }
 \arguments{
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
+
 \item{max_evidence_epsilon}{set the maximum acceptable threshold for the
 parameter \code{evidence_epsilon}}
 }

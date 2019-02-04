@@ -21,13 +21,15 @@ Plot the error BEAST2 make from the known phylogeny
     mutation_rate = 0.01
   )
   errors <- pir_run(
-    phylogeny = phylogeny,
-    alignment_params = alignment_params,
-    model_select_params = create_gen_model_select_param(
-      alignment_params = alignment_params
-    ),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+   phylogeny = phylogeny,
+   pir_params = create_pir_params(
+      alignment_params = alignment_params,
+      model_select_params = create_gen_model_select_param(
+        alignment_params = alignment_params
+      ),
+      inference_params = create_inference_params(
+        mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+      )
     )
   )
   pir_plot(errors)
