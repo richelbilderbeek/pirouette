@@ -26,7 +26,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
       stop(msg)
     }
   )
-  check_experiment(experiment)
+  check_experiment(experiment) # nolint pirouette function
 
   testit::assert(file.exists(alignment_params$fasta_filename))
   babette_out <- babette::bbt_run(

@@ -103,7 +103,10 @@ pir_run_tree <- function(
   model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
   experiments = list(create_experiment()),
-  error_measure_params = create_error_measure_params()
+  error_measure_params = create_error_measure_params(),
+  evidence_epsilon = 1e-12,
+  evidence_filename = tempfile(fileext = ".csv")
+
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -113,28 +116,13 @@ pir_run_tree <- function(
   )
   testit::assert(file.exists(alignment_params$fasta_filename))
 
-  # Estimate marginal likelihoods if needed
-  if (!beautier:::is_one_na(inference_params$rng_seed) &&
-      inference_params$rng_seed == 314159265) { # nolint use new interface
-    check_experiments(experiments) # stub
-  }
-
-  marg_liks <- NULL
-  for (model_select_param in model_select_params) {
-    if ("most_evidence" %in% model_select_param$type) {
-      marg_liks <- mcbette::est_marg_liks(
-        fasta_filename = alignment_params$fasta_filename,
-        site_models = model_select_param$site_models,
-        clock_models = model_select_param$clock_models,
-        tree_priors = model_select_param$tree_priors,
-        epsilon = model_select_param$epsilon,
-        verbose = model_select_param$verbose
-      )
-      utils::write.csv(
-        x = marg_liks, file = model_select_param$marg_lik_filename
-      )
-    }
-  }
+  # Estimate evidences (aka marginal likelihoods) if needed
+  # marg_liks will be NULL if this was unneeded
+  marg_liks <- est_evidences(
+    fasta_filename = alignment_params$fasta_filename,
+    model_select_params = model_select_params,
+    experiments = experiments
+  )
 
   # Select the models to do inference with
   inference_models <- select_inference_models(
