@@ -90,14 +90,17 @@ model_select_param <- pirouette::create_gen_model_select_param(
 inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000)
 )
+pir_params <- create_pir_params(
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_params = inference_params
+)
 errors <- list()
 for (i in seq_along(ext_rates)) {
   phylogeny <- phylogenies[[i]]
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
-    model_select_params = model_select_param,
-    inference_params = inference_params 
+    pir_params = pir_params
   )
   errors[[i]] <- df
 }

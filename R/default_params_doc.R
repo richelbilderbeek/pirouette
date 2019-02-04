@@ -95,6 +95,10 @@
 #'   as can be created by \link{create_experiment}
 #' @param experiments a list of one or more \link{pirouette} experiments,
 #'   as can be created by \link{create_experiment}
+#' @param evidence_epsilon relative error in estimating the
+#'   evidence (aka marginal likelihood)
+#' @param evidence_filename filename to store the estimated
+#'   evidences (aka marginal likelihoods)
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -112,6 +116,8 @@
 #'   likelihoods (also known as 'evidences') are saved to
 #' @param marg_liks a data frame with marginal likelihoods/evidences.
 #'   A test data frame can be created by \link{create_test_marg_liks}
+#' @param max_evidence_epsilon set the maximum acceptable threshold for the
+#'   parameter \code{evidence_epsilon}
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param mbd_l_matrix the L matrix of an MBD tree
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
@@ -231,6 +237,8 @@ default_params_doc <- function(
   error_function,
   error_measure_params,
   experiment, experiments,
+  evidence_epsilon,
+  evidence_filename,
   fasta_filename,
   filename,
   folder_name,
@@ -241,6 +249,7 @@ default_params_doc <- function(
   lambda,
   marg_lik_filename,
   marg_liks,
+  max_evidence_epsilon,
   mbd_l_matrix,
   mbd_mutation_rate,
   mbd_tree,

@@ -72,11 +72,14 @@ when the inference model is the correct generative
 model (JC69 and strict clock):
 
 ```{r}
-errors <- pir_run(
-  true_phylogeny,
+pir_params <- create_pir_params(
   alignment_params = alignment_params,
   model_select_params = model_select_params,
   inference_params = inference_params
+)
+errors <- pir_run(
+  phylogeny = true_phylogeny,
+  pir_params = pir_params
 )
 ```
 
@@ -115,6 +118,11 @@ model_select_params = list(
     epsilon = 100.0
   )
 )
+pir_params <- create_pir_params(
+  alignment_params = alignment_params,
+  model_select_params = model_select_params,
+  inference_params = inference_params
+)
 ```
 
 Note that we select the model with the heighest evidence from a set of
@@ -124,10 +132,8 @@ Run this setup:
 
 ```{r}
 # errors <- pir_run(
-#   true_phylogeny,
-#   alignment_params = alignment_params,
-#   model_select_params = model_select_params,
-#   inference_params = inference_params
+#   phylogeny = true_phylogeny,
+#   pir_params = pir_params
 # )
 ```
 

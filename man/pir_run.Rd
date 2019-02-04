@@ -4,40 +4,12 @@
 \alias{pir_run}
 \title{Measure the error BEAST2 makes from a known phylogeny.}
 \usage{
-pir_run(phylogeny, twinning_params = NA, alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params),
-  inference_params = create_inference_params(),
-  experiments = list(create_experiment()),
-  error_measure_params = create_error_measure_params())
+pir_run(phylogeny, pir_params = create_pir_params(alignment_params =
+  create_alignment_params(mutation_rate =
+  create_standard_mutation_rate(phylogeny))))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
-
-\item{twinning_params}{can be \code{NA} if no twinning is desired,
-or can be the twinning parameters,
-as can be created by \link{create_twinning_params}}
-
-\item{alignment_params}{parameters to simulate an alignment,
-as can be created by \link{create_alignment_params}}
-
-\item{model_select_params}{a list of one or more parameter sets
-to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
-
-\item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
-
-\item{experiments}{a list of one or more \link{pirouette} experiments,
-as can be created by \link{create_experiment}}
-
-\item{error_measure_params}{parameter set to specify how the
-error between the given phylogeny and the Bayesian
-posterior is determined.
-Use \link{create_error_measure_params} to create such
-a parameter set}
 }
 \value{
 a data frame with errors, with as many rows as model selection
@@ -78,5 +50,5 @@ ones created by BEAST2.
   pir_plot(errors)
 }
 \author{
-Richel J.C. Bilderbeek
+Richel J.C. Bilderbeek, Giovanni Laudanno
 }
