@@ -144,9 +144,11 @@ Now we have all in place to do a `pirouette` run:
 ```{r}
 df <- pirouette::pir_run(
   phylogeny = phylogeny,
-  alignment_params = alignment_params,
-  model_select_params = gen_model_select_param,
-  inference_params = inference_params
+  pir_params = create_pir_params(
+    alignment_params = alignment_params,
+    model_select_params = gen_model_select_param,
+    inference_params = inference_params
+  )
 )
 knitr::kable(df)
 ```
@@ -212,9 +214,11 @@ Now we again have all in place to do a `pirouette` run:
 if (rappdirs::app_dir()$os != "win") {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
-    model_select_params = best_model_select_param,
-    inference_params = inference_params
+    pir_params = create_pir_params(
+      alignment_params = alignment_params,
+      model_select_params = best_model_select_param,
+      inference_params = inference_params
+    )
   )
   knitr::kable(df)
   pirouette::pir_plot(df)
@@ -230,9 +234,11 @@ We can also specify our complete knowledge at the same time:
 if (rappdirs::app_dir()$os != "win") {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
-    model_select_params = list(gen_model_select_param, best_model_select_param),
-    inference_params = inference_params
+    pir_params = create_pir_params(
+      alignment_params = alignment_params,
+      model_select_params = list(gen_model_select_param, best_model_select_param),
+      inference_params = inference_params
+    )
   )
   knitr::kable(df)
   pirouette::pir_plot(df)

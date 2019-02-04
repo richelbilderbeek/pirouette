@@ -14,7 +14,10 @@ check_experiment <- function(
   experiment
 ) {
   argument_names <- c(
-    "model_type", "run_if", "do_measure_evidence",  "inference_model",
+    "model_type",
+    "run_if",
+    "do_measure_evidence",
+    "inference_model",
     "beast2_options"
   )
   for (arg_name in argument_names) {

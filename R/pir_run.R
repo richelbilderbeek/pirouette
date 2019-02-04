@@ -25,39 +25,41 @@
 #'   )
 #'   errors <- pir_run(
 #'     phylogeny = phylogeny,
-#'     alignment_params = alignment_params,
-#'     model_select_params = create_gen_model_select_param(
-#'       alignment_params = alignment_params
-#'     ),
-#'     inference_params = create_inference_params(
-#'       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+#'       pir_params = create_pir_params(
+#'       alignment_params = alignment_params,
+#'       model_select_params = create_gen_model_select_param(
+#'         alignment_params = alignment_params
+#'       ),
+#'       inference_params = create_inference_params(
+#'         mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+#'       )
 #'     )
 #'   )
 #'   pir_plot(errors)
 #' @export
-#' @author Richel J.C. Bilderbeek
+#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 pir_run <- function(
   phylogeny,
-  twinning_params = NA,
-  alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params), # nolint obsolete, #69
-  inference_params = create_inference_params(), # obsolete, #69
-  experiments = list(create_experiment()),
-  error_measure_params = create_error_measure_params()
+  pir_params = create_pir_params(
+    alignment_params = create_alignment_params(
+      mutation_rate = create_standard_mutation_rate(phylogeny)
+    )
+  )
 ) {
-  # List model_select_params
-  model_select_params <- list_model_select_params(model_select_params) # nolint pirouette function
 
   # Check the inputs
-  pir_run_check_inputs(
-    phylogeny = phylogeny,
-    alignment_params = alignment_params,
-    model_select_params = model_select_params, # obsolete, #69
-    inference_params = inference_params, # obsolete, #69
-    experiments = experiments,
-    error_measure_params = error_measure_params
-  )
+  if (!beautier::is_phylo(phylogeny)) {
+    stop("'phylogeny' must be of class 'phylo'")
+  }
+  check_pir_params(pir_params)
+
   # Run for the true tree
+  twinning_params <- pir_params$twinning_params
+  alignment_params <- pir_params$alignment_params
+  model_select_params <- pir_params$model_select_params
+  inference_params <- pir_params$inference_params
+  experiments <- pir_params$experiments
+  error_measure_params <- pir_params$error_measure_params
   df <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
