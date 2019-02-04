@@ -78,7 +78,7 @@ check_experiments(experiments)
 
 Then run `pirouette`:
 
-```{r}
+```
 pir_run(
   phylogeny = phylogeny,
   alignment_params = pirouette::create_alignment_params(
