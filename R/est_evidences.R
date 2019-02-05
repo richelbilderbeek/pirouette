@@ -38,7 +38,7 @@ est_evidences_new_skool <- function(
   evidence_filename = tempfile(fileext = ".csv")
 ) {
   testit::assert(file.exists(fasta_filename))
-  check_is_ns_beast2_pkg_installed()
+  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
 
   check_experiments(experiments) # nolint pirouette function
   inference_models <- list()
