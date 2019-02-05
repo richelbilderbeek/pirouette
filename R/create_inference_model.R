@@ -8,7 +8,7 @@
 #' @return an inference model
 #' @export
 #' @author Richel J.C. Bilderbeek
-create_old_skool_inference_model <- function(
+create_old_skool_inference_model <- function( # nolint indeed a long line, luckily this is temporary
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   tree_prior = beautier::create_yule_tree_prior(),
