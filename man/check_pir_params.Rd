@@ -25,6 +25,7 @@ can be created by \link{create_pir_params}.
  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
  pir_params <- create_pir_params(
  alignment_params = create_alignment_params(
+     root_sequence = create_mono_nuc_dna(length = 4),
      mutation_rate = create_standard_mutation_rate(phylogeny)
    )
  )

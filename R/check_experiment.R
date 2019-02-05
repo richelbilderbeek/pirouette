@@ -68,7 +68,7 @@ check_experiment <- function(
       "Value: ", experiment$est_evidence_mcmc
     )
   }
-  if (!beastier::is_bin_path(experiment$beast2_bin_path)) {
+  if (!beastier:::is_bin_path(experiment$beast2_bin_path)) {
     stop(
       "'beast2_bin_path' must be a path to a BEAST2 binary file.\n",
       "Tip: use 'beastier::get_default_beast2_bin_path'\n",

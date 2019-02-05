@@ -141,6 +141,7 @@
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
 #'   from a MBD tree
 #' @param mbd_tree an MBD tree
+#' @param method determines how to create the twin tree
 #' @param model_selection one ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
@@ -278,6 +279,7 @@ default_params_doc <- function(
   mbd_mutation_rate,
   mbd_tree,
   mcmc,
+  method,
   model_selection,
   model_select_param,
   model_select_params,

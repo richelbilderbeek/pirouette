@@ -15,12 +15,14 @@
 create_twinning_params <- function(
   rng_seed = 0,
   twin_model = "bd",
+  method = "random_tree",
   twin_tree_filename = tempfile(fileext = ".newick"),
   twin_alignment_filename = tempfile(fileext = ".fasta")
 ) {
   twinning_params <- list(
     rng_seed = rng_seed,
     twin_model = twin_model,
+    method = method,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename
   )

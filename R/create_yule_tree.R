@@ -5,8 +5,11 @@
 #' @export
 create_yule_tree <- function(
   phylogeny,
-  seed
+  twinning_params
 ) {
+  seed <- twinning_params$rng_seed
+  method <- twinning_params$method
+
   age <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
     convert_tree2brts(phylogeny), # nolint pirouette function
@@ -43,14 +46,16 @@ create_yule_tree <- function(
 
   # generate bd branching times from the inferred parameters
   set.seed(seed)
-  yule_tree0 <- TESS::tess.sim.taxa.age(
-    n = 1,
-    lambda = lambda_yule,
-    mu     = 0,
-    nTaxa = ((soc - 1) + length(phylo_brts)), # nolint
-    age = age,
-    MRCA = TRUE
-  )[[1]]
+  yule_tree0 <- phangorn::maxCladeCred(
+    TESS::tess.sim.taxa.age(
+      n = 1 * (method == "random_tree") + 1e4 * (method == "max_clade_cred"),
+      lambda = lambda_yule,
+      mu     = 0,
+      nTaxa = ((soc - 1) + length(phylo_brts)), # nolint
+      age = age,
+      MRCA = TRUE
+    )[[1]]
+  )
   yule_brts0 <- convert_tree2brts(yule_tree0) # nolint pirouette function
 
   yule_tree <- combine_brts_and_topology(

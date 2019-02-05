@@ -18,15 +18,15 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   fasta_filename, filename, folder_name, inference_model, inference_params,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
   marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
-  mbd_tree, mcmc, model_selection, model_select_param, model_select_params,
-  model_type, mrca_prior, mu, mutation_rate, nu, nu_events,
-  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
-  posterior_trees, precision, project_folder_name, root_sequence, run_if,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
-  twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
-  type, verbose)
+  mbd_tree, mcmc, method, model_selection, model_select_param,
+  model_select_params, model_type, mrca_prior, mu, mutation_rate, nu,
+  nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
+  pir_params, posterior_trees, precision, project_folder_name,
+  root_sequence, run_if, sample_interval, seed, sequence_length, sim_pars,
+  sim_phylo, site_model, site_models, site_model_name, sub_chain_length,
+  tree, tree_filename, tree_model, tree_prior, tree_priors,
+  tree_prior_name, tree_type, twin_alignment_filename, twin_model,
+  twin_tree_filename, twinning_params, type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -217,6 +217,8 @@ from a MBD tree}
 \item{mbd_tree}{an MBD tree}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
+
+\item{method}{determines how to create the twin tree}
 
 \item{model_selection}{one ways to select the models used in
 inference, for example, \code{generative} picks the generative

@@ -8,7 +8,11 @@ check_twinning_params <- function(
   twinning_params
 ) {
   argument_names <- c(
-    "rng_seed", "twin_model", "twin_tree_filename", "twin_alignment_filename"
+    "rng_seed",
+    "twin_model",
+    "method",
+    "twin_tree_filename",
+    "twin_alignment_filename"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(twinning_params)) {
@@ -33,5 +37,14 @@ check_twinning_params <- function(
   if (!is.character(twinning_params$twin_alignment_filename)) {
     stop("'twin_alignment_filename' must be a character vector")
   }
-
+  if (!is.character(twinning_params$method)) {
+    stop("'method' must be a character vector")
+  }
+  methods <- c(
+    "random_tree",
+    "max_clade_cred"
+  )
+  if (!(twinning_params$method %in% methods)) {
+    stop("This 'method' is not implemented")
+  }
 }
