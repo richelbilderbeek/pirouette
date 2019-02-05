@@ -179,6 +179,24 @@ test_that("node distances should remain in the same order, brute-force", {
   }
 })
 
+test_that("all methods are working", {
+
+  if (!beastier::is_on_ci()) return()
+
+  tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
+  twinning_params <- create_twinning_params()
+  for (method in get_twin_methods()) {
+    twinning_params$method <- method
+    twinning_params$n_replicas <- 10
+    expect_silent(
+      create_twin_tree(
+        phylogeny = tree,
+        twinning_params = twinning_params
+      )
+    )
+  }
+})
+
 test_that("abuse", {
   tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
   twinning_params <- create_twinning_params()

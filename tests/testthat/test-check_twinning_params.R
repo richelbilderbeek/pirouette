@@ -47,4 +47,56 @@ test_that("use", {
     ),
     "'twin_tree_filename' must be a character vector"
   )
+
+  # Wrong methods
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        method = 12
+      )
+    ),
+    "'method' must be a character vector"
+  )
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        method = "nonsense"
+      )
+    ),
+    "This 'method' is not implemented"
+  )
+
+  # Wrong methods
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        n_replicas = "nonsense"
+      )
+    ),
+    "'n_replicas' must be a number"
+  )
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        n_replicas = 1.5
+      )
+    ),
+    "'n_replicas' must be a finite positive integer number"
+  )
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        n_replicas = Inf
+      )
+    ),
+    "'n_replicas' must be a finite positive integer number"
+  )
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        n_replicas = -10
+      )
+    ),
+    "'n_replicas' must be a finite positive integer number"
+  )
 })

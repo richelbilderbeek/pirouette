@@ -42,6 +42,19 @@ get_twin_models <- function() {
   c("bd", "yule")
 }
 
+#' @title Twin methods
+#' @description Twin methods
+#' @inheritParams default_params_doc
+#' @return the twin methods
+#' @author Giovanni Laudanno
+get_twin_methods <- function() {
+  c(
+    "random_tree",
+    "max_clade_cred",
+    "max_likelihood"
+  )
+}
+
 #' @title Convert bd phylo to L table
 #' @description Convert bd phylo to L table. Don't use for mbd.
 #' @inheritParams default_params_doc
