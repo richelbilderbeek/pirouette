@@ -63,8 +63,6 @@ select_inference_models <- function(
   experiments = list(create_experiment()),
   marg_liks = NULL
 ) {
-  check_model_select_params(model_select_params) # nolint pirouette function
-
   inference_models <- list()
   if (length(model_select_params) == 314) { # nolint use new interface
     inference_models <- select_inference_models_new_skool(
@@ -72,11 +70,14 @@ select_inference_models <- function(
       marg_liks = marg_liks
     )
   } else {
+    check_model_select_params(model_select_params) # nolint pirouette function
     inference_models <- select_inference_models_old_skool(
       alignment_params = alignment_params,
       model_select_params = model_select_params,
       marg_liks = marg_liks
     )
+    testit::assert(length(inference_models) == length(model_select_params))
+    check_old_skool_inference_model(inference_models[[1]]) # nolint pirouette function
   }
   inference_models
 }

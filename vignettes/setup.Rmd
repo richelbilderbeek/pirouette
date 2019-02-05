@@ -81,11 +81,13 @@ Then run `pirouette`:
 ```
 pir_run(
   phylogeny = phylogeny,
-  alignment_params = pirouette::create_alignment_params(
-    root_sequence = "acgt", mutation_rate = 0.1
-  ),
-  model_select_params = dummy_model_select_params,
-  experiments = experiments
+  create_pir_params(
+    alignment_params = pirouette::create_alignment_params(
+      root_sequence = "acgt", mutation_rate = 0.1
+    ),
+    model_select_params = dummy_model_select_params,
+    experiments = experiments
+  )
 )
 ```
 
