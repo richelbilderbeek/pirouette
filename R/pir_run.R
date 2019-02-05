@@ -129,18 +129,18 @@ pir_run_tree <- function(
 
   # Select the models (old skool) or experiments (new skool)
   # to do inference with
-  inference_models <- select_inference_models(
+  selected_ones <- select_inference_models(
     alignment_params = alignment_params, # Both need alignment file
     model_select_params = model_select_params, # To pick which one
     experiments = experiments,
     marg_liks = marg_liks # For most evidence
   )
-  testit::assert(length(inference_models) > 0)
+  testit::assert(length(selected_ones) > 0)
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
-  for (i in seq_along(inference_models)) {
-    inference_model <- inference_models[[i]]
+  for (i in seq_along(selected_ones)) {
+    inference_model <- selected_ones[[i]]
     check_old_skool_inference_model(inference_model) # nolint pirouette function
 
     errorses[[i]] <- phylo_to_errors(
@@ -153,10 +153,10 @@ pir_run_tree <- function(
     )
   }
   testit::assert(length(errorses) > 0)
-  testit::assert(length(inference_models) == length(errorses))
+  testit::assert(length(selected_ones) == length(errorses))
 
   # Put inference models and errors a data frame
-  n_rows <- length(inference_models)
+  n_rows <- length(selected_ones)
   df <- data.frame(
     tree = rep(NA, n_rows),
     inference_model = rep(NA, n_rows),
@@ -173,9 +173,9 @@ pir_run_tree <- function(
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
   df[, error_col_names] <- NA
 
-  for (i in seq_along(inference_models)) {
+  for (i in seq_along(selected_ones)) {
     model_select_param <- model_select_params[[i]]
-    inference_model <- inference_models[[i]]
+    inference_model <- selected_ones[[i]]
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
@@ -199,8 +199,8 @@ pir_run_tree <- function(
 
   # Add evidence (marginal likelihoods) in columns
   if (!is.null(marg_liks)) {
-    for (i in seq_along(inference_models)) {
-      inference_model <- inference_models[[i]]
+    for (i in seq_along(selected_ones)) {
+      inference_model <- selected_ones[[i]]
       marg_liks_row <- which(
         marg_liks$site_model_name == inference_model$site_model$name &
         marg_liks$clock_model_name == inference_model$clock_model$name &
