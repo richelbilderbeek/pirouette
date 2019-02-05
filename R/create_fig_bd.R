@@ -5,7 +5,10 @@
 #' @export
 create_fig_bd <- function(
   phylogeny,
-  twinning_params = create_twinning_params()
+  twinning_params = create_twinning_params(
+    twin_model = "bd",
+    method = "random_tree"
+  )
 ) {
   twin_bd_tree <- create_twin_tree(
     phylogeny = phylogeny,
