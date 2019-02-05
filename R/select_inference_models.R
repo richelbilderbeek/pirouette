@@ -65,7 +65,7 @@ select_inference_models <- function(
 ) {
   inference_models <- list()
   if (length(model_select_params) == 314) { # nolint use new interface
-    inference_models <- select_inference_models_new_skool(
+    inference_models <- select_experiments(
       experiments = experiments,
       marg_liks = marg_liks
     )
@@ -82,19 +82,23 @@ select_inference_models <- function(
   inference_models
 }
 
-#' Select inference models using the new skool interface
+#' Select experiments to be actually run
 #' @inheritParams default_params_doc
 #' @return a list of inference models,
 #'   with the same length as \code{model_select_params}.
 #'   Each element of this list has one site model, clock model and tree prior.
 #' @author Richel J.C. Bilderbeek
 #' @noRd
-select_inference_models_new_skool <- function(
+select_experiments <- function(
   experiments = list(create_experiment()),
   marg_liks = NULL
 ) {
-  inference_models <- list()
-  inference_models
+  check_experiments(experiments)
+  selected_experiments <- list()
+  for (experiment in experiments) {
+
+  }
+  selected_experiments
 }
 
 #' Select inference models using the old skool interface
