@@ -3,7 +3,6 @@ context("test-pir_run_new_skool")
 test_that("generative only", {
 
   if (!beastier::is_on_travis()) return()
-  skip("Issue 69, #69")
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
@@ -11,17 +10,13 @@ test_that("generative only", {
   )
   file.remove(alignment_params$fasta_filename)
 
-  generative_model <- beautier::create_inference_model()
-  testit::assert(generative_model$site_model$name == "JC69")
-  testit::assert(generative_model$clock_model$name == "strict")
-  testit::assert(generative_model$tree_prior$name == "yule")
-
+  # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
-    inference_model = generative_model
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    )
   )
+  experiment$run_if <- "always"
   experiments <- list(experiment)
   check_experiments(experiments)
 
@@ -31,8 +26,7 @@ test_that("generative only", {
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
     ),
-    experiments = experiments,
-    error_measure_params = create_error_measure_params()
+    experiments = experiments
   )
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -69,7 +63,7 @@ test_that("generative only", {
 
   expect_true("tree_prior" %in% names(errors))
   expect_true(is.factor(errors$tree_prior))
-  expect_true("birth_death" %in% errors$tree_prior)
+  expect_true("yule" %in% errors$tree_prior)
 
   expect_true("error_1" %in% names(errors))
   expect_true(!is.factor(errors$error_1))

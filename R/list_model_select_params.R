@@ -2,6 +2,9 @@
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno
 list_model_select_params <- function(model_select_params) {
+  if (length(model_select_params) == 314) {
+    return(model_select_params)
+  }
   expected_names <- names(
     create_gen_model_select_param(
       alignment_params = create_alignment_params(
