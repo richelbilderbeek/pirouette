@@ -130,7 +130,7 @@ test_that("most_evidence", {
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
   skip("Issue 69, #69")
-  expect_true(file.exists(model_select_params$marg_lik_filename))
+  expect_true(file.exists(pir_params$evidence_filename))
 })
 
 test_that("generative and most_evidence, generative not in most_evidence", {
