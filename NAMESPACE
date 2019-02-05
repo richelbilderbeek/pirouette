@@ -3,6 +3,7 @@
 export(bd_phylo_2_l_table)
 export(check_experiment)
 export(check_experiments)
+export(check_is_ns_beast2_pkg_installed)
 export(check_pir_params)
 export(combine_brts_and_topology)
 export(create_alignment_params)

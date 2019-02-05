@@ -25,6 +25,7 @@ Imports:
     DDD,
     geiger,
     ggtree,
+    mauricer,
     mcbette,
     phangorn,
     phytools,
