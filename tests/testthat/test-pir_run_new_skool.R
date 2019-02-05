@@ -1,4 +1,4 @@
-context("test-pir_run")
+context("test-pir_run_new_skool")
 
 test_that("generative only", {
 
