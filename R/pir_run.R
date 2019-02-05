@@ -188,7 +188,7 @@ pir_run_tree <- function(
     if (length(model_select_params) != 314) {
       # Old skool
       inference_model <- selected_one
-      pirouette::check_old_skool_inference_model(inference_model)
+      check_old_skool_inference_model(inference_model)
       df$inference_model[i] <- model_select_param$type
       df$inference_model_weight[i] <- NA
       df$site_model[i] <- inference_model$site_model$name
