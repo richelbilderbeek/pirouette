@@ -26,5 +26,6 @@ create_pir_params <- function(
     evidence_epsilon = evidence_epsilon,
     evidence_filename = evidence_filename
   )
+  check_pir_params(pir_params)
   pir_params
 }
