@@ -26,7 +26,7 @@ test_that("use", {
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
-    inference_model = create_inference_model(
+    inference_model = create_old_skool_inference_model(
       site_model = beautier::create_jc69_site_model(),
       clock_model = beautier::create_strict_clock_model(),
       tree_prior = beautier::create_tree_prior_bd()

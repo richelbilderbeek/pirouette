@@ -28,11 +28,6 @@ est_evidences <- function(
 
 #' Estimate the evidences
 #' @inheritParams default_params_doc
-#' @param evidence_epsilon relative error in estimating the
-#'   evidence (aka marginal likelihood).
-#'   TODO: put in \code{misc_params},
-#' @param evidence_filename filename to store the estimated
-#'   evidences (aka marginal likelihoods)
 #' @return a data frame with evidences
 #' @export
 #' @author Richel J.C. Bilderbeek
@@ -43,20 +38,41 @@ est_evidences_new_skool <- function(
   evidence_filename = tempfile(fileext = ".csv")
 ) {
   testit::assert(file.exists(fasta_filename))
+  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
+
   check_experiments(experiments) # nolint pirouette function
   inference_models <- list()
   beast2_optionses <- list()
+  i <- 1
+  for (experiment in experiments) {
+    if (experiment$do_measure_evidence) {
+      testit::assert(
+        beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
+      )
+      inference_models[[i]] <- experiment$inference_model
+      beast2_optionses[[i]] <- experiment$beast2_options
+      i <- i + 1
+    }
+  }
 
   testit::assert(length(inference_models) == length(beast2_optionses))
+  if (length(inference_models) == 0) {
+    return(NULL)
+  }
+  testit::assert(length(inference_models) > 0)
+  beautier::check_inference_models(inference_models)
+  beastier::check_beast2_optionses(beast2_optionses)
   marg_liks <- mcbette::est_marg_liks_from_models(
     fasta_filename = fasta_filename,
     inference_models = inference_models,
     beast2_optionses = beast2_optionses,
-    epsilon = evidence_epsilon
+    epsilon = evidence_epsilon,
+    verbose = TRUE
   )
   utils::write.csv(
     x = marg_liks, file = evidence_filename
   )
+  marg_liks
 }
 
 #' Estimate the evidences old skool

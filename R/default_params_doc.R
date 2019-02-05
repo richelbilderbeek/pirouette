@@ -10,6 +10,10 @@
 #' @param bd_tree a phylogent of class \link[ape]{phylo},
 #'   created by a Birth Death process
 #' @param bd_tree_filename name of the file that stores a BD twin tree
+#' @param beast2_bin_path path to BEAST2 binary file. The use of the
+#'   binary BEAST2 file is required for estimation of the evidence (aka
+#'   marginal likelihood). The default BEAST2 binary path can be
+#'   obtained using \link[beastier]{get_default_beast2_bin_path}
 #' @param beast2_input_filename path of the BEAST2 configuration file.
 #'   By default, this file is put in a temporary folder with a random filename,
 #'   as the user needs not read it: it is used as input of BEAST2.
@@ -17,6 +21,15 @@
 #'   to store that file in a more permanently stored location.
 #' @param beast2_options BEAST2 options,
 #'   as can be created by \link[beastier]{create_beast2_options}
+#' @param beast2_options_inference BEAST2 options,
+#'   as can be created by \link[beastier]{create_beast2_options}.
+#'   The MCMC must be a normal MCMC,
+#'   as can be created by \link[beautier]{create_mcmc}.
+#' @param beast2_options_est_evidence BEAST2 options to estimate
+#'   the evidence (aka marginal likelihood),
+#'   as can be created by \link[beastier]{create_beast2_options}.
+#'   The MCMC must be a Nested Sampling MCMC,
+#'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
 #' @param beast2_output_log_filename name of the log file created by BEAST2,
 #'   containing the parameter estimates in time.
 #'   By default, this file is put a temporary folder with a random filename,
@@ -91,14 +104,19 @@
 #'   posterior is determined.
 #'   Use \link{create_error_measure_params} to create such
 #'   a parameter set
+#' @param est_evidence_mcmc MCMC used in the estimation of
+#'   the evidence (aka marginal likelihood).
+#'   The MCMC must be a Nested Sampling MCMC,
+#'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
+#' @param evidence_epsilon relative error in estimating the
+#'   evidence (aka marginal likelihood).
+#'   TODO: put in \code{misc_params},
+#' @param evidence_filename filename to store the estimated
+#'   evidences (aka marginal likelihoods)
 #' @param experiment a \link{pirouette} experiment,
 #'   as can be created by \link{create_experiment}
 #' @param experiments a list of one or more \link{pirouette} experiments,
 #'   as can be created by \link{create_experiment}
-#' @param evidence_epsilon relative error in estimating the
-#'   evidence (aka marginal likelihood)
-#' @param evidence_filename filename to store the estimated
-#'   evidences (aka marginal likelihoods)
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -220,8 +238,11 @@ default_params_doc <- function(
   bd_mutation_rate,
   bd_tree,
   bd_tree_filename,
+  beast2_bin_path,
   beast2_input_filename,
   beast2_options,
+  beast2_options_inference,
+  beast2_options_est_evidence,
   beast2_output_log_filename,
   beast2_output_state_filename,
   beast2_output_trees_filename,
@@ -238,9 +259,10 @@ default_params_doc <- function(
   epsilon,
   error_function,
   error_measure_params,
-  experiment, experiments,
+  est_evidence_mcmc,
   evidence_epsilon,
   evidence_filename,
+  experiment, experiments,
   fasta_filename,
   filename,
   folder_name,

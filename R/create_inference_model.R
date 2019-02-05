@@ -8,10 +8,10 @@
 #' @return an inference model
 #' @export
 #' @author Richel J.C. Bilderbeek
-create_inference_model <- function(
-  site_model,
-  clock_model,
-  tree_prior,
+create_old_skool_inference_model <- function( # nolint indeed a long line, luckily this is temporary
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  tree_prior = beautier::create_yule_tree_prior(),
   beast2_input_filename = tempfile(fileext = ".xml"),
   beast2_output_log_filename = tempfile(fileext = ".log"),
   beast2_output_trees_filename = tempfile(fileext = ".trees"),
@@ -30,6 +30,6 @@ create_inference_model <- function(
     beast2_output_trees_filename = beast2_output_trees_filename,
     beast2_output_state_filename = beast2_output_state_filename
   )
-  check_inference_model(inference_model) # nolint pirouette function
+  check_old_skool_inference_model(inference_model) # nolint pirouette function
   inference_model
 }

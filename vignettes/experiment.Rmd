@@ -20,6 +20,10 @@ knitr::opts_chunk$set(
 
 This vignette shows how to use `pirouette` in a scientific experiment.
 
+```{r}
+library(pirouette)
+```
+
 Remember the main question `pirouette` helps to answer:
 
 > Would we know the true phylogeny in nature,

@@ -17,7 +17,7 @@ r_github_packages:
   - MangoTheCat/goodpractice
   - ropensci/beautier
   - ropensci/tracerer
-  - ropensci/beastier
+  - ropensci/beastier@develop
   - ropensci/mauricer
   - ropensci/babette
   - richelbilderbeek/mcbette
@@ -35,6 +35,8 @@ before_install:
 
 before_script:
   - Rscript -e "beastier::install_beast2()"
+  - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
+  - Rscript -e "mauricer::is_beast2_pkg_installed(\"NS\")"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint
   - sudo pip install proselint
