@@ -77,7 +77,7 @@ check_experiments(experiments)
 
 Then run `pirouette`:
 
-```{r}
+```
 pir_run(
   phylogeny = phylogeny,
   create_pir_params(

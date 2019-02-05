@@ -54,7 +54,7 @@ est_evidences_new_skool <- function(
   }
 
   testit::assert(length(inference_models) == length(beast2_optionses))
-  if(length(inference_models) == 0) {
+  if (length(inference_models) == 0) {
     return(NULL)
   }
   testit::assert(length(inference_models) > 0)
