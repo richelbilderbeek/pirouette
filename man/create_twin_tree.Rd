@@ -4,14 +4,14 @@
 \alias{create_twin_tree}
 \title{Create a twin tree}
 \usage{
-create_twin_tree(phylogeny, twin_model = "bd", method)
+create_twin_tree(phylogeny, twinning_params = create_twinning_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{twin_model}{the model you want to use to generate the twin tree}
-
-\item{method}{determines how to create the twin tree}
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 }
 \description{
 Create a twin tree
