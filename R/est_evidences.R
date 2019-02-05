@@ -46,7 +46,9 @@ est_evidences_new_skool <- function(
   i <- 1
   for (experiment in experiments) {
     if (experiment$do_measure_evidence) {
-      testit::assert(is_nested_sampling_mcmc(experiment$inference_model$mcmc))
+      testit::assert(
+        beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
+      )
       inference_models[[i]] <- experiment$inference_model
       beast2_optionses[[i]] <- experiment$beast2_options
       i <- i + 1

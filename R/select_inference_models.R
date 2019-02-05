@@ -93,7 +93,7 @@ select_experiments <- function(
   experiments = list(create_experiment()),
   marg_liks = NULL
 ) {
-  check_experiments(experiments)
+  check_experiments(experiments) # nolint pirouette function
   selected_experiments <- list()
   index <- 1
   for (experiment in experiments) {

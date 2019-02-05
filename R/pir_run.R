@@ -51,7 +51,7 @@ pir_run <- function(
   if (!beautier::is_phylo(phylogeny)) {
     stop("'phylogeny' must be of class 'phylo'")
   }
-  check_pir_params(pir_params)
+  check_pir_params(pir_params) # nolint pirouette function
 
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
