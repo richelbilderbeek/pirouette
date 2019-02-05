@@ -6,8 +6,7 @@ test_that("use", {
   if (rappdirs::app_dir()$os == "win") return()
 
   # Uninstall
-  if (mauricer::is_beast2_pkg_installed("NS"))
-  {
+  if (mauricer::is_beast2_pkg_installed("NS")) {
     mauricer::uninstall_beast2_pkg("NS")
   }
   testit::assert(!mauricer::is_beast2_pkg_installed("NS"))
