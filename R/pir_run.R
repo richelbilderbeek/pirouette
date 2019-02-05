@@ -51,7 +51,7 @@ pir_run <- function(
   if (!beautier::is_phylo(phylogeny)) {
     stop("'phylogeny' must be of class 'phylo'")
   }
-  check_pir_params(pir_params)
+  check_pir_params(pir_params) # nolint pirouette function
 
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
@@ -119,27 +119,35 @@ pir_run_tree <- function(
   testit::assert(file.exists(alignment_params$fasta_filename))
 
   # Estimate evidences (aka marginal likelihoods) if needed
-  # marg_liks will be NULL if this was unneeded
+  # marg_liks will be NULL if this was unneeded, for example, when
+  # interested in the generative model only
   marg_liks <- est_evidences(
     fasta_filename = alignment_params$fasta_filename,
     model_select_params = model_select_params,
     experiments = experiments
   )
 
-  # Select the models to do inference with
-  inference_models <- select_inference_models(
+  # Select the models (old skool) or experiments (new skool)
+  # to do inference with
+  selected_ones <- select_inference_models(
     alignment_params = alignment_params, # Both need alignment file
     model_select_params = model_select_params, # To pick which one
+    experiments = experiments,
     marg_liks = marg_liks # For most evidence
   )
-  testit::assert(length(inference_models) == length(model_select_params))
-  check_inference_model(inference_models[[1]]) # nolint pirouette function
+  testit::assert(length(selected_ones) > 0)
 
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
-  for (i in seq_along(inference_models)) {
-    inference_model <- inference_models[[i]]
-    check_inference_model(inference_model) # nolint pirouette function
+  for (i in seq_along(selected_ones)) {
+    # Can be an inference_model (old skool) or experiment (new skool)
+    if (length(model_select_params) != 314) { # nolint use new interface
+      inference_model <- selected_ones[[i]]
+      experiment <- NA
+    } else {
+      experiment <- selected_ones[[i]]
+      inference_model <- NA
+    }
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
@@ -147,13 +155,14 @@ pir_run_tree <- function(
       inference_model = inference_model,
       inference_params = inference_params,
       error_measure_params = error_measure_params,
-      experiment = experiments[[1]] # stub #69
+      experiment = experiment # stub #69
     )
   }
-  testit::assert(length(inference_models) == length(errorses))
+  testit::assert(length(errorses) > 0)
+  testit::assert(length(selected_ones) == length(errorses))
 
   # Put inference models and errors a data frame
-  n_rows <- length(inference_models)
+  n_rows <- length(selected_ones)
   df <- data.frame(
     tree = rep(NA, n_rows),
     inference_model = rep(NA, n_rows),
@@ -170,9 +179,9 @@ pir_run_tree <- function(
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
   df[, error_col_names] <- NA
 
-  for (i in seq_along(inference_models)) {
+  for (i in seq_along(selected_ones)) {
     model_select_param <- model_select_params[[i]]
-    inference_model <- inference_models[[i]]
+    inference_model <- selected_ones[[i]]
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
@@ -196,8 +205,8 @@ pir_run_tree <- function(
 
   # Add evidence (marginal likelihoods) in columns
   if (!is.null(marg_liks)) {
-    for (i in seq_along(inference_models)) {
-      inference_model <- inference_models[[i]]
+    for (i in seq_along(selected_ones)) {
+      inference_model <- selected_ones[[i]]
       marg_liks_row <- which(
         marg_liks$site_model_name == inference_model$site_model$name &
         marg_liks$clock_model_name == inference_model$clock_model$name &
@@ -264,19 +273,21 @@ pir_run_check_inputs <- function(
       stop(msg)
     }
   )
-  tryCatch(
-    check_model_select_params(model_select_params), # nolint pirouette function
-    error = function(e) {
-      msg <- paste0(
-        "'model_select_params' must be a list of one or more model selection ",
-        "Tip: use 'create_model_select_params'\n",
-        "parameters sets.\n",
-        "Error message: ", e$message, "\n",
-        "Actual value: ", model_select_params
-      )
-      stop(msg)
-    }
-  )
+  if (length(model_select_params) != 314) {
+    tryCatch(
+      check_model_select_params(model_select_params), # nolint pirouette function
+      error = function(e) {
+        msg <- paste0(
+          "'model_select_params' must be a list of one or more ",
+          "model selection parameters sets.\n",
+          "Tip: use 'create_model_select_params'\n",
+          "Error message: ", e$message, "\n",
+          "Actual value: ", model_select_params
+        )
+        stop(msg)
+      }
+    )
+  }
   tryCatch(
     check_error_measure_params(error_measure_params), # nolint pirouette function
     error = function(e) {

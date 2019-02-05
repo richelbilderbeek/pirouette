@@ -7,7 +7,9 @@
 create_experiment(model_type = "generative", run_if = "always",
   do_measure_evidence = FALSE,
   inference_model = beautier::create_inference_model(),
-  beast2_options = beastier::create_beast2_options())
+  beast2_options = beastier::create_beast2_options(),
+  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(),
+  beast2_bin_path = beastier::get_default_beast2_bin_path())
 }
 \arguments{
 \item{model_type}{type of inference model supplied for an experiment.
@@ -39,6 +41,16 @@ input filenames.}
 
 \item{beast2_options}{BEAST2 options,
 as can be created by \link[beastier]{create_beast2_options}}
+
+\item{est_evidence_mcmc}{MCMC used in the estimation of
+the evidence (aka marginal likelihood).
+The MCMC must be a Nested Sampling MCMC,
+as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+
+\item{beast2_bin_path}{path to BEAST2 binary file. The use of the
+binary BEAST2 file is required for estimation of the evidence (aka
+marginal likelihood). The default BEAST2 binary path can be
+obtained using \link[beastier]{get_default_beast2_bin_path}}
 }
 \value{
 a \link{pirouette} experiment.
@@ -54,6 +66,8 @@ The arguments are checked by \link{check_experiment}.
  testit::assert("do_measure_evidence" \%in\% names(experiment))
  testit::assert("inference_model" \%in\% names(experiment))
  testit::assert("beast2_options" \%in\% names(experiment))
+ testit::assert("est_evidence_mcmc" \%in\% names(experiment))
+ testit::assert("beast2_bin_path" \%in\% names(experiment))
 }
 \author{
 Richel J.C. Bilderbeek

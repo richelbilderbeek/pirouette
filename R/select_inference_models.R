@@ -60,6 +60,66 @@
 select_inference_models <- function(
   alignment_params,
   model_select_params,
+  experiments = list(create_experiment()),
+  marg_liks = NULL
+) {
+  inference_models <- list()
+  if (length(model_select_params) == 314) { # nolint use new interface
+    inference_models <- select_experiments(
+      experiments = experiments,
+      marg_liks = marg_liks
+    )
+  } else {
+    check_model_select_params(model_select_params) # nolint pirouette function
+    inference_models <- select_inference_models_old_skool( # nolint indeed long function name, will shorten in future
+      alignment_params = alignment_params,
+      model_select_params = model_select_params,
+      marg_liks = marg_liks
+    )
+    testit::assert(length(inference_models) == length(model_select_params))
+    check_old_skool_inference_model(inference_models[[1]]) # nolint pirouette function
+  }
+  inference_models
+}
+
+#' Select experiments to be actually run
+#' @inheritParams default_params_doc
+#' @return a list of inference models,
+#'   with the same length as \code{model_select_params}.
+#'   Each element of this list has one site model, clock model and tree prior.
+#' @author Richel J.C. Bilderbeek
+#' @noRd
+select_experiments <- function(
+  experiments = list(create_experiment()),
+  marg_liks = NULL
+) {
+  check_experiments(experiments) # nolint pirouette function
+  selected_experiments <- list()
+  index <- 1
+  for (experiment in experiments) {
+    if (experiment$run_if == "always") {
+      selected_experiments[[index]] <- experiment
+      index <- index + 1
+    }
+    if (experiment$run_if == "best_candidate" &&
+        is_best_candidate(experiment = experiment, marg_liks = marg_liks)) {
+      selected_experiments[[index]] <- experiment
+      index <- index + 1
+    }
+  }
+  selected_experiments
+}
+
+#' Select inference models using the old skool interface
+#' @inheritParams default_params_doc
+#' @return a list of inference models,
+#'   with the same length as \code{model_select_params}.
+#'   Each element of this list has one site model, clock model and tree prior.
+#' @author Richel J.C. Bilderbeek
+#' @noRd
+select_inference_models_old_skool <- function( # nolint indeed long function name, will shorten in future
+  alignment_params,
+  model_select_params,
   marg_liks = NULL
 ) {
   check_model_select_params(model_select_params) # nolint pirouette function
@@ -98,7 +158,7 @@ select_inference_models <- function(
         marg_liks$tree_prior_name[best_row_index]
       )
     }
-    inference_model <- create_inference_model(
+    inference_model <- create_old_skool_inference_model(
       site_model = site_model,
       clock_model = clock_model,
       tree_prior = tree_prior
