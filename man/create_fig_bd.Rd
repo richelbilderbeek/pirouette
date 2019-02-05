@@ -4,7 +4,9 @@
 \alias{create_fig_bd}
 \title{Create figure bd for pirouette article}
 \usage{
-create_fig_bd(phylogeny, twinning_params = create_twinning_params())
+create_fig_bd(phylogeny,
+  twinning_params = create_twinning_params(twin_model = "bd", method =
+  "random_tree"))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
