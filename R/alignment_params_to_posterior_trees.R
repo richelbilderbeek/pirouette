@@ -54,7 +54,8 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
       beast2_output_log_filename = inference_model$beast2_output_log_filename,
       beast2_output_trees_filenames =
         inference_model$beast2_output_trees_filename,
-      beast2_output_state_filename = inference_model$beast2_output_state_filename,
+      beast2_output_state_filename =
+        inference_model$beast2_output_state_filename,
       beast2_path = inference_params$beast2_path
     )
   } else {
