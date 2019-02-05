@@ -3,10 +3,11 @@ context("test-create_bd_tree")
 test_that("use", {
 
   phylogeny <- load_tree(tree_model = "mbd", seed = 1)
-
+  twinning_params <- create_twinning_params()
+  twinning_params$rng_seed <- 1
   yule_sim <- create_yule_tree(
     phylogeny = phylogeny,
-    seed = 1
+    twinning_params = twinning_params
   )
   yule_tree <- yule_sim$tree
   yule_l_matrix <- yule_sim$l_matrix

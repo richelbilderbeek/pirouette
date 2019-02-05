@@ -22,6 +22,7 @@ create_twinning_params <- function(
   twinning_params <- list(
     rng_seed = rng_seed,
     twin_model = twin_model,
+    method = method,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename
   )

@@ -12,13 +12,13 @@ create_twin_tree <- function(
   if (twinning_params$twin_model == "bd") {
     twin_tree <- create_bd_tree(
       phylogeny = phylogeny,
-      seed = twinning_params$rng_seed
+      twinning_params = twinning_params
     )$tree
   }
   if (twinning_params$twin_model == "yule") {
     twin_tree <- create_yule_tree(
       phylogeny = phylogeny,
-      seed = twinning_params$rng_seed
+      twinning_params = twinning_params
     )$tree
   }
   testit::assert(beautier::is_phylo(twin_tree))

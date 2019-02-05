@@ -30,9 +30,11 @@ test_that("get_twin_models", {
 test_that("bd_phylo_2_l_table", {
 
   phylogeny <- load_tree(tree_model = "mbd", seed = 1)
+  twinning_params <- create_twinning_params()
+  twinning_params$rng_seed <- 1
   bd_sim <- create_bd_tree(
     phylogeny = phylogeny,
-    seed = 1
+    twinning_params = twinning_params
   )
   bd_tree <- bd_sim$tree
   bd_l_matrix <- bd_sim$l_matrix
