@@ -67,7 +67,8 @@ pir_run <- function(
     model_select_params = model_select_params, # obsolete, #69
     inference_params = inference_params, # obsolete, #69
     experiments = experiments,
-    error_measure_params = error_measure_params
+    error_measure_params = error_measure_params,
+    evidence_filename = pir_params$evidence_filename
   )
 
   # Run for the twin tree

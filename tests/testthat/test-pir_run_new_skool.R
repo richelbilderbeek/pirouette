@@ -114,15 +114,13 @@ test_that("most_evidence", {
     experiments = experiments
   )
 
-  skip("Issue 69, #69")
   # TODO: fix warning
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 
-  expect_true("most_evidence" %in% errors$inference_model)
-  expect_true(all(errors$inference_model_weight > 0.0))
+  expect_true("candidate" %in% errors$inference_model)
 
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
@@ -130,6 +128,9 @@ test_that("most_evidence", {
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
   expect_true(file.exists(pir_params$evidence_filename))
+
+  skip("Issue 69, #69")
+  expect_true(all(errors$inference_model_weight > 0.0))
 })
 
 test_that("generative and most_evidence, generative not in most_evidence", {
