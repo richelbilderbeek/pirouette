@@ -20,6 +20,5 @@ test_that("use", {
     )
   )
   expect_true(is_best_candidate(experiment_yule, marg_liks))
-  skip("WIP, Issue 69, #69")
   expect_false(is_best_candidate(experiment_bd, marg_liks))
 })
