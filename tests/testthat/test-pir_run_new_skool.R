@@ -114,13 +114,14 @@ test_that("most_evidence", {
     experiments = experiments
   )
 
-  # TODO: fix warning
+  # TODO: fix warning, Issue 88, #88
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 
   expect_true("candidate" %in% errors$inference_model)
+  expect_true("generative" %in% errors$inference_model)
 
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
@@ -129,7 +130,7 @@ test_that("most_evidence", {
 
   expect_true(file.exists(pir_params$evidence_filename))
 
-  skip("Issue 69, #69")
+  skip("Issue 89, #89")
   expect_true(all(errors$inference_model_weight > 0.0))
 })
 
@@ -139,30 +140,45 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   skip("Issue 69, #69")
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(mutation_rate = 0.01)
-  model_select_params <- list(
-    create_gen_model_select_param(
-      alignment_params = alignment_params
+  alignment_params <- create_alignment_params(
+    root_sequence = "acgt",
+    mutation_rate = 0.01
+  )
+  experiment_generative <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
+    inference_model = create_inference_model(
+      tree_prior = create_yule_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
-    create_best_model_select_param(
-      site_models = beautier::create_site_models()[4],
-      clock_models = beautier::create_clock_models()[2],
-      tree_priors = beautier::create_tree_priors()[5]
-    )
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  inference_params <- create_inference_params(
-    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+  experiment_bd <- create_experiment(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_bd_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
+  experiments <- list(experiment_generative, experiment_bd)
+
 
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    model_select_params = model_select_params,
-    inference_params = inference_params
+    model_select_params = as.list(seq(1, 314)),
+    experiments = experiments
   )
+
+  # TODO: fix warning, Issue 88, #88
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
+
 
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(is.na(errors$inference_model_weight[1]))
