@@ -4,7 +4,7 @@
 \alias{create_twin_tree}
 \title{Create a twin tree}
 \usage{
-create_twin_tree(phylogeny, twin_model = "bd")
+create_twin_tree(phylogeny, twin_model = "bd", method)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

@@ -4,7 +4,8 @@
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 create_twin_tree <- function(
   phylogeny,
-  twin_model = "bd"
+  twin_model = "bd",
+  method
 ) {
   if (!(twin_model %in% get_twin_models())) {
    stop("This twin model is not implemented")

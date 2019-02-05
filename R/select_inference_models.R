@@ -8,7 +8,9 @@
 #'   Each element of this list has one site model, clock model and tree prior.
 #' @examples
 #'   # Select to use the generative model
-#'   alignment_params <- create_alignment_params()
+#'   alignment_params <- create_alignment_params(
+#'     root_sequence = create_mono_nuc_dna(length = 4)
+#'   )
 #'
 #'   model_select_params <- list(
 #'     create_gen_model_select_param(
@@ -26,7 +28,9 @@
 #'
 #'
 #'  # Select to use the model with the highest evidence/marginal likelihood
-#'  alignment_params <- create_alignment_params()
+#'  alignment_params <- create_alignment_params(
+#'    root_sequence = create_mono_nuc_dna(length = 4)
+#'  )
 #'  model_select_params <- list(create_best_model_select_param())
 #'
 #'  # Use a fake table of evidences/marginal likelihoods, as this
