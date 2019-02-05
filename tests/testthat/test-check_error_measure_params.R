@@ -89,7 +89,9 @@ test_that("use", {
   expect_error(
     check_error_measure_params(
       create_error_measure_params(
-        error_function = function(only_one_param) { only_one_param }
+        error_function = function(only_one_param) {
+          only_one_param
+        }
       )
     ),
     "'error_function' must be a function with at least two arguments"
