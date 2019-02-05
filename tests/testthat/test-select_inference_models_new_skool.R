@@ -2,25 +2,17 @@ context("test-select_experiments_new_skool")
 
 test_that("generative", {
 
-  skip("Issue 69, #69")
-  alignment_params <- create_alignment_params()
-  model_select_params <- list(
-      create_gen_model_select_param(
-      alignment_params = alignment_params
-    )
-  )
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment()
+  experiment$run_if <- "always"
+  experiments <- list(experiment)
 
-  inference_models <- select_inference_models(
-    alignment_params = alignment_params,
-    model_select_params = as.list(seq(1, 314))
+
+  selected <- select_inference_models(
+    model_select_params = as.list(seq(1, 314)),
+    experiments = experiments
   )
-  expect_equal(length(inference_models), 1)
-  inference_model <- inference_models[[1]]
-  expect_true("site_model" %in% names(inference_model))
-  expect_true("clock_model" %in% names(inference_model))
-  expect_true("tree_prior" %in% names(inference_model))
-  expect_equal(inference_model$site_model, alignment_params$site_model)
-  expect_equal(inference_model$clock_model, alignment_params$clock_model)
+  expect_equal(1, length(selected))
 })
 
 test_that("most_evidence", {
