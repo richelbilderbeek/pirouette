@@ -49,9 +49,9 @@ check_pir_params <- function(
       check_model_select_params(pir_params$model_select_params), # nolint pirouette function
       error = function(e) {
         msg <- paste0(
-          "'model_select_params' must be a list of one or more model selection ",
+          "'model_select_params' must be a list of one or more ",
+          "model selection parameter sets.\n",
           "Tip: use 'create_model_select_params'\n",
-          "parameters sets.\n",
           "Error message: ", e$message, "\n",
           "Actual value: ", pir_params$model_select_params
         )

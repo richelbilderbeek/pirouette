@@ -119,7 +119,8 @@ pir_run_tree <- function(
   testit::assert(file.exists(alignment_params$fasta_filename))
 
   # Estimate evidences (aka marginal likelihoods) if needed
-  # marg_liks will be NULL if this was unneeded
+  # marg_liks will be NULL if this was unneeded, for example, when
+  # interested in the generative model only
   marg_liks <- est_evidences(
     fasta_filename = alignment_params$fasta_filename,
     model_select_params = model_select_params,
@@ -270,9 +271,9 @@ pir_run_check_inputs <- function(
       check_model_select_params(model_select_params), # nolint pirouette function
       error = function(e) {
         msg <- paste0(
-          "'model_select_params' must be a list of one or more model selection ",
+          "'model_select_params' must be a list of one or more ",
+          "model selection parameters sets.\n",
           "Tip: use 'create_model_select_params'\n",
-          "parameters sets.\n",
           "Error message: ", e$message, "\n",
           "Actual value: ", model_select_params
         )
