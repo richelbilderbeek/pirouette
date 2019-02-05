@@ -71,7 +71,7 @@ select_inference_models <- function(
     )
   } else {
     check_model_select_params(model_select_params) # nolint pirouette function
-    inference_models <- select_inference_models_old_skool(
+    inference_models <- select_inference_models_old_skool( # nolint indeed long function name, will shorten in future
       alignment_params = alignment_params,
       model_select_params = model_select_params,
       marg_liks = marg_liks
@@ -104,7 +104,7 @@ select_inference_models_new_skool <- function(
 #'   Each element of this list has one site model, clock model and tree prior.
 #' @author Richel J.C. Bilderbeek
 #' @noRd
-select_inference_models_old_skool <- function(
+select_inference_models_old_skool <- function( # nolint indeed long function name, will shorten in future
   alignment_params,
   model_select_params,
   marg_liks = NULL
