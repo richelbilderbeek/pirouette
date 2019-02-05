@@ -6,7 +6,8 @@
 est_evidences <- function(
   fasta_filename,
   model_select_params,
-  experiments = list(create_experiment())
+  experiments = list(create_experiment()),
+  evidence_filename = tempfile(".csv")
 ) {
   testit::assert(file.exists(fasta_filename))
 
@@ -15,7 +16,8 @@ est_evidences <- function(
   if (length(model_select_params) == 314) { # nolint use new interface
     marg_liks <- est_evidences_new_skool(
       fasta_filename = fasta_filename,
-      experiments = experiments
+      experiments = experiments,
+      evidence_filename = evidence_filename
     )
   } else {
     marg_liks <- est_evidences_old_skool(

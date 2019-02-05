@@ -80,7 +80,6 @@ test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
-
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
     root_sequence = "acgt",
@@ -115,6 +114,7 @@ test_that("most_evidence", {
     experiments = experiments
   )
 
+  skip("Issue 69, #69")
   # TODO: fix warning
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -129,7 +129,6 @@ test_that("most_evidence", {
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
-  skip("Issue 69, #69")
   expect_true(file.exists(pir_params$evidence_filename))
 })
 
