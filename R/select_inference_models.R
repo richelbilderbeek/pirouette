@@ -95,8 +95,12 @@ select_experiments <- function(
 ) {
   check_experiments(experiments)
   selected_experiments <- list()
+  index <- 1
   for (experiment in experiments) {
-
+    if (experiment$run_if == "always") {
+      selected_experiments[[index]] <- experiment
+      index <- index + 1
+    }
   }
   selected_experiments
 }
