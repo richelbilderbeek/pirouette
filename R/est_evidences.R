@@ -47,10 +47,14 @@ est_evidences_new_skool <- function(
   for (experiment in experiments) {
     if (experiment$do_measure_evidence) {
       testit::assert(
-        beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
+        beautier::is_nested_sampling_mcmc(experiment$est_evidence_mcmc)
       )
       inference_models[[i]] <- experiment$inference_model
+      # Overwrite Nested Sampling MCMC
+      inference_models[[i]]$mcmc <- experiment$est_evidence_mcmc
       beast2_optionses[[i]] <- experiment$beast2_options
+      # Overwrite BEAST2 bin path
+      beast2_optionses[[i]]$beast2_path <- experiment$beast2_bin_path
       i <- i + 1
     }
   }
@@ -67,6 +71,7 @@ est_evidences_new_skool <- function(
     inference_models = inference_models,
     beast2_optionses = beast2_optionses,
     epsilon = evidence_epsilon,
+
     verbose = TRUE
   )
   utils::write.csv(

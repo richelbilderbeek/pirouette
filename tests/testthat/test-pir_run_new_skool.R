@@ -87,29 +87,35 @@ test_that("most_evidence", {
     mutation_rate = 0.01
   )
   experiment_yule <- create_experiment(
+    model_type = "candidate",
     run_if = "best_candidate",
+    do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    )
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- create_experiment(
+    model_type = "candidate",
     run_if = "best_candidate",
+    do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    )
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule, experiment_bd)
 
-  skip("Issue 69, #69")
 
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
     model_select_params = as.list(seq(1, 314)),
-    experiments = experiments,
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+    experiments = experiments
   )
+
+  # TODO: fix warning
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
@@ -123,6 +129,7 @@ test_that("most_evidence", {
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 
+  skip("Issue 69, #69")
   expect_true(file.exists(model_select_params$marg_lik_filename))
 })
 
