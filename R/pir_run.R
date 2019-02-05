@@ -140,8 +140,14 @@ pir_run_tree <- function(
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(selected_ones)) {
-    inference_model <- selected_ones[[i]]
-    check_old_skool_inference_model(inference_model) # nolint pirouette function
+    # Can be an inference_model (old skool) or experiment (new skool)
+    if (length(model_select_params) == 314) { # nolint use new interface
+      inference_model <- selected_ones[[i]]
+      experiment <- NA
+    } else {
+      experiment <- selected_ones[[i]]
+      inference_model <- NA
+    }
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
@@ -149,7 +155,7 @@ pir_run_tree <- function(
       inference_model = inference_model,
       inference_params = inference_params,
       error_measure_params = error_measure_params,
-      experiment = experiments[[1]] # stub #69
+      experiment = experiment # stub #69
     )
   }
   testit::assert(length(errorses) > 0)
