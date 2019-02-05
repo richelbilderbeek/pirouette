@@ -10,8 +10,7 @@ test_that("generative only", {
   )
   file.remove(alignment_params$fasta_filename)
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
+  pir_params <- create_pir_params(
     alignment_params = alignment_params,
     model_select_params = create_gen_model_select_param(
       alignment_params = alignment_params
@@ -21,6 +20,11 @@ test_that("generative only", {
     ),
     error_measure_params = create_error_measure_params()
   )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
   # Files created
   testit::assert(file.exists(alignment_params$fasta_filename))
   testit::assert(file.exists(errors$beast2_input_filename))
@@ -74,8 +78,7 @@ test_that("generative, short, gamma statistic", {
   )
   file.remove(alignment_params$fasta_filename)
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
+  pir_params <- create_pir_params(
     alignment_params = alignment_params,
     model_select_params = create_gen_model_select_param(
       alignment_params = alignment_params
@@ -88,6 +91,11 @@ test_that("generative, short, gamma statistic", {
       error_function = get_gamma_error_function()
     )
   )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
   # Errors more than zero
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
@@ -107,8 +115,7 @@ test_that("generative, short, MRCA prior", {
 
   crown_age <- 10.0
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
+  pir_params <- create_pir_params(
     alignment_params = alignment_params,
     model_select_params = create_gen_model_select_param(
       alignment_params = alignment_params
@@ -125,6 +132,11 @@ test_that("generative, short, MRCA prior", {
       error_function = get_gamma_error_function()
     )
   )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
   # Measure if crown ages are indeed around 10.0
   trees <- tracerer::parse_beast_trees(errors$beast2_output_trees_filename)
   last_tree <- tail(trees, n = 1)[[1]]
@@ -138,6 +150,10 @@ test_that("most_evidence", {
   if (!beastier::is_on_travis()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    root_sequence = "acgt",
+    mutation_rate = 0.01
+  )
   model_select_params <- create_best_model_select_param(
     site_models = beautier::create_site_models()[4],
     clock_models = beautier::create_clock_models()[2],
@@ -147,17 +163,18 @@ test_that("most_evidence", {
   file.remove(model_select_params$marg_lik_filename)
   testit::assert(!file.exists(model_select_params$marg_lik_filename))
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
-    alignment_params = create_alignment_params(
-      root_sequence = "acgt",
-      mutation_rate = 0.01
-    ),
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
     model_select_params = model_select_params,
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(all(errors$inference_model_weight > 0.0))
 
@@ -173,25 +190,32 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(mutation_rate = 0.01)
-
-  errors <- pir_run(
-    phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
-    alignment_params = alignment_params,
-    model_select_params = list(
-      create_gen_model_select_param(
-        alignment_params = alignment_params
-      ),
-      create_best_model_select_param(
-        site_models = beautier::create_site_models()[4],
-        clock_models = beautier::create_clock_models()[2],
-        tree_priors = beautier::create_tree_priors()[5]
-      )
+  model_select_params <- list(
+    create_gen_model_select_param(
+      alignment_params = alignment_params
     ),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    create_best_model_select_param(
+      site_models = beautier::create_site_models()[4],
+      clock_models = beautier::create_clock_models()[2],
+      tree_priors = beautier::create_tree_priors()[5]
     )
   )
+  inference_params <- create_inference_params(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+  )
+
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    model_select_params = model_select_params,
+    inference_params = inference_params
+  )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(is.na(errors$inference_model_weight[1]))
   expect_true(is.numeric(errors$inference_model_weight[2]))
@@ -206,25 +230,32 @@ test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(mutation_rate = 0.01)
-
-  errors <- pir_run(
-    phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
-    alignment_params = alignment_params,
-    model_select_params = list(
-      create_gen_model_select_param(
-        alignment_params = alignment_params
-      ),
-      create_best_model_select_param(
-        site_models = list(alignment_params$site_model),
-        clock_models = list(alignment_params$clock_model),
-        tree_priors = list(beautier::create_bd_tree_prior())
-      )
+  model_select_params <- list(
+    create_gen_model_select_param(
+      alignment_params = alignment_params
     ),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+    create_best_model_select_param(
+      site_models = list(alignment_params$site_model),
+      clock_models = list(alignment_params$clock_model),
+      tree_priors = list(beautier::create_bd_tree_prior())
     )
   )
+  inference_params <- create_inference_params(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+  )
+
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    model_select_params = model_select_params,
+    inference_params = inference_params
+  )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
   expect_true("most_evidence" %in% errors$inference_model)
   expect_true(is.numeric(errors$inference_model_weight[1]))
 
@@ -244,21 +275,26 @@ test_that("generative with twin", {
     mutation_rate = 0.01
   )
   twinning_params <- create_twinning_params()
+  model_select_params <- create_gen_model_select_param(
+    alignment_params = alignment_params
+  )
+  inference_params <- create_inference_params(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+  )
 
   # Remove files, just to be sure
   file.remove(twinning_params$twin_tree_filename)
   file.remove(twinning_params$twin_alignment_filename)
 
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    model_select_params = model_select_params,
+    inference_params = inference_params,
+    twinning_params = twinning_params
+  )
   errors <- pir_run(
     phylogeny = phylogeny,
-    twinning_params = twinning_params,
-    alignment_params = alignment_params,
-    model_select_params = create_gen_model_select_param(
-      alignment_params = alignment_params
-    ),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    )
+    pir_params = pir_params
   )
 
   # Files created

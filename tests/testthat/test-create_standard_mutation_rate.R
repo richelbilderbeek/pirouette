@@ -1,7 +1,7 @@
 context("test-create_standard_mutation_rate")
 
 test_that("use", {
-  skip("Issue 78, #78")
+
   crown_age <- 15
   phylogeny <- mbd::mbd_sim(
     pars = c(0.4, 0.1, 0, 0),
@@ -17,7 +17,7 @@ test_that("use", {
 })
 
 test_that("abuse", {
-  skip("Issue 78, #78")
+
   expect_error(
     create_standard_mutation_rate(phylogeny = NA)
   )

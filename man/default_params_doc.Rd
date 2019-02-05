@@ -17,14 +17,14 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   evidence_epsilon, evidence_filename, experiment, experiments,
   fasta_filename, filename, folder_name, inference_model, inference_params,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
-  marg_liks, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
-  model_selection, model_select_param, model_select_params, model_type,
-  mrca_prior, mu, mutation_rate, nu, nu_events, parameter_filename,
-  parameters_filename, phylo, phylogeny, posterior_trees, precision,
-  project_folder_name, root_sequence, run_if, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
-  tree_prior, tree_priors, tree_prior_name, tree_type,
+  marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
+  mbd_tree, mcmc, model_selection, model_select_param, model_select_params,
+  model_type, mrca_prior, mu, mutation_rate, nu, nu_events,
+  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
+  posterior_trees, precision, project_folder_name, root_sequence, run_if,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  site_models, site_model_name, sub_chain_length, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
   type, verbose)
 }
@@ -206,6 +206,9 @@ likelihoods (also known as 'evidences') are saved to}
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}
 
+\item{max_evidence_epsilon}{set the maximum acceptable threshold for the
+parameter \code{evidence_epsilon}}
+
 \item{mbd_l_matrix}{the L matrix of an MBD tree}
 
 \item{mbd_mutation_rate}{the mutation rate when creating an alignment
@@ -258,6 +261,9 @@ present in the simulated tree}
 \item{phylo}{a phylogeny of class \link[ape]{phylo}}
 
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
 
 \item{posterior_trees}{phylogenetic trees in a BEAST2 posterior,
 of class \code{multiphylo}}

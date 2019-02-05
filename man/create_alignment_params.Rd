@@ -7,8 +7,9 @@ The site model and clock models will be used and
 their combination will be called the generative model
 of the alignment}
 \usage{
-create_alignment_params(root_sequence = "acgt", mutation_rate = 0,
-  site_model = beautier::create_jc69_site_model(),
+
+  create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
+  mutation_rate = 0, site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
   fasta_filename = tempfile(fileext = ".fasta"))
 }

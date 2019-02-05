@@ -134,6 +134,8 @@
 #'   likelihoods (also known as 'evidences') are saved to
 #' @param marg_liks a data frame with marginal likelihoods/evidences.
 #'   A test data frame can be created by \link{create_test_marg_liks}
+#' @param max_evidence_epsilon set the maximum acceptable threshold for the
+#'   parameter \code{evidence_epsilon}
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param mbd_l_matrix the L matrix of an MBD tree
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
@@ -170,6 +172,8 @@
 #' @param parameters_filename full path to a 'parameters.csv' file
 #' @param phylo a phylogeny of class \link[ape]{phylo}
 #' @param phylogeny a phylogeny of class \link[ape]{phylo}
+#' @param pir_params the parameters of \link[pirouette]{pirouette}.
+#'   They are created by \link{create_pir_params}.
 #' @param posterior_trees phylogenetic trees in a BEAST2 posterior,
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
@@ -269,6 +273,7 @@ default_params_doc <- function(
   lambda,
   marg_lik_filename,
   marg_liks,
+  max_evidence_epsilon,
   mbd_l_matrix,
   mbd_mutation_rate,
   mbd_tree,
@@ -286,6 +291,7 @@ default_params_doc <- function(
   parameters_filename,
   phylo,
   phylogeny,
+  pir_params,
   posterior_trees,
   precision,
   project_folder_name,

@@ -14,8 +14,13 @@ check_experiment <- function(
   experiment
 ) {
   argument_names <- c(
-    "model_type", "run_if", "do_measure_evidence",  "inference_model",
-    "beast2_options", "est_evidence_mcmc", "beast2_bin_path"
+    "model_type",
+    "run_if",
+    "do_measure_evidence",
+    "inference_model",
+    "beast2_options",
+    "est_evidence_mcmc",
+    "beast2_bin_path"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(experiment)) {
