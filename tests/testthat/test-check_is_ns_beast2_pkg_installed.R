@@ -15,7 +15,7 @@ test_that("use", {
   expect_error(check_is_ns_beast2_pkg_installed())
 
   # Install
-  mauricer::uninstall_beast2_pkg("NS")
+  mauricer::install_beast2_pkg("NS")
 
   # Must be silent
   expect_silent(check_is_ns_beast2_pkg_installed())

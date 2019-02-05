@@ -1,4 +1,4 @@
-context("test-select_inference_models_new_skool")
+context("test-select_experiments")
 
 test_that("generative", {
 
