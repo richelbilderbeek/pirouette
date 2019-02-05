@@ -4,7 +4,14 @@
 \alias{create_fig_bd}
 \title{Create figure bd for pirouette article}
 \usage{
-create_fig_bd()
+create_fig_bd(phylogeny, twinning_params = create_twinning_params())
+}
+\arguments{
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 }
 \value{
 a ggplot2 plot

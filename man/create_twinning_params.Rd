@@ -8,8 +8,9 @@ their combination will be called the generative model
 of the twinning}
 \usage{
 create_twinning_params(rng_seed = 0, twin_model = "bd",
-  method = "random_tree", twin_tree_filename = tempfile(fileext =
-  ".newick"), twin_alignment_filename = tempfile(fileext = ".fasta"))
+  method = "random_tree", n_replicas = 10000,
+  twin_tree_filename = tempfile(fileext = ".newick"),
+  twin_alignment_filename = tempfile(fileext = ".fasta"))
 }
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the
@@ -17,7 +18,17 @@ simulation of a twin tree}
 
 \item{twin_model}{the model you want to use to generate the twin tree}
 
-\item{method}{determines how to create the twin tree}
+\item{method}{determines how to create the twin tree
+\itemize{
+    \item 'random_tree' just produces a random tree;
+    \item 'max_clade_cred' simulates 1e4 trees and
+      uses \link[phangorn]{maxCladeCred} to create a consensus tree;
+    \item 'max_likelihood' simulates 1e4 trees and selects the most
+      likely;
+  }}
+
+\item{n_replicas}{number of replicas to evaluate in order to create the
+twin tree}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}
@@ -40,5 +51,5 @@ of the twinning
  testit::assert("twin_tree_filename" \%in\% names(twinning_params))
 }
 \author{
-Richel J.C. Bilderbeek
+Richel J.C. Bilderbeek, Giovanni Laudanno
 }

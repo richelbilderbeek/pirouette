@@ -142,6 +142,13 @@
 #'   from a MBD tree
 #' @param mbd_tree an MBD tree
 #' @param method determines how to create the twin tree
+#' \itemize{
+#'     \item 'random_tree' just produces a random tree;
+#'     \item 'max_clade_cred' simulates 1e4 trees and
+#'       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
+#'     \item 'max_likelihood' simulates 1e4 trees and selects the most
+#'       likely;
+#'   }
 #' @param model_selection one ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
@@ -166,6 +173,8 @@
 #'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
 #' @param mutation_rate the mutation rate per base pair per time unit
+#' @param n_replicas number of replicas to evaluate in order to create the
+#'   twin tree
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
 #'  present in the simulated tree
@@ -287,6 +296,7 @@ default_params_doc <- function(
   mrca_prior,
   mu,
   mutation_rate,
+  n_replicas,
   nu,
   nu_events,
   parameter_filename,
