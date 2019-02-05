@@ -141,7 +141,7 @@ pir_run_tree <- function(
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(selected_ones)) {
     # Can be an inference_model (old skool) or experiment (new skool)
-    if (length(model_select_params) == 314) { # nolint use new interface
+    if (length(model_select_params) != 314) { # nolint use new interface
       inference_model <- selected_ones[[i]]
       experiment <- NA
     } else {
