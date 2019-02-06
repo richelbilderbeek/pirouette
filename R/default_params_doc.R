@@ -149,9 +149,6 @@
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
 #'   evidence. See \link{get_model_selections} for a list of
-#' @param model_select_param one parameter set to select an inference model
-#'   (a combination of site model, clock model and tree prior),
-#'   as can be created by \link{create_model_select_param}
 #' @param model_type type of inference model supplied for an experiment.
 #'   Possible values:
 #'   \itemize{
@@ -281,7 +278,6 @@ default_params_doc <- function(
   mcmc,
   method,
   model_selection,
-  model_select_param,
   model_type,
   mrca_prior,
   mu,
