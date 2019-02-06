@@ -83,22 +83,23 @@ ape::plot.phylo(phylogenies[[3]])
 Now, per phylogeny, we estimate the error BEAST2 makes:
 
 ```{r}
-
 alignment_params <- pirouette::create_alignment_params(
   root_sequence = "aaaaccccggggtttt",
   mutation_rate = create_standard_mutation_rate(phylogeny)
 )
-model_select_param <- pirouette::create_gen_model_select_param(
-  alignment_params = alignment_params,
-  tree_prior = beautier::create_bd_tree_prior()
+experiment <- create_experiment(
+  model_type = "generative",
+  run_if = "always",
+  do_measure_evidence = FALSE,
+  inference_model = create_inference_model(
+    tree_prior = create_bd_tree_prior(),
+    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+  )
 )
-inference_params <- pirouette::create_inference_params(
-  mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000)
-)
+experiments <- list(experiment)
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  model_select_params = model_select_params,
-  inference_params = inference_params
+  experiments = experiments
 )
 errors <- list()
 if (rappdirs::app_dir()$os != "win") {

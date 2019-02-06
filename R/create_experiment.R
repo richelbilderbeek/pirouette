@@ -37,3 +37,16 @@ create_experiment <- function(
   check_experiment(experiment) # nolint pirouette function
   experiment
 }
+
+#' Create a valid testing \link{pirouette} experiment.
+#' @inheritParams default_params_doc
+#' @return a \link{pirouette} experiment.
+#' @export
+#' @author Richel J.C. Bilderbeek
+create_test_experiment <- function() {
+  create_experiment(
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+    )
+  )
+}

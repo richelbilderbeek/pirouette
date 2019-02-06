@@ -1,19 +1,19 @@
 context("test-alignment_params_to_posterior_trees")
 
-test_that("abuse", {
+test_that("returns a multiPhylo", {
 
-  expect_error(
-    alignment_params_to_posterior_trees(
-      alignment_params = create_alignment_params(
-        root_sequence = create_mono_nuc_dna(length = 4),
-        mutation_rate = 1
-      ),
-      inference_model = create_old_skool_inference_model(
-        site_model = beautier::create_jc69_site_model(),
-        clock_model = beautier::create_strict_clock_model(),
-        tree_prior = beautier::create_tree_prior_bd()
-      ),
-      inference_params = "nonsense"
-    )
+  if (!beastier::is_on_travis()) return()
+
+  alignment_params <- create_test_alignment_params()
+  sim_alignment_file(
+    phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+    alignment_params = alignment_params
   )
+  expect_true(file.exists(alignment_params$fasta_filename))
+
+  trees <- alignment_params_to_posterior_trees(
+    alignment_params = alignment_params,
+    experiment = create_test_experiment()
+  )
+  expect_equal("multiPhylo", class(trees))
 })

@@ -15,15 +15,14 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   clock_model_name, crown_age, do_measure_evidence, epsilon,
   error_function, error_measure_params, est_evidence_mcmc,
   evidence_epsilon, evidence_filename, experiment, experiments,
-  fasta_filename, filename, folder_name, inference_model, inference_params,
+  fasta_filename, filename, folder_name, inference_model,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
   marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
-  mbd_tree, mcmc, method, model_selection, model_select_param,
-  model_select_params, model_type, mrca_prior, mu, mutation_rate,
-  n_replicas, nu, nu_events, parameter_filename, parameters_filename,
-  phylo, phylogeny, pir_params, posterior_trees, precision,
-  project_folder_name, root_sequence, run_if, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  mbd_tree, mcmc, method, model_selection, model_type, mrca_prior, mu,
+  mutation_rate, n_replicas, nu, nu_events, parameter_filename,
+  parameters_filename, phylo, phylogeny, pir_params, posterior_trees,
+  precision, project_folder_name, root_sequence, run_if, sample_interval,
+  seed, sequence_length, sim_pars, sim_phylo, site_model, site_models,
   site_model_name, sub_chain_length, tree, tree_filename, tree_model,
   tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
@@ -190,11 +189,6 @@ as can be created by \link{create_experiment}}
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
-\item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
-
 \item{init_speciation_rate}{a speciation rate}
 
 \item{init_extinction_rate}{an extinction rate}
@@ -232,15 +226,6 @@ from a MBD tree}
 inference, for example, \code{generative} picks the generative
 model, where \code{most_evidence} picks the model with most
 evidence. See \link{get_model_selections} for a list of}
-
-\item{model_select_param}{one parameter set to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
-
-\item{model_select_params}{a list of one or more parameter sets
-to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
 
 \item{model_type}{type of inference model supplied for an experiment.
 Possible values:

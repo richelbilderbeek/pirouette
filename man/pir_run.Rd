@@ -24,36 +24,6 @@ From a phylogeny of (un)known speciation model,
 an alignment is created using a known site model and clock model,
 as given by \code{alignment_params}.
 }
-\details{
-From each of the one or more model selection parameters in
-\code{model_select_params}, one inference model is concluded.
-One such parameter setup is to use the generative site and clock model
-the alignment is created with (\code{"generative"}), or use the model
-that has the most evidence (\code{"most evidence"}).
-
-Each inference model is used to run BEAST2 and measures the
-difference between the known/true/given phylogeny and the
-ones created by BEAST2.
-}
-\examples{
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(
-    mutation_rate = 0.01
-  )
-  errors <- pir_run(
-    phylogeny = phylogeny,
-      pir_params = create_pir_params(
-      alignment_params = alignment_params,
-      model_select_params = create_gen_model_select_param(
-        alignment_params = alignment_params
-      ),
-      inference_params = create_inference_params(
-        mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-      )
-    )
-  )
-  pir_plot(errors)
-}
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno
 }

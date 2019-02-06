@@ -123,10 +123,6 @@
 #' @param inference_model an inference model, which is a combination
 #'   of site model, clock model, tree prior and BEAST2 input and
 #'   input filenames.
-#' @param inference_params one set of parameters for the Bayesian inference,
-#'   as can be created by \link{create_inference_params}.
-#'   The Bayesian inference is handled by the \link[babette]{babette}
-#'   R package, that calls the phylogenetic tool \code{BEAST2}.
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
@@ -153,13 +149,6 @@
 #'   inference, for example, \code{generative} picks the generative
 #'   model, where \code{most_evidence} picks the model with most
 #'   evidence. See \link{get_model_selections} for a list of
-#' @param model_select_param one parameter set to select an inference model
-#'   (a combination of site model, clock model and tree prior),
-#'   as can be created by \link{create_model_select_param}
-#' @param model_select_params a list of one or more parameter sets
-#'   to select an inference model
-#'   (a combination of site model, clock model and tree prior),
-#'   as can be created by \link{create_model_select_param}
 #' @param model_type type of inference model supplied for an experiment.
 #'   Possible values:
 #'   \itemize{
@@ -277,7 +266,6 @@ default_params_doc <- function(
   filename,
   folder_name,
   inference_model,
-  inference_params,
   init_speciation_rate,
   init_extinction_rate,
   lambda,
@@ -290,8 +278,6 @@ default_params_doc <- function(
   mcmc,
   method,
   model_selection,
-  model_select_param,
-  model_select_params,
   model_type,
   mrca_prior,
   mu,

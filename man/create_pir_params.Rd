@@ -5,8 +5,6 @@
 \title{Create the parameters for pirouette}
 \usage{
 create_pir_params(alignment_params, twinning_params = NA,
-  model_select_params = create_gen_model_select_param(alignment_params),
-  inference_params = create_inference_params(),
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_epsilon = 1e-12, evidence_filename = tempfile(fileext =
@@ -19,16 +17,6 @@ as can be created by \link{create_alignment_params}}
 \item{twinning_params}{can be \code{NA} if no twinning is desired,
 or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
-
-\item{model_select_params}{a list of one or more parameter sets
-to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
-
-\item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}}

@@ -4,38 +4,10 @@
 #' an alignment is created using a known site model and clock model,
 #' as given by \code{alignment_params}.
 #'
-#' From each of the one or more model selection parameters in
-#' \code{model_select_params}, one inference model is concluded.
-#' One such parameter setup is to use the generative site and clock model
-#' the alignment is created with (\code{"generative"}), or use the model
-#' that has the most evidence (\code{"most evidence"}).
-#'
-#' Each inference model is used to run BEAST2 and measures the
-#' difference between the known/true/given phylogeny and the
-#' ones created by BEAST2.
-#'
 #' @inheritParams default_params_doc
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets.
 #'   Tip: use \link{pir_plot} to display it
-#' @examples
-#'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-#'   alignment_params <- create_alignment_params(
-#'     mutation_rate = 0.01
-#'   )
-#'   errors <- pir_run(
-#'     phylogeny = phylogeny,
-#'       pir_params = create_pir_params(
-#'       alignment_params = alignment_params,
-#'       model_select_params = create_gen_model_select_param(
-#'         alignment_params = alignment_params
-#'       ),
-#'       inference_params = create_inference_params(
-#'         mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-#'       )
-#'     )
-#'   )
-#'   pir_plot(errors)
 #' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 pir_run <- function(
@@ -56,18 +28,15 @@ pir_run <- function(
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
   alignment_params <- pir_params$alignment_params
-  model_select_params <- pir_params$model_select_params
-  inference_params <- pir_params$inference_params
   experiments <- pir_params$experiments
   error_measure_params <- pir_params$error_measure_params
   df <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
     alignment_params = alignment_params,
-    model_select_params = model_select_params, # obsolete, #69
-    inference_params = inference_params, # obsolete, #69
     experiments = experiments,
-    error_measure_params = error_measure_params
+    error_measure_params = error_measure_params,
+    evidence_filename = pir_params$evidence_filename
   )
 
   # Run for the twin tree
@@ -77,13 +46,17 @@ pir_run <- function(
     twin_alignment_params <- alignment_params
     twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
 
+    # TODO:
+    # pir_params$evidence_filename
+    # should be
+    #
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
       alignment_params = twin_alignment_params,
-      model_select_params = model_select_params, # obsolete, #69
-      inference_params = inference_params, # obsolete, #69
-      experiments = experiments
+      experiments = experiments,
+      error_measure_params = error_measure_params,
+      evidence_filename = pir_params$evidence_filename
     )
     df <- rbind(df, df_twin)
   }
@@ -102,8 +75,6 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params),
-  inference_params = create_inference_params(),
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_epsilon = 1e-12,
@@ -123,46 +94,35 @@ pir_run_tree <- function(
   # interested in the generative model only
   marg_liks <- est_evidences(
     fasta_filename = alignment_params$fasta_filename,
-    model_select_params = model_select_params,
-    experiments = experiments
+    experiments = experiments,
+    evidence_filename = evidence_filename
   )
 
   # Select the models (old skool) or experiments (new skool)
   # to do inference with
-  selected_ones <- select_inference_models(
-    alignment_params = alignment_params, # Both need alignment file
-    model_select_params = model_select_params, # To pick which one
+  experiments <- select_experiments(
     experiments = experiments,
     marg_liks = marg_liks # For most evidence
   )
-  testit::assert(length(selected_ones) > 0)
+  testit::assert(length(experiments) > 0)
 
   # Measure the errors per inference model
-  errorses <- list() # Gollumese plural, a list of errors
-  for (i in seq_along(selected_ones)) {
-    # Can be an inference_model (old skool) or experiment (new skool)
-    if (length(model_select_params) != 314) { # nolint use new interface
-      inference_model <- selected_ones[[i]]
-      experiment <- NA
-    } else {
-      experiment <- selected_ones[[i]]
-      inference_model <- NA
-    }
+  errorses <- list() # Reduplicated plural, a list of errors
+  for (i in seq_along(experiments)) {
+    experiment <- experiments[[i]]
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      inference_model = inference_model,
-      inference_params = inference_params,
       error_measure_params = error_measure_params,
-      experiment = experiment # stub #69
+      experiment = experiment
     )
   }
   testit::assert(length(errorses) > 0)
-  testit::assert(length(selected_ones) == length(errorses))
+  testit::assert(length(experiments) == length(errorses))
 
   # Put inference models and errors a data frame
-  n_rows <- length(selected_ones)
+  n_rows <- length(experiments)
   df <- data.frame(
     tree = rep(NA, n_rows),
     inference_model = rep(NA, n_rows),
@@ -179,38 +139,39 @@ pir_run_tree <- function(
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
   df[, error_col_names] <- NA
 
-  for (i in seq_along(selected_ones)) {
-    model_select_param <- model_select_params[[i]]
-    inference_model <- selected_ones[[i]]
+  for (i in seq_along(experiments)) {
+    experiment <- experiments[[i]]
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
-    df$inference_model[i] <- model_select_param$type
+    check_experiment(experiment) # nolint pirouette function
+    df$inference_model[i] <- experiment$model_type
     df$inference_model_weight[i] <- NA
-    df$site_model[i] <- inference_model$site_model$name
-    df$clock_model[i] <- inference_model$clock_model$name
-    df$tree_prior[i] <- inference_model$tree_prior$name
-
-    df$beast2_input_filename[i] <- inference_model$beast2_input_filename
+    df$site_model[i] <- experiment$inference_model$site_model$name
+    df$clock_model[i] <- experiment$inference_model$clock_model$name
+    df$tree_prior[i] <- experiment$inference_model$tree_prior$name
+    df$beast2_input_filename[i] <- experiment$beast2_options$input_filename
     df$beast2_output_log_filename[i] <-
-      inference_model$beast2_output_log_filename
+      experiment$beast2_options$output_log_filename
     df$beast2_output_trees_filename[i] <-
-      inference_model$beast2_output_trees_filename
+      experiment$beast2_options$output_trees_filenames
     df$beast2_output_state_filename[i] <-
-      inference_model$beast2_output_state_filename
-
+      experiment$beast2_options$output_state_filename
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts
   }
 
   # Add evidence (marginal likelihoods) in columns
   if (!is.null(marg_liks)) {
-    for (i in seq_along(selected_ones)) {
-      inference_model <- selected_ones[[i]]
+    for (i in seq_along(experiments)) {
+      experiment <- experiments[[i]]
       marg_liks_row <- which(
-        marg_liks$site_model_name == inference_model$site_model$name &
-        marg_liks$clock_model_name == inference_model$clock_model$name &
-        marg_liks$tree_prior_name == inference_model$tree_prior$name
+        marg_liks$site_model_name ==
+          experiment$inference_model$site_model$name &
+        marg_liks$clock_model_name ==
+          experiment$inference_model$clock_model$name &
+        marg_liks$tree_prior_name ==
+          experiment$inference_model$tree_prior$name
       )
       # if there is no row, 'which' returns a zero-length vector
       # Happens when the generative model is not part of the models

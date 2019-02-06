@@ -20,7 +20,6 @@ check_pir_params <- function(
   pir_params,
   max_evidence_epsilon = 1e-4
 ) {
-
   tryCatch(
     check_alignment_params(pir_params$alignment_params), # nolint pirouette function
     error = function(e) {
@@ -34,33 +33,6 @@ check_pir_params <- function(
     }
   )
   tryCatch(
-    check_inference_params(pir_params$inference_params), # nolint pirouette function
-    error = function(e) {
-      msg <- paste0(
-        "'inference_params' must be a set of inference parameters.\n",
-        "Tip: use 'create_inference_params'\n",
-        "Error message: ", e$message, "\n",
-        "Actual value: ", pir_params$inference_params
-      )
-      stop(msg)
-    }
-  )
-  if (length(pir_params$model_select_params) != 314) {
-    tryCatch(
-      check_model_select_params(pir_params$model_select_params), # nolint pirouette function
-      error = function(e) {
-        msg <- paste0(
-          "'model_select_params' must be a list of one or more ",
-          "model selection parameter sets.\n",
-          "Tip: use 'create_model_select_params'\n",
-          "Error message: ", e$message, "\n",
-          "Actual value: ", pir_params$model_select_params
-        )
-        stop(msg)
-      }
-    )
-  }
-  tryCatch(
     check_error_measure_params(pir_params$error_measure_params), # nolint pirouette function
     error = function(e) {
       msg <- paste0(
@@ -68,7 +40,7 @@ check_pir_params <- function(
         "parameters.\n",
         "Tip: use 'create_error_measure_params'\n",
         "Error message: ", e$message, "\n",
-        "Actual value: ", pir_params$model_select_params
+        "Actual value: ", pir_params$error_measure_params
       )
       stop(msg)
     }
