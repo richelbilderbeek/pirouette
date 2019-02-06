@@ -10,6 +10,10 @@
 check_model_select_params <- function(
   model_select_params
 ) {
+  if (length(model_select_params) != 314) { # nolint use new interface
+    stop("deprecated, #90")
+  }
+
   if (!is.list(model_select_params)) {
     stop("'model_select_params' must be a list")
   }

@@ -80,9 +80,7 @@ Run:
 # df <- pirouette::pir_run(
 #   phylogeny = phylogeny,
 #   twinning_params = twinning_params,
-#   alignment_params = alignment_params,
-#   model_select_params = model_select_params,
-#   inference_params = inference_params 
+#   alignment_params = alignment_params
 # )
 ```
 
