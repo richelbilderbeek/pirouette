@@ -73,15 +73,3 @@ est_evidences_new_skool <- function(
   )
   marg_liks
 }
-
-#' Estimate the evidences old skool
-#' @inheritParams default_params_doc
-#' @return a data frame with evidences
-#' @export
-#' @author Richel J.C. Bilderbeek
-est_evidences_old_skool <- function(
-  fasta_filename,
-  model_select_params
-) {
-  stop("Deprecated use of 'est_evidences_old_skool', #90")
-}

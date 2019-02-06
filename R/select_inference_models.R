@@ -108,18 +108,3 @@ select_experiments <- function(
   }
   selected_experiments
 }
-
-#' Select inference models using the old skool interface
-#' @inheritParams default_params_doc
-#' @return a list of inference models,
-#'   with the same length as \code{model_select_params}.
-#'   Each element of this list has one site model, clock model and tree prior.
-#' @author Richel J.C. Bilderbeek
-#' @noRd
-select_inference_models_old_skool <- function( # nolint indeed long function name, will shorten in future
-  alignment_params,
-  model_select_params,
-  marg_liks = NULL
-) {
-  stop("'select_inference_models_old_skool' deprecated")
-}

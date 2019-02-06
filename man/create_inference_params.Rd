@@ -30,10 +30,7 @@ BEAST2 binary file path.}
 \item{verbose}{if TRUE, show more output}
 }
 \description{
-These are for example, the MRCA prior, the MCMC, the RNG seed
-and the path to BEAST2. The parts of a BEAST2 run that
-is unique, which is a combination of a site model, clock model
-and tree prior, is created by \link{create_old_skool_inference_model})
+Creates the parameters all BEAST2 runs share.
 }
 \author{
 Richel J.C. Bilderbeek
