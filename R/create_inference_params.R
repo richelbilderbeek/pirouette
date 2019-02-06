@@ -1,9 +1,5 @@
 #' Creates the parameters all BEAST2 runs share.
 #'
-#' These are for example, the MRCA prior, the MCMC, the RNG seed
-#' and the path to BEAST2. The parts of a BEAST2 run that
-#' is unique, which is a combination of a site model, clock model
-#' and tree prior, is created by \link{create_old_skool_inference_model})
 #' @inheritParams default_params_doc
 #' @param rng_seed the random number generator seed
 #'   used in the Bayesian inference.

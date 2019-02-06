@@ -179,21 +179,6 @@ pir_run_tree <- function(
     if (length(model_select_params) != 314) {
       # Old skool
       stop("Deprecated 'pir_run_tree', #90")
-      model_select_param <- model_select_params[[i]]
-      inference_model <- selected_one
-      check_old_skool_inference_model(inference_model)
-      df$inference_model[i] <- model_select_param$type
-      df$inference_model_weight[i] <- NA
-      df$site_model[i] <- inference_model$site_model$name
-      df$clock_model[i] <- inference_model$clock_model$name
-      df$tree_prior[i] <- inference_model$tree_prior$name
-      df$beast2_input_filename[i] <- inference_model$beast2_input_filename
-      df$beast2_output_log_filename[i] <-
-        inference_model$beast2_output_log_filename
-      df$beast2_output_trees_filename[i] <-
-        inference_model$beast2_output_trees_filename
-      df$beast2_output_state_filename[i] <-
-        inference_model$beast2_output_state_filename
     } else {
       # New skool
       experiment <- selected_one

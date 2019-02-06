@@ -18,19 +18,4 @@ create_old_skool_inference_model <- function( # nolint indeed a long line, lucki
   beast2_output_state_filename = tempfile(fileext = ".xml.state")
 ) {
   stop("Deprecated, #90")
-  beautier::check_clock_model(clock_model)
-  beautier::check_site_model(site_model)
-  beautier::check_tree_prior(tree_prior)
-
-  inference_model <- list(
-    site_model = site_model,
-    clock_model = clock_model,
-    tree_prior = tree_prior,
-    beast2_input_filename = beast2_input_filename,
-    beast2_output_log_filename = beast2_output_log_filename,
-    beast2_output_trees_filename = beast2_output_trees_filename,
-    beast2_output_state_filename = beast2_output_state_filename
-  )
-  check_old_skool_inference_model(inference_model) # nolint pirouette function
-  inference_model
 }
