@@ -67,6 +67,8 @@ select_inference_models <- function(
   experiments = list(create_experiment()),
   marg_liks = NULL
 ) {
+  testit::assert(length(model_select_params) == 314) # #90
+
   inference_models <- list()
   if (length(model_select_params) == 314) { # nolint use new interface
     inference_models <- select_experiments(
