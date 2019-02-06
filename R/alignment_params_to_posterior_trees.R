@@ -21,8 +21,6 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   # Use inference model (old skool) and experment (new skool)
   if (!beautier:::is_one_na(inference_model)) {
     stop("Deprecated in 'alignment_params_to_posterior_trees' 1")
-    check_old_skool_inference_model(inference_model) # nolint pirouette function
-    testit::assert(beautier:::is_one_na(experiment))
   } else {
     testit::assert(!beautier:::is_one_na(experiment))
     check_experiment(experiment) # nolint pirouette function
