@@ -107,7 +107,7 @@ pir_run_tree <- function(
   testit::assert(length(selected_ones) > 0)
 
   # Measure the errors per inference model
-  errorses <- list() # Gollumese plural, a list of errors
+  errorses <- list() # Reduplicated plural, a list of errors
   for (i in seq_along(selected_ones)) {
     experiment <- selected_ones[[i]]
 
@@ -115,7 +115,7 @@ pir_run_tree <- function(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       error_measure_params = error_measure_params,
-      experiment = experiment # stub #69
+      experiment = experiment
     )
   }
   testit::assert(length(errorses) > 0)
