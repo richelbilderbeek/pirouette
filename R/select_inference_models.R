@@ -77,14 +77,6 @@ select_inference_models <- function(
     )
   } else {
     stop("Deprecated")
-    check_model_select_params(model_select_params) # nolint pirouette function
-    inference_models <- select_inference_models_old_skool( # nolint indeed long function name, will shorten in future
-      alignment_params = alignment_params,
-      model_select_params = model_select_params,
-      marg_liks = marg_liks
-    )
-    testit::assert(length(inference_models) == length(model_select_params))
-    check_old_skool_inference_model(inference_models[[1]]) # nolint pirouette function
   }
   inference_models
 }
