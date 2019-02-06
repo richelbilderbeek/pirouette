@@ -148,8 +148,7 @@ just one model (JC69, strict, Yule).
 
 Run this setup:
 
-```
-# TODO: Issue 94, #94
+```{r}
 errors <- pir_run(
   phylogeny = true_phylogeny,
   pir_params = pir_params
