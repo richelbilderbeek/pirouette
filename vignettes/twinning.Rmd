@@ -66,13 +66,6 @@ We select our inference models in two ways:
      correct site model, the one correct clock model and two tree
      priors.
 
-```
-inference_params <- pirouette::create_inference_params(
-  mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
-  rng_seed = 42
-)
-```
-
 Run:
 
 ```{r}

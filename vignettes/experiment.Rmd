@@ -99,9 +99,6 @@ experiment <- create_experiment(
 experiments <- list(experiment)
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  inference_params = create_inference_params( # To be removed, #90
-    mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-  ),
   experiments = experiments
 )
 errors <- list()

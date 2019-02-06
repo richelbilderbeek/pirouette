@@ -14,15 +14,5 @@ create_inference_params <- function(
   beast2_path = beastier::get_default_beast2_path(),
   verbose = FALSE
 ) {
-  beautier::check_mcmc(mcmc)
-  beautier::check_mrca_prior(mrca_prior)
-  inference_params <- list(
-    mrca_prior = mrca_prior,
-    mcmc = mcmc,
-    rng_seed = rng_seed,
-    beast2_path = beast2_path,
-    verbose = verbose
-  )
-  check_inference_params(inference_params) # nolint pirouette function
-  inference_params
+  stop("DEPORWIUFGOE")
 }

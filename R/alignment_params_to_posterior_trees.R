@@ -10,25 +10,12 @@
 #' @author Richel J.C. Bilderbeek
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
-  inference_params,
   experiment = create_experiment()
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_experiment(experiment) # nolint pirouette function
 
-  tryCatch(
-    check_inference_params(inference_params),
-    error = function(msg) {
-      msg <- paste0(
-        "'inference_params' must be a set of inference parameters. ",
-        msg
-      )
-      stop(msg)
-    }
-  )
-
   testit::assert(file.exists(alignment_params$fasta_filename))
-
   bbt_out <- babette::bbt_run_from_model(
     fasta_filename = alignment_params$fasta_filename,
     inference_model = experiment$inference_model,

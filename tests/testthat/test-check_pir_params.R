@@ -7,12 +7,8 @@ test_that("use", {
     root_sequence = create_mono_nuc_dna(length = 4),
     mutation_rate = 0.01
   )
-  inference_params <- create_inference_params(
-    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-  )
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
-    inference_params = inference_params
+    alignment_params = alignment_params
   )
 
   # OK
@@ -25,15 +21,6 @@ test_that("use", {
   # Wrong alignment_params
   pir_params_2 <- pir_params
   pir_params_2$alignment_params <- "pippobaudo"
-  expect_error(
-    check_pir_params(
-      pir_params_2
-    )
-  )
-
-  # Wrong inference_params
-  pir_params_2 <- pir_params
-  pir_params_2$inference_params <- "pippobaudo"
   expect_error(
     check_pir_params(
       pir_params_2

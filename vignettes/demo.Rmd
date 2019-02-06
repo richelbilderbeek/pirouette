@@ -75,9 +75,6 @@ model (JC69 and strict clock):
 ```{r}
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  inference_params = create_inference_params( # To be removed, #90
-    mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-  ),
   experiments = experiments
 )
 ```
@@ -142,9 +139,6 @@ experiments <- list(experiment_yule, experiment_bd)
 
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  inference_params = create_inference_params( # To be removed, #90
-    mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-  ),
   experiments = experiments
 )
 ```

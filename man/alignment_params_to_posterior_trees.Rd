@@ -4,17 +4,12 @@
 \alias{alignment_params_to_posterior_trees}
 \title{Creates a posterior of phylogenies from a known alignment.}
 \usage{
-alignment_params_to_posterior_trees(alignment_params, inference_params,
+alignment_params_to_posterior_trees(alignment_params,
   experiment = create_experiment())
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
-
-\item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}

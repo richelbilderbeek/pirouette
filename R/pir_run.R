@@ -28,14 +28,12 @@ pir_run <- function(
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
   alignment_params <- pir_params$alignment_params
-  inference_params <- pir_params$inference_params
   experiments <- pir_params$experiments
   error_measure_params <- pir_params$error_measure_params
   df <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
     alignment_params = alignment_params,
-    inference_params = inference_params, # obsolete, #69
     experiments = experiments,
     error_measure_params = error_measure_params,
     evidence_filename = pir_params$evidence_filename
@@ -56,7 +54,6 @@ pir_run <- function(
       phylogeny = twin_tree,
       tree_type = "twin",
       alignment_params = twin_alignment_params,
-      inference_params = inference_params, # obsolete, #69
       experiments = experiments,
       error_measure_params = error_measure_params,
       evidence_filename = pir_params$evidence_filename
@@ -78,7 +75,6 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  inference_params = create_inference_params(),
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_epsilon = 1e-12,
@@ -118,7 +114,6 @@ pir_run_tree <- function(
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      inference_params = inference_params,
       error_measure_params = error_measure_params,
       experiment = experiment # stub #69
     )

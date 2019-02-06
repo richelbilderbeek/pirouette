@@ -33,18 +33,6 @@ check_pir_params <- function(
     }
   )
   tryCatch(
-    check_inference_params(pir_params$inference_params), # nolint pirouette function
-    error = function(e) {
-      msg <- paste0(
-        "'inference_params' must be a set of inference parameters.\n",
-        "Tip: use 'create_inference_params'\n",
-        "Error message: ", e$message, "\n",
-        "Actual value: ", pir_params$inference_params
-      )
-      stop(msg)
-    }
-  )
-  tryCatch(
     check_error_measure_params(pir_params$error_measure_params), # nolint pirouette function
     error = function(e) {
       msg <- paste0(

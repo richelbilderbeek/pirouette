@@ -147,13 +147,6 @@ experiments <- list(experiment)
 The general setup for our inference can be tuned. For example,
 to have a shorter MCMC run and a specific RNG seed:
 
-```{r}
-inference_params <- pirouette::create_inference_params(
-  mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
-  rng_seed = 271
-)
-```
-
 Now we have all in place to do a `pirouette` run:
 
 ```{r}
@@ -161,7 +154,6 @@ df <- pirouette::pir_run(
   phylogeny = phylogeny,
   pir_params = create_pir_params(
     alignment_params = alignment_params,
-    inference_params = inference_params, # To be removed, #90
     experiments = experiments
   )
 )
@@ -243,9 +235,6 @@ experiments <- list(experiment_yule, experiment_bd)
 
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  inference_params = create_inference_params( # To be removed, #90
-    mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-  ),
   experiments = experiments
 )
 ```
@@ -258,7 +247,6 @@ if (rappdirs::app_dir()$os != "win") {
     phylogeny = phylogeny,
     pir_params = create_pir_params(
       alignment_params = alignment_params,
-      inference_params = inference_params, # To be removed, #90
       experiments = experiments
     )
   )

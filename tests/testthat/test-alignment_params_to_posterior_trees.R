@@ -13,8 +13,6 @@ test_that("returns a multiPhylo", {
 
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
-    inference_model = NA, # To be removed
-    inference_params = create_inference_params(),
     experiment = create_test_experiment()
   )
   expect_equal("multiPhylo", class(trees))

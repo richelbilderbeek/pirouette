@@ -4,8 +4,7 @@
 \alias{phylo_to_errors}
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
-phylo_to_errors(phylogeny, alignment_params, inference_model,
-  inference_params = create_inference_params(),
+phylo_to_errors(phylogeny, alignment_params,
   experiment = create_experiment(),
   error_measure_params = create_error_measure_params())
 }
@@ -14,15 +13,6 @@ phylo_to_errors(phylogeny, alignment_params, inference_model,
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
-
-\item{inference_model}{an inference model, which is a combination
-of site model, clock model, tree prior and BEAST2 input and
-input filenames.}
-
-\item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}
