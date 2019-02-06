@@ -4,20 +4,19 @@
 \alias{est_evidences}
 \title{Estimate the evidences}
 \usage{
-est_evidences(fasta_filename, model_select_params,
-  experiments = list(create_experiment()),
-  evidence_filename = tempfile(".csv"))
+est_evidences(fasta_filename, experiments = list(create_experiment()),
+  evidence_epsilon = 1e-12, evidence_filename = tempfile(fileext =
+  ".csv"))
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file}
 
-\item{model_select_params}{a list of one or more parameter sets
-to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
-
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}}
+
+\item{evidence_epsilon}{relative error in estimating the
+evidence (aka marginal likelihood).
+TODO: put in \code{misc_params},}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}

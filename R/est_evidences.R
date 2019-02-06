@@ -5,28 +5,6 @@
 #' @author Richel J.C. Bilderbeek
 est_evidences <- function(
   fasta_filename,
-  model_select_params,
-  experiments = list(create_experiment()),
-  evidence_filename = tempfile(".csv")
-) {
-  testit::assert(file.exists(fasta_filename))
-  testit::assert(length(model_select_params) == 314) # #90
-
-  # Estimate marginal likelihoods if needed
-  est_evidences_new_skool(
-    fasta_filename = fasta_filename,
-    experiments = experiments,
-    evidence_filename = evidence_filename
-  )
-}
-
-#' Estimate the evidences
-#' @inheritParams default_params_doc
-#' @return a data frame with evidences
-#' @export
-#' @author Richel J.C. Bilderbeek
-est_evidences_new_skool <- function(
-  fasta_filename,
   experiments = list(create_experiment()),
   evidence_epsilon = 1e-12,
   evidence_filename = tempfile(fileext = ".csv")

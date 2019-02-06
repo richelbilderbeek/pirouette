@@ -114,7 +114,6 @@ pir_run_tree <- function(
   # interested in the generative model only
   marg_liks <- est_evidences(
     fasta_filename = alignment_params$fasta_filename,
-    model_select_params = model_select_params,
     experiments = experiments,
     evidence_filename = evidence_filename
   )
