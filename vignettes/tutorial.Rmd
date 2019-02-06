@@ -31,6 +31,10 @@ The same question, but from the point of view of a theoretician:
 > how well would we be able to infer it 
 > from a DNA alignment?
 
+```{r}
+library(pirouette)
+```
+
 # Inferring a simplest world
 
 Let's assume we know speciation (we don't) and we assume that speciation
@@ -122,11 +126,22 @@ generative model. The generative model is the model we followed in simulating
 the DNA alignment. We do need to specify a tree prior, we we know,
 due to our knowledge of The Simplest World.
 
+type       | run_if         | measure evidence  | inference model
+-----------|----------------|-------------------|-----------
+generative | always         |FALSE              | Default
+
 ```{r}
-gen_model_select_param <- pirouette::create_gen_model_select_param(
-  alignment_params = alignment_params,
-  tree_prior = beautier::create_bd_tree_prior()
+experiment <- create_experiment(
+  model_type = "generative",
+  run_if = "always",
+  do_measure_evidence = FALSE,
+  inference_model = create_inference_model(
+    tree_prior = create_bd_tree_prior(),
+    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+  ),
+  beast2_options = create_beast2_options(rng_seed = 314)
 )
+experiments <- list(experiment)
 ```
 
 The general setup for our inference can be tuned. For example,
@@ -146,8 +161,9 @@ df <- pirouette::pir_run(
   phylogeny = phylogeny,
   pir_params = create_pir_params(
     alignment_params = alignment_params,
-    model_select_params = gen_model_select_param,
-    inference_params = inference_params
+    model_select_params = as.list(seq(1, 314)), # To be removed, #90
+    inference_params = inference_params, # To be removed, #90
+    experiments = experiments
   )
 )
 knitr::kable(df)
@@ -196,7 +212,50 @@ of one site model (JC69), one clock model (strict) and two tree priors.
 We choose `pirouette` to prefer a quick calculation over a
 correct estimation by setting `epsilon` to a high value:
 
+type       | run_if         | measure evidence | inference model
+-----------|----------------|------------------|----------------
+candidate  | best_candidate |TRUE              |Yule       
+candidate  | best_candidate |TRUE              |Birth-Death
+
 ```{r}
+experiment_yule <- create_experiment(
+  model_type = "candidate",
+  run_if = "best_candidate",
+  do_measure_evidence = TRUE,
+  inference_model = create_inference_model(
+    tree_prior = create_yule_tree_prior(),
+    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+  ),
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  beast2_options = create_beast2_options(rng_seed = 314)
+)
+experiment_bd <- create_experiment(
+  model_type = "candidate",
+  run_if = "best_candidate",
+  do_measure_evidence = TRUE,
+  inference_model = create_inference_model(
+    tree_prior = create_bd_tree_prior(),
+    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+  ),
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  beast2_options = create_beast2_options(rng_seed = 314)
+)
+experiments <- list(experiment_yule, experiment_bd)
+
+pir_params <- create_pir_params(
+  alignment_params = alignment_params,
+  model_select_params = as.list(seq(1, 314)), # To be removed, #90
+  inference_params = create_inference_params( # To be removed, #90
+    mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+  ),
+  experiments = experiments
+)
+```
+
+Old skool, to be deprecated:
+
+```{r}
+# Old skool, to be deprecated, #90
 best_model_select_param <- pirouette::create_best_model_select_param(
   site_models = list(beautier::create_jc69_site_model()),
   clock_models = list(beautier::create_strict_clock_model()),
@@ -206,6 +265,7 @@ best_model_select_param <- pirouette::create_best_model_select_param(
   ),
   epsilon = 100.0
 )
+best_model_select_param <- as.list(seq(1, 314)) # To be removed, #90
 ```
 
 Now we again have all in place to do a `pirouette` run:
@@ -216,28 +276,9 @@ if (rappdirs::app_dir()$os != "win") {
     phylogeny = phylogeny,
     pir_params = create_pir_params(
       alignment_params = alignment_params,
-      model_select_params = best_model_select_param,
-      inference_params = inference_params
-    )
-  )
-  knitr::kable(df)
-  pirouette::pir_plot(df)
-}
-```
-
-We can also specify our complete knowledge at the same time:
-
- * the generative model is JC69, strict and BD
- * pick the best inference model
-
-```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win") {
-  df <- pirouette::pir_run(
-    phylogeny = phylogeny,
-    pir_params = create_pir_params(
-      alignment_params = alignment_params,
-      model_select_params = list(gen_model_select_param, best_model_select_param),
-      inference_params = inference_params
+      model_select_params = best_model_select_param, # To be removed, #90
+      inference_params = inference_params, # To be removed, #90
+      experiments = experiments
     )
   )
   knitr::kable(df)

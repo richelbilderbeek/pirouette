@@ -117,7 +117,7 @@ candidate  | best_candidate |TRUE              |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
-experiment_generative <- create_experiment(
+experiment_yule <- create_experiment(
   model_type = "candidate",
   run_if = "best_candidate",
   do_measure_evidence = TRUE,
@@ -139,7 +139,7 @@ experiment_bd <- create_experiment(
   est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
   beast2_options = create_beast2_options(rng_seed = 314)
 )
-experiments <- list(experiment_generative, experiment_bd)
+experiments <- list(experiment_yule, experiment_bd)
 
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
