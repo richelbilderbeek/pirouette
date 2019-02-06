@@ -34,7 +34,6 @@ pir_run <- function(
     stop("'phylogeny' must be of class 'phylo'")
   }
   check_pir_params(pir_params) # nolint pirouette function
-  testit::assert(length(pir_params$model_select_params) == 314)
 
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
