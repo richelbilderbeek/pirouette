@@ -45,7 +45,7 @@ alignment_params <- create_alignment_params(
 )
 ```
 
-## Only use the generative model in inference
+## 1. Only use the generative model in inference
 
 There are multiple ways to select for an inference model.
 In the simplest case, which is the default, 
@@ -103,7 +103,78 @@ Here we plot the error:
 pir_plot(errors)
 ```
 
-## Do inference with the generative and model with most evidence
+## 2. Do inference on candidate models
+
+Again, there are multiple ways to select for which inference model(s)
+to use. Here we assume we do not know the generative model.
+Instead, we only run the inference model that has the highest evidence (also
+called 'marginal likelihood'). 
+
+type       | run_if         | measure evidence | inference model
+-----------|----------------|------------------|----------------
+candidate  | best_candidate |TRUE              |Yule       
+candidate  | best_candidate |TRUE              |Birth-Death
+
+```{r}
+experiment_generative <- create_experiment(
+  model_type = "candidate",
+  run_if = "best_candidate",
+  do_measure_evidence = TRUE,
+  inference_model = create_inference_model(
+    tree_prior = create_yule_tree_prior(),
+    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+  ),
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+)
+experiment_bd <- create_experiment(
+  model_type = "candidate",
+  run_if = "best_candidate",
+  do_measure_evidence = TRUE,
+  inference_model = create_inference_model(
+    tree_prior = create_bd_tree_prior(),
+    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+  ),
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+)
+experiments <- list(experiment_generative, experiment_bd)
+
+pir_params <- create_pir_params(
+  alignment_params = alignment_params,
+  model_select_params = as.list(seq(1, 314)), # To be removed, #90
+  inference_params = create_inference_params( # To be removed, #90
+    mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+  ),
+  experiments = experiments
+)
+```
+
+Note that we select the model with the heighest evidence from a set of
+just one model (JC69, strict, Yule).
+
+Run this setup:
+
+```
+# TODO: Issue 94, #94
+errors <- pir_run(
+  phylogeny = true_phylogeny,
+  pir_params = pir_params
+)
+```
+
+Here we show the errors as a table:
+
+```{r}
+knitr::kable(head(errors))
+```
+
+Here we plot the error:
+
+```{r fig.width=7, fig.height=7}
+pir_plot(errors)
+```
+
+
+## 3. Do inference with the generative and model with most evidence
 
 Again, there are multiple ways to select for which inference model(s)
 to use. Next to the known generative model (JC69 and strict clock),
@@ -172,3 +243,4 @@ Here we plot the error:
 ```{r fig.width=7, fig.height=7}
 pir_plot(errors)
 ```
+
