@@ -13,20 +13,11 @@ est_evidences <- function(
   testit::assert(length(model_select_params) == 314) # #90
 
   # Estimate marginal likelihoods if needed
-  marg_liks <- NULL
-  if (length(model_select_params) == 314) { # nolint use new interface
-    marg_liks <- est_evidences_new_skool(
-      fasta_filename = fasta_filename,
-      experiments = experiments,
-      evidence_filename = evidence_filename
-    )
-  } else {
-    marg_liks <- est_evidences_old_skool(
-      fasta_filename = fasta_filename,
-      model_select_params = model_select_params
-    )
-  }
-  marg_liks
+  est_evidences_new_skool(
+    fasta_filename = fasta_filename,
+    experiments = experiments,
+    evidence_filename = evidence_filename
+  )
 }
 
 #' Estimate the evidences
