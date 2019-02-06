@@ -4,6 +4,12 @@ test_that("generative only", {
 
   if (!beastier::is_on_travis()) return()
 
+  # type       | run_if         | measure  | inference
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |FALSE     |Default
+
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
     mutation_rate = 0.01
@@ -12,11 +18,13 @@ test_that("generative only", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
   )
-  experiment$run_if <- "always"
   experiments <- list(experiment)
   check_experiments(experiments)
 
@@ -80,6 +88,12 @@ test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
+  # type       | run_if         | measure  | inference
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # candidate  | best_candidate |TRUE      |Yule
+  # candidate  | best_candidate |TRUE      |Birth-Death
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
     root_sequence = "acgt",
@@ -137,6 +151,13 @@ test_that("most_evidence", {
 test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
+
+  # type       | run_if         | measure  | inference
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |FALSE     |Yule
+  # candidate  | best_candidate |TRUE      |Birth-Death
+
   skip("Issue 69, #69")
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
@@ -195,6 +216,12 @@ test_that("generative and most_evidence, generative in most_evidence", {
   if (!beastier::is_on_travis()) return()
   skip("Issue 69, #69")
 
+  # type       | run_if         | measure  | inference
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |TRUE      |Yule
+  # candidate  | best_candidate |TRUE      |Birth-Death
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(mutation_rate = 0.01)
   model_select_params <- list(
@@ -235,6 +262,11 @@ test_that("generative with twin", {
 
   if (!beastier::is_on_travis()) return()
   skip("Issue 69, #69")
+
+  # type       | run_if         | measure  | inference
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |FALSE     |Default
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
