@@ -20,6 +20,9 @@ check_pir_params <- function(
   pir_params,
   max_evidence_epsilon = 1e-4
 ) {
+  if (length(pir_params$model_select_params) != 314) { # nolint use new interface
+    stop("deprecated, #90")
+  }
 
   tryCatch(
     check_alignment_params(pir_params$alignment_params), # nolint pirouette function

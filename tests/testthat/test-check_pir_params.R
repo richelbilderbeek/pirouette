@@ -22,7 +22,7 @@ test_that("use", {
   )
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    model_select_params = model_select_params,
+    model_select_params = as.list(seq(1, 314)), # To be removed, #90
     inference_params = inference_params
   )
 
