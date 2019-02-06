@@ -30,7 +30,7 @@ test_that("generative", {
     )
   )
   experiments <- list(experiment)
-  check_experiments(experiments)
+
 
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
@@ -117,13 +117,70 @@ test_that("generative, using gamma statistic", {
     )
   )
   experiments <- list(experiment)
-  check_experiments(experiments)
+
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
     model_select_params = as.list(seq(1, 314)),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+    ),
+    experiments = experiments,
+    error_measure_params = create_error_measure_params(
+      burn_in_fraction = 0.0,
+      error_function = get_gamma_error_function()
+    )
+  )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
+  testthat::expect_true(is.na(errors$inference_model_weight))
+  testthat::expect_true(!is.na(errors$error_1))
+  testthat::expect_true(errors$error_1 >= 0.0)
+})
+
+test_that("generative, with MRCA prior", {
+
+  if (!beastier::is_on_travis()) return()
+
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |FALSE     |Default                             # nolint this is no commented code
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
+  # ----|---------------|----------------------|-------
+  # true|generative     |NA                    |0.1                             # nolint this is no commented code
+  #
+  # All weights and errors are random, but possibly valid, numbers
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    )
+  )
+  experiments <- list(experiment)
+
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    model_select_params = as.list(seq(1, 314)),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
+      mrca_prior = create_mrca_prior(
+        is_monophyletic = TRUE,
+        mrca_distr = create_normal_distr(mean = 10, sigma = 0.01)
+      )
     ),
     experiments = experiments,
     error_measure_params = create_error_measure_params(
@@ -346,7 +403,6 @@ test_that("generative and most_evidence, generative in most_evidence", {
 test_that("generative with twin", {
 
   if (!beastier::is_on_travis()) return()
-  skip("Issue 69, #69")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -363,25 +419,27 @@ test_that("generative with twin", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(
-    mutation_rate = 0.01
-  )
-  twinning_params <- create_twinning_params()
-  model_select_params <- create_gen_model_select_param(
-    alignment_params = alignment_params
-  )
-  inference_params <- create_inference_params(
-    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-  )
 
-  # Remove files, just to be sure
-  file.remove(twinning_params$twin_tree_filename)
-  file.remove(twinning_params$twin_alignment_filename)
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    )
+  )
+  experiments <- list(experiment)
+
+  twinning_params <- create_twinning_params()
 
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
-    model_select_params = model_select_params,
-    inference_params = inference_params,
+    alignment_params = create_test_alignment_params(),
+    model_select_params = as.list(seq(1, 314)),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+    ),
+    experiments = experiments,
     twinning_params = twinning_params
   )
   errors <- pir_run(
