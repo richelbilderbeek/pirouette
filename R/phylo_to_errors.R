@@ -24,7 +24,6 @@
 phylo_to_errors <- function(
   phylogeny,
   alignment_params,
-  inference_model,
   inference_params = create_inference_params(),
   experiment = create_experiment(),
   error_measure_params = create_error_measure_params()
@@ -32,7 +31,6 @@ phylo_to_errors <- function(
   # Run
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
-    inference_model = inference_model,
     inference_params = inference_params,
     experiment = experiment
   )

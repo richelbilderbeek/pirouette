@@ -118,7 +118,6 @@ pir_run_tree <- function(
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      inference_model = inference_model,
       inference_params = inference_params,
       error_measure_params = error_measure_params,
       experiment = experiment # stub #69

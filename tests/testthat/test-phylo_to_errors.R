@@ -26,7 +26,6 @@ test_that("use", {
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
-    inference_model = NA,
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000)
     )

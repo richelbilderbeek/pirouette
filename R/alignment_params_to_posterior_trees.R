@@ -10,22 +10,12 @@
 #' @author Richel J.C. Bilderbeek
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
-  inference_model,
   inference_params,
   experiment = create_experiment()
 ) {
-  testit::assert(beautier:::is_one_na(inference_model)) # Deprecated, #90
-
   check_alignment_params(alignment_params) # nolint pirouette function
+  check_experiment(experiment) # nolint pirouette function
 
-  # Use inference model (old skool) and experment (new skool)
-  if (!beautier:::is_one_na(inference_model)) {
-    stop("Deprecated in 'alignment_params_to_posterior_trees' 1")
-  } else {
-    testit::assert(!beautier:::is_one_na(experiment))
-    check_experiment(experiment) # nolint pirouette function
-    testit::assert(beautier:::is_one_na(inference_model))
-  }
   tryCatch(
     check_inference_params(inference_params),
     error = function(msg) {
@@ -39,16 +29,10 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
 
   testit::assert(file.exists(alignment_params$fasta_filename))
 
-  bbt_out <- NULL
-  if (!beautier:::is_one_na(inference_model)) {
-    stop("Deprecated in 'alignment_params_to_posterior_trees' 2")
-  } else {
-    # New skool
-    bbt_out <- babette::bbt_run_from_model(
-      fasta_filename = alignment_params$fasta_filename,
-      inference_model = experiment$inference_model,
-      beast2_options = experiment$beast2_options
-    )
-  }
+  bbt_out <- babette::bbt_run_from_model(
+    fasta_filename = alignment_params$fasta_filename,
+    inference_model = experiment$inference_model,
+    beast2_options = experiment$beast2_options
+  )
   c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
 }
