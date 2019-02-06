@@ -67,7 +67,9 @@ pir_run <- function(
       alignment_params = twin_alignment_params,
       model_select_params = model_select_params, # obsolete, #69
       inference_params = inference_params, # obsolete, #69
-      experiments = experiments
+      experiments = experiments,
+      error_measure_params = error_measure_params,
+      evidence_filename = pir_params$evidence_filename
     )
     df <- rbind(df, df_twin)
   }
