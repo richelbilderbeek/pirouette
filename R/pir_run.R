@@ -46,6 +46,9 @@ pir_run <- function(
     )
   )
 ) {
+  if (length(model_select_params) != 314) { # nolint use new interface
+    stop("deprecated, #90")
+  }
 
   # Check the inputs
   if (!beautier::is_phylo(phylogeny)) {
