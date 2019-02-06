@@ -8,7 +8,14 @@ test_that("generative only", {
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
   # generative | always         |FALSE     |Default
-
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors
+  # ----|---------------|----------------------|-------
+  # true|generative     |NA                    |0.1
+  #
+  # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
@@ -93,6 +100,16 @@ test_that("most_evidence", {
   # -----------|----------------|----------|-----------
   # candidate  | best_candidate |TRUE      |Yule
   # candidate  | best_candidate |TRUE      |Birth-Death
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors
+  # ----|---------------|----------------------|-------
+  # true|candidate      |0.6                   |0.1
+  #
+  # as only the best candidate is run
+  #
+  # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
@@ -151,14 +168,24 @@ test_that("most_evidence", {
 test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
+  skip("Issue 69, #69")
 
   # type       | run_if         | measure  | inference
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
   # generative | always         |FALSE     |Yule
   # candidate  | best_candidate |TRUE      |Birth-Death
-
-  skip("Issue 69, #69")
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors
+  # ----|---------------|----------------------|-------
+  # true|generative     |NA                    |0.1
+  # true|candidate      |1.0                   |0.2
+  #
+  # as also the best (and only) candidate is run
+  #
+  # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
@@ -209,6 +236,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   col_first_error <- which(colnames(errors) == "error_1")
   col_last_error <- ncol(errors)
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+
 })
 
 test_that("generative and most_evidence, generative in most_evidence", {
@@ -221,6 +249,17 @@ test_that("generative and most_evidence, generative in most_evidence", {
   # -----------|----------------|----------|-----------
   # generative | always         |TRUE      |Yule
   # candidate  | best_candidate |TRUE      |Birth-Death
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors
+  # ----|---------------|----------------------|-------
+  # true|generative     |0.4                   |0.1
+  # true|candidate      |0.6                   |0.2
+  #
+  # as also the best (and only) candidate is run
+  #
+  # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(mutation_rate = 0.01)
@@ -267,6 +306,15 @@ test_that("generative with twin", {
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
   # generative | always         |FALSE     |Default
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors
+  # ----|---------------|----------------------|-------
+  # true|generative     |NA                    |0.1
+  # twin|generative     |NA                    |0.1
+  #
+  # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
