@@ -28,15 +28,13 @@ pir_run <- function(
     )
   )
 ) {
-  if (length(pir_params$model_select_params) != 314) { # nolint use new interface
-    stop("deprecated, #90")
-  }
 
   # Check the inputs
   if (!beautier::is_phylo(phylogeny)) {
     stop("'phylogeny' must be of class 'phylo'")
   }
   check_pir_params(pir_params) # nolint pirouette function
+  testit::assert(length(pir_params$model_select_params) == 314)
 
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
@@ -97,6 +95,7 @@ pir_run_tree <- function(
 
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
+  testit::assert(length(pir_params$model_select_params) == 314) # #90
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     phylogeny = phylogeny,
