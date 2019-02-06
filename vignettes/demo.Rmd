@@ -220,7 +220,7 @@ experiments <- list(experiment_generative, experiment_bd)
 
 pir_params <- create_pir_params(
   alignment_params = create_test_alignment_params(),
-  model_select_params = as.list(seq(1, 314)),
+  model_select_params = as.list(seq(1, 314)), # To be removed, #90
   experiments = experiments
 )
 ```

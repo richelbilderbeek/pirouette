@@ -17,20 +17,7 @@ test_that("old skool versus new skool", {
   )
   testit::assert(file.exists(fasta_filename))
 
-  # Prepare old skool
-  model_select_params <- create_best_model_select_param(
-    site_models = list(
-      beautier::create_jc69_site_model(),
-      beautier::create_hky_site_model()
-    ),
-    clock_models = list(beautier::create_strict_clock_model()),
-    tree_priors = list(beautier::create_yule_tree_prior()),
-    epsilon = 100.0
-  )
-  file.remove(model_select_params$marg_lik_filename)
-  testit::assert(!file.exists(model_select_params$marg_lik_filename))
-
-  # Prepare new skool
+  # Setup experiments
   experiment_1 <- create_experiment(
     model_type = "candidate",
     run_if = "best_candidate",
@@ -48,23 +35,14 @@ test_that("old skool versus new skool", {
   experiment_2 <- experiment_1
   experiment_2$inference_model$site_model <- beautier::create_hky_site_model()
   experiments <- list(experiment_1, experiment_2)
-  check_experiments(experiments)
-  beautier::check_inference_model(experiment_1$inference_model)
-  beautier::check_inference_model(experiment_2$inference_model)
 
-  # Run old skool
-  df_old_skool <- est_evidences(
-    fasta_filename = fasta_filename,
-    model_select_params = list(model_select_params),
-    experiments = list()
-  )
-
-  # Run new skool
-  df_new_skool <- est_evidences(
+  df <- est_evidences(
     fasta_filename = fasta_filename,
     model_select_params = as.list(seq(1, 314)),
     experiments = experiments
   )
-  # Use big tolerance, as there is much stochasticity involved
-  expect_equal(df_old_skool, df_new_skool, tolerance = 2.0)
+  expect_true(all(!is.na(df$marg_log_lik)))
+  expect_true(all(!is.na(df$weight)))
+  expect_true(all(df$weight >= 0.0))
+  expect_true(all(df$weight <= 1.0))
 })

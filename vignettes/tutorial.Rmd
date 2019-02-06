@@ -252,22 +252,6 @@ pir_params <- create_pir_params(
 )
 ```
 
-Old skool, to be deprecated:
-
-```{r}
-# Old skool, to be deprecated, #90
-best_model_select_param <- pirouette::create_best_model_select_param(
-  site_models = list(beautier::create_jc69_site_model()),
-  clock_models = list(beautier::create_strict_clock_model()),
-  tree_priors = list(
-    beautier::create_yule_tree_prior(),
-    beautier::create_bd_tree_prior()  
-  ),
-  epsilon = 100.0
-)
-best_model_select_param <- as.list(seq(1, 314)) # To be removed, #90
-```
-
 Now we again have all in place to do a `pirouette` run:
 
 ```{r fig.width=7, fig.height=7}
@@ -276,7 +260,7 @@ if (rappdirs::app_dir()$os != "win") {
     phylogeny = phylogeny,
     pir_params = create_pir_params(
       alignment_params = alignment_params,
-      model_select_params = best_model_select_param, # To be removed, #90
+      model_select_params = as.list(seq(1, 314)), # To be removed, #90
       inference_params = inference_params, # To be removed, #90
       experiments = experiments
     )

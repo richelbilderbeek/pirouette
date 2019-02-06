@@ -2,6 +2,7 @@ context("test-list_model_select_params")
 
 test_that("use", {
 
+  skip("Deprecated, #90")
   if (!beastier::is_on_travis()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
@@ -17,7 +18,7 @@ test_that("use", {
     errors <- pir_run(
       phylogeny = phylogeny,
       pir_params = create_pir_params(
-        alignment_params = alignment_params,
+        alignment_params = alignment_params, # deprecated
         model_select_params = model_select_params,
         inference_params = create_inference_params(
           mcmc = beautier::create_mcmc(
