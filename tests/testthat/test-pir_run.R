@@ -34,7 +34,6 @@ test_that("generative", {
 
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    model_select_params = as.list(seq(1, 314)),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
     ),
@@ -121,7 +120,6 @@ test_that("generative, using gamma statistic", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    model_select_params = as.list(seq(1, 314)),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
     ),
@@ -174,7 +172,6 @@ test_that("generative, with MRCA prior", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    model_select_params = as.list(seq(1, 314)),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
       mrca_prior = create_mrca_prior(
@@ -245,7 +242,6 @@ test_that("most_evidence", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    model_select_params = as.list(seq(1, 314)),
     experiments = experiments
   )
 
@@ -312,7 +308,6 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    model_select_params = as.list(seq(1, 314)),
     experiments = experiments
   )
 
@@ -383,7 +378,6 @@ test_that("generative and most_evidence, generative in most_evidence", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    model_select_params = as.list(seq(1, 314)),
     experiments = experiments
   )
 
@@ -440,7 +434,6 @@ test_that("generative with twin", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    model_select_params = as.list(seq(1, 314)),
     inference_params = create_inference_params(
       mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
     ),

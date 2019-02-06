@@ -47,7 +47,6 @@ pir_run <- function(
     phylogeny = phylogeny,
     tree_type = "true",
     alignment_params = alignment_params,
-    model_select_params = model_select_params, # obsolete, #69
     inference_params = inference_params, # obsolete, #69
     experiments = experiments,
     error_measure_params = error_measure_params,
@@ -69,7 +68,6 @@ pir_run <- function(
       phylogeny = twin_tree,
       tree_type = "twin",
       alignment_params = twin_alignment_params,
-      model_select_params = model_select_params, # obsolete, #69
       inference_params = inference_params, # obsolete, #69
       experiments = experiments,
       error_measure_params = error_measure_params,
@@ -92,7 +90,6 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
@@ -101,7 +98,6 @@ pir_run_tree <- function(
 
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
-  testit::assert(length(model_select_params) == 314) # #90
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     phylogeny = phylogeny,

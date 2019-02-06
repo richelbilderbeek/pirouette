@@ -20,7 +20,7 @@ check_pir_params <- function(
   pir_params,
   max_evidence_epsilon = 1e-4
 ) {
-  if (length(pir_params$model_select_params) != 314) { # nolint use new interface
+  if ("model_select_params" %in% names(pir_params)) {
     stop("deprecated, #90")
   }
 

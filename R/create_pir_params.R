@@ -6,20 +6,15 @@
 create_pir_params <- function(
   alignment_params,
   twinning_params = NA,
-  model_select_params = as.list(seq(1, 314)), # To be removed, #90
   inference_params = create_inference_params(), # obsolete, #69
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_epsilon = 1e-12,
   evidence_filename = tempfile(fileext = ".csv")
 ) {
-  # List model_select_params
-  model_select_params <- list_model_select_params(model_select_params) # nolint pirouette function
-
   pir_params <- list(
     twinning_params = twinning_params,
     alignment_params = alignment_params,
-    model_select_params = model_select_params,
     inference_params = inference_params,
     experiments = experiments,
     error_measure_params = error_measure_params,

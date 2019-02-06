@@ -5,7 +5,6 @@
 \title{Measure the error BEAST2 makes from a phylogeny}
 \usage{
 pir_run_tree(phylogeny, tree_type = "true", alignment_params,
-  model_select_params = create_gen_model_select_param(alignment_params),
   inference_params = create_inference_params(),
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
@@ -20,11 +19,6 @@ phylogeny, and \code{twin} for its twin tree}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
-
-\item{model_select_params}{a list of one or more parameter sets
-to select an inference model
-(a combination of site model, clock model and tree prior),
-as can be created by \link{create_model_select_param}}
 
 \item{inference_params}{one set of parameters for the Bayesian inference,
 as can be created by \link{create_inference_params}.

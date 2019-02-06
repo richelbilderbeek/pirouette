@@ -7,22 +7,11 @@ test_that("use", {
     root_sequence = create_mono_nuc_dna(length = 4),
     mutation_rate = 0.01
   )
-  model_select_params <- list(
-    create_gen_model_select_param(
-      alignment_params = alignment_params
-    ),
-    create_best_model_select_param(
-      site_models = beautier::create_site_models()[4],
-      clock_models = beautier::create_clock_models()[2],
-      tree_priors = beautier::create_tree_priors()[5]
-    )
-  )
   inference_params <- create_inference_params(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   )
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    model_select_params = as.list(seq(1, 314)), # To be removed, #90
     inference_params = inference_params
   )
 
@@ -45,15 +34,6 @@ test_that("use", {
   # Wrong inference_params
   pir_params_2 <- pir_params
   pir_params_2$inference_params <- "pippobaudo"
-  expect_error(
-    check_pir_params(
-      pir_params_2
-    )
-  )
-
-  # Wrong model_select_params
-  pir_params_2 <- pir_params
-  pir_params_2$model_select_params <- "pippobaudo"
   expect_error(
     check_pir_params(
       pir_params_2

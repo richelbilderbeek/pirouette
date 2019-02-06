@@ -38,7 +38,6 @@ test_that("use", {
 
   df <- est_evidences(
     fasta_filename = fasta_filename,
-    model_select_params = as.list(seq(1, 314)), # deprecated, #90
     experiments = experiments
   )
   expect_true(all(!is.na(df$marg_log_lik)))

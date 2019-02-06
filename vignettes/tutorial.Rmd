@@ -161,7 +161,6 @@ df <- pirouette::pir_run(
   phylogeny = phylogeny,
   pir_params = create_pir_params(
     alignment_params = alignment_params,
-    model_select_params = as.list(seq(1, 314)), # To be removed, #90
     inference_params = inference_params, # To be removed, #90
     experiments = experiments
   )
@@ -244,7 +243,6 @@ experiments <- list(experiment_yule, experiment_bd)
 
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  model_select_params = as.list(seq(1, 314)), # To be removed, #90
   inference_params = create_inference_params( # To be removed, #90
     mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
   ),
@@ -260,7 +258,6 @@ if (rappdirs::app_dir()$os != "win") {
     phylogeny = phylogeny,
     pir_params = create_pir_params(
       alignment_params = alignment_params,
-      model_select_params = as.list(seq(1, 314)), # To be removed, #90
       inference_params = inference_params, # To be removed, #90
       experiments = experiments
     )
