@@ -11,19 +11,4 @@ check_old_skool_inference_model <- function( # nolint indeed a long line, luckil
   x
 ) {
   stop("'check_old_skool_inference_model' deprecated")
-  argument_names <- c(
-    "site_model", "clock_model", "tree_prior", "beast2_input_filename",
-    "beast2_output_log_filename",
-    "beast2_output_trees_filename", "beast2_output_state_filename"
-  )
-  for (arg_name in argument_names) {
-    if (!arg_name %in% names(x)) {
-      stop(
-        "'", arg_name, "' must be an element of an 'inference_model'"
-      )
-    }
-  }
-  beautier::check_clock_model(x$clock_model)
-  beautier::check_site_model(x$site_model)
-  beautier::check_tree_prior(x$tree_prior)
 }
