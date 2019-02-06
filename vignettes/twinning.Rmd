@@ -21,6 +21,10 @@ on a twin tree. A twin tree is a tree with the same topology as the
 original phylogeny, yet where the branch lengths follow a birth-death
 branch length distribution.
 
+```{r}
+library(pirouette)
+```
+
 Twinning is useful to separate the effect of an unknown tree 
 prior (i.e. speciation model) on a phylogeny's shape from the 
 noise (the minimal error) made by BEAST2.
@@ -62,30 +66,7 @@ We select our inference models in two ways:
      correct site model, the one correct clock model and two tree
      priors.
 
-```{r}
-model_select_params <- list()
-
-gen_model_select_param <- pirouette::create_gen_model_select_param(
-  alignment_params = alignment_params,
-  tree_prior = beautier::create_bd_tree_prior()
-)
-model_select_params[[1]] <- gen_model_select_param 
-  
-if (rappdirs::app_dir()$os != "win") {
-  best_model_select_param <- pirouette::create_best_model_select_param(
-    site_models = list(beautier::create_jc69_site_model()),
-    clock_models = list(beautier::create_strict_clock_model()),
-    tree_priors = list(
-      beautier::create_yule_tree_prior(),
-      beautier::create_bd_tree_prior()  
-    ),
-    epsilon = 0.1
-  )
-  model_select_params[[2]] <- best_model_select_param 
-}
 ```
-
-```{r}
 inference_params <- pirouette::create_inference_params(
   mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
   rng_seed = 42
