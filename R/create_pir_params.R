@@ -6,7 +6,7 @@
 create_pir_params <- function(
   alignment_params,
   twinning_params = NA,
-  model_select_params = create_gen_model_select_param(alignment_params), # nolint obsolete, #69
+  model_select_params = as.list(seq(1, 314)), # To be removed, #90
   inference_params = create_inference_params(), # obsolete, #69
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),

@@ -5,7 +5,7 @@
 \title{Create the parameters for pirouette}
 \usage{
 create_pir_params(alignment_params, twinning_params = NA,
-  model_select_params = create_gen_model_select_param(alignment_params),
+  model_select_params = as.list(seq(1, 314)),
   inference_params = create_inference_params(),
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),

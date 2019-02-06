@@ -10,6 +10,7 @@
 check_old_skool_inference_model <- function( # nolint indeed a long line, luckily this is temporary
   x
 ) {
+  stop("'check_old_skool_inference_model' deprecated")
   argument_names <- c(
     "site_model", "clock_model", "tree_prior", "beast2_input_filename",
     "beast2_output_log_filename",

@@ -76,6 +76,7 @@ select_inference_models <- function(
       marg_liks = marg_liks
     )
   } else {
+    stop("Deprecated")
     check_model_select_params(model_select_params) # nolint pirouette function
     inference_models <- select_inference_models_old_skool( # nolint indeed long function name, will shorten in future
       alignment_params = alignment_params,
@@ -128,6 +129,8 @@ select_inference_models_old_skool <- function( # nolint indeed long function nam
   model_select_params,
   marg_liks = NULL
 ) {
+  stop("'select_inference_models_old_skool' deprecated")
+
   check_model_select_params(model_select_params) # nolint pirouette function
 
   inference_models <- list()
