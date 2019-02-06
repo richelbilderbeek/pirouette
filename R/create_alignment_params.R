@@ -41,5 +41,5 @@ create_alignment_params <- function(
 #' @author Richel J.C. Bilderbeek
 create_test_alignment_params <- function(
 ) {
-  create_alignment_params(root_sequence = "acgt", mutation_rate = 0.1)
+  create_alignment_params(root_sequence = "acgt", mutation_rate = 0.1) # nolint pirouette function
 }

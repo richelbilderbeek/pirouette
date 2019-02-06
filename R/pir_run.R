@@ -144,7 +144,7 @@ pir_run_tree <- function(
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
-    check_experiment(experiment)
+    check_experiment(experiment) # nolint pirouette function
     df$inference_model[i] <- experiment$model_type
     df$inference_model_weight[i] <- NA
     df$site_model[i] <- experiment$inference_model$site_model$name
