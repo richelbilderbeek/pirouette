@@ -5,7 +5,8 @@
 \title{Estimate the evidences}
 \usage{
 est_evidences(fasta_filename, model_select_params,
-  experiments = list(create_experiment()))
+  experiments = list(create_experiment()),
+  evidence_filename = tempfile(".csv"))
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file}
@@ -17,6 +18,9 @@ as can be created by \link{create_model_select_param}}
 
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}}
+
+\item{evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods)}
 }
 \value{
 a data frame with evidences
