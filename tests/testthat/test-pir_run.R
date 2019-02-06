@@ -34,9 +34,6 @@ test_that("generative", {
 
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-    ),
     experiments = experiments
   )
   errors <- pir_run(
@@ -120,9 +117,6 @@ test_that("generative, using gamma statistic", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-    ),
     experiments = experiments,
     error_measure_params = create_error_measure_params(
       burn_in_fraction = 0.0,
@@ -172,13 +166,6 @@ test_that("generative, with MRCA prior", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000),
-      mrca_prior = create_mrca_prior(
-        is_monophyletic = TRUE,
-        mrca_distr = create_normal_distr(mean = 10, sigma = 0.01)
-      )
-    ),
     experiments = experiments,
     error_measure_params = create_error_measure_params(
       burn_in_fraction = 0.0,
@@ -424,9 +411,6 @@ test_that("generative with twin", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    inference_params = create_inference_params(
-      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
-    ),
     experiments = experiments,
     twinning_params = twinning_params
   )
