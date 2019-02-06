@@ -182,13 +182,13 @@ pir_run_tree <- function(
   df[, error_col_names] <- NA
 
   for (i in seq_along(selected_ones)) {
-    model_select_param <- model_select_params[[i]]
     selected_one <- selected_ones[[i]]
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
     if (length(model_select_params) != 314) {
       # Old skool
+      model_select_param <- model_select_params[[i]]
       inference_model <- selected_one
       check_old_skool_inference_model(inference_model)
       df$inference_model[i] <- model_select_param$type

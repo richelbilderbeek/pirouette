@@ -265,7 +265,6 @@ test_that("most_evidence", {
 test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
-  skip("Issue 69, #69")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
