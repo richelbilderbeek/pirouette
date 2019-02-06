@@ -17,6 +17,7 @@ create_old_skool_inference_model <- function( # nolint indeed a long line, lucki
   beast2_output_trees_filename = tempfile(fileext = ".trees"),
   beast2_output_state_filename = tempfile(fileext = ".xml.state")
 ) {
+  stop("Deprecated, #90")
   beautier::check_clock_model(clock_model)
   beautier::check_site_model(site_model)
   beautier::check_tree_prior(tree_prior)
