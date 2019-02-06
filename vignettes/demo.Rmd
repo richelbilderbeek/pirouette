@@ -62,7 +62,8 @@ experiment <- create_experiment(
   do_measure_evidence = FALSE,
   inference_model = create_inference_model(
     mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-  )
+  ),
+  beast2_options = create_beast2_options(rng_seed = 314)
 )
 experiments <- list(experiment)
 ```
@@ -124,7 +125,8 @@ experiment_generative <- create_experiment(
     tree_prior = create_yule_tree_prior(),
     mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
   ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  beast2_options = create_beast2_options(rng_seed = 314)
 )
 experiment_bd <- create_experiment(
   model_type = "candidate",
@@ -134,7 +136,8 @@ experiment_bd <- create_experiment(
     tree_prior = create_bd_tree_prior(),
     mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
   ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  beast2_options = create_beast2_options(rng_seed = 314)
 )
 experiments <- list(experiment_generative, experiment_bd)
 
@@ -199,7 +202,8 @@ experiment_generative <- create_experiment(
     tree_prior = create_yule_tree_prior(),
     mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
   ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  beast2_options = create_beast2_options(rng_seed = 314)
 )
 experiment_bd <- create_experiment(
   model_type = "candidate",
@@ -209,7 +213,8 @@ experiment_bd <- create_experiment(
     tree_prior = create_bd_tree_prior(),
     mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
   ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  beast2_options = create_beast2_options(rng_seed = 314)
 )
 experiments <- list(experiment_generative, experiment_bd)
 
