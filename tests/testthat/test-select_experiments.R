@@ -47,6 +47,14 @@ test_that("use, always", {
 
 test_that("generative model and candidate model", {
 
+  # type       | run_if         | measure  | inference | evidence               # nolint this is no commented code
+  #            |                | evidence | model     |
+  # -----------|----------------|----------|-----------|----------
+  # generative | always         |TRUE      |Yule       | 0.9                    # nolint this is no commented code
+  # candidate  | best_candidate |TRUE      |Birth-Death| 0.1                    # nolint this is no commented code
+  #
+  # should select both models
+
   marg_liks <- create_test_marg_liks(
     site_models = list(create_jc69_site_model()),
     clock_models = list(create_strict_clock_model()),
