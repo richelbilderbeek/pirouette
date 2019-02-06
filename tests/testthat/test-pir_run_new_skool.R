@@ -1,6 +1,6 @@
 context("test-pir_run_new_skool")
 
-test_that("generative only", {
+test_that("generative", {
 
   if (!beastier::is_on_travis()) return()
 
@@ -18,10 +18,7 @@ test_that("generative only", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(
-    mutation_rate = 0.01
-  )
-  file.remove(alignment_params$fasta_filename)
+  alignment_params <- create_test_alignment_params()
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
@@ -91,6 +88,59 @@ test_that("generative only", {
   expect_true(n_errors < 11) # due to burn-in
 })
 
+test_that("generative, using gamma statistic", {
+
+  if (!beastier::is_on_travis()) return()
+
+  # type       | run_if         | measure  | inference
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |FALSE     |Default
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors
+  # ----|---------------|----------------------|-------
+  # true|generative     |NA                    |0.1
+  #
+  # All weights and errors are random, but possibly valid, numbers
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    )
+  )
+  experiments <- list(experiment)
+  check_experiments(experiments)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    model_select_params = as.list(seq(1, 314)),
+    inference_params = create_inference_params(
+      mcmc = beautier::create_mcmc(chain_length = 10000, store_every = 1000)
+    ),
+    experiments = experiments,
+    error_measure_params = create_error_measure_params(
+      burn_in_fraction = 0.0,
+      error_function = get_gamma_error_function()
+    )
+  )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
+  testthat::expect_true(is.na(errors$inference_model_weight))
+  testthat::expect_true(!is.na(errors$error_1))
+  testthat::expect_true(errors$error_1 >= 0.0)
+})
+
 test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
@@ -107,15 +157,12 @@ test_that("most_evidence", {
   # ----|---------------|----------------------|-------
   # true|candidate      |0.6                   |0.1
   #
-  # as only the best candidate is run
+  # as only the best candidate is run.
   #
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(
-    root_sequence = "acgt",
-    mutation_rate = 0.01
-  )
+
   experiment_yule <- create_experiment(
     model_type = "candidate",
     run_if = "best_candidate",
@@ -140,7 +187,7 @@ test_that("most_evidence", {
 
 
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
+    alignment_params = create_test_alignment_params(),
     model_select_params = as.list(seq(1, 314)),
     experiments = experiments
   )
@@ -152,13 +199,6 @@ test_that("most_evidence", {
   )
 
   expect_true("candidate" %in% errors$inference_model)
-  expect_true("generative" %in% errors$inference_model)
-
-  # Errors more than zero
-  col_first_error <- which(colnames(errors) == "error_1")
-  col_last_error <- ncol(errors)
-  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
-
   expect_true(file.exists(pir_params$evidence_filename))
 
   skip("Issue 89, #89")
@@ -188,10 +228,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(
-    root_sequence = "acgt",
-    mutation_rate = 0.01
-  )
+
   experiment_generative <- create_experiment(
     model_type = "generative",
     run_if = "always",
@@ -216,7 +253,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 
 
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
+    alignment_params = create_test_alignment_params(),
     model_select_params = as.list(seq(1, 314)),
     experiments = experiments
   )
@@ -228,21 +265,18 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   )
 
 
-  expect_true("most_evidence" %in% errors$inference_model)
+  expect_true("generative" %in% errors$inference_model)
+  expect_true("candidate" %in% errors$inference_model)
   expect_true(is.na(errors$inference_model_weight[1]))
-  expect_true(is.numeric(errors$inference_model_weight[2]))
+  expect_true(all(errors$error_1 >= 0.0))
 
-  # Errors more than zero
-  col_first_error <- which(colnames(errors) == "error_1")
-  col_last_error <- ncol(errors)
-  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
-
+  skip("Issue 89, #89")
+  expect_false(is.na(errors$inference_model_weight[2]))
 })
 
 test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
-  skip("Issue 69, #69")
 
   # type       | run_if         | measure  | inference
   #            |                | evidence | model
@@ -262,38 +296,50 @@ test_that("generative and most_evidence, generative in most_evidence", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_alignment_params(mutation_rate = 0.01)
-  model_select_params <- list(
-    create_gen_model_select_param(
-      alignment_params = alignment_params
+
+  experiment_generative <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_yule_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
-    create_best_model_select_param(
-      site_models = list(alignment_params$site_model),
-      clock_models = list(alignment_params$clock_model),
-      tree_priors = list(beautier::create_bd_tree_prior())
-    )
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  inference_params <- create_inference_params(
-    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+  experiment_bd <- create_experiment(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_bd_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
+  experiments <- list(experiment_generative, experiment_bd)
+
 
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
-    model_select_params = model_select_params,
-    inference_params = inference_params
+    alignment_params = create_test_alignment_params(),
+    model_select_params = as.list(seq(1, 314)),
+    experiments = experiments
   )
+
+  # TODO: fix warning, Issue 88, #88
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 
-  expect_true("most_evidence" %in% errors$inference_model)
-  expect_true(is.numeric(errors$inference_model_weight[1]))
 
-  # Errors more than zero
-  col_first_error <- which(colnames(errors) == "error_1")
-  col_last_error <- ncol(errors)
-  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  expect_true("generative" %in% errors$inference_model)
+  expect_true("candidate" %in% errors$inference_model)
+  expect_true(all(errors$error_1 >= 0.0))
+
+  skip("Issue 89, #89")
+  expect_false(is.na(errors$inference_model_weight[1]))
+  expect_false(is.na(errors$inference_model_weight[2]))
 
 })
 

@@ -1,7 +1,4 @@
 #' Create the parameters for the alignment simulation.
-#' The site model and clock models will be used and
-#' their combination will be called the generative model
-#' of the alignment
 #' @inheritParams default_params_doc
 #' @param rng_seed the random number generator seed as used in the
 #'   simulation of an alignment
@@ -35,4 +32,14 @@ create_alignment_params <- function(
   )
   check_alignment_params(alignment_params = alignment_params) # nolint pirouette function
   alignment_params
+}
+
+#' Create testing parameters for the alignment simulation.
+#' @inheritParams default_params_doc
+#' @return a list of alignment parameters
+#' @export
+#' @author Richel J.C. Bilderbeek
+create_test_alignment_params <- function(
+) {
+  create_alignment_params(root_sequence = "acgt", mutation_rate = 0.1)
 }

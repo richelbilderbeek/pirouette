@@ -2,10 +2,7 @@
 % Please edit documentation in R/create_alignment_params.R
 \name{create_alignment_params}
 \alias{create_alignment_params}
-\title{Create the parameters for the alignment simulation.
-The site model and clock models will be used and
-their combination will be called the generative model
-of the alignment}
+\title{Create the parameters for the alignment simulation.}
 \usage{
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
@@ -35,9 +32,6 @@ a list of alignment parameters
 }
 \description{
 Create the parameters for the alignment simulation.
-The site model and clock models will be used and
-their combination will be called the generative model
-of the alignment
 }
 \examples{
 n_base_pairs <- 4
