@@ -46,7 +46,7 @@ pir_run <- function(
     )
   )
 ) {
-  if (length(model_select_params) != 314) { # nolint use new interface
+  if (length(pir_params$model_select_params) != 314) { # nolint use new interface
     stop("deprecated, #90")
   }
 
