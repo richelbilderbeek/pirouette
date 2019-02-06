@@ -20,10 +20,6 @@ check_pir_params <- function(
   pir_params,
   max_evidence_epsilon = 1e-4
 ) {
-  if ("model_select_params" %in% names(pir_params)) {
-    stop("deprecated, #90")
-  }
-
   tryCatch(
     check_alignment_params(pir_params$alignment_params), # nolint pirouette function
     error = function(e) {
@@ -56,7 +52,7 @@ check_pir_params <- function(
         "parameters.\n",
         "Tip: use 'create_error_measure_params'\n",
         "Error message: ", e$message, "\n",
-        "Actual value: ", pir_params$model_select_params
+        "Actual value: ", pir_params$error_measure_params
       )
       stop(msg)
     }

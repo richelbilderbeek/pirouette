@@ -156,10 +156,6 @@
 #' @param model_select_param one parameter set to select an inference model
 #'   (a combination of site model, clock model and tree prior),
 #'   as can be created by \link{create_model_select_param}
-#' @param model_select_params a list of one or more parameter sets
-#'   to select an inference model
-#'   (a combination of site model, clock model and tree prior),
-#'   as can be created by \link{create_model_select_param}
 #' @param model_type type of inference model supplied for an experiment.
 #'   Possible values:
 #'   \itemize{
@@ -291,7 +287,6 @@ default_params_doc <- function(
   method,
   model_selection,
   model_select_param,
-  model_select_params,
   model_type,
   mrca_prior,
   mu,

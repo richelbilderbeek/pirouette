@@ -4,16 +4,6 @@
 #' an alignment is created using a known site model and clock model,
 #' as given by \code{alignment_params}.
 #'
-#' From each of the one or more model selection parameters in
-#' \code{model_select_params}, one inference model is concluded.
-#' One such parameter setup is to use the generative site and clock model
-#' the alignment is created with (\code{"generative"}), or use the model
-#' that has the most evidence (\code{"most evidence"}).
-#'
-#' Each inference model is used to run BEAST2 and measures the
-#' difference between the known/true/given phylogeny and the
-#' ones created by BEAST2.
-#'
 #' @inheritParams default_params_doc
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets.
@@ -38,7 +28,6 @@ pir_run <- function(
   # Run for the true tree
   twinning_params <- pir_params$twinning_params
   alignment_params <- pir_params$alignment_params
-  model_select_params <- pir_params$model_select_params
   inference_params <- pir_params$inference_params
   experiments <- pir_params$experiments
   error_measure_params <- pir_params$error_measure_params
@@ -124,14 +113,7 @@ pir_run_tree <- function(
   # Measure the errors per inference model
   errorses <- list() # Gollumese plural, a list of errors
   for (i in seq_along(selected_ones)) {
-    # Can be an inference_model (old skool) or experiment (new skool)
-    if (length(model_select_params) != 314) { # nolint use new interface
-      inference_model <- selected_ones[[i]]
-      experiment <- NA
-    } else {
-      experiment <- selected_ones[[i]]
-      inference_model <- NA
-    }
+    experiment <- selected_ones[[i]]
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
@@ -168,27 +150,20 @@ pir_run_tree <- function(
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
-    if (length(model_select_params) != 314) {
-      # Old skool
-      stop("Deprecated 'pir_run_tree', #90")
-    } else {
-      # New skool
-      experiment <- selected_one
-      check_experiment(experiment)
-      df$inference_model[i] <- experiment$model_type
-      df$inference_model_weight[i] <- NA
-      df$site_model[i] <- experiment$inference_model$site_model$name
-      df$clock_model[i] <- experiment$inference_model$clock_model$name
-      df$tree_prior[i] <- experiment$inference_model$tree_prior$name
-      df$beast2_input_filename[i] <- experiment$beast2_options$input_filename
-      df$beast2_output_log_filename[i] <-
-        experiment$beast2_options$output_log_filename
-      df$beast2_output_trees_filename[i] <-
-        experiment$beast2_options$output_trees_filenames
-      df$beast2_output_state_filename[i] <-
-        experiment$beast2_options$output_state_filename
-    }
-
+    experiment <- selected_one
+    check_experiment(experiment)
+    df$inference_model[i] <- experiment$model_type
+    df$inference_model_weight[i] <- NA
+    df$site_model[i] <- experiment$inference_model$site_model$name
+    df$clock_model[i] <- experiment$inference_model$clock_model$name
+    df$tree_prior[i] <- experiment$inference_model$tree_prior$name
+    df$beast2_input_filename[i] <- experiment$beast2_options$input_filename
+    df$beast2_output_log_filename[i] <-
+      experiment$beast2_options$output_log_filename
+    df$beast2_output_trees_filename[i] <-
+      experiment$beast2_options$output_trees_filenames
+    df$beast2_output_state_filename[i] <-
+      experiment$beast2_options$output_state_filename
     from_col_idx <- which(colnames(df) == "error_1")
     df[i, from_col_idx:ncol(df)] <- nltts
   }

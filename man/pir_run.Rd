@@ -24,17 +24,6 @@ From a phylogeny of (un)known speciation model,
 an alignment is created using a known site model and clock model,
 as given by \code{alignment_params}.
 }
-\details{
-From each of the one or more model selection parameters in
-\code{model_select_params}, one inference model is concluded.
-One such parameter setup is to use the generative site and clock model
-the alignment is created with (\code{"generative"}), or use the model
-that has the most evidence (\code{"most evidence"}).
-
-Each inference model is used to run BEAST2 and measures the
-difference between the known/true/given phylogeny and the
-ones created by BEAST2.
-}
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno
 }
