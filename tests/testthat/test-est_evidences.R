@@ -1,6 +1,6 @@
 context("test-est_evidences")
 
-test_that("old skool versus new skool", {
+test_that("use", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
@@ -38,7 +38,7 @@ test_that("old skool versus new skool", {
 
   df <- est_evidences(
     fasta_filename = fasta_filename,
-    model_select_params = as.list(seq(1, 314)),
+    model_select_params = as.list(seq(1, 314)), # deprecated, #90
     experiments = experiments
   )
   expect_true(all(!is.na(df$marg_log_lik)))

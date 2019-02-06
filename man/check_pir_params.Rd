@@ -4,7 +4,7 @@
 \alias{check_pir_params}
 \title{Checks if the argument is a valid \link{pirouette} parameter set.}
 \usage{
-check_pir_params(pir_params, max_evidence_epsilon = 0.0001)
+check_pir_params(pir_params, max_evidence_epsilon = 1e-04)
 }
 \arguments{
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
