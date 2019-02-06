@@ -15,7 +15,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   clock_model_name, crown_age, do_measure_evidence, epsilon,
   error_function, error_measure_params, est_evidence_mcmc,
   evidence_epsilon, evidence_filename, experiment, experiments,
-  fasta_filename, filename, folder_name, inference_model, inference_params,
+  fasta_filename, filename, folder_name, inference_model,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
   marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
   mbd_tree, mcmc, method, model_selection, model_select_param, model_type,
@@ -188,11 +188,6 @@ as can be created by \link{create_experiment}}
 \item{inference_model}{an inference model, which is a combination
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
-
-\item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link[beautier]{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
 
 \item{init_speciation_rate}{a speciation rate}
 

@@ -123,10 +123,6 @@
 #' @param inference_model an inference model, which is a combination
 #'   of site model, clock model, tree prior and BEAST2 input and
 #'   input filenames.
-#' @param inference_params one set of parameters for the Bayesian inference,
-#'   as can be created by \link[beautier]{create_inference_params}.
-#'   The Bayesian inference is handled by the \link[babette]{babette}
-#'   R package, that calls the phylogenetic tool \code{BEAST2}.
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
@@ -273,7 +269,6 @@ default_params_doc <- function(
   filename,
   folder_name,
   inference_model,
-  inference_params,
   init_speciation_rate,
   init_extinction_rate,
   lambda,
