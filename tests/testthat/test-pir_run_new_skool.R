@@ -4,16 +4,16 @@ test_that("generative", {
 
   if (!beastier::is_on_travis()) return()
 
-  # type       | run_if         | measure  | inference
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # generative | always         |FALSE     |Default
+  # generative | always         |FALSE     |Default                             # nolint this is no commented code
   #
   # should result in:
   #
-  # tree|inference_model|inference_model_weight|errors
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
   # ----|---------------|----------------------|-------
-  # true|generative     |NA                    |0.1
+  # true|generative     |NA                    |0.1                             # nolint this is no commented code
   #
   # All weights and errors are random, but possibly valid, numbers
 
@@ -92,16 +92,16 @@ test_that("generative, using gamma statistic", {
 
   if (!beastier::is_on_travis()) return()
 
-  # type       | run_if         | measure  | inference
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # generative | always         |FALSE     |Default
+  # generative | always         |FALSE     |Default                             # nolint this is no commented code
   #
   # should result in:
   #
-  # tree|inference_model|inference_model_weight|errors
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
   # ----|---------------|----------------------|-------
-  # true|generative     |NA                    |0.1
+  # true|generative     |NA                    |0.1                             # nolint this is no commented code
   #
   # All weights and errors are random, but possibly valid, numbers
 
@@ -145,17 +145,17 @@ test_that("most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
-  # type       | run_if         | measure  | inference
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # candidate  | best_candidate |TRUE      |Yule
-  # candidate  | best_candidate |TRUE      |Birth-Death
+  # candidate  | best_candidate |TRUE      |Yule                                # nolint this is no commented code
+  # candidate  | best_candidate |TRUE      |Birth-Death                         # nolint this is no commented code
   #
   # should result in:
   #
-  # tree|inference_model|inference_model_weight|errors
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
   # ----|---------------|----------------------|-------
-  # true|candidate      |0.6                   |0.1
+  # true|candidate      |0.6                   |0.1                             # nolint this is no commented code
   #
   # as only the best candidate is run.
   #
@@ -210,18 +210,18 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   if (!beastier::is_on_travis()) return()
   skip("Issue 69, #69")
 
-  # type       | run_if         | measure  | inference
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # generative | always         |FALSE     |Yule
-  # candidate  | best_candidate |TRUE      |Birth-Death
+  # generative | always         |FALSE     |Yule                                # nolint this is no commented code
+  # candidate  | best_candidate |TRUE      |Birth-Death                         # nolint this is no commented code
   #
   # should result in:
   #
-  # tree|inference_model|inference_model_weight|errors
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
   # ----|---------------|----------------------|-------
-  # true|generative     |NA                    |0.1
-  # true|candidate      |1.0                   |0.2
+  # true|generative     |NA                    |0.1                             # nolint this is no commented code
+  # true|candidate      |1.0                   |0.2                             # nolint this is no commented code
   #
   # as also the best (and only) candidate is run
   #
@@ -278,18 +278,18 @@ test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
-  # type       | run_if         | measure  | inference
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # generative | always         |TRUE      |Yule
-  # candidate  | best_candidate |TRUE      |Birth-Death
+  # generative | always         |TRUE      |Yule                                # nolint this is no commented code
+  # candidate  | best_candidate |TRUE      |Birth-Death                         # nolint this is no commented code
   #
   # should result in:
   #
-  # tree|inference_model|inference_model_weight|errors
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
   # ----|---------------|----------------------|-------
-  # true|generative     |0.4                   |0.1
-  # true|candidate      |0.6                   |0.2
+  # true|generative     |0.4                   |0.1                             # nolint this is no commented code
+  # true|candidate      |0.6                   |0.2                             # nolint this is no commented code
   #
   # as also the best (and only) candidate is run
   #
@@ -348,17 +348,17 @@ test_that("generative with twin", {
   if (!beastier::is_on_travis()) return()
   skip("Issue 69, #69")
 
-  # type       | run_if         | measure  | inference
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # generative | always         |FALSE     |Default
+  # generative | always         |FALSE     |Default                             # nolint this is no commented code
   #
   # should result in:
   #
-  # tree|inference_model|inference_model_weight|errors
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
   # ----|---------------|----------------------|-------
-  # true|generative     |NA                    |0.1
-  # twin|generative     |NA                    |0.1
+  # true|generative     |NA                    |0.1                             # nolint this is no commented code
+  # twin|generative     |NA                    |0.1                             # nolint this is no commented code
   #
   # All weights and errors are random, but possibly valid, numbers
 
