@@ -178,6 +178,7 @@ pir_run_tree <- function(
     df$tree[i] <- tree_type
     if (length(model_select_params) != 314) {
       # Old skool
+      stop("Deprecated 'pir_run_tree', #90")
       model_select_param <- model_select_params[[i]]
       inference_model <- selected_one
       check_old_skool_inference_model(inference_model)
