@@ -20,9 +20,8 @@ test_that("use", {
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
-
-  # 'phylo_to_errors' expects the alignment to be present
   testit::assert(file.exists(alignment_params$fasta_filename))
+
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
