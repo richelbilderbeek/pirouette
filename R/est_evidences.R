@@ -92,6 +92,7 @@ est_evidences_old_skool <- function(
   fasta_filename,
   model_select_params
 ) {
+  stop("Deprecated use of 'est_evidences_old_skool', #90")
   testit::assert(file.exists(fasta_filename))
 
   # Estimate marginal likelihoods if needed
