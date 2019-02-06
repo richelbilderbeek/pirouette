@@ -84,25 +84,4 @@ est_evidences_old_skool <- function(
   model_select_params
 ) {
   stop("Deprecated use of 'est_evidences_old_skool', #90")
-  testit::assert(file.exists(fasta_filename))
-
-  # Estimate marginal likelihoods if needed
-  marg_liks <- NULL
-  # Use old interface
-  for (model_select_param in model_select_params) {
-    if ("most_evidence" %in% model_select_param$type) {
-      marg_liks <- mcbette::est_marg_liks(
-        fasta_filename = fasta_filename,
-        site_models = model_select_param$site_models,
-        clock_models = model_select_param$clock_models,
-        tree_priors = model_select_param$tree_priors,
-        epsilon = model_select_param$epsilon,
-        verbose = model_select_param$verbose
-      )
-      utils::write.csv(
-        x = marg_liks, file = model_select_param$marg_lik_filename
-      )
-    }
-  }
-  marg_liks
 }
