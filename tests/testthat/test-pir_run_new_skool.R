@@ -293,6 +293,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
+    beast2_options = create_beast2_options(rng_seed = 42),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- create_experiment(
@@ -303,6 +304,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
+    beast2_options = create_beast2_options(rng_seed = 43),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_generative, experiment_bd)
