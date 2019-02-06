@@ -1,4 +1,4 @@
-context("test-select_inference_models")
+context("test-select_experiments")
 
 test_that("generative", {
 
@@ -8,8 +8,7 @@ test_that("generative", {
   experiments <- list(experiment)
 
 
-  selected <- select_inference_models(
-    model_select_params = as.list(seq(1, 314)),
+  selected <- select_experiments(
     experiments = experiments
   )
   expect_equal(1, length(selected))
@@ -37,9 +36,8 @@ test_that("most_evidence", {
     )
   )
   experiments <- list(experiment_yule, experiment_bd)
-  inference_models <- select_inference_models(
+  inference_models <- select_experiments(
     experiments = experiments,
-    model_select_params = as.list(seq(1, 314)),
     marg_liks = marg_liks
   )
 

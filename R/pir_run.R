@@ -120,7 +120,7 @@ pir_run_tree <- function(
 
   # Select the models (old skool) or experiments (new skool)
   # to do inference with
-  selected_ones <- select_inference_models(
+  selected_ones <- select_experiments(
     alignment_params = alignment_params, # Both need alignment file
     model_select_params = model_select_params, # To pick which one
     experiments = experiments,
