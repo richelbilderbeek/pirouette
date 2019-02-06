@@ -27,12 +27,23 @@ test_that("get_twin_models", {
   )
 })
 
+test_that("get_twin_methods", {
+  expect_true(
+    length(get_twin_methods()) > 0 # nolint internal function
+  )
+  expect_true(
+    is.character(get_twin_methods()) # nolint internal function
+  )
+})
+
 test_that("bd_phylo_2_l_table", {
 
   phylogeny <- load_tree(tree_model = "mbd", seed = 1)
+  twinning_params <- create_twinning_params()
+  twinning_params$rng_seed <- 1
   bd_sim <- create_bd_tree(
     phylogeny = phylogeny,
-    seed = 1
+    twinning_params = twinning_params
   )
   bd_tree <- bd_sim$tree
   bd_l_matrix <- bd_sim$l_matrix

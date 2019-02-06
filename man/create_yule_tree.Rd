@@ -4,12 +4,14 @@
 \alias{create_yule_tree}
 \title{Create a twin tree from a phylogeny using a Yule process}
 \usage{
-create_yule_tree(phylogeny, seed)
+create_yule_tree(phylogeny, twinning_params)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{seed}{a random number generator seed}
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 }
 \value{
 a twin Yule tree of class \code{phylo},

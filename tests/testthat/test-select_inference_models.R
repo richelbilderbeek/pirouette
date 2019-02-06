@@ -2,7 +2,9 @@ context("test-select_inference_models")
 
 test_that("generative", {
 
-  alignment_params <- create_alignment_params()
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = 4)
+  )
   model_select_params <- list(
       create_gen_model_select_param(
       alignment_params = alignment_params
@@ -24,7 +26,9 @@ test_that("generative", {
 
 test_that("most_evidence", {
 
-  alignment_params <- create_alignment_params()
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = 4)
+  )
   model_select_params <- list(create_best_model_select_param())
 
   # Fake a marg_liks
@@ -56,7 +60,9 @@ test_that("most_evidence", {
 
 test_that("both: first generative, then most_evidence", {
 
-  alignment_params <- create_alignment_params()
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = 4)
+  )
   model_select_params <- list(
     create_gen_model_select_param(
       alignment_params = alignment_params

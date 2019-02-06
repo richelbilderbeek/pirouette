@@ -9,10 +9,12 @@ dist_nodes <- function(tree, precision = 12) {
 
 test_that("tree and twin tree have 3 taxa", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     expect_equal(ape::Ntip(tree), ape::Ntip(twin_tree))
   }
@@ -25,10 +27,12 @@ test_that("node distances should remain in the same order, 3 taxa", {
   #  - taxa that are farthest, should remain farthest in the twin tree
 
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     n_tips <- ape::Ntip(tree)
     # Only care about nodes that are tips
@@ -42,10 +46,12 @@ test_that("node distances should remain in the same order, 3 taxa", {
 test_that("use", {
 
   tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     expect_equal(ape::Ntip(tree), ape::Ntip(twin_tree))
   }
@@ -58,10 +64,12 @@ test_that("node distances should remain in the same order, 4 taxa, easy", {
   #  - taxa that are farthest, should remain farthest in the twin tree
 
   tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     n_tips <- ape::Ntip(tree)
     # Only care about node distances between tips
@@ -75,10 +83,12 @@ test_that("node distances should remain in the same order, 4 taxa, easy", {
 test_that("node distances should remain in the same order, 4 taxa, hard", {
 
   tree <- ape::read.tree(text = "((A:2, (B:1, C:1):1):1, D:3);")
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     n_tips <- ape::Ntip(tree)
     # Only care about node distances between tips
@@ -92,10 +102,12 @@ test_that("node distances should remain in the same order, 4 taxa, hard", {
 test_that("node distances should remain in the same order, 4 taxa, harder", {
 
   tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     n_tips <- ape::Ntip(tree)
     # Only care about node distances between tips
@@ -123,10 +135,12 @@ test_that("node distances should remain in the same order, 4 taxa", {
   # Question is: why does the test think something is wrong?
   tree <- ape::read.tree(text = "(t2:1.9827033,((t4:0.2338486712,t3:0.2338486712):0.4930762889,t1:0.7269249601):1.25577834);") # nolint indeed this is a long line, but it is what the brute-force below generated
   # if you want to plot: ape::plot.phylo(tree)
+  twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
       phylogeny = tree,
-      twin_model = twin_model
+      twinning_params = twinning_params
     )
     # if you want to plot: ape::plot.phylo(twin_tree)
     n_tips <- ape::Ntip(tree)
@@ -147,11 +161,12 @@ test_that("node distances should remain in the same order, brute-force", {
   for (i in seq(1, max_i)) {
     set.seed(i)
     tree <- beastier:::create_random_phylogeny(n_taxa = 4)
+    twinning_params <- create_twinning_params()
     for (twin_model in get_twin_models()) {
-      # if you want to plot: ape::write.tree(tree); ape::plot.phylo(tree)
+      twinning_params$twin_model <- twin_model
       twin_tree <- create_twin_tree(
         phylogeny = tree,
-        twin_model = twin_model
+        twinning_params = twinning_params
       )
       n_tips <- ape::Ntip(tree)
       # Only care about nodes that are tips
@@ -164,12 +179,32 @@ test_that("node distances should remain in the same order, brute-force", {
   }
 })
 
+test_that("all methods are working", {
+
+  if (!beastier::is_on_ci()) return()
+
+  tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
+  twinning_params <- create_twinning_params()
+  for (method in get_twin_methods()) {
+    twinning_params$method <- method
+    twinning_params$n_replicas <- 10
+    expect_silent(
+      create_twin_tree(
+        phylogeny = tree,
+        twinning_params = twinning_params
+      )
+    )
+  }
+})
+
 test_that("abuse", {
   tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
+  twinning_params <- create_twinning_params()
+  twinning_params$twin_model <- "nonsense"
   expect_error(
     create_twin_tree(
       phylogeny = tree,
-      twin_model = "nonsense"
+      twinning_params = twinning_params
     )
   )
 })

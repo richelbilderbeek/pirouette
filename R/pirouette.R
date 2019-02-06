@@ -6,6 +6,7 @@
 #' speciation model, for example the Protracted Birth-Death
 #' or Multiple-Birth-Death models. 'pirouette' is presented in the article
 #' (in press) "pirouette: the error BEAST2 makes in inferring a phylogeny"
+#' authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
 #'
 #'
 #' @seealso
