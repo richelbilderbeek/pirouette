@@ -153,6 +153,7 @@ errors <- pir_run(
   phylogeny = true_phylogeny,
   pir_params = pir_params
 )
+
 ```
 
 Here we show the errors as a table:
