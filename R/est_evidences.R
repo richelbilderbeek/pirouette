@@ -10,7 +10,7 @@ est_evidences <- function(
   evidence_filename = tempfile(".csv")
 ) {
   testit::assert(file.exists(fasta_filename))
-  testit::assert(length(pir_params$model_select_params) == 314) # #90
+  testit::assert(length(model_select_params) == 314) # #90
 
   # Estimate marginal likelihoods if needed
   marg_liks <- NULL

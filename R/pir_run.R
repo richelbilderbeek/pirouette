@@ -61,6 +61,10 @@ pir_run <- function(
     twin_alignment_params <- alignment_params
     twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
 
+    # TODO:
+    # pir_params$evidence_filename
+    # should be
+    #
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
@@ -97,7 +101,7 @@ pir_run_tree <- function(
 
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
-  testit::assert(length(pir_params$model_select_params) == 314) # #90
+  testit::assert(length(model_select_params) == 314) # #90
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     phylogeny = phylogeny,
