@@ -190,7 +190,7 @@ of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
 \item{inference_params}{one set of parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
+as can be created by \link[beautier]{create_inference_params}.
 The Bayesian inference is handled by the \link[babette]{babette}
 R package, that calls the phylogenetic tool \code{BEAST2}.}
 

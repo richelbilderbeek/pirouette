@@ -100,16 +100,16 @@ pir_run_tree <- function(
 
   # Select the models (old skool) or experiments (new skool)
   # to do inference with
-  selected_ones <- select_experiments(
+  experiments <- select_experiments(
     experiments = experiments,
     marg_liks = marg_liks # For most evidence
   )
-  testit::assert(length(selected_ones) > 0)
+  testit::assert(length(experiments) > 0)
 
   # Measure the errors per inference model
   errorses <- list() # Reduplicated plural, a list of errors
-  for (i in seq_along(selected_ones)) {
-    experiment <- selected_ones[[i]]
+  for (i in seq_along(experiments)) {
+    experiment <- experiments[[i]]
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
@@ -119,10 +119,10 @@ pir_run_tree <- function(
     )
   }
   testit::assert(length(errorses) > 0)
-  testit::assert(length(selected_ones) == length(errorses))
+  testit::assert(length(experiments) == length(errorses))
 
   # Put inference models and errors a data frame
-  n_rows <- length(selected_ones)
+  n_rows <- length(experiments)
   df <- data.frame(
     tree = rep(NA, n_rows),
     inference_model = rep(NA, n_rows),
@@ -139,12 +139,11 @@ pir_run_tree <- function(
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
   df[, error_col_names] <- NA
 
-  for (i in seq_along(selected_ones)) {
-    selected_one <- selected_ones[[i]]
+  for (i in seq_along(experiments)) {
+    experiment <- experiments[[i]]
     nltts <- errorses[[i]]
 
     df$tree[i] <- tree_type
-    experiment <- selected_one
     check_experiment(experiment)
     df$inference_model[i] <- experiment$model_type
     df$inference_model_weight[i] <- NA
@@ -164,12 +163,15 @@ pir_run_tree <- function(
 
   # Add evidence (marginal likelihoods) in columns
   if (!is.null(marg_liks)) {
-    for (i in seq_along(selected_ones)) {
-      inference_model <- selected_ones[[i]]
+    for (i in seq_along(experiments)) {
+      experiment <- experiments[[i]]
       marg_liks_row <- which(
-        marg_liks$site_model_name == inference_model$site_model$name &
-        marg_liks$clock_model_name == inference_model$clock_model$name &
-        marg_liks$tree_prior_name == inference_model$tree_prior$name
+        marg_liks$site_model_name ==
+          experiment$inference_model$site_model$name &
+        marg_liks$clock_model_name ==
+          experiment$inference_model$clock_model$name &
+        marg_liks$tree_prior_name ==
+          experiment$inference_model$tree_prior$name
       )
       # if there is no row, 'which' returns a zero-length vector
       # Happens when the generative model is not part of the models
