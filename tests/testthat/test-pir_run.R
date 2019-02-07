@@ -455,14 +455,34 @@ test_that("generative with twin", {
     experiments = experiments,
     twinning_params = twinning_params
   )
+
+  # Files not yet created
+  to_twin_filename <- function(x) x # stub
+  if (1 == 2) {
+    # Issue 95, #95
+    testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
+  }
+
+  filenames <- c(
+    pir_params$alignment_params$fasta_filename,
+    pir_params$experiments[[1]]$beast2_options$input_filename,
+    pir_params$experiments[[1]]$beast2_options$output_log_filename,
+    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
+    pir_params$experiments[[1]]$beast2_options$output_state_filename,
+    to_twin_filename(pir_params$experiments[[1]]$beast2_options$input_filename),
+    to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_log_filename),
+    to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames),
+    to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_state_filename)
+  )
+  testit::assert(all(!file.exists(filenames)))
+
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 
   # Files created
-  testit::assert(file.exists(twinning_params$twin_tree_filename))
-  testit::assert(file.exists(twinning_params$twin_alignment_filename))
+  testit::assert(all(file.exists(filenames)))
 
   # Return value
   expect_true("tree" %in% names(errors))
