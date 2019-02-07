@@ -37,23 +37,24 @@ pir_run <- function(
 
   # Run for the twin tree
   if (!beautier:::is_one_na(pir_params$twinning_params)) {
-    twinning_params <- pir_params$twinning_params
-    twin_tree <- create_twin_tree(phylogeny) # nolint beautier function
-    ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
-    twin_alignment_params <- pir_params$alignment_params
-    twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
+    # Create and save twin tree
+    twin_tree <- create_twin_tree(phylogeny) # nolint pirouette function
+    ape::write.tree(
+      phy = twin_tree,
+      file = pir_params$twinning_params$twin_tree_filename
+    )
 
-    # TODO:
-    # pir_params$evidence_filename
-    # should be
-    #
+    # Let the (twin) alignment be saved with the twin filename
+    pir_params$alignment_params$fasta_filename <-
+      pir_params$twinning_params$twin_alignment_filename
+
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
-      alignment_params = twin_alignment_params,
+      alignment_params = pir_params$alignment_params, # Modified above
       experiments = pir_params$experiments,
       error_measure_params = pir_params$error_measure_params,
-      evidence_filename = pir_params$evidence_filename
+      evidence_filename = pir_params$twinning_params$twin_evidence_filename
     )
     df <- rbind(df, df_twin)
   }
