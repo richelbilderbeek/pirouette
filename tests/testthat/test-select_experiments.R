@@ -18,12 +18,14 @@ test_that("use, most_evidence", {
   marg_liks$weight <- c(0.9, 0.1) # in favor of Yule
 
   experiment_yule <- create_experiment(
+    model_type = "candidate",
     run_if = "best_candidate",
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior()
     )
   )
   experiment_bd <- create_experiment(
+    model_type = "candidate",
     run_if = "best_candidate",
     inference_model = create_inference_model(
       tree_prior = create_bd_tree_prior()
