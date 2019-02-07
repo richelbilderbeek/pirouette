@@ -36,6 +36,9 @@ tree will be saved to}
 
 \item{twin_alignment_filename}{name of the FASTA file the twin
 alignment will be saved to}
+
+\item{twin_evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods) of the twin tree}
 }
 \value{
 a twinning parameter set

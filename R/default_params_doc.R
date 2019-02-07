@@ -212,6 +212,8 @@
 #' @param tree_filename name of the phylogeny file
 #' @param twin_alignment_filename name of the FASTA file the twin
 #'   alignment will be saved to
+#' @param twin_evidence_filename filename to store the estimated
+#'   evidences (aka marginal likelihoods) of the twin tree
 #' @param twin_model the model you want to use to generate the twin tree
 #' @param twin_tree_filename  name of the (\code{.newick}) file the twin
 #'   tree will be saved to
@@ -310,6 +312,7 @@ default_params_doc <- function(
   tree_prior_name,
   tree_type,
   twin_alignment_filename,
+  twin_evidence_filename,
   twin_model,
   twin_tree_filename,
   twinning_params,

@@ -25,8 +25,8 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   seed, sequence_length, sim_pars, sim_phylo, site_model, site_models,
   site_model_name, sub_chain_length, tree, tree_filename, tree_model,
   tree_prior, tree_priors, tree_prior_name, tree_type,
-  twin_alignment_filename, twin_model, twin_tree_filename, twinning_params,
-  type, verbose)
+  twin_alignment_filename, twin_evidence_filename, twin_model,
+  twin_tree_filename, twinning_params, type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -323,6 +323,9 @@ phylogeny, and \code{twin} for its twin tree}
 
 \item{twin_alignment_filename}{name of the FASTA file the twin
 alignment will be saved to}
+
+\item{twin_evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods) of the twin tree}
 
 \item{twin_model}{the model you want to use to generate the twin tree}
 
