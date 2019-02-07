@@ -259,6 +259,7 @@ test_that("most_evidence", {
   # Files not yet created
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
+    pir_params$evidence_filename,
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
@@ -465,6 +466,7 @@ test_that("generative with twin", {
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
+    pir_params$evidence_filename,
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
@@ -562,6 +564,7 @@ test_that("most_evidence, with twinning", {
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
+    pir_params$evidence_filename,
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
