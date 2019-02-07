@@ -14,8 +14,7 @@ select_experiments <- function(
     if (experiment$run_if == "always") {
       selected_experiments[[index]] <- experiment
       index <- index + 1
-    }
-    if (experiment$run_if == "best_candidate" &&
+    } else if (experiment$run_if == "best_candidate" &&
         is_best_candidate(experiment = experiment, marg_liks = marg_liks)) {
       selected_experiments[[index]] <- experiment
       index <- index + 1
