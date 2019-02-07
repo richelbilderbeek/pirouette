@@ -469,10 +469,20 @@ test_that("generative with twin", {
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
     pir_params$experiments[[1]]$beast2_options$output_state_filename,
-    to_twin_filename(pir_params$experiments[[1]]$beast2_options$input_filename),
-    to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_log_filename),
-    to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames),
-    to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_state_filename)
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$input_filename
+    ),
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$output_log_filename
+    ),
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$output_trees_filenames
+    ),
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$output_state_filename
+    ),
+    pir_params$twinning_params$twin_tree_filename,
+    pir_params$twinning_params$twin_alignment_filename
   )
   testit::assert(all(!file.exists(filenames)))
 
@@ -489,4 +499,100 @@ test_that("generative with twin", {
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
   expect_true("twin" %in% errors$tree)
+})
+
+
+test_that("most_evidence, with twinning", {
+
+  if (!beastier::is_on_travis()) return()
+
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # candidate  | best_candidate |TRUE      |Yule                                # nolint this is no commented code
+  # candidate  | best_candidate |TRUE      |Birth-Death                         # nolint this is no commented code
+  #
+  # should result in:
+  #
+  # tree|inference_model|inference_model_weight|errors                          # nolint this is no commented code
+  # ----|---------------|----------------------|-------
+  # true|candidate      |0.6                   |0.2                             # nolint this is no commented code
+  # twin|candidate      |0.7                   |0.1                             # nolint this is no commented code
+  #
+  # as only the best candidate and its twin are run.
+  #
+  # All weights and errors are random, but possibly valid, numbers
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  experiment_yule <- create_experiment(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_yule_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+  )
+  experiment_bd <- create_experiment(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_bd_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+  )
+  experiments <- list(experiment_yule, experiment_bd)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments,
+    twinning_params = create_twinning_params()
+  )
+
+  # Files not yet created
+  to_twin_filename <- function(x) x # stub
+  if (1 == 2) {
+    # Issue 95, #95
+    testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
+  }
+
+  filenames <- c(
+    pir_params$alignment_params$fasta_filename,
+    pir_params$experiments[[1]]$beast2_options$input_filename,
+    pir_params$experiments[[1]]$beast2_options$output_log_filename,
+    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
+    pir_params$experiments[[1]]$beast2_options$output_state_filename,
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$input_filename
+    ),
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$output_log_filename
+    ),
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$output_trees_filenames
+    ),
+    to_twin_filename(
+      pir_params$experiments[[1]]$beast2_options$output_state_filename
+    ),
+    pir_params$twinning_params$twin_tree_filename,
+    pir_params$twinning_params$twin_alignment_filename
+  )
+  testit::assert(all(!file.exists(filenames)))
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
+  # Files created
+  testit::assert(all(file.exists(filenames)))
+
+  expect_true("candidate" %in% errors$inference_model)
+  expect_true(file.exists(pir_params$evidence_filename))
+
+  expect_true(all(errors$inference_model_weight > 0.0))
 })
