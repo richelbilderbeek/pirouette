@@ -10,7 +10,8 @@ of the twinning}
 create_twinning_params(rng_seed = 0, twin_model = "bd",
   method = "random_tree", n_replicas = 10000,
   twin_tree_filename = tempfile(fileext = ".newick"),
-  twin_alignment_filename = tempfile(fileext = ".fasta"))
+  twin_alignment_filename = tempfile(fileext = ".fasta"),
+  twin_evidence_filename = tempfile(fileext = ".csv"))
 }
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the
