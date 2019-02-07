@@ -75,9 +75,7 @@ pir_run_tree <- function(
   alignment_params,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_epsilon = 1e-12,
   evidence_filename = tempfile(fileext = ".csv")
-
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -96,7 +94,7 @@ pir_run_tree <- function(
     evidence_filename = evidence_filename
   )
 
-  # Select the models (old skool) or experiments (new skool)
+  # Select the experiments
   # to do inference with
   experiments <- select_experiments(
     experiments = experiments,
@@ -156,6 +154,11 @@ pir_run_tree <- function(
     df$beast2_output_state_filename[i] <-
       experiment$beast2_options$output_state_filename
     from_col_idx <- which(colnames(df) == "error_1")
+    if (pir_params$verbose == TRUE) {
+      print(paste("from_col_idx:", from_col_idx))
+      print(paste("ncol(df):", ncol(df)))
+      print(paste("length(nltts):", length(nltts)))
+    }
     df[i, from_col_idx:ncol(df)] <- nltts
   }
 

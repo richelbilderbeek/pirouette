@@ -271,9 +271,12 @@ test_that("most_evidence", {
   )
   testit::assert(all(!file.exists(filenames)))
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
-    pir_params = pir_params
+  errors <- NULL
+  expect_silent(
+    errors <- pir_run(
+      phylogeny = phylogeny,
+      pir_params = pir_params
+    )
   )
 
   # Files created
@@ -338,9 +341,12 @@ test_that("generative and most_evidence, generative not in most_evidence", {
     experiments = experiments
   )
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
-    pir_params = pir_params
+  errors <- NULL
+  expect_silent(
+    errors <- pir_run(
+      phylogeny = phylogeny,
+      pir_params = pir_params
+    )
   )
 
 
@@ -446,7 +452,7 @@ test_that("two candidates, run both", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 12000, store_every = 1000)
     ),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
@@ -456,7 +462,7 @@ test_that("two candidates, run both", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 12000, store_every = 1000)
     ),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
@@ -482,9 +488,12 @@ test_that("two candidates, run both", {
   )
   testit::assert(all(!file.exists(filenames)))
 
-  errors <- pir_run(
-    phylogeny = phylogeny,
-    pir_params = pir_params
+  errors <- NULL
+  expect_silent(
+    errors <- pir_run(
+      phylogeny = phylogeny,
+      pir_params = pir_params
+    )
   )
 
   # Files created
