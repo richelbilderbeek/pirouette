@@ -14,8 +14,11 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_experiment(experiment) # nolint pirouette function
-
   testit::assert(file.exists(alignment_params$fasta_filename))
+  testit::assert(
+    !beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
+  )
+
   bbt_out <- babette::bbt_run_from_model(
     fasta_filename = alignment_params$fasta_filename,
     inference_model = experiment$inference_model,

@@ -91,4 +91,22 @@ test_that("wrong parameter values", {
     "'beast2_options' must be valid BEAST2 options"
   )
 
+  expect_error(
+    check_experiment(
+      create_experiment(
+        inference_model = create_inference_model(
+          mcmc = create_nested_sampling_mcmc()
+        )
+      )
+    ),
+    "An experiment's inference model must have a regular MCMC"
+  )
+  expect_error(
+    check_experiment(
+      create_experiment(
+        est_evidence_mcmc = create_mcmc()
+      )
+    ),
+    "'est_evidence_mcmc' must be a Nested Sampling MCMC"
+  )
 })
