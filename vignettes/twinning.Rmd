@@ -51,7 +51,8 @@ twinning_params <- pirouette::create_twinning_params(
 ```{r}
 alignment_params = pirouette::create_alignment_params(
   root_sequence = pirouette::create_blocked_dna(length = 100),
-  mutation_rate = create_standard_mutation_rate(phylogeny)
+  mutation_rate = create_standard_mutation_rate(phylogeny),
+  rng_seed = 314
 )
 ```
 
@@ -103,7 +104,7 @@ if (rappdirs::app_dir()$os != "win") {
 }
 
 pir_params <- create_pir_params(
-  alignment_params = create_test_alignment_params(),
+  alignment_params = alignment_params,
   experiments = experiments,
   twinning_params = twinning_params
 )
@@ -147,43 +148,41 @@ ape::plot.phylo(phylogeny, main = "The True Phylogeny")
 See the alignment generated from the true tree:
 
 ```{r}
-if (1 == 2) {
-  # Issue 100, #100
-  testit::assert(file.exists(alignment_params$fasta_filename))
-  ape::read.dna(file = alignment_params$fasta_filename)
-}
+testit::assert(file.exists(pir_params$alignment_params$fasta_filename))
+ape::image.DNAbin(ape::read.FASTA(file = pir_params$alignment_params$fasta_filename))
 ```
 
 See the posterior trees generated from the true alignment, for the generative model:
 
 ```{r}
-testit::assert(file.exists(experiment_1$beast2_options$output_trees_filenames))
+
+testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames))
 babette::plot_densitree(
-  tracerer::parse_beast_trees(experiment_1$beast2_options$output_trees_filenames)
+  tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
 )
 ```
 
 See the posterior trees generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-testit::assert(file.exists(experiment_2$beast2_options$output_trees_filenames))
+testit::assert(file.exists(pir_params$experiments[[2]]$beast2_options$output_trees_filenames))
 babette::plot_densitree(
-  tracerer::parse_beast_trees(experiment_2$beast2_options$output_trees_filenames)
+  tracerer::parse_beast_trees(pir_params$experiments[[2]]$beast2_options$output_trees_filenames)
 )
 ```
 
 See the posterior parameter estimates generated from the true alignment, for the generative model:
 
 ```{r}
-testit::assert(file.exists(experiment_1$beast2_options$output_log_filename))
-df <- tracerer::parse_beast_log(experiment_1$beast2_options$output_log_filename)
+testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_log_filename))
+df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$beast2_options$output_log_filename)
 ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 ```
 
 See the posterior parameter estimates generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-testit::assert(file.exists(experiment_2$beast2_options$output_log_filename))
+testit::assert(file.exists(pir_params$experiments[[2]]$beast2_options$output_log_filename))
 df <- tracerer::parse_beast_log(experiment_2$beast2_options$output_log_filename)
 ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 ```
@@ -193,14 +192,14 @@ ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 See the twin tree:
 
 ```{r}
-ape::plot.phylo(ape::read.tree(twinning_params$twin_tree_filename), main = "The Twin Tree")
+ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), main = "The Twin Tree")
 ```
 
 See the alignment generated from the twin tree:
 
 ```{r}
-testit::assert(file.exists(twinning_params$twin_alignment_filename))
-ape::image.DNAbin(ape::read.FASTA(file = twinning_params$twin_alignment_filename))
+testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
+ape::image.DNAbin(ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename))
 ```
 
 See the posterior trees generated from the twin alignment, for the generative model:

@@ -256,7 +256,7 @@ test_that("most_evidence", {
   experiments <- list(experiment_yule, experiment_bd)
 
   pir_params <- create_pir_params(
-    alignment_params = create_test_alignment_params(),
+    alignment_params = alignment_params,
     experiments = experiments
   )
 
@@ -277,10 +277,7 @@ test_that("most_evidence", {
   )
 
   # Files created
-  if (1 == 2) {
-    # Issue 100, #100
-    testit::assert(file.exists(alignment_params$fasta_filename))
-  }
+  testit::assert(file.exists(alignment_params$fasta_filename))
   testit::assert(file.exists(experiment_yule$beast2_options$input_filename))
   testit::assert(file.exists(experiment_yule$beast2_options$output_log_filename))
   testit::assert(file.exists(experiment_yule$beast2_options$output_trees_filenames))

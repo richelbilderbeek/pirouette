@@ -26,21 +26,18 @@ pir_run <- function(
   check_pir_params(pir_params) # nolint pirouette function
 
   # Run for the true tree
-  twinning_params <- pir_params$twinning_params
-  alignment_params <- pir_params$alignment_params
-  experiments <- pir_params$experiments
-  error_measure_params <- pir_params$error_measure_params
   df <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
-    alignment_params = alignment_params,
-    experiments = experiments,
-    error_measure_params = error_measure_params,
+    alignment_params = pir_params$alignment_params,
+    experiments = pir_params$experiments,
+    error_measure_params = pir_params$error_measure_params,
     evidence_filename = pir_params$evidence_filename
   )
 
   # Run for the twin tree
-  if (!beautier:::is_one_na(twinning_params)) {
+  if (!beautier:::is_one_na(pir_params$twinning_params)) {
+    twinning_params <- pir_params$twinning_params
     twin_tree <- create_twin_tree(phylogeny) # nolint beautier function
     ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
     twin_alignment_params <- alignment_params
@@ -54,8 +51,8 @@ pir_run <- function(
       phylogeny = twin_tree,
       tree_type = "twin",
       alignment_params = twin_alignment_params,
-      experiments = experiments,
-      error_measure_params = error_measure_params,
+      experiments = pir_params$experiments,
+      error_measure_params = pir_params$error_measure_params,
       evidence_filename = pir_params$evidence_filename
     )
     df <- rbind(df, df_twin)
