@@ -36,6 +36,14 @@ test_that("generative", {
     alignment_params = alignment_params,
     experiments = experiments
   )
+
+  # Files not yet created
+  testit::assert(!file.exists(alignment_params$fasta_filename))
+  testit::assert(!file.exists(experiment$beast2_options$input_filename))
+  testit::assert(!file.exists(experiment$beast2_options$output_log_filename))
+  testit::assert(!file.exists(experiment$beast2_options$output_trees_filenames))
+  testit::assert(!file.exists(experiment$beast2_options$output_state_filename))
+
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
@@ -43,10 +51,10 @@ test_that("generative", {
 
   # Files created
   testit::assert(file.exists(alignment_params$fasta_filename))
-  testit::assert(file.exists(errors$beast2_input_filename))
-  testit::assert(file.exists(errors$beast2_output_log_filename))
-  testit::assert(file.exists(errors$beast2_output_trees_filename))
-  testit::assert(file.exists(errors$beast2_output_state_filename))
+  testit::assert(file.exists(experiment$beast2_options$input_filename))
+  testit::assert(file.exists(experiment$beast2_options$output_log_filename))
+  testit::assert(file.exists(experiment$beast2_options$output_trees_filenames))
+  testit::assert(file.exists(experiment$beast2_options$output_state_filename))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -82,6 +90,25 @@ test_that("generative", {
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
   n_errors <- col_last_error - col_first_error + 1
   expect_true(n_errors < 11) # due to burn-in
+
+  # Filenames match
+  expect_equal(
+    errors$beast2_input_filename,
+    experiment$beast2_options$input_filename
+  )
+  expect_equal(
+    errors$beast2_output_log_filename,
+    experiment$beast2_options$output_log_filename
+  )
+  expect_equal(
+    errors$beast2_output_trees_filename,
+    experiment$beast2_options$output_trees_filenames
+  )
+  expect_equal(
+    errors$beast2_output_state_filename,
+    experiment$beast2_options$output_state_filename
+  )
+
 })
 
 test_that("generative, using gamma statistic", {
