@@ -582,7 +582,8 @@ test_that("most_evidence, with twinning", {
       pir_params$experiments[[1]]$beast2_options$output_state_filename
     ),
     pir_params$twinning_params$twin_tree_filename,
-    pir_params$twinning_params$twin_alignment_filename
+    pir_params$twinning_params$twin_alignment_filename,
+    pir_params$twinning_params$twin_evidence_filename
   )
   testit::assert(all(!file.exists(filenames)))
 

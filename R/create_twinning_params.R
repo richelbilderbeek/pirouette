@@ -18,7 +18,8 @@ create_twinning_params <- function(
   method = "random_tree",
   n_replicas = 1e4,
   twin_tree_filename = tempfile(fileext = ".newick"),
-  twin_alignment_filename = tempfile(fileext = ".fasta")
+  twin_alignment_filename = tempfile(fileext = ".fasta"),
+  twin_evidence_filename =  tempfile(fileext = ".csv")
 ) {
   twinning_params <- list(
     rng_seed = rng_seed,
@@ -26,8 +27,9 @@ create_twinning_params <- function(
     method = method,
     n_replicas = n_replicas,
     twin_tree_filename = twin_tree_filename,
-    twin_alignment_filename = twin_alignment_filename
+    twin_alignment_filename = twin_alignment_filename,
+    twin_evidence_filename = twin_evidence_filename
   )
-  check_twinning_params(twinning_params = twinning_params) # nolint pirouette function
+  check_twinning_params(twinning_params) # nolint pirouette function
   twinning_params
 }
