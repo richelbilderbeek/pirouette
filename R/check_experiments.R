@@ -33,6 +33,8 @@ check_experiments <- function(
       }
     )
   }
+  if (length(experiments) == 1) return()
+
   for (i in seq(1, length(experiments) - 1)) {
     experiment_1 <- experiments[[i]]
     for (j in seq(i + 1, length(experiments))) {
