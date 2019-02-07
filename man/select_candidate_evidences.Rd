@@ -4,8 +4,15 @@
 \alias{select_candidate_evidences}
 \title{Select the evidences for candidate experiments}
 \usage{
-select_candidate_evidences(experiments = list(create_test_experiment),
+select_candidate_evidences(experiments = list(create_test_experiment()),
   marg_liks = create_test_marg_liks())
+}
+\arguments{
+\item{experiments}{a list of one or more \link{pirouette} experiments,
+as can be created by \link{create_experiment}}
+
+\item{marg_liks}{a data frame with marginal likelihoods/evidences.
+A test data frame can be created by \link{create_test_marg_liks}}
 }
 \description{
 Select the evidences for candidate experiments

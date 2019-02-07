@@ -79,7 +79,6 @@ test_that("generative model and candidate model", {
   experiments <- list(experiment_generative, experiment_candidate)
   selected <- select_experiments(experiments, marg_liks)
 
-  skip("Issue 93, #93")
   expect_equal(2, length(selected))
   expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 })

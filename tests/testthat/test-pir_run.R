@@ -412,8 +412,6 @@ test_that("generative and most_evidence, generative in most_evidence", {
 
   expect_true(all(errors$error_1 >= 0.0))
   expect_true(all(errors$inference_model_weight >= 0.0))
-
-  skip("Issue 93, #93")
   expect_true("generative" %in% errors$inference_model)
   expect_true("candidate" %in% errors$inference_model)
 })

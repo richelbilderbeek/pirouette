@@ -1,15 +1,11 @@
 context("test-select_candidate_evidences")
 
 test_that("nothing if no candidates", {
-
-  skip("Issue 93, #93")
   candidate_evidences <- select_candidate_evidences()
   expect_equal(0, nrow(candidate_evidences))
 })
 
 test_that("one if there is one candidate", {
-
-  skip("Issue 93, #93")
   experiment <- create_experiment(model_type = "candidate")
   testit::assert(experiment$model_type == "candidate")
 
@@ -21,8 +17,6 @@ test_that("one if there is one candidate", {
 })
 
 test_that("one if there is one candidate and one generative", {
-
-  skip("Issue 93, #93")
   experiment_1 <- create_experiment(model_type = "candidate")
   testit::assert(experiment_1$model_type == "candidate")
   experiment_2 <- create_experiment()
