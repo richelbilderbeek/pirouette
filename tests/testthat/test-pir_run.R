@@ -18,7 +18,6 @@ test_that("generative", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  alignment_params <- create_test_alignment_params()
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
@@ -33,16 +32,19 @@ test_that("generative", {
 
 
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
+    alignment_params = create_test_alignment_params(),
     experiments = experiments
   )
 
   # Files not yet created
-  testit::assert(!file.exists(alignment_params$fasta_filename))
-  testit::assert(!file.exists(experiment$beast2_options$input_filename))
-  testit::assert(!file.exists(experiment$beast2_options$output_log_filename))
-  testit::assert(!file.exists(experiment$beast2_options$output_trees_filenames))
-  testit::assert(!file.exists(experiment$beast2_options$output_state_filename))
+  filenames <- c(
+    pir_params$alignment_params$fasta_filename,
+    pir_params$experiments[[1]]$beast2_options$input_filename,
+    pir_params$experiments[[1]]$beast2_options$output_log_filename,
+    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
+    pir_params$experiments[[1]]$beast2_options$output_state_filename
+  )
+  testit::assert(all(!file.exists(filenames)))
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -50,11 +52,7 @@ test_that("generative", {
   )
 
   # Files created
-  testit::assert(file.exists(alignment_params$fasta_filename))
-  testit::assert(file.exists(experiment$beast2_options$input_filename))
-  testit::assert(file.exists(experiment$beast2_options$output_log_filename))
-  testit::assert(file.exists(experiment$beast2_options$output_trees_filenames))
-  testit::assert(file.exists(experiment$beast2_options$output_state_filename))
+  testit::assert(all(file.exists(filenames)))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -231,8 +229,6 @@ test_that("most_evidence", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-  alignment_params <- create_test_alignment_params()
-
   experiment_yule <- create_experiment(
     model_type = "candidate",
     run_if = "best_candidate",
@@ -256,20 +252,23 @@ test_that("most_evidence", {
   experiments <- list(experiment_yule, experiment_bd)
 
   pir_params <- create_pir_params(
-    alignment_params = alignment_params,
+    alignment_params = create_test_alignment_params(),
     experiments = experiments
   )
 
   # Files not yet created
-  testit::assert(!file.exists(alignment_params$fasta_filename))
-  testit::assert(!file.exists(experiment_yule$beast2_options$input_filename))
-  testit::assert(!file.exists(experiment_yule$beast2_options$output_log_filename))
-  testit::assert(!file.exists(experiment_yule$beast2_options$output_trees_filenames))
-  testit::assert(!file.exists(experiment_yule$beast2_options$output_state_filename))
-  testit::assert(!file.exists(experiment_bd$beast2_options$input_filename))
-  testit::assert(!file.exists(experiment_bd$beast2_options$output_log_filename))
-  testit::assert(!file.exists(experiment_bd$beast2_options$output_trees_filenames))
-  testit::assert(!file.exists(experiment_bd$beast2_options$output_state_filename))
+  filenames <- c(
+    pir_params$alignment_params$fasta_filename,
+    pir_params$experiments[[1]]$beast2_options$input_filename,
+    pir_params$experiments[[1]]$beast2_options$output_log_filename,
+    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
+    pir_params$experiments[[1]]$beast2_options$output_state_filename,
+    pir_params$experiments[[2]]$beast2_options$input_filename,
+    pir_params$experiments[[2]]$beast2_options$output_log_filename,
+    pir_params$experiments[[2]]$beast2_options$output_trees_filenames,
+    pir_params$experiments[[2]]$beast2_options$output_state_filename
+  )
+  testit::assert(all(!file.exists(filenames)))
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -277,15 +276,7 @@ test_that("most_evidence", {
   )
 
   # Files created
-  testit::assert(file.exists(alignment_params$fasta_filename))
-  testit::assert(file.exists(experiment_yule$beast2_options$input_filename))
-  testit::assert(file.exists(experiment_yule$beast2_options$output_log_filename))
-  testit::assert(file.exists(experiment_yule$beast2_options$output_trees_filenames))
-  testit::assert(file.exists(experiment_yule$beast2_options$output_state_filename))
-  testit::assert(file.exists(experiment_bd$beast2_options$input_filename))
-  testit::assert(file.exists(experiment_bd$beast2_options$output_log_filename))
-  testit::assert(file.exists(experiment_bd$beast2_options$output_trees_filenames))
-  testit::assert(file.exists(experiment_bd$beast2_options$output_state_filename))
+  testit::assert(all(file.exists(filenames)))
 
   expect_true("candidate" %in% errors$inference_model)
   expect_true(file.exists(pir_params$evidence_filename))
