@@ -40,7 +40,7 @@ pir_run <- function(
     twinning_params <- pir_params$twinning_params
     twin_tree <- create_twin_tree(phylogeny) # nolint beautier function
     ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
-    twin_alignment_params <- alignment_params
+    twin_alignment_params <- pir_params$alignment_params
     twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
 
     # TODO:
