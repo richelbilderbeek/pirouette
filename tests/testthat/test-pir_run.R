@@ -470,7 +470,8 @@ test_that("two candidates, run both", {
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    experiments = experiments
+    experiments = experiments,
+    verbose = TRUE
   )
 
   # Files not yet created

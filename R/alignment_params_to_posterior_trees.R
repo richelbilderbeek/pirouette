@@ -19,10 +19,35 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     !beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
   )
 
+  print(paste("DEBUG: set verbiose to TRUE"))
+  experiment$beast2_options$verbose <- TRUE
+
   bbt_out <- babette::bbt_run_from_model(
     fasta_filename = alignment_params$fasta_filename,
     inference_model = experiment$inference_model,
     beast2_options = experiment$beast2_options
   )
-  c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
+
+
+  print(paste("DEBUG:0 experiment$beast2_options$input_filename:", experiment$beast2_options$input_filename)) # nolint temp
+  print(paste("DEBUG:1 length(bbt_out):", length(bbt_out)))
+  print(paste("DEBUG:2 names(bbt_out):", names(bbt_out)))
+  print(paste("DEBUG:7 length(bbt_out[[1]]):", length(bbt_out[[1]])))
+  print(paste("DEBUG:8 class(bbt_out[[1]]):", class(bbt_out[[1]])))
+  print("tracerer::count_trees_in_file(experiment$beast2_options$input_filename)")
+  print(tracerer::count_trees_in_file(experiment$beast2_options$input_filename))
+
+  trees <- c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
+
+  print(paste("DEBUG: length(trees):", length(trees)))
+
+  # Check the number of trees
+  mcmc <- experiment$inference_model$mcmc
+  testit::assert(!is_nested_sampling_mcmc(mcmc))
+  if (mcmc$store_every != -1) {
+    expected_n_trees <- 1 + (mcmc$chain_length / mcmc$store_every)
+    testit::assert(length(trees) == expected_n_trees)
+  }
+
+  trees
 }

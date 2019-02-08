@@ -113,9 +113,18 @@ pir_run_tree <- function(
       error_measure_params = error_measure_params,
       experiment = experiment
     )
+    if (pir_params$verbose == TRUE) {
+      print(paste("i:", i))
+      print(paste("length(errorses[[i]]):", length(errorses[[i]])))
+      print(paste("experiment$inference_model$mcmc$chain_length:", experiment$inference_model$mcmc$chain_length)) # nolint temp
+      print(paste("experiment$inference_model$mcmc$store_every:", experiment$inference_model$mcmc$store_every)) # nolint temp
+    }
   }
   testit::assert(length(errorses) > 0)
   testit::assert(length(experiments) == length(errorses))
+  if (length(errorses) > 1) {
+    testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
+  }
 
   # Put inference models and errors a data frame
   n_rows <- length(experiments)
