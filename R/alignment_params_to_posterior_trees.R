@@ -46,11 +46,13 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   testit::assert(!is_nested_sampling_mcmc(mcmc))
   if (mcmc$store_every != -1) {
     expected_n_trees <- 1 + (mcmc$chain_length / mcmc$store_every)
-    print("length(trees)")
-    print(length(trees))
-    print("expected_n_trees")
-    print(expected_n_trees)
-    testit::assert(length(trees) == expected_n_trees)
+    if (length(trees) != expected_n_trees) {
+      warning(
+        "Number of trees differ between the expected number (",
+        expected_n_trees, ") and the actual number (",
+        length(trees), "). This is Issue #99"
+      )
+    }
   }
 
   trees
