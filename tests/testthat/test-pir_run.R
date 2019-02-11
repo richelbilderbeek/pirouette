@@ -25,8 +25,9 @@ test_that("generative", {
     run_if = "always",
     do_measure_evidence = FALSE,
     inference_model = create_inference_model(
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    )
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+    ),
+    beast2_options = create_beast2_options(rng_seed = 314)
   )
   experiments <- list(experiment)
 
@@ -236,8 +237,9 @@ test_that("most_evidence, one candidate", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     ),
+    beast2_options = create_beast2_options(rng_seed = 314),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule)
@@ -258,12 +260,9 @@ test_that("most_evidence, one candidate", {
   )
   testit::assert(all(!file.exists(filenames)))
 
-  errors <- NULL
-  expect_silent(
-    errors <- pir_run(
-      phylogeny = phylogeny,
-      pir_params = pir_params
-    )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
   )
 
   # Files created
@@ -305,9 +304,9 @@ test_that("most_evidence, two candidates", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 13000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     ),
-    beast2_options = create_beast2_options(rng_seed = 99),
+    beast2_options = create_beast2_options(rng_seed = 314),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- experiment_yule
@@ -341,9 +340,6 @@ test_that("most_evidence, two candidates", {
     pir_params = pir_params
   )
   read.csv(pir_params$evidence_filename)
-
-  #  pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-  #  pir_params$experiments[[2]]$beast2_options$output_trees_filenames,
 
   # Files created
   testit::assert(all(file.exists(filenames)))
@@ -387,7 +383,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
-    beast2_options = create_beast2_options(rng_seed = 42),
+    beast2_options = create_beast2_options(rng_seed = 314),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- experiment_generative
@@ -450,22 +446,15 @@ test_that("generative and most_evidence, generative in most_evidence", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     ),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 42)
+    beast2_options = create_beast2_options(rng_seed = 314)
   )
-  experiment_bd <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 43)
-  )
+  experiment_bd <- experiment_generative
+  experiment_bd$model_type <- "candidate"
+  experiment_bd$run_if <- "best_candidate"
+  experiment_bd$do_measure_evidence <- TRUE
   experiments <- list(experiment_generative, experiment_bd)
 
 
@@ -562,6 +551,8 @@ test_that("two candidates, run both", {
 test_that("most_evidence, three candidates", {
 
   if (!beastier::is_on_travis()) return()
+
+  skip("6. Issue 99, #99")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -662,42 +653,19 @@ test_that("most_evidence, four candidates", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       site_model = create_jc69_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 4000, store_every = 1000)
     ),
+    beast2_options = create_beast2_options(rng_seed = 314),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  experiment_hky <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      site_model = create_hky_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
-  experiment_tn93 <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      site_model = create_tn93_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
-  experiment_gtr <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      site_model = create_tn93_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
+  experiment_hky <- experiment_jc69
+  experiment_hky$inference_model$site_model <- create_hky_site_model()
+  experiment_tn93 <- experiment_jc69
+  experiment_tn93$inference_model$site_model <- create_tn93_site_model()
+  experiment_gtr <- experiment_jc69
+  experiment_gtr$inference_model$site_model <- create_gtr_site_model()
   experiments <- list(
-    experiment_jc69, experiment_hky, experiment_tn93, experiment_tn93
+    experiment_jc69, experiment_hky, experiment_tn93, experiment_gtr
   )
 
   pir_params <- create_pir_params(
@@ -712,28 +680,13 @@ test_that("most_evidence, four candidates", {
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename,
-    pir_params$experiments[[2]]$beast2_options$input_filename,
-    pir_params$experiments[[2]]$beast2_options$output_log_filename,
-    pir_params$experiments[[2]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[2]]$beast2_options$output_state_filename,
-    pir_params$experiments[[3]]$beast2_options$input_filename,
-    pir_params$experiments[[3]]$beast2_options$output_log_filename,
-    pir_params$experiments[[3]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[3]]$beast2_options$output_state_filename,
-    pir_params$experiments[[4]]$beast2_options$input_filename,
-    pir_params$experiments[[4]]$beast2_options$output_log_filename,
-    pir_params$experiments[[4]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[4]]$beast2_options$output_state_filename
+    pir_params$experiments[[1]]$beast2_options$output_state_filename
   )
   testit::assert(all(!file.exists(filenames)))
 
-  errors <- NULL
-  expect_silent(
-    errors <- pir_run(
-      phylogeny = phylogeny,
-      pir_params = pir_params
-    )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
   )
 
   # Files created
