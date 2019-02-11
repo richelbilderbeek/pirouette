@@ -45,22 +45,6 @@ test_that("use", {
     )
   )
 
-  # Wrong evidence_epsilon
-  pir_params_2 <- pir_params
-  pir_params_2$evidence_epsilon <- "pippobaudo"
-  expect_error(
-    check_pir_params(
-      pir_params_2
-    )
-  )
-  pir_params_2 <- pir_params
-  pir_params_2$evidence_epsilon <- 123456789
-  expect_error(
-    check_pir_params(
-      pir_params_2
-    )
-  )
-
   # Wrong evidence_filename
   pir_params_2 <- pir_params
   pir_params_2$evidence_filename <- 123456789

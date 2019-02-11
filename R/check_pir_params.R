@@ -17,9 +17,25 @@
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @export
 check_pir_params <- function(
-  pir_params,
-  max_evidence_epsilon = 1e-4
+  pir_params
 ) {
+  argument_names <- c(
+    "alignment_params",
+    "twinning_params",
+    "experiments",
+    "error_measure_params",
+    "evidence_filename",
+    "verbose"
+  )
+  for (arg_name in argument_names) {
+    if (!arg_name %in% names(pir_params)) {
+      stop(
+        "'", arg_name, "' must be an element of an 'pir_params'.\n",
+        "Tip: use 'create_pir_params'"
+      )
+    }
+  }
+
   tryCatch(
     check_alignment_params(pir_params$alignment_params), # nolint pirouette function
     error = function(e) {
@@ -58,16 +74,6 @@ check_pir_params <- function(
       stop(msg)
     }
   )
-  if (!is.numeric(pir_params$evidence_epsilon)) {
-    stop("'evidence_epsilon' must be numeric")
-  }
-  if (pir_params$evidence_epsilon > max_evidence_epsilon) {
-    stop(
-      paste0(
-        "'evidence_epsilon' must be not greater than", max_evidence_epsilon
-      )
-    )
-  }
   filename <- pir_params$evidence_filename
   if (!is.character(pir_params$evidence_filename)) {
     stop("'evidence_filename' must be a string")
@@ -79,5 +85,10 @@ check_pir_params <- function(
   )
   if (file_extenstion != ".csv") {
     stop("'evidence_filename' must be a csv file")
+  }
+  if (length(pir_params$verbose) != 1 ||
+    is.na(pir_params$verbose) ||
+    !is.logical(pir_params$verbose)) {
+    stop("'verbose' must be one boolean")
   }
 }

@@ -6,7 +6,7 @@
 \usage{
 est_evidences(fasta_filename, experiments = list(create_experiment()),
   evidence_epsilon = 1e-12, evidence_filename = tempfile(fileext =
-  ".csv"))
+  ".csv"), verbose = FALSE)
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file}
@@ -20,6 +20,8 @@ TODO: put in \code{misc_params},}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 a data frame with evidences

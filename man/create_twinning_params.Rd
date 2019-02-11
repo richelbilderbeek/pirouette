@@ -10,7 +10,8 @@ of the twinning}
 create_twinning_params(rng_seed = 0, twin_model = "bd",
   method = "random_tree", n_replicas = 10000,
   twin_tree_filename = tempfile(fileext = ".newick"),
-  twin_alignment_filename = tempfile(fileext = ".fasta"))
+  twin_alignment_filename = tempfile(fileext = ".fasta"),
+  twin_evidence_filename = tempfile(fileext = ".csv"))
 }
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the
@@ -35,6 +36,9 @@ tree will be saved to}
 
 \item{twin_alignment_filename}{name of the FASTA file the twin
 alignment will be saved to}
+
+\item{twin_evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods) of the twin tree}
 }
 \value{
 a twinning parameter set

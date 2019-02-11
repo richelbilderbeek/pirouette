@@ -26,37 +26,37 @@ pir_run <- function(
   check_pir_params(pir_params) # nolint pirouette function
 
   # Run for the true tree
-  twinning_params <- pir_params$twinning_params
-  alignment_params <- pir_params$alignment_params
-  experiments <- pir_params$experiments
-  error_measure_params <- pir_params$error_measure_params
   df <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
-    alignment_params = alignment_params,
-    experiments = experiments,
-    error_measure_params = error_measure_params,
-    evidence_filename = pir_params$evidence_filename
+    alignment_params = pir_params$alignment_params,
+    experiments = pir_params$experiments,
+    error_measure_params = pir_params$error_measure_params,
+    evidence_filename = pir_params$evidence_filename,
+    verbose = pir_params$verbose
   )
 
   # Run for the twin tree
-  if (!beautier:::is_one_na(twinning_params)) {
-    twin_tree <- create_twin_tree(phylogeny) # nolint beautier function
-    ape::write.tree(phy = twin_tree, file = twinning_params$twin_tree_filename)
-    twin_alignment_params <- alignment_params
-    twin_alignment_params$fasta_filename <- twinning_params$twin_alignment_filename # nolint long param names indeed ...
+  if (!beautier:::is_one_na(pir_params$twinning_params)) {
+    # Create and save twin tree
+    twin_tree <- create_twin_tree(phylogeny) # nolint pirouette function
+    ape::write.tree(
+      phy = twin_tree,
+      file = pir_params$twinning_params$twin_tree_filename
+    )
 
-    # TODO:
-    # pir_params$evidence_filename
-    # should be
-    #
+    # Let the (twin) alignment be saved with the twin filename
+    pir_params$alignment_params$fasta_filename <-
+      pir_params$twinning_params$twin_alignment_filename
+
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
-      alignment_params = twin_alignment_params,
-      experiments = experiments,
-      error_measure_params = error_measure_params,
-      evidence_filename = pir_params$evidence_filename
+      alignment_params = pir_params$alignment_params, # Modified above
+      experiments = pir_params$experiments,
+      error_measure_params = pir_params$error_measure_params,
+      evidence_filename = pir_params$twinning_params$twin_evidence_filename,
+      verbose = pir_params$verbose
     )
     df <- rbind(df, df_twin)
   }
@@ -77,9 +77,8 @@ pir_run_tree <- function(
   alignment_params,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_epsilon = 1e-12,
-  evidence_filename = tempfile(fileext = ".csv")
-
+  evidence_filename = tempfile(fileext = ".csv"),
+  verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -95,14 +94,16 @@ pir_run_tree <- function(
   marg_liks <- est_evidences(
     fasta_filename = alignment_params$fasta_filename,
     experiments = experiments,
-    evidence_filename = evidence_filename
+    evidence_filename = evidence_filename,
+    verbose = verbose
   )
 
-  # Select the models (old skool) or experiments (new skool)
+  # Select the experiments
   # to do inference with
   experiments <- select_experiments(
     experiments = experiments,
-    marg_liks = marg_liks # For most evidence
+    marg_liks = marg_liks, # For most evidence
+    verbose = verbose
   )
   testit::assert(length(experiments) > 0)
 
@@ -120,6 +121,19 @@ pir_run_tree <- function(
   }
   testit::assert(length(errorses) > 0)
   testit::assert(length(experiments) == length(errorses))
+  if (length(errorses) > 1) {
+    if (length(errorses[[1]]) != length(errorses[[2]])) {
+      warning(
+        "Lengths between errorses differ (", length(errorses[[1]]),
+        " vs ", length(errorses[[2]]), "). This is related to #99. ",
+        "Fixing this by shortening the longer errorses"
+      )
+      shortest <- min(length(errorses[[1]]), length(errorses[[2]]))
+      errorses[[1]] <- errorses[[1]][1:shortest]
+      errorses[[2]] <- errorses[[2]][1:shortest]
+    }
+    testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
+  }
 
   # Put inference models and errors a data frame
   n_rows <- length(experiments)
@@ -158,6 +172,11 @@ pir_run_tree <- function(
     df$beast2_output_state_filename[i] <-
       experiment$beast2_options$output_state_filename
     from_col_idx <- which(colnames(df) == "error_1")
+    if (verbose == TRUE) {
+      print(paste("from_col_idx:", from_col_idx))
+      print(paste("ncol(df):", ncol(df)))
+      print(paste("length(nltts):", length(nltts)))
+    }
     df[i, from_col_idx:ncol(df)] <- nltts
   }
 

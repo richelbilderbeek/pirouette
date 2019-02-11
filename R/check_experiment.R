@@ -50,6 +50,14 @@ check_experiment <- function(
       )
     }
   )
+  if (beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)) {
+    stop(
+      "An experiment's inference model must have a regular MCMC.\n",
+      "Tip: use 'beautier::create_mcmc'\n",
+      "Value: ", experiment$inference_model$mcmc
+    )
+  }
+
   tryCatch(
     beastier::check_beast2_options(experiment$beast2_options),
     error = function(e) {

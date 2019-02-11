@@ -7,7 +7,8 @@ est_evidences <- function(
   fasta_filename,
   experiments = list(create_experiment()),
   evidence_epsilon = 1e-12,
-  evidence_filename = tempfile(fileext = ".csv")
+  evidence_filename = tempfile(fileext = ".csv"),
+  verbose = FALSE
 ) {
   testit::assert(file.exists(fasta_filename))
   check_is_ns_beast2_pkg_installed() # nolint long function name indeed
@@ -43,9 +44,11 @@ est_evidences <- function(
     inference_models = inference_models,
     beast2_optionses = beast2_optionses,
     epsilon = evidence_epsilon,
-
-    verbose = TRUE
+    verbose = verbose
   )
+  if (verbose == TRUE) {
+    print(marg_liks)
+  }
   utils::write.csv(
     x = marg_liks, file = evidence_filename
   )
