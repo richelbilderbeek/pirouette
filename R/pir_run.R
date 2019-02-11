@@ -118,16 +118,20 @@ pir_run_tree <- function(
       error_measure_params = error_measure_params,
       experiment = experiment
     )
-    if (pir_params$verbose == TRUE) {
-      print(paste("i:", i))
-      print(paste("length(errorses[[i]]):", length(errorses[[i]])))
-      print(paste("experiment$inference_model$mcmc$chain_length:", experiment$inference_model$mcmc$chain_length)) # nolint temp
-      print(paste("experiment$inference_model$mcmc$store_every:", experiment$inference_model$mcmc$store_every)) # nolint temp
-    }
   }
   testit::assert(length(errorses) > 0)
   testit::assert(length(experiments) == length(errorses))
   if (length(errorses) > 1) {
+    if (length(errorses[[1]]) != length(errorses[[2]])) {
+      warning(
+        "Lengths between errorses differ (", length(errorses[[1]]),
+        " vs ", length(errorses[[2]]), "). This is related to #99. ",
+        "Fixing this by shortening the longer errorses"
+      )
+      shortest <- min(length(errorses[[1]]), length(errorses[[2]]))
+      errorses[[1]] <- errorses[[1]][1:shortest]
+      errorses[[2]] <- errorses[[2]][1:shortest]
+    }
     testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
   }
 

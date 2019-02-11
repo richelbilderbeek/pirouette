@@ -515,20 +515,23 @@ test_that("two candidates, run both", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 12000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+    beast2_options = create_beast2_options(rng_seed = 314)
   )
-  experiment_bd <- create_experiment(
-    model_type = "candidate",
-    run_if = "always",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 12000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
+  experiment_bd <- experiment_yule
+  # experiment_bd <- create_experiment(
+  #   model_type = "candidate",
+  #   run_if = "always",
+  #   do_measure_evidence = TRUE,
+  #   inference_model = create_inference_model(
+  #     tree_prior = create_bd_tree_prior(),
+  #     mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+  #   ),
+  #   est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+  #   beast2_options = create_beast2_options(rng_seed = 314)
+  # )
   experiments <- list(experiment_yule, experiment_bd)
 
   pir_params <- create_pir_params(
@@ -552,12 +555,9 @@ test_that("two candidates, run both", {
   )
   testit::assert(all(!file.exists(filenames)))
 
-  errors <- NULL
-  expect_silent(
-    errors <- pir_run(
-      phylogeny = phylogeny,
-      pir_params = pir_params
-    )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
   )
 
   # Files created

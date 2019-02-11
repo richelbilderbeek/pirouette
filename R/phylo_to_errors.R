@@ -31,7 +31,7 @@ phylo_to_errors <- function(
       warning(
         "Number of trees differ between the expected number (",
         expected_n_trees, ") and the actual number (",
-        length(trees), "). This is Issue #99"
+        length(trees), "). This is a repeated warning of Issue #99"
       )
     }
   }
