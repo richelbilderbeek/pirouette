@@ -15,7 +15,8 @@ pir_run <- function(
   pir_params = create_pir_params(
     alignment_params = create_alignment_params(
       mutation_rate = create_standard_mutation_rate
-    )
+    ),
+    twinning_params = create_twinning_params(rng_seed = "same_seed")
   )
 ) {
 
@@ -39,14 +40,7 @@ pir_run <- function(
   # Run for the twin tree
   if (!beautier:::is_one_na(pir_params$twinning_params)) {
 
-    # Create and save twin tree
-    twin_tree <- create_twin_tree(phylogeny) # nolint pirouette function
-    ape::write.tree(
-      phy = twin_tree,
-      file = pir_params$twinning_params$twin_tree_filename
-    )
-
-    # Create specific twin pir_params filenames
+    # Create specific twin pir_params
     pir_params_twin <- pir_params
     pir_params_twin$alignment_params$fasta_filename <-
       pir_params$twinning_params$twin_alignment_filename
@@ -64,6 +58,20 @@ pir_run <- function(
           to_twin_filename(filenames[ii]) # nolint pirouette function
       }
     }
+    if (pir_params$twinning_params$rng_seed == "same_seed") {
+      pir_params_twin$twinning_params$rng_seed <-
+        pir_params$alignment_params$rng_seed
+    }
+
+    # Create and save twin tree
+    twin_tree <- create_twin_tree(
+      phylogeny,
+      twinning_params = pir_params_twin$twinning_params
+    ) # nolint pirouette function
+    ape::write.tree(
+      phy = twin_tree,
+      file = pir_params_twin$twinning_params$twin_tree_filename
+    )
 
     # Re-run pir_run for the twin
     df_twin <- pir_run_tree(
