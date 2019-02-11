@@ -775,6 +775,8 @@ test_that("most_evidence, four candidates", {
 
 test_that("generative with twin", {
 
+  skip("Issue 99, #99")
+
   if (!beastier::is_on_travis()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code

@@ -2,6 +2,8 @@ context("test-est_evidences")
 
 test_that("use", {
 
+  skip("Issue 99, #99")
+
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
 
