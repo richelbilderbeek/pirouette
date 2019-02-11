@@ -563,8 +563,6 @@ test_that("most_evidence, three candidates", {
 
   if (!beastier::is_on_travis()) return()
 
-  skip("6. Issue 99, #99")
-
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
@@ -581,7 +579,6 @@ test_that("most_evidence, three candidates", {
   # as only the best candidate is run.
   #
   # All weights and errors are random, but possibly valid, numbers
-
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_jc69 <- create_experiment(
@@ -590,30 +587,16 @@ test_that("most_evidence, three candidates", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       site_model = create_jc69_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 4000, store_every = 1000)
     ),
+    beast2_options = create_beast2_options(rng_seed = 314),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  experiment_hky <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      site_model = create_hky_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
-  experiment_tn93 <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      site_model = create_tn93_site_model(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
+  experiment_hky <- experiment_jc69
+  experiment_hky$inference_model$site_model <- create_hky_site_model()
+
+  experiment_tn93 <- experiment_jc69
+  experiment_tn93$inference_model$site_model <- create_tn93_site_model()
   experiments <- list(experiment_jc69, experiment_hky, experiment_tn93)
 
   pir_params <- create_pir_params(
@@ -628,24 +611,13 @@ test_that("most_evidence, three candidates", {
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename,
-    pir_params$experiments[[2]]$beast2_options$input_filename,
-    pir_params$experiments[[2]]$beast2_options$output_log_filename,
-    pir_params$experiments[[2]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[2]]$beast2_options$output_state_filename,
-    pir_params$experiments[[3]]$beast2_options$input_filename,
-    pir_params$experiments[[3]]$beast2_options$output_log_filename,
-    pir_params$experiments[[3]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[3]]$beast2_options$output_state_filename
+    pir_params$experiments[[1]]$beast2_options$output_state_filename
   )
   testit::assert(all(!file.exists(filenames)))
 
-  errors <- NULL
-  expect_silent(
-    errors <- pir_run(
-      phylogeny = phylogeny,
-      pir_params = pir_params
-    )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
   )
 
   # Files created
