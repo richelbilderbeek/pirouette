@@ -23,7 +23,7 @@ can be created by \link{create_pir_params}.
  pir_params <- create_pir_params(
  alignment_params = create_alignment_params(
      root_sequence = create_mono_nuc_dna(length = 4),
-     mutation_rate = create_standard_mutation_rate(phylogeny)
+     mutation_rate = create_standard_mutation_rate
    )
  )
  testthat::expect_silent(check_pir_params(pir_params))

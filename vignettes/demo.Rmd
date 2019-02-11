@@ -41,7 +41,7 @@ we'll use a short alignment:
 ```{r}
 alignment_params <- create_alignment_params(
   root_sequence = create_blocked_dna(length = 20),
-  mutation_rate = create_standard_mutation_rate(true_phylogeny)
+  mutation_rate = create_standard_mutation_rate
 )
 ```
 
@@ -149,23 +149,28 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-errors <- pir_run(
-  phylogeny = true_phylogeny,
-  pir_params = pir_params
-)
-
+if (rappdirs::app_dir()$os != "win") {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+}
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+if (rappdirs::app_dir()$os != "win") {
+  knitr::kable(head(errors))
+}
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-pir_plot(errors)
+if (rappdirs::app_dir()$os != "win") {
+  pir_plot(errors)
+}
 ```
 
 
@@ -222,21 +227,27 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-errors <- pir_run(
-  phylogeny = true_phylogeny,
-  pir_params = pir_params
-)
+if (rappdirs::app_dir()$os != "win") {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+}
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+if (rappdirs::app_dir()$os != "win") {
+  knitr::kable(head(errors))
+}
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-pir_plot(errors)
+if (rappdirs::app_dir()$os != "win") {
+  pir_plot(errors)
+}
 ```
 

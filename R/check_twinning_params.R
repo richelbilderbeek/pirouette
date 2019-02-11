@@ -24,14 +24,16 @@ check_twinning_params <- function(
       )
     }
   }
-  if (!is.numeric(twinning_params$rng_seed)) {
-    stop("'rng_seed' must be a number")
+  if (!(twinning_params$rng_seed == "same_seed")) {
+    if (!is.numeric(twinning_params$rng_seed)) {
+      stop("'rng_seed' must be a number or 'same_seed'")
+    }
   }
   if (!is.character(twinning_params$twin_model)) {
     stop("'twin_model' must be a character vector")
   }
   if (!(twinning_params$twin_model %in% get_twin_models())) {
-   stop("This twin model is not implemented")
+   stop("This 'twin model' is not implemented")
   }
   if (!is.character(twinning_params$twin_tree_filename)) {
     stop("'twin_tree_filename' must be a character vector")
@@ -42,7 +44,6 @@ check_twinning_params <- function(
   if (!is.character(twinning_params$twin_evidence_filename)) {
     stop("'twin_evidence_filename' must be a character vector")
   }
-
   if (!is.character(twinning_params$method)) {
     stop("'method' must be a character vector")
   }

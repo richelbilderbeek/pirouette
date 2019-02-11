@@ -14,8 +14,9 @@ pir_run <- function(
   phylogeny,
   pir_params = create_pir_params(
     alignment_params = create_alignment_params(
-      mutation_rate = create_standard_mutation_rate(phylogeny)
-    )
+      mutation_rate = create_standard_mutation_rate
+    ),
+    twinning_params = create_twinning_params(rng_seed = "same_seed")
   )
 ) {
 
@@ -38,25 +39,49 @@ pir_run <- function(
 
   # Run for the twin tree
   if (!beautier:::is_one_na(pir_params$twinning_params)) {
+
+    # Create specific twin pir_params
+    pir_params_twin <- pir_params
+    pir_params_twin$alignment_params$fasta_filename <-
+      pir_params$twinning_params$twin_alignment_filename
+    pir_params_twin$evidence_filename <-
+      pir_params$twinning_params$twin_evidence_filename
+    for (i in seq_along(pir_params$experiments)) {
+      filenames <- pir_params$experiments[[i]]$beast2_options[
+        grepl(
+          "filename",
+          names(pir_params$experiments[[i]]$beast2_options)
+        )
+        ]
+      for (ii in seq_along(filenames)) {
+        pir_params_twin$experiments[[i]]$beast2_options[ii] <-
+          to_twin_filename(filenames[ii]) # nolint pirouette function
+      }
+    }
+    if (pir_params$twinning_params$rng_seed == "same_seed") {
+      pir_params_twin$twinning_params$rng_seed <-
+        pir_params$alignment_params$rng_seed
+    }
+
     # Create and save twin tree
-    twin_tree <- create_twin_tree(phylogeny) # nolint pirouette function
+    twin_tree <- create_twin_tree(
+      phylogeny,
+      twinning_params = pir_params_twin$twinning_params
+    ) # nolint pirouette function
     ape::write.tree(
       phy = twin_tree,
-      file = pir_params$twinning_params$twin_tree_filename
+      file = pir_params_twin$twinning_params$twin_tree_filename
     )
 
-    # Let the (twin) alignment be saved with the twin filename
-    pir_params$alignment_params$fasta_filename <-
-      pir_params$twinning_params$twin_alignment_filename
-
+    # Re-run pir_run for the twin
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
-      alignment_params = pir_params$alignment_params, # Modified above
-      experiments = pir_params$experiments,
-      error_measure_params = pir_params$error_measure_params,
-      evidence_filename = pir_params$twinning_params$twin_evidence_filename,
-      verbose = pir_params$verbose
+      alignment_params = pir_params_twin$alignment_params,
+      experiments = pir_params_twin$experiments,
+      error_measure_params = pir_params_twin$error_measure_params,
+      evidence_filename = pir_params_twin$evidence_filename,
+      verbose = pir_params_twin$verbose
     )
     df <- rbind(df, df_twin)
   }
@@ -81,6 +106,14 @@ pir_run_tree <- function(
   verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
+
+  # If alignment_params$mutation_rate is function, apply it to the phylogeny
+  if (is.function(alignment_params$mutation_rate)) {
+    mutation_function <- alignment_params$mutation_rate
+    mutation_rate <- mutation_function(phylogeny)
+    alignment_params$mutation_rate <- mutation_rate
+  }
+
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     phylogeny = phylogeny,
