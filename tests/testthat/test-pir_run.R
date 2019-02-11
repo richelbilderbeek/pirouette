@@ -786,12 +786,7 @@ test_that("generative with twin", {
     twinning_params = twinning_params
   )
 
-  # Files not yet created
-  to_twin_filename <- function(x) x # stub
-  if (1 == 2) {
-    # Issue 95, #95
-    testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
-  }
+  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
@@ -887,12 +882,7 @@ test_that("most_evidence, with twinning", {
     twinning_params = create_twinning_params()
   )
 
-  # Files not yet created
-  to_twin_filename <- function(x) x # stub
-  if (1 == 2) {
-    # Issue 95, #95
-    testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
-  }
+  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
