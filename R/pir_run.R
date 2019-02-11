@@ -38,6 +38,7 @@ pir_run <- function(
 
   # Run for the twin tree
   if (!beautier:::is_one_na(pir_params$twinning_params)) {
+
     # Create and save twin tree
     twin_tree <- create_twin_tree(phylogeny) # nolint pirouette function
     ape::write.tree(
@@ -45,18 +46,34 @@ pir_run <- function(
       file = pir_params$twinning_params$twin_tree_filename
     )
 
-    # Let the (twin) alignment be saved with the twin filename
-    pir_params$alignment_params$fasta_filename <-
+    # Create specific twin pir_params filenames
+    pir_params_twin <- pir_params
+    pir_params_twin$alignment_params$fasta_filename <-
       pir_params$twinning_params$twin_alignment_filename
+    pir_params_twin$evidence_filename <-
+      pir_params$twinning_params$twin_evidence_filename
+    for (i in seq_along(pir_params$experiments)) {
+      filenames <- pir_params$experiments[[i]]$beast2_options[
+        grepl(
+          "filename",
+          names(pir_params$experiments[[i]]$beast2_options)
+        )
+        ]
+      for (ii in seq_along(filenames)) {
+        pir_params_twin$experiments[[i]]$beast2_options[ii] <-
+          to_twin_filename(filenames[ii]) # nolint pirouette function
+      }
+    }
 
+    # Re-run pir_run for the twin
     df_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
-      alignment_params = pir_params$alignment_params, # Modified above
-      experiments = pir_params$experiments,
-      error_measure_params = pir_params$error_measure_params,
-      evidence_filename = pir_params$twinning_params$twin_evidence_filename,
-      verbose = pir_params$verbose
+      alignment_params = pir_params_twin$alignment_params,
+      experiments = pir_params_twin$experiments,
+      error_measure_params = pir_params_twin$error_measure_params,
+      evidence_filename = pir_params_twin$evidence_filename,
+      verbose = pir_params_twin$verbose
     )
     df <- rbind(df, df_twin)
   }

@@ -125,13 +125,17 @@ if (rappdirs::app_dir()$os != "win") {
 Show as a table:
 
 ```{r}
-knitr::kable(df)
+if (rappdirs::app_dir()$os != "win") {
+  knitr::kable(df)
+}
 ```
 
 Show as a figure:
 
 ```{r fig.width=7, fig.height=7}
-pirouette::pir_plot(df)
+if (rappdirs::app_dir()$os != "win") {
+  pirouette::pir_plot(df)
+}
 ```
 
 ## Appendix
@@ -151,43 +155,52 @@ ape::plot.phylo(phylogeny, main = "The True Phylogeny")
 See the alignment generated from the true tree:
 
 ```{r}
-testit::assert(file.exists(pir_params$alignment_params$fasta_filename))
-ape::image.DNAbin(ape::read.FASTA(file = pir_params$alignment_params$fasta_filename))
+if (rappdirs::app_dir()$os != "win") {
+  testit::assert(file.exists(pir_params$alignment_params$fasta_filename))
+  ape::image.DNAbin(ape::read.FASTA(file = pir_params$alignment_params$fasta_filename))
+}
 ```
 
 See the posterior trees generated from the true alignment, for the generative model:
 
 ```{r}
-
-testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames))
-babette::plot_densitree(
-  tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
-)
+if (rappdirs::app_dir()$os != "win") {
+  testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames))
+  babette::plot_densitree(
+    tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
+  )
+}
 ```
 
 See the posterior trees generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-testit::assert(file.exists(pir_params$experiments[[2]]$beast2_options$output_trees_filenames))
-babette::plot_densitree(
-  tracerer::parse_beast_trees(pir_params$experiments[[2]]$beast2_options$output_trees_filenames)
-)
+if (rappdirs::app_dir()$os != "win") {
+  testit::assert(file.exists(pir_params$experiments[[2]]$beast2_options$output_trees_filenames))
+  babette::plot_densitree(
+    tracerer::parse_beast_trees(pir_params$experiments[[2]]$beast2_options$output_trees_filenames)
+  )
+}
 ```
 
 See the posterior parameter estimates generated from the true alignment, for the generative model:
 
 ```{r}
-testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_log_filename))
-df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$beast2_options$output_log_filename)
-ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
+if (rappdirs::app_dir()$os != "win") {
+  testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_log_filename))
+  df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$beast2_options$output_log_filename)
+  ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
+}
 ```
 
 See the posterior parameter estimates generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-testit::assert(file.exists(pir_params$experiments[[2]]$beast2_options$output_log_filename))
-df <- tracerer::parse_beast_log(experiment_2$beast2_options$output_log_filename)
-ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
+if (rappdirs::app_dir()$os != "win") {
+  testit::assert(file.exists(pir_params$experiments[[2]]$beast2_options$output_log_filename))
+  df <- tracerer::parse_beast_log(experiment_2$beast2_options$output_log_filename)
+  ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
+}
 ```
 
 ### Twin tree
@@ -195,14 +208,18 @@ ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 See the twin tree:
 
 ```{r}
-ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), main = "The Twin Tree")
+if (rappdirs::app_dir()$os != "win") {
+  ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), main = "The Twin Tree")
+}
 ```
 
 See the alignment generated from the twin tree:
 
 ```{r}
-testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
-ape::image.DNAbin(ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename))
+if (rappdirs::app_dir()$os != "win") {
+  testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
+  ape::image.DNAbin(ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename))
+}
 ```
 
 See the posterior trees generated from the twin alignment, for the generative model:
