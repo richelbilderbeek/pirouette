@@ -113,10 +113,13 @@ pir_params <- create_pir_params(
 Run:
 
 ```{r}
-df <- pirouette::pir_run(
-  phylogeny = phylogeny,
-  pir_params = pir_params
-)
+# ISSUE #106
+if (rappdirs::app_dir()$os != "win") {
+  df <- pirouette::pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+}
 ```
 
 Show as a table:
