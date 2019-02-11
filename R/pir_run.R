@@ -32,7 +32,8 @@ pir_run <- function(
     alignment_params = pir_params$alignment_params,
     experiments = pir_params$experiments,
     error_measure_params = pir_params$error_measure_params,
-    evidence_filename = pir_params$evidence_filename
+    evidence_filename = pir_params$evidence_filename,
+    verbose = pir_params$verbose
   )
 
   # Run for the twin tree
@@ -54,7 +55,8 @@ pir_run <- function(
       alignment_params = pir_params$alignment_params, # Modified above
       experiments = pir_params$experiments,
       error_measure_params = pir_params$error_measure_params,
-      evidence_filename = pir_params$twinning_params$twin_evidence_filename
+      evidence_filename = pir_params$twinning_params$twin_evidence_filename,
+      verbose = pir_params$verbose
     )
     df <- rbind(df, df_twin)
   }
@@ -75,7 +77,8 @@ pir_run_tree <- function(
   alignment_params,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv")
+  evidence_filename = tempfile(fileext = ".csv"),
+  verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
   # Simulate an alignment and save it to file (specified in alignment_params)
@@ -91,14 +94,16 @@ pir_run_tree <- function(
   marg_liks <- est_evidences(
     fasta_filename = alignment_params$fasta_filename,
     experiments = experiments,
-    evidence_filename = evidence_filename
+    evidence_filename = evidence_filename,
+    verbose = verbose
   )
 
   # Select the experiments
   # to do inference with
   experiments <- select_experiments(
     experiments = experiments,
-    marg_liks = marg_liks # For most evidence
+    marg_liks = marg_liks, # For most evidence
+    verbose = verbose
   )
   testit::assert(length(experiments) > 0)
 

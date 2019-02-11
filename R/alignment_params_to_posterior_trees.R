@@ -34,8 +34,13 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   print(paste("DEBUG:2 names(bbt_out):", names(bbt_out)))
   print(paste("DEBUG:7 length(bbt_out[[1]]):", length(bbt_out[[1]])))
   print(paste("DEBUG:8 class(bbt_out[[1]]):", class(bbt_out[[1]])))
-  print("tracerer::count_trees_in_file(experiment$beast2_options$input_filename)")
-  print(tracerer::count_trees_in_file(experiment$beast2_options$input_filename))
+  print("tracerer::count_trees_in_file(experiment$beast2_options$output_trees_filenames)")
+  print(tracerer::count_trees_in_file(experiment$beast2_options$output_trees_filenames))
+
+  print("object.size(bbt_out)")
+  print(pryr::object_size(bbt_out))
+  print("pryr::mem_used()")
+  print(pryr::mem_used())
 
   trees <- c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
 
@@ -46,6 +51,10 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   testit::assert(!is_nested_sampling_mcmc(mcmc))
   if (mcmc$store_every != -1) {
     expected_n_trees <- 1 + (mcmc$chain_length / mcmc$store_every)
+    print("length(trees)")
+    print(length(trees))
+    print("expected_n_trees")
+    print(expected_n_trees)
     testit::assert(length(trees) == expected_n_trees)
   }
 

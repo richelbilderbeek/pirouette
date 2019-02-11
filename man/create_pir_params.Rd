@@ -38,5 +38,5 @@ a list with all pirouette parameters
 Create the parameters for pirouette
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richel J.C. Bilderbeek
 }

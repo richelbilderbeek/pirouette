@@ -7,7 +7,7 @@
 pir_run_tree(phylogeny, tree_type = "true", alignment_params,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"))
+  evidence_filename = tempfile(fileext = ".csv"), verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -29,6 +29,8 @@ a parameter set}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 a data frame with errors, with as many rows as model selection

@@ -5,7 +5,8 @@
 #' @noRd
 select_experiments <- function(
   experiments = list(create_experiment()),
-  marg_liks = NULL
+  marg_liks = NULL,
+  verbose = FALSE
 ) {
   check_experiments(experiments) # nolint pirouette function
 
@@ -26,6 +27,23 @@ select_experiments <- function(
       ) {
       selected_experiments[[index]] <- experiment
       index <- index + 1
+    }
+  }
+
+  if (verbose == TRUE) {
+    for (i in seq_along(selected_experiments)) {
+      inference_model <- selected_experiments[[i]]$inference_model
+      print(
+        paste0(
+          "Selected model ", i, "/", length(selected_experiments), " with ",
+          inference_model$site_model$name,
+          " site model, ",
+          inference_model$clock_model$name,
+          " clock model and ",
+          inference_model$tree_prior$name,
+          " tree prior"
+        )
+      )
     }
   }
   selected_experiments
