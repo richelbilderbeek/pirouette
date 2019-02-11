@@ -2,8 +2,6 @@ context("test-est_evidences")
 
 test_that("use", {
 
-  skip("Issue 99, #99")
-
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
 
@@ -28,11 +26,12 @@ test_that("use", {
       site_model = beautier::create_jc69_site_model(),
       clock_model = beautier::create_strict_clock_model(),
       tree_prior = beautier::create_yule_tree_prior(),
-      mcmc = create_mcmc_nested_sampling(epsilon = 100.0)
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     beast2_options = beastier::create_beast2_options(
       beast2_path = beastier::get_default_beast2_bin_path()
-    )
+    ),
+    est_evidence_mcmc = create_mcmc_nested_sampling(epsilon = 100.0)
   )
   experiment_2 <- experiment_1
   experiment_2$inference_model$site_model <- beautier::create_hky_site_model()
