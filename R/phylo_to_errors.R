@@ -16,6 +16,7 @@ phylo_to_errors <- function(
   experiment = create_experiment(),
   error_measure_params = create_error_measure_params()
 ) {
+  testit::assert(experiment$beast2_options$overwrite == TRUE)
   # Run
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
