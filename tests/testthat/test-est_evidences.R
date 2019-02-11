@@ -49,7 +49,6 @@ test_that("use", {
 
 test_that("cleans up", {
 
-  skip("WIP, related to #99 and #96")
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
 
@@ -96,5 +95,7 @@ test_that("cleans up", {
     fasta_filename = fasta_filename,
     experiments = experiments
   )
+
+  # Still no files exist, as they are deleted by est_evidences
   expect_true(all(!file.exists(c(trees_filename_1, trees_filename_2))))
 })

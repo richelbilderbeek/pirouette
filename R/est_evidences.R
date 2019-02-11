@@ -52,5 +52,13 @@ est_evidences <- function(
   utils::write.csv(
     x = marg_liks, file = evidence_filename
   )
+  # Delete files
+  for (experiment in experiments) {
+    file.remove(experiment$beast2_options$output_log_filename)
+    file.remove(experiment$beast2_options$output_state_filename)
+    file.remove(experiment$beast2_options$output_trees_filenames)
+  }
+
+
   marg_liks
 }
