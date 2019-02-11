@@ -212,8 +212,6 @@ test_that("most_evidence, one candidate", {
 
   if (!beastier::is_on_travis()) return()
 
-  skip("1. Issue 99, #99")
-
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
@@ -277,8 +275,6 @@ test_that("most_evidence, one candidate", {
 test_that("most_evidence, two candidates", {
 
   if (!beastier::is_on_travis()) return()
-
-  skip("2. Issue 99, #99")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -353,8 +349,6 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
 
-  skip("3. Issue 99, #99")
-
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
@@ -417,7 +411,6 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
-  skip("4. Issue 99, #99")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -477,7 +470,6 @@ test_that("two candidates, run both", {
 
   if (!beastier::is_on_travis()) return()
 
-  skip("5. Issue 99, #99")
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
@@ -551,8 +543,6 @@ test_that("most_evidence, three candidates", {
 
   if (!beastier::is_on_travis()) return()
 
-  skip("6. Issue 99, #99")
-
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
@@ -623,8 +613,6 @@ test_that("most_evidence, three candidates", {
 test_that("most_evidence, four candidates", {
 
   if (!beastier::is_on_travis()) return()
-
-  skip("7. Issue 99, #99")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -698,8 +686,6 @@ test_that("most_evidence, four candidates", {
 })
 
 test_that("generative with twin", {
-
-  skip("Issue 99, #99")
 
   if (!beastier::is_on_travis()) return()
 
