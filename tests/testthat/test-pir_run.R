@@ -339,7 +339,6 @@ test_that("most_evidence, two candidates", {
     phylogeny = phylogeny,
     pir_params = pir_params
   )
-  read.csv(pir_params$evidence_filename)
 
   # Files created
   testit::assert(all(file.exists(filenames)))
