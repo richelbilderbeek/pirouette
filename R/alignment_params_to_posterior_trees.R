@@ -37,11 +37,6 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   print("tracerer::count_trees_in_file(experiment$beast2_options$output_trees_filenames)")
   print(tracerer::count_trees_in_file(experiment$beast2_options$output_trees_filenames))
 
-  print("object.size(bbt_out)")
-  print(pryr::object_size(bbt_out))
-  print("pryr::mem_used()")
-  print(pryr::mem_used())
-
   trees <- c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
 
   print(paste("DEBUG: length(trees):", length(trees)))

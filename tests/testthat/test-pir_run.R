@@ -305,22 +305,13 @@ test_that("most_evidence, two candidates", {
     do_measure_evidence = TRUE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 13000, store_every = 1000)
     ),
     beast2_options = create_beast2_options(rng_seed = 99),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  experiment_bd <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    beast2_options = create_beast2_options(rng_seed = 99),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
+  experiment_bd <- experiment_yule
+  experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
   experiments <- list(experiment_yule, experiment_bd)
 
   pir_params <- create_pir_params(
@@ -394,22 +385,16 @@ test_that("generative and most_evidence, generative not in most_evidence", {
     do_measure_evidence = FALSE,
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 13000, store_every = 1000)
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     beast2_options = create_beast2_options(rng_seed = 42),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  experiment_bd <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 13000, store_every = 1000)
-    ),
-    beast2_options = create_beast2_options(rng_seed = 43),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
-  )
+  experiment_bd <- experiment_generative
+  experiment_bd$model_type <- "candidate"
+  experiment_bd$run_if <- "best_candidate"
+  experiment_bd$do_measure_evidence <- TRUE
+  experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
   experiments <- list(experiment_generative, experiment_bd)
 
 
@@ -421,14 +406,9 @@ test_that("generative and most_evidence, generative not in most_evidence", {
     experiments = experiments,
     verbose = TRUE
   )
-  # alignment_params = create_test_alignment_params(),
-
-  errors <- NULL
-  expect_silent(
-    errors <- pir_run(
-      phylogeny = phylogeny,
-      pir_params = pir_params
-    )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
   )
 
 
