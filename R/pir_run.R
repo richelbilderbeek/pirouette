@@ -14,7 +14,7 @@ pir_run <- function(
   phylogeny,
   pir_params = create_pir_params(
     alignment_params = create_alignment_params(
-      mutation_rate = create_standard_mutation_rate(phylogeny)
+      mutation_rate = create_standard_mutation_rate
     )
   )
 ) {
@@ -98,6 +98,14 @@ pir_run_tree <- function(
   verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
+
+  # If alignment_params$mutation_rate is function, apply it to the phylogeny
+  if (is.function(alignment_params$mutation_rate)) {
+    mutation_function <- alignment_params$mutation_rate
+    mutation_rate <- mutation_function(phylogeny)
+    alignment_params$mutation_rate <- mutation_rate
+  }
+
   # Simulate an alignment and save it to file (specified in alignment_params)
   sim_alignment_file(
     phylogeny = phylogeny,
