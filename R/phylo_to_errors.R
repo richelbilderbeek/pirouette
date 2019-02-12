@@ -28,13 +28,7 @@ phylo_to_errors <- function(
   testit::assert(!beautier::is_nested_sampling_mcmc(mcmc))
   if (mcmc$store_every != -1) {
     expected_n_trees <- 1 + (mcmc$chain_length / mcmc$store_every)
-    if (length(trees) != expected_n_trees) {
-      warning(
-        "Number of trees differ between the expected number (",
-        expected_n_trees, ") and the actual number (",
-        length(trees), "). This is a repeated warning of Issue #99"
-      )
-    }
+    testit::assert(length(trees) == expected_n_trees)
   }
 
   # Measure error by comparing true tree with BEAST2 posterior trees
