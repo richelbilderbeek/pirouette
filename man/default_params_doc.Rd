@@ -13,7 +13,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
   burn_in_fraction, chain_length, clock_model, clock_models,
   clock_model_name, crown_age, do_measure_evidence, epsilon,
-  error_function, error_measure_params, est_evidence_mcmc,
+  error_function, error_measure_params, errors_filename, est_evidence_mcmc,
   evidence_epsilon, evidence_filename, experiment, experiments,
   fasta_filename, filename, folder_name, inference_model,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
@@ -160,6 +160,8 @@ error between the given phylogeny and the Bayesian
 posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
+
+\item{errors_filename}{baseline name for errors filenames}
 
 \item{est_evidence_mcmc}{MCMC used in the estimation of
 the evidence (aka marginal likelihood).

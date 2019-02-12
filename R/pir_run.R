@@ -85,6 +85,10 @@ pir_run <- function(
     )
     df <- rbind(df, df_twin)
   }
+
+  # Save errors
+  save_errors_to_file(df = df, pir_params = pir_params)
+
   df
 }
 
@@ -95,7 +99,7 @@ pir_run <- function(
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets
 #' @export
-#' @author Richel J.C. Bilderbeek
+#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 pir_run_tree <- function(
   phylogeny,
   tree_type = "true",

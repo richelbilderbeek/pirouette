@@ -35,15 +35,6 @@ check_twinning_params <- function(
   if (!(twinning_params$twin_model %in% get_twin_models())) {
    stop("This 'twin model' is not implemented")
   }
-  if (!is.character(twinning_params$twin_tree_filename)) {
-    stop("'twin_tree_filename' must be a character vector")
-  }
-  if (!is.character(twinning_params$twin_alignment_filename)) {
-    stop("'twin_alignment_filename' must be a character vector")
-  }
-  if (!is.character(twinning_params$twin_evidence_filename)) {
-    stop("'twin_evidence_filename' must be a character vector")
-  }
   if (!is.character(twinning_params$method)) {
     stop("'method' must be a character vector")
   }
@@ -59,6 +50,15 @@ check_twinning_params <- function(
     twinning_params$n_replicas < 0
   ) {
     stop("'n_replicas' must be a finite positive integer number")
+  }
+  if (!is.character(twinning_params$twin_tree_filename)) {
+    stop("'twin_tree_filename' must be a character vector")
+  }
+  if (!is.character(twinning_params$twin_alignment_filename)) {
+    stop("'twin_alignment_filename' must be a character vector")
+  }
+  if (!is.character(twinning_params$twin_evidence_filename)) {
+    stop("'twin_evidence_filename' must be a character vector")
   }
 
 }

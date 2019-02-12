@@ -40,5 +40,5 @@ a data frame with errors, with as many rows as model selection
 The phylogeny can be the true tree or its twin.
 }
 \author{
-Richel J.C. Bilderbeek
+Richel J.C. Bilderbeek, Giovanni Laudanno
 }

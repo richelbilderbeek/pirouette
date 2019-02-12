@@ -104,6 +104,7 @@
 #'   posterior is determined.
 #'   Use \link{create_error_measure_params} to create such
 #'   a parameter set
+#' @param errors_filename baseline name for errors filenames
 #' @param est_evidence_mcmc MCMC used in the estimation of
 #'   the evidence (aka marginal likelihood).
 #'   The MCMC must be a Nested Sampling MCMC,
@@ -260,6 +261,7 @@ default_params_doc <- function(
   epsilon,
   error_function,
   error_measure_params,
+  errors_filename,
   est_evidence_mcmc,
   evidence_epsilon,
   evidence_filename,
