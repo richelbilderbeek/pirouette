@@ -29,7 +29,7 @@ check_alignment_params <- function(
   if (is.function(alignment_params$mutation_rate)) {
     phylogeny_1 <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
     test_1 <- alignment_params$mutation_rate(phylogeny_1)
-    phylogeny_2 <- load_tree(tree_model = "mbd", seed = 1)
+    phylogeny_2 <- load_tree(tree_model = "mbd", seed = 1) # nolint pirouette function
     test_2 <- alignment_params$mutation_rate(phylogeny_2)
     if (!is.numeric(test_1) | !is.numeric(test_2)) {
       stop("'mutation_rate' function must return a number")
