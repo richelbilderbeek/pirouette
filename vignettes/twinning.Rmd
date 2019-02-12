@@ -172,6 +172,14 @@ if (rappdirs::app_dir()$os != "win") {
 }
 ```
 
+See the evidence of the true alignments for the models:
+
+```{r}
+if (rappdirs::app_dir()$os != "win") {
+  knitr::kable(read.csv(pir_params$evidence_filename))
+}
+```
+
 See the posterior trees generated from the true alignment, for the model with the most evidence:
 
 ```{r}
@@ -234,6 +242,13 @@ if (rappdirs::app_dir()$os != "win") {
 }
 ```
 
+See the evidence of the true alignments for the models:
+
+```{r}
+if (rappdirs::app_dir()$os != "win") {
+  knitr::kable(read.csv(pir_params$twinning_params$twin_evidence_filename))
+}
+```
 See the posterior trees generated from the twin alignment, for the model with the most evidence:
 
 ```{r}
