@@ -724,12 +724,7 @@ test_that("generative with twin", {
     twinning_params = twinning_params
   )
 
-  # Files not yet created
-  to_twin_filename <- function(x) x # stub
-  if (1 == 2) {
-    # Issue 95, #95
-    testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
-  }
+  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
@@ -825,12 +820,7 @@ test_that("most_evidence, with twinning", {
     twinning_params = create_twinning_params()
   )
 
-  # Files not yet created
-  to_twin_filename <- function(x) x # stub
-  if (1 == 2) {
-    # Issue 95, #95
-    testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
-  }
+  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
@@ -869,4 +859,51 @@ test_that("most_evidence, with twinning", {
   expect_true(file.exists(pir_params$evidence_filename))
 
   expect_true(all(errors$inference_model_weight > 0.0))
+})
+
+test_that("twin parameters", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    )
+  )
+  experiments <- list(experiment)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments,
+    twinning_params = create_twinning_params()
+  )
+
+  # Files not yet created
+  filenames <- c(
+    pir_params$experiments[[1]]$beast2_options$input_filename,
+    pir_params$experiments[[1]]$beast2_options$output_log_filename,
+    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
+    pir_params$experiments[[1]]$beast2_options$output_state_filename
+  )
+  twin_filenames <- c(
+    to_twin_filename(filenames)
+  )
+  testit::assert(all(!file.exists(filenames)))
+  testit::assert(all(!file.exists(twin_filenames)))
+
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
+  # Files created
+  testit::assert(all(file.exists(filenames)))
+  testit::assert(all(file.exists(twin_filenames)))
+
 })

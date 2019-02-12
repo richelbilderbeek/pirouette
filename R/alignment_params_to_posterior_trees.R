@@ -29,7 +29,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
 
   # Check the number of trees
   mcmc <- experiment$inference_model$mcmc
-  testit::assert(!is_nested_sampling_mcmc(mcmc))
+  testit::assert(!beautier::is_nested_sampling_mcmc(mcmc))
   if (mcmc$store_every != -1) {
     expected_n_trees <- 1 + (mcmc$chain_length / mcmc$store_every)
     if (length(trees) != expected_n_trees) {

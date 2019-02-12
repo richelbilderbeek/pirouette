@@ -85,7 +85,7 @@ Now, per phylogeny, we estimate the error BEAST2 makes:
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
   root_sequence = "aaaaccccggggtttt",
-  mutation_rate = create_standard_mutation_rate(phylogeny)
+  mutation_rate = create_standard_mutation_rate
 )
 experiment <- create_experiment(
   model_type = "generative",

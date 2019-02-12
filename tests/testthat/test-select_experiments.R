@@ -84,3 +84,16 @@ test_that("generative model and candidate model", {
   expect_equal(2, length(selected))
   expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 })
+
+test_that("use, verbose", {
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment()
+  experiment$run_if <- "always"
+  experiments <- list(experiment)
+  output <- capture.output(
+    select_experiments(experiments, verbose = TRUE)
+  )
+  expect_true(
+    length(output) > 0 & !is.null(output)
+  )
+})

@@ -26,8 +26,22 @@ check_alignment_params <- function(
   if (!is_dna_seq(alignment_params$root_sequence)) {
     stop("'root_sequence' must be a lowercase DNA character string")
   }
-  if (alignment_params$mutation_rate < 0) {
-    stop("'mutation_rate' must be a non-zero and positive value")
+  if (is.function(alignment_params$mutation_rate)) {
+    phylogeny_1 <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+    test_1 <- alignment_params$mutation_rate(phylogeny_1)
+    phylogeny_2 <- load_tree(tree_model = "mbd", seed = 1)
+    test_2 <- alignment_params$mutation_rate(phylogeny_2)
+    if (!is.numeric(test_1) | !is.numeric(test_2)) {
+      stop("'mutation_rate' function must return a number")
+    } else {
+      if (test_1 < 0 | test_2 < 0) {
+        stop("'mutation_rate' function must return non-zero and positive value")
+      }
+    }
+  } else {
+    if (alignment_params$mutation_rate < 0) {
+      stop("'mutation_rate' must be a non-zero and positive value")
+    }
   }
   if (!is.numeric(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")

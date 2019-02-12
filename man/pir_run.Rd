@@ -5,8 +5,8 @@
 \title{Measure the error BEAST2 makes from a known phylogeny.}
 \usage{
 pir_run(phylogeny, pir_params = create_pir_params(alignment_params =
-  create_alignment_params(mutation_rate =
-  create_standard_mutation_rate(phylogeny))))
+  create_alignment_params(mutation_rate = create_standard_mutation_rate),
+  twinning_params = create_twinning_params(rng_seed = "same_seed")))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
