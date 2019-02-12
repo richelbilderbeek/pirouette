@@ -11,7 +11,7 @@ select_experiments <- function(
   check_experiments(experiments) # nolint pirouette function
 
   # Keep only the candidate marginal likelihoods
-  candidate_marg_liks <- select_candidate_evidences(experiments, marg_liks)
+  candidate_marg_liks <- select_candidate_evidences(experiments, marg_liks) # nolint pirouette function
 
   selected_experiments <- list()
   index <- 1
