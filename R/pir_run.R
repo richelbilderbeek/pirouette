@@ -176,11 +176,7 @@ pir_run_tree <- function(
     inference_model_weight = rep(NA, n_rows),
     site_model = rep(NA, n_rows),
     clock_model = rep(NA, n_rows),
-    tree_prior = rep(NA, n_rows),
-    beast2_input_filename = rep(NA, n_rows),
-    beast2_output_log_filename = rep(NA, n_rows),
-    beast2_output_trees_filename = rep(NA, n_rows),
-    beast2_output_state_filename = rep(NA, n_rows)
+    tree_prior = rep(NA, n_rows)
   )
 
   error_col_names <- paste0("error_", seq(1, length(errorses[[1]])))
@@ -197,13 +193,6 @@ pir_run_tree <- function(
     df$site_model[i] <- experiment$inference_model$site_model$name
     df$clock_model[i] <- experiment$inference_model$clock_model$name
     df$tree_prior[i] <- experiment$inference_model$tree_prior$name
-    df$beast2_input_filename[i] <- experiment$beast2_options$input_filename
-    df$beast2_output_log_filename[i] <-
-      experiment$beast2_options$output_log_filename
-    df$beast2_output_trees_filename[i] <-
-      experiment$beast2_options$output_trees_filenames
-    df$beast2_output_state_filename[i] <-
-      experiment$beast2_options$output_state_filename
     from_col_idx <- which(colnames(df) == "error_1")
     if (verbose == TRUE) {
       print(paste("from_col_idx:", from_col_idx))

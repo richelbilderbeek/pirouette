@@ -31,7 +31,6 @@ test_that("generative", {
   )
   experiments <- list(experiment)
 
-
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
     experiments = experiments
