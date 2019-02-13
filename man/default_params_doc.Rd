@@ -169,8 +169,7 @@ The MCMC must be a Nested Sampling MCMC,
 as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
 
 \item{evidence_epsilon}{relative error in estimating the
-evidence (aka marginal likelihood).
-TODO: put in \code{misc_params},}
+evidence (aka marginal likelihood).}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}

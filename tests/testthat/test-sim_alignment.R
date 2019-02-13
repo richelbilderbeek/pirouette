@@ -19,6 +19,66 @@ test_that("sim_alignment: basic", {
   expect_true(ncol(alignment) == sequence_length)
 })
 
+test_that("sim_alignment: HKY", {
+  n_taxa <- 3
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  testit::assert(length(phylogeny$tip.label) == n_taxa)
+  sequence_length <- 10
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = sequence_length),
+    mutation_rate = 1,
+    site_model = beautier::create_hky_site_model()
+  )
+
+  alignment <- sim_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params
+  )
+  expect_true(class(alignment) == "DNAbin")
+  expect_true(nrow(alignment) == n_taxa)
+  expect_true(ncol(alignment) == sequence_length)
+})
+
+test_that("sim_alignment: TN93", {
+  n_taxa <- 3
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  testit::assert(length(phylogeny$tip.label) == n_taxa)
+  sequence_length <- 10
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = sequence_length),
+    mutation_rate = 1,
+    site_model = beautier::create_tn93_site_model()
+  )
+
+  alignment <- sim_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params
+  )
+  expect_true(class(alignment) == "DNAbin")
+  expect_true(nrow(alignment) == n_taxa)
+  expect_true(ncol(alignment) == sequence_length)
+})
+
+test_that("sim_alignment: GTR", {
+  n_taxa <- 3
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  testit::assert(length(phylogeny$tip.label) == n_taxa)
+  sequence_length <- 10
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = sequence_length),
+    mutation_rate = 1,
+    site_model = beautier::create_gtr_site_model()
+  )
+
+  alignment <- sim_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params
+  )
+  expect_true(class(alignment) == "DNAbin")
+  expect_true(nrow(alignment) == n_taxa)
+  expect_true(ncol(alignment) == sequence_length)
+})
+
 test_that("sim_alignment: abuse", {
 
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")

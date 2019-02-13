@@ -37,20 +37,17 @@ sim_alignment <- function(
     }
   )
 
-
   root_sequence <- alignment_params$root_sequence
 
-
   set.seed(alignment_params$rng_seed)
-
-  # Jukes-Cantor 1969 model:
-  #  * equal base frequencies
-  #  * equal transition rates
   alignment_phydat <- phangorn::simSeq(
     phylogeny,
     l = nchar(root_sequence),
     rate = alignment_params$mutation_rate,
-    rootseq = strsplit(root_sequence, split = "")[[1]]
+    rootseq = strsplit(root_sequence, split = "")[[1]],
+    Q = create_rate_matrix(
+      site_model = alignment_params$site_model
+    )
   )
   testit::assert(class(alignment_phydat) == "phyDat")
 

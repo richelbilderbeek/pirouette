@@ -111,7 +111,6 @@
 #'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
 #' @param evidence_epsilon relative error in estimating the
 #'   evidence (aka marginal likelihood).
-#'   TODO: put in \code{misc_params},
 #' @param evidence_filename filename to store the estimated
 #'   evidences (aka marginal likelihoods)
 #' @param experiment a \link{pirouette} experiment,
