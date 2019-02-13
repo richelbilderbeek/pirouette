@@ -87,7 +87,7 @@ pir_run <- function(
   }
 
   # Save errors
-  save_errors_to_file(df = df, pir_params = pir_params)
+  save_errors_to_file(df = df, pir_params = pir_params) # nolint pirouette functions
 
   df
 }
