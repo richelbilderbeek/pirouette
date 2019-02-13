@@ -9,7 +9,8 @@ check_error_measure_params <- function(
 ) {
   argument_names <- c(
     "burn_in_fraction",
-    "error_function"
+    "error_function",
+    "errors_filename"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(error_measure_params)) {
@@ -64,5 +65,12 @@ check_error_measure_params <- function(
     stop(
       "'error_function' must be a function that is lowest for identical trees" # nolint long string
     )
+  }
+
+  if (!is.character(error_measure_params$errors_filename)) {
+    stop("'errors_filename' must be a character vector")
+  }
+  if (tools::file_ext(error_measure_params$errors_filename) != "csv") {
+    stop("'errors_filename' must be a csv file")
   }
 }
