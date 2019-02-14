@@ -6,13 +6,13 @@
 documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
-  bd_mutation_rate, bd_tree, bd_tree_filename, beast2_bin_path,
-  beast2_input_filename, beast2_options, beast2_options_inference,
-  beast2_options_est_evidence, beast2_output_log_filename,
-  beast2_output_state_filename, beast2_output_trees_filename,
-  beast2_output_trees_filenames, beast2_path, beast2_rng_seed, brts,
-  burn_in_fraction, chain_length, clock_model, clock_models,
-  clock_model_name, crown_age, do_measure_evidence, epsilon,
+  base_frequencies, bd_mutation_rate, bd_tree, bd_tree_filename,
+  beast2_bin_path, beast2_input_filename, beast2_options,
+  beast2_options_inference, beast2_options_est_evidence,
+  beast2_output_log_filename, beast2_output_state_filename,
+  beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
+  beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
+  clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
   error_function, error_measure_params, errors_filename, est_evidence_mcmc,
   evidence_epsilon, evidence_filename, experiment, experiments,
   fasta_filename, filename, folder_name, inference_model,
@@ -36,6 +36,9 @@ as can be created by \link{create_alignment_params}}
 
 \item{alignment_rng_seed}{The random number generator seed used
 to generate an alignment}
+
+\item{base_frequencies}{the four base frequencies to be specified
+to create the rate matrix (i.e. Q matrix) used to simulate alignments}
 
 \item{bd_mutation_rate}{the mutation rate when creating an alignment
 from a BD tree}
@@ -169,8 +172,7 @@ The MCMC must be a Nested Sampling MCMC,
 as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
 
 \item{evidence_epsilon}{relative error in estimating the
-evidence (aka marginal likelihood).
-TODO: put in \code{misc_params},}
+evidence (aka marginal likelihood).}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}

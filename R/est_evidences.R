@@ -65,6 +65,5 @@ est_evidences <- function(
     }
   }
 
-
   marg_liks
 }

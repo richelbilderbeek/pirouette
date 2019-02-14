@@ -27,7 +27,6 @@ create_yule_tree <- function(
   } else {
     sink(rappdirs::user_cache_dir())
   }
-  # TODO: Issue #52: check the quality of inference of lambda and mu provided by bd_ML # nolint
   yule_pars <- DDD::bd_ML(
     brts = sort(phylo_brts, decreasing = TRUE),
     cond = 1, #conditioning on stem or crown age # nolint

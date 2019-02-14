@@ -209,34 +209,36 @@ candidate  | best_candidate |TRUE              |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
-experiment_yule <- create_experiment(
-  model_type = "candidate",
-  run_if = "best_candidate",
-  do_measure_evidence = TRUE,
-  inference_model = create_inference_model(
-    tree_prior = create_yule_tree_prior(),
-    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-  ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-  beast2_options = create_beast2_options(rng_seed = 314)
-)
-experiment_bd <- create_experiment(
-  model_type = "candidate",
-  run_if = "best_candidate",
-  do_measure_evidence = TRUE,
-  inference_model = create_inference_model(
-    tree_prior = create_bd_tree_prior(),
-    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-  ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-  beast2_options = create_beast2_options(rng_seed = 314)
-)
-experiments <- list(experiment_yule, experiment_bd)
-
-pir_params <- create_pir_params(
-  alignment_params = alignment_params,
-  experiments = experiments
-)
+if (rappdirs::app_dir()$os != "win") {
+  experiment_yule <- create_experiment(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_yule_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+    beast2_options = create_beast2_options(rng_seed = 314)
+  )
+  experiment_bd <- create_experiment(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE,
+    inference_model = create_inference_model(
+      tree_prior = create_bd_tree_prior(),
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+    beast2_options = create_beast2_options(rng_seed = 314)
+  )
+  experiments <- list(experiment_yule, experiment_bd)
+  
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    experiments = experiments
+  )
+}
 ```
 
 Now we again have all in place to do a `pirouette` run:
