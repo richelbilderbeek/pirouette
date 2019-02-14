@@ -38,7 +38,7 @@ pir_run <- function(
   )
 
   # Run for the twin tree
-  if (!beautier:::is_one_na(pir_params$twinning_params)) {
+  if (!beautier::is_one_na(pir_params$twinning_params)) {
 
     # Create specific twin pir_params
     pir_params_twin <- pir_params
@@ -87,7 +87,7 @@ pir_run <- function(
   }
 
   # Save errors
-  save_errors_to_file(df = df, pir_params = pir_params)
+  save_errors_to_file(df = df, pir_params = pir_params) # nolint pirouette functions
 
   df
 }

@@ -2,7 +2,7 @@
 title: "Twinning"
 author: "Richel J.C. Bilderbeek"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output: rmarkdown::pdf_document
 vignette: >
   %\VignetteIndexEntry{Twinning}
   %\VignetteEngine{knitr::rmarkdown}
