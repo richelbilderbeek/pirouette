@@ -24,6 +24,9 @@ create_experiment <- function(
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(),
   beast2_bin_path = beastier::get_default_beast2_bin_path()
 ) {
+  if (rappdirs::app_dir()$os == "win" && do_measure_evidence == TRUE) {
+    stop("This configuration cannot run on windows")
+  }
   experiment <- list(
     model_type = model_type,
     run_if = run_if,

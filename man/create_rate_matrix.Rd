@@ -4,11 +4,14 @@
 \alias{create_rate_matrix}
 \title{Create a rate matrix for the given site model}
 \usage{
-create_rate_matrix(site_model)
+create_rate_matrix(site_model, base_frequencies = rep(0.25, 4))
 }
 \arguments{
 \item{site_model}{a nucleotide substitution model,
 as created by \link[beautier]{create_site_model}}
+
+\item{base_frequencies}{the four base frequencies to be specified
+to create the rate matrix (i.e. Q matrix) used to simulate alignments}
 }
 \value{
 a rate matrix

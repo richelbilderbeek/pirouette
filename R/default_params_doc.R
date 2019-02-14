@@ -5,6 +5,8 @@
 #'   as can be created by \link{create_alignment_params}
 #' @param alignment_rng_seed The random number generator seed used
 #'   to generate an alignment
+#' @param base_frequencies the four base frequencies to be specified
+#'  to create the rate matrix (i.e. Q matrix) used to simulate alignments
 #' @param bd_mutation_rate the mutation rate when creating an alignment
 #'   from a BD tree
 #' @param bd_tree a phylogent of class \link[ape]{phylo},
@@ -236,6 +238,7 @@ default_params_doc <- function(
   alignment,
   alignment_params,
   alignment_rng_seed,
+  base_frequencies,
   bd_mutation_rate,
   bd_tree,
   bd_tree_filename,
