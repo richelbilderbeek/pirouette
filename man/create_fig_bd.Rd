@@ -6,7 +6,7 @@
 \usage{
 create_fig_bd(phylogeny,
   twinning_params = create_twinning_params(twin_model = "bd", method =
-  "random_tree"))
+  "max_likelihood"))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

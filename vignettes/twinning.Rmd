@@ -2,7 +2,7 @@
 title: "Twinning"
 author: "Richel J.C. Bilderbeek"
 date: "`r Sys.Date()`"
-output: rmarkdown::pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Twinning}
   %\VignetteEngine{knitr::rmarkdown}
@@ -112,28 +112,22 @@ pir_params <- create_pir_params(
 Run:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
-  df <- pirouette::pir_run(
-    phylogeny = phylogeny,
-    pir_params = pir_params
-  )
-}
+df <- pirouette::pir_run(
+  phylogeny = phylogeny,
+  pir_params = pir_params
+)
 ```
 
 Show as a table:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
-  knitr::kable(df)
-}
+knitr::kable(df)
 ```
 
 Show as a figure:
 
 ```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win") {
-  pirouette::pir_plot(df)
-}
+pirouette::pir_plot(df)
 ```
 
 ## Appendix
