@@ -19,12 +19,12 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
   marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
   mbd_tree, mcmc, method, model_selection, model_type, mrca_prior, mu,
-  mutation_rate, n_replicas, nu, nu_events, parameter_filename,
-  parameters_filename, phylo, phylogeny, pir_params, posterior_trees,
-  precision, project_folder_name, root_sequence, run_if, sample_interval,
-  seed, sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, tree, tree_filename, tree_model,
-  tree_prior, tree_priors, tree_prior_name, tree_type,
+  mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
+  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
+  posterior_trees, precision, project_folder_name, root_sequence, run_if,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  site_models, site_model_name, sub_chain_length, t_0, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
   twin_alignment_filename, twin_evidence_filename, twin_model,
   twin_tree_filename, twinning_params, type, verbose)
 }
@@ -37,8 +37,9 @@ as can be created by \link{create_alignment_params}}
 \item{alignment_rng_seed}{The random number generator seed used
 to generate an alignment}
 
-\item{base_frequencies}{the four base frequencies to be specified
-to create the rate matrix (i.e. Q matrix) used to simulate alignments}
+\item{base_frequencies}{the four base frequencies (a, c, g, t) to be
+specified to create the rate matrix (i.e. Q matrix)
+used to simulate alignments}
 
 \item{bd_mutation_rate}{the mutation rate when creating an alignment
 from a BD tree}
@@ -248,6 +249,10 @@ as created by \link[beautier]{create_mrca_prior}}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
+\item{n_0}{number of starting species}
+
+\item{n_taxa}{number of tree tips}
+
 \item{n_replicas}{number of replicas to evaluate in order to create the
 twin tree}
 
@@ -275,7 +280,7 @@ of class \code{multiphylo}}
 \item{project_folder_name}{project folder name}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
+By default, this will consist out of an equal amount of each letter}
 
 \item{run_if}{the condition for an experiment's inference model to be run.
 Possible values:
@@ -307,6 +312,8 @@ as created by \link[beautier]{create_site_model}}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
+
+\item{t_0}{starting time of a tree}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 

@@ -2,11 +2,14 @@
 #' @inheritParams default_params_doc
 #' @return a rate matrix
 #' @author Giovanni Laudanno
-#' @export
 create_rate_matrix <- function(
   site_model,
   base_frequencies = rep(0.25, 4)
 ) {
+  implemented_models <- c("JC69", "HKY", "TN93", "GTR")
+  if (!(site_model$name %in% implemented_models)) {
+    stop("'site_model' not implemented")
+  }
 
   base_frequencies <- base_frequencies / sum(base_frequencies)
   q_matrix <- matrix(rep(base_frequencies, 4), 4, 4, byrow = TRUE)
@@ -20,7 +23,6 @@ create_rate_matrix <- function(
   }
   if (site_model$name == "HKY") {
     # HKY model:
-    #  * equal base frequencies (STUB)
     #  * transition different from transversions
     kappa <- as.numeric(site_model$kappa)
     q_matrix[1, 2] <- q_matrix[1, 2] * kappa
@@ -30,7 +32,6 @@ create_rate_matrix <- function(
   }
   if (site_model$name == "TN93") {
     # TN93 model:
-    #  * equal base frequencies (STUB)
     #  * transition different from transversions and CT != AG
     kappa_1 <- as.numeric(site_model$kappa_1_param$value)
     kappa_2 <- as.numeric(site_model$kappa_2_param$value)
@@ -41,7 +42,6 @@ create_rate_matrix <- function(
   }
   if (site_model$name == "GTR") {
     # GTR model:
-    #  * equal base frequencies (STUB)
     #  * transition rates all different
     x <- as.numeric(
       c(
@@ -67,4 +67,20 @@ create_rate_matrix <- function(
   }
 
   q_matrix
+}
+
+#' Calculate base frequencies
+#' @inheritParams default_params_doc
+#' @return a frequencies vector
+#' @author Giovanni Laudanno
+calc_base_freq <- function(
+  root_sequence
+) {
+  f_a <- stringr::str_count(root_sequence, pattern = "a")
+  f_c <- stringr::str_count(root_sequence, pattern = "c")
+  f_g <- stringr::str_count(root_sequence, pattern = "g")
+  f_t <- stringr::str_count(root_sequence, pattern = "t")
+  freqs <- c(f_a, f_c, f_g, f_t)
+  freqs <- freqs / sum(freqs)
+  freqs
 }

@@ -5,8 +5,9 @@
 #'   as can be created by \link{create_alignment_params}
 #' @param alignment_rng_seed The random number generator seed used
 #'   to generate an alignment
-#' @param base_frequencies the four base frequencies to be specified
-#'  to create the rate matrix (i.e. Q matrix) used to simulate alignments
+#' @param base_frequencies the four base frequencies (a, c, g, t) to be
+#'   specified to create the rate matrix (i.e. Q matrix)
+#'   used to simulate alignments
 #' @param bd_mutation_rate the mutation rate when creating an alignment
 #'   from a BD tree
 #' @param bd_tree a phylogent of class \link[ape]{phylo},
@@ -164,6 +165,8 @@
 #'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
 #' @param mutation_rate the mutation rate per base pair per time unit
+#' @param n_0 number of starting species
+#' @param n_taxa number of tree tips
 #' @param n_replicas number of replicas to evaluate in order to create the
 #'   twin tree
 #' @param nu the rate at which a multiple-birth specation is triggered
@@ -180,7 +183,7 @@
 #' @param precision define the precision of the approximation.
 #' @param project_folder_name project folder name
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
-#'   By default, this will consist out of only adenine
+#'   By default, this will consist out of an equal amount of each letter
 #' @param run_if the condition for an experiment's inference model to be run.
 #'   Possible values:
 #'   \itemize{
@@ -202,6 +205,7 @@
 #' @param site_model_name name of a site model
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
+#' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
 #' @param tree_model model used to simulate the tree
 #' @param tree_prior a tree prior,
@@ -288,6 +292,8 @@ default_params_doc <- function(
   mrca_prior,
   mu,
   mutation_rate,
+  n_0,
+  n_taxa,
   n_replicas,
   nu,
   nu_events,
@@ -309,6 +315,7 @@ default_params_doc <- function(
   site_model, site_models,
   site_model_name,
   sub_chain_length,
+  t_0,
   tree,
   tree_filename,
   tree_model,

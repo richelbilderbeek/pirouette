@@ -12,7 +12,7 @@
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
+By default, this will consist out of an equal amount of each letter}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
