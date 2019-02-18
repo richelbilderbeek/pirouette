@@ -165,6 +165,8 @@
 #'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
 #' @param mutation_rate the mutation rate per base pair per time unit
+#' @param n_0 number of starting species
+#' @param n_taxa number of tree tips
 #' @param n_replicas number of replicas to evaluate in order to create the
 #'   twin tree
 #' @param nu the rate at which a multiple-birth specation is triggered
@@ -203,6 +205,7 @@
 #' @param site_model_name name of a site model
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
+#' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
 #' @param tree_model model used to simulate the tree
 #' @param tree_prior a tree prior,
@@ -289,6 +292,8 @@ default_params_doc <- function(
   mrca_prior,
   mu,
   mutation_rate,
+  n_0,
+  n_taxa,
   n_replicas,
   nu,
   nu_events,
@@ -310,6 +315,7 @@ default_params_doc <- function(
   site_model, site_models,
   site_model_name,
   sub_chain_length,
+  t_0,
   tree,
   tree_filename,
   tree_model,
