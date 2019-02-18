@@ -46,7 +46,8 @@ sim_alignment <- function(
     rate = alignment_params$mutation_rate,
     rootseq = strsplit(root_sequence, split = "")[[1]],
     Q = create_rate_matrix(
-      site_model = alignment_params$site_model
+      site_model = alignment_params$site_model,
+      base_frequencies = calc_base_freq(root_sequence)
     )
   )
   testit::assert(class(alignment_phydat) == "phyDat")

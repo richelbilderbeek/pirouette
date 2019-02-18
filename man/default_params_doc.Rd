@@ -37,8 +37,9 @@ as can be created by \link{create_alignment_params}}
 \item{alignment_rng_seed}{The random number generator seed used
 to generate an alignment}
 
-\item{base_frequencies}{the four base frequencies to be specified
-to create the rate matrix (i.e. Q matrix) used to simulate alignments}
+\item{base_frequencies}{the four base frequencies (a, c, g, t) to be
+specified to create the rate matrix (i.e. Q matrix)
+used to simulate alignments}
 
 \item{bd_mutation_rate}{the mutation rate when creating an alignment
 from a BD tree}
@@ -275,7 +276,7 @@ of class \code{multiphylo}}
 \item{project_folder_name}{project folder name}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
+By default, this will consist out of an equal amount of each letter}
 
 \item{run_if}{the condition for an experiment's inference model to be run.
 Possible values:

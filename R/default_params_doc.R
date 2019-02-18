@@ -5,8 +5,9 @@
 #'   as can be created by \link{create_alignment_params}
 #' @param alignment_rng_seed The random number generator seed used
 #'   to generate an alignment
-#' @param base_frequencies the four base frequencies to be specified
-#'  to create the rate matrix (i.e. Q matrix) used to simulate alignments
+#' @param base_frequencies the four base frequencies (a, c, g, t) to be
+#'   specified to create the rate matrix (i.e. Q matrix)
+#'   used to simulate alignments
 #' @param bd_mutation_rate the mutation rate when creating an alignment
 #'   from a BD tree
 #' @param bd_tree a phylogent of class \link[ape]{phylo},
@@ -180,7 +181,7 @@
 #' @param precision define the precision of the approximation.
 #' @param project_folder_name project folder name
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
-#'   By default, this will consist out of only adenine
+#'   By default, this will consist out of an equal amount of each letter
 #' @param run_if the condition for an experiment's inference model to be run.
 #'   Possible values:
 #'   \itemize{
