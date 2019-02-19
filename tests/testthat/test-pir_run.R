@@ -759,8 +759,6 @@ test_that("generative with twin", {
 
 test_that("most_evidence, with twinning", {
 
-  skip("Issue 103, #103")
-
   if (!beastier::is_on_travis()) return()
 
 
@@ -782,6 +780,7 @@ test_that("most_evidence, with twinning", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  beast2_options <- create_beast2_options(rng_seed = 314)
 
   experiment_yule <- create_experiment(
     model_type = "candidate",
@@ -791,6 +790,7 @@ test_that("most_evidence, with twinning", {
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
+    beast2_options = beast2_options,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- create_experiment(
@@ -801,6 +801,7 @@ test_that("most_evidence, with twinning", {
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
+    beast2_options = beast2_options,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule, experiment_bd)
@@ -810,8 +811,6 @@ test_that("most_evidence, with twinning", {
     experiments = experiments,
     twinning_params = create_twinning_params()
   )
-
-  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
