@@ -39,24 +39,26 @@ test_that("generative", {
   # Files not yet created
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
-    pir_params$evidence_filename,
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
     pir_params$experiments[[1]]$beast2_options$output_state_filename
   )
   testit::assert(all(!file.exists(filenames)))
+  # Evidence files will not be created,
+  #   as all models have do_measure_evidence == FALSE
+  testit::assert(!file.exists(pir_params$evidence_filename))
+
 
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 
-  skip("Issue 111, #111")
-
   # Files created
-  testit::assert(file.exists(filenames[2])) # this test fails
   testit::assert(all(file.exists(filenames)))
+  # Evidence file will not be created
+  testit::assert(!file.exists(pir_params$evidence_filename))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -92,25 +94,6 @@ test_that("generative", {
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
   n_errors <- col_last_error - col_first_error + 1
   expect_true(n_errors < 11) # due to burn-in
-
-  # Filenames match
-  expect_equal(
-    errors$beast2_input_filename,
-    experiment$beast2_options$input_filename
-  )
-  expect_equal(
-    errors$beast2_output_log_filename,
-    experiment$beast2_options$output_log_filename
-  )
-  expect_equal(
-    errors$beast2_output_trees_filename,
-    experiment$beast2_options$output_trees_filenames
-  )
-  expect_equal(
-    errors$beast2_output_state_filename,
-    experiment$beast2_options$output_state_filename
-  )
-
 })
 
 test_that("generative, using gamma statistic", {
@@ -691,7 +674,6 @@ test_that("most_evidence, four candidates", {
 test_that("generative with twin", {
 
   if (!beastier::is_on_travis()) return()
-  skip("Issue 111, #111")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -728,11 +710,8 @@ test_that("generative with twin", {
     twinning_params = twinning_params
   )
 
-  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
-
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
-    pir_params$evidence_filename,
     pir_params$experiments[[1]]$beast2_options$input_filename,
     pir_params$experiments[[1]]$beast2_options$output_log_filename,
     pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
@@ -753,6 +732,11 @@ test_that("generative with twin", {
     pir_params$twinning_params$twin_alignment_filename
   )
   testit::assert(all(!file.exists(filenames)))
+  # Evidence files will not be created,
+  #   as all models have do_measure_evidence == FALSE
+  testit::assert(!file.exists(pir_params$evidence_filename))
+  testit::assert(!file.exists(twinning_params$twin_evidence_filename))
+
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -760,8 +744,10 @@ test_that("generative with twin", {
   )
 
   # Files created
-  testit::assert(file.exists(filenames[2])) # test fails here
   testit::assert(all(file.exists(filenames)))
+  # Evidence files will not be created
+  testit::assert(!file.exists(pir_params$evidence_filename))
+  testit::assert(!file.exists(twinning_params$twin_evidence_filename))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -772,8 +758,6 @@ test_that("generative with twin", {
 
 
 test_that("most_evidence, with twinning", {
-
-  skip("Issue 103, #103")
 
   if (!beastier::is_on_travis()) return()
 
@@ -796,6 +780,7 @@ test_that("most_evidence, with twinning", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  beast2_options <- create_beast2_options(rng_seed = 314)
 
   experiment_yule <- create_experiment(
     model_type = "candidate",
@@ -805,6 +790,7 @@ test_that("most_evidence, with twinning", {
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
+    beast2_options = beast2_options,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- create_experiment(
@@ -815,6 +801,7 @@ test_that("most_evidence, with twinning", {
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
+    beast2_options = beast2_options,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule, experiment_bd)
@@ -824,8 +811,6 @@ test_that("most_evidence, with twinning", {
     experiments = experiments,
     twinning_params = create_twinning_params()
   )
-
-  testit::assert(to_twin_filename("1.csv") == "1_twin.csv")
 
   filenames <- c(
     pir_params$alignment_params$fasta_filename,
@@ -861,7 +846,6 @@ test_that("most_evidence, with twinning", {
   testit::assert(all(file.exists(filenames)))
 
   expect_true("candidate" %in% errors$inference_model)
-  expect_true(file.exists(pir_params$evidence_filename))
 
   expect_true(all(errors$inference_model_weight > 0.0))
 })

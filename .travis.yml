@@ -6,9 +6,6 @@ r_packages:
   - ggplot2
   - xml2
 
-bioc_packages:
-  - ggtree
-
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
@@ -24,7 +21,6 @@ r_github_packages:
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
-
 
 before_install:
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
@@ -47,7 +43,7 @@ script:
 
 after_success:
   - Rscript -e 'lintr::lint_package()'
-  - Rscript -e 'covr::codecov()'
+  - travis_wait 20 Rscript -e 'covr::codecov()'
   #- Rscript -e 'goodpractice::gp()'
   #- proselint *.md | egrep -v "typography\.symbols\.curly_quotes"
   # temporarily removed due to CERT_UNTRUSTED
