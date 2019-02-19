@@ -29,8 +29,7 @@ build_script:
   - travis-tool.sh install_github ropensci/beautier
   - travis-tool.sh install_github ropensci/beastier
   - travis-tool.sh install_github ropensci/mauricer
-  - travis-tool.sh install_bioc ggtree
-  - travis-tool.sh install_github ropensci/babette
+  - travis-tool.sh install_github ropensci/babette@develop
   - travis-tool.sh install_github richelbilderbeek/mcbette
   - travis-tool.sh install_github jimhester/covr
   - travis-tool.sh install_github jimhester/lintr
