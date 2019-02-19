@@ -22,8 +22,6 @@ environment:
     USE_RTOOLS: true
 
 build_script:
-  - travis-tool.sh install_deps
-  - R -e "library(beastier); beastier::install_beast2()"
   - travis-tool.sh install_github richelbilderbeek/becosys
   - travis-tool.sh install_github ropensci/tracerer
   - travis-tool.sh install_github ropensci/beautier
@@ -35,6 +33,8 @@ build_script:
   - travis-tool.sh install_github jimhester/lintr
   - travis-tool.sh install_github MangoTheCat/goodpractice
   - travis-tool.sh install_github Giappo/mbd
+  - travis-tool.sh install_deps
+  - R -e "library(beastier); beastier::install_beast2()"
 
 test_script:
   - travis-tool.sh run_tests
