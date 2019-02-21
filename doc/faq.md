@@ -8,47 +8,27 @@
 
 ![pirouette dependencies](pirouette.png)
 
-### Where is the alignment created by `pirouette` stored?
+### [How to set up the experiments](how_to_set_up_experiments.md)?
 
-```{r}
-create_alignment_params(...)$fasta_filename
-```
+See [How to set up the experiments](how_to_set_up_experiments.md)
 
-### Where is the twin phylogeny created by `pirouette` stored?
+### Where are the files stored?
 
-```{r}
-create_twinning_params(...)$twin_tree_filename
-```
+`pirouette` creates a lot of files, that are by default stored
+in a `temp` folder. Here are their locations:
 
-### Where is the twin alignment created by `pirouette` stored?
+File                               |Where
+-----------------------------------|-----------------------------------------------------------------------
+The (true) phylogeny               |?someplace
+The twin phylogeny                 |`pir_params$twinning_params$twin_tree_filename`
+The (true) alignment               |`pir_params$alignment_params$fasta_filename`
+The twin alignment                 |`pir_params$twinning_params$twin_alignment_filename`
+BEAST2 (`.xml`) input file (1)     |pir_params$experiments[[1]]$beast2_options$beast2_input_filename
+BEAST2 `.log` output file (1)      |pir_params$experiments[[1]]$beast2_options$beast2_output_log_filename
+BEAST2 `.trees` output file (1)    |pir_params$experiments[[1]]$beast2_options$beast2_output_trees_filename
+BEAST2 `.xml.state` output file (1)|pir_params$experiments[[1]]$beast2_options$beast2_output_state_filename
 
-```{r}
-create_twinning_params(...)$twin_alignment_filename
-```
-
-### Where are the BEAST2 input (`.xml`) files created by `pirouette` stored?
-
-```{r}
-pir_run(...)$beast2_input_filename
-```
-
-### Where are the BEAST2 posterior parameter estimates (`.log`) files created by `pirouette` stored?
-
-```{r}
-pir_run(...)$beast2_output_log_filename
-```
-
-### Where are the BEAST2 posterior trees (`.trees`) files created by `pirouette` stored?
-
-```{r}
-pir_run(...)$beast2_output_trees_filename
-```
-
-### Where are the BEAST2  final posterior states (`.xml.state`) files created by `pirouette` stored?
-
-```{r}
-pir_run(...)$beast2_output_state_filename
-```
+ * (1) of the first experiment
 
 ## Why the name?
 
