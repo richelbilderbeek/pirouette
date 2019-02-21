@@ -56,6 +56,17 @@ get_twin_methods <- function() {
   )
 }
 
+#' @title "Ideal" methods
+#' @description "Ideal" methods
+#' @inheritParams default_params_doc
+#' @return the "ideal" methods
+#' @author Giovanni Laudanno
+get_ideal_methods <- function() {
+  c(
+    "stunning"
+  )
+}
+
 #' @title Convert bd phylo to L table
 #' @description Convert bd phylo to L table. Don't use for mbd.
 #' @inheritParams default_params_doc
