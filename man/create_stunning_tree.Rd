@@ -4,7 +4,8 @@
 \alias{create_stunning_tree}
 \title{Create figure bd for pirouette article}
 \usage{
-create_stunning_tree(t_0 = 10, n_taxa = 5, n_0 = 2)
+create_stunning_tree(t_0 = 10, n_taxa = 5, n_0 = 2,
+  precision = round(13 * n_taxa/10))
 }
 \arguments{
 \item{t_0}{starting time of a tree}
@@ -12,6 +13,8 @@ create_stunning_tree(t_0 = 10, n_taxa = 5, n_0 = 2)
 \item{n_taxa}{number of tree tips}
 
 \item{n_0}{number of starting species}
+
+\item{precision}{define the precision of the approximation.}
 }
 \value{
 a list containing a tree in phylo format, the same tree in

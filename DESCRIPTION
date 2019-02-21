@@ -31,6 +31,7 @@ Imports:
     rappdirs,
     Rmpfr,
     stringr,
+	subplex,
     TESS,
     testit,
     tidyr,
