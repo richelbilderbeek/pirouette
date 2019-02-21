@@ -27,9 +27,6 @@ create_experiment <- function(
   if (rappdirs::app_dir()$os == "win" && do_measure_evidence == TRUE) {
     stop("This configuration cannot run on windows")
   }
-  if (run_if == "best_candidate" && do_measure_evidence == FALSE) {
-    stop("'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE is a configuration that makes no sense")
-  }
   experiment <- list(
     model_type = model_type,
     run_if = run_if,

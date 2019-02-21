@@ -43,6 +43,6 @@ test_that("use", {
       inference_model = inference_model,
       beast2_options = beast2_options
     ),
-    "'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE is a configuration that makes no sense"
+    "'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE is a configuration that makes no sense" # nolint
   )
 })

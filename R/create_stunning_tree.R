@@ -30,7 +30,7 @@ calc_likelihood_stunning <- function(
       # Approximated likelihood: numerically more stable
       exponents <- 1:precision
       loglik <- sum(
-        outer(X = x, Y = exponents, FUN = function(x, y) -(x ^ y) / y)
+        outer(X = x, Y = exponents, FUN = function(x, y) -1 * (x ^ y) / y)
       )
     }
     if (precision == 0) {

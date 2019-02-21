@@ -83,5 +83,8 @@ check_experiment <- function(
       "Value: ", experiment$beast2_bin_path
     )
   }
-
+  if (experiment$run_if == "best_candidate" &&
+      experiment$do_measure_evidence == FALSE) {
+    stop("'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE is a configuration that makes no sense") # nolint
+  }
 }
