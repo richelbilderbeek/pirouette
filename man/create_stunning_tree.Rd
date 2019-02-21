@@ -21,5 +21,5 @@ newick format and the plot of the tree
 Create figure bd for pirouette article
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richel J.C. Bilderbeek
 }

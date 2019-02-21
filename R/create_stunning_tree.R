@@ -3,7 +3,7 @@
 #'
 #' This is used to create a stunning tree
 #' @inheritParams default_params_doc
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @return the likelihood
 #' @noRd
 calc_likelihood_stunning <- function(
@@ -19,17 +19,16 @@ calc_likelihood_stunning <- function(
   if (cond_1 | cond_2 | cond_3 | cond_4) {
     loglik <- -Inf
   } else {
-    lambda <- (log(n_taxa) - log(n_0) ) / t_0
-    mu <- 0
-    r <- -(lambda - mu)
+    lambda <- (log(n_taxa) - log(n_0)) / t_0
+    mu <- 0.0
+    r <- 0.0 - (lambda - mu)
     lik <- (1 - exp(2 * r * (t_0 - brts[1]))) *
       (1 - exp(3 * r * (brts[1] - brts[2]))) *
       (1 - exp(4 * r * (brts[2] - brts[3]))) *
       (1 - exp(5 * r * brts[3]))
     loglik <- log(lik)
   }
-  out <- -loglik
-  return(out)
+  -loglik
 }
 
 #' Create figure bd for pirouette article
@@ -60,6 +59,6 @@ create_stunning_tree <- function(
   l_table[, 2] <- c(0, 1, 1, -2, 3)
   l_table[, 1] <- brts
   tree <- DDD::L2phylo(L = l_table)
-  tree$tip.label <- LETTERS[1:n_taxa]
+  tree$tip.label <- LETTERS[1:n_taxa] # nolint ape::phylo does not use snake_case
   tree
 }
