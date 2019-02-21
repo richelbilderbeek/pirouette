@@ -67,7 +67,7 @@ create_stunning_tree <- function(
     precision = precision
   )
   brts <- sort(c(rep(t_0, n_0), x$par), decreasing = TRUE)
-  brts <- signif(
+  brts <- DDD::roundn(
     brts,
     digits = round(log(2 + n_taxa / 2))
   )

@@ -19,8 +19,9 @@ create_yule_tree <- function(
   n_tips <- ape::Ntip(phylogeny)
   soc <- 1 + n_tips - length(phylo_brts)
   testit::assert(soc == 1 | soc == 2)
-  lambda <- log(n_tips) / age
+  difference <- (log(n_tips) - log(soc)) / age
   mu <- 0
+  lambda <- mu + difference
 
   if (rappdirs::app_dir()$os != "win") {
     sink(file.path(rappdirs::user_cache_dir(), "ddd"))
