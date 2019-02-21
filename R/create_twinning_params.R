@@ -10,8 +10,8 @@
 #'  twinning_params <- create_twinning_params()
 #'  testit::assert("rng_seed" %in% names(twinning_params))
 #'  testit::assert("twin_tree_filename" %in% names(twinning_params))
-#' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @export
 create_twinning_params <- function(
   rng_seed = 0,
   twin_model = "bd",
