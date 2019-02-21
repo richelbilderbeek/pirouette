@@ -11,4 +11,3 @@ test_that("number of taxa and tips must match", {
   n_taxa <- 3
   phylo <- create_stunning_tree(n_taxa = n_taxa)
 })
-
