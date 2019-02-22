@@ -15,7 +15,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
   error_function, error_measure_params, errors_filename, est_evidence_mcmc,
   evidence_epsilon, evidence_filename, experiment, experiments,
-  fasta_filename, filename, folder_name, inference_model,
+  fasta_filename, filename, folder_name, ideal_method, inference_model,
   init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
   marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
   mbd_tree, mcmc, method, model_selection, model_type, mrca_prior, mu,
@@ -189,6 +189,8 @@ as can be created by \link{create_experiment}}
 \item{filename}{the file's name, without the path}
 
 \item{folder_name}{name of the main folder}
+
+\item{ideal_method}{method to generate the "ideal" tree}
 
 \item{inference_model}{an inference model, which is a combination
 of site model, clock model, tree prior and BEAST2 input and

@@ -7,7 +7,7 @@ test_that("default use must be silent", {
 
 test_that("number of taxa and tips must match", {
 
-  skip("Issue 129, #129")
   n_taxa <- 3
   phylo <- create_stunning_tree(n_taxa = n_taxa)
+  expect_true(beautier::is_phylo(phylo))
 })

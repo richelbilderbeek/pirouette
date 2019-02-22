@@ -50,33 +50,14 @@ create_bd_tree <- function(
   testit::assert(is.numeric(mu_bd))
 
   # generate bd branching times from the inferred parameters
-  set.seed(seed)
-  max_n <- 1 * (method == "random_tree") +
-     n_replicas *  (method == "max_clade_cred" | method == "max_likelihood")
-  sim_trees <- TESS::tess.sim.taxa.age(
-    n = max_n,
+  bd_brts0 <- create_twin_branching_times(
+    phylogeny = phylogeny,
+    seed = seed,
     lambda = lambda_bd,
-    mu     = mu_bd,
-    nTaxa = ((soc - 1) + length(phylo_brts)), # nolint
-    age = age,
-    MRCA = TRUE
+    mu = mu_bd,
+    n_replicas = n_replicas,
+    method = method
   )
-  if (method == "max_likelihood") {
-    liks <- rep(NA, max_n)
-    for (n in 1:max_n) {
-      liks[n] <-  DDD::bd_loglik(
-        pars1 = c(lambda_bd, 0, mu_bd, 0),
-        pars2 = c(0, 3, 0, 0, soc - 1),
-        brts = ape::branching.times(sim_trees[[n]]),
-        missnumspec = 0
-      )
-    }
-    best_n <- which(liks == max(liks))
-    bd_tree0 <- sim_trees[[best_n]]
-  } else {
-    bd_tree0 <- phangorn::maxCladeCred(sim_trees)
-  }
-  bd_brts0 <- convert_tree2brts(bd_tree0) # nolint pirouette function
 
   bd_tree <- combine_brts_and_topology(
     brts = bd_brts0,

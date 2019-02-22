@@ -70,5 +70,5 @@ The arguments are checked by \link{check_experiment}.
  testit::assert("beast2_bin_path" \%in\% names(experiment))
 }
 \author{
-Richel J.C. Bilderbeek
+Richel J.C. Bilderbeek, Giovanni Laudanno
 }

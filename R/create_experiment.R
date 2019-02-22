@@ -14,7 +14,7 @@
 #'  testit::assert("est_evidence_mcmc" %in% names(experiment))
 #'  testit::assert("beast2_bin_path" %in% names(experiment))
 #' @export
-#' @author Richel J.C. Bilderbeek
+#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 create_experiment <- function(
   model_type = "generative",
   run_if = "always",
