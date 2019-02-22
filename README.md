@@ -43,9 +43,9 @@ or use:
 beastier::install_beast2()
 ```
 
-## [FAQ](docs/faq.md)
+## [FAQ](doc/faq.md)
 
-See the [FAQ](docs/faq.md).
+See the [FAQ](doc/faq.md).
 
 ## There is a feature I miss
 
