@@ -10,12 +10,12 @@
 #'  twinning_params <- create_twinning_params()
 #'  testit::assert("rng_seed" %in% names(twinning_params))
 #'  testit::assert("twin_tree_filename" %in% names(twinning_params))
-#' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @export
 create_twinning_params <- function(
   rng_seed = 0,
   twin_model = "bd",
-  method = "random_tree",
+  method = "stunning",
   n_replicas = 1e4,
   twin_tree_filename = tempfile(fileext = ".newick"),
   twin_alignment_filename = tempfile(fileext = ".fasta"),

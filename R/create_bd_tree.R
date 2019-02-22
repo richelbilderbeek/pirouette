@@ -21,7 +21,7 @@ create_bd_tree <- function(
   n_tips <- ape::Ntip(phylogeny)
   soc <- 1 + n_tips - length(phylo_brts)
   testit::assert(soc == 1 | soc == 2)
-  difference <- log(n_tips) / age
+  difference <- (log(n_tips) - log(soc)) / age
   mu <- 0.1
   lambda <- mu + difference
 

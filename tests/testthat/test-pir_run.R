@@ -896,3 +896,43 @@ test_that("twin parameters", {
   testit::assert(all(file.exists(twin_filenames)))
 
 })
+
+test_that("Errors files exist", {
+
+  if (!beastier::is_on_travis()) return()
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment(
+    model_type = "generative",
+    run_if = "always",
+    do_measure_evidence = FALSE,
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    )
+  )
+  experiments <- list(experiment)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments,
+    twinning_params = create_twinning_params()
+  )
+  # Error files don't exist yet
+  expect_true(
+    !file.exists(
+      pir_params$error_measure_params$errors_filename
+    )
+  )
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+  # Error files created
+  expect_true(
+    file.exists(
+      pir_params$error_measure_params$errors_filename
+    )
+  )
+})
