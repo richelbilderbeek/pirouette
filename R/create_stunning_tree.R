@@ -20,12 +20,12 @@ calc_likelihood_stunning <- function(
   if (cond_1 | cond_2 | cond_3 | cond_4) {
     loglik <- -Inf
   } else {
-    lambda <- (log(n_taxa) - log(n_0)) / t_0
-    mu <- 0.0
-    r <- 0.0 - (lambda - mu)
+    r <- (log(n_taxa) - log(n_0)) / t_0
     brts2 <- c(t_0, brts, 0)
     n_s <- seq(n_0, n_taxa)
-    x <- exp(n_s * r * (-diff(brts2)))
+    x <- exp(n_s * (-r) * (-diff(brts2)))
+    # this is the likelihood for a tree with no extinction events, given the
+    # speciation events on nodes
     if (precision > 0) {
       # Approximated likelihood: numerically more stable
       exponents <- 1:precision

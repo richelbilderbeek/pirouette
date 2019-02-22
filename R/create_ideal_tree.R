@@ -9,7 +9,7 @@ create_ideal_tree <- function(
   ideal_method = "stunning"
 ) {
   if (!(ideal_method %in% get_ideal_methods())) {
-   stop("This 'ideal_method' is not implemented")
+    stop("This 'ideal_method' is not implemented")
   }
   if (ideal_method == "stunning") {
     ideal_tree <- create_stunning_tree(

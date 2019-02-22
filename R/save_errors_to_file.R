@@ -8,17 +8,10 @@ save_errors_to_file <- function(
   df,
   pir_params
 ) {
-  for (r in 1:nrow(df)) {
-    dir <- dirname(pir_params$error_measure_params$errors_filename)
-    base <- basename(pir_params$error_measure_params$errors_filename)
-    row <- df[r, ]
-    setting <- row[mapply(row, FUN = function(x) !is.numeric(x)) & !is.na(row)]
-    filename <- file.path(dir, paste(c(setting, base), collapse = "-"))
-    utils::write.csv(
-      x = df[, grepl("error", colnames(df))],
-      file = filename
-    )
-    testit::assert(file.exists(filename))
-  }
+  filename <- pir_params$error_measure_params$errors_filename
+  utils::write.csv(
+    x = df,
+    file = filename
+  )
   invisible()
 }
