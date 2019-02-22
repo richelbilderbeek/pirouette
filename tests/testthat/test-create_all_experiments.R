@@ -2,7 +2,7 @@ context("test-create_all_experiments")
 
 test_that("use", {
 
-  if (rappdirs::app_dir()$os != "win") {
+  if (rappdirs::app_dir()$os == "win") {
     skip("Cannot run on windows")
   }
   all_experiments <- create_all_experiments()

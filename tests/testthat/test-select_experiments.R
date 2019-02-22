@@ -10,6 +10,11 @@ test_that("use, always", {
 })
 
 test_that("use, most_evidence", {
+
+  if (rappdirs::app_dir()$os == "win") {
+    skip("Cannot run on windows")
+  }
+
   marg_liks <- create_test_marg_liks(
     site_models = list(create_jc69_site_model()),
     clock_models = list(create_strict_clock_model()),
@@ -73,18 +78,22 @@ test_that("generative model and candidate model", {
       tree_prior = create_yule_tree_prior()
     )
   )
-  experiment_candidate <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior()
+  if (rappdirs::app_dir()$os != "win") {
+    experiment_candidate <- create_experiment(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE,
+      inference_model = create_inference_model(
+        tree_prior = create_bd_tree_prior()
+      )
     )
-  )
-  experiments <- list(experiment_generative, experiment_candidate)
+    experiments <- list(experiment_generative, experiment_candidate)
+    expect_equal(2, length(selected))
+    expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
+  } else {
+    experiments <- list(experiment_generative)
+  }
   selected <- select_experiments(experiments, marg_liks)
-
-  expect_equal(2, length(selected))
   expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 })
 
