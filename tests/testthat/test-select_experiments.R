@@ -88,13 +88,14 @@ test_that("generative model and candidate model", {
       )
     )
     experiments <- list(experiment_generative, experiment_candidate)
+    selected <- select_experiments(experiments, marg_liks)
     expect_equal(2, length(selected))
     expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
   } else {
     experiments <- list(experiment_generative)
+    selected <- select_experiments(experiments, marg_liks)
+    expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
   }
-  selected <- select_experiments(experiments, marg_liks)
-  expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 })
 
 test_that("use, verbose", {
