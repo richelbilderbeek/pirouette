@@ -157,9 +157,9 @@ test_that("node distances should remain in the same order, brute-force", {
   # Or:
   #  - taxa that are closest, should remain closest in the twin tree
   #  - taxa that are farthest, should remain farthest in the twin tree
-  max_i <- 5 + beastier::is_on_travis() * 95
-  for (i in seq(1, max_i)) {
-    set.seed(i)
+  max_seed <- 5 + beastier::is_on_travis() * 95
+  for (seed in seq(1, max_seed)) {
+    set.seed(seed)
     tree <- beastier:::create_random_phylogeny(n_taxa = 4)
     twinning_params <- create_twinning_params()
     for (twin_model in get_twin_models()) {
@@ -173,7 +173,7 @@ test_that("node distances should remain in the same order, brute-force", {
       expect_equal(
         order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
         order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips]),
-        info = paste("seed:", i)
+        info = paste("seed:", seed)
       )
     }
   }

@@ -67,10 +67,6 @@ create_stunning_tree <- function(
     precision = precision
   )
   brts <- sort(c(rep(t_0, n_0), x$par), decreasing = TRUE)
-  brts <- DDD::roundn(
-    brts,
-    digits = round(log(2 + n_taxa / 2))
-  )
   l_table <- matrix(NA, nrow = n_taxa, ncol = 4)
   l_table[, 4] <- -1
   l_table[, 3] <- seq(from = 1, to = n_taxa) *
