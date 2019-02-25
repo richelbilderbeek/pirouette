@@ -154,7 +154,7 @@ pir_run_tree <- function(
 
     # Save errors to file
     errors_filename <- experiment$errors_filename
-    if (tree == "twin") errors_filename <- to_twin_filename(errors_filename)
+    if (tree_type == "twin") errors_filename <- to_twin_filename(errors_filename)
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename
