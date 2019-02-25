@@ -1,5 +1,9 @@
 context("test-check_pir_params")
 
+test_that("minimal use", {
+  expect_silent(check_pir_params(create_test_pir_params()))
+})
+
 test_that("use", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
