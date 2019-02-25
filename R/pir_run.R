@@ -85,10 +85,6 @@ pir_run <- function(
     )
     df <- rbind(df, df_twin)
   }
-
-  # Save errors
-  save_errors_to_file(df = df, pir_params = pir_params) # nolint pirouette functions
-
   df
 }
 
@@ -154,6 +150,14 @@ pir_run_tree <- function(
       alignment_params = alignment_params,
       error_measure_params = error_measure_params,
       experiment = experiment
+    )
+
+    # Save errors to file
+    errors_filename <- experiment$errors_filename
+    if (tree == "twin") errors_filename <- to_twin_filename(errors_filename)
+    utils::write.csv(
+      x = errorses[[i]],
+      file = errors_filename
     )
   }
   testit::assert(length(errorses) > 0)
