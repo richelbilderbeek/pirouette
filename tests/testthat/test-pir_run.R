@@ -922,7 +922,7 @@ test_that("Errors files exist", {
   # Error files don't exist yet
   expect_true(
     !file.exists(
-      pir_params$error_measure_params$errors_filename
+      pir_params$experiments[[1]]$errors_filename
     )
   )
   errors <- pir_run(
@@ -932,7 +932,7 @@ test_that("Errors files exist", {
   # Error files created
   expect_true(
     file.exists(
-      pir_params$error_measure_params$errors_filename
+      pir_params$experiments[[1]]$errors_filename
     )
   )
 })
