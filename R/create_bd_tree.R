@@ -26,7 +26,7 @@ create_bd_tree <- function(
   lambda <- mu + difference
 
   if (rappdirs::app_dir()$os != "win") {
-    sink(file.path(rappdirs::user_cache_dir(), "ddd"))
+    sink(tempfile())
   } else {
     sink(rappdirs::user_cache_dir())
   }
