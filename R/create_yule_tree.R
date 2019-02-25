@@ -24,7 +24,7 @@ create_yule_tree <- function(
   lambda <- mu + difference
 
   if (rappdirs::app_dir()$os != "win") {
-    #sink(tempfile())
+    sink(tempfile())
   } else {
     sink(rappdirs::user_cache_dir())
   }
@@ -40,7 +40,7 @@ create_yule_tree <- function(
     btorph = 1,
     soc = soc
   )
-  #sink()
+  sink()
 
   lambda_yule <- as.numeric(unname(yule_pars[1]))
   mu_yule <- mu
