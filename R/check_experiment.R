@@ -20,7 +20,8 @@ check_experiment <- function(
     "inference_model",
     "beast2_options",
     "est_evidence_mcmc",
-    "beast2_bin_path"
+    "beast2_bin_path",
+    "errors_filename"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(experiment)) {
@@ -89,5 +90,11 @@ check_experiment <- function(
       "'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE ",
       "is a configuration that makes no sense"
     ) # nolint
+  }
+  if (!is.character(experiment$errors_filename)) {
+    stop("'errors_filename' must be a character vector")
+  }
+  if (tools::file_ext(experiment$errors_filename) != "csv") {
+    stop("'errors_filename' must be a csv file")
   }
 }

@@ -109,4 +109,21 @@ test_that("wrong parameter values", {
     ),
     "'est_evidence_mcmc' must be a Nested Sampling MCMC"
   )
+  # Wrong errors_filename
+  expect_error(
+    check_experiment(
+      create_experiment(
+        errors_filename = 12
+      )
+    ),
+    "'errors_filename' must be a character vector"
+  )
+  expect_error(
+    check_experiment(
+      create_experiment(
+        errors_filename = "pippo.fasta"
+      )
+    ),
+    "'errors_filename' must be a csv file"
+  )
 })

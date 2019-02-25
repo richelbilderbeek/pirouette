@@ -6,8 +6,7 @@
 between the given phylogeny and the Bayesian posterior trees is measured.}
 \usage{
 create_error_measure_params(burn_in_fraction = 0.1,
-  error_function = get_nltt_error_function(),
-  errors_filename = tempfile(fileext = ".csv"))
+  error_function = get_nltt_error_function())
 }
 \arguments{
 \item{burn_in_fraction}{the fraction of the posterior trees (starting
@@ -30,8 +29,6 @@ Example functions are:
     in gamma statistic
   \item \link{get_nltt_error_function}: use the nLTT statistic
 }}
-
-\item{errors_filename}{baseline name for errors filenames}
 }
 \value{
 an error measurement parameter set
