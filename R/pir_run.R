@@ -155,7 +155,7 @@ pir_run_tree <- function(
     # Save errors to file
     errors_filename <- experiment$errors_filename
     if (tree_type == "twin") {
-      errors_filename <- to_twin_filename(errors_filename)
+      errors_filename <- to_twin_filename(errors_filename) # nolint pirouette function
     }
     utils::write.csv(
       x = errorses[[i]],
