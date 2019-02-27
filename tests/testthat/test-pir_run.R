@@ -196,9 +196,6 @@ test_that("generative, with MRCA prior", {
 
 test_that("generative, CBS", {
 
-  if (!beastier::is_on_travis()) return()
-
-  # pirouette: handle coalescent model errors gracefully #153
   # https://github.com/richelbilderbeek/pirouette/issues/153
   #
   # For n_taxa < 5, the Coalalescent Bayesian Skyline plot throws an exception

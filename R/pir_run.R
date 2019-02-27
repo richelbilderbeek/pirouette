@@ -27,9 +27,11 @@ pir_run <- function(
   check_pir_params(pir_params) # nolint pirouette function
 
   # Higher-level checks
-  for (experiment in seq_along(pir_params$experiments)) {
-    is_cbs
-    experiment$inference_model
+  for (experiment in pir_params$experiments) {
+    if (beautier::is_cbs_tree_prior(experiment$inference_model$tree_prior) &&
+        ape::Ntip(phylogeny) < 6) {
+      stop("Too few taxa to use a Coalescent Bayesian Skyline tree prior")
+    }
   }
 
   # Run for the true tree
