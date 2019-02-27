@@ -5,9 +5,9 @@
 #' @author Richel J.C. Bilderbeek
 est_evidences <- function(
   fasta_filename,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   evidence_epsilon = 1e-12,
-  evidence_filename = tempfile(fileext = ".csv"),
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
   testit::assert(file.exists(fasta_filename))

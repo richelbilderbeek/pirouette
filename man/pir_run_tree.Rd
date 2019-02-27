@@ -5,9 +5,10 @@
 \title{Measure the error BEAST2 makes from a phylogeny}
 \usage{
 pir_run_tree(phylogeny, tree_type = "true", alignment_params,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"), verbose = FALSE)
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
+  verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

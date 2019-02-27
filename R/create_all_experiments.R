@@ -13,11 +13,11 @@ create_all_experiments <- function() {
       length(clock_models) *
       length(tree_priors)
   )
-  i <- 0
+  i <- 1
   for (site_model in site_models) {
     for (clock_model in clock_models) {
       for (tree_prior in tree_priors) {
-        all_experiments[[i <- i + 1]] <- create_experiment(
+        all_experiments[[i]] <- create_experiment(
           model_type = "candidate",
           run_if = "best_candidate",
           do_measure_evidence = TRUE,
@@ -25,8 +25,23 @@ create_all_experiments <- function() {
             site_model = site_model,
             clock_model = clock_model,
             tree_prior = tree_prior
+          ),
+          beast2_options = create_beast2_options(
+            input_filename = tempfile(
+              pattern = paste0("beast2_", i, "_"), fileext = ".xml"
+            ),
+            output_log_filename = tempfile(
+              pattern = paste0("beast2_", i, "_"), fileext = ".log"
+            ),
+            output_trees_filenames = tempfile(
+              pattern = paste0("beast2_", i, "_"), fileext = "trees"
+            ),
+            output_state_filename = tempfile(
+              pattern = paste0("beast2_", i, "_"), fileext = ".state.xml"
+            )
           )
         )
+        i <- i + 1
       }
     }
   }

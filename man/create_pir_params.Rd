@@ -5,9 +5,10 @@
 \title{Create the parameters for \code{pirouette}}
 \usage{
 create_pir_params(alignment_params, twinning_params = NA,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"), verbose = FALSE)
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
+  verbose = FALSE)
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,

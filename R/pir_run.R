@@ -108,9 +108,9 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"),
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))

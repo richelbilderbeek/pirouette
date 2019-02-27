@@ -4,7 +4,7 @@
 #' @author Richel J.C. Bilderbeek
 #' @noRd
 select_experiments <- function(
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   marg_liks = NULL,
   verbose = FALSE
 ) {

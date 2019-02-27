@@ -20,10 +20,17 @@ create_experiment <- function(
   run_if = "always",
   do_measure_evidence = FALSE,
   inference_model = beautier::create_inference_model(),
-  beast2_options = beastier::create_beast2_options(),
+  beast2_options = beastier::create_beast2_options(
+    input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
+    output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
+    output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
+    output_state_filename = tempfile(
+      pattern = "beast2_", fileext = ".state.xml"
+    )
+  ),
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
-  errors_filename = tempfile(fileext = ".csv")
+  errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
 ) {
   if (rappdirs::app_dir()$os == "win" && do_measure_evidence == TRUE) {
     stop("This configuration cannot run on windows")
@@ -52,6 +59,14 @@ create_test_experiment <- function() {
   create_experiment(
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+    ),
+    beast2_options = create_beast2_options(
+      input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
+      output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
+      output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
+      output_state_filename = tempfile(
+        pattern = "beast2_", fileext = ".state.xml"
+      )
     )
   )
 }

@@ -6,9 +6,9 @@
 create_pir_params <- function(
   alignment_params,
   twinning_params = NA,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"),
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
   pir_params <- list(
@@ -34,9 +34,9 @@ create_pir_params <- function(
 create_test_pir_params <- function(
   alignment_params = create_test_alignment_params(),
   twinning_params = NA,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"),
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
   create_pir_params(
