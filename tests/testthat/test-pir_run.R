@@ -194,6 +194,37 @@ test_that("generative, with MRCA prior", {
   testthat::expect_true(errors$error_1 >= 0.0)
 })
 
+test_that("generative, CBS", {
+
+  if (!beastier::is_on_travis()) return()
+
+  # pirouette: handle coalescent model errors gracefully #153
+  # https://github.com/richelbilderbeek/pirouette/issues/153
+  #
+  # For n_taxa < 5, the Coalalescent Bayesian Skyline plot throws an exception
+  # This should be handled gracefully
+
+  # type       | run_if         | measure  | inference                          # nolint this is no commented code
+  #            |                | evidence | model
+  # -----------|----------------|----------|-----------
+  # generative | always         |FALSE     |CBS                                 # nolint this is no commented code
+  #
+  # should result in an error
+
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_experiment()
+  experiment$inference_model$tree_prior <- create_cbs_tree_prior()
+  pir_params <- create_test_pir_params(experiments = list(experiment))
+
+  expect_error(
+    pir_run(
+      phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
+      pir_params = pir_params
+    ),
+    "Too few taxa to use a Coalescent Bayesian Skyline tree prior"
+  )
+})
+
 test_that("most_evidence, one candidate", {
 
   if (!beastier::is_on_travis()) return()
