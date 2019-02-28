@@ -4,7 +4,22 @@
 \alias{create_all_experiments}
 \title{Create all \link{pirouette} experiments.}
 \usage{
-create_all_experiments()
+create_all_experiments(site_models = beautier::create_site_models(),
+  clock_models = beautier::create_clock_models(),
+  tree_priors = beautier::create_tree_priors(),
+  mcmc = create_mcmc(store_every = 1000))
+}
+\arguments{
+\item{site_models}{a list of one or more site models,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_models}{a list of one or more clock models,
+as created by \link[beautier]{create_clock_model}}
+
+\item{tree_priors}{a list of one or more tree priors,
+as created by \link[beautier]{create_tree_prior}}
+
+\item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 }
 \value{
 all \link{pirouette} experiments.

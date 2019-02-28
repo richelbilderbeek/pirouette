@@ -3,10 +3,16 @@
 #' @return all \link{pirouette} experiments.
 #' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
-create_all_experiments <- function() {
-  site_models <- beautier::create_site_models()
-  clock_models <- beautier::create_clock_models()
-  tree_priors <- beautier::create_tree_priors()
+create_all_experiments <- function(
+  site_models = beautier::create_site_models(),
+  clock_models = beautier::create_clock_models(),
+  tree_priors = beautier::create_tree_priors(),
+  mcmc = create_mcmc(store_every = 1000)
+) {
+  check_site_models(site_models)
+  check_clock_models(clock_models)
+  check_tree_priors(tree_priors)
+
   all_experiments <- vector(
     "list",
     length(site_models) *
@@ -24,7 +30,8 @@ create_all_experiments <- function() {
           inference_model = create_inference_model(
             site_model = site_model,
             clock_model = clock_model,
-            tree_prior = tree_prior
+            tree_prior = tree_prior,
+            mcmc = mcmc
           ),
           beast2_options = create_beast2_options(
             input_filename = tempfile(

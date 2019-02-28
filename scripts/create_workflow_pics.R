@@ -120,3 +120,19 @@ ggplot2::ggplot(
   df_errors_twin,
   aes(x = error)
 ) + geom_histogram(binwidth = 0.01) + ggsave("errors_twin.png")
+
+ggplot2::ggplot(
+  df_errors,
+  aes(x = "", y = error)
+) + geom_violin() +
+  xlab("") +
+  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+  ggsave("errors_violin.png")
+
+ggplot2::ggplot(
+  df_errors_twin,
+  aes(x = "", y = error)
+) + geom_violin() +
+  xlab("") +
+  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+  ggsave("errors_violin_twin.png")
