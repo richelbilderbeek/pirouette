@@ -25,7 +25,7 @@ pir_plot <- function(pir_out) {
       geom = "label",
       fun.y = quantile,
       aes(label = sprintf("%1.3f", ..y..)),
-      position = position_nudge(x = 0.1), size = 3.5,
+      position = ggplot2::position_nudge(x = 0.1), size = 3.5,
       color = "black",
       fill = "white"
     ) +
