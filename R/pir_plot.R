@@ -20,8 +20,8 @@ pir_plot <- function(pir_out) {
     data = df_long,
     ggplot2::aes(x = tree, y = error_value, fill = inference_model)
   ) + ggplot2::geom_violin() +
-    geom_boxplot(width = 0.1, fill = "white") +
-    stat_summary(
+    ggplot2::geom_boxplot(width = 0.1, fill = "white") +
+    ggplot2::stat_summary(
       geom = "label",
       fun.y = quantile,
       aes(label = sprintf("%1.3f", ..y..)),
