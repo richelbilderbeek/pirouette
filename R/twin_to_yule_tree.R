@@ -3,7 +3,7 @@
 #' @return a twin Yule tree of class \code{phylo},
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-create_yule_tree <- function(
+twin_to_yule_tree <- function(
   phylogeny,
   twinning_params
 ) {
