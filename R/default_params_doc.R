@@ -206,6 +206,7 @@
 #' @param site_model_name name of a site model
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
+#' @param sum_lamu is the sum lambda + mu
 #' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
 #' @param tree_model model used to simulate the tree
@@ -317,6 +318,7 @@ default_params_doc <- function(
   site_model, site_models,
   site_model_name,
   sub_chain_length,
+  sum_lamu,
   t_0,
   tree,
   tree_filename,

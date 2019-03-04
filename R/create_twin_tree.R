@@ -10,13 +10,13 @@ create_twin_tree <- function(
     stop("This twin model is not implemented")
   }
   if (twinning_params$twin_model == "bd") {
-    twin_tree <- create_bd_tree(
+    twin_tree <- twin_to_bd_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
     )$tree
   }
   if (twinning_params$twin_model == "yule") {
-    twin_tree <- create_yule_tree(
+    twin_tree <- twin_to_yule_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
     )$tree

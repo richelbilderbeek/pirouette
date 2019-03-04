@@ -5,7 +5,7 @@
 #'   obtained from the corresponding phylogeny.
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-create_bd_tree <- function(
+twin_to_bd_tree <- function(
   phylogeny,
   twinning_params
 ) {

@@ -23,9 +23,9 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
   posterior_trees, precision, project_folder_name, root_sequence, run_if,
   sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, t_0, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
-  twin_alignment_filename, twin_evidence_filename, twin_model,
+  site_models, site_model_name, sub_chain_length, sum_lamu, t_0, tree,
+  tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
+  tree_type, twin_alignment_filename, twin_evidence_filename, twin_model,
   twin_tree_filename, twinning_params, type, verbose)
 }
 \arguments{
@@ -314,6 +314,8 @@ as created by \link[beautier]{create_site_model}}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
+
+\item{sum_lamu}{is the sum lambda + mu}
 
 \item{t_0}{starting time of a tree}
 
