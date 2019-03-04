@@ -21,6 +21,8 @@ as created by \link[beautier]{create_site_model}}
 \item{clock_model}{a clock model,
 as created by \link[beautier]{create_clock_model}}
 
+\item{rng_seed}{a random number generator seed}
+
 \item{fasta_filename}{name of a FASTA file}
 }
 \value{

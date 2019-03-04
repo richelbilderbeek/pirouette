@@ -183,6 +183,7 @@
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
 #' @param project_folder_name project folder name
+#' @param rng_seed a random number generator seed
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of an equal amount of each letter
 #' @param run_if the condition for an experiment's inference model to be run.
@@ -308,6 +309,7 @@ default_params_doc <- function(
   posterior_trees,
   precision,
   project_folder_name,
+  rng_seed,
   root_sequence,
   run_if,
   sample_interval,

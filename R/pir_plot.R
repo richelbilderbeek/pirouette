@@ -15,6 +15,8 @@ pir_plot <- function(pir_out) {
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
   error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
   inference_model <- NULL; rm(inference_model) # nolint, fixes warning: no visible binding for global variable
+  quantile <- NULL; rm(quantile) # nolint, fixes warning: no visible binding for global variable
+  ..y.. <- NULL; rm(..y..) # nolint, fixes warning: no visible binding for global variable
 
   ggplot2::ggplot(
     data = df_long,

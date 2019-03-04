@@ -21,12 +21,13 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   mbd_tree, mcmc, method, model_selection, model_type, mrca_prior, mu,
   mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
   parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
-  posterior_trees, precision, project_folder_name, root_sequence, run_if,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, sum_lamu, t_0, tree,
-  tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
-  tree_type, twin_alignment_filename, twin_evidence_filename, twin_model,
-  twin_tree_filename, twinning_params, type, verbose)
+  posterior_trees, precision, project_folder_name, rng_seed, root_sequence,
+  run_if, sample_interval, seed, sequence_length, sim_pars, sim_phylo,
+  site_model, site_models, site_model_name, sub_chain_length, sum_lamu,
+  t_0, tree, tree_filename, tree_model, tree_prior, tree_priors,
+  tree_prior_name, tree_type, twin_alignment_filename,
+  twin_evidence_filename, twin_model, twin_tree_filename, twinning_params,
+  type, verbose)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -280,6 +281,8 @@ of class \code{multiphylo}}
 \item{precision}{define the precision of the approximation.}
 
 \item{project_folder_name}{project folder name}
+
+\item{rng_seed}{a random number generator seed}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}
