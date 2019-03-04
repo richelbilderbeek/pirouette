@@ -26,6 +26,14 @@ pir_run <- function(
   }
   check_pir_params(pir_params) # nolint pirouette function
 
+  # Higher-level checks
+  for (experiment in pir_params$experiments) {
+    if (beautier::is_cbs_tree_prior(experiment$inference_model$tree_prior) &&
+        ape::Ntip(phylogeny) < 6) {
+      stop("Too few taxa to use a Coalescent Bayesian Skyline tree prior")
+    }
+  }
+
   # Run for the true tree
   df <- pir_run_tree(
     phylogeny = phylogeny,
@@ -85,10 +93,6 @@ pir_run <- function(
     )
     df <- rbind(df, df_twin)
   }
-
-  # Save errors
-  save_errors_to_file(df = df, pir_params = pir_params) # nolint pirouette functions
-
   df
 }
 
@@ -104,9 +108,9 @@ pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
   alignment_params,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"),
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
@@ -154,6 +158,16 @@ pir_run_tree <- function(
       alignment_params = alignment_params,
       error_measure_params = error_measure_params,
       experiment = experiment
+    )
+
+    # Save errors to file
+    errors_filename <- experiment$errors_filename
+    if (tree_type == "twin") {
+      errors_filename <- to_twin_filename(errors_filename) # nolint pirouette function
+    }
+    utils::write.csv(
+      x = errorses[[i]],
+      file = errors_filename
     )
   }
   testit::assert(length(errorses) > 0)

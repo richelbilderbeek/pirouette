@@ -13,6 +13,7 @@ test_that("errors are stored correctly", {
     mutation_rate = create_standard_mutation_rate,
     rng_seed = 1
   )
+  errors_filename <- tempfile(fileext = ".csv")
   experiment <- create_experiment(
     model_type = "generative",
     run_if = "always",
@@ -22,12 +23,10 @@ test_that("errors are stored correctly", {
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 1)
-  )
-  errors_filename <- tempfile(fileext = ".csv")
-  error_measure_params <- create_error_measure_params(
+    beast2_options = create_beast2_options(rng_seed = 1),
     errors_filename = errors_filename
   )
+  error_measure_params <- create_error_measure_params()
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
     experiments = list(experiment),

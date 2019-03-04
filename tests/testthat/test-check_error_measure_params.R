@@ -96,22 +96,4 @@ test_that("use", {
     ),
     "'error_function' must be a function with at least two arguments"
   )
-
-  # Wrong errors_filename
-  expect_error(
-    check_error_measure_params(
-      create_error_measure_params(
-        errors_filename = 12
-      )
-    ),
-    "'errors_filename' must be a character vector"
-  )
-  expect_error(
-    check_error_measure_params(
-      create_error_measure_params(
-        errors_filename = "pippo.fasta"
-      )
-    ),
-    "'errors_filename' must be a csv file"
-  )
 })

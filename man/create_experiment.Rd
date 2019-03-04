@@ -6,10 +6,16 @@
 \usage{
 create_experiment(model_type = "generative", run_if = "always",
   do_measure_evidence = FALSE,
-  inference_model = beautier::create_inference_model(),
-  beast2_options = beastier::create_beast2_options(),
+  inference_model = beautier::create_inference_model(mcmc =
+  create_mcmc(chain_length = 1e+07, store_every = 1000)),
+  beast2_options = beastier::create_beast2_options(input_filename =
+  tempfile(pattern = "beast2_", fileext = ".xml"), output_log_filename =
+  tempfile(pattern = "beast2_", fileext = ".log"), output_trees_filenames =
+  tempfile(pattern = "beast2_", fileext = "trees"), output_state_filename =
+  tempfile(pattern = "beast2_", fileext = ".state.xml")),
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(),
-  beast2_bin_path = beastier::get_default_beast2_bin_path())
+  beast2_bin_path = beastier::get_default_beast2_bin_path(),
+  errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
 }
 \arguments{
 \item{model_type}{type of inference model supplied for an experiment.
@@ -51,6 +57,8 @@ as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
 binary BEAST2 file is required for estimation of the evidence (aka
 marginal likelihood). The default BEAST2 binary path can be
 obtained using \link[beastier]{get_default_beast2_bin_path}}
+
+\item{errors_filename}{baseline name for errors filenames}
 }
 \value{
 a \link{pirouette} experiment.

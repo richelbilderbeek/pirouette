@@ -20,7 +20,7 @@ create_alignment_params <- function(
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,
-  fasta_filename = tempfile(fileext = ".fasta")
+  fasta_filename = tempfile(pattern = "alignment_", fileext = ".fasta")
 ) {
   alignment_params <- list(
     root_sequence = root_sequence,
@@ -40,6 +40,19 @@ create_alignment_params <- function(
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_test_alignment_params <- function(
+  root_sequence = "acgt",
+  mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(),
+  rng_seed = 0,
+  fasta_filename = tempfile(pattern = "alignment_", fileext = ".fasta")
 ) {
-  create_alignment_params(root_sequence = "acgt", mutation_rate = 0.1) # nolint pirouette function
+  create_alignment_params(
+    root_sequence = root_sequence,
+    mutation_rate = mutation_rate,
+    site_model = site_model,
+    clock_model = clock_model,
+    rng_seed = rng_seed,
+    fasta_filename = fasta_filename
+  ) # nolint pirouette function
 }

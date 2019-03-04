@@ -3,6 +3,8 @@ setwd("/home/richel/GitHubs/pirouette/doc")
 
 library(pirouette)
 library(ggplot2)
+library(ggthemes)
+set.seed(314)
 
 phylogeny <- ape::read.tree(text = "(((1:1,2:1):1, 3:2):1, 4:3);")
 
@@ -106,20 +108,31 @@ dev.off()
 # histogram of errors
 ################################################################################
 
-# STUB
-ggplot2::ggplot(
-  data.frame(errors = rnorm(n = 1000)),
-  aes(x = errors)
-) + geom_histogram() + ggsave("errors.png")
+df_errors <- data.frame(error = read.csv(pir_params$experiments[[1]]$errors_filename)$x)
+df_errors_twin <- data.frame(error = read.csv(to_twin_filename(pir_params$experiments[[1]]$errors_filename))$x)
 
 ggplot2::ggplot(
-  data.frame(errors = rnorm(n = 1000)),
-  aes(x = errors)
-) + geom_histogram() + ggsave("errors_twin.png")
+  df_errors,
+  aes(x = error)
+) + geom_histogram(binwidth = 0.01) + ggsave("errors.png")
 
-if (1 == 2) {
-  ggplot2::ggplot(
-    data.frame(errors = read.csv(pir_params$error_measure_params$errors_filename)),
-    aes(x = errors)
-  ) + geom_histogram()
-}
+ggplot2::ggplot(
+  df_errors_twin,
+  aes(x = error)
+) + geom_histogram(binwidth = 0.01) + ggsave("errors_twin.png")
+
+ggplot2::ggplot(
+  df_errors,
+  aes(x = "", y = error)
+) + geom_violin() +
+  xlab("") +
+  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+  ggsave("errors_violin.png")
+
+ggplot2::ggplot(
+  df_errors_twin,
+  aes(x = "", y = error)
+) + geom_violin() +
+  xlab("") +
+  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+  ggsave("errors_violin_twin.png")

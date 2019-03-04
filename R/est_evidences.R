@@ -5,9 +5,9 @@
 #' @author Richel J.C. Bilderbeek
 est_evidences <- function(
   fasta_filename,
-  experiments = list(create_experiment()),
+  experiments = list(create_test_experiment()),
   evidence_epsilon = 1e-12,
-  evidence_filename = tempfile(fileext = ".csv"),
+  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
   testit::assert(file.exists(fasta_filename))
@@ -49,9 +49,19 @@ est_evidences <- function(
   if (verbose == TRUE) {
     print(marg_liks)
   }
-  utils::write.csv(
-    x = marg_liks, file = evidence_filename
+  tryCatch(
+    utils::write.csv(
+      x = marg_liks, file = evidence_filename
+    ),
+    error = function(e) {
+      stop(
+        "Saving evidence to file failed. \n",
+        "Filename: ", evidence_filename, "\n",
+        "Error: ", e$message
+      )
+    }
   )
+
   # Delete files
   for (experiment in experiments) {
     if (file.exists(experiment$beast2_options$output_log_filename)) {
