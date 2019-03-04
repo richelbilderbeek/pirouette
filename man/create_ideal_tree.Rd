@@ -4,8 +4,7 @@
 \alias{create_ideal_tree}
 \title{Create an "ideal" tree}
 \usage{
-create_ideal_tree(n_taxa, crown_age, n_0 = 2,
-  ideal_method = "stunning")
+create_ideal_tree(n_taxa, crown_age, n_0 = 2)
 }
 \arguments{
 \item{n_taxa}{number of tree tips}
@@ -14,8 +13,6 @@ create_ideal_tree(n_taxa, crown_age, n_0 = 2,
 to let it be estimated}
 
 \item{n_0}{number of starting species}
-
-\item{ideal_method}{method to generate the "ideal" tree}
 }
 \description{
 Create an "ideal" tree
