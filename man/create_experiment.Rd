@@ -7,7 +7,7 @@
 create_experiment(model_type = "generative", run_if = "always",
   do_measure_evidence = FALSE,
   inference_model = beautier::create_inference_model(mcmc =
-  create_mcmc(chain_length = 1e+07, store_every = 1000)),
+  create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
   tempfile(pattern = "beast2_", fileext = ".xml"), output_log_filename =
   tempfile(pattern = "beast2_", fileext = ".log"), output_trees_filenames =
