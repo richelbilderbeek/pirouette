@@ -58,4 +58,12 @@ check_experiments <- function(
       }
     }
   }
+
+  model_types <- rep("", length(experiments))
+  for (i in 1:length(experiments)) {
+    model_types[i] <- experiments[[i]]$model_type
+  }
+  if (sum(model_types == "generative") > 1) {
+    stop("Specifying more than one 'generative' model experiment is redundant.")
+  }
 }
