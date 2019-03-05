@@ -51,8 +51,7 @@ get_twin_methods <- function() {
   c(
     "random_tree",
     "max_clade_cred",
-    "max_likelihood",
-    "stunning"
+    "max_likelihood"
   )
 }
 
@@ -63,7 +62,7 @@ get_twin_methods <- function() {
 #' @author Giovanni Laudanno
 get_ideal_methods <- function() {
   c(
-    "stunning"
+    "random_tree"
   )
 }
 

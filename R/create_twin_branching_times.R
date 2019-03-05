@@ -23,7 +23,7 @@ create_twin_branching_times <- function(
 
   # Simulate branching times
   set.seed(seed)
-  max_n <- 1 * (method == "random_tree" | method == "stunning") +
+  max_n <- 1 * (method == "random_tree") +
      n_replicas *  (method == "max_clade_cred" | method == "max_likelihood")
   sim_trees <- TESS::tess.sim.taxa.age(
     n = max_n,
@@ -48,13 +48,6 @@ create_twin_branching_times <- function(
   }
   if (method == "max_clade_cred" | method == "random_tree") {
     tree0 <- phangorn::maxCladeCred(sim_trees)
-  }
-  if (method == "stunning") {
-    tree0 <- create_stunning_tree(
-      t_0 = age,
-      n_taxa = n_tips,
-      n_0 = soc
-    )
   }
   brts0 <- convert_tree2brts(tree0) # nolint pirouette function
   brts0

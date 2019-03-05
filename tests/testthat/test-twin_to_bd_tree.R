@@ -1,11 +1,11 @@
-context("test-create_bd_tree")
+context("test-twin_to_bd_tree")
 
 test_that("use", {
 
   phylogeny <- load_tree(tree_model = "mbd", seed = 1)
   twinning_params <- create_twinning_params()
   twinning_params$rng_seed <- 1
-  bd_sim <- create_bd_tree(
+  bd_sim <- twin_to_bd_tree(
     phylogeny = phylogeny,
     twinning_params = twinning_params
   )
