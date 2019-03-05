@@ -17,7 +17,9 @@ create_twinning_params <- function(
   twin_model = "bd",
   method = "random_tree",
   n_replicas = 1e4,
-  twin_tree_filename = tempfile(pattern = "tree_twin_", fileext = ".newick"),
+  twin_tree_filename = tempfile(
+    pattern = "tree_twin_", fileext = ".newick"
+  ),
   twin_alignment_filename = tempfile(
     pattern = "alignment_twin_", fileext = ".fasta"
   ),
