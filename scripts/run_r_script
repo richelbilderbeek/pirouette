@@ -17,4 +17,5 @@ module load XZ/5.2.2-foss-2016a
 module load R
 module load ImageMagick
 module load X11
+module load cairo
 Rscript $1
