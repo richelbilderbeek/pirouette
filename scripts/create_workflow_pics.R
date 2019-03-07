@@ -16,6 +16,14 @@ phylogeny  <- ape::read.tree(
   text = "(((((A:2, B:2):2, C:4):2, D:6):2, E:8):2, F:10);"
 )
 
+################################################################################
+# Use png here, to make Peregrine fail fast
+################################################################################
+png(filename = "phylogeny.png", width = 400, height = 300)
+ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
+dev.off()
+
+
 pir_params <- create_pir_params(
   alignment_params = create_alignment_params(
     root_sequence = pirouette::create_blocked_dna(length = 40),
