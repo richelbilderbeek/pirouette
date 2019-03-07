@@ -345,7 +345,13 @@ alignment will be saved to}
 \item{twin_evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods) of the twin tree}
 
-\item{twin_model}{the model you want to use to generate the twin tree}
+\item{twin_model}{the model you want to use to generate the twin tree:
+\itemize{
+  \item \code{yule}: Yule or pure-birth
+  \item \code{bd}: birth death
+}
+See \link{get_twin_models} to see all possible
+values of \code{twin_model}}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}

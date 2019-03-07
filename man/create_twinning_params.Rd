@@ -19,7 +19,13 @@ create_twinning_params(rng_seed = 0, twin_model = "bd",
 \item{rng_seed}{the random number generator seed as used in the
 simulation of a twin tree}
 
-\item{twin_model}{the model you want to use to generate the twin tree}
+\item{twin_model}{the model you want to use to generate the twin tree:
+\itemize{
+  \item \code{yule}: Yule or pure-birth
+  \item \code{bd}: birth death
+}
+See \link{get_twin_models} to see all possible
+values of \code{twin_model}}
 
 \item{method}{determines how to create the twin tree
 \itemize{
