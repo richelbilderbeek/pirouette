@@ -1,9 +1,10 @@
 # Creates the figures for the workflow image in the documentation
-setwd("/home/richel/GitHubs/pirouette/doc")
 
 library(pirouette)
 library(ggplot2)
 library(ggthemes)
+
+root_folder <- path.expand("~/GitHubs/pirouette/doc")
 set.seed(314)
 
 phylogeny  <- ape::read.tree(
@@ -21,7 +22,6 @@ pir_params <- create_pir_params(
 ################################################################################
 # Settings to run on Peregrine cluster
 ################################################################################
-root_folder <- path.expand("~/GitHubs/pirouette/doc")
 pir_params$alignment_params$fasta_filename <- file.path(root_folder, "alignment.fasta"))
 pir_params$experiments[[1]]$beast2_options$input_filename <- file.path(root_folder, "beast2_input.xml")
 pir_params$experiments[[1]]$beast2_options$output_log_filename <- file.path(root_folder, "beast2_output.log")
