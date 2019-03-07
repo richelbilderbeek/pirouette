@@ -18,4 +18,4 @@ module load R
 module load ImageMagick
 module load X11
 module load cairo
-Rscript $1
+xvfb-run Rscript $1
