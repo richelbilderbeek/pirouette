@@ -7,6 +7,7 @@ library(ggthemes)
 # Need this on Peregrine cluster
 if (Sys.getenv("HOSTNAME") == "peregrine.hpc.rug.nl") {
   Sys.setenv("DISPLAY"=":0")
+  options(bitmapType="cairo")
 }
 
 root_folder <- path.expand("~/GitHubs/pirouette/doc")
