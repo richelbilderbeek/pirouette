@@ -1,12 +1,29 @@
 # Creates the figures for the workflow image in the documentation
-setwd("/home/richel/GitHubs/pirouette/doc")
 
 library(pirouette)
 library(ggplot2)
 library(ggthemes)
+
+# Need this on Peregrine cluster
+if (Sys.getenv("HOSTNAME") == "peregrine.hpc.rug.nl") {
+  Sys.setenv("DISPLAY"=":0")
+  options(bitmapType="cairo")
+}
+
+root_folder <- path.expand("~/GitHubs/pirouette/doc")
 set.seed(314)
 
-phylogeny <- ape::read.tree(text = "(((1:1,2:1):1, 3:2):1, 4:3);")
+phylogeny  <- ape::read.tree(
+  text = "(((((A:2, B:2):2, C:4):2, D:6):2, E:8):2, F:10);"
+)
+
+################################################################################
+# Use png here, to make Peregrine fail fast
+################################################################################
+png(filename = "phylogeny.png", width = 400, height = 300)
+ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
+dev.off()
+
 
 pir_params <- create_pir_params(
   alignment_params = create_alignment_params(
@@ -15,6 +32,18 @@ pir_params <- create_pir_params(
   ),
   twinning_params = create_twinning_params()
 )
+
+################################################################################
+# Settings to run on Peregrine cluster
+################################################################################
+pir_params$alignment_params$fasta_filename <- file.path(root_folder, "alignment.fasta")
+pir_params$experiments[[1]]$beast2_options$input_filename <- file.path(root_folder, "beast2_input.xml")
+pir_params$experiments[[1]]$beast2_options$output_log_filename <- file.path(root_folder, "beast2_output.log")
+pir_params$experiments[[1]]$beast2_options$output_trees_filenames <- file.path(root_folder, "beast2_output.trees")
+pir_params$experiments[[1]]$beast2_options$output_state_filename <- file.path(root_folder, "beast2_output.xml.state")
+pir_params$experiments[[1]]$errors_filename <- file.path(root_folder, "error.csv")
+################################################################################
+
 errors <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 
 ################################################################################
@@ -80,29 +109,6 @@ babette::plot_densitree(
   scale.bar = FALSE
 )
 dev.off()
-
-################################################################################
-# nLTTs
-################################################################################
-
-png(filename = "nltt.png", width = 1000, height = 800)
-nLTT::nltts_plot(
-  tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames),
-  dt = 0.001,
-  plot_nltts = TRUE
-)
-nLTT::nltts_plot(c(phylogeny), col = "red", lwd = 3, replot = TRUE)
-dev.off()
-
-png(filename = "nltt_twin.png", width = 1000, height = 800)
-nLTT::nltts_plot(
-  tracerer::parse_beast_trees(to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)),
-  dt = 0.001,
-  plot_nltts = TRUE
-)
-nLTT::nltts_plot(c(ape::read.tree(pir_params$twinning_params$twin_tree_filename)), col = "red", lwd = 3, replot = TRUE)
-dev.off()
-
 
 ################################################################################
 # histogram of errors

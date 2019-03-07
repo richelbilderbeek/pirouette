@@ -9,9 +9,9 @@ create_all_experiments <- function(
   tree_priors = beautier::create_tree_priors(),
   mcmc = create_mcmc(store_every = 1000)
 ) {
-  check_site_models(site_models)
-  check_clock_models(clock_models)
-  check_tree_priors(tree_priors)
+  check_site_models(site_models) # nolint pirouette function
+  check_clock_models(clock_models) # nolint pirouette function
+  check_tree_priors(tree_priors) # nolint pirouette function
 
   all_experiments <- vector(
     "list",
