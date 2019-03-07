@@ -23,10 +23,10 @@ twin tree}
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates 1e4 trees and
+    \item 'max_clade_cred' simulates \code{n_replicas} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates 1e4 trees and selects the most
-      likely;
+    \item 'max_likelihood' simulates \code{n_replicas} trees
+     and selects the most likely;
   }}
 }
 \value{

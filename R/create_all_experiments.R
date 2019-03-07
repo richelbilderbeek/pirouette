@@ -24,9 +24,11 @@ create_all_experiments <- function(
     for (clock_model in clock_models) {
       for (tree_prior in tree_priors) {
         all_experiments[[i]] <- create_experiment(
-          model_type = "candidate",
-          run_if = "best_candidate",
-          do_measure_evidence = TRUE,
+          inference_conditions = create_inference_conditions(
+            model_type = "candidate",
+            run_if = "best_candidate",
+            do_measure_evidence = TRUE
+          ),
           inference_model = create_inference_model(
             site_model = site_model,
             clock_model = clock_model,

@@ -4,8 +4,7 @@
 \alias{create_experiment}
 \title{Create a valid \link{pirouette} experiment.}
 \usage{
-create_experiment(model_type = "generative", run_if = "always",
-  do_measure_evidence = FALSE,
+create_experiment(inference_conditions = create_inference_conditions(),
   inference_model = beautier::create_inference_model(mcmc =
   create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
@@ -18,28 +17,8 @@ create_experiment(model_type = "generative", run_if = "always",
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
 }
 \arguments{
-\item{model_type}{type of inference model supplied for an experiment.
-Possible values:
-\itemize{
-  \item \code{generative}: the inference model is (or is assumed to be)
-    the inference model underlying the phylogeny
-  \item \code{candidate}: the inference model is a candidate model,
-    that competes with other models for having the most
-    evidence (aka highest marginal likelihood)
-}}
-
-\item{run_if}{the condition for an experiment's inference model to be run.
-Possible values:
-\itemize{
-  \item \code{always}: always
-  \item \code{best_candidate}: if the inference model is the
-    candidate model with the most evidence (aka highest marginal
-    likelihood)
-}}
-
-\item{do_measure_evidence}{boolean to indicate if the
-evidence (aka marginal likelihood) of an experiment must be
-measured}
+\item{inference_conditions}{conditions under which the inference model
+is used in the inference}
 
 \item{inference_model}{an inference model, which is a combination
 of site model, clock model, tree prior and BEAST2 input and
@@ -69,9 +48,7 @@ The arguments are checked by \link{check_experiment}.
 \examples{
  experiment <- create_experiment()
  testthat::expect_silent(check_experiment(create_experiment()))
- testit::assert("model_type" \%in\% names(experiment))
- testit::assert("run_if" \%in\% names(experiment))
- testit::assert("do_measure_evidence" \%in\% names(experiment))
+ testit::assert("inference_conditions" \%in\% names(experiment))
  testit::assert("inference_model" \%in\% names(experiment))
  testit::assert("beast2_options" \%in\% names(experiment))
  testit::assert("est_evidence_mcmc" \%in\% names(experiment))

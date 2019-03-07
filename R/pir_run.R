@@ -206,7 +206,7 @@ pir_run_tree <- function(
 
     df$tree[i] <- tree_type
     check_experiment(experiment) # nolint pirouette function
-    df$inference_model[i] <- experiment$model_type
+    df$inference_model[i] <- experiment$inference_conditions$model_type
     df$inference_model_weight[i] <- NA
     df$site_model[i] <- experiment$inference_model$site_model$name
     df$clock_model[i] <- experiment$inference_model$clock_model$name

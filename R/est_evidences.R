@@ -18,7 +18,7 @@ est_evidences <- function(
   beast2_optionses <- list()
   i <- 1
   for (experiment in experiments) {
-    if (experiment$do_measure_evidence) {
+    if (experiment$inference_conditions$do_measure_evidence) {
       testit::assert(
         beautier::is_nested_sampling_mcmc(experiment$est_evidence_mcmc)
       )

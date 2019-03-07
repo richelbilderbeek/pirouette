@@ -124,6 +124,8 @@
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
 #' @param ideal_method method to generate the "ideal" tree
+#' @param inference_conditions conditions under which the inference model
+#'   is used in the inference
 #' @param inference_model an inference model, which is a combination
 #'   of site model, clock model, tree prior and BEAST2 input and
 #'   input filenames.
@@ -286,6 +288,7 @@ default_params_doc <- function(
   folder_name,
   ideal_method,
   inference_model,
+  inference_conditions,
   init_speciation_rate,
   init_extinction_rate,
   lambda,
