@@ -99,4 +99,14 @@ test_that("use", {
     ),
     "'n_replicas' must be a finite positive integer number"
   )
+
+  # Wrong twin_evidence_filename
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        twin_evidence_filename = 13
+      )
+    ),
+    "'twin_evidence_filename' must be a character vector"
+  )
 })
