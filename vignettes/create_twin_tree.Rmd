@@ -18,6 +18,7 @@ knitr::opts_chunk$set(
 
 ```{r}
 library(pirouette)
+library(phangorn)
 ```
 
 First create a tree, then you can twin it. Currently there are two different way to do so.

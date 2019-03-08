@@ -21,9 +21,11 @@ test_that("generative", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     ),
@@ -117,9 +119,11 @@ test_that("generative, using gamma statistic", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
@@ -166,9 +170,11 @@ test_that("generative, with MRCA prior", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
@@ -244,9 +250,11 @@ test_that("most_evidence, one candidate", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
@@ -309,9 +317,11 @@ test_that("most_evidence, two candidates", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
@@ -383,9 +393,11 @@ test_that("generative and most_evidence, generative not in most_evidence", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_generative <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
@@ -394,9 +406,9 @@ test_that("generative and most_evidence, generative not in most_evidence", {
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- experiment_generative
-  experiment_bd$model_type <- "candidate"
-  experiment_bd$run_if <- "best_candidate"
-  experiment_bd$do_measure_evidence <- TRUE
+  experiment_bd$inference_conditions$model_type <- "candidate"
+  experiment_bd$inference_conditions$run_if <- "best_candidate"
+  experiment_bd$inference_conditions$do_measure_evidence <- TRUE
   experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
   experiments <- list(experiment_generative, experiment_bd)
 
@@ -447,9 +459,11 @@ test_that("generative and most_evidence, generative in most_evidence", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_generative <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
@@ -458,9 +472,9 @@ test_that("generative and most_evidence, generative in most_evidence", {
     beast2_options = create_beast2_options(rng_seed = 314)
   )
   experiment_bd <- experiment_generative
-  experiment_bd$model_type <- "candidate"
-  experiment_bd$run_if <- "best_candidate"
-  experiment_bd$do_measure_evidence <- TRUE
+  experiment_bd$inference_conditions$model_type <- "candidate"
+  experiment_bd$inference_conditions$run_if <- "best_candidate"
+  experiment_bd$inference_conditions$do_measure_evidence <- TRUE
   experiments <- list(experiment_generative, experiment_bd)
 
 
@@ -504,9 +518,11 @@ test_that("two candidates, run both", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "always",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "always",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
@@ -576,9 +592,11 @@ test_that("most_evidence, three candidates", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_jc69 <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       site_model = create_jc69_site_model(),
       mcmc = create_mcmc(chain_length = 4000, store_every = 1000)
@@ -649,9 +667,11 @@ test_that("most_evidence, four candidates", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_jc69 <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       site_model = create_jc69_site_model(),
       mcmc = create_mcmc(chain_length = 4000, store_every = 1000)
@@ -721,9 +741,11 @@ test_that("generative with twin", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
@@ -764,7 +786,6 @@ test_that("generative with twin", {
   #   as all models have do_measure_evidence == FALSE
   testit::assert(!file.exists(pir_params$evidence_filename))
   testit::assert(!file.exists(twinning_params$twin_evidence_filename))
-
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -811,9 +832,11 @@ test_that("most_evidence, with twinning", {
   beast2_options <- create_beast2_options(rng_seed = 314)
 
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
@@ -822,9 +845,11 @@ test_that("most_evidence, with twinning", {
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
@@ -886,9 +911,11 @@ test_that("twin parameters", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
@@ -933,9 +960,11 @@ test_that("Errors files exist", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )

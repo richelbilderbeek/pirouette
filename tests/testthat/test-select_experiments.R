@@ -3,7 +3,7 @@ context("test-select_experiments")
 test_that("use, always", {
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment()
-  experiment$run_if <- "always"
+  experiment$inference_conditions$run_if <- "always"
   experiments <- list(experiment)
   selected <- select_experiments(experiments)
   expect_equal(1, length(selected))
@@ -23,17 +23,21 @@ test_that("use, most_evidence", {
   marg_liks$weight <- c(0.9, 0.1) # in favor of Yule
 
   experiment_bd <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_bd_tree_prior()
     )
   )
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior()
     )
@@ -48,7 +52,7 @@ test_that("use, most_evidence", {
 test_that("use, always", {
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment()
-  experiment$run_if <- "always"
+  experiment$inference_conditions$run_if <- "always"
   experiments <- list(experiment)
   selected <- select_experiments(experiments)
   expect_equal(1, length(selected))
@@ -72,17 +76,21 @@ test_that("generative model and candidate model", {
   marg_liks$weight <- c(0.9, 0.1) # in favor of generative model
 
   experiment_generative <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always"
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior()
     )
   )
   if (rappdirs::app_dir()$os != "win") {
     experiment_candidate <- create_experiment(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE,
+      inference_conditions = create_inference_conditions(
+        model_type = "candidate",
+        run_if = "best_candidate",
+        do_measure_evidence = TRUE
+      ),
       inference_model = create_inference_model(
         tree_prior = create_bd_tree_prior()
       )
@@ -101,7 +109,7 @@ test_that("generative model and candidate model", {
 test_that("use, verbose", {
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment()
-  experiment$run_if <- "always"
+  experiment$inference_conditions$run_if <- "always"
   experiments <- list(experiment)
   output <- capture.output(
     select_experiments(experiments, verbose = TRUE)

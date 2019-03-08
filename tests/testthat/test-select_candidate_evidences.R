@@ -6,8 +6,12 @@ test_that("nothing if no candidates", {
 })
 
 test_that("one if there is one candidate", {
-  experiment <- create_experiment(model_type = "candidate")
-  testit::assert(experiment$model_type == "candidate")
+  experiment <- create_experiment(
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate"
+    )
+  )
+  testit::assert(experiment$inference_conditions$model_type == "candidate")
 
   candidate_evidences <- select_candidate_evidences(
     experiments = list(experiment),
@@ -17,10 +21,14 @@ test_that("one if there is one candidate", {
 })
 
 test_that("one if there is one candidate and one generative", {
-  experiment_1 <- create_experiment(model_type = "candidate")
-  testit::assert(experiment_1$model_type == "candidate")
+  experiment_1 <- create_experiment(
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate"
+    )
+  )
+  testit::assert(experiment_1$inference_conditions$model_type == "candidate")
   experiment_2 <- create_experiment()
-  testit::assert(experiment_2$model_type == "generative")
+  testit::assert(experiment_2$inference_conditions$model_type == "generative")
   experiments <- list(experiment_1, experiment_2)
 
   candidate_evidences <- select_candidate_evidences(

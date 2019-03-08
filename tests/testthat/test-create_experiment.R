@@ -11,16 +11,21 @@ test_that("use", {
   beast2_options <- create_beast2_options(rng_seed = 42)
 
   experiment <- create_experiment(
-    model_type = model_type,
-    run_if = run_if,
-    do_measure_evidence = do_measure_evidence,
+    inference_conditions = create_inference_conditions(
+      model_type = model_type,
+      run_if = run_if,
+      do_measure_evidence = do_measure_evidence
+    ),
     inference_model = inference_model,
     beast2_options = beast2_options
   )
 
-  expect_equal(model_type, experiment$model_type)
-  expect_equal(run_if, experiment$run_if)
-  expect_equal(do_measure_evidence, experiment$do_measure_evidence)
+  expect_equal(model_type, experiment$inference_conditions$model_type)
+  expect_equal(run_if, experiment$inference_conditions$run_if)
+  expect_equal(
+    do_measure_evidence,
+    experiment$inference_conditions$do_measure_evidence
+  )
   expect_equal(inference_model, experiment$inference_model)
   expect_equal(beast2_options, experiment$beast2_options)
 })
@@ -37,9 +42,11 @@ test_that("use", {
 
   expect_error(
     experiment <- create_experiment(
-      model_type = model_type,
-      run_if = run_if,
-      do_measure_evidence = do_measure_evidence,
+      inference_conditions = create_inference_conditions(
+        model_type = model_type,
+        run_if = run_if,
+        do_measure_evidence = do_measure_evidence
+      ),
       inference_model = inference_model,
       beast2_options = beast2_options
     ),

@@ -124,6 +124,8 @@
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
 #' @param ideal_method method to generate the "ideal" tree
+#' @param inference_conditions conditions under which the inference model
+#'   is used in the inference
 #' @param inference_model an inference model, which is a combination
 #'   of site model, clock model, tree prior and BEAST2 input and
 #'   input filenames.
@@ -144,10 +146,10 @@
 #' @param method determines how to create the twin tree
 #' \itemize{
 #'     \item 'random_tree' just produces a random tree;
-#'     \item 'max_clade_cred' simulates 1e4 trees and
+#'     \item 'max_clade_cred' simulates \code{n_replicas} trees and
 #'       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-#'     \item 'max_likelihood' simulates 1e4 trees and selects the most
-#'       likely;
+#'     \item 'max_likelihood' simulates \code{n_replicas} trees
+#'      and selects the most likely;
 #'   }
 #' @param model_selection one ways to select the models used in
 #'   inference, for example, \code{generative} picks the generative
@@ -286,6 +288,7 @@ default_params_doc <- function(
   folder_name,
   ideal_method,
   inference_model,
+  inference_conditions,
   init_speciation_rate,
   init_extinction_rate,
   lambda,
@@ -323,7 +326,8 @@ default_params_doc <- function(
   sequence_length,
   sim_pars,
   sim_phylo,
-  site_model, site_models,
+  site_model,
+  site_models,
   site_model_name,
   sub_chain_length,
   sum_lamu,

@@ -14,9 +14,7 @@ check_experiment <- function(
   experiment
 ) {
   argument_names <- c(
-    "model_type",
-    "run_if",
-    "do_measure_evidence",
+    "inference_conditions",
     "inference_model",
     "beast2_options",
     "est_evidence_mcmc",
@@ -31,15 +29,17 @@ check_experiment <- function(
       )
     }
   }
-  if (!experiment$model_type %in% c("generative", "candidate")) {
-    stop("'model_type' must be either \"generative\" or \"candidate\"")
-  }
-  if (!experiment$run_if %in% c("always", "best_candidate")) {
-    stop("'run_if' must be either \"always\" or \"best_candidate\"")
-  }
-  if (!experiment$do_measure_evidence %in% c(TRUE, FALSE)) {
-    stop("'do_measure_evidence' must be either TRUE or FALSE")
-  }
+  tryCatch(
+    check_inference_conditions(experiment$inference_conditions),
+    error = function(e) {
+      stop(
+        "'inference_conditions' must be a valid inference_conditions\n",
+        "Tip: use 'create_inference_conditions'.\n",
+        "Error: ", e$message, "\n",
+        "Value: ", experiment$inference_conditions
+      )
+    }
+  )
   tryCatch(
     beautier::check_inference_model(experiment$inference_model),
     error = function(e) {
@@ -58,7 +58,6 @@ check_experiment <- function(
       "Value: ", experiment$inference_model$mcmc
     )
   }
-
   tryCatch(
     beastier::check_beast2_options(experiment$beast2_options),
     error = function(e) {
@@ -83,13 +82,6 @@ check_experiment <- function(
       "Tip: use 'beastier::get_default_beast2_bin_path'\n",
       "Value: ", experiment$beast2_bin_path
     )
-  }
-  if (experiment$run_if == "best_candidate" &&
-      experiment$do_measure_evidence == FALSE) {
-    stop(
-      "'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE ",
-      "is a configuration that makes no sense"
-    ) # nolint
   }
   if (!is.character(experiment$errors_filename)) {
     stop("'errors_filename' must be a character vector")
