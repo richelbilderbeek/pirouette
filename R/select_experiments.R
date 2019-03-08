@@ -11,15 +11,18 @@ select_experiments <- function(
   check_experiments(experiments) # nolint pirouette function
 
   # Keep only the candidate marginal likelihoods
-  candidate_marg_liks <- select_candidate_evidences(experiments, marg_liks) # nolint pirouette function
+  candidate_marg_liks <- select_candidate_evidences( # nolint pirouette function
+    experiments,
+    marg_liks
+  )
 
   selected_experiments <- list()
   index <- 1
   for (experiment in experiments) {
-    if (experiment$run_if == "always") {
+    if (experiment$inference_conditions$run_if == "always") {
       selected_experiments[[index]] <- experiment
       index <- index + 1
-    } else if (experiment$run_if == "best_candidate" &&
+    } else if (experiment$inference_conditions$run_if == "best_candidate" &&
         is_best_candidate(
           experiment = experiment,
           marg_liks = candidate_marg_liks

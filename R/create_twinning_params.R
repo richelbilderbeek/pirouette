@@ -1,7 +1,8 @@
-#' Create the parameters for the twinning simulation.
+#' @title Create the parameters for the twinning simulation
+#' @description Create the parameters for the twinning simulation.
 #' The site model and clock models will be used and
 #' their combination will be called the generative model
-#' of the twinning
+#' of the twinning.
 #' @inheritParams default_params_doc
 #' @param rng_seed the random number generator seed as used in the
 #'   simulation of a twin tree

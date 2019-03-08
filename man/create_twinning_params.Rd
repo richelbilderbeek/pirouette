@@ -2,10 +2,7 @@
 % Please edit documentation in R/create_twinning_params.R
 \name{create_twinning_params}
 \alias{create_twinning_params}
-\title{Create the parameters for the twinning simulation.
-The site model and clock models will be used and
-their combination will be called the generative model
-of the twinning}
+\title{Create the parameters for the twinning simulation}
 \usage{
 create_twinning_params(rng_seed = 0, twin_model = "bd",
   method = "random_tree", n_replicas = 10000,
@@ -30,10 +27,10 @@ values of \code{twin_model}}
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates 1e4 trees and
+    \item 'max_clade_cred' simulates \code{n_replicas} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates 1e4 trees and selects the most
-      likely;
+    \item 'max_likelihood' simulates \code{n_replicas} trees
+     and selects the most likely;
   }}
 
 \item{n_replicas}{number of replicas to evaluate in order to create the
@@ -55,7 +52,7 @@ a twinning parameter set
 Create the parameters for the twinning simulation.
 The site model and clock models will be used and
 their combination will be called the generative model
-of the twinning
+of the twinning.
 }
 \examples{
  twinning_params <- create_twinning_params()

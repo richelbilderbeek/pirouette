@@ -13,7 +13,7 @@ check_alignment_params(alignment_params)
 as can be created by \link{create_alignment_params}}
 }
 \value{
-nothing. Will \link{stop} if nit
+nothing. Will \link{stop} if not
 }
 \description{
 Checks if the argument is a valid alignment parameters structure,

@@ -19,9 +19,11 @@ test_that("use", {
 
   # Setup experiments
   experiment_1 <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = beautier::create_inference_model(
       site_model = beautier::create_jc69_site_model(),
       clock_model = beautier::create_strict_clock_model(),
@@ -66,9 +68,11 @@ test_that("cleans up", {
 
   # Setup experiments
   experiment_1 <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = beautier::create_inference_model(
       site_model = beautier::create_jc69_site_model(),
       clock_model = beautier::create_strict_clock_model(),

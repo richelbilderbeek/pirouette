@@ -22,3 +22,12 @@ test_that("use", {
   expect_true(is_best_candidate(experiment_yule, marg_liks))
   expect_false(is_best_candidate(experiment_bd, marg_liks))
 })
+
+test_that("can't select candidate if there are no mark_liks", {
+  expect_false(
+    is_best_candidate(
+      experiment = create_experiment(),
+      marg_liks = data.frame(matrix(NA, nrow = 0, ncol = 10))
+    )
+  )
+})

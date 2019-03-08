@@ -15,9 +15,11 @@ test_that("errors are stored correctly", {
   )
   errors_filename <- tempfile(fileext = ".csv")
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE, # Set to TRUE if UNIX
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE # Set to TRUE if UNIX
+    ),
     inference_model = create_inference_model(
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)

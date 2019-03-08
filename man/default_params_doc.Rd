@@ -16,10 +16,10 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   error_function, error_measure_params, errors_filename, est_evidence_mcmc,
   evidence_epsilon, evidence_filename, experiment, experiments,
   fasta_filename, filename, folder_name, ideal_method, inference_model,
-  init_speciation_rate, init_extinction_rate, lambda, marg_lik_filename,
-  marg_liks, max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate,
-  mbd_tree, mcmc, method, model_selection, model_type, mrca_prior, mu,
-  mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
+  inference_conditions, init_speciation_rate, init_extinction_rate, lambda,
+  marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
+  mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
+  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
   parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
   posterior_trees, precision, project_folder_name, rng_seed, root_sequence,
   run_if, sample_interval, seed, sequence_length, sim_pars, sim_phylo,
@@ -197,6 +197,9 @@ as can be created by \link{create_experiment}}
 of site model, clock model, tree prior and BEAST2 input and
 input filenames.}
 
+\item{inference_conditions}{conditions under which the inference model
+is used in the inference}
+
 \item{init_speciation_rate}{a speciation rate}
 
 \item{init_extinction_rate}{an extinction rate}
@@ -224,10 +227,10 @@ from a MBD tree}
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates 1e4 trees and
+    \item 'max_clade_cred' simulates \code{n_replicas} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates 1e4 trees and selects the most
-      likely;
+    \item 'max_likelihood' simulates \code{n_replicas} trees
+     and selects the most likely;
   }}
 
 \item{model_selection}{one ways to select the models used in

@@ -2,7 +2,7 @@
 #' as created by \link{create_alignment_params}.
 #' Will \link{stop} if not.
 #' @inheritParams default_params_doc
-#' @return nothing. Will \link{stop} if nit
+#' @return nothing. Will \link{stop} if not
 #' @author Richel J.C. Bilderbeek
 check_alignment_params <- function(
   alignment_params
