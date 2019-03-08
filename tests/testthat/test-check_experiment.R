@@ -28,6 +28,15 @@ test_that("wrong parameter values", {
   expect_error(
     check_experiment(
       create_experiment(
+        inference_conditions = "nonsense"
+      )
+    ),
+    "'inference_conditions' must be a valid inference_conditions"
+  )
+
+  expect_error(
+    check_experiment(
+      create_experiment(
         inference_model = "nonsense"
       )
     ),
@@ -59,6 +68,14 @@ test_that("wrong parameter values", {
       )
     ),
     "'est_evidence_mcmc' must be a Nested Sampling MCMC"
+  )
+  expect_error(
+    check_experiment(
+      create_experiment(
+        beast2_bin_path = "C:/non/sense"
+      )
+    ),
+    "'beast2_bin_path' must be a path to a BEAST2 binary file."
   )
   # Wrong errors_filename
   expect_error(
