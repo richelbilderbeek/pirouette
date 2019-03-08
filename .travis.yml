@@ -5,12 +5,13 @@ r_packages:
   - devtools
   - ggplot2
   - xml2
+  - phangorn
 
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  - KlausVigo/phangorn
+  #- KlausVigo/phangorn
   - MangoTheCat/goodpractice
   - ropensci/beautier
   - ropensci/tracerer
