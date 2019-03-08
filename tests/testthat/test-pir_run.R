@@ -21,9 +21,11 @@ test_that("generative", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     ),
@@ -117,9 +119,11 @@ test_that("generative, using gamma statistic", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
@@ -166,9 +170,11 @@ test_that("generative, with MRCA prior", {
 
   # Select all experiments with 'run_if' is 'always'
   experiment <- create_experiment(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE,
+    inference_conditions = create_inference_conditions(
+      model_type = "generative",
+      run_if = "always",
+      do_measure_evidence = FALSE
+    ),
     inference_model = create_inference_model(
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     )
@@ -244,9 +250,11 @@ test_that("most_evidence, one candidate", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
@@ -309,9 +317,11 @@ test_that("most_evidence, two candidates", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   experiment_yule <- create_experiment(
-    model_type = "candidate",
-    run_if = "best_candidate",
-    do_measure_evidence = TRUE,
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
     inference_model = create_inference_model(
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
