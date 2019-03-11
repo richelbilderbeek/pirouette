@@ -35,7 +35,7 @@ pir_run <- function(
   }
 
   # Run for the true tree
-  df <- pir_run_tree(
+  pir_out <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
     alignment_params = pir_params$alignment_params,
@@ -49,27 +49,10 @@ pir_run <- function(
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
     # Create specific twin pir_params
-    pir_params_twin <- pir_params
-    pir_params_twin$alignment_params$fasta_filename <-
-      pir_params$twinning_params$twin_alignment_filename
-    pir_params_twin$evidence_filename <-
-      pir_params$twinning_params$twin_evidence_filename
-    for (i in seq_along(pir_params$experiments)) {
-      filenames <- pir_params$experiments[[i]]$beast2_options[
-        grepl(
-          "filename",
-          names(pir_params$experiments[[i]]$beast2_options)
-        )
-        ]
-      for (ii in seq_along(filenames)) {
-        pir_params_twin$experiments[[i]]$beast2_options[ii] <-
-          to_twin_filename(filenames[ii]) # nolint pirouette function
-      }
-    }
-    if (pir_params$twinning_params$rng_seed == "same_seed") {
-      pir_params_twin$twinning_params$rng_seed <-
-        pir_params$alignment_params$rng_seed
-    }
+    pir_params_twin <- create_pir_params_twin(
+      pir_params = pir_params,
+      pir_out = pir_out
+    )
 
     # Create and save twin tree
     twin_tree <- create_twin_tree(
@@ -82,7 +65,7 @@ pir_run <- function(
     )
 
     # Re-run pir_run for the twin
-    df_twin <- pir_run_tree(
+    pir_out_twin <- pir_run_tree(
       phylogeny = twin_tree,
       tree_type = "twin",
       alignment_params = pir_params_twin$alignment_params,
@@ -91,9 +74,9 @@ pir_run <- function(
       evidence_filename = pir_params_twin$evidence_filename,
       verbose = pir_params_twin$verbose
     )
-    df <- rbind(df, df_twin)
+    pir_out <- rbind(pir_out, pir_out_twin)
   }
-  df
+  pir_out
 }
 
 #' Measure the error BEAST2 makes from a phylogeny

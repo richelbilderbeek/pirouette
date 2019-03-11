@@ -4,13 +4,13 @@
 \alias{create_twinning_params}
 \title{Create the parameters for the twinning simulation}
 \usage{
-create_twinning_params(rng_seed = 0, twin_model = "bd",
-  method = "random_tree", n_replicas = 10000,
-  twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
-  ".newick"), twin_alignment_filename = tempfile(pattern =
-  "alignment_twin_", fileext = ".fasta"),
-  twin_evidence_filename = tempfile(pattern = "evidence_twin_", fileext =
-  ".csv"))
+create_twinning_params(rng_seed = 0,
+  twin_model = "import_from_main_pipeline", method = "random_tree",
+  n_replicas = 10000, twin_tree_filename = tempfile(pattern =
+  "tree_twin_", fileext = ".newick"),
+  twin_alignment_filename = tempfile(pattern = "alignment_twin_", fileext
+  = ".fasta"), twin_evidence_filename = tempfile(pattern =
+  "evidence_twin_", fileext = ".csv"))
 }
 \arguments{
 \item{rng_seed}{the random number generator seed as used in the
