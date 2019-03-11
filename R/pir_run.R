@@ -48,33 +48,50 @@ pir_run <- function(
   # Run for the twin tree
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
-    # Create specific twin pir_params
-    pir_params_twin <- create_pir_params_twin(
-      pir_params = pir_params,
-      pir_out = pir_out
-    )
+    # Find experiments
+    pir_outs <- list(generative = NULL, best_candidate = NULL)
+    for (i in 1:nrow(pir_out)) {
+      if (pir_out$inference_model[i] == "generative") {
+        pir_outs$generative <- pir_out[i, ]
+      }
+      if (pir_out$inference_model[i] == "candidate") {
+        if (pir_out$inference_model_weight[i] ==
+            max(pir_out$inference_model_weight)
+        ) {
+          pir_outs$best_candidate <- pir_out[i, ]
+        }
+      }
+    }
 
-    # Create and save twin tree
-    twin_tree <- create_twin_tree(
-      phylogeny,
-      twinning_params = pir_params_twin$twinning_params
-    ) # nolint pirouette function
-    ape::write.tree(
-      phy = twin_tree,
-      file = pir_params_twin$twinning_params$twin_tree_filename
-    )
+    for (model_type in names(pir_outs)) {
+      # Create specific twin pir_params
+      pir_params_twin <- create_pir_params_twin(
+        pir_params = pir_params,
+        pir_out = pir_outs[model_type]
+      )
 
-    # Re-run pir_run for the twin
-    pir_out_twin <- pir_run_tree(
-      phylogeny = twin_tree,
-      tree_type = "twin",
-      alignment_params = pir_params_twin$alignment_params,
-      experiments = pir_params_twin$experiments,
-      error_measure_params = pir_params_twin$error_measure_params,
-      evidence_filename = pir_params_twin$evidence_filename,
-      verbose = pir_params_twin$verbose
-    )
-    pir_out <- rbind(pir_out, pir_out_twin)
+      # Create and save twin tree
+      twin_tree <- create_twin_tree(
+        phylogeny,
+        twinning_params = pir_params_twin$twinning_params
+      ) # nolint pirouette function
+      ape::write.tree(
+        phy = twin_tree,
+        file = pir_params_twin$twinning_params$twin_tree_filename
+      )
+
+      # Re-run pir_run for the twin
+      pir_out_twin <- pir_run_tree(
+        phylogeny = twin_tree,
+        tree_type = "twin",
+        alignment_params = pir_params_twin$alignment_params,
+        experiments = pir_params_twin$experiments,
+        error_measure_params = pir_params_twin$error_measure_params,
+        evidence_filename = pir_params_twin$evidence_filename,
+        verbose = pir_params_twin$verbose
+      )
+      pir_out <- rbind(pir_out, pir_out_twin)
+    }
   }
   pir_out
 }

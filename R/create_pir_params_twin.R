@@ -8,6 +8,8 @@ create_pir_params_twin <- function(
   pir_out
 ) {
   pir_params_twin <- pir_params
+
+  # file names
   pir_params_twin$alignment_params$fasta_filename <-
     pir_params$twinning_params$twin_alignment_filename
   pir_params_twin$evidence_filename <-
@@ -24,10 +26,14 @@ create_pir_params_twin <- function(
         to_twin_filename(filenames[ii]) # nolint pirouette function
     }
   }
+
+  # same seed
   if (pir_params$twinning_params$rng_seed == "same_seed") {
     pir_params_twin$twinning_params$rng_seed <-
       pir_params$alignment_params$rng_seed
   }
+
+  # same tree prior
   if (pir_params$twinning_params$twin_model == "import_from_main_pipeline") {
     if (pir_out$tree_prior %in% get_twin_models()) {
       pir_params_twin$twinning_params$twin_model <- pir_out$tree_prior
@@ -35,6 +41,7 @@ create_pir_params_twin <- function(
       pir_params_twin$twinning_params$twin_model <- "bd"
     }
   }
+
   check_pir_params(pir_params_twin) # nolint pirouette function
   pir_params_twin
 }
