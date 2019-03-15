@@ -6,10 +6,14 @@
 Skyline tree}
 \usage{
 twin_to_cbs_tree(phylogeny = ape::read.tree(text =
-  "((A:1, B:1):1, C:2);"), winning_params = create_twinning_params())
+  "((A:1, B:1):1, C:2);"), twinning_params = create_twinning_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 }
 \value{
 a CBS tree
