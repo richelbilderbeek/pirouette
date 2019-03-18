@@ -353,7 +353,7 @@ evidences (aka marginal likelihoods) of the twin tree}
 \item{twin_model}{the model you want to use to generate the twin tree:
 \itemize{
   \item \code{yule}: Yule or pure-birth
-  \item \code{bd}: birth death
+  \item \code{birth_death}: birth death
 }
 See \link{get_twin_models} to see all possible
 values of \code{twin_model}}
