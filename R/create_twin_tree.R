@@ -22,5 +22,11 @@ create_twin_tree <- function(
     )$tree
   }
   testit::assert(beautier::is_phylo(twin_tree))
+  testit::assert(
+    all.equal(
+      max(ape::branching.times(phylogeny)),
+      max(ape::branching.times(twin_tree))
+    )
+  )
   twin_tree
 }
