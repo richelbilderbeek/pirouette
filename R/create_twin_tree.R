@@ -9,7 +9,7 @@ create_twin_tree <- function(
   if (!(twinning_params$twin_model %in% get_twin_models())) {
     stop("This twin model is not implemented")
   }
-  if (twinning_params$twin_model == "bd") {
+  if (twinning_params$twin_model == "birth_death") {
     twin_tree <- twin_to_bd_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params

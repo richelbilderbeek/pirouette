@@ -38,7 +38,7 @@ create_pir_params_twin <- function(
     if (pir_out$tree_prior %in% get_twin_models()) {
       pir_params_twin$twinning_params$twin_model <- pir_out$tree_prior
     } else {
-      pir_params_twin$twinning_params$twin_model <- "bd"
+      pir_params_twin$twinning_params$twin_model <- "birth_death"
     }
   }
 
