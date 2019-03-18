@@ -72,7 +72,7 @@ test_that("wrong parameter values", {
   expect_error(
     check_experiment(
       create_experiment(
-        beast2_bin_path = "C:/non/sense"
+        beast2_bin_path = "nonsense"
       )
     ),
     "'beast2_bin_path' must be a path to a BEAST2 binary file."
