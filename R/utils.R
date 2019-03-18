@@ -39,7 +39,7 @@ get_clock_models <- function() {
 #' @return the twin models
 #' @author Giovanni Laudanno
 get_twin_models <- function() {
-  c("bd", "yule")
+  c("birth_death", "yule")
 }
 
 #' @title Twin methods

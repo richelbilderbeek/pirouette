@@ -35,7 +35,7 @@ pir_run <- function(
   }
 
   # Run for the true tree
-  df <- pir_run_tree(
+  pir_out <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
     alignment_params = pir_params$alignment_params,
@@ -48,52 +48,54 @@ pir_run <- function(
   # Run for the twin tree
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
-    # Create specific twin pir_params
-    pir_params_twin <- pir_params
-    pir_params_twin$alignment_params$fasta_filename <-
-      pir_params$twinning_params$twin_alignment_filename
-    pir_params_twin$evidence_filename <-
-      pir_params$twinning_params$twin_evidence_filename
-    for (i in seq_along(pir_params$experiments)) {
-      filenames <- pir_params$experiments[[i]]$beast2_options[
-        grepl(
-          "filename",
-          names(pir_params$experiments[[i]]$beast2_options)
-        )
-        ]
-      for (ii in seq_along(filenames)) {
-        pir_params_twin$experiments[[i]]$beast2_options[ii] <-
-          to_twin_filename(filenames[ii]) # nolint pirouette function
+    # Find experiments
+    pir_outs <- pir_out
+    j <- 0
+    for (i in 1:nrow(pir_out)) {
+      if (pir_out$inference_model[i] == "generative") {
+        pir_outs[j <- j + 1, ] <- pir_out[i, ]
+      }
+      if (pir_out$inference_model[i] == "candidate") {
+        if (pir_out$inference_model_weight[i] ==
+            max(pir_out$inference_model_weight)
+        ) {
+          pir_outs[j <- j + 1, ] <- pir_out[i, ]
+        }
       }
     }
-    if (pir_params$twinning_params$rng_seed == "same_seed") {
-      pir_params_twin$twinning_params$rng_seed <-
-        pir_params$alignment_params$rng_seed
+    pir_outs <- pir_outs[1:j, ]
+
+    for (j in 1:nrow(pir_outs)) {
+      # Create specific twin pir_params
+      pir_params_twin <- create_pir_params_twin(
+        pir_params = pir_params,
+        pir_out = pir_outs[j, ]
+      )
+
+      # Create and save twin tree
+      twin_tree <- create_twin_tree(
+        phylogeny,
+        twinning_params = pir_params_twin$twinning_params
+      ) # nolint pirouette function
+      ape::write.tree(
+        phy = twin_tree,
+        file = pir_params_twin$twinning_params$twin_tree_filename
+      )
+
+      # Re-run pir_run for the twin
+      pir_out_twin <- pir_run_tree(
+        phylogeny = twin_tree,
+        tree_type = "twin",
+        alignment_params = pir_params_twin$alignment_params,
+        experiments = pir_params_twin$experiments,
+        error_measure_params = pir_params_twin$error_measure_params,
+        evidence_filename = pir_params_twin$evidence_filename,
+        verbose = pir_params_twin$verbose
+      )
+      pir_out <- rbind(pir_out, pir_out_twin)
     }
-
-    # Create and save twin tree
-    twin_tree <- create_twin_tree(
-      phylogeny,
-      twinning_params = pir_params_twin$twinning_params
-    ) # nolint pirouette function
-    ape::write.tree(
-      phy = twin_tree,
-      file = pir_params_twin$twinning_params$twin_tree_filename
-    )
-
-    # Re-run pir_run for the twin
-    df_twin <- pir_run_tree(
-      phylogeny = twin_tree,
-      tree_type = "twin",
-      alignment_params = pir_params_twin$alignment_params,
-      experiments = pir_params_twin$experiments,
-      error_measure_params = pir_params_twin$error_measure_params,
-      evidence_filename = pir_params_twin$evidence_filename,
-      verbose = pir_params_twin$verbose
-    )
-    df <- rbind(df, df_twin)
   }
-  df
+  pir_out
 }
 
 #' Measure the error BEAST2 makes from a phylogeny

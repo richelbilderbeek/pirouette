@@ -184,15 +184,18 @@ test_that("all methods are working", {
   tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
   twinning_params <- create_twinning_params()
   twinning_params$n_replicas <- 1e2
-  for (method in get_twin_methods()) {
-    twinning_params$method <- method
-    twinning_params$n_replicas <- 10
-    expect_silent(
-      create_twin_tree(
-        phylogeny = tree,
-        twinning_params = twinning_params
+  for (twin_model in get_twin_models()) {
+    twinning_params$twin_model <- twin_model
+    for (method in get_twin_methods()) {
+      twinning_params$method <- method
+      twinning_params$n_replicas <- 10
+      expect_silent(
+        create_twin_tree(
+          phylogeny = tree,
+          twinning_params = twinning_params
+        )
       )
-    )
+    }
   }
 })
 
