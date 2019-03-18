@@ -49,25 +49,27 @@ pir_run <- function(
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
     # Find experiments
-    pir_outs <- list(generative = NULL, best_candidate = NULL)
+    pir_outs <- pir_out
+    j <- 0
     for (i in 1:nrow(pir_out)) {
       if (pir_out$inference_model[i] == "generative") {
-        pir_outs$generative <- pir_out[i, ]
+        pir_outs[j <- j + 1, ] <- pir_out[i, ]
       }
       if (pir_out$inference_model[i] == "candidate") {
         if (pir_out$inference_model_weight[i] ==
             max(pir_out$inference_model_weight)
         ) {
-          pir_outs$best_candidate <- pir_out[i, ]
+          pir_outs[j <- j + 1, ] <- pir_out[i, ]
         }
       }
     }
+    pir_outs <- pir_outs[1:j, ]
 
-    for (model_type in names(pir_outs)) {
+    for (j in 1:nrow(pir_outs)) {
       # Create specific twin pir_params
       pir_params_twin <- create_pir_params_twin(
         pir_params = pir_params,
-        pir_out = pir_outs[model_type]
+        pir_out = pir_outs[j, ]
       )
 
       # Create and save twin tree
