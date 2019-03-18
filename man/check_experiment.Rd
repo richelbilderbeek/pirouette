@@ -19,8 +19,12 @@ A valid \link{pirouette} experiment
 can be created by \link{create_experiment}.
 }
 \examples{
- experiment <- create_experiment()
- testthat::expect_silent(check_experiment(create_experiment()))
+  testthat::expect_silent(
+    check_experiment(create_test_experiment())
+  )
+  testthat::expect_error(check_experiment("nonsense"))
+  testthat::expect_error(check_experiment(NA))
+  testthat::expect_error(check_experiment(NULL))
 }
 \author{
 Richel J.C. Bilderbeek

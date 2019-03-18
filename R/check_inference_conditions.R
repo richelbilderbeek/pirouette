@@ -4,6 +4,14 @@
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno
+#' @examples
+#'   testthat::expect_silent(
+#'     check_inference_conditions(create_inference_conditions())
+#'   )
+#'   testthat::expect_error(check_inference_conditions("nonsense"))
+#'   testthat::expect_error(check_inference_conditions(NA))
+#'   testthat::expect_error(check_inference_conditions(NULL))
+#' @export
 check_inference_conditions <- function(
   inference_conditions
 ) {

@@ -15,15 +15,11 @@ as can be created by \link{create_alignment_params}}
 as can be created by \link{create_experiment}}
 }
 \value{
-a list of:
-\itemize{
-  \item \code{trees}: the phylogenies in the posterior,
-    as a \link[ape]{multiphylo}
-  \item \code{estimates}: the BEAST2 estimates, as a \link{data.frame}
-}
+a list of phylogenies in the posterior,
+  as a \link[ape]{multiphylo}
 }
 \description{
-Creates a posterior of phylogenies from a known alignment.
+Ignores the jointly-estimated posterior estimates
 }
 \author{
 Richel J.C. Bilderbeek

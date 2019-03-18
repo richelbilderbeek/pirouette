@@ -2,6 +2,16 @@
 #'
 #' Will \link{stop} if not.
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'   if (mauricer::is_beast2_pkg_installed("NS")) {
+#'     testthat::expect_silent(
+#'       check_is_ns_beast2_pkg_installed()
+#'     )
+#'   } else {
+#'     testthat::expect_error(
+#'       check_is_ns_beast2_pkg_installed()
+#'     )
+#'   }
 #' @export
 check_is_ns_beast2_pkg_installed <- function() { # nolint long function name indeed
   # Catch and ignore errors caused by connection problems, e.g:

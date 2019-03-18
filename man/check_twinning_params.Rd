@@ -21,6 +21,12 @@ Checks if the argument is a valid twinning parameters structure,
 as created by \link{create_twinning_params}.
 Will \link{stop} if not.
 }
+\examples{
+ testthat::expect_silent(check_twinning_params(create_twinning_params()))
+ testthat::expect_error(check_twinning_params("nonsense"))
+ testthat::expect_error(check_twinning_params(NULL))
+ testthat::expect_error(check_twinning_params(NA))
+}
 \author{
 Richel J.C. Bilderbeek
 }

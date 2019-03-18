@@ -5,10 +5,14 @@
 #' can be created by \link{create_experiment}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @examples
-#'  experiment <- create_experiment()
-#'  testthat::expect_silent(check_experiment(create_experiment()))
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'   testthat::expect_silent(
+#'     check_experiment(create_test_experiment())
+#'   )
+#'   testthat::expect_error(check_experiment("nonsense"))
+#'   testthat::expect_error(check_experiment(NA))
+#'   testthat::expect_error(check_experiment(NULL))
 #' @export
 check_experiment <- function(
   experiment
