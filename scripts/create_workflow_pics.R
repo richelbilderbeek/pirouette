@@ -2,7 +2,6 @@
 
 library(pirouette)
 library(ggplot2)
-library(ggthemes)
 
 # Need this on Peregrine cluster
 if (Sys.getenv("HOSTNAME") == "peregrine.hpc.rug.nl") {
@@ -13,15 +12,14 @@ if (Sys.getenv("HOSTNAME") == "peregrine.hpc.rug.nl") {
 root_folder <- path.expand("~/GitHubs/pirouette/doc")
 set.seed(314)
 
-phylogeny  <- ape::read.tree(
-  text = "(((((A:2, B:2):2, C:4):2, D:6):2, E:8):2, F:10);"
-)
+phylogeny  <- ape::read.tree(text = "(((A:8, B:8):1, C:9):1, ((D:8, E:8):1, F:9):1);")
 
 ################################################################################
 # Use png here, to make Peregrine fail fast
 ################################################################################
-png(filename = "phylogeny.png", width = 400, height = 300)
-ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
+png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
+# ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
+ggtree::ggtree(phylogeny, size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
 dev.off()
 
 
@@ -50,19 +48,23 @@ errors <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 # trees
 ################################################################################
 
-png(filename = "phylogeny.png", width = 400, height = 300)
-ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
+png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
+# ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
+ggtree::ggtree(phylogeny, size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
 dev.off()
 
-png(filename = "phylogeny_twin.png", width = 400, height = 300)
-ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), cex = 2.0, edge.width = 2.0)
+
+png(filename = file.path(root_folder, "phylogeny_twin.png"), width = 800, height = 600)
+# ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), cex = 2.0, edge.width = 2.0)
+ggtree::ggtree(ape::read.tree(pir_params$twinning_params$twin_tree_filename), size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
 dev.off()
+
 
 ################################################################################
 # alignment
 ################################################################################
 
-png(filename = "alignment.png", width = 800, height = 300)
+png(filename = file.path(root_folder, "alignment.png"), width = 800, height = 300)
 ape::image.DNAbin(
   ape::read.FASTA(file = pir_params$alignment_params$fasta_filename),
   grid = TRUE,
@@ -73,7 +75,7 @@ ape::image.DNAbin(
 )
 dev.off()
 
-png(filename = "alignment_twin.png", width = 800, height = 300)
+png(filename = file.path(root_folder, "alignment_twin.png"), width = 800, height = 300)
 ape::image.DNAbin(
   ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename),
   grid = TRUE,
@@ -88,23 +90,23 @@ dev.off()
 # posteriors
 ################################################################################
 
-png(filename = "densitree.png", width = 1000, height = 800)
+png(filename = file.path(root_folder, "densitree.png"), width = 1000, height = 800)
 babette::plot_densitree(
   phylos = tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames),
   alpha = 0.01,
-  consensus = as.character(c(1:4)),
-  cex = 2.0,
+  consensus = LETTERS[6:1],
+  cex = 6.0,
   scaleX = TRUE,
   scale.bar = FALSE
 )
 dev.off()
 
-png(filename = "densitree_twin.png", width = 1000, height = 800)
+png(filename = file.path(root_folder, "densitree_twin.png"), width = 1000, height = 800)
 babette::plot_densitree(
   phylos = tracerer::parse_beast_trees(to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)),
   alpha = 0.01,
-  consensus = as.character(c(1:4)),
-  cex = 2.0,
+  consensus = LETTERS[6:1],
+  cex = 6.0,
   scaleX = TRUE,
   scale.bar = FALSE
 )
@@ -120,12 +122,20 @@ df_errors_twin <- data.frame(error = read.csv(to_twin_filename(pir_params$experi
 ggplot2::ggplot(
   df_errors,
   aes(x = error)
-) + geom_histogram(binwidth = 0.01) + ggsave("errors.png")
+) + geom_histogram(binwidth = 0.01) +
+  ggplot2::theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 30, face = "bold")
+  ) + ggsave(file.path(root_folder, "errors.png"))
 
 ggplot2::ggplot(
   df_errors_twin,
   aes(x = error)
-) + geom_histogram(binwidth = 0.01) + ggsave("errors_twin.png")
+) + geom_histogram(binwidth = 0.01) +
+  ggplot2::theme(
+    axis.text = element_text(size = 20),
+    axis.title = element_text(size = 30, face = "bold")
+  ) + ggsave(file.path(root_folder, "errors_twin.png"))
 
 ggplot2::ggplot(
   df_errors,
@@ -133,7 +143,7 @@ ggplot2::ggplot(
 ) + geom_violin() +
   xlab("") +
   scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-  ggsave("errors_violin.png")
+  ggsave(file.path(root_folder, "errors_violin.png"))
 
 ggplot2::ggplot(
   df_errors_twin,
@@ -141,4 +151,4 @@ ggplot2::ggplot(
 ) + geom_violin() +
   xlab("") +
   scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-  ggsave("errors_violin_twin.png")
+  ggsave(file.path(root_folder, "errors_violin_twin.png"))

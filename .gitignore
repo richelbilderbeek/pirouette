@@ -34,3 +34,11 @@ vignettes/*.R
 *.posterior.log
 *.log
 results/
+doc/alignment.fasta
+doc/beast2_input.xml
+doc/beast2_input_twin.xml
+doc/beast2_output.xml.state
+doc/beast2_output.xml_twin.state
+doc/error.csv
+doc/error_twin.csv
+phylogeny.png
