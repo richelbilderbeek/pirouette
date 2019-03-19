@@ -1,6 +1,8 @@
 #' Select the experiments to do a Bayesian inference with.
 #' @inheritParams default_params_doc
 #' @return a list of inference models
+#' @seealso Use \link{check_experiments} to check if an object
+#'   is a list of experiments
 #' @author Richel J.C. Bilderbeek
 #' @export
 select_experiments <- function(

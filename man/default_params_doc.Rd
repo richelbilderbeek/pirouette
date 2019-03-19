@@ -375,6 +375,17 @@ as can be created by \link{create_twinning_params}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{errors}{a numeric vector of (positive) Bayesian inference errors.
+Use NA if these are not measured (yet)}
+
+\item{log_evidence}{the natural logarithm of the evidence (aka marginal
+likelihood). Can be NA if this is not measured}
+
+\item{weight}{the weight of the model, compared to other (candidate)
+models. This weight will be between 0.0 (there is no evidence for
+this model) to 1.0 (all evidence indicates this is the best model).
+A weight of NA denotes that the weight is not measured}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

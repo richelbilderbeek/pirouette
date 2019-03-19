@@ -107,6 +107,8 @@
 #'   posterior is determined.
 #'   Use \link{create_error_measure_params} to create such
 #'   a parameter set
+#' @param errors a numeric vector of (positive) Bayesian inference errors.
+#'   Use NA if these are not measured (yet)
 #' @param errors_filename baseline name for errors filenames
 #' @param est_evidence_mcmc MCMC used in the estimation of
 #'   the evidence (aka marginal likelihood).
@@ -132,6 +134,8 @@
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
+#' @param log_evidence the natural logarithm of the evidence (aka marginal
+#'   likelihood). Can be NA if this is not measured
 #' @param marg_lik_filename name of the file the marginal
 #'   likelihoods (also known as 'evidences') are saved to
 #' @param marg_liks a data frame with marginal likelihoods/evidences.
@@ -247,6 +251,10 @@
 #'   }
 #'   See \link{get_model_selections} for a list.
 #' @param verbose if TRUE, show more output
+#' @param weight the weight of the model, compared to other (candidate)
+#'   models. This weight will be between 0.0 (there is no evidence for
+#'   this model) to 1.0 (all evidence indicates this is the best model).
+#'   A weight of NA denotes that the weight is not measured
 #' @author Documentation by Giovanni Laudanno,
 #'   use of this function by Richel J.C. Bilderbeek
 #' @note This is an internal function, so it should be marked with

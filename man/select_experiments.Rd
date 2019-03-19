@@ -22,6 +22,10 @@ a list of inference models
 \description{
 Select the experiments to do a Bayesian inference with.
 }
+\seealso{
+Use \link{check_experiments} to check if an object
+  is a list of experiments
+}
 \author{
 Richel J.C. Bilderbeek
 }
