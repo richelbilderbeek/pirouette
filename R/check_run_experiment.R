@@ -8,11 +8,10 @@
 #'   )
 #' @export
 check_run_experiment <- function(run_experiment) {
-  check_experiment(run_experiment)
+  check_experiment(run_experiment) # nolint pirouette function
   argument_names <- c(
-    "log_evidence",
-    "weight",
-    "errors"
+    "true_result",
+    "twin_result"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(run_experiment)) {
@@ -21,4 +20,11 @@ check_run_experiment <- function(run_experiment) {
       )
     }
   }
+
+  # STUB
+  check_result(run_experiment$true_result)
+
+  # STUB
+  check_result(run_experiment$twin_result)
+
 }
