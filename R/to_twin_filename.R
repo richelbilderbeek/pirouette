@@ -6,8 +6,5 @@
 to_twin_filename <- function(
   filename
 ) {
-  x <- tools::file_path_sans_ext(filename)
-  y <- tools::file_ext(filename)
-  z <- paste0(x, "_twin.", y)
-  z
+  stringr::str_replace(string = filename, pattern = "\\.", "_twin.")
 }
