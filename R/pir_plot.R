@@ -48,8 +48,7 @@ pir_plot <- function(pir_out) {
       y = error_value,
       fill = tree
     )
-  ) +
-    ggplot2::geom_violin() +
+  ) + ggplot2::geom_violin() +
     ggplot2::ggtitle("Inference error distribution") +
     ggplot2::labs(
       x = "Tree types",
@@ -70,6 +69,7 @@ pir_plot <- function(pir_out) {
       "Inference model (Site model, Clock model, Tree prior)"
     ) +
     ggplot2::facet_grid(
+      scale = "free", # Show only those categories that have values
       . ~ inference_model,
       labeller = ggplot2::labeller(
         inference_model = c
@@ -78,5 +78,6 @@ pir_plot <- function(pir_out) {
           best = "Best Candidate"
         )
       )
-    )
+    ) + ggplot2::scale_x_discrete(drop = TRUE)
+
 }
