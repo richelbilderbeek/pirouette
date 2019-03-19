@@ -6,13 +6,9 @@
 #'  interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
 #' @inheritParams default_params_doc
 #' @return the branching times
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 convert_tree2brts <- function(tree, precision = 8) {
-
-  brts0 <- ape::branching.times(tree)
-  brts <- DDD::roundn(brts0, digits = precision)
-
-  brts
+  round(ape::branching.times(tree), digits = precision)
 }
 
 #' @title Site models
