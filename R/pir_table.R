@@ -26,8 +26,13 @@ pir_table <- function(run_experiments) {
     tree_prior = rep(NA, n_rows)
   )
 
+  # No results, no rows
+  if (n_rows == 0) return (df)
+
   # Find the highest number of errors measured
-  max_n_errors <- 0
+  # Even if there are zero errors, use one as a minimum, to be
+  # able to display one error_1 column with NAs
+  max_n_errors <- 1
   for (run_experiment in run_experiments) {
     if (!is_one_na(run_experiment$true_result) &&
       !is_one_na(run_experiment$true_result$errors)
@@ -65,8 +70,6 @@ pir_table <- function(run_experiments) {
       from_col_idx <- which(colnames(df) == "error_1")
       to_col_idx <- from_col_idx - 1 + length(errors)
       df[i, from_col_idx:to_col_idx] <- errors
-      #df$log_evidence[i] <- result$log_evidence
-      #df$weight[i] <- result$weight
       i <- i + 1
     }
     # Twin
@@ -82,8 +85,6 @@ pir_table <- function(run_experiments) {
       from_col_idx <- which(colnames(df) == "error_1")
       to_col_idx <- from_col_idx - 1 + length(errors)
       df[i, from_col_idx:to_col_idx] <- errors
-      #df$log_evidence[i] <- result$log_evidence
-      #df$weight[i] <- result$weight
       i <- i + 1
     }
   }

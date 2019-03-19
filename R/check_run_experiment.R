@@ -22,9 +22,11 @@ check_run_experiment <- function(run_experiment) {
   }
 
   # STUB
-  check_result(run_experiment$true_result)
-
+  if (!is_one_na(run_experiment$true_result)) {
+    check_result(run_experiment$true_result)
+  }
   # STUB
-  check_result(run_experiment$twin_result)
-
+  if (!is_one_na(run_experiment$twin_result)) {
+    check_result(run_experiment$twin_result)
+  }
 }
