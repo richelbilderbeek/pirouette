@@ -38,10 +38,12 @@ check_twinning_params <- function(
   if (!is.character(twinning_params$twin_model)) {
     stop("'twin_model' must be a character vector")
   }
-  if (!(twinning_params$twin_model %in%
-        c(get_twin_models(), "import_from_main_pipeline"))
-  ) {
-    stop("This 'twin model' is not implemented")
+  if (!(twinning_params$twin_model %in% get_twin_models())) {
+    stop(
+      "'twin model' is not implemented. \n",
+      "Possible values: '", get_twin_models(), "'. \n",
+      "Actual value: '", twinning_params$twin_model, "'"
+    )
   }
   if (!is.character(twinning_params$method)) {
     stop("'method' must be a character vector")
