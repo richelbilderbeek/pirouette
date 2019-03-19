@@ -264,6 +264,7 @@
 #'     \item \code{most_evidence} picks the model with most evidence
 #'   }
 #'   See \link{get_model_selections} for a list.
+#' @param use_new_interface set to TRUE to use a new interface
 #' @param verbose if TRUE, show more output
 #' @param weight the weight of the model, compared to other (candidate)
 #'   models. This weight will be between 0.0 (there is no evidence for
@@ -374,6 +375,7 @@ default_params_doc <- function(
   twin_tree_filename,
   twinning_params,
   type,
+  use_new_interface,
   verbose,
   weight
 ) {
