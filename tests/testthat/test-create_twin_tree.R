@@ -1,7 +1,7 @@
 context("test-create_twin_tree")
 
 dist_nodes <- function(tree, precision = 12) {
-  DDD::roundn(
+  round(
     ape::dist.nodes(tree),
     digits = precision
   )
