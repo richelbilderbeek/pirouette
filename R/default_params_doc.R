@@ -201,6 +201,20 @@
 #'       candidate model with the most evidence (aka highest marginal
 #'       likelihood)
 #'   }
+#' @param run_experiment one \link{pirouette} run experiment.
+#'   A run experiment is an extension of a normal experiment (that
+#'   has not been run), as it has added:
+#'   \itemize{
+#'     \item log_evidence the natural logarithm of the evidence (aka marginal
+#'       likelihood). Can be NA if this is not measured
+#'     \item weight the weight of the model, compared to other (candidate)
+#'       models. This weight will be between 0.0 (there is no evidence for
+#'       this model) to 1.0 (all evidence indicates this is the best model).
+#'       A weight of NA denotes that the weight is not measured
+#'     \item errors a numeric vector of (positive) Bayesian inference errors.
+#'       Will be NA if these are not measured.
+#'   }
+#' @param run_experiments a list of one or more \link{pirouette} run experiments
 #' @param sample_interval the interval at which the MCMC algorithm
 #'   makes a measurement
 #' @param sequence_length the length of each DNA sequence in an alignment
@@ -289,6 +303,7 @@ default_params_doc <- function(
   epsilon,
   error_function,
   error_measure_params,
+  errors,
   errors_filename,
   est_evidence_mcmc,
   evidence_epsilon,
@@ -303,6 +318,7 @@ default_params_doc <- function(
   init_speciation_rate,
   init_extinction_rate,
   lambda,
+  log_evidence,
   marg_lik_filename,
   marg_liks,
   max_evidence_epsilon,
@@ -332,6 +348,8 @@ default_params_doc <- function(
   project_folder_name,
   rng_seed,
   root_sequence,
+  run_experiment,
+  run_experiments,
   run_if,
   sample_interval,
   seed,
@@ -356,7 +374,8 @@ default_params_doc <- function(
   twin_tree_filename,
   twinning_params,
   type,
-  verbose
+  verbose,
+  weight
 ) {
   # Nothing
 }

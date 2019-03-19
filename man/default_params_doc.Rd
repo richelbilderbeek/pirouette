@@ -13,21 +13,22 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
   beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
   clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
-  error_function, error_measure_params, errors_filename, est_evidence_mcmc,
-  evidence_epsilon, evidence_filename, experiment, experiments,
-  fasta_filename, filename, folder_name, ideal_method, inference_model,
-  inference_conditions, init_speciation_rate, init_extinction_rate, lambda,
-  marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
-  mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
-  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
-  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
-  pir_out, posterior_trees, precision, project_folder_name, rng_seed,
-  root_sequence, run_if, sample_interval, seed, sequence_length, sim_pars,
-  sim_phylo, site_model, site_models, site_model_name, sub_chain_length,
-  sum_lamu, t_0, tree, tree_filename, tree_model, tree_prior, tree_priors,
-  tree_prior_name, tree_type, twin_alignment_filename,
-  twin_evidence_filename, twin_model, twin_tree_filename, twinning_params,
-  type, verbose)
+  error_function, error_measure_params, errors, errors_filename,
+  est_evidence_mcmc, evidence_epsilon, evidence_filename, experiment,
+  experiments, fasta_filename, filename, folder_name, ideal_method,
+  inference_model, inference_conditions, init_speciation_rate,
+  init_extinction_rate, lambda, log_evidence, marg_lik_filename, marg_liks,
+  max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
+  method, model_selection, model_type, mrca_prior, mu, mutation_rate, n_0,
+  n_taxa, n_replicas, nu, nu_events, parameter_filename,
+  parameters_filename, phylo, phylogeny, pir_params, pir_out,
+  posterior_trees, precision, project_folder_name, rng_seed, root_sequence,
+  run_experiment, run_experiments, run_if, sample_interval, seed,
+  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
+  twin_alignment_filename, twin_evidence_filename, twin_model,
+  twin_tree_filename, twinning_params, type, verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -166,6 +167,9 @@ posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
 
+\item{errors}{a numeric vector of (positive) Bayesian inference errors.
+Use NA if these are not measured (yet)}
+
 \item{errors_filename}{baseline name for errors filenames}
 
 \item{est_evidence_mcmc}{MCMC used in the estimation of
@@ -205,6 +209,9 @@ is used in the inference}
 \item{init_extinction_rate}{an extinction rate}
 
 \item{lambda}{per-lineage speciation rate}
+
+\item{log_evidence}{the natural logarithm of the evidence (aka marginal
+likelihood). Can be NA if this is not measured}
 
 \item{marg_lik_filename}{name of the file the marginal
 likelihoods (also known as 'evidences') are saved to}
@@ -292,6 +299,22 @@ of class \code{multiphylo}}
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}
 
+\item{run_experiment}{one \link{pirouette} run experiment.
+A run experiment is an extension of a normal experiment (that
+has not been run), as it has added:
+\itemize{
+  \item log_evidence the natural logarithm of the evidence (aka marginal
+    likelihood). Can be NA if this is not measured
+  \item weight the weight of the model, compared to other (candidate)
+    models. This weight will be between 0.0 (there is no evidence for
+    this model) to 1.0 (all evidence indicates this is the best model).
+    A weight of NA denotes that the weight is not measured
+  \item errors a numeric vector of (positive) Bayesian inference errors.
+    Will be NA if these are not measured.
+}}
+
+\item{run_experiments}{a list of one or more \link{pirouette} run experiments}
+
 \item{run_if}{the condition for an experiment's inference model to be run.
 Possible values:
 \itemize{
@@ -375,12 +398,6 @@ as can be created by \link{create_twinning_params}}
 See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{errors}{a numeric vector of (positive) Bayesian inference errors.
-Use NA if these are not measured (yet)}
-
-\item{log_evidence}{the natural logarithm of the evidence (aka marginal
-likelihood). Can be NA if this is not measured}
 
 \item{weight}{the weight of the model, compared to other (candidate)
 models. This weight will be between 0.0 (there is no evidence for
