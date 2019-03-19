@@ -26,6 +26,8 @@ as given by \code{alignment_params}.
 \seealso{
 Use \link{pir_plot} to display the output of \link{pir_run} as a
   figure.
+  Use \link{pir_table} to display the output of \link{pir_run} as a
+  table.
   Use \link{create_test_pir_run_output} to create a test output
   of \link{pir_run}
 }
