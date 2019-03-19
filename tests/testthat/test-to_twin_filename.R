@@ -7,7 +7,7 @@ test_that("use", {
 })
 
 test_that("use on filesnames with two dots", {
-  skip("#231)
+  skip("#231")
   created <- to_twin_filename("example_3_beast2_output.xml.state")
   expected <- "example_3_beast2_output_twin.xml.state"
   expect_equal(expected, created)
