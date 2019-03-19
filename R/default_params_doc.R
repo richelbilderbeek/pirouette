@@ -228,8 +228,10 @@
 #'   evidences (aka marginal likelihoods) of the twin tree
 #' @param twin_model the model you want to use to generate the twin tree:
 #'   \itemize{
-#'     \item \code{yule}: Yule or pure-birth
+#'     \item \code{import_from_main_pipeline}: use the tree prior of the
+#'       generative model
 #'     \item \code{birth_death}: birth death
+#'     \item \code{yule}: Yule or pure-birth
 #'   }
 #'   See \link{get_twin_models} to see all possible
 #'   values of \code{twin_model}

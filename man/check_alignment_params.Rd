@@ -20,6 +20,14 @@ Checks if the argument is a valid alignment parameters structure,
 as created by \link{create_alignment_params}.
 Will \link{stop} if not.
 }
+\examples{
+  testthat::expect_silent(
+    check_alignment_params(create_test_alignment_params())
+  )
+  testthat::expect_error(check_alignment_params("nonsense"))
+  testthat::expect_error(check_alignment_params(NA))
+  testthat::expect_error(check_alignment_params(NULL))
+}
 \author{
 Richel J.C. Bilderbeek
 }

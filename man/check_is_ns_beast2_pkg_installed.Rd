@@ -9,6 +9,17 @@ check_is_ns_beast2_pkg_installed()
 \description{
 Will \link{stop} if not.
 }
+\examples{
+  if (mauricer::is_beast2_pkg_installed("NS")) {
+    testthat::expect_silent(
+      check_is_ns_beast2_pkg_installed()
+    )
+  } else {
+    testthat::expect_error(
+      check_is_ns_beast2_pkg_installed()
+    )
+  }
+}
 \author{
 Richel J.C. Bilderbeek
 }

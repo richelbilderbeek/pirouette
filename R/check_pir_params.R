@@ -5,16 +5,12 @@
 #' can be created by \link{create_pir_params}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @examples
-#'  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-#'  pir_params <- create_pir_params(
-#'  alignment_params = create_alignment_params(
-#'      root_sequence = create_mono_nuc_dna(length = 4),
-#'      mutation_rate = create_standard_mutation_rate
-#'    )
-#'  )
-#'  testthat::expect_silent(check_pir_params(pir_params))
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#'  testthat::expect_silent(check_pir_params(create_test_pir_params()))
+#'  testthat::expect_error(check_pir_params("nonsense"))
+#'  testthat::expect_error(check_pir_params(NULL))
+#'  testthat::expect_error(check_pir_params(NA))
 #' @export
 check_pir_params <- function(
   pir_params

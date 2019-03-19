@@ -1,12 +1,9 @@
 #' Creates a posterior of phylogenies from a known alignment.
 #'
+#' Ignores the jointly-estimated posterior estimates
 #' @inheritParams default_params_doc
-#' @return a list of:
-#' \itemize{
-#'   \item \code{trees}: the phylogenies in the posterior,
-#'     as a \link[ape]{multiphylo}
-#'   \item \code{estimates}: the BEAST2 estimates, as a \link{data.frame}
-#' }
+#' @return a list of phylogenies in the posterior,
+#'   as a \link[ape]{multiphylo}
 #' @author Richel J.C. Bilderbeek
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,

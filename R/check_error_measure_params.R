@@ -4,6 +4,14 @@
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if nit
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#'   testthat::expect_silent(
+#'     check_error_measure_params(create_error_measure_params())
+#'   )
+#'   testthat::expect_error(check_error_measure_params("nonsense"))
+#'   testthat::expect_error(check_error_measure_params(NA))
+#'   testthat::expect_error(check_error_measure_params(NULL))
+#' @export
 check_error_measure_params <- function(
   error_measure_params
 ) {

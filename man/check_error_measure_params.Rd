@@ -23,6 +23,14 @@ Checks if the argument is a valid error_measure parameters structure,
 as created by \link{create_error_measure_params}.
 Will \link{stop} if not.
 }
+\examples{
+  testthat::expect_silent(
+    check_error_measure_params(create_error_measure_params())
+  )
+  testthat::expect_error(check_error_measure_params("nonsense"))
+  testthat::expect_error(check_error_measure_params(NA))
+  testthat::expect_error(check_error_measure_params(NULL))
+}
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno
 }

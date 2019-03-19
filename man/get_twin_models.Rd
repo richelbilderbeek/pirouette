@@ -13,5 +13,5 @@ the twin models
 Twin models
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richel J.C. Bilderbeek
 }
