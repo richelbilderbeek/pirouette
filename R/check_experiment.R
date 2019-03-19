@@ -5,6 +5,8 @@
 #' can be created by \link{create_experiment}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
+#' @seealso Use \link{check_experiments} to check if an object
+#'   is a list of experiments
 #' @author Richel J.C. Bilderbeek
 #' @examples
 #'   testthat::expect_silent(

@@ -1,12 +1,10 @@
 context("test-select_experiments")
 
 test_that("use, always", {
-  # Select all experiments with 'run_if' is 'always'
-  experiment <- create_experiment()
-  experiment$inference_conditions$run_if <- "always"
-  experiments <- list(experiment)
+  experiments <- list(create_test_experiment())
   selected <- select_experiments(experiments)
   expect_equal(1, length(selected))
+  check_experiments(selected)
 })
 
 test_that("use, most_evidence", {

@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @return a list of inference models
 #' @author Richel J.C. Bilderbeek
-#' @noRd
+#' @export
 select_experiments <- function(
   experiments = list(create_test_experiment()),
   marg_liks = NULL,
