@@ -12,4 +12,3 @@ test_that("use on filesnames with two dots", {
   expected <- "example_3_beast2_output_twin.xml.state"
   expect_equal(expected, created)
 })
-
