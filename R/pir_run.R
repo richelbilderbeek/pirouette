@@ -7,7 +7,11 @@
 #' @inheritParams default_params_doc
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets.
-#'   Tip: use \link{pir_plot} to display it
+#' @seealso
+#'   Use \link{pir_plot} to display the output of \link{pir_run} as a
+#'   figure.
+#'   Use \link{create_test_pir_run_output} to create a test output
+#'   of \link{pir_run}
 #' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 pir_run <- function(

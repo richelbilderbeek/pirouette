@@ -15,6 +15,18 @@ a ggplot2 plot
 \description{
 Plot the error BEAST2 make from the known phylogeny
 }
+\examples{
+  pir_plot(
+    create_test_pir_run_output(
+      add_twin = TRUE,
+      add_best = TRUE
+    )
+  )
+}
+\seealso{
+use \link{create_test_pir_run_output} to create a test output
+  of \link{pir_run}
+}
 \author{
 Richel J.C. Bilderbeek
 }

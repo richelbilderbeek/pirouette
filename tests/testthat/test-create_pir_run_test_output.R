@@ -1,8 +1,8 @@
-context("test-create_pir_run_test_output")
+context("test-create_test_pir_run_output")
 
 test_that("use", {
 
-  errors <- create_pir_run_test_output(add_twin = TRUE, add_best = TRUE)
+  errors <- create_test_pir_run_output(add_twin = TRUE, add_best = TRUE)
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
