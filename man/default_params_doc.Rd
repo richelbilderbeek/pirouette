@@ -27,8 +27,9 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   sequence_length, sim_pars, sim_phylo, site_model, site_models,
   site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
   tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
-  twin_alignment_filename, twin_evidence_filename, twin_model,
-  twin_tree_filename, twinning_params, type, verbose, weight)
+  true_result, twin_alignment_filename, twin_evidence_filename, twin_model,
+  twin_result, twin_tree_filename, twinning_params, type,
+  use_new_interface, verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -367,6 +368,8 @@ as created by \link[beautier]{create_tree_prior}}
 \item{tree_type}{type of tree, can be \code{true} for the true
 phylogeny, and \code{twin} for its twin tree}
 
+\item{true_result}{result obtained from using the true tree}
+
 \item{twin_alignment_filename}{name of the FASTA file the twin
 alignment will be saved to}
 
@@ -383,6 +386,8 @@ evidences (aka marginal likelihoods) of the twin tree}
 See \link{get_twin_models} to see all possible
 values of \code{twin_model}}
 
+\item{twin_result}{result obtained from using the twin tree}
+
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}
 
@@ -396,6 +401,8 @@ as can be created by \link{create_twinning_params}}
   \item \code{most_evidence} picks the model with most evidence
 }
 See \link{get_model_selections} for a list.}
+
+\item{use_new_interface}{set to TRUE to use a new interface}
 
 \item{verbose}{if TRUE, show more output}
 

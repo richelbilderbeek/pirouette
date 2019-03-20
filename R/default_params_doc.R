@@ -240,6 +240,7 @@
 #' @param tree_type type of tree, can be \code{true} for the true
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
+#' @param true_result result obtained from using the true tree
 #' @param twin_alignment_filename name of the FASTA file the twin
 #'   alignment will be saved to
 #' @param twin_evidence_filename filename to store the estimated
@@ -253,6 +254,7 @@
 #'   }
 #'   See \link{get_twin_models} to see all possible
 #'   values of \code{twin_model}
+#' @param twin_result result obtained from using the twin tree
 #' @param twin_tree_filename  name of the (\code{.newick}) file the twin
 #'   tree will be saved to
 #' @param twinning_params can be \code{NA} if no twinning is desired,
@@ -369,9 +371,11 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
+  true_result,
   twin_alignment_filename,
   twin_evidence_filename,
   twin_model,
+  twin_result,
   twin_tree_filename,
   twinning_params,
   type,

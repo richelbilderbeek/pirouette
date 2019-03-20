@@ -5,8 +5,6 @@
 #' can be created by \link{create_result}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @seealso Use \link{check_results} to check if an object
-#'   is a list of results
 #' @author Richel J.C. Bilderbeek
 #' @examples
 #'   testthat::expect_silent(

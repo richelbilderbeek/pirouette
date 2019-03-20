@@ -7,6 +7,11 @@
 create_test_run_experiment(true_result = create_test_result(),
   twin_result = create_test_result())
 }
+\arguments{
+\item{true_result}{result obtained from using the true tree}
+
+\item{twin_result}{result obtained from using the twin tree}
+}
 \value{
 a run experiment
 }
