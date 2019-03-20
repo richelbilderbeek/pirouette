@@ -197,7 +197,7 @@ pir_run_tree <- function(
 
   if (use_new_interface == TRUE) {
     # Future
-    return (experiments)
+    return(experiments)
   }
   # Put inference models and errors a data frame
   n_rows <- length(experiments)

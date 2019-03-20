@@ -27,7 +27,7 @@ pir_table <- function(run_experiments) {
   )
 
   # No results, no rows
-  if (n_rows == 0) return (df)
+  if (n_rows == 0) return(df)
 
   # Find the highest number of errors measured
   # Even if there are zero errors, use one as a minimum, to be
