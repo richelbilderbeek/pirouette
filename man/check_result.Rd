@@ -6,6 +6,19 @@
 \usage{
 check_result(result)
 }
+\arguments{
+\item{result}{results from measurements. These are:
+\itemize{
+  \item log_evidence the natural logarithm of the evidence (aka marginal
+    likelihood). Can be NA if this is not measured
+  \item weight the weight of the model, compared to other (candidate)
+    models. This weight will be between 0.0 (there is no evidence for
+    this model) to 1.0 (all evidence indicates this is the best model).
+    A weight of NA denotes that the weight is not measured
+  \item errors a numeric vector of (positive) Bayesian inference errors.
+    Will be NA if these are not measured.
+}}
+}
 \value{
 nothing. Will \link{stop} if not
 }

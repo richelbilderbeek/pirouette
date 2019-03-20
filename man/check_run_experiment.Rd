@@ -8,17 +8,13 @@ check_run_experiment(run_experiment)
 }
 \arguments{
 \item{run_experiment}{one \link{pirouette} run experiment.
-A run experiment is an extension of a normal experiment (that
-has not been run), as it has added:
+A run experiment has these attributes:
 \itemize{
-  \item log_evidence the natural logarithm of the evidence (aka marginal
-    likelihood). Can be NA if this is not measured
-  \item weight the weight of the model, compared to other (candidate)
-    models. This weight will be between 0.0 (there is no evidence for
-    this model) to 1.0 (all evidence indicates this is the best model).
-    A weight of NA denotes that the weight is not measured
-  \item errors a numeric vector of (positive) Bayesian inference errors.
-    Will be NA if these are not measured.
+  \item experiment the (original) experiment
+  \item true_result the result of running the original experiment on
+    the true phylogeny
+  \item twin_result the result of running the original experiment on
+    the twin phylogeny
 }}
 }
 \value{

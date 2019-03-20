@@ -22,9 +22,9 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   method, model_selection, model_type, mrca_prior, mu, mutation_rate, n_0,
   n_taxa, n_replicas, nu, nu_events, parameter_filename,
   parameters_filename, phylo, phylogeny, pir_params, pir_out,
-  posterior_trees, precision, project_folder_name, rng_seed, root_sequence,
-  run_experiment, run_experiments, run_if, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  posterior_trees, precision, project_folder_name, result, rng_seed,
+  root_sequence, run_experiment, run_experiments, run_if, sample_interval,
+  seed, sequence_length, sim_pars, sim_phylo, site_model, site_models,
   site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
   tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
   true_result, twin_alignment_filename, twin_evidence_filename, twin_model,
@@ -295,14 +295,7 @@ of class \code{multiphylo}}
 
 \item{project_folder_name}{project folder name}
 
-\item{rng_seed}{a random number generator seed}
-
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
-
-\item{run_experiment}{one \link{pirouette} run experiment.
-A run experiment is an extension of a normal experiment (that
-has not been run), as it has added:
+\item{result}{results from measurements. These are:
 \itemize{
   \item log_evidence the natural logarithm of the evidence (aka marginal
     likelihood). Can be NA if this is not measured
@@ -312,6 +305,21 @@ has not been run), as it has added:
     A weight of NA denotes that the weight is not measured
   \item errors a numeric vector of (positive) Bayesian inference errors.
     Will be NA if these are not measured.
+}}
+
+\item{rng_seed}{a random number generator seed}
+
+\item{root_sequence}{the DNA sequence at the root of the phylogeny.
+By default, this will consist out of an equal amount of each letter}
+
+\item{run_experiment}{one \link{pirouette} run experiment.
+A run experiment has these attributes:
+\itemize{
+  \item experiment the (original) experiment
+  \item true_result the result of running the original experiment on
+    the true phylogeny
+  \item twin_result the result of running the original experiment on
+    the twin phylogeny
 }}
 
 \item{run_experiments}{a list of one or more \link{pirouette} run experiments}

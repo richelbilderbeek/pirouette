@@ -190,6 +190,17 @@
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
 #' @param project_folder_name project folder name
+#' @param result results from measurements. These are:
+#'   \itemize{
+#'     \item log_evidence the natural logarithm of the evidence (aka marginal
+#'       likelihood). Can be NA if this is not measured
+#'     \item weight the weight of the model, compared to other (candidate)
+#'       models. This weight will be between 0.0 (there is no evidence for
+#'       this model) to 1.0 (all evidence indicates this is the best model).
+#'       A weight of NA denotes that the weight is not measured
+#'     \item errors a numeric vector of (positive) Bayesian inference errors.
+#'       Will be NA if these are not measured.
+#'   }
 #' @param rng_seed a random number generator seed
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of an equal amount of each letter
@@ -202,17 +213,13 @@
 #'       likelihood)
 #'   }
 #' @param run_experiment one \link{pirouette} run experiment.
-#'   A run experiment is an extension of a normal experiment (that
-#'   has not been run), as it has added:
+#'   A run experiment has these attributes:
 #'   \itemize{
-#'     \item log_evidence the natural logarithm of the evidence (aka marginal
-#'       likelihood). Can be NA if this is not measured
-#'     \item weight the weight of the model, compared to other (candidate)
-#'       models. This weight will be between 0.0 (there is no evidence for
-#'       this model) to 1.0 (all evidence indicates this is the best model).
-#'       A weight of NA denotes that the weight is not measured
-#'     \item errors a numeric vector of (positive) Bayesian inference errors.
-#'       Will be NA if these are not measured.
+#'     \item experiment the (original) experiment
+#'     \item true_result the result of running the original experiment on
+#'       the true phylogeny
+#'     \item twin_result the result of running the original experiment on
+#'       the twin phylogeny
 #'   }
 #' @param run_experiments a list of one or more \link{pirouette} run experiments
 #' @param sample_interval the interval at which the MCMC algorithm
@@ -349,6 +356,7 @@ default_params_doc <- function(
   posterior_trees,
   precision,
   project_folder_name,
+  result,
   rng_seed,
   root_sequence,
   run_experiment,
