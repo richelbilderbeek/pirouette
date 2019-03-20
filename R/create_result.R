@@ -14,11 +14,12 @@
 #'     errors = errors
 #'   )
 #'
+#'   library(testthat)
 #'   expect_equal(log_evidence, result$log_evidence)
 #'   expect_equal(weight, result$weight)
 #'   expect_equal(errors, result$errors)
 #'
-#'   testthat::expect_silent(
+#'   expect_silent(
 #'     check_result(create_test_result())
 #'   )
 #' @export
