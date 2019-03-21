@@ -7,17 +7,44 @@
 combine_brts_and_topology(brts, tree)
 }
 \arguments{
-\item{brts}{set of branching times}
+\item{brts}{numeric vector of (all postive) branching times,
+in time units before the present. Assuming no stem, the heighest
+value equals the crown age.}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 }
 \value{
-a tree
+a phylogeny of class \link[ape]{phylo}
 }
 \description{
-Given a tree topology and a set of branching times,
-it combines them together. They have to be compatible.
+Set the branching times (in time units before the present)
+of a phylogeny, while preserving its topology.
+}
+\examples{
+  library(testthat)
+
+  # Branching times as 3 (crown age) and 2 (branch of A and B) time units ago
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+  expect_equal(c(3, 2), as.numeric(ape::branching.times(phylogeny)))
+  expect_equal(
+    2,
+    ape::dist.nodes(phylogeny)[1, ape::getMRCA(phylogeny, c("A", "B"))]
+  )
+
+  # Create a new phylogeny with the same topology, but with
+  # branching times at 5 (crown age) and 4 (branch of A and B) time units ago
+  new_phylogeny <- combine_brts_and_topology(
+    brts = c(5, 4),
+    tree = phylogeny
+  )
+  expect_equal(c(5, 4), as.numeric(ape::branching.times(new_phylogeny)))
+  expect_equal(
+    4,
+    ape::dist.nodes(new_phylogeny)[
+      1, ape::getMRCA(new_phylogeny, c("A", "B"))
+    ]
+  )
 }
 \author{
-Giovanni Laudanno, David Bapst
+Giovanni Laudanno, David Bapst, Richel J.C. Bilderbeek
 }

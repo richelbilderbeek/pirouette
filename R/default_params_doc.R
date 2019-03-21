@@ -67,7 +67,9 @@
 #'   Use \link[beastier]{get_default_beast2_bin_path} for the default
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
-#' @param brts set of branching times
+#' @param brts numeric vector of (all postive) branching times,
+#'   in time units before the present. Assuming no stem, the heighest
+#'   value equals the crown age.
 #' @param burn_in_fraction the fraction of the posterior trees (starting
 #'   from the ones generated first)
 #'   that will be discarded,

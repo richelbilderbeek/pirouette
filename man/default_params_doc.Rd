@@ -117,7 +117,9 @@ BEAST2 binary file path.}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
-\item{brts}{set of branching times}
+\item{brts}{numeric vector of (all postive) branching times,
+in time units before the present. Assuming no stem, the heighest
+value equals the crown age.}
 
 \item{burn_in_fraction}{the fraction of the posterior trees (starting
 from the ones generated first)

@@ -5,6 +5,7 @@
 #' @return a list of phylogenies in the posterior,
 #'   as a \link[ape]{multiphylo}
 #' @author Richel J.C. Bilderbeek
+#' @noRd
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
   experiment = create_experiment()
