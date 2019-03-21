@@ -59,3 +59,25 @@ test_that("wrong parameter values", {
     "'do_measure_evidence' must be either TRUE or FALSE"
   )
 })
+
+test_that("incoherent settings", {
+
+  expect_error(
+    check_inference_conditions(
+      create_inference_conditions(
+        run_if = "best_candidate",
+        do_measure_evidence = FALSE
+      )
+    ),
+    "'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE is a configuration that makes no sense" # nolint
+  )
+  expect_error(
+    check_inference_conditions(
+      create_inference_conditions(
+        run_if = "always",
+        model_type = "candidate"
+      )
+    ),
+    "'run_if' == 'always' and 'model_type' == 'candidate' is a configuration that makes no sense" # nolint
+  )
+})
