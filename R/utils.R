@@ -35,7 +35,7 @@ get_clock_models <- function() {
 #' @return the twin models
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 get_twin_models <- function() {
-  c("birth_death", "yule", "import_from_main_pipeline")
+  c("birth_death", "yule")
 }
 
 #' @title Twin methods
