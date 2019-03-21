@@ -80,7 +80,7 @@ check_pir_params <- function(
     nchar(basename(filename))
   )
   if (file_extenstion != ".csv") {
-    stop("'evidence_filename' must be a csv file")
+    stop("'evidence_filename' must be a csv filename")
   }
   if (length(pir_params$verbose) != 1 ||
     is.na(pir_params$verbose) ||
