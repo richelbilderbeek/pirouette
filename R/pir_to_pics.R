@@ -67,6 +67,8 @@
 #' }
 #' Items marked [1] are created dependent on the setup.
 #' @inheritParams default_params_doc
+#' @param folder folder where the files are stored in.
+#'   By default, this is a temporary folder
 #' @return the names of all files created
 #' @author Richel J.C. Bilderbeek
 #' @export
@@ -102,97 +104,116 @@ pir_to_pics <- function(
   filenames <- c(filenames, filename)
 
   # Posteriors
+  first_experiment <- head(pir_params$experiments, n = 1)[[1]]
+  last_experiment <- tail(pir_params$experiments, n = 1)[[1]]
+  check_experiment(first_experiment)
+  check_experiment(last_experiment)
+
   # True, gen
-  filename <- file.path(folder, "true_posterior_gen.png")
-  png(
-    filename = filename,
-    width = 1000, height = 800
-  )
-  babette::plot_densitree(
-    phylos = tracerer::parse_beast_trees(
-      pir_params$experiments[[1]]$beast2_options$output_trees_filenames
-    ),
-    alpha = 0.01,
-    # consensus = rev(LETTERS[1:6]),
-    cex = 2.0,
-    scaleX = TRUE,
-    scale.bar = FALSE
-  )
-  dev.off()
-  filenames <- c(filenames, filename)
-
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    filename <- file.path(folder, "true_posterior_gen.png")
+    png(
+      filename = filename,
+      width = 1000, height = 800
+    )
+    babette::plot_densitree(
+      phylos = tracerer::parse_beast_trees(
+        first_experiment$beast2_options$output_trees_filenames
+      ),
+      alpha = 0.01,
+      # consensus = rev(LETTERS[1:6]),
+      cex = 2.0,
+      scaleX = TRUE,
+      scale.bar = FALSE
+    )
+    dev.off()
+    filenames <- c(filenames, filename)
+  }
   # True, best
-  filename <- file.path(folder, "true_posterior_best.png")
-  png(
-    filename = filename,
-    width = 1000, height = 800
-  )
-  babette::plot_densitree(
-    phylos = tracerer::parse_beast_trees(
-      pir_params$experiments[[2]]$beast2_options$output_trees_filenames
-    ),
-    alpha = 0.01,
-    consensus = rev(LETTERS[1:6]),
-    cex = 2.0,
-    scaleX = TRUE,
-    scale.bar = FALSE
-  )
-  dev.off()
-  filenames <- c(filenames, filename)
-
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    filename <- file.path(folder, "true_posterior_best.png")
+    png(
+      filename = filename,
+      width = 1000, height = 800
+    )
+    babette::plot_densitree(
+      phylos = tracerer::parse_beast_trees(
+        last_experiment$beast2_options$output_trees_filenames
+      ),
+      alpha = 0.01,
+      consensus = rev(LETTERS[1:6]),
+      cex = 2.0,
+      scaleX = TRUE,
+      scale.bar = FALSE
+    )
+    dev.off()
+    filenames <- c(filenames, filename)
+  }
   # Hist
   # True, gen
-  df_errors_gen <- data.frame(
-    error = read.csv(pir_params$experiments[[1]]$errors_filename)$x
-  )
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    df_errors_gen <- data.frame(
+      error = read.csv(first_experiment$errors_filename)$x
+    )
 
-  filename <- file.path(folder, "true_error_histogram_gen.png")
-  ggplot2::ggplot(
-    df_errors_gen,
-    ggplot2::aes(x = error)
-  ) + ggplot2::geom_histogram(binwidth = 0.01) +
-    ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+    filename <- file.path(folder, "true_error_histogram_gen.png")
+    ggplot2::ggplot(
+      df_errors_gen,
+      ggplot2::aes(x = error)
+    ) + ggplot2::geom_histogram(binwidth = 0.01) +
+      ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   # True, best
-  df_errors_best <- data.frame(
-    error = read.csv(pir_params$experiments[[2]]$errors_filename)$x
-  )
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    df_errors_best <- data.frame(
+      error = read.csv(last_experiment$errors_filename)$x
+    )
 
-  filename <- file.path(folder, "true_error_histogram_best.png")
-  ggplot2::ggplot(
-    df_errors_best,
-    ggplot2::aes(x = error)
-  ) + ggplot2::geom_histogram(binwidth = 0.01) +
-    ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+    filename <- file.path(folder, "true_error_histogram_best.png")
+    ggplot2::ggplot(
+      df_errors_best,
+      ggplot2::aes(x = error)
+    ) + ggplot2::geom_histogram(binwidth = 0.01) +
+      ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   # Violin plots
   # True, gen
-  df_errors_gen <- data.frame(
-    error = read.csv(pir_params$experiments[[1]]$errors_filename)$x
-  )
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    df_errors_gen <- data.frame(
+      error = read.csv(first_experiment$errors_filename)$x
+    )
 
-  filename <- file.path(folder, "true_error_violin_gen.png")
-  ggplot2::ggplot(
-    df_errors_gen,
-    ggplot2::aes(x = "", y = error)
-  ) + ggplot2::geom_violin() +
-    ggplot2::xlab("") +
-    ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-    ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+    filename <- file.path(folder, "true_error_violin_gen.png")
+    ggplot2::ggplot(
+      df_errors_gen,
+      ggplot2::aes(x = "", y = error)
+    ) + ggplot2::geom_violin() +
+      ggplot2::xlab("") +
+      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+      ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   # True, best
-  filename <- file.path(folder, "true_error_violin_best.png")
-  ggplot2::ggplot(
-    df_errors_best,
-    ggplot2::aes(x = "", y = error)
-  ) + ggplot2::geom_violin() +
-    ggplot2::xlab("") +
-    ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-    ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    df_errors_best <- data.frame(
+      error = read.csv(last_experiment$errors_filename)$x
+    )
+
+    filename <- file.path(folder, "true_error_violin_best.png")
+    ggplot2::ggplot(
+      df_errors_best,
+      ggplot2::aes(x = "", y = error)
+    ) + ggplot2::geom_violin() +
+      ggplot2::xlab("") +
+      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+      ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   if (!is_one_na(pir_params$twinning_params)) {
     twin_filenames <- pir_to_pics_twin( # nolint pirouette function
@@ -245,26 +266,33 @@ pir_to_pics_twin <- function(
   filenames <- c(filenames, filename)
 
   # Posteriors
+  first_experiment <- head(pir_params$experiments, n = 1)[[1]]
+  last_experiment <- tail(pir_params$experiments, n = 1)[[1]]
+  check_experiment(first_experiment)
+  check_experiment(last_experiment)
+
   # Twin, gen
-  filename <- file.path(folder, "twin_posterior_gen.png")
-  png(
-    filename = filename,
-    width = 1000, height = 800
-  )
-  babette::plot_densitree(
-    phylos = tracerer::parse_beast_trees(
-      to_twin_filename(
-        pir_params$experiments[[1]]$beast2_options$output_trees_filenames
-      )
-    ),
-    alpha = 0.01,
-    consensus = rev(LETTERS[1:6]),
-    cex = 2.0,
-    scaleX = TRUE,
-    scale.bar = FALSE
-  )
-  dev.off()
-  filenames <- c(filenames, filename)
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    filename <- file.path(folder, "twin_posterior_gen.png")
+    png(
+      filename = filename,
+      width = 1000, height = 800
+    )
+    babette::plot_densitree(
+      phylos = tracerer::parse_beast_trees(
+        to_twin_filename(
+          first_experiment$beast2_options$output_trees_filenames
+        )
+      ),
+      alpha = 0.01,
+      consensus = rev(LETTERS[1:6]),
+      cex = 2.0,
+      scaleX = TRUE,
+      scale.bar = FALSE
+    )
+    dev.off()
+    filenames <- c(filenames, filename)
+  }
 
   # Twin, best
   filename <- file.path(folder, "twin_posterior_best.png")
@@ -275,7 +303,7 @@ pir_to_pics_twin <- function(
   babette::plot_densitree(
     phylos = tracerer::parse_beast_trees(
       to_twin_filename(
-        pir_params$experiments[[2]]$beast2_options$output_trees_filenames
+        last_experiment$beast2_options$output_trees_filenames
       )
     ),
     alpha = 0.01,
@@ -289,68 +317,75 @@ pir_to_pics_twin <- function(
 
   # Hist
   # Twin, gen
-  df_errors_twin_gen <- data.frame(
-    error = read.csv(
-      to_twin_filename(pir_params$experiments[[1]]$errors_filename)
-    )$x
-  )
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    df_errors_twin_gen <- data.frame(
+      error = read.csv(
+        to_twin_filename(first_experiment$errors_filename)
+      )$x
+    )
 
-  filename <- file.path(folder, "twin_error_histogram_gen.png")
-  ggplot2::ggplot(
-    df_errors_twin_gen,
-    ggplot2::aes(x = error)
-  ) + ggplot2::geom_histogram(binwidth = 0.01) + ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+    filename <- file.path(folder, "twin_error_histogram_gen.png")
+    ggplot2::ggplot(
+      df_errors_twin_gen,
+      ggplot2::aes(x = error)
+    ) + ggplot2::geom_histogram(binwidth = 0.01) + ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   # Twin, best
-  df_errors_twin_best <- data.frame(
-    error = read.csv(
-      to_twin_filename(pir_params$experiments[[2]]$errors_filename)
-    )$x
-  )
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    df_errors_twin_best <- data.frame(
+      error = read.csv(
+        to_twin_filename(last_experiment$errors_filename)
+      )$x
+    )
 
-  filename <- file.path(folder, "twin_error_histogram_best.png")
-  ggplot2::ggplot(
-    df_errors_twin_best,
-    ggplot2::aes(x = error)
-  ) + ggplot2::geom_histogram(binwidth = 0.01) +
-  ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+    filename <- file.path(folder, "twin_error_histogram_best.png")
+    ggplot2::ggplot(
+      df_errors_twin_best,
+      ggplot2::aes(x = error)
+    ) + ggplot2::geom_histogram(binwidth = 0.01) +
+    ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   # Violin plots
   # Twin, gen
-  df_errors_twin_gen <- data.frame(
-    error = read.csv(
-      to_twin_filename(pir_params$experiments[[1]]$errors_filename)
-    )$x
-  )
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    df_errors_twin_gen <- data.frame(
+      error = read.csv(
+        to_twin_filename(first_experiment$errors_filename)
+      )$x
+    )
 
-  filename <- file.path(folder, "twin_error_violin_gen.png")
-  ggplot2::ggplot(
-    df_errors_twin_gen,
-    ggplot2::aes(x = "", y = error)
-  ) + ggplot2::geom_violin() +
-    ggplot2::xlab("") +
-    ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-    ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
+    filename <- file.path(folder, "twin_error_violin_gen.png")
+    ggplot2::ggplot(
+      df_errors_twin_gen,
+      ggplot2::aes(x = "", y = error)
+    ) + ggplot2::geom_violin() +
+      ggplot2::xlab("") +
+      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+      ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
 
   # Twin, best
-  df_errors_twin_best <- data.frame(
-    error = read.csv(
-      to_twin_filename(pir_params$experiments[[2]]$errors_filename)
-    )$x
-  )
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    df_errors_twin_best <- data.frame(
+      error = read.csv(
+        to_twin_filename(last_experiment$errors_filename)
+      )$x
+    )
 
-  filename <- file.path(folder, "twin_error_violin_best.png")
-  ggplot2::ggplot(
-    df_errors_twin_best,
-    ggplot2::aes(x = "", y = error)
-  ) + ggplot2::geom_violin() +
-    ggplot2::xlab("") +
-    ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-    ggplot2::ggsave(filename)
-  filenames <- c(filenames, filename)
-
+    filename <- file.path(folder, "twin_error_violin_best.png")
+    ggplot2::ggplot(
+      df_errors_twin_best,
+      ggplot2::aes(x = "", y = error)
+    ) + ggplot2::geom_violin() +
+      ggplot2::xlab("") +
+      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
+      ggplot2::ggsave(filename)
+    filenames <- c(filenames, filename)
+  }
   filenames
 }

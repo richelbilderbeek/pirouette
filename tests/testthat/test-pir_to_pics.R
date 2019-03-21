@@ -53,13 +53,11 @@ test_that("use", {
   }
   expect_true(all(!file.exists(expected_filenames)))
 
-  pir_to_pics(
+  created_filenames <- pir_to_pics(
     phylogeny = phylogeny,
     pir_params = pir_params,
     folder = folder
   )
-
-  expected_filenames[ !file.exists(expected_filenames) ]
 
   expect_true(all(file.exists(expected_filenames)))
 })

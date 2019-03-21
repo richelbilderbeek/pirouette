@@ -11,8 +11,6 @@ est_evidences <- function(
   verbose = FALSE
 ) {
   testit::assert(file.exists(fasta_filename))
-  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
-
   check_experiments(experiments) # nolint pirouette function
 
   # Collect inference models and BEAST2 optionses
@@ -41,6 +39,7 @@ est_evidences <- function(
   testit::assert(length(inference_models) > 0)
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)
+  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
   marg_liks <- mcbette::est_marg_liks_from_models(
     fasta_filename = fasta_filename,
     inference_models = inference_models,

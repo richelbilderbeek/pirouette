@@ -11,6 +11,9 @@ pir_to_pics(phylogeny, pir_params, folder = tempdir())
 
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
+
+\item{folder}{folder where the files are stored in.
+By default, this is a temporary folder}
 }
 \value{
 the names of all files created

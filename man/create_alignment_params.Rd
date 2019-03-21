@@ -31,7 +31,7 @@ simulation of an alignment}
 a list of alignment parameters
 }
 \description{
-Create the parameters for the alignment simulation.
+These parameters are used in the \link{create_pir_params} function
 }
 \examples{
  library(testthat)
