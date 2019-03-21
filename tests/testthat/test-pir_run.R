@@ -494,15 +494,15 @@ test_that("generative and most_evidence, generative in most_evidence", {
   expect_true("candidate" %in% errors$inference_model)
 })
 
-test_that("two candidates, run both", {
+test_that("most_evidence, two candidates", {
 
   if (!beastier::is_on_travis()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
-  # candidate  | always         |TRUE      |Yule                                # nolint this is no commented code
-  # candidate  | always         |TRUE      |Birth-Death                         # nolint this is no commented code
+  # candidate  | best_candidate         |TRUE      |Yule                                # nolint this is no commented code
+  # candidate  | best_candidate         |TRUE      |Birth-Death                         # nolint this is no commented code
   #
   # should result in:
   #
@@ -520,7 +520,7 @@ test_that("two candidates, run both", {
   experiment_yule <- create_experiment(
     inference_conditions = create_inference_conditions(
       model_type = "candidate",
-      run_if = "always",
+      run_if = "best_candidate",
       do_measure_evidence = TRUE
     ),
     inference_model = create_inference_model(

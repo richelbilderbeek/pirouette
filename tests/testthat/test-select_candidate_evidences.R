@@ -6,9 +6,16 @@ test_that("nothing if no candidates", {
 })
 
 test_that("one if there is one candidate", {
+
+  if (!(beastier::is_on_ci())) {
+    skip("This cannot run on windows")
+  }
+
   experiment <- create_experiment(
     inference_conditions = create_inference_conditions(
-      model_type = "candidate"
+      run_if = "best_candidate",
+      model_type = "candidate",
+      do_measure_evidence = TRUE
     )
   )
   testit::assert(experiment$inference_conditions$model_type == "candidate")
@@ -21,9 +28,16 @@ test_that("one if there is one candidate", {
 })
 
 test_that("one if there is one candidate and one generative", {
+
+  if (!(beastier::is_on_ci())) {
+    skip("This cannot run on windows")
+  }
+
   experiment_1 <- create_experiment(
     inference_conditions = create_inference_conditions(
-      model_type = "candidate"
+      run_if = "best_candidate",
+      model_type = "candidate",
+      do_measure_evidence = TRUE
     )
   )
   testit::assert(experiment_1$inference_conditions$model_type == "candidate")
