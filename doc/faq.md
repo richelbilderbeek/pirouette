@@ -19,16 +19,47 @@ in a `temp` folder. Here are their locations:
 
 File                               |Where
 -----------------------------------|-----------------------------------------------------------------------
-The (true) phylogeny               |?someplace
-The twin phylogeny                 |`pir_params$twinning_params$twin_tree_filename`
+The (true) phylogeny               |Unsaved, as the user supplies it
 The (true) alignment               |`pir_params$alignment_params$fasta_filename`
+The true evidence                  |`pir_params$evidence_filename`
+The twin phylogeny                 |`pir_params$twinning_params$twin_tree_filename`
 The twin alignment                 |`pir_params$twinning_params$twin_alignment_filename`
+The twin evidence                  |`pir_params$twinning_params$twin_evidence_filename`
 BEAST2 (`.xml`) input file (1)     |pir_params$experiments[[1]]$beast2_options$beast2_input_filename
 BEAST2 `.log` output file (1)      |pir_params$experiments[[1]]$beast2_options$beast2_output_log_filename
 BEAST2 `.trees` output file (1)    |pir_params$experiments[[1]]$beast2_options$beast2_output_trees_filename
 BEAST2 `.xml.state` output file (1)|pir_params$experiments[[1]]$beast2_options$beast2_output_state_filename
 
  * (1) of the first experiment
+
+### Where are the pictures of `pir_to_pics` stored?
+
+`pir_to_pics` needs a true tree and `pir_params` 
+to store it in any folder.
+
+File                               |Where
+-----------------------------------|-----------------------------------------------------------------------
+The (true) phylogeny               |`true_tree.png`
+The (true) alignment               |`true_alignment.png`
+The true evidence                  |None
+The twin phylogeny                 |`twin_tree.png`
+The twin alignment                 |`twin_alignment.png`
+The twin evidence                  |None
+BEAST2 (`.xml`) input file         |None
+BEAST2 `.log` output file          |None
+BEAST2 `.trees` output file        |`true_posterior_gen.png`
+BEAST2 `.trees` output file        |`true_posterior_best.png`
+BEAST2 `.trees` output file        |`twin_posterior_gen.png`
+BEAST2 `.trees` output file        |`twin_posterior_best.png`
+BEAST2 `.xml.state` output file    |None
+Errors                             |`true_error_histogram_gen.png`
+Errors                             |`true_error_histogram_best.png`
+Errors                             |`twin_error_histogram_gen.png`
+Errors                             |`twin_error_histogram_best.png`
+Errors                             |`true_error_violin_gen.png`
+Errors                             |`true_error_violin_best.png`
+Errors                             |`twin_error_violin_gen.png`
+Errors                             |`twin_error_violin_best.png`
 
 ## Why the name?
 
