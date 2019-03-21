@@ -1,8 +1,23 @@
 #' Create all \link{pirouette} experiments.
+#'
+#' These experiments are used in the \link{create_pir_params} function
 #' @inheritParams default_params_doc
 #' @return all \link{pirouette} experiments.
-#' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#'   library(testthat)
+#'
+#'   experiments <- create_all_experiments()
+#'   check_experiments(experiments)
+#'
+#'   expect_true(length(experiments) >= 40)
+#'
+#'   pir_params <- create_pir_params(
+#'     alignment_params = create_test_alignment_params(),
+#'     experiments = experiments
+#'   )
+#'
+#' @export
 create_all_experiments <- function(
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),

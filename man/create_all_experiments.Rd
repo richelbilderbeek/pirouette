@@ -25,7 +25,21 @@ as created by \link[beautier]{create_tree_prior}}
 all \link{pirouette} experiments.
 }
 \description{
-Create all \link{pirouette} experiments.
+These experiments are used in the \link{create_pir_params} function
+}
+\examples{
+  library(testthat)
+
+  experiments <- create_all_experiments()
+  check_experiments(experiments)
+
+  expect_true(length(experiments) >= 40)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments
+  )
+
 }
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno

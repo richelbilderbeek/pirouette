@@ -4,13 +4,17 @@
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} experiment.
 #' @examples
+#'  library(testthat)
+#'
 #'  experiment <- create_experiment()
-#'  testthat::expect_silent(check_experiment(create_experiment()))
-#'  testit::assert("inference_conditions" %in% names(experiment))
-#'  testit::assert("inference_model" %in% names(experiment))
-#'  testit::assert("beast2_options" %in% names(experiment))
-#'  testit::assert("est_evidence_mcmc" %in% names(experiment))
-#'  testit::assert("beast2_bin_path" %in% names(experiment))
+#'
+#'  expect_true("inference_conditions" %in% names(experiment))
+#'  expect_true("inference_model" %in% names(experiment))
+#'  expect_true("beast2_options" %in% names(experiment))
+#'  expect_true("est_evidence_mcmc" %in% names(experiment))
+#'  expect_true("beast2_bin_path" %in% names(experiment))
+#'
+#'  expect_silent(check_experiment(experiment))
 #' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 create_experiment <- function(
