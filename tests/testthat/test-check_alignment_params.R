@@ -83,4 +83,15 @@ test_that("use", {
     ),
     "'rng_seed' must be a number"
   )
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        clock_model = create_clock_model(
+          name = "relaxed_log_normal",
+          id = NA
+        )
+      )
+    ),
+    "This 'clock_model' has not been implemented yet"
+  )
 })
