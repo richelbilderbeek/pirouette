@@ -24,8 +24,16 @@ for example the PBD or MBD models.
 library(pirouette)
 ```
 
+`pirouette` has a the option to do model comparison,
+picking the model that has most evidence (aka marginal likelihood).
+This option only works under Linux and Mac.
+When working on such a system, the BEAST2 package 'NS' is expected
+to be installed:
+
 ```{r}
-check_is_ns_beast2_pkg_installed()
+if (rappdirs::app_dir()$os != "win") {
+  check_is_ns_beast2_pkg_installed()
+}
 ```
 
 In this demo, we use a simple 'true' phylogeny:

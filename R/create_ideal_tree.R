@@ -1,15 +1,30 @@
 #' Create an "ideal" tree
 #' @inheritParams default_params_doc
-#' @export
+#' @param n_replicates number of trees simulated to pick the one with
+#'   the highest likelihood of
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#'   library(testthat)
+#'
+#'   n_taxa <- 31
+#'   crown_age <- 41
+#'
+#'   phylogeny <- create_ideal_tree(
+#'     n_taxa = n_taxa,
+#'     crown_age = crown_age
+#'   )
+#'
+#'   expect_equal(n_taxa, ape::Ntip(phylogeny))
+#'   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
+#' @export
 create_ideal_tree <- function(
   n_taxa,
   crown_age,
-  n_0 = 2
+  n_0 = 2,
+  n_replicates = 1e4
 ) {
   lambda <- (log(n_taxa) - log(n_0)) / crown_age
   mu <- 0
-  n_replicas <- 1e4
 
   sim_trees <- TESS::tess.sim.taxa.age(
     n = n_replicas,

@@ -4,7 +4,7 @@
 \alias{create_ideal_tree}
 \title{Create an "ideal" tree}
 \usage{
-create_ideal_tree(n_taxa, crown_age, n_0 = 2)
+create_ideal_tree(n_taxa, crown_age, n_0 = 2, n_replicates = 10000)
 }
 \arguments{
 \item{n_taxa}{number of tree tips}
@@ -13,9 +13,26 @@ create_ideal_tree(n_taxa, crown_age, n_0 = 2)
 to let it be estimated}
 
 \item{n_0}{number of starting species}
+
+\item{n_replicates}{number of trees simulated to pick the one with
+the highest likelihood of}
 }
 \description{
 Create an "ideal" tree
+}
+\examples{
+  library(testthat)
+
+  n_taxa <- 31
+  crown_age <- 41
+
+  phylogeny <- create_ideal_tree(
+    n_taxa = n_taxa,
+    crown_age = crown_age
+  )
+
+  expect_equal(n_taxa, ape::Ntip(phylogeny))
+  expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 }
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno

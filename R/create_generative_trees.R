@@ -1,7 +1,20 @@
-#' Create a yule tree
+#' Create a Yule tree
 #' @inheritParams default_params_doc
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#'   library(testthat)
+#'
+#'   n_taxa <- 31
+#'   crown_age <- 41
+#'
+#'   phylogeny <- create_yule_tree(
+#'     n_taxa = n_taxa,
+#'     crown_age = crown_age
+#'   )
+#'
+#'   expect_equal(n_taxa, ape::Ntip(phylogeny))
+#'   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 #' @export
-#' @author Giovanni Laudanno
 create_yule_tree <- function(
   n_taxa = 6,
   crown_age = 10,
@@ -23,8 +36,21 @@ create_yule_tree <- function(
 
 #' Create a bd tree
 #' @inheritParams default_params_doc
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#'   library(testthat)
+#'
+#'   n_taxa <- 31
+#'   crown_age <- 41
+#'
+#'   phylogeny <- create_bd_tree(
+#'     n_taxa = n_taxa,
+#'     crown_age = crown_age
+#'   )
+#'
+#'   expect_equal(n_taxa, ape::Ntip(phylogeny))
+#'   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 #' @export
-#' @author Giovanni Laudanno
 create_bd_tree <- function(
   n_taxa = 6,
   crown_age = 10,
