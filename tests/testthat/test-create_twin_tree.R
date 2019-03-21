@@ -1,7 +1,7 @@
 context("test-create_twin_tree")
 
 dist_nodes <- function(tree, precision = 12) {
-  DDD::roundn(
+  round(
     ape::dist.nodes(tree),
     digits = precision
   )
@@ -11,10 +11,6 @@ test_that("tree and twin tree have 3 taxa", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -34,10 +30,6 @@ test_that("node distances should remain in the same order, 3 taxa", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -58,10 +50,6 @@ test_that("use", {
   tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -81,10 +69,6 @@ test_that("node distances should remain in the same order, 4 taxa, easy", {
   tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -105,10 +89,6 @@ test_that("node distances should remain in the same order, 4 taxa, hard", {
   tree <- ape::read.tree(text = "((A:2, (B:1, C:1):1):1, D:3);")
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -129,10 +109,6 @@ test_that("node distances should remain in the same order, 4 taxa, harder", {
   tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -167,10 +143,6 @@ test_that("node distances should remain in the same order, 4 taxa", {
   # if you want to plot: ape::plot.phylo(tree)
   twinning_params <- create_twinning_params()
   for (twin_model in get_twin_models()) {
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     twin_tree <- create_twin_tree(
@@ -199,11 +171,6 @@ test_that("node distances should remain in the same order, brute-force", {
     twinning_params <- create_twinning_params()
     for (twin_model in get_twin_models()) {
 
-      # Cannot copy generative model from main pipeline
-      # if we test only the twinning parameters,
-      # i.e. we do not create a generative experiment
-      if (twin_model == "import_from_main_pipeline") next ()
-
       twinning_params$twin_model <- twin_model
       twin_tree <- create_twin_tree(
         phylogeny = tree,
@@ -226,11 +193,6 @@ test_that("all methods are working", {
   twinning_params <- create_twinning_params()
   twinning_params$n_replicas <- 1e2
   for (twin_model in get_twin_models()) {
-
-    # Cannot copy generative model from main pipeline
-    # if we test only the twinning parameters,
-    # i.e. we do not create a generative experiment
-    if (twin_model == "import_from_main_pipeline") next ()
 
     twinning_params$twin_model <- twin_model
     for (method in get_twin_methods()) {

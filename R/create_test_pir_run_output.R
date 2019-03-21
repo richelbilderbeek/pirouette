@@ -3,8 +3,15 @@
 #' @param add_twin add rows for twin tree
 #' @param add_best add rows for best inference model
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'   pir_plot(
+#'     create_test_pir_run_output(
+#'       add_twin = TRUE,
+#'       add_best = TRUE
+#'     )
+#'   )
 #' @export
-create_pir_run_test_output <- function(
+create_test_pir_run_output <- function(
   add_twin = FALSE,
   add_best = FALSE
 ) {

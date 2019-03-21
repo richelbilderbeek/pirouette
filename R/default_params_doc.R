@@ -107,6 +107,8 @@
 #'   posterior is determined.
 #'   Use \link{create_error_measure_params} to create such
 #'   a parameter set
+#' @param errors a numeric vector of (positive) Bayesian inference errors.
+#'   Use NA if these are not measured (yet)
 #' @param errors_filename baseline name for errors filenames
 #' @param est_evidence_mcmc MCMC used in the estimation of
 #'   the evidence (aka marginal likelihood).
@@ -132,6 +134,8 @@
 #' @param init_speciation_rate a speciation rate
 #' @param init_extinction_rate an extinction rate
 #' @param lambda per-lineage speciation rate
+#' @param log_evidence the natural logarithm of the evidence (aka marginal
+#'   likelihood). Can be NA if this is not measured
 #' @param marg_lik_filename name of the file the marginal
 #'   likelihoods (also known as 'evidences') are saved to
 #' @param marg_liks a data frame with marginal likelihoods/evidences.
@@ -186,6 +190,17 @@
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
 #' @param project_folder_name project folder name
+#' @param result results from measurements. These are:
+#'   \itemize{
+#'     \item log_evidence the natural logarithm of the evidence (aka marginal
+#'       likelihood). Can be NA if this is not measured
+#'     \item weight the weight of the model, compared to other (candidate)
+#'       models. This weight will be between 0.0 (there is no evidence for
+#'       this model) to 1.0 (all evidence indicates this is the best model).
+#'       A weight of NA denotes that the weight is not measured
+#'     \item errors a numeric vector of (positive) Bayesian inference errors.
+#'       Will be NA if these are not measured.
+#'   }
 #' @param rng_seed a random number generator seed
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of an equal amount of each letter
@@ -197,6 +212,16 @@
 #'       candidate model with the most evidence (aka highest marginal
 #'       likelihood)
 #'   }
+#' @param run_experiment one \link{pirouette} run experiment.
+#'   A run experiment has these attributes:
+#'   \itemize{
+#'     \item experiment the (original) experiment
+#'     \item true_result the result of running the original experiment on
+#'       the true phylogeny
+#'     \item twin_result the result of running the original experiment on
+#'       the twin phylogeny
+#'   }
+#' @param run_experiments a list of one or more \link{pirouette} run experiments
 #' @param sample_interval the interval at which the MCMC algorithm
 #'   makes a measurement
 #' @param sequence_length the length of each DNA sequence in an alignment
@@ -222,19 +247,19 @@
 #' @param tree_type type of tree, can be \code{true} for the true
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
+#' @param true_result result obtained from using the true tree
 #' @param twin_alignment_filename name of the FASTA file the twin
 #'   alignment will be saved to
 #' @param twin_evidence_filename filename to store the estimated
 #'   evidences (aka marginal likelihoods) of the twin tree
 #' @param twin_model the model you want to use to generate the twin tree:
 #'   \itemize{
-#'     \item \code{import_from_main_pipeline}: use the tree prior of the
-#'       generative model
 #'     \item \code{birth_death}: birth death
 #'     \item \code{yule}: Yule or pure-birth
 #'   }
 #'   See \link{get_twin_models} to see all possible
 #'   values of \code{twin_model}
+#' @param twin_result result obtained from using the twin tree
 #' @param twin_tree_filename  name of the (\code{.newick}) file the twin
 #'   tree will be saved to
 #' @param twinning_params can be \code{NA} if no twinning is desired,
@@ -246,7 +271,12 @@
 #'     \item \code{most_evidence} picks the model with most evidence
 #'   }
 #'   See \link{get_model_selections} for a list.
+#' @param use_new_interface set to TRUE to use a new interface
 #' @param verbose if TRUE, show more output
+#' @param weight the weight of the model, compared to other (candidate)
+#'   models. This weight will be between 0.0 (there is no evidence for
+#'   this model) to 1.0 (all evidence indicates this is the best model).
+#'   A weight of NA denotes that the weight is not measured
 #' @author Documentation by Giovanni Laudanno,
 #'   use of this function by Richel J.C. Bilderbeek
 #' @note This is an internal function, so it should be marked with
@@ -281,6 +311,7 @@ default_params_doc <- function(
   epsilon,
   error_function,
   error_measure_params,
+  errors,
   errors_filename,
   est_evidence_mcmc,
   evidence_epsilon,
@@ -295,6 +326,7 @@ default_params_doc <- function(
   init_speciation_rate,
   init_extinction_rate,
   lambda,
+  log_evidence,
   marg_lik_filename,
   marg_liks,
   max_evidence_epsilon,
@@ -322,8 +354,11 @@ default_params_doc <- function(
   posterior_trees,
   precision,
   project_folder_name,
+  result,
   rng_seed,
   root_sequence,
+  run_experiment,
+  run_experiments,
   run_if,
   sample_interval,
   seed,
@@ -342,13 +377,17 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
+  true_result,
   twin_alignment_filename,
   twin_evidence_filename,
   twin_model,
+  twin_result,
   twin_tree_filename,
   twinning_params,
   type,
-  verbose
+  use_new_interface,
+  verbose,
+  weight
 ) {
   # Nothing
 }

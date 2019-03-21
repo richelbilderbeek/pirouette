@@ -15,7 +15,7 @@
 #' @export
 create_twinning_params <- function(
   rng_seed = 0,
-  twin_model = "import_from_main_pipeline",
+  twin_model = "birth_death",
   method = "random_tree",
   n_replicas = 1e4,
   twin_tree_filename = tempfile(

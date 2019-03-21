@@ -33,15 +33,6 @@ create_pir_params_twin <- function(
       pir_params$alignment_params$rng_seed
   }
 
-  # same tree prior
-  if (pir_params$twinning_params$twin_model == "import_from_main_pipeline") {
-    if (pir_out$tree_prior %in% get_twin_models()) {
-      pir_params_twin$twinning_params$twin_model <- pir_out$tree_prior
-    } else {
-      pir_params_twin$twinning_params$twin_model <- "birth_death"
-    }
-  }
-
   check_pir_params(pir_params_twin) # nolint pirouette function
   pir_params_twin
 }

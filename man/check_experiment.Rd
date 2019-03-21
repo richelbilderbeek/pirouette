@@ -26,6 +26,10 @@ can be created by \link{create_experiment}.
   testthat::expect_error(check_experiment(NA))
   testthat::expect_error(check_experiment(NULL))
 }
+\seealso{
+Use \link{check_experiments} to check if an object
+  is a list of experiments
+}
 \author{
 Richel J.C. Bilderbeek
 }

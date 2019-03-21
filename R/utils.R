@@ -6,13 +6,9 @@
 #'  interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
 #' @inheritParams default_params_doc
 #' @return the branching times
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 convert_tree2brts <- function(tree, precision = 8) {
-
-  brts0 <- ape::branching.times(tree)
-  brts <- DDD::roundn(brts0, digits = precision)
-
-  brts
+  round(ape::branching.times(tree), digits = precision)
 }
 
 #' @title Site models
@@ -39,7 +35,7 @@ get_clock_models <- function() {
 #' @return the twin models
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 get_twin_models <- function() {
-  c("birth_death", "yule", "import_from_main_pipeline")
+  c("birth_death", "yule")
 }
 
 #' @title Twin methods

@@ -17,12 +17,19 @@ They are created by \link{create_pir_params}.}
 \value{
 a data frame with errors, with as many rows as model selection
   parameter sets.
-  Tip: use \link{pir_plot} to display it
 }
 \description{
 From a phylogeny of (un)known speciation model,
 an alignment is created using a known site model and clock model,
 as given by \code{alignment_params}.
+}
+\seealso{
+Use \link{pir_plot} to display the output of \link{pir_run} as a
+  figure.
+  Use \link{pir_table} to display the output of \link{pir_run} as a
+  table.
+  Use \link{create_test_pir_run_output} to create a test output
+  of \link{pir_run}
 }
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno
