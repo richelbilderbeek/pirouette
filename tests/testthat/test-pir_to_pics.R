@@ -2,8 +2,12 @@ context("test-pir_to_pics")
 
 test_that("use", {
 
+  if (!beastier::is_on_ci()) return()
+
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  pir_params <- create_test_pir_params()
+  pir_params <- create_test_pir_params(
+    twinning_params = create_twinning_params()
+  )
 
   if (rappdirs::app_dir()$os != "win") {
     # Also add a best_candidate experiment
@@ -49,12 +53,13 @@ test_that("use", {
   }
   expect_true(all(!file.exists(expected_filenames)))
 
-  skip("#203")
   pir_to_pics(
     phylogeny = phylogeny,
     pir_params = pir_params,
     folder = folder
   )
+
+  expected_filenames[ !file.exists(expected_filenames) ]
 
   expect_true(all(file.exists(expected_filenames)))
 })

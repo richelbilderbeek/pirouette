@@ -1,6 +1,6 @@
-#' Create the twin parameters for \code{pirouette}
+#' Create the twin parameters for \link{pirouette}
 #' @inheritParams default_params_doc
-#' @return a list with all \code{pirouette} twin parameters
+#' @return a list with all \link{pirouette} twin parameters
 #' @export
 #' @author Giovanni Laudanno
 create_pir_params_twin <- function(

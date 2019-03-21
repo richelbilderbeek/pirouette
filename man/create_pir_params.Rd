@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_pir_params.R
 \name{create_pir_params}
 \alias{create_pir_params}
-\title{Create the parameters for \code{pirouette}}
+\title{Create the parameters for \link{pirouette}}
 \usage{
 create_pir_params(alignment_params, twinning_params = NA,
   experiments = list(create_experiment()),
@@ -33,10 +33,10 @@ evidences (aka marginal likelihoods)}
 \item{verbose}{if TRUE, show more output}
 }
 \value{
-a list with all \code{pirouette} parameters
+a list with all \link{pirouette} parameters
 }
 \description{
-Create the parameters for \code{pirouette}
+Create the parameters for \link{pirouette}
 }
 \examples{
   alignment_params <- create_test_alignment_params()

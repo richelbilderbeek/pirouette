@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_pir_params_twin.R
 \name{create_pir_params_twin}
 \alias{create_pir_params_twin}
-\title{Create the twin parameters for \code{pirouette}}
+\title{Create the twin parameters for \link{pirouette}}
 \usage{
 create_pir_params_twin(pir_params, pir_out)
 }
@@ -13,10 +13,10 @@ They are created by \link{create_pir_params}.}
 \item{pir_out}{the output of \link{pir_run_tree} applied on the original tree}
 }
 \value{
-a list with all \code{pirouette} twin parameters
+a list with all \link{pirouette} twin parameters
 }
 \description{
-Create the twin parameters for \code{pirouette}
+Create the twin parameters for \link{pirouette}
 }
 \author{
 Giovanni Laudanno

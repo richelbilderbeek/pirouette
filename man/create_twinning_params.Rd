@@ -4,7 +4,7 @@
 \alias{create_twinning_params}
 \title{Create the parameters for the twinning simulation}
 \usage{
-create_twinning_params(rng_seed = 0, twin_model = "yule",
+create_twinning_params(rng_seed = 0, twin_model = "birth_death",
   method = "random_tree", n_replicas = 10000,
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =

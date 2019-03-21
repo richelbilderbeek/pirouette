@@ -1,6 +1,6 @@
-#' Create the parameters for \code{pirouette}
+#' Create the parameters for \link{pirouette}
 #' @inheritParams default_params_doc
-#' @return a list with all \code{pirouette} parameters
+#' @return a list with all \link{pirouette} parameters
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @examples
 #'   alignment_params <- create_test_alignment_params()
@@ -47,9 +47,9 @@ create_pir_params <- function(
   pir_params
 }
 
-#' Create a set of testing parameters for \code{pirouette}
+#' Create a set of testing parameters for \link{pirouette}
 #' @inheritParams default_params_doc
-#' @return a list with all \code{pirouette} parameters
+#' @return a list with all \link{pirouette} parameters
 #' @examples
 #'   pir_params <- create_test_pir_params()
 #'   check_pir_params(pir_params)
