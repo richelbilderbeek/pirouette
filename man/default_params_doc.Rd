@@ -185,7 +185,7 @@ evidence (aka marginal likelihood).}
 evidences (aka marginal likelihoods)}
 
 \item{exclude_model}{an inference model that has to be excluded, as can be
-created by \link{beautier::create_inference_model}}
+created by \link[beautier]{create_inference_model}}
 
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}

@@ -60,10 +60,10 @@ create_all_experiments <- function(
           i <- i + 1
         } else if (
           !(
-            new_model$site_model == exclude_model$site_model &&
-            new_model$clock_model == exclude_model$clock_model &&
-            new_model$tree_prior == exclude_model$tree_prior &&
-            new_model$mcmc == exclude_model$mcmc
+            identical(new_model$site_model, exclude_model$site_model) &&
+            identical(new_model$clock_model, exclude_model$clock_model) &&
+            identical(new_model$tree_prior, exclude_model$tree_prior) &&
+            identical(new_model$mcmc, exclude_model$mcmc)
           )
         ) {
           all_experiments[[i]] <- new_experiment

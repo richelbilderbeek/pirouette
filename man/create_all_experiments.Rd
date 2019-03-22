@@ -22,7 +22,7 @@ as created by \link[beautier]{create_tree_prior}}
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
 \item{exclude_model}{an inference model that has to be excluded, as can be
-created by \link{beautier::create_inference_model}}
+created by \link[beautier]{create_inference_model}}
 }
 \value{
 all \link{pirouette} experiments.
