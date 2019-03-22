@@ -72,5 +72,7 @@ create_all_experiments <- function(
       }
     }
   }
+  names(all_experiments) <- seq_along(all_experiments)
+  all_experiments[sapply(all_experiments, is.null)] <- NULL
   all_experiments
 }
