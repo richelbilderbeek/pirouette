@@ -7,11 +7,15 @@ create_all_experiments <- function(
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors(),
-  mcmc = create_mcmc(store_every = 1000)
+  mcmc = create_mcmc(store_every = 1000),
+  exclude_model = NA
 ) {
   check_site_models(site_models) # nolint pirouette function
   check_clock_models(clock_models) # nolint pirouette function
   check_tree_priors(tree_priors) # nolint pirouette function
+  if (!all(is.na(exclude_model))) {
+    beautier::check_inference_model(exclude_model)
+  }
 
   all_experiments <- vector(
     "list",
@@ -23,7 +27,7 @@ create_all_experiments <- function(
   for (site_model in site_models) {
     for (clock_model in clock_models) {
       for (tree_prior in tree_priors) {
-        all_experiments[[i]] <- create_experiment(
+        new_experiment <- create_experiment(
           inference_conditions = create_inference_conditions(
             model_type = "candidate",
             run_if = "best_candidate",
@@ -50,7 +54,21 @@ create_all_experiments <- function(
             )
           )
         )
-        i <- i + 1
+        new_model <- new_experiment$inference_model
+        if (all(is.na(exclude_model))) {
+          all_experiments[[i]] <- new_experiment
+          i <- i + 1
+        } else if (
+          !(
+            new_model$site_model == exclude_model$site_model &&
+            new_model$clock_model == exclude_model$clock_model &&
+            new_model$tree_prior == exclude_model$tree_prior &&
+            new_model$mcmc == exclude_model$mcmc
+          )
+        ) {
+          all_experiments[[i]] <- new_experiment
+          i <- i + 1
+        }
       }
     }
   }

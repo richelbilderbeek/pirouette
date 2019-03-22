@@ -14,21 +14,21 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
   clock_models, clock_model_name, crown_age, do_measure_evidence, epsilon,
   error_function, error_measure_params, errors, errors_filename,
-  est_evidence_mcmc, evidence_epsilon, evidence_filename, experiment,
-  experiments, fasta_filename, filename, folder_name, ideal_method,
-  inference_model, inference_conditions, init_speciation_rate,
-  init_extinction_rate, lambda, log_evidence, marg_lik_filename, marg_liks,
-  max_evidence_epsilon, mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc,
-  method, model_selection, model_type, mrca_prior, mu, mutation_rate, n_0,
-  n_taxa, n_replicas, nu, nu_events, parameter_filename,
-  parameters_filename, phylo, phylogeny, pir_params, pir_out,
-  posterior_trees, precision, project_folder_name, result, rng_seed,
-  root_sequence, run_experiment, run_experiments, run_if, sample_interval,
-  seed, sequence_length, sim_pars, sim_phylo, site_model, site_models,
-  site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
-  true_result, twin_alignment_filename, twin_evidence_filename, twin_model,
-  twin_result, twin_tree_filename, twinning_params, type,
+  est_evidence_mcmc, evidence_epsilon, evidence_filename, exclude_model,
+  experiment, experiments, fasta_filename, filename, folder_name,
+  ideal_method, inference_model, inference_conditions,
+  init_speciation_rate, init_extinction_rate, lambda, log_evidence,
+  marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
+  mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
+  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
+  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
+  pir_out, posterior_trees, precision, project_folder_name, result,
+  rng_seed, root_sequence, run_experiment, run_experiments, run_if,
+  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
+  site_models, site_model_name, sub_chain_length, sum_lamu, t_0, tree,
+  tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
+  tree_type, true_result, twin_alignment_filename, twin_evidence_filename,
+  twin_model, twin_result, twin_tree_filename, twinning_params, type,
   use_new_interface, verbose, weight)
 }
 \arguments{
@@ -184,11 +184,16 @@ evidence (aka marginal likelihood).}
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}
 
+\item{exclude_model}{an inference model that has to be excluded, as can be
+created by \link{beautier::create_inference_model}}
+
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}
 
 \item{experiments}{a list of one or more \link{pirouette} experiments,
-as can be created by \link{create_experiment}}
+as can be created by \link{create_experiment}. If more than one experiment
+is provided and a "generative" experiment is part of them, the "generative"
+one has to be the first in the list.}
 
 \item{fasta_filename}{name of a FASTA file}
 

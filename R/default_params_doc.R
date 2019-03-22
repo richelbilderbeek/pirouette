@@ -118,6 +118,8 @@
 #'   evidence (aka marginal likelihood).
 #' @param evidence_filename filename to store the estimated
 #'   evidences (aka marginal likelihoods)
+#' @param exclude_model an inference model that has to be excluded, as can be
+#'   created by \link{beautier::create_inference_model}
 #' @param experiment a \link{pirouette} experiment,
 #'   as can be created by \link{create_experiment}
 #' @param experiments a list of one or more \link{pirouette} experiments,
@@ -318,6 +320,7 @@ default_params_doc <- function(
   est_evidence_mcmc,
   evidence_epsilon,
   evidence_filename,
+  exclude_model,
   experiment, experiments,
   fasta_filename,
   filename,
