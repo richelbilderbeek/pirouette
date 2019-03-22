@@ -121,7 +121,9 @@
 #' @param experiment a \link{pirouette} experiment,
 #'   as can be created by \link{create_experiment}
 #' @param experiments a list of one or more \link{pirouette} experiments,
-#'   as can be created by \link{create_experiment}
+#'   as can be created by \link{create_experiment}. If more than one experiment
+#'   is provided and a "generative" experiment is part of them, the "generative"
+#'   one has to be the first in the list.
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
