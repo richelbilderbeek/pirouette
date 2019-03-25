@@ -77,6 +77,8 @@ pir_to_pics <- function(
   pir_params,
   folder = tempdir()
 ) {
+  error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
+
   filenames <- NULL
 
   # Trees
@@ -236,6 +238,8 @@ pir_to_pics_twin <- function(
   folder = tempdir()
 ) {
   testit::assert(!beautier::is_one_na(pir_params$twinning_params))
+
+  error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 
   filenames <- NULL
 
