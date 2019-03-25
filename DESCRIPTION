@@ -24,6 +24,7 @@ Imports:
     beautier,
     DDD,
     geiger,
+    ggtree,
     mauricer,
     mcbette,
     phangorn,

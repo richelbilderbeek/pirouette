@@ -101,7 +101,7 @@ errors <- pir_run(
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:
@@ -177,7 +177,7 @@ Here we show the errors as a table:
 
 ```{r}
 if (rappdirs::app_dir()$os != "win") {
-  knitr::kable(head(errors))
+  knitr::kable(utils::head(errors))
 }
 ```
 
@@ -260,7 +260,7 @@ errors <- pir_run(
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:

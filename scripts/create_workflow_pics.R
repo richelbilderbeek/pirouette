@@ -17,10 +17,10 @@ phylogeny  <- ape::read.tree(text = "(((A:8, B:8):1, C:9):1, ((D:8, E:8):1, F:9)
 ################################################################################
 # Use png here, to make Peregrine fail fast
 ################################################################################
-png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
+grDevices::png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
 # ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
 ggtree::ggtree(phylogeny, size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
-dev.off()
+grDevices::dev.off()
 
 
 pir_params <- create_pir_params(
@@ -48,23 +48,23 @@ errors <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 # trees
 ################################################################################
 
-png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
+grDevices::png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
 # ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
 ggtree::ggtree(phylogeny, size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
-dev.off()
+grDevices::dev.off()
 
 
-png(filename = file.path(root_folder, "phylogeny_twin.png"), width = 800, height = 600)
+grDevices::png(filename = file.path(root_folder, "phylogeny_twin.png"), width = 800, height = 600)
 # ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), cex = 2.0, edge.width = 2.0)
 ggtree::ggtree(ape::read.tree(pir_params$twinning_params$twin_tree_filename), size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
-dev.off()
+grDevices::dev.off()
 
 
 ################################################################################
 # alignment
 ################################################################################
 
-png(filename = file.path(root_folder, "alignment.png"), width = 800, height = 300)
+grDevices::png(filename = file.path(root_folder, "alignment.png"), width = 800, height = 300)
 ape::image.DNAbin(
   ape::read.FASTA(file = pir_params$alignment_params$fasta_filename),
   grid = TRUE,
@@ -73,9 +73,9 @@ ape::image.DNAbin(
   cex.lab = 2.0,
   cex.axis = 2.0
 )
-dev.off()
+grDevices::dev.off()
 
-png(filename = file.path(root_folder, "alignment_twin.png"), width = 800, height = 300)
+grDevices::png(filename = file.path(root_folder, "alignment_twin.png"), width = 800, height = 300)
 ape::image.DNAbin(
   ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename),
   grid = TRUE,
@@ -84,13 +84,13 @@ ape::image.DNAbin(
   cex.lab = 2.0,
   cex.axis = 2.0
 )
-dev.off()
+grDevices::dev.off()
 
 ################################################################################
 # posteriors
 ################################################################################
 
-png(filename = file.path(root_folder, "densitree.png"), width = 1000, height = 800)
+grDevices::png(filename = file.path(root_folder, "densitree.png"), width = 1000, height = 800)
 babette::plot_densitree(
   phylos = tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames),
   alpha = 0.01,
@@ -99,9 +99,9 @@ babette::plot_densitree(
   scaleX = TRUE,
   scale.bar = FALSE
 )
-dev.off()
+grDevices::dev.off()
 
-png(filename = file.path(root_folder, "densitree_twin.png"), width = 1000, height = 800)
+grDevices::png(filename = file.path(root_folder, "densitree_twin.png"), width = 1000, height = 800)
 babette::plot_densitree(
   phylos = tracerer::parse_beast_trees(to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)),
   alpha = 0.01,
@@ -110,14 +110,14 @@ babette::plot_densitree(
   scaleX = TRUE,
   scale.bar = FALSE
 )
-dev.off()
+grDevices::dev.off()
 
 ################################################################################
 # histogram of errors
 ################################################################################
 
-df_errors <- data.frame(error = read.csv(pir_params$experiments[[1]]$errors_filename)$x)
-df_errors_twin <- data.frame(error = read.csv(to_twin_filename(pir_params$experiments[[1]]$errors_filename))$x)
+df_errors <- data.frame(error = utils::read.csv(pir_params$experiments[[1]]$errors_filename)$x)
+df_errors_twin <- data.frame(error = utils::read.csv(to_twin_filename(pir_params$experiments[[1]]$errors_filename))$x)
 
 ggplot2::ggplot(
   df_errors,

@@ -87,7 +87,7 @@ pir_to_pics <- function(
 
   # Alignments
   filename <- file.path(folder, "true_alignment.png")
-  png(
+  grDevices::png(
     filename = filename,
     width = 800,
     height = 300
@@ -100,19 +100,19 @@ pir_to_pics <- function(
     cex.lab = 2.0,
     cex.axis = 2.0
   )
-  dev.off()
+  grDevices::dev.off()
   filenames <- c(filenames, filename)
 
   # Posteriors
-  first_experiment <- head(pir_params$experiments, n = 1)[[1]]
-  last_experiment <- tail(pir_params$experiments, n = 1)[[1]]
+  first_experiment <- utils::head(pir_params$experiments, n = 1)[[1]]
+  last_experiment <- utils::tail(pir_params$experiments, n = 1)[[1]]
   check_experiment(first_experiment)
   check_experiment(last_experiment)
 
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     filename <- file.path(folder, "true_posterior_gen.png")
-    png(
+    grDevices::png(
       filename = filename,
       width = 1000, height = 800
     )
@@ -126,13 +126,13 @@ pir_to_pics <- function(
       scaleX = TRUE,
       scale.bar = FALSE
     )
-    dev.off()
+    grDevices::dev.off()
     filenames <- c(filenames, filename)
   }
   # True, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
     filename <- file.path(folder, "true_posterior_best.png")
-    png(
+    grDevices::png(
       filename = filename,
       width = 1000, height = 800
     )
@@ -146,14 +146,14 @@ pir_to_pics <- function(
       scaleX = TRUE,
       scale.bar = FALSE
     )
-    dev.off()
+    grDevices::dev.off()
     filenames <- c(filenames, filename)
   }
   # Hist
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     df_errors_gen <- data.frame(
-      error = read.csv(first_experiment$errors_filename)$x
+      error = utils::read.csv(first_experiment$errors_filename)$x
     )
 
     filename <- file.path(folder, "true_error_histogram_gen.png")
@@ -168,7 +168,7 @@ pir_to_pics <- function(
   # True, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_best <- data.frame(
-      error = read.csv(last_experiment$errors_filename)$x
+      error = utils::read.csv(last_experiment$errors_filename)$x
     )
 
     filename <- file.path(folder, "true_error_histogram_best.png")
@@ -184,7 +184,7 @@ pir_to_pics <- function(
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     df_errors_gen <- data.frame(
-      error = read.csv(first_experiment$errors_filename)$x
+      error = utils::read.csv(first_experiment$errors_filename)$x
     )
 
     filename <- file.path(folder, "true_error_violin_gen.png")
@@ -201,7 +201,7 @@ pir_to_pics <- function(
   # True, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_best <- data.frame(
-      error = read.csv(last_experiment$errors_filename)$x
+      error = utils::read.csv(last_experiment$errors_filename)$x
     )
 
     filename <- file.path(folder, "true_error_violin_best.png")
@@ -249,7 +249,7 @@ pir_to_pics_twin <- function(
 
   # Alignment
   filename <- file.path(folder, "twin_alignment.png")
-  png(
+  grDevices::png(
     filename = filename,
     width = 800,
     height = 300
@@ -262,19 +262,19 @@ pir_to_pics_twin <- function(
     cex.lab = 2.0,
     cex.axis = 2.0
   )
-  dev.off()
+  grDevices::dev.off()
   filenames <- c(filenames, filename)
 
   # Posteriors
-  first_experiment <- head(pir_params$experiments, n = 1)[[1]]
-  last_experiment <- tail(pir_params$experiments, n = 1)[[1]]
+  first_experiment <- utils::head(pir_params$experiments, n = 1)[[1]]
+  last_experiment <- utils::tail(pir_params$experiments, n = 1)[[1]]
   check_experiment(first_experiment)
   check_experiment(last_experiment)
 
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     filename <- file.path(folder, "twin_posterior_gen.png")
-    png(
+    grDevices::png(
       filename = filename,
       width = 1000, height = 800
     )
@@ -290,13 +290,13 @@ pir_to_pics_twin <- function(
       scaleX = TRUE,
       scale.bar = FALSE
     )
-    dev.off()
+    grDevices::dev.off()
     filenames <- c(filenames, filename)
   }
 
   # Twin, best
   filename <- file.path(folder, "twin_posterior_best.png")
-  png(
+  grDevices::png(
     filename = filename,
     width = 1000, height = 800
   )
@@ -312,14 +312,14 @@ pir_to_pics_twin <- function(
     scaleX = TRUE,
     scale.bar = FALSE
   )
-  dev.off()
+  grDevices::dev.off()
   filenames <- c(filenames, filename)
 
   # Hist
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     df_errors_twin_gen <- data.frame(
-      error = read.csv(
+      error = utils::read.csv(
         to_twin_filename(first_experiment$errors_filename)
       )$x
     )
@@ -335,7 +335,7 @@ pir_to_pics_twin <- function(
   # Twin, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_twin_best <- data.frame(
-      error = read.csv(
+      error = utils::read.csv(
         to_twin_filename(last_experiment$errors_filename)
       )$x
     )
@@ -353,7 +353,7 @@ pir_to_pics_twin <- function(
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     df_errors_twin_gen <- data.frame(
-      error = read.csv(
+      error = utils::read.csv(
         to_twin_filename(first_experiment$errors_filename)
       )$x
     )
@@ -372,7 +372,7 @@ pir_to_pics_twin <- function(
   # Twin, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_twin_best <- data.frame(
-      error = read.csv(
+      error = utils::read.csv(
         to_twin_filename(last_experiment$errors_filename)
       )$x
     )
