@@ -16,10 +16,10 @@ test_that("use, HKY", {
   expected <- matrix(nrow = 4, ncol = 4)
   rownames(expected) <- c("a", "c", "g", "t")
   colnames(expected) <- c("a", "c", "g", "t")
-  expected[1, ] <- c(-1.00, 0.50, 0.25, 0.25)
-  expected[2, ] <- c( 0.50,-1.00, 0.25, 0.25)
-  expected[3, ] <- c( 0.25, 0.25,-1.00, 0.50)
-  expected[4, ] <- c( 0.25, 0.25, 0.50,-1.00)
+  expected[1, ] <- c(-1.00, 0.50, 0.25, 0.25) # nolint align numbers nicely
+  expected[2, ] <- c( 0.50,-1.00, 0.25, 0.25) # nolint align numbers nicely
+  expected[3, ] <- c( 0.25, 0.25,-1.00, 0.50) # nolint align numbers nicely
+  expected[4, ] <- c( 0.25, 0.25, 0.50,-1.00) # nolint align numbers nicely
   expect_equal(created, expected)
 })
 
@@ -33,10 +33,10 @@ test_that("use, TN93", {
   expected <- matrix(nrow = 4, ncol = 4)
   rownames(expected) <- c("a", "c", "g", "t")
   colnames(expected) <- c("a", "c", "g", "t")
-  expected[1, ] <- c(-1.00, 0.50, 0.25, 0.25)
-  expected[2, ] <- c( 0.50,-1.00, 0.25, 0.25)
-  expected[3, ] <- c( 0.25, 0.25,-1.00, 0.50)
-  expected[4, ] <- c( 0.25, 0.25, 0.50,-1.00)
+  expected[1, ] <- c(-1.00, 0.50, 0.25, 0.25) # nolint align numbers nicely
+  expected[2, ] <- c( 0.50,-1.00, 0.25, 0.25) # nolint align numbers nicely
+  expected[3, ] <- c( 0.25, 0.25,-1.00, 0.50) # nolint align numbers nicely
+  expected[4, ] <- c( 0.25, 0.25, 0.50,-1.00) # nolint align numbers nicely
   expect_equal(created, expected)
 })
 
@@ -50,10 +50,10 @@ test_that("use, GTR", {
   expected <- matrix(nrow = 4, ncol = 4)
   rownames(expected) <- c("a", "c", "g", "t")
   colnames(expected) <- c("a", "c", "g", "t")
-  expected[1, ] <- c(-0.75, 0.25, 0.25, 0.25)
-  expected[2, ] <- c( 0.25,-0.75, 0.25, 0.25)
-  expected[3, ] <- c( 0.25, 0.25,-0.75, 0.25)
-  expected[4, ] <- c( 0.25, 0.25, 0.25,-0.75)
+  expected[1, ] <- c(-0.75, 0.25, 0.25, 0.25) # nolint align numbers nicely
+  expected[2, ] <- c( 0.25,-0.75, 0.25, 0.25) # nolint align numbers nicely
+  expected[3, ] <- c( 0.25, 0.25,-0.75, 0.25) # nolint align numbers nicely
+  expected[4, ] <- c( 0.25, 0.25, 0.25,-0.75) # nolint align numbers nicely
   expect_equal(created, expected)
 })
 
