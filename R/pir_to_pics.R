@@ -106,8 +106,8 @@ pir_to_pics <- function(
   # Posteriors
   first_experiment <- utils::head(pir_params$experiments, n = 1)[[1]]
   last_experiment <- utils::tail(pir_params$experiments, n = 1)[[1]]
-  check_experiment(first_experiment)
-  check_experiment(last_experiment)
+  check_experiment(first_experiment) # nolint pirouette function
+  check_experiment(last_experiment) # nolint pirouette function
 
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
@@ -215,7 +215,7 @@ pir_to_pics <- function(
     filenames <- c(filenames, filename)
   }
 
-  if (!is_one_na(pir_params$twinning_params)) {
+  if (!beautier::is_one_na(pir_params$twinning_params)) {
     twin_filenames <- pir_to_pics_twin( # nolint pirouette function
       pir_params = pir_params,
       folder = folder
@@ -235,7 +235,7 @@ pir_to_pics_twin <- function(
   pir_params,
   folder = tempdir()
 ) {
-  testit::assert(!is_one_na(pir_params$twinning_params))
+  testit::assert(!beautier::is_one_na(pir_params$twinning_params))
 
   filenames <- NULL
 
@@ -268,8 +268,8 @@ pir_to_pics_twin <- function(
   # Posteriors
   first_experiment <- utils::head(pir_params$experiments, n = 1)[[1]]
   last_experiment <- utils::tail(pir_params$experiments, n = 1)[[1]]
-  check_experiment(first_experiment)
-  check_experiment(last_experiment)
+  check_experiment(first_experiment) # nolint pirouette function
+  check_experiment(last_experiment) # nolint pirouette function
 
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {

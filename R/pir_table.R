@@ -12,8 +12,8 @@ pir_table <- function(run_experiments) {
   # Count the number of rows needed
   n_rows <- 0
   for (run_experiment in run_experiments) {
-    if (!is_one_na(run_experiment$true_result)) n_rows <- n_rows + 1
-    if (!is_one_na(run_experiment$twin_result)) n_rows <- n_rows + 1
+    if (!beautier::is_one_na(run_experiment$true_result)) n_rows <- n_rows + 1
+    if (!beautier::is_one_na(run_experiment$twin_result)) n_rows <- n_rows + 1
   }
 
   # Prepare data frame
@@ -34,15 +34,15 @@ pir_table <- function(run_experiments) {
   # able to display one error_1 column with NAs
   max_n_errors <- 1
   for (run_experiment in run_experiments) {
-    if (!is_one_na(run_experiment$true_result) &&
-      !is_one_na(run_experiment$true_result$errors)
+    if (!beautier::is_one_na(run_experiment$true_result) &&
+      !beautier::is_one_na(run_experiment$true_result$errors)
     ) {
       max_n_errors <- max(
         length(run_experiment$true_result$errors), max_n_errors
       )
     }
-    if (!is_one_na(run_experiment$twin_result) &&
-      !is_one_na(run_experiment$twin_result$errors)
+    if (!beautier::is_one_na(run_experiment$twin_result) &&
+      !beautier::is_one_na(run_experiment$twin_result$errors)
     ) {
       max_n_errors <- max(
         length(run_experiment$twin_result$errors), max_n_errors
@@ -58,7 +58,7 @@ pir_table <- function(run_experiments) {
     check_run_experiment(run_experiment) # nolint pirouette function
 
     # True
-    if (!is_one_na(run_experiment$true_result)) {
+    if (!beautier::is_one_na(run_experiment$true_result)) {
       result <- run_experiment$true_result
       errors <- result$errors
       df$tree[i] <- "true"
@@ -73,7 +73,7 @@ pir_table <- function(run_experiments) {
       i <- i + 1
     }
     # Twin
-    if (!is_one_na(run_experiment$twin_result)) {
+    if (!beautier::is_one_na(run_experiment$twin_result)) {
       result <- run_experiment$twin_result
       errors <- result$errors
       df$tree[i] <- "twin"
