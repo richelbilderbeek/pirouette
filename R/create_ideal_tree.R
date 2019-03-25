@@ -27,7 +27,7 @@ create_ideal_tree <- function(
   mu <- 0
 
   sim_trees <- TESS::tess.sim.taxa.age(
-    n = n_replicas,
+    n = n_replicates,
     lambda = lambda,
     mu     = mu,
     nTaxa = n_taxa,
@@ -35,7 +35,7 @@ create_ideal_tree <- function(
     MRCA = TRUE
   )
   liks <- rep(NA, n_replicates)
-  for (n in 1:n_replicas) {
+  for (n in 1:n_replicates) {
     liks[n] <-  DDD::bd_loglik(
       pars1 = c(lambda, 0, mu, 0),
       pars2 = c(0, 3, 0, 0, n_0 - 1),
