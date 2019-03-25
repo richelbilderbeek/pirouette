@@ -156,9 +156,9 @@
 #' @param method determines how to create the twin tree
 #' \itemize{
 #'     \item 'random_tree' just produces a random tree;
-#'     \item 'max_clade_cred' simulates \code{n_replicas} trees and
+#'     \item 'max_clade_cred' simulates \code{n_replicates} trees and
 #'       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-#'     \item 'max_likelihood' simulates \code{n_replicas} trees
+#'     \item 'max_likelihood' simulates \code{n_replicates} trees
 #'      and selects the most likely;
 #'   }
 #' @param model_selection one ways to select the models used in
@@ -180,7 +180,7 @@
 #' @param mutation_rate the mutation rate per base pair per time unit
 #' @param n_0 number of starting species
 #' @param n_taxa number of tree tips
-#' @param n_replicas number of replicas to evaluate in order to create the
+#' @param n_replicates number of replicas to evaluate in order to create the
 #'   twin tree
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
@@ -349,7 +349,7 @@ default_params_doc <- function(
   mutation_rate,
   n_0,
   n_taxa,
-  n_replicas,
+  n_replicates,
   nu,
   nu_events,
   parameter_filename,

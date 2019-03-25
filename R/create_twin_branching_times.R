@@ -9,7 +9,7 @@ create_twin_branching_times <- function(
   lambda,
   mu,
   phylogeny,
-  n_replicas,
+  n_replicates,
   method
 ) {
   # Retrieve info from the phylogeny
@@ -24,7 +24,7 @@ create_twin_branching_times <- function(
   # Simulate branching times
   set.seed(seed)
   max_n <- 1 * (method == "random_tree") +
-     n_replicas *  (method == "max_clade_cred" | method == "max_likelihood")
+     n_replicates *  (method == "max_clade_cred" | method == "max_likelihood")
   sim_trees <- TESS::tess.sim.taxa.age(
     n = max_n,
     lambda = lambda,

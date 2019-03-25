@@ -11,7 +11,7 @@ twin_to_bd_tree <- function(
 ) {
   seed <- twinning_params$rng_seed
   method <- twinning_params$method
-  n_replicas <- twinning_params$n_replicas
+  n_replicates <- twinning_params$n_replicates
 
   age  <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
@@ -55,7 +55,7 @@ twin_to_bd_tree <- function(
     seed = seed,
     lambda = lambda_bd,
     mu = mu_bd,
-    n_replicas = n_replicas,
+    n_replicates = n_replicates,
     method = method
   )
 

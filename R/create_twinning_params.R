@@ -17,7 +17,7 @@ create_twinning_params <- function(
   rng_seed = 0,
   twin_model = "birth_death",
   method = "random_tree",
-  n_replicas = 1e4,
+  n_replicates = 1e4,
   twin_tree_filename = tempfile(
     pattern = "tree_twin_", fileext = ".newick"
   ),
@@ -32,7 +32,7 @@ create_twinning_params <- function(
     rng_seed = rng_seed,
     twin_model = twin_model,
     method = method,
-    n_replicas = n_replicas,
+    n_replicates = n_replicates,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename,
     twin_evidence_filename = twin_evidence_filename

@@ -5,7 +5,7 @@
 \title{Create the parameters for the twinning simulation}
 \usage{
 create_twinning_params(rng_seed = 0, twin_model = "birth_death",
-  method = "random_tree", n_replicas = 10000,
+  method = "random_tree", n_replicates = 10000,
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =
   "alignment_twin_", fileext = ".fasta"),
@@ -27,13 +27,13 @@ values of \code{twin_model}}
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates \code{n_replicas} trees and
+    \item 'max_clade_cred' simulates \code{n_replicates} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates \code{n_replicas} trees
+    \item 'max_likelihood' simulates \code{n_replicates} trees
      and selects the most likely;
   }}
 
-\item{n_replicas}{number of replicas to evaluate in order to create the
+\item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin

@@ -5,7 +5,7 @@
 \title{Generate twin branching times given estimated lambda and mu and the original
   tree}
 \usage{
-create_twin_branching_times(seed, lambda, mu, phylogeny, n_replicas,
+create_twin_branching_times(seed, lambda, mu, phylogeny, n_replicates,
   method)
 }
 \arguments{
@@ -17,15 +17,15 @@ create_twin_branching_times(seed, lambda, mu, phylogeny, n_replicas,
 
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{n_replicas}{number of replicas to evaluate in order to create the
+\item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates \code{n_replicas} trees and
+    \item 'max_clade_cred' simulates \code{n_replicates} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates \code{n_replicas} trees
+    \item 'max_likelihood' simulates \code{n_replicates} trees
      and selects the most likely;
   }}
 }

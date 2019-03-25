@@ -20,7 +20,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   init_speciation_rate, init_extinction_rate, lambda, log_evidence,
   marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
   mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
-  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
+  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicates, nu, nu_events,
   parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
   pir_out, posterior_trees, precision, project_folder_name, result,
   rng_seed, root_sequence, run_experiment, run_experiments, run_if,
@@ -242,9 +242,9 @@ from a MBD tree}
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates \code{n_replicas} trees and
+    \item 'max_clade_cred' simulates \code{n_replicates} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates \code{n_replicas} trees
+    \item 'max_likelihood' simulates \code{n_replicates} trees
      and selects the most likely;
   }}
 
@@ -274,7 +274,7 @@ as created by \link[beautier]{create_mrca_prior}}
 
 \item{n_taxa}{number of tree tips}
 
-\item{n_replicas}{number of replicas to evaluate in order to create the
+\item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}

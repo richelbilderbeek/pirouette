@@ -17,7 +17,7 @@ check_twinning_params <- function(
     "rng_seed",
     "twin_model",
     "method",
-    "n_replicas",
+    "n_replicates",
     "twin_tree_filename",
     "twin_alignment_filename",
     "twin_evidence_filename"
@@ -51,15 +51,15 @@ check_twinning_params <- function(
   if (!(twinning_params$method %in% get_twin_methods())) {
     stop("This 'method' is not implemented")
   }
-  if (!is.numeric(twinning_params$n_replicas)) {
-    stop("'n_replicas' must be a number")
+  if (!is.numeric(twinning_params$n_replicates)) {
+    stop("'n_replicates' must be a number")
   }
   if (
-    is.infinite(twinning_params$n_replicas) |
-    !(twinning_params$n_replicas %% 1 == 0) |
-    twinning_params$n_replicas < 0
+    is.infinite(twinning_params$n_replicates) |
+    !(twinning_params$n_replicates %% 1 == 0) |
+    twinning_params$n_replicates < 0
   ) {
-    stop("'n_replicas' must be a finite positive integer number")
+    stop("'n_replicates' must be a finite positive integer number")
   }
   if (!is.character(twinning_params$twin_tree_filename)) {
     stop("'twin_tree_filename' must be a character vector")
