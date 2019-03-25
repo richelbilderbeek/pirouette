@@ -34,7 +34,7 @@ create_ideal_tree <- function(
     age = crown_age,
     MRCA = TRUE
   )
-  liks <- rep(NA, n_replicas)
+  liks <- rep(NA, n_replicates)
   for (n in 1:n_replicas) {
     liks[n] <-  DDD::bd_loglik(
       pars1 = c(lambda, 0, mu, 0),
