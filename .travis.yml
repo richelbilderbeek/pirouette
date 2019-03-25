@@ -23,6 +23,9 @@ r_github_packages:
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
 
+bioc_packages:
+  - ggtree
+
 before_install:
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
   - sudo apt-get update
