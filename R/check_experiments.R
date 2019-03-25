@@ -77,6 +77,15 @@ check_experiments <- function(
     model_types[i] <- experiments[[i]]$inference_conditions$model_type
   }
   if (sum(model_types == "generative") > 1) {
-    stop("Specifying more than one 'generative' model experiment is redundant.")
+    stop("Specifying more than one 'generative' model experiment is redundant")
+  }
+  if (length(experiments) > 1) {
+    exp_types <- rep(NA, length(experiments))
+    for (i in seq_along(experiments)) {
+      exp_types[i] <- experiments[[i]]$inference_conditions$model_type
+    }
+    if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
+      stop("If multiple experiments, generative is either first or absent")
+    }
   }
 }

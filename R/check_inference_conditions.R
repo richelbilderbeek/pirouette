@@ -44,4 +44,11 @@ check_inference_conditions <- function(
       "is a configuration that makes no sense"
     ) # nolint
   }
+  if (inference_conditions$run_if == "always" &&
+      inference_conditions$model_type == "candidate") {
+    stop(
+      "'run_if' == 'always' and 'model_type' == 'candidate' ",
+      "is a configuration that makes no sense"
+    ) # nolint
+  }
 }

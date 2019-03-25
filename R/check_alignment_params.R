@@ -54,4 +54,7 @@ check_alignment_params <- function(
   if (!is.numeric(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
+  if (alignment_params$clock_model$name != "strict") {
+    stop(" This 'clock_model' has not been implemented yet")
+  }
 }
