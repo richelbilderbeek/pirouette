@@ -22,11 +22,11 @@ check_run_experiment <- function(run_experiment) {
   }
 
   # STUB
-  if (!is_one_na(run_experiment$true_result)) {
-    check_result(run_experiment$true_result)
+  if (!beautier::is_one_na(run_experiment$true_result)) {
+    check_result(run_experiment$true_result) # nolint pirouette function
   }
   # STUB
-  if (!is_one_na(run_experiment$twin_result)) {
-    check_result(run_experiment$twin_result)
+  if (!beautier::is_one_na(run_experiment$twin_result)) {
+    check_result(run_experiment$twin_result) # nolint pirouette function
   }
 }

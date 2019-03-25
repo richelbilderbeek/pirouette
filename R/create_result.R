@@ -33,6 +33,6 @@ create_result <- function(
     weight = weight,
     errors = errors
   )
-  check_result(result)
+  check_result(result) # nolint pirouette function
   result
 }
