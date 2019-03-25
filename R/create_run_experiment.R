@@ -2,7 +2,13 @@
 #'
 #' The arguments are checked by \link{check_run_experiment}.
 #' @inheritParams default_params_doc
-#' @return a \link{pirouette} run experiment.
+#' @return a \link{pirouette} run experiment
+#' @examples
+#'   library(testthat)
+#'
+#'   run_experiment <- create_test_run_experiment()
+#'
+#'   expect_silent(check_run_experiment(run_experiment))
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_run_experiment <- function(

@@ -11,7 +11,9 @@
 #' @return a run experiment
 #' @author Richel J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
+#'   library(testthat)
+#'
+#'   expect_silent(
 #'     check_run_experiment(create_test_run_experiment())
 #'   )
 #' @export

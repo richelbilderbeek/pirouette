@@ -31,7 +31,9 @@ has not been run), as it has added:
 In both cases,
 }
 \examples{
-  testthat::expect_silent(
+  library(testthat)
+
+  expect_silent(
     check_run_experiment(create_test_run_experiment())
   )
 }

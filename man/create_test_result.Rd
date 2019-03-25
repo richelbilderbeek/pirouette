@@ -26,7 +26,9 @@ a result
 Create a result
 }
 \examples{
-  testthat::expect_silent(
+  library(testthat)
+
+  expect_silent(
     check_result(create_test_result())
   )
 }

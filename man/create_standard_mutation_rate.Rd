@@ -15,6 +15,23 @@ the mutation rate
 \description{
 Create the parameters for the mutation rate
 }
+\examples{
+  library(testthat)
+
+  # Phylogeny with a crown age of 3.0
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+  # Expected mutation rate is one divided by the crown age
+  expected <- 1.0 / 3.0
+  created <- create_standard_mutation_rate(phylogeny)
+  expect_equal(expected, created)
+
+  # Phylogeny with a crown age of 4.0
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):2, C:4);")
+  # Expected mutation rate is one divided by the crown age
+  expected <- 1.0 / 4.0
+  created <- create_standard_mutation_rate(phylogeny)
+  expect_equal(expected, created)
+}
 \author{
 Giovanni Laudanno, Richel J.C. Bilderbeek
 }

@@ -4,7 +4,9 @@
 #' @seealso Use \link{check_result} to check a result
 #' @author Richel J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
+#'   library(testthat)
+#'
+#'   expect_silent(
 #'     check_result(create_test_result())
 #'   )
 #' @export

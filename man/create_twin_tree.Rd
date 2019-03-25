@@ -16,6 +16,10 @@ as can be created by \link{create_twinning_params}}
 \description{
 Create a twin tree
 }
+\examples{
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twin_phylogeny <- create_twin_tree(phylogeny)
+}
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno
 }

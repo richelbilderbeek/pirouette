@@ -1,7 +1,21 @@
 #' Create a rate matrix for the given site model
 #' @inheritParams default_params_doc
 #' @return a rate matrix
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#'   created <- create_rate_matrix(site_model = create_hky_site_model())
+#'
+#'   expected <- matrix(nrow = 4, ncol = 4)
+#'   rownames(expected) <- c("a", "c", "g", "t")
+#'   colnames(expected) <- c("a", "c", "g", "t")
+#'   expected[1, ] <- c(-1.00, 0.50, 0.25, 0.25)
+#'   expected[2, ] <- c( 0.50,-1.00, 0.25, 0.25)
+#'   expected[3, ] <- c( 0.25, 0.25,-1.00, 0.50)
+#'   expected[4, ] <- c( 0.25, 0.25, 0.50,-1.00)
+#'
+#'   library(testthat)
+#'   expect_equal(created, expected)
+#' @noRd
 create_rate_matrix <- function(
   site_model,
   base_frequencies = rep(0.25, 4)

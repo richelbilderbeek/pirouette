@@ -11,10 +11,17 @@ create_run_experiment(experiment)
 as can be created by \link{create_experiment}}
 }
 \value{
-a \link{pirouette} run experiment.
+a \link{pirouette} run experiment
 }
 \description{
 The arguments are checked by \link{check_run_experiment}.
+}
+\examples{
+  library(testthat)
+
+  run_experiment <- create_test_run_experiment()
+
+  expect_silent(check_run_experiment(run_experiment))
 }
 \author{
 Richel J.C. Bilderbeek

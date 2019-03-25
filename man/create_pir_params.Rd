@@ -65,6 +65,9 @@ Create the parameters for \link{pirouette}
   expect_equal(evidence_filename, pir_params$evidence_filename)
   expect_equal(verbose, pir_params$verbose)
 }
+\seealso{
+Use \link{pir_run} to run the \link{pirouette} pipeline
+}
 \author{
 Giovanni Laudanno, Richel J.C. Bilderbeek
 }

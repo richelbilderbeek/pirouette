@@ -1,6 +1,7 @@
 #' Create the parameters for \link{pirouette}
 #' @inheritParams default_params_doc
 #' @return a list with all \link{pirouette} parameters
+#' @seealso Use \link{pir_run} to run the \link{pirouette} pipeline
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @examples
 #'   alignment_params <- create_test_alignment_params()
