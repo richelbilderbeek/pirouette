@@ -105,5 +105,5 @@ create_test_cand_experiment <- function() {
 #' @export
 #' @author Richel J.C. Bilderbeek
 create_test_gen_experiment <- function() {
-  create_test_experiment()
+  create_test_experiment() # nolint pirouette function
 }

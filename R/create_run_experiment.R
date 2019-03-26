@@ -30,6 +30,6 @@ create_run_experiment <- function(
 #' @author Richel J.C. Bilderbeek
 create_test_run_experiment <- function() {
   create_run_experiment(
-    create_test_experiment()
+    create_test_experiment() # nolint pirouette function
   )
 }
