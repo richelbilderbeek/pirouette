@@ -67,3 +67,43 @@ create_test_experiment <- function() {
     )
   )
 }
+
+#' Create a valid testing \link{pirouette} candidate experiment.
+#' @inheritParams default_params_doc
+#' @return a \link{pirouette} experiment.
+#' @export
+#' @author Richel J.C. Bilderbeek
+create_test_cand_experiment <- function() {
+  create_experiment(
+    inference_conditions = create_inference_conditions(
+      model_type = "candidate",
+      run_if = "best_candidate",
+      do_measure_evidence = TRUE
+    ),
+    inference_model = create_inference_model(
+      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+    ),
+    beast2_options = create_beast2_options(
+      input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
+      output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
+      output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
+      output_state_filename = tempfile(
+        pattern = "beast2_", fileext = ".state.xml"
+      )
+    ),
+    est_evidence_mcmc = create_nested_sampling_mcmc(
+      chain_length = 2000,
+      store_every = 1000,
+      epsilon = 100.0
+    )
+  )
+}
+
+#' Create a valid testing \link{pirouette} generative experiment.
+#' @inheritParams default_params_doc
+#' @return a \link{pirouette} experiment.
+#' @export
+#' @author Richel J.C. Bilderbeek
+create_test_gen_experiment <- function() {
+  create_test_experiment()
+}
