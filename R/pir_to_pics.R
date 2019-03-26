@@ -83,8 +83,13 @@ pir_to_pics <- function(
 
   # Trees
   filename <- file.path(folder, "true_tree.png")
-  ggtree::ggtree(phylogeny) + ggtree::theme_tree2() + ggtree::geom_tiplab() +
-    ggplot2::ggsave(filename)
+  grDevices::png(
+    filename = filename,
+    width = 1000, height = 800
+  )
+  ape::plot.phylo(phylogeny)
+  ape::add.scale.bar()
+  grDevices::dev.off()
   filenames <- filename
 
   # Alignments
@@ -245,10 +250,13 @@ pir_to_pics_twin <- function(
 
   # Trees
   filename <- file.path(folder, "twin_tree.png")
-  ggtree::ggtree(
-    ape::read.tree(pir_params$twinning_params$twin_tree_filename)
-  ) + ggtree::theme_tree2() + ggtree::geom_tiplab() +
-    ggplot2::ggsave(filename)
+  grDevices::png(
+    filename = filename,
+    width = 1000, height = 800
+  )
+  ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename))
+  ape::add.scale.bar()
+  grDevices::dev.off()
   filenames <- filename
 
   # Alignment
