@@ -19,6 +19,9 @@ Create a twin tree
 \examples{
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(phylogeny)
+
+  library(testthat)
+  expect_true(beautier::is_phylo(twin_phylogeny))
 }
 \author{
 Richel J.C. Bilderbeek, Giovanni Laudanno

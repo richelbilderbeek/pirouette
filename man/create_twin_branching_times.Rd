@@ -49,7 +49,10 @@ Generate twin branching times given estimated lambda and mu and the original
  )
 
  library(testthat)
- expect_equal(length(ape::branching.times(phylogeny)), length(branching_times))
+ expect_equal(
+   length(ape::branching.times(phylogeny)),
+   length(branching_times)
+ )
 }
 \author{
 Giovanni Laudanno, Richel J.C. Bilderbeek

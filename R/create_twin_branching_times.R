@@ -16,7 +16,10 @@
 #'  )
 #'
 #'  library(testthat)
-#'  expect_equal(length(ape::branching.times(phylogeny)), length(branching_times))
+#'  expect_equal(
+#'    length(ape::branching.times(phylogeny)),
+#'    length(branching_times)
+#'  )
 #' @export
 create_twin_branching_times <- function(
   seed,
