@@ -5,12 +5,12 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Richel J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
-#'     check_alignment_params(create_test_alignment_params())
-#'   )
-#'   testthat::expect_error(check_alignment_params("nonsense"))
-#'   testthat::expect_error(check_alignment_params(NA))
-#'   testthat::expect_error(check_alignment_params(NULL))
+#'   library(testthat)
+#'
+#'   expect_silent(check_alignment_params(create_test_alignment_params()))
+#'   expect_error(check_alignment_params("nonsense"))
+#'   expect_error(check_alignment_params(NA))
+#'   expect_error(check_alignment_params(NULL))
 #' @export
 check_alignment_params <- function(
   alignment_params

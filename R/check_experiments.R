@@ -8,19 +8,13 @@
 #' @seealso Use \link{check_experiment} to check if an object
 #'   is one valid experiment
 #' @examples
-#'   testthat::expect_silent(
-#'     check_experiments(
-#'       list(create_test_experiment())
-#'     )
-#'   )
-#'   testthat::expect_error(
-#'     check_experiments(
-#'       create_test_experiment()
-#'     )
-#'   )
-#'   testthat::expect_error(check_experiments("nonsense"))
-#'   testthat::expect_error(check_experiments(NA))
-#'   testthat::expect_error(check_experiments(NULL))
+#'   library(testthat)
+#'
+#'   expect_silent(check_experiments(list(create_test_experiment())))
+#'   expect_error(check_experiments(create_test_experiment()))
+#'   expect_error(check_experiments("nonsense"))
+#'   expect_error(check_experiments(NA))
+#'   expect_error(check_experiments(NULL))
 #' @author Richel J.C. Bilderbeek
 #' @export
 check_experiments <- function(

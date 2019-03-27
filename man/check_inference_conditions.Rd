@@ -21,13 +21,13 @@ as created by \link{create_inference_conditions}.
 Will \link{stop} if not.
 }
 \examples{
-  testthat::expect_silent(
-    check_inference_conditions(create_inference_conditions())
-  )
-  testthat::expect_error(check_inference_conditions("nonsense"))
-  testthat::expect_error(check_inference_conditions(NA))
-  testthat::expect_error(check_inference_conditions(NULL))
+  library(testthat)
+
+  expect_silent(check_inference_conditions(create_inference_conditions()))
+  expect_error(check_inference_conditions("nonsense"))
+  expect_error(check_inference_conditions(NA))
+  expect_error(check_inference_conditions(NULL))
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richel J.C. Bilderbeek
 }

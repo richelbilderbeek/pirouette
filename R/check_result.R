@@ -7,12 +7,12 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Richel J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
-#'     check_result(create_test_result())
-#'   )
-#'   testthat::expect_error(check_result("nonsense"))
-#'   testthat::expect_error(check_result(NA))
-#'   testthat::expect_error(check_result(NULL))
+#'   library(testthat)
+#'
+#'   expect_silent(check_result(create_test_result()))
+#'   expect_error(check_result("nonsense"))
+#'   expect_error(check_result(NA))
+#'   expect_error(check_result(NULL))
 #' @export
 check_result <- function(
   result

@@ -3,12 +3,13 @@
 #' Will \link{stop} if not.
 #' @author Richel J.C. Bilderbeek
 #' @examples
+#'   library(babette)
 #'   library(testthat)
 #'
 #'   # We need BEAST2 installed
-#'   if (beastier::is_beast2_installed()) {
+#'   if (is_beast2_installed()) {
 #'
-#'     if (mauricer::is_beast2_pkg_installed("NS")) {
+#'     if (is_beast2_pkg_installed("NS")) {
 #'       # No error If NS is installed
 #'       expect_silent(check_is_ns_beast2_pkg_installed())
 #'     } else {

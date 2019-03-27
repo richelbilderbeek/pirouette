@@ -33,6 +33,9 @@ In both cases,
 \examples{
   library(testthat)
 
+  expect_silent(check_run_experiment(create_test_run_experiment()))
+  library(testthat)
+
   expect_silent(
     check_run_experiment(create_test_run_experiment())
   )

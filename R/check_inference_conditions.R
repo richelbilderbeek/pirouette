@@ -3,14 +3,14 @@
 #' Will \link{stop} if not.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
-#'     check_inference_conditions(create_inference_conditions())
-#'   )
-#'   testthat::expect_error(check_inference_conditions("nonsense"))
-#'   testthat::expect_error(check_inference_conditions(NA))
-#'   testthat::expect_error(check_inference_conditions(NULL))
+#'   library(testthat)
+#'
+#'   expect_silent(check_inference_conditions(create_inference_conditions()))
+#'   expect_error(check_inference_conditions("nonsense"))
+#'   expect_error(check_inference_conditions(NA))
+#'   expect_error(check_inference_conditions(NULL))
 #' @export
 check_inference_conditions <- function(
   inference_conditions

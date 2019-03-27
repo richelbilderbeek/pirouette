@@ -5,10 +5,12 @@
 #' @return nothing. Will \link{stop} if nit
 #' @author Richel J.C. Bilderbeek
 #' @examples
-#'  testthat::expect_silent(check_twinning_params(create_twinning_params()))
-#'  testthat::expect_error(check_twinning_params("nonsense"))
-#'  testthat::expect_error(check_twinning_params(NULL))
-#'  testthat::expect_error(check_twinning_params(NA))
+#'  library(testthat)
+#'
+#'  expect_silent(check_twinning_params(create_twinning_params()))
+#'  expect_error(check_twinning_params("nonsense"))
+#'  expect_error(check_twinning_params(NULL))
+#'  expect_error(check_twinning_params(NA))
 #' @export
 check_twinning_params <- function(
   twinning_params

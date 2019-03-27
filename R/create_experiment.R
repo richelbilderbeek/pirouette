@@ -50,8 +50,20 @@ create_experiment <- function(
 #' Create a valid testing \link{pirouette} experiment.
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} experiment.
-#' @export
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'  library(testthat)
+#'
+#'  experiment <- create_test_experiment()
+#'
+#'  expect_true("inference_conditions" %in% names(experiment))
+#'  expect_true("inference_model" %in% names(experiment))
+#'  expect_true("beast2_options" %in% names(experiment))
+#'  expect_true("est_evidence_mcmc" %in% names(experiment))
+#'  expect_true("beast2_bin_path" %in% names(experiment))
+#'
+#'  expect_silent(check_experiment(experiment))
+#' @export
 create_test_experiment <- function() {
   create_experiment(
     inference_model = create_inference_model(
@@ -71,8 +83,20 @@ create_test_experiment <- function() {
 #' Create a valid testing \link{pirouette} candidate experiment.
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} experiment.
-#' @export
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'  library(testthat)
+#'
+#'  experiment <- create_cand_test_experiment()
+#'
+#'  expect_true("inference_conditions" %in% names(experiment))
+#'  expect_true("inference_model" %in% names(experiment))
+#'  expect_true("beast2_options" %in% names(experiment))
+#'  expect_true("est_evidence_mcmc" %in% names(experiment))
+#'  expect_true("beast2_bin_path" %in% names(experiment))
+#'
+#'  expect_silent(check_experiment(experiment))
+#' @export
 create_test_cand_experiment <- function() {
   create_experiment(
     inference_conditions = create_inference_conditions(
@@ -102,8 +126,20 @@ create_test_cand_experiment <- function() {
 #' Create a valid testing \link{pirouette} generative experiment.
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} experiment.
-#' @export
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'  library(testthat)
+#'
+#'  experiment <- create_cand_test_gen_experiment()
+#'
+#'  expect_true("inference_conditions" %in% names(experiment))
+#'  expect_true("inference_model" %in% names(experiment))
+#'  expect_true("beast2_options" %in% names(experiment))
+#'  expect_true("est_evidence_mcmc" %in% names(experiment))
+#'  expect_true("beast2_bin_path" %in% names(experiment))
+#'
+#'  expect_silent(check_experiment(experiment))
+#' @export
 create_test_gen_experiment <- function() {
   create_test_experiment() # nolint pirouette function
 }

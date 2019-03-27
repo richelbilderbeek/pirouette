@@ -7,10 +7,12 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @examples
-#'  testthat::expect_silent(check_pir_params(create_test_pir_params()))
-#'  testthat::expect_error(check_pir_params("nonsense"))
-#'  testthat::expect_error(check_pir_params(NULL))
-#'  testthat::expect_error(check_pir_params(NA))
+#'   library(testthat)
+#'
+#'   expect_silent(check_pir_params(create_test_pir_params()))
+#'   expect_error(check_pir_params("nonsense"))
+#'   expect_error(check_pir_params(NULL))
+#'   expect_error(check_pir_params(NA))
 #' @export
 check_pir_params <- function(
   pir_params

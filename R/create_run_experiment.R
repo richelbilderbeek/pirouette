@@ -26,8 +26,12 @@ create_run_experiment <- function(
 #' Create a valid testing \link{pirouette} run experiment
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} run experiment.
-#' @export
 #' @author Richel J.C. Bilderbeek
+#' @examples
+#'   library(testthat)
+#'
+#'   expect_silent(check_run_experiment(create_test_run_experiment()))
+#' @export
 create_test_run_experiment <- function() {
   create_run_experiment(
     create_test_experiment() # nolint pirouette function

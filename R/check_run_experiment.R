@@ -3,9 +3,12 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Richel J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
-#'     check_run_experiment(create_test_run_experiment())
-#'   )
+#'   library(testthat)
+#'
+#'   expect_silent(check_run_experiment(create_test_run_experiment()))
+#'   expect_error(check_run_experiment("nonsense"))
+#'   expect_error(check_run_experiment(NA))
+#'   expect_error(check_run_experiment(NULL))
 #' @export
 check_run_experiment <- function(run_experiment) {
   check_experiment(run_experiment) # nolint pirouette function
