@@ -377,6 +377,7 @@ test_that("most_evidence, two candidates", {
 test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -442,6 +443,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -502,6 +504,7 @@ test_that("generative and most_evidence, generative in most_evidence", {
 test_that("most_evidence, three candidates", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -575,6 +578,7 @@ test_that("most_evidence, three candidates", {
 test_that("most_evidence, four candidates", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -652,6 +656,7 @@ test_that("most_evidence, four candidates", {
 test_that("generative with twin", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -739,7 +744,7 @@ test_that("generative with twin", {
 test_that("most_evidence, with twinning", {
 
   if (!beastier::is_on_travis()) return()
-
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -836,6 +841,7 @@ test_that("most_evidence, with twinning", {
 test_that("twin parameters", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
@@ -885,6 +891,7 @@ test_that("twin parameters", {
 test_that("Errors files exist", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
