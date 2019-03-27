@@ -152,13 +152,19 @@ to have a shorter MCMC run and a specific RNG seed:
 Now we have all in place to do a `pirouette` run:
 
 ```{r}
-df <- pirouette::pir_run(
-  phylogeny = phylogeny,
-  pir_params = create_pir_params(
-    alignment_params = alignment_params,
-    experiments = experiments
+df <- NULL
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
+  
+  df <- pirouette::pir_run(
+    phylogeny = phylogeny,
+    pir_params = create_pir_params(
+      alignment_params = alignment_params,
+      experiments = experiments
+    )
   )
-)
+} else {
+  df <- create_test_pir_run_output()
+}
 knitr::kable(df)
 ```
 
@@ -211,7 +217,7 @@ candidate  | best_candidate |TRUE              |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   experiment_yule <- create_experiment(
     inference_conditions = create_inference_conditions(
       model_type = "candidate",
@@ -250,7 +256,7 @@ if (rappdirs::app_dir()$os != "win") {
 Now we again have all in place to do a `pirouette` run:
 
 ```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
     pir_params = create_pir_params(
