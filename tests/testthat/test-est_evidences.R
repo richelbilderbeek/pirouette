@@ -4,6 +4,7 @@ test_that("use", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
 
   # Create an alignment
   fasta_filename <- tempfile(fileext = ".fasta")
@@ -53,6 +54,7 @@ test_that("cleans up", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
 
   # Create an alignment
   fasta_filename <- tempfile(fileext = ".fasta")

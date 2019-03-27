@@ -3,6 +3,7 @@ context("test-pir_run")
 test_that("generative", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -101,6 +102,7 @@ test_that("generative", {
 test_that("generative, using gamma statistic", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -152,6 +154,7 @@ test_that("generative, using gamma statistic", {
 test_that("generative, with MRCA prior", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -231,6 +234,7 @@ test_that("generative, CBS", {
 test_that("most_evidence, one candidate", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -297,6 +301,7 @@ test_that("most_evidence, one candidate", {
 test_that("most_evidence, two candidates", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
