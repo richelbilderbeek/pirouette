@@ -31,7 +31,7 @@ When working on such a system, the BEAST2 package 'NS' is expected
 to be installed:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
+if (beastier::is_beast2_installed()) {
   check_is_ns_beast2_pkg_installed()
 }
 ```
@@ -92,10 +92,16 @@ pir_params <- create_pir_params(
 Running it:
 
 ```{r}
-errors <- pir_run(
-  phylogeny = true_phylogeny,
-  pir_params = pir_params
-)
+errors <- NULL
+
+if (beastier::is_beast2_installed()) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output()
+}
 ```
 
 Here we show the errors as a table:
@@ -165,28 +171,26 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   errors <- pir_run(
     phylogeny = true_phylogeny,
     pir_params = pir_params
   )
+} else {
+  errors <- create_test_pir_run_output(add_best = TRUE)
 }
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
-  knitr::kable(utils::head(errors))
-}
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win") {
-  pir_plot(errors)
-}
+pir_plot(errors)
 ```
 
 
@@ -251,10 +255,14 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-errors <- pir_run(
-  phylogeny = true_phylogeny,
-  pir_params = pir_params
-)
+if (beastier::is_beast2_installed()) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output(add_best = TRUE)
+}
 ```
 
 Here we show the errors as a table:
