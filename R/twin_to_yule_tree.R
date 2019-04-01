@@ -57,15 +57,8 @@ twin_to_yule_tree <- function(
     method = method
   )
 
-  yule_tree <- combine_brts_and_topology(
+  combine_brts_and_topology(
     brts = yule_brts0,
     tree = phylogeny
-  )
-
-  yule_l_matrix <- bd_phylo_2_l_table(yule_tree) # nolint
-
-  list(
-    tree = yule_tree,
-    l_matrix = yule_l_matrix
   )
 }
