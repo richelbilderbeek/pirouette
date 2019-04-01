@@ -16,7 +16,7 @@ the branching times
 }
 \description{
 Convert a tree into branching times.
-Differently from the \link[ape]{branching.times} function in \link{a[e},
+Differently from the \link[ape]{branching.times} function in \link{ape},
 it will keep the multiple events. Since the units are million
 years, a precision of 8 means that the approximation goes up to the 8-th
 digits. With such approximation we consider events happening within an

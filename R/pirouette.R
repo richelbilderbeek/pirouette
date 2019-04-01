@@ -25,7 +25,7 @@
 #'     \link{mauricer}: install BEAST2 packages
 #'   }
 #'   \item{
-#'     \link{mcbette}: compare inference models
+#'     \code{mcbette}: compare inference models
 #'   }
 #'   \item{
 #'     \link{tracerer}: parse and analyse BEAST2 output
