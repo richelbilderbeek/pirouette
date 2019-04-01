@@ -22,6 +22,32 @@ a twin BD tree of class \link[ape]{phylo},
 Create an BD twin tree from a phylogeny
 and save it as a file
 }
+\examples{
+  library(testthat)
+
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+  twinning_params <- create_twinning_params()
+  bd_tree <- twin_to_bd_tree(
+    phylogeny = phylogeny,
+    twinning_params = twinning_params
+  )
+
+  expect_equal(class(bd_tree), "phylo")
+
+  # Branching times will differ, except the crown
+  expect_false(
+    all(
+      ape::branching.times(phylogeny) ==
+      ape::branching.times(bd_tree)
+    )
+  )
+
+  # Crown age stays the same
+  expect_equal(
+    max(ape::branching.times(bd_tree)),
+    max(ape::branching.times(phylogeny))
+  )#'
+}
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
 }
