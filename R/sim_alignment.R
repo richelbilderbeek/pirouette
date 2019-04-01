@@ -11,9 +11,11 @@
 #'      mutation_rate = 0.1
 #'    )
 #'  )
-#'  testit::assert(class(alignment) == "DNAbin")
-#'  testit::assert(nrow(alignment) == n_taxa)
-#'  testit::assert(ncol(alignment) == n_base_pairs)
+#'
+#'  library(testthat)
+#'  expect_equal(class(alignment), "DNAbin")
+#'  expect_equal(nrow(alignment), n_taxa)
+#'  expect_equal(ncol(alignment), n_base_pairs)
 #' @author Richel Bilderbeek
 #' @export
 sim_alignment <- function(

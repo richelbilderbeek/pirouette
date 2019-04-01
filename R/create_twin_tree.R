@@ -6,7 +6,7 @@
 #'   twin_phylogeny <- create_twin_tree(phylogeny)
 #'
 #'   library(testthat)
-#'   expect_true(beautier::is_phylo(twin_phylogeny))
+#'   expect_true(is_phylo(twin_phylogeny))
 #' @export
 create_twin_tree <- function(
   phylogeny,

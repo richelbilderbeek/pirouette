@@ -60,7 +60,6 @@ create_pir_params <- function(
 #'       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'       pir_params = pir_params
 #'     )
-#'
 #'     pir_plot(pir_run)
 #'   }
 #' @export

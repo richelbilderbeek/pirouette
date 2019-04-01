@@ -4,10 +4,19 @@
 #' @return TRUE if the string is a lowercase DNA sequence
 #'   of at least one base pair
 #' @examples
-#'   testit::assert(pirouette:::is_dna_seq("acgt"))
-#'   testit::assert(!pirouette:::is_dna_seq("AGCT"))
-#'   testit::assert(!pirouette:::is_dna_seq("xxxx"))
-#'   testit::assert(!pirouette:::is_dna_seq(""))
+#'   library(testthat)
+#'
+#'   # OK: valid and lowercase characters
+#'   expect_true(is_dna_seq("acgt"))
+#'
+#'   # Must be lowercase
+#'   expect_false(is_dna_seq("AGCT"))
+#'
+#'   # Must be only valid characters
+#'   expect_false(is_dna_seq("xxxx"))
+#'
+#'   # Must have at least one nucleotide
+#'   expect_false(is_dna_seq(""))
 #' @author Richel J.C. Bilderbeek
 is_dna_seq <- function(s) {
   stringr::str_match(s, "[acgt]*")[1, 1] != ""

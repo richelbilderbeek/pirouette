@@ -19,10 +19,15 @@ nothing
 The simulation is performed by \link{sim_alignment}.
 }
 \examples{
+ library(testthat)
+
  n_taxa <- 5
  n_base_pairs <- 4
  fasta_filename <- tempfile()
- testit::assert(!file.exists(fasta_filename))
+
+ # File does not exist yet
+ expect_false(file.exists(fasta_filename))
+
  alignment <- sim_alignment_file(
    phylogeny = ape::rcoal(n_taxa),
    alignment_params = create_alignment_params(
@@ -31,7 +36,8 @@ The simulation is performed by \link{sim_alignment}.
      fasta_filename = fasta_filename
    )
  )
- testit::assert(file.exists(fasta_filename))
+ # File does exist now
+ expect_true(file.exists(fasta_filename))
 }
 \author{
 Richel Bilderbeek
