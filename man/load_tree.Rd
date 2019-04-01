@@ -21,5 +21,5 @@ Load pre-simulated tree generated under requested model and seed
   expect_true(is_phylo(phylogeny))
 }
 \author{
-Giovanni Laudanno,
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

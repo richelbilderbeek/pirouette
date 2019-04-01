@@ -1,6 +1,6 @@
 #' Load pre-simulated tree generated under requested model and seed
 #' @inheritParams default_params_doc
-#' @author Giovanni Laudanno,
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   phylogeny <- load_tree()
 #'
