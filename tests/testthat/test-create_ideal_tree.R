@@ -13,9 +13,7 @@ test_that("use", {
 
 test_that("harder", {
 
-  if (!(beastier::is_on_ci())) {
-    skip("This has to run on ci")
-  }
+  if (!is_on_ci()) return()
 
   expect_true(
     beautier::is_phylo(
