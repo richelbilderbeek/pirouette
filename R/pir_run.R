@@ -10,8 +10,6 @@
 #' @seealso
 #'   Use \link{pir_plot} to display the output of \link{pir_run} as a
 #'   figure.
-#'   Use \link{pir_table} to display the output of \link{pir_run} as a
-#'   table.
 #'   Use \link{create_test_pir_run_output} to create a test output
 #'   of \link{pir_run}
 #' @export
@@ -119,8 +117,7 @@ pir_run_tree <- function(
   experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE,
-  use_new_interface = FALSE
+  verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
 
@@ -195,10 +192,6 @@ pir_run_tree <- function(
     testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
   }
 
-  if (use_new_interface == TRUE) {
-    # Future
-    return(experiments)
-  }
   # Put inference models and errors a data frame
   n_rows <- length(experiments)
   df <- data.frame(

@@ -2,7 +2,8 @@
 % Please edit documentation in R/create_run_experiment.R
 \name{create_run_experiment}
 \alias{create_run_experiment}
-\title{Create a valid \link{pirouette} run experiment.}
+\title{Create a valid \link{pirouette} run experiment.
+The arguments are checked by \link{check_run_experiment}.}
 \usage{
 create_run_experiment(experiment)
 }
@@ -14,6 +15,7 @@ as can be created by \link{create_experiment}}
 a \link{pirouette} run experiment
 }
 \description{
+Create a valid \link{pirouette} run experiment.
 The arguments are checked by \link{check_run_experiment}.
 }
 \examples{

@@ -7,9 +7,10 @@ test_that("nothing if no candidates", {
 
 test_that("one if there is one candidate", {
 
-  if (!(beastier::is_on_ci())) {
-    skip("This cannot run on windows")
-  }
+  if (rappdirs::app_dir()$os == "win") return()
+  if (!is_on_ci()) return()
+  if (!is_beast2_installed()) return()
+  if (!is_beast2_pkg_installed("NS")) return()
 
   experiment <- create_experiment(
     inference_conditions = create_inference_conditions(

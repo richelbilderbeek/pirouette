@@ -29,7 +29,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
   tree_type, true_result, twin_alignment_filename, twin_evidence_filename,
   twin_model, twin_result, twin_tree_filename, twinning_params, type,
-  use_new_interface, verbose, weight)
+  verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -414,8 +414,6 @@ as can be created by \link{create_twinning_params}}
   \item \code{most_evidence} picks the model with most evidence
 }
 See \link{get_model_selections} for a list.}
-
-\item{use_new_interface}{set to TRUE to use a new interface}
 
 \item{verbose}{if TRUE, show more output}
 
