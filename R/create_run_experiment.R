@@ -1,5 +1,4 @@
 #' Create a valid \link{pirouette} run experiment.
-#'
 #' The arguments are checked by \link{check_run_experiment}.
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} run experiment
