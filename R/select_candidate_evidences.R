@@ -2,6 +2,20 @@
 #'
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' experiment_1 <- create_test_gen_experiment()
+#' experiment_2 <- create_test_cand_experiment()
+#' expect_true(experiment_1$inference_conditions$model_type == "generative")
+#' expect_true(experiment_2$inference_conditions$model_type == "candidate")
+#' experiments <- list(experiment_1, experiment_2)
+#'
+#' candidate_evidences <- select_candidate_evidences(
+#'   experiments = experiments,
+#'   marg_liks = create_test_marg_liks()
+#' )
+#' expect_equal(1, nrow(candidate_evidences))
 #' @export
 select_candidate_evidences <- function(
   experiments = list(create_test_experiment()),
