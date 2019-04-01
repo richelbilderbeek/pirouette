@@ -19,7 +19,7 @@
 #'
 #'   # Sum of all weights is one hundred percent
 #'   expect_equal(sum(df$weight), 1.0)
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_marg_liks <- function(
   site_models = beautier::create_site_models(),

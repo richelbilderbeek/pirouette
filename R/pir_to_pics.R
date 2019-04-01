@@ -70,7 +70,7 @@
 #' @param folder folder where the files are stored in.
 #'   By default, this is a temporary folder
 #' @return the names of all files created
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 pir_to_pics <- function(
   phylogeny,
@@ -236,7 +236,7 @@ pir_to_pics <- function(
 #' Create the twin pipeline pictures
 #' @inheritParams default_params_doc
 #' @return the names of all files created
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @noRd
 pir_to_pics_twin <- function(
   pir_params,

@@ -69,5 +69,5 @@ Create the parameters for \link{pirouette}
 Use \link{pir_run} to run the \link{pirouette} pipeline
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

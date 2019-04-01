@@ -13,7 +13,7 @@
 #'   Use \link{create_test_pir_run_output} to create a test output
 #'   of \link{pir_run}
 #' @export
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 pir_run <- function(
   phylogeny,
   pir_params = create_pir_params(
@@ -109,7 +109,7 @@ pir_run <- function(
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets
 #' @export
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 pir_run_tree <- function(
   phylogeny,
   tree_type = "true",

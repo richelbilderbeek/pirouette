@@ -59,5 +59,5 @@ The arguments are checked by \link{check_experiment}.
  expect_silent(check_experiment(experiment))
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

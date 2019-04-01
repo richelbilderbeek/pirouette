@@ -29,5 +29,5 @@ Will \link{stop} if not.
   expect_error(check_inference_conditions(NULL))
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

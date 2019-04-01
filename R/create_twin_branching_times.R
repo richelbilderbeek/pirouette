@@ -2,7 +2,7 @@
 #'   tree
 #' @inheritParams default_params_doc
 #' @return twin branching times
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 #'

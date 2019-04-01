@@ -26,5 +26,5 @@ Create a valid testing \link{pirouette} generative experiment.
  expect_silent(check_experiment(experiment))
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

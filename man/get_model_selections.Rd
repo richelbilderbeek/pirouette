@@ -16,5 +16,5 @@ Get the possible ways to select an inference model
   expect_true("most_evidence" \%in\% get_model_selections())
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

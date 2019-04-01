@@ -43,5 +43,5 @@ Create a testing marginal likelihoods data frame.
   expect_equal(sum(df$weight), 1.0)
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

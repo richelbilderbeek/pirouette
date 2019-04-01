@@ -1,5 +1,5 @@
 #' Get the possible ways to select an inference model
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

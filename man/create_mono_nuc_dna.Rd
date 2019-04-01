@@ -30,5 +30,5 @@ Use \link{create_blocked_dna} to create
   a DNA sequence of four equally-sized mono-noculeotide block
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

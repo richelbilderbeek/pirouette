@@ -23,5 +23,5 @@ Create an BD twin tree from a phylogeny
 and save it as a file
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

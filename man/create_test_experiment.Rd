@@ -4,7 +4,22 @@
 \alias{create_test_experiment}
 \title{Create a valid testing \link{pirouette} experiment.}
 \usage{
-create_test_experiment()
+
+  create_test_experiment(inference_conditions = create_inference_conditions(),
+  inference_model = create_inference_model(mcmc =
+  create_mcmc(chain_length = 2000, store_every = 1000)),
+  beast2_options = create_beast2_options())
+}
+\arguments{
+\item{inference_conditions}{conditions under which the inference model
+is used in the inference}
+
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
+
+\item{beast2_options}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}}
 }
 \value{
 a \link{pirouette} experiment.
@@ -26,5 +41,5 @@ Create a valid testing \link{pirouette} experiment.
  expect_silent(check_experiment(experiment))
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

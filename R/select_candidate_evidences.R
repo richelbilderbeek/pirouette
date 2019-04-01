@@ -1,7 +1,7 @@
 #' Select the evidences for candidate experiments
 #'
 #' @inheritParams default_params_doc
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 select_candidate_evidences <- function(
   experiments = list(create_test_experiment()),

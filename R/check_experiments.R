@@ -15,7 +15,7 @@
 #'   expect_error(check_experiments("nonsense"))
 #'   expect_error(check_experiments(NA))
 #'   expect_error(check_experiments(NULL))
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_experiments <- function(
   experiments

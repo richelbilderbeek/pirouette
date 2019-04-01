@@ -28,7 +28,7 @@
 #'      pir_params = pir_params
 #'    )
 #'  }
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_twinning_params <- function(
   rng_seed = 0,

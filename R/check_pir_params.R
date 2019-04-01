@@ -5,7 +5,7 @@
 #' can be created by \link{create_pir_params}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

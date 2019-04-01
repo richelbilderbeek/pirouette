@@ -20,5 +20,5 @@ a twin Yule tree of class \code{phylo},
 Create a twin tree from a phylogeny using a Yule process
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

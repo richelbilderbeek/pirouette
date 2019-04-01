@@ -22,5 +22,5 @@ Convert a tree into branching times. Differently from the ape's
  interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

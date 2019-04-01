@@ -24,5 +24,5 @@ Create a twin tree
   expect_true(is_phylo(twin_phylogeny))
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

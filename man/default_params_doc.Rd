@@ -433,5 +433,5 @@ This is an internal function, so it should be marked with
 }
 \author{
 Documentation by Giovanni Laudanno,
-  use of this function by Richel J.C. Bilderbeek
+  use of this function by Richèl J.C. Bilderbeek
 }

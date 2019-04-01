@@ -34,5 +34,5 @@ Use \link{check_experiment} to check if an object
   is one valid experiment
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

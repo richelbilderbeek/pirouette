@@ -23,7 +23,7 @@
 #'  )
 #'  # File does exist now
 #'  expect_true(file.exists(fasta_filename))
-#' @author Richel Bilderbeek
+#' @author Richèl Bilderbeek
 #' @export
 sim_alignment_file <- function(
   phylogeny,

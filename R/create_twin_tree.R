@@ -1,6 +1,6 @@
 #' Create a twin tree
 #' @inheritParams default_params_doc
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #'   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #'   twin_phylogeny <- create_twin_tree(phylogeny)

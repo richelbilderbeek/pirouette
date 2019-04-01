@@ -4,7 +4,7 @@
 #' @inheritParams default_params_doc
 #' @return a list of phylogenies in the posterior,
 #'   as a \link[ape]{multiphylo}
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

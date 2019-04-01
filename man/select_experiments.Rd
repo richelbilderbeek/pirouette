@@ -29,5 +29,5 @@ Use \link{check_experiments} to check if an object
   is a list of experiments
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

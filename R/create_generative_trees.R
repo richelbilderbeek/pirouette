@@ -1,6 +1,6 @@
 #' Create a Yule tree
 #' @inheritParams default_params_doc
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'
@@ -36,7 +36,7 @@ create_yule_tree <- function(
 
 #' Create a bd tree
 #' @inheritParams default_params_doc
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

@@ -30,5 +30,5 @@ Will \link{stop} if not.
  expect_error(check_twinning_params(NA))
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

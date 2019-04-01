@@ -87,5 +87,5 @@ These are the files created:
 Items marked [1] are created dependent on the setup.
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

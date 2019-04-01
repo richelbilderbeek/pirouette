@@ -7,7 +7,7 @@
 #' @return nothing. Will \link{stop} if not
 #' @seealso Use \link{check_experiments} to check if an object
 #'   is a list of experiments
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

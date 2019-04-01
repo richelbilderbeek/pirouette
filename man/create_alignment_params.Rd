@@ -47,5 +47,5 @@ These parameters are used in the \link{create_pir_params} function
  expect_true("rng_seed" \%in\% names(alignment_params))
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

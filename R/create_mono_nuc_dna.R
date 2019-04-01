@@ -2,7 +2,7 @@
 #' with four equal-sized nucleotide sections
 #' @param length number of nucleotides
 #' @param nucleotide number of nucleotides
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

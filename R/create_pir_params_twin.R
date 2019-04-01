@@ -4,7 +4,7 @@
 #' for the twin-something to the spots for the true-something
 #' @inheritParams default_params_doc
 #' @return a list with all \link{pirouette} twin parameters
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   pir_params <- create_test_pir_params(
 #'     twinning_params = create_twinning_params()

@@ -34,5 +34,5 @@ of at least one base pair
   expect_false(is_dna_seq(""))
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

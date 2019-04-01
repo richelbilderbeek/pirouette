@@ -4,7 +4,7 @@
 #' of a phylogeny, while preserving its topology.
 #' @inheritParams default_params_doc
 #' @return a phylogeny of class \link[ape]{phylo}
-#' @author Giovanni Laudanno, David Bapst, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, David Bapst, Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

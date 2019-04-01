@@ -26,11 +26,40 @@ evidences (aka marginal likelihoods)}
 \item{verbose}{if TRUE, show more output}
 }
 \value{
-a data frame with evidences
+a data frame with evidences. Returns NULL if there
+  are no experiments that have their evidence measured.
 }
 \description{
 Estimate the evidences
 }
+\examples{
+  fasta_filename <- get_beautier_path("test_output_0.fas")
+  experiments <- list(
+    create_test_experiment(
+      inference_conditions = create_inference_conditions(
+        do_measure_evidence = TRUE
+      )
+    )
+  )
+  evidence_epsilon <- 100.0
+
+  evidences <- est_evidences(
+    fasta_filename = fasta_filename,
+    experiments = experiments,
+    evidence_epsilon = evidence_epsilon
+  )
+
+  library(testthat)
+  expect_true("site_model_name" \%in\% names(evidences))
+  expect_true("clock_model_name" \%in\% names(evidences))
+  expect_true("tree_prior_name" \%in\% names(evidences))
+  expect_true("marg_log_lik" \%in\% names(evidences))
+  expect_true("marg_log_lik_sd" \%in\% names(evidences))
+  expect_true("weight" \%in\% names(evidences))
+
+  # As the only experiment, its weight is 1.0
+  expect_equal(1.0, evidences$weight[1])
+}
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

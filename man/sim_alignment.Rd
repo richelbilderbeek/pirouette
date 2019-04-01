@@ -35,5 +35,5 @@ alignment <- sim_alignment(
  expect_equal(ncol(alignment), n_base_pairs)
 }
 \author{
-Richel Bilderbeek
+Richèl Bilderbeek
 }

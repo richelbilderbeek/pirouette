@@ -25,5 +25,5 @@ Use \link{create_mono_nuc_dna} to create
   a mono-nucleotide DNA sequence.
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

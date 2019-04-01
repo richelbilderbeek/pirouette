@@ -2,7 +2,7 @@
 #' Skyline tree
 #' @inheritParams default_params_doc
 #' @return a CBS tree
-#' @author Richel J.C Bilderbeek
+#' @author Richèl J.C Bilderbeek
 #' @export
 twin_to_cbs_tree <- function(
   phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),

@@ -17,7 +17,7 @@
 #'
 #'   # Must have at least one nucleotide
 #'   expect_false(is_dna_seq(""))
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 is_dna_seq <- function(s) {
   stringr::str_match(s, "[acgt]*")[1, 1] != ""
 }

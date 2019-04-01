@@ -26,5 +26,5 @@ Will \link{stop} if not.
   }
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

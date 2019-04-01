@@ -55,5 +55,5 @@ Generate twin branching times given estimated lambda and mu and the original
  )
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

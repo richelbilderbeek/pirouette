@@ -27,5 +27,5 @@ can be created by \link{create_pir_params}.
   expect_error(check_pir_params(NA))
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

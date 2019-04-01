@@ -1,7 +1,7 @@
 #' Create the parameters for the mutation rate
 #' @inheritParams default_params_doc
 #' @return the mutation rate
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   library(testthat)
 #'

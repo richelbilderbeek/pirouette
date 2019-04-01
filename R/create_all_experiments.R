@@ -3,7 +3,7 @@
 #' These experiments are used in the \link{create_pir_params} function
 #' @inheritParams default_params_doc
 #' @return all \link{pirouette} experiments.
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #'   library(testthat)
 #'

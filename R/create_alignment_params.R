@@ -18,7 +18,7 @@
 #'  expect_true("mutation_rate" %in% names(alignment_params))
 #'  expect_true("rng_seed" %in% names(alignment_params))
 #' @export
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
   mutation_rate = 0.0,
@@ -43,7 +43,7 @@ create_alignment_params <- function(
 #' @inheritParams default_params_doc
 #' @return a list of alignment parameters
 #' @export
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 create_test_alignment_params <- function(
   root_sequence = "acgt",
   mutation_rate = 0.1,

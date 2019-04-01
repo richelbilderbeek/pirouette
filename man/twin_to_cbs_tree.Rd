@@ -23,5 +23,5 @@ Convert a phylogeny to a twin Coalescent Bayesian
 Skyline tree
 }
 \author{
-Richel J.C Bilderbeek
+Richèl J.C Bilderbeek
 }

@@ -46,5 +46,5 @@ of a phylogeny, while preserving its topology.
   )
 }
 \author{
-Giovanni Laudanno, David Bapst, Richel J.C. Bilderbeek
+Giovanni Laudanno, David Bapst, Richèl J.C. Bilderbeek
 }

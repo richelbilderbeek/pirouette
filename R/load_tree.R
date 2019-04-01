@@ -1,6 +1,11 @@
 #' Load pre-simulated tree generated under requested model and seed
 #' @inheritParams default_params_doc
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno,
+#' @examples
+#'   phylogeny <- load_tree()
+#'
+#'   library(testthat)
+#'   expect_true(is_phylo(phylogeny))
 #' @export
 load_tree <- function(tree_model = "mbd", seed = 1) {
   filename <- system.file(

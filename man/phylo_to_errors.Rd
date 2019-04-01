@@ -34,5 +34,5 @@ using the nLTT statistics. These nLTT statistics, all with values
 betweem (including) zero and (including) one, are returned.
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

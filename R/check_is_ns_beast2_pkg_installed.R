@@ -1,7 +1,7 @@
 #' Checks if the \code{NS} BEAST2 package is installed.
 #'
 #' Will \link{stop} if not.
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
 #'   library(babette)
 #'   library(testthat)

@@ -283,7 +283,7 @@
 #'   this model) to 1.0 (all evidence indicates this is the best model).
 #'   A weight of NA denotes that the weight is not measured
 #' @author Documentation by Giovanni Laudanno,
-#'   use of this function by Richel J.C. Bilderbeek
+#'   use of this function by Richèl J.C. Bilderbeek
 #' @note This is an internal function, so it should be marked with
 #'   \code{@noRd}. This is not done, as this will disallow all
 #'   functions to find the documentation parameters

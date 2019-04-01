@@ -3,7 +3,7 @@
 #' Will \link{stop} if not.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if nit
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
 #'  library(testthat)
 #'

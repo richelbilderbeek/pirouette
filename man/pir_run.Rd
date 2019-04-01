@@ -30,5 +30,5 @@ Use \link{pir_plot} to display the output of \link{pir_run} as a
   of \link{pir_run}
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

@@ -3,7 +3,7 @@
 #' @inheritParams default_params_doc
 #' @return a twin BD tree of class \code{phylo},
 #'   obtained from the corresponding phylogeny.
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 twin_to_bd_tree <- function(
   phylogeny,

@@ -32,5 +32,5 @@ Will \link{stop} if not.
   expect_error(check_error_measure_params(NULL))
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

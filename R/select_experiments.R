@@ -3,7 +3,7 @@
 #' @return a list of inference models
 #' @seealso Use \link{check_experiments} to check if an object
 #'   is a list of experiments
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 select_experiments <- function(
   experiments = list(create_test_experiment()),

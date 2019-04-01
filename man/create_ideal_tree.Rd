@@ -35,5 +35,5 @@ Create an "ideal" tree
   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

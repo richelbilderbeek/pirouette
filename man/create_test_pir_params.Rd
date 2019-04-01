@@ -54,5 +54,5 @@ Create a set of testing parameters for \link{pirouette}
   }
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

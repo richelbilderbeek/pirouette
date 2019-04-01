@@ -37,7 +37,7 @@
 #'    pir_plot(pir_out)
 #'  }
 #' @export
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 create_error_measure_params <- function(
   burn_in_fraction = 0.1,
   error_function = get_nltt_error_function()

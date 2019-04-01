@@ -25,5 +25,5 @@ to be used for testing
   )
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

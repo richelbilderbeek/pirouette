@@ -45,5 +45,5 @@ These experiments are used in the \link{create_pir_params} function
 
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

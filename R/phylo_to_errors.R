@@ -8,7 +8,7 @@
 #' using the nLTT statistics. These nLTT statistics, all with values
 #' betweem (including) zero and (including) one, are returned.
 #' @inheritParams default_params_doc
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 phylo_to_errors <- function(
   phylogeny,

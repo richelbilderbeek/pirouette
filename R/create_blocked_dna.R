@@ -8,7 +8,7 @@
 #'   expect_equal(create_blocked_dna(length = 8), "aaccggtt")
 #' @seealso Use \link{create_mono_nuc_dna} to create
 #'   a mono-nucleotide DNA sequence.
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 create_blocked_dna <- function(
   length

@@ -29,5 +29,5 @@ Will \link{stop} if not.
   expect_error(check_alignment_params(NULL))
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

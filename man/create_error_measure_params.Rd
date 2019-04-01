@@ -72,5 +72,5 @@ between the given phylogeny and the Bayesian posterior trees is measured.
  }
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

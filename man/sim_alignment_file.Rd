@@ -40,5 +40,5 @@ The simulation is performed by \link{sim_alignment}.
  expect_true(file.exists(fasta_filename))
 }
 \author{
-Richel Bilderbeek
+Richèl Bilderbeek
 }

@@ -33,5 +33,5 @@ Create the parameters for the mutation rate
   expect_equal(expected, created)
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

@@ -16,7 +16,7 @@
 #'  expect_equal(class(alignment), "DNAbin")
 #'  expect_equal(nrow(alignment), n_taxa)
 #'  expect_equal(ncol(alignment), n_base_pairs)
-#' @author Richel Bilderbeek
+#' @author Richèl Bilderbeek
 #' @export
 sim_alignment <- function(
   phylogeny,

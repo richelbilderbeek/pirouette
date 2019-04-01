@@ -1,7 +1,7 @@
 #' Create a rate matrix for the given site model
 #' @inheritParams default_params_doc
 #' @return a rate matrix
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   created <- create_rate_matrix(site_model = create_hky_site_model())
 #'

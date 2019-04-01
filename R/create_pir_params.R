@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @return a list with all \link{pirouette} parameters
 #' @seealso Use \link{pir_run} to run the \link{pirouette} pipeline
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   alignment_params <- create_test_alignment_params()
 #'   twinning_params <- create_twinning_params()
@@ -63,7 +63,7 @@ create_pir_params <- function(
 #'     pir_plot(pir_run)
 #'   }
 #' @export
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 create_test_pir_params <- function(
   alignment_params = create_test_alignment_params(),
   twinning_params = NA,

@@ -20,5 +20,5 @@ A test data frame can be created by \link{create_test_marg_liks}}
 Select the evidences for candidate experiments
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

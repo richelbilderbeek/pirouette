@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @param n_replicates number of trees simulated to pick the one with
 #'   the highest likelihood of
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #'   library(testthat)
 #'

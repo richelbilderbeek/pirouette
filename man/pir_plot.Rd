@@ -28,5 +28,5 @@ Use \link{create_test_pir_run_output} to create a test output
   of \link{pir_run}
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }
