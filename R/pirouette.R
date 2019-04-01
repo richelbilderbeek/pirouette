@@ -10,27 +10,25 @@
 #'
 #'
 #' @seealso
-#' These are packages associated with 'pirouette':
+#' These are packages associated with \link{pirouette}:
 #' \itemize{
 #'   \item{
-#'     The package 'beautier' can create
-#'     BEAST2 input files from R
+#'     \link{babette}: work with BEAST2
 #'   }
 #'   \item{
-#'     The package 'beastier' can run
-#'     BEAST2 from R
+#'     \link{beautier}: create BEAST2 input files
 #'   }
 #'   \item{
-#'     The package 'mauricer' can install
-#'     BEAST2 packages from R
+#'     \link{beastier}: run BEAST2
 #'   }
 #'   \item{
-#'     The package 'tracerer' can parse
-#'     BEAST2 output files from R
+#'     \link{mauricer}: install BEAST2 packages
 #'   }
 #'   \item{
-#'     The package 'babette' wraps all the previous packages
-#'     to allow a user-friendly BEAST2 usage from R
+#'     \link{mcbette}: compare inference models
+#'   }
+#'   \item{
+#'     \link{tracerer}: parse and analyse BEAST2 output
 #'   }
 #' }
 #' @docType package
