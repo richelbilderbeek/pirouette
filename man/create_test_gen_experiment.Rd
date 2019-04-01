@@ -15,7 +15,7 @@ Create a valid testing \link{pirouette} generative experiment.
 \examples{
  library(testthat)
 
- experiment <- create_cand_test_gen_experiment()
+ experiment <- create_test_gen_experiment()
 
  expect_true("inference_conditions" \%in\% names(experiment))
  expect_true("inference_model" \%in\% names(experiment))
