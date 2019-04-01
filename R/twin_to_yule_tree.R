@@ -1,6 +1,6 @@
 #' Create a twin tree from a phylogeny using a Yule process
 #' @inheritParams default_params_doc
-#' @return a twin Yule tree of class \code{phylo},
+#' @return a twin Yule tree of class \link[ape]{phylo},
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 twin_to_yule_tree <- function(

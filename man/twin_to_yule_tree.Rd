@@ -14,7 +14,7 @@ or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 }
 \value{
-a twin Yule tree of class \code{phylo},
+a twin Yule tree of class \link[ape]{phylo},
 }
 \description{
 Create a twin tree from a phylogeny using a Yule process
