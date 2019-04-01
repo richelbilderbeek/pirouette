@@ -19,13 +19,13 @@ create_twin_tree <- function(
     twin_tree <- twin_to_bd_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
-    )$tree
+    )
   }
   if (twinning_params$twin_model == "yule") {
     twin_tree <- twin_to_yule_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
-    )$tree
+    )
   }
   testit::assert(beautier::is_phylo(twin_tree))
   testit::assert(

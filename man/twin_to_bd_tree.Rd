@@ -15,7 +15,7 @@ or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 }
 \value{
-a twin BD tree of class \code{phylo},
+a twin BD tree of class \link[ape]{phylo},
   obtained from the corresponding phylogeny.
 }
 \description{

@@ -1,7 +1,7 @@
 #' Create an BD twin tree from a phylogeny
 #' and save it as a file
 #' @inheritParams default_params_doc
-#' @return a twin BD tree of class \code{phylo},
+#' @return a twin BD tree of class \link[ape]{phylo},
 #'   obtained from the corresponding phylogeny.
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
@@ -59,15 +59,8 @@ twin_to_bd_tree <- function(
     method = method
   )
 
-  bd_tree <- combine_brts_and_topology(
+  combine_brts_and_topology(
     brts = bd_brts0,
     tree = phylogeny
-  )
-
-  bd_l_matrix <- bd_phylo_2_l_table(bd_tree) # nolint
-
-  list(
-    tree = bd_tree,
-    l_matrix = bd_l_matrix
   )
 }
