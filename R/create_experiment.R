@@ -85,7 +85,7 @@ create_test_experiment <- function(
 #' @examples
 #'  library(testthat)
 #'
-#'  experiment <- create_cand_test_experiment()
+#'  experiment <- create_test_cand_experiment()
 #'
 #'  expect_true("inference_conditions" %in% names(experiment))
 #'  expect_true("inference_model" %in% names(experiment))
