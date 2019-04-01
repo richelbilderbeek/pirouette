@@ -15,6 +15,14 @@ twin tree filename
 \description{
 Converts true tree filenames to twin tree filenames
 }
+\examples{
+  library(testthat)
+
+  filename <- "beast2_output.xml.state"
+  created <- to_twin_filename(filename)
+  expected <- "beast2_output_twin.xml.state"
+  expect_equal(expected, created)
+}
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

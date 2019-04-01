@@ -6,6 +6,8 @@
 #' @return a list with all \link{pirouette} twin parameters
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
+#'   library(testthat)
+#'
 #'   pir_params <- create_test_pir_params(
 #'     twinning_params = create_twinning_params()
 #'   )

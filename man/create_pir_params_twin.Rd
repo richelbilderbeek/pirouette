@@ -18,6 +18,8 @@ Or: puts the twin in the front row, by copying all parameters
 for the twin-something to the spots for the true-something
 }
 \examples{
+  library(testthat)
+
   pir_params <- create_test_pir_params(
     twinning_params = create_twinning_params()
   )
