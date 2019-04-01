@@ -17,19 +17,21 @@ nothing. Will \link{stop} if not
 Will \link{stop} if not.
 }
 \examples{
-  testthat::expect_silent(
+  library(testthat)
+
+  expect_silent(
     check_run_experiments(
       list(create_test_run_experiment())
     )
   )
-  testthat::expect_error(
+  expect_error(
     check_run_experiments(
       create_test_run_experiment()
     )
   )
-  testthat::expect_error(check_run_experiments("nonsense"))
-  testthat::expect_error(check_run_experiments(NA))
-  testthat::expect_error(check_run_experiments(NULL))
+  expect_error(check_run_experiments("nonsense"))
+  expect_error(check_run_experiments(NA))
+  expect_error(check_run_experiments(NULL))
 }
 \seealso{
 Use \link{check_run_experiment} to check if an object

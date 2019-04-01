@@ -8,7 +8,7 @@
 #' @examples
 #'   library(testthat)
 #'
-#'   if (beastier::is_on_travis() && beastier::is_beast2_installed()) {
+#'   if (is_on_travis() && is_beast2_installed()) {
 #'
 #'     alignment_params <- create_test_alignment_params()
 #'     sim_alignment_file(

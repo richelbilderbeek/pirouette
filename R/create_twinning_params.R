@@ -20,9 +20,9 @@
 #'  )
 #'  expect_silent(check_pir_params(pir_params))
 #'
-#'  if (beastier::is_on_ci() &&
+#'  if (is_on_ci() &&
 #'    rappdirs::app_dir()$os == "unix" &&
-#'    beastier::is_beast2_installed()) {
+#'    is_beast2_installed()) {
 #'    pir_out <- pir_run(
 #'      phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'      pir_params = pir_params

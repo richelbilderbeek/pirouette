@@ -1,7 +1,6 @@
 #' Create the parameters to specify how the error
 #' between the given phylogeny and the Bayesian posterior trees is measured.
 #'
-#'
 #' @inheritParams default_params_doc
 #' @return an error measurement parameter set
 #' @examples
@@ -29,6 +28,14 @@
 #'    experiments = list(create_test_experiment()),
 #'    error_measure_params = error_measure_params
 #'  )
+#'
+#'  if (is_on_ci()) {
+#'    pir_out <- pir_run(
+#'      phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
+#'      pir_params = pir_params
+#'    )
+#'    pir_plot(pir_out)
+#'  }
 #' @export
 #' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 create_error_measure_params <- function(
