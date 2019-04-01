@@ -11,24 +11,6 @@ convert_tree2brts <- function(tree, precision = 8) {
   round(ape::branching.times(tree), digits = precision)
 }
 
-#' @title Site models
-#' @description Site models
-#' @inheritParams default_params_doc
-#' @return the site models
-#' @author Giovanni Laudanno
-get_site_models <- function() {
-  beautier::get_site_model_names()
-}
-
-#' @title Clock models
-#' @description Clock models
-#' @inheritParams default_params_doc
-#' @return the clock models
-#' @author Giovanni Laudanno
-get_clock_models <- function() {
-  beautier::get_clock_model_names()
-}
-
 #' @title Twin models
 #' @description Twin models
 #' @inheritParams default_params_doc

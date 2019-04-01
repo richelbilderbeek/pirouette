@@ -1,23 +1,5 @@
 context("test-utils")
 
-test_that("get_site_models", {
-  expect_true(
-    length(get_site_models()) > 0 # nolint internal function
-  )
-  expect_true(
-    is.character(get_site_models()) # nolint internal function
-  )
-})
-
-test_that("get_clock_models", {
-  expect_true(
-    length(get_clock_models()) > 0 # nolint internal function
-  )
-  expect_true(
-    is.character(get_clock_models()) # nolint internal function
-  )
-})
-
 test_that("get_twin_models", {
   expect_true(
     length(get_twin_models()) > 0 # nolint internal function
