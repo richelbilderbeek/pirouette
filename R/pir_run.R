@@ -137,8 +137,7 @@ pir_run <- function(
     for (j in 1:nrow(pir_outs)) {
       # Create specific twin pir_params
       pir_params_twin <- create_pir_params_twin(
-        pir_params = pir_params,
-        pir_out = pir_outs[j, ]
+        pir_params = pir_params
       )
 
       # Create and save twin tree
