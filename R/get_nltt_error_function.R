@@ -21,4 +21,3 @@
 get_nltt_error_function <- function() {
   nLTT::nltts_diff
 }
-
