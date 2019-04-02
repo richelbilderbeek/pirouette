@@ -25,6 +25,7 @@ Get an error function that uses the nLTT statistic
   error_2 <- error_function(phylogeny, c(tree_2))
   expect_true(lowest_error < error_1)
   expect_true(lowest_error < error_2)
+
   expect_equal(2, length(error_function(phylogeny, trees)))
 }
 \author{
