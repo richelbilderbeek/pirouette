@@ -42,12 +42,10 @@ after_success:
   #- ./scripts/check_dead_links
 
 after_failure:
-  - cat /home/travis/build/richelbilderbeek/pirouette/..Rcheck/00install.out
-  - cat /home/travis/build/richelbilderbeek/pirouette/..Rcheck/00check.log
+  - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
   - cd ~; find . | egrep "beast"
   - cd ~; find . | egrep "\.log"
   - cd ~; find . | egrep "\.trees"
   - cd ~; find . | egrep "\.xml"
   - cd ~; find . | egrep "\.xml\.state"
   - cd ~; find . | egrep "\.fasta"
-  - cat /home/travis/build/richelbilderbeek/pirouette/..Rcheck/tests/testthat/testthat.log
