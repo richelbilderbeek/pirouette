@@ -40,7 +40,9 @@ est_evidences <- function(
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
-  testit::assert(beastier::is_beast2_installed())
+  if (!beastier::is_beast2_installed()) {
+    stop("BEAST2 not installed. Tip: use 'beastier::install_beast2()'"  )
+  }
   if (!file.exists(fasta_filename)) {
     stop(
       "'fasta_filename' must be the name of an existing file. ",

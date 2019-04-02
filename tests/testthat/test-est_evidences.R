@@ -118,6 +118,20 @@ test_that("abuse", {
   experiments <- list(create_test_cand_experiment())
   evidence_epsilon <- 100.0
 
+  # No BEAST2 installed
+  if (!beastier::is_beast2_installed()) {
+    expect_error(
+      est_evidences(
+        fasta_filename = fasta_filename,
+        experiments = experiments,
+        evidence_epsilon = evidence_epsilon
+      ),
+      "BEAST2 not installed"
+    )
+    return()
+  }
+  testit::assert(beastier::is_beast2_installed())
+
   # fasta_filename
   expect_error(
     est_evidences(
