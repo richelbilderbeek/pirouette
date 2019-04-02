@@ -29,8 +29,8 @@ convert_tree2brts <- function(tree, precision = 8) {
 #' @examples
 #'   library(testthat)
 #'
-#'   expect_true("birth_death" %in% get_twin_models())
 #'   expect_true("yule" %in% get_twin_models())
+#'   expect_true("birth_death" %in% get_twin_models())
 #'   expect_false("nonsense" %in% get_twin_models())
 #' @export
 get_twin_models <- function() {

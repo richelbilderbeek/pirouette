@@ -58,7 +58,7 @@ Estimate the evidences
   expect_true("weight" \%in\% names(evidences))
 
   # As the only experiment, its weight is 1.0
-  expect_equal(1.0, evidences$weight)
+  expect_equal(1.0, evidences$weight[1])
 }
 \author{
 Richèl J.C. Bilderbeek

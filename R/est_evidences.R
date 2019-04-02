@@ -114,6 +114,8 @@ est_evidences <- function(
       file.remove(experiment$beast2_options$output_trees_filenames)
     }
   }
+  if (abs(1.0 - sum(marg_liks$weight)) > 0.01) {
 
+  }
   marg_liks
 }
