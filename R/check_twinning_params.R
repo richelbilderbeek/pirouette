@@ -43,7 +43,8 @@ check_twinning_params <- function(
   if (!(twinning_params$twin_model %in% get_twin_models())) {
     stop(
       "'twin model' is not implemented. \n",
-      "Possible values: '", get_twin_models(), "'. \n",
+      "Possible values: '",
+        paste0(get_twin_models(), collapse = ", "), "'. \n",
       "Actual value: '", twinning_params$twin_model, "'"
     )
   }
