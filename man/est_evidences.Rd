@@ -37,7 +37,6 @@ Estimate the evidences
     "extdata", "alignment.fas", package = "pirouette"
   )
 
-
   # Create a single one candidate experiment
   experiments <- list(create_test_cand_experiment())
 
