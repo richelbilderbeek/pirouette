@@ -7,8 +7,8 @@
 #'
 #' experiment_1 <- create_test_gen_experiment()
 #' experiment_2 <- create_test_cand_experiment()
-#' expect_true(experiment_1$inference_conditions$model_type == "generative")
-#' expect_true(experiment_2$inference_conditions$model_type == "candidate")
+#' expect_equal(experiment_1$inference_conditions$model_type, "generative")
+#' expect_equal(experiment_2$inference_conditions$model_type, "candidate")
 #' experiments <- list(experiment_1, experiment_2)
 #'
 #' candidate_evidences <- select_candidate_evidences(
