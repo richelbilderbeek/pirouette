@@ -22,9 +22,9 @@ before_install:
   - sudo apt install -qq libmpfr-dev
 
 before_script:
-  - Rscript -e "beastier::install_beast2()"
-  - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
-  - Rscript -e "mauricer::is_beast2_pkg_installed(\"NS\")"
+  # - Rscript -e "beastier::install_beast2()"
+  # - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
+  # - Rscript -e "mauricer::is_beast2_pkg_installed(\"NS\")"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint
   - sudo pip install proselint
