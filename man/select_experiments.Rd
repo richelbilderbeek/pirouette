@@ -44,6 +44,7 @@ Select the experiments to do a Bayesian inference with.
     marg_liks = evidences
   )
 
+  library(testthat)
   expect_equal(1, length(selected))
   expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 }

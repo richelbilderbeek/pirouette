@@ -15,6 +15,8 @@ or Multiple-Birth-Death models. 'pirouette' is presented in the article
 authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
 }
 \examples{
+  library(testthat)
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   # Select all experiments with 'run_if' is 'always'
