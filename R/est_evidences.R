@@ -14,22 +14,24 @@
 #'   # Be sloppy amd fast in estimating the evidence
 #'   evidence_epsilon <- 100.0
 #'
-#'   evidences <- est_evidences(
-#'     fasta_filename = fasta_filename,
-#'     experiments = experiments,
-#'     evidence_epsilon = evidence_epsilon
-#'   )
+#'   if (is_beast2_installed()) {
+#'     evidences <- est_evidences(
+#'       fasta_filename = fasta_filename,
+#'       experiments = experiments,
+#'       evidence_epsilon = evidence_epsilon
+#'     )
 #'
-#'   library(testthat)
-#'   expect_true("site_model_name" %in% names(evidences))
-#'   expect_true("clock_model_name" %in% names(evidences))
-#'   expect_true("tree_prior_name" %in% names(evidences))
-#'   expect_true("marg_log_lik" %in% names(evidences))
-#'   expect_true("marg_log_lik_sd" %in% names(evidences))
-#'   expect_true("weight" %in% names(evidences))
+#'     library(testthat)
+#'     expect_true("site_model_name" %in% names(evidences))
+#'     expect_true("clock_model_name" %in% names(evidences))
+#'     expect_true("tree_prior_name" %in% names(evidences))
+#'     expect_true("marg_log_lik" %in% names(evidences))
+#'     expect_true("marg_log_lik_sd" %in% names(evidences))
+#'     expect_true("weight" %in% names(evidences))
 #'
-#'   # As the only experiment, its weight is 1.0
-#'   expect_equal(1.0, evidences$weight[1])
+#'     # As the only experiment, its weight is 1.0
+#'     expect_equal(1.0, evidences$weight[1])
+#'  }
 #' @export
 est_evidences <- function(
   fasta_filename,
@@ -38,6 +40,7 @@ est_evidences <- function(
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
+  testit::assert(beastier::is_beast2_installed())
   if (!file.exists(fasta_filename)) {
     stop(
       "'fasta_filename' must be the name of an existing file. ",

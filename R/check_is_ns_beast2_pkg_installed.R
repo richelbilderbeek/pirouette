@@ -19,6 +19,7 @@
 #'   }
 #' @export
 check_is_ns_beast2_pkg_installed <- function() { # nolint long function name indeed
+  testit::assert(beastier::is_beast2_installed())
   # Catch and ignore errors caused by connection problems, e.g:
   #
   # Error reading the following package repository URLs:
