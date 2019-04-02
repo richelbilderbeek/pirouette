@@ -33,14 +33,15 @@ a data frame with evidences. Returns NULL if there
 Estimate the evidences
 }
 \examples{
-  fasta_filename <- get_beautier_path("test_output_0.fas")
-  experiments <- list(
-    create_test_experiment(
-      inference_conditions = create_inference_conditions(
-        do_measure_evidence = TRUE
-      )
-    )
+  fasta_filename <- system.file(
+    "extdata", "alignment.fas", package = "pirouette"
   )
+
+
+  # Create a single one candidate experiment
+  experiments <- list(create_test_cand_experiment())
+
+  # Be sloppy amd fast in estimating the evidence
   evidence_epsilon <- 100.0
 
   evidences <- est_evidences(
@@ -58,7 +59,7 @@ Estimate the evidences
   expect_true("weight" \%in\% names(evidences))
 
   # As the only experiment, its weight is 1.0
-  expect_equal(1.0, evidences$weight[1])
+  expect_equal(1.0, evidences$weight)
 }
 \author{
 Richèl J.C. Bilderbeek

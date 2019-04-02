@@ -4,14 +4,14 @@
 #'   are no experiments that have their evidence measured.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   fasta_filename <- get_beautier_path("test_output_0.fas")
-#'   experiments <- list(
-#'     create_test_experiment(
-#'       inference_conditions = create_inference_conditions(
-#'         do_measure_evidence = TRUE
-#'       )
-#'     )
+#'   fasta_filename <- system.file(
+#'     "extdata", "alignment.fas", package = "pirouette"
 #'   )
+#'
+#'   # Create a single one candidate experiment
+#'   experiments <- list(create_test_cand_experiment())
+#'
+#'   # Be sloppy amd fast in estimating the evidence
 #'   evidence_epsilon <- 100.0
 #'
 #'   evidences <- est_evidences(
@@ -29,7 +29,7 @@
 #'   expect_true("weight" %in% names(evidences))
 #'
 #'   # As the only experiment, its weight is 1.0
-#'   expect_equal(1.0, evidences$weight[1])
+#'   expect_equal(1.0, evidences$weight)
 #' @export
 est_evidences <- function(
   fasta_filename,
@@ -38,8 +38,19 @@ est_evidences <- function(
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
-  testit::assert(file.exists(fasta_filename))
+  if (!file.exists(fasta_filename)) {
+    stop(
+      "'fasta_filename' must be the name of an existing file. ",
+      "File '", fasta_filename, "' not found"
+    )
+  }
   check_experiments(experiments) # nolint pirouette function
+  if (!is.numeric(evidence_epsilon) || length(evidence_epsilon) != 1) {
+    stop(
+      "'evidence_epsilon' must be one numerical value. ",
+      "Actual value(s): ", evidence_epsilon
+    )
+  }
 
   # Collect inference models and BEAST2 optionses
   inference_models <- list()
