@@ -58,9 +58,9 @@ check_experiments <- function(
           "Difference between experiment[[", i, "]] ",
           "and experiment[[", j, "]].\n",
           "Value experiment[[", i, "]]$inference_model$mcmc: ",
-          experiments[[i]]$inference_model$mcmc, "\n",
+          paste0(experiments[[i]]$inference_model$mcmc, collapse = ", "), "\n",
           "Value experiment[[", j, "]]$inference_model$mcmc: ",
-          experiments[[j]]$inference_model$mcmc, "\n"
+          paste0(experiments[[j]]$inference_model$mcmc, collapse = ", "), "\n"
         )
       }
     }
