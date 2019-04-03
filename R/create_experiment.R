@@ -101,7 +101,7 @@ create_test_cand_experiment <- function(
     run_if = "best_candidate",
     do_measure_evidence = TRUE
   ),
-  inference_model = pirouette::create_inference_model(
+  inference_model = beautier::create_inference_model(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options(
@@ -169,7 +169,7 @@ create_test_cand_experiment <- function(
 #' @export
 create_test_gen_experiment <- function(
   inference_conditions = create_inference_conditions(),
-  inference_model = pirouette::create_inference_model(
+  inference_model = beautier::create_inference_model(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options()
