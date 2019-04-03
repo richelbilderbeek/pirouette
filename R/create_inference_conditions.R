@@ -25,7 +25,7 @@
 #'  expect_true("do_measure_evidence" %in% names(inference_conditions))
 #'
 #'  # Usingt the inference conditions, create a testing candidate experiment
-#'  experiment <- create_test_candidate_experiment(
+#'  experiment <- create_test_cand_experiment(
 #'    inference_conditions = inference_conditions
 #'  )
 #'

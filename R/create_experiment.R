@@ -129,7 +129,7 @@ create_test_cand_experiment <- function() {
 #'  library(testthat)
 #'
 #'  # Create a testing candidate experiment
-#'  experiment <- create_test_candidate_experiment()
+#'  experiment <- create_test_cand_experiment()
 #'  expect_true("inference_conditions" %in% names(experiment))
 #'  expect_true("inference_model" %in% names(experiment))
 #'  expect_true("beast2_options" %in% names(experiment))
