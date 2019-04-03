@@ -41,7 +41,7 @@ est_evidences <- function(
   verbose = FALSE
 ) {
   if (!beastier::is_beast2_installed()) {
-    stop("BEAST2 not installed. Tip: use 'beastier::install_beast2()'"  )
+    stop("BEAST2 not installed. Tip: use 'beastier::install_beast2()'")
   }
   if (!file.exists(fasta_filename)) {
     stop(
