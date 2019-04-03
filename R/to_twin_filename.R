@@ -4,12 +4,12 @@
 #' @export
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   filename <- "beast2_output.xml.state"
-#'   created <- to_twin_filename(filename)
-#'   expected <- "beast2_output_twin.xml.state"
-#'   expect_equal(expected, created)
+#' filename <- "beast2_output.xml.state"
+#' created <- to_twin_filename(filename)
+#' expected <- "beast2_output_twin.xml.state"
+#' expect_equal(expected, created)
 to_twin_filename <- function(
   filename
 ) {

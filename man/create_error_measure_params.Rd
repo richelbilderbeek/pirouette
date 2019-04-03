@@ -59,11 +59,11 @@ between the given phylogeny and the Bayesian posterior trees is measured.
 
  pir_params <- create_pir_params(
    alignment_params = create_test_alignment_params(),
-   experiments = list(create_test_experiment()),
+   experiments = list(create_test_gen_experiment()),
    error_measure_params = error_measure_params
  )
 
- if (is_on_ci()) {
+ if (is_on_ci() && is_beast2_installed()) {
    pir_out <- pir_run(
      phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
      pir_params = pir_params

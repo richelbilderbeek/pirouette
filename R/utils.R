@@ -10,12 +10,12 @@
 #' @return the branching times
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+#' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #'
-#'   branching_times <- convert_tree2brts(phylogeny)
+#' branching_times <- convert_tree2brts(phylogeny)
 #'
-#'   library(testthat)
-#'   expect_equal(c(3.0, 2.0), as.numeric(branching_times))
+#' library(testthat)
+#' expect_equal(c(3.0, 2.0), as.numeric(branching_times))
 #' @export
 convert_tree2brts <- function(tree, precision = 8) {
   round(ape::branching.times(tree), digits = precision)
@@ -27,11 +27,11 @@ convert_tree2brts <- function(tree, precision = 8) {
 #' @return the twin models
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   expect_true("yule" %in% get_twin_models())
-#'   expect_true("birth_death" %in% get_twin_models())
-#'   expect_false("nonsense" %in% get_twin_models())
+#' expect_true("yule" %in% get_twin_models())
+#' expect_true("birth_death" %in% get_twin_models())
+#' expect_false("nonsense" %in% get_twin_models())
 #' @export
 get_twin_models <- function() {
   c("birth_death", "yule")
@@ -43,12 +43,12 @@ get_twin_models <- function() {
 #' @return the twin methods
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   expect_true("random_tree" %in% get_twin_methods())
-#'   expect_true("max_clade_cred" %in% get_twin_methods())
-#'   expect_true("max_likelihood" %in% get_twin_methods())
-#'   expect_false("nonsense" %in% get_twin_methods())
+#' expect_true("random_tree" %in% get_twin_methods())
+#' expect_true("max_clade_cred" %in% get_twin_methods())
+#' expect_true("max_likelihood" %in% get_twin_methods())
+#' expect_false("nonsense" %in% get_twin_methods())
 #' @export
 get_twin_methods <- function() {
   c(
@@ -64,17 +64,16 @@ get_twin_methods <- function() {
 #' @return the L table
 #' @author Xu Liang, Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+#' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #'
-#'   l_table <- bd_phylo_2_l_table(phylogeny)
+#' l_table <- bd_phylo_2_l_table(phylogeny)
 #'
-#'   library(testthat)
-#'   expect_equal("matrix", class(l_table))
-#'   expect_true("birth_time" %in% colnames(l_table))
-#'   expect_true("parent" %in% colnames(l_table))
-#'   expect_true("id" %in% colnames(l_table))
-#'   expect_true("death_time" %in% colnames(l_table))
-#'
+#' library(testthat)
+#' expect_equal("matrix", class(l_table))
+#' expect_true("birth_time" %in% colnames(l_table))
+#' expect_true("parent" %in% colnames(l_table))
+#' expect_true("id" %in% colnames(l_table))
+#' expect_true("death_time" %in% colnames(l_table))
 #' @export
 bd_phylo_2_l_table <- function(
   phylo

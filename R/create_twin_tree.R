@@ -2,11 +2,11 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#'   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-#'   twin_phylogeny <- create_twin_tree(phylogeny)
+#' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+#' twin_phylogeny <- create_twin_tree(phylogeny)
 #'
-#'   library(testthat)
-#'   expect_true(is_phylo(twin_phylogeny))
+#' library(testthat)
+#' expect_true(is_phylo(twin_phylogeny))
 #' @export
 create_twin_tree <- function(
   phylogeny,

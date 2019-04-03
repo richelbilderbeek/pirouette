@@ -4,7 +4,22 @@
 \alias{create_test_gen_experiment}
 \title{Create a valid testing \link{pirouette} generative experiment.}
 \usage{
-create_test_gen_experiment()
+
+  create_test_gen_experiment(inference_conditions = create_inference_conditions(),
+  inference_model = create_inference_model(mcmc =
+  create_mcmc(chain_length = 2000, store_every = 1000)),
+  beast2_options = create_beast2_options())
+}
+\arguments{
+\item{inference_conditions}{conditions under which the inference model
+is used in the inference}
+
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
+
+\item{beast2_options}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}}
 }
 \value{
 a \link{pirouette} experiment.
@@ -15,15 +30,39 @@ Create a valid testing \link{pirouette} generative experiment.
 \examples{
  library(testthat)
 
- experiment <- create_test_gen_experiment()
-
+ # Create a testing candidate experiment
+ experiment <- create_test_candidate_experiment()
  expect_true("inference_conditions" \%in\% names(experiment))
  expect_true("inference_model" \%in\% names(experiment))
  expect_true("beast2_options" \%in\% names(experiment))
  expect_true("est_evidence_mcmc" \%in\% names(experiment))
  expect_true("beast2_bin_path" \%in\% names(experiment))
-
  expect_silent(check_experiment(experiment))
+
+ # Create a testing generative experiment
+ experiment <- create_test_gen_experiment()
+ expect_true("inference_conditions" \%in\% names(experiment))
+ expect_true("inference_model" \%in\% names(experiment))
+ expect_true("beast2_options" \%in\% names(experiment))
+ expect_true("est_evidence_mcmc" \%in\% names(experiment))
+ expect_true("beast2_bin_path" \%in\% names(experiment))
+ expect_silent(check_experiment(experiment))
+
+ # Use the experiment to create the full pirouette parameter set
+ pir_params <- create_pir_params(
+   alignment_params = create_test_alignment_params(),
+   experiments = list(experiment)
+ )
+
+ # Run that experiment on a continuous integration service,
+ # only when BEAST2 is unstalled
+ if (is_on_ci() && is_beast2_installed()) {
+   pir_out <- pir_run(
+     phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
+     pir_params = pir_params
+   )
+   pir_plot(pir_out)
+ }
 }
 \author{
 Richèl J.C. Bilderbeek

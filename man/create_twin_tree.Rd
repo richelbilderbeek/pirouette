@@ -17,11 +17,11 @@ as can be created by \link{create_twinning_params}}
 Create a twin tree
 }
 \examples{
-  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  twin_phylogeny <- create_twin_tree(phylogeny)
+phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+twin_phylogeny <- create_twin_tree(phylogeny)
 
-  library(testthat)
-  expect_true(is_phylo(twin_phylogeny))
+library(testthat)
+expect_true(is_phylo(twin_phylogeny))
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

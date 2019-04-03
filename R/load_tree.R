@@ -2,10 +2,10 @@
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   phylogeny <- load_tree()
+#' phylogeny <- load_tree()
 #'
-#'   library(testthat)
-#'   expect_true(is_phylo(phylogeny))
+#' library(testthat)
+#' expect_true(is_phylo(phylogeny))
 #' @export
 load_tree <- function(tree_model = "mbd", seed = 1) {
   filename <- system.file(

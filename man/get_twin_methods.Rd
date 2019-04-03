@@ -13,12 +13,12 @@ the twin methods
 Twin methods
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  expect_true("random_tree" \%in\% get_twin_methods())
-  expect_true("max_clade_cred" \%in\% get_twin_methods())
-  expect_true("max_likelihood" \%in\% get_twin_methods())
-  expect_false("nonsense" \%in\% get_twin_methods())
+expect_true("random_tree" \%in\% get_twin_methods())
+expect_true("max_clade_cred" \%in\% get_twin_methods())
+expect_true("max_likelihood" \%in\% get_twin_methods())
+expect_false("nonsense" \%in\% get_twin_methods())
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

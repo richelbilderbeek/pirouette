@@ -6,12 +6,11 @@
 #'   of \link{pir_run}
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   pir_plot(
-#'     create_test_pir_run_output(
-#'       add_twin = TRUE,
-#'       add_best = TRUE
-#'     )
-#'   )
+#' pir_out <- create_test_pir_run_output(
+#'   add_twin = TRUE,
+#'   add_best = TRUE
+#' )
+#' pir_plot(pir_out)
 #' @export
 pir_plot <- function(pir_out) {
 

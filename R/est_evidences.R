@@ -4,34 +4,34 @@
 #'   are no experiments that have their evidence measured.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   fasta_filename <- system.file(
-#'     "extdata", "alignment.fas", package = "pirouette"
+#' fasta_filename <- system.file(
+#'   "extdata", "alignment.fas", package = "pirouette"
+#' )
+#'
+#' # Create a single one candidate experiment
+#' experiments <- list(create_test_cand_experiment())
+#'
+#' # Be sloppy amd fast in estimating the evidence
+#' evidence_epsilon <- 100.0
+#'
+#' if (is_on_ci() && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+#'   evidences <- est_evidences(
+#'     fasta_filename = fasta_filename,
+#'     experiments = experiments,
+#'     evidence_epsilon = evidence_epsilon
 #'   )
 #'
-#'   # Create a single one candidate experiment
-#'   experiments <- list(create_test_cand_experiment())
+#'   library(testthat)
+#'   expect_true("site_model_name" %in% names(evidences))
+#'   expect_true("clock_model_name" %in% names(evidences))
+#'   expect_true("tree_prior_name" %in% names(evidences))
+#'   expect_true("marg_log_lik" %in% names(evidences))
+#'   expect_true("marg_log_lik_sd" %in% names(evidences))
+#'   expect_true("weight" %in% names(evidences))
 #'
-#'   # Be sloppy amd fast in estimating the evidence
-#'   evidence_epsilon <- 100.0
-#'
-#'   if (is_beast2_installed()) {
-#'     evidences <- est_evidences(
-#'       fasta_filename = fasta_filename,
-#'       experiments = experiments,
-#'       evidence_epsilon = evidence_epsilon
-#'     )
-#'
-#'     library(testthat)
-#'     expect_true("site_model_name" %in% names(evidences))
-#'     expect_true("clock_model_name" %in% names(evidences))
-#'     expect_true("tree_prior_name" %in% names(evidences))
-#'     expect_true("marg_log_lik" %in% names(evidences))
-#'     expect_true("marg_log_lik_sd" %in% names(evidences))
-#'     expect_true("weight" %in% names(evidences))
-#'
-#'     # As the only experiment, its weight is 1.0
-#'     expect_equal(1.0, evidences$weight[1])
-#'  }
+#'   # As the only experiment, its weight is 1.0
+#'   expect_equal(1.0, evidences$weight[1])
+#' }
 #' @export
 est_evidences <- function(
   fasta_filename,

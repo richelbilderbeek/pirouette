@@ -10,10 +10,10 @@ get_model_selections()
 Get the possible ways to select an inference model
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  expect_true("generative" \%in\% get_model_selections())
-  expect_true("most_evidence" \%in\% get_model_selections())
+expect_true("generative" \%in\% get_model_selections())
+expect_true("most_evidence" \%in\% get_model_selections())
 }
 \author{
 Richèl J.C. Bilderbeek

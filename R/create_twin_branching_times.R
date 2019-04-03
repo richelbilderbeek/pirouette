@@ -4,22 +4,22 @@
 #' @return twin branching times
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+#' phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 #'
-#'   branching_times <- create_twin_branching_times(
-#'    seed = 314,
-#'    lambda = 0.1,
-#'    mu = 1.0,
-#'    phylogeny = phylogeny,
-#'    n_replicates = 1,
-#'    method = "random_tree"
-#'  )
+#' branching_times <- create_twin_branching_times(
+#'   seed = 314,
+#'   lambda = 0.1,
+#'   mu = 1.0,
+#'   phylogeny = phylogeny,
+#'   n_replicates = 1,
+#'   method = "random_tree"
+#' )
 #'
-#'  library(testthat)
-#'  expect_equal(
-#'    length(ape::branching.times(phylogeny)),
-#'    length(branching_times)
-#'  )
+#' library(testthat)
+#' expect_equal(
+#'   length(ape::branching.times(phylogeny)),
+#'   length(branching_times)
+#' )
 #' @export
 create_twin_branching_times <- function(
   seed,
