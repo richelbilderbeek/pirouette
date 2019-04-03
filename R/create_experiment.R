@@ -92,7 +92,6 @@ create_test_experiment <- function(
 #' expect_true("beast2_options" %in% names(experiment))
 #' expect_true("est_evidence_mcmc" %in% names(experiment))
 #' expect_true("beast2_bin_path" %in% names(experiment))
-#'
 #' expect_silent(check_experiment(experiment))
 #' @export
 create_test_cand_experiment <- function(
