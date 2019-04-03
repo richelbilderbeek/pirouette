@@ -6,7 +6,7 @@
 \usage{
 create_experiment(inference_conditions = create_inference_conditions(),
   inference_model = beautier::create_inference_model(mcmc =
-  create_mcmc(store_every = 1000)),
+  beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
   tempfile(pattern = "beast2_", fileext = ".xml"), output_log_filename =
   tempfile(pattern = "beast2_", fileext = ".log"), output_trees_filenames =

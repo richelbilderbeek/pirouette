@@ -6,9 +6,9 @@
 \usage{
 
   create_test_gen_experiment(inference_conditions = create_inference_conditions(),
-  inference_model = create_inference_model(mcmc =
-  create_mcmc(chain_length = 2000, store_every = 1000)),
-  beast2_options = create_beast2_options())
+  inference_model = pirouette::create_inference_model(mcmc =
+  beautier::create_mcmc(chain_length = 2000, store_every = 1000)),
+  beast2_options = beastier::create_beast2_options())
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model

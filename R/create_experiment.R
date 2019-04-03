@@ -20,7 +20,7 @@
 create_experiment <- function(
   inference_conditions = create_inference_conditions(),
   inference_model = beautier::create_inference_model(
-    mcmc = create_mcmc(store_every = 1000)
+    mcmc = beautier::create_mcmc(store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options(
     input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
@@ -66,10 +66,10 @@ create_experiment <- function(
 #' @export
 create_test_experiment <- function(
   inference_conditions = create_inference_conditions(),
-  inference_model = create_inference_model(
-    mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+  inference_model = beautier::create_inference_model(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   ),
-  beast2_options = create_beast2_options()
+  beast2_options = beastier::create_beast2_options()
 ) {
   create_experiment(
     inference_conditions = inference_conditions,
@@ -95,29 +95,34 @@ create_test_experiment <- function(
 #'
 #'  expect_silent(check_experiment(experiment))
 #' @export
-create_test_cand_experiment <- function() {
-  create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = create_inference_model(
-      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    beast2_options = create_beast2_options(
-      input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
-      output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
-      output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
-      output_state_filename = tempfile(
-        pattern = "beast2_", fileext = ".state.xml"
-      )
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(
-      chain_length = 2000,
-      store_every = 1000,
-      epsilon = 100.0
+create_test_cand_experiment <- function(
+  inference_conditions = create_inference_conditions(
+    model_type = "candidate",
+    run_if = "best_candidate",
+    do_measure_evidence = TRUE
+  ),
+  inference_model = pirouette::create_inference_model(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
+  ),
+  beast2_options = beastier::create_beast2_options(
+    input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
+    output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
+    output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
+    output_state_filename = tempfile(
+      pattern = "beast2_", fileext = ".state.xml"
     )
+  ),
+  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(
+    chain_length = 2000,
+    store_every = 1000,
+    epsilon = 100.0
+  )
+) {
+  create_experiment(
+    inference_conditions = inference_conditions,
+    inference_model = inference_model,
+    beast2_options = beast2_options,
+    est_evidence_mcmc = est_evidence_mcmc
   )
 }
 
@@ -164,10 +169,10 @@ create_test_cand_experiment <- function() {
 #' @export
 create_test_gen_experiment <- function(
   inference_conditions = create_inference_conditions(),
-  inference_model = create_inference_model(
-    mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+  inference_model = pirouette::create_inference_model(
+    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   ),
-  beast2_options = create_beast2_options()
+  beast2_options = beastier::create_beast2_options()
 ) {
   create_test_experiment( # nolint pirouette function
     inference_conditions = inference_conditions,
