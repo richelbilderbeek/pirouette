@@ -28,13 +28,7 @@ library(pirouette)
 picking the model that has most evidence (aka marginal likelihood).
 This option only works under Linux and Mac.
 When working on such a system, the BEAST2 package 'NS' is expected
-to be installed:
-
-```{r}
-if (beastier::is_beast2_installed()) {
-  check_is_ns_beast2_pkg_installed()
-}
-```
+to be installed.
 
 In this demo, we use a simple 'true' phylogeny:
 
@@ -100,7 +94,10 @@ if (beastier::is_beast2_installed()) {
     pir_params = pir_params
   )
 } else {
-  errors <- create_test_pir_run_output()
+  errors <- create_test_pir_run_output(
+    add_twin = FALSE,
+    add_best = FALSE
+  )
 }
 ```
 
@@ -171,7 +168,10 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
+if (rappdirs::app_dir()$os != "win" && 
+    is_beast2_installed() &&
+    is_beast2_pkg_installed("NS")
+) {
   errors <- pir_run(
     phylogeny = true_phylogeny,
     pir_params = pir_params
@@ -255,7 +255,10 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-if (beastier::is_beast2_installed()) {
+if (rappdirs::app_dir()$os != "win" && 
+    is_beast2_installed() &&
+    is_beast2_pkg_installed("NS")
+) {
   errors <- pir_run(
     phylogeny = true_phylogeny,
     pir_params = pir_params
