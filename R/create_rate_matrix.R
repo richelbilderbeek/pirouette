@@ -102,7 +102,7 @@ create_rate_matrix <- function(
 #' expect_equal(calc_base_freq("cccc"), c(0.0, 1.0, 0.0, 0.0))
 #' expect_equal(calc_base_freq("gggg"), c(0.0, 0.0, 1.0, 0.0))
 #' expect_equal(calc_base_freq("tttt"), c(0.0, 0.0, 0.0, 1.0))
-#' @export
+#' @noRd
 calc_base_freq <- function(
   root_sequence
 ) {
