@@ -6,17 +6,35 @@
 #'   simulation of an alignment
 #' @return a list of alignment parameters
 #' @examples
-#'  library(testthat)
+#' library(testthat)
 #'
-#'  n_base_pairs <- 4
-#'  alignment_params <- create_alignment_params(
-#'    root_sequence = create_blocked_dna(length = n_base_pairs),
-#'    mutation_rate = 0.1
-#'  )
+#' # DNA sequence at the root
+#' n_base_pairs <- 4
+#' root_sequence <- create_blocked_dna(length = n_base_pairs)
+#' expect_equal("acgt", root_sequence)
 #'
-#'  expect_true("root_sequence" %in% names(alignment_params))
-#'  expect_true("mutation_rate" %in% names(alignment_params))
-#'  expect_true("rng_seed" %in% names(alignment_params))
+#' # Only specify root sequence and mutation rate, use defaults
+#' alignment_params <- create_alignment_params(
+#'   root_sequence = root_sequence,
+#'   mutation_rate = 0.1
+#' )
+#'
+#' expect_true("root_sequence" %in% names(alignment_params))
+#' expect_true("mutation_rate" %in% names(alignment_params))
+#'
+#' # Use defaults explicitly
+#' alignment_params <- create_alignment_params(
+#'   root_sequence = root_sequence,
+#'   mutation_rate = 0.1,
+#'   site_model = create_jc69_site_model(),
+#'   clock_model = create_strict_clock_model(),
+#'   rng_seed = 0
+#' )
+#'
+#' expect_true("site_model" %in% names(alignment_params))
+#' expect_true("clock_model" %in% names(alignment_params))
+#' expect_true("rng_seed" %in% names(alignment_params))
+#'
 #' @export
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(

@@ -86,12 +86,17 @@ test_that("use", {
   expect_error(
     check_alignment_params(
       create_alignment_params(
-        clock_model = create_clock_model(
-          name = "relaxed_log_normal",
-          id = NA
-        )
+        clock_model = "nonsense"
       )
     ),
-    "This 'clock_model' has not been implemented yet"
+    "'clock_model' must be a clock model"
+  )
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        clock_model = create_rln_clock_model()
+      )
+    ),
+    "Unsupported 'clock_model'"
   )
 })
