@@ -44,15 +44,13 @@
 #'     )
 #'   )
 #' }
-#' @author Richèl J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 sim_alignment <- function(
   phylogeny,
   alignment_params
 ) {
-  if (class(phylogeny) != "phylo") {
-    stop("parameter 'phylogeny' must be a phylogeny")
-  }
+  beautier::check_phylogeny(phylogeny)
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }

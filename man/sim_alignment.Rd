@@ -65,5 +65,5 @@ Use \link{sim_alignment_file} to save the simulated alignment
   directly to a file
 }
 \author{
-Richèl J.C. Bilderbeek
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

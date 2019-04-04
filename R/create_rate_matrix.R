@@ -20,9 +20,14 @@ create_rate_matrix <- function(
   site_model,
   base_frequencies = rep(0.25, 4)
 ) {
-  implemented_models <- c("JC69", "HKY", "TN93", "GTR")
+  implemented_models <- beautier::get_site_model_names()
   if (!(site_model$name %in% implemented_models)) {
-    stop("'site_model' not implemented")
+    stop(
+      "'site_model' not implemented. \n",
+      "Possible site model names: '",
+        paste0(beautier::get_site_model_names(), collapse = ", "), "'. \n",
+      "Actual value: '", site_model$name, "'"
+    )
   }
 
   base_frequencies <- base_frequencies / sum(base_frequencies)
@@ -83,10 +88,21 @@ create_rate_matrix <- function(
   q_matrix
 }
 
-#' Calculate base frequencies
+#' Calculate base frequencies for a (lowercase) DNA sequence
 #' @inheritParams default_params_doc
-#' @return a frequencies vector
-#' @author Giovanni Laudanno
+#' @return a numeric vector of the four base frequencies,
+#'   adenine, cytosine, guanine and thymine respectively.
+#'   All values are from 0.0 (absent) to 1.0 (all bases are of the
+#'   corresponding type). The sum of the four values equals 1.0
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#' expect_equal(calc_base_freq("acgt"), c(0.25, 0.25, 0.25, 0.25))
+#' expect_equal(calc_base_freq("aaaa"), c(1.0, 0.0, 0.0, 0.0))
+#' expect_equal(calc_base_freq("cccc"), c(0.0, 1.0, 0.0, 0.0))
+#' expect_equal(calc_base_freq("gggg"), c(0.0, 0.0, 1.0, 0.0))
+#' expect_equal(calc_base_freq("tttt"), c(0.0, 0.0, 0.0, 1.0))
+#' @export
 calc_base_freq <- function(
   root_sequence
 ) {
@@ -96,5 +112,6 @@ calc_base_freq <- function(
   f_t <- stringr::str_count(root_sequence, pattern = "t")
   freqs <- c(f_a, f_c, f_g, f_t)
   freqs <- freqs / sum(freqs)
+  testit::assert(sum(freqs) == 1.0)
   freqs
 }

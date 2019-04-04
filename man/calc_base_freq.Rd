@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_rate_matrix.R
 \name{calc_base_freq}
 \alias{calc_base_freq}
-\title{Calculate base frequencies}
+\title{Calculate base frequencies for a (lowercase) DNA sequence}
 \usage{
 calc_base_freq(root_sequence)
 }
@@ -11,11 +11,22 @@ calc_base_freq(root_sequence)
 By default, this will consist out of an equal amount of each letter}
 }
 \value{
-a frequencies vector
+a numeric vector of the four base frequencies,
+  adenine, cytosine, guanine and thymine respectively.
+  All values are from 0.0 (absent) to 1.0 (all bases are of the
+  corresponding type). The sum of the four values equals 1.0
 }
 \description{
-Calculate base frequencies
+Calculate base frequencies for a (lowercase) DNA sequence
+}
+\examples{
+library(testthat)
+expect_equal(calc_base_freq("acgt"), c(0.25, 0.25, 0.25, 0.25))
+expect_equal(calc_base_freq("aaaa"), c(1.0, 0.0, 0.0, 0.0))
+expect_equal(calc_base_freq("cccc"), c(0.0, 1.0, 0.0, 0.0))
+expect_equal(calc_base_freq("gggg"), c(0.0, 0.0, 1.0, 0.0))
+expect_equal(calc_base_freq("tttt"), c(0.0, 0.0, 0.0, 1.0))
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }
