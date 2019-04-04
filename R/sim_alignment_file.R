@@ -3,27 +3,36 @@
 #' The simulation is performed by \link{sim_alignment}.
 #' @inheritParams default_params_doc
 #' @return nothing
+#' @seealso Use \link{sim_alignment} to only simulate the alignment,
+#'   without saving the alignment to file
 #' @examples
 #' library(testthat)
 #'
-#' n_taxa <- 5
+#' # Create the ancestor's DNA sequence
 #' n_base_pairs <- 4
-#' fasta_filename <- tempfile()
+#' root_sequence <- create_blocked_dna(length = n_base_pairs)
+#'
+#' # How to simulate (and where to save) the alignment
+#' alignment_params <- create_alignment_params(
+#'   root_sequence = root_sequence,
+#'   mutation_rate = 0.1
+#' )
+#'
+#' # Create a phylogeny to simulate the DNA sequences on
+#' n_taxa <- 5
+#' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # File does not exist yet
-#' expect_false(file.exists(fasta_filename))
+#' expect_false(file.exists(alignment_params$fasta_filename))
 #'
+#' # Simulate and save the alignment
 #' alignment <- sim_alignment_file(
-#'   phylogeny = ape::rcoal(n_taxa),
-#'   alignment_params = create_alignment_params(
-#'     root_sequence = create_blocked_dna(length = n_base_pairs),
-#'     mutation_rate = 0.1,
-#'     fasta_filename = fasta_filename
-#'   )
+#'   phylogeny = phylogeny,
+#'   alignment_params = alignment_params
 #' )
 #' # File does exist now
-#' expect_true(file.exists(fasta_filename))
-#' @author Richèl Bilderbeek
+#' expect_true(file.exists(alignment_params$fasta_filename))
+#' @author Richèl J.C. Bilderbeek
 #' @export
 sim_alignment_file <- function(
   phylogeny,
