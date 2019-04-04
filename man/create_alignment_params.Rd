@@ -63,6 +63,15 @@ expect_true("site_model" \%in\% names(alignment_params))
 expect_true("clock_model" \%in\% names(alignment_params))
 expect_true("rng_seed" \%in\% names(alignment_params))
 
+# Create a pirouette parameter set
+pir_params <- create_test_pir_params(alignment_params = alignment_params)
+
+if (is_on_ci() && is_beast2_installed()) {
+  errors <- pir_run(
+    phylogeny = phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+    pir_params = pir_params
+  )
+}
 }
 \author{
 Richèl J.C. Bilderbeek

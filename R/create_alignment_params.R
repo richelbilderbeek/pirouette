@@ -35,6 +35,17 @@
 #' expect_true("clock_model" %in% names(alignment_params))
 #' expect_true("rng_seed" %in% names(alignment_params))
 #'
+#' # Create a pirouette parameter set
+#' pir_params <- create_test_pir_params(alignment_params = alignment_params)
+#'
+#' # Run pirouette
+#' if (is_on_ci() && is_beast2_installed()) {
+#'   pir_out <- pir_run(
+#'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+#'     pir_params = pir_params
+#'   )
+#'   pir_plot(pir_out)
+#' }
 #' @export
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
