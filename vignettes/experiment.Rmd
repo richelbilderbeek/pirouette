@@ -1,6 +1,6 @@
 ---
 title: "Experiment"
-author: "Richel J.C. Bilderbeek"
+author: "Richèl J.C. Bilderbeek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -104,7 +104,7 @@ pir_params <- create_pir_params(
   experiments = experiments
 )
 errors <- list()
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   for (i in seq_along(ext_rates)) {
     phylogeny <- phylogenies[[i]]
     df <- pirouette::pir_run(
@@ -119,7 +119,7 @@ if (rappdirs::app_dir()$os != "win") {
 Now, we put all data in one data frame:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   first_error_col <- which(colnames(errors[[1]]) == "error_1")
   last_error_col <- ncol(errors[[1]])
   n_errors <- 1 + last_error_col - first_error_col
@@ -137,7 +137,7 @@ if (rappdirs::app_dir()$os != "win") {
 Plotting it:
 
 ```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   ggplot2::ggplot(
     df, ggplot2::aes(x = ext_rate, y = error)
   ) + ggplot2::geom_boxplot()

@@ -2,6 +2,8 @@ context("test-check_experiment")
 
 test_that("use", {
 
+  check_experiment(create_experiment())
+
   expect_silent(check_experiment(create_experiment()))
 })
 

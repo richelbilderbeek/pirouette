@@ -2,11 +2,13 @@
 #' with four equal-sized nucleotide sections
 #' @param length number of nucleotides. Must be a multitude of four.
 #' @examples
-#'   testthat::expect_equal(create_blocked_dna(length = 4), "acgt")
-#'   testthat::expect_equal(create_blocked_dna(length = 8), "aaccggtt")
+#'   library(testthat)
+#'
+#'   expect_equal(create_blocked_dna(length = 4), "acgt")
+#'   expect_equal(create_blocked_dna(length = 8), "aaccggtt")
 #' @seealso Use \link{create_mono_nuc_dna} to create
 #'   a mono-nucleotide DNA sequence.
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 create_blocked_dna <- function(
   length

@@ -92,7 +92,7 @@ test_that("sim_alignment: abuse", {
       phylogeny = "not a phylogeny",
       alignment_params = alignment_params
     ),
-    "'phylogeny' must be a phylogeny" #nolint
+    "'phylogeny' must be a valid phylogeny" #nolint
   )
 
   expect_error(

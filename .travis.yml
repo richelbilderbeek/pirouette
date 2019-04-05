@@ -1,24 +1,15 @@
 language: r
 cache: packages
 
-r_packages:
-  - devtools
-  - ggplot2
-  - xml2
-  - phangorn
-
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  #- KlausVigo/phangorn
   - MangoTheCat/goodpractice
-  - ropensci/beautier
-  - ropensci/tracerer
   - ropensci/beastier
   - ropensci/mauricer
   - ropensci/babette
-  - richelbilderbeek/mcbette
+  - richelbilderbeek/mcbette@develop
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
@@ -33,7 +24,6 @@ before_install:
 before_script:
   - Rscript -e "beastier::install_beast2()"
   - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
-  - Rscript -e "mauricer::is_beast2_pkg_installed(\"NS\")"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint
   - sudo pip install proselint
@@ -51,14 +41,10 @@ after_success:
   #- ./scripts/check_dead_links
 
 after_failure:
-  # - sudo Rscript install_this_r_package.R
-  # - Rscript -e 'library(beautier); testit::assert(has_beast2())'
-  - cat /home/travis/build/ropensci/beautier/..Rcheck/00install.out
-  - cat /home/travis/build/ropensci/beautier/..Rcheck/00check.log
+  - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
   - cd ~; find . | egrep "beast"
   - cd ~; find . | egrep "\.log"
   - cd ~; find . | egrep "\.trees"
   - cd ~; find . | egrep "\.xml"
   - cd ~; find . | egrep "\.xml\.state"
   - cd ~; find . | egrep "\.fasta"
-  - cat /home/travis/build/ropensci/beautier/..Rcheck/tests/testthat/testthat.log

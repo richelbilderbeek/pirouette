@@ -4,6 +4,7 @@ test_that("use", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
 
   # Create an alignment
   fasta_filename <- tempfile(fileext = ".fasta")
@@ -53,6 +54,7 @@ test_that("cleans up", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
 
   # Create an alignment
   fasta_filename <- tempfile(fileext = ".fasta")
@@ -102,4 +104,73 @@ test_that("cleans up", {
 
   # Still no files exist, as they are deleted by est_evidences
   expect_true(all(!file.exists(c(trees_filename_1, trees_filename_2))))
+})
+
+
+test_that("abuse", {
+
+  fasta_filename <- system.file(
+    "extdata",
+    "alignment.fas",
+    package = "pirouette"
+  )
+  testit::assert(file.exists(fasta_filename))
+  experiments <- list(create_test_cand_experiment())
+  evidence_epsilon <- 100.0
+
+  # No BEAST2 installed
+  if (!beastier::is_beast2_installed()) {
+    expect_error(
+      est_evidences(
+        fasta_filename = fasta_filename,
+        experiments = experiments,
+        evidence_epsilon = evidence_epsilon
+      ),
+      "BEAST2 not installed"
+    )
+    return()
+  }
+  testit::assert(beastier::is_beast2_installed())
+
+  # fasta_filename
+  expect_error(
+    est_evidences(
+      fasta_filename = "nonsense",
+      experiments = experiments,
+      evidence_epsilon = evidence_epsilon
+    ),
+    "'fasta_filename' must be the name of an existing file"
+  )
+
+  # experiments
+  expect_error(
+    est_evidences(
+      fasta_filename = fasta_filename,
+      experiments = "nonsense",
+      evidence_epsilon = evidence_epsilon
+    ),
+    "'experiments' must be a list of one or more experiments"
+  )
+
+  # evidence_epsilon
+  expect_error(
+    est_evidences(
+      fasta_filename = fasta_filename,
+      experiments = experiments,
+      evidence_epsilon = "nonsense"
+    ),
+    "'evidence_epsilon' must be one numerical value."
+  )
+
+  if (!beastier::is_on_ci()) return()
+  if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
+
+  expect_silent(
+    est_evidences(
+      fasta_filename = fasta_filename,
+      experiments = experiments,
+      evidence_epsilon = evidence_epsilon
+    )
+  )
 })

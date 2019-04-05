@@ -1,7 +1,32 @@
 #' Create a twin tree from a phylogeny using a Yule process
 #' @inheritParams default_params_doc
-#' @return a twin Yule tree of class \code{phylo},
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @return a twin Yule tree of class \link[ape]{phylo},
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#' library(testthat)
+#'
+#' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+#' twinning_params <- create_twinning_params()
+#' yule_tree <- twin_to_yule_tree(
+#'   phylogeny = phylogeny,
+#'   twinning_params = twinning_params
+#' )
+#'
+#' expect_equal(class(yule_tree), "phylo")
+#'
+#' # Branching times will differ, except the crown
+#' expect_false(
+#'   all(
+#'     ape::branching.times(phylogeny) ==
+#'     ape::branching.times(yule_tree)
+#'   )
+#' )
+#'
+#' # Crown age stays the same
+#' expect_equal(
+#'   max(ape::branching.times(yule_tree)),
+#'   max(ape::branching.times(phylogeny))
+#' )
 #' @export
 twin_to_yule_tree <- function(
   phylogeny,
@@ -9,7 +34,7 @@ twin_to_yule_tree <- function(
 ) {
   seed <- twinning_params$rng_seed
   method <- twinning_params$method
-  n_replicas <- twinning_params$n_replicas
+  n_replicates <- twinning_params$n_replicates
 
   age <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
@@ -53,19 +78,12 @@ twin_to_yule_tree <- function(
     seed = seed,
     lambda = lambda_yule,
     mu = mu_yule,
-    n_replicas = n_replicas,
+    n_replicates = n_replicates,
     method = method
   )
 
-  yule_tree <- combine_brts_and_topology(
+  combine_brts_and_topology(
     brts = yule_brts0,
     tree = phylogeny
-  )
-
-  yule_l_matrix <- bd_phylo_2_l_table(yule_tree) # nolint
-
-  list(
-    tree = yule_tree,
-    l_matrix = yule_l_matrix
   )
 }

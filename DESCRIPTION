@@ -2,15 +2,15 @@ Package: pirouette
 Type: Package
 Title: Create a Bayesian Posterior From a Phylogeny
 Version: 1.2
-Author: Richel J.C. Bilderbeek <richel@richelbilderbeek.nl>, Giovanni Laudanno <glaudanno@gmail.com>
-Maintainer: Richel J.C. Bilderbeek <richel@richelbilderbeek.nl>
+Author: Richèl J.C. Bilderbeek <richel@richelbilderbeek.nl>, Giovanni Laudanno <glaudanno@gmail.com>
+Maintainer: Richèl J.C. Bilderbeek <richel@richelbilderbeek.nl>
 Description: 
     Theoretical biologists are interested in measuring the extent
     at which we can measure the truth. This package allows to
     create a Bayesian posterior from a phylogeny that depicts
     the true evolutionary relationships. The given and true phylogeny
     can than be compared to the posterior phylogenies.
-License: GPL-3 | file LICENSE
+License: GPL-3
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.1

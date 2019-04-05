@@ -31,18 +31,50 @@ simulation of an alignment}
 a list of alignment parameters
 }
 \description{
-Create the parameters for the alignment simulation.
+These parameters are used in the \link{create_pir_params} function
 }
 \examples{
+library(testthat)
+
+# DNA sequence at the root
 n_base_pairs <- 4
+root_sequence <- create_blocked_dna(length = n_base_pairs)
+expect_equal("acgt", root_sequence)
+
+# Only specify root sequence and mutation rate, use defaults
 alignment_params <- create_alignment_params(
-   root_sequence = create_blocked_dna(length = n_base_pairs),
-   mutation_rate = 0.1
- )
- testit::assert("root_sequence" \%in\% names(alignment_params))
- testit::assert("mutation_rate" \%in\% names(alignment_params))
- testit::assert("rng_seed" \%in\% names(alignment_params))
+  root_sequence = root_sequence,
+  mutation_rate = 0.1
+)
+
+expect_true("root_sequence" \%in\% names(alignment_params))
+expect_true("mutation_rate" \%in\% names(alignment_params))
+
+# Use defaults explicitly
+alignment_params <- create_alignment_params(
+  root_sequence = root_sequence,
+  mutation_rate = 0.1,
+  site_model = create_jc69_site_model(),
+  clock_model = create_strict_clock_model(),
+  rng_seed = 0
+)
+
+expect_true("site_model" \%in\% names(alignment_params))
+expect_true("clock_model" \%in\% names(alignment_params))
+expect_true("rng_seed" \%in\% names(alignment_params))
+
+# Create a pirouette parameter set
+pir_params <- create_test_pir_params(alignment_params = alignment_params)
+
+# Run pirouette
+if (is_on_ci() && is_beast2_installed()) {
+  pir_out <- pir_run(
+    phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+    pir_params = pir_params
+  )
+  pir_plot(pir_out)
+}
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

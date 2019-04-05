@@ -1,9 +1,34 @@
 #' Create an BD twin tree from a phylogeny
 #' and save it as a file
 #' @inheritParams default_params_doc
-#' @return a twin BD tree of class \code{phylo},
+#' @return a twin BD tree of class \link[ape]{phylo},
 #'   obtained from the corresponding phylogeny.
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#' library(testthat)
+#'
+#' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+#' twinning_params <- create_twinning_params()
+#' bd_tree <- twin_to_bd_tree(
+#'   phylogeny = phylogeny,
+#'   twinning_params = twinning_params
+#' )
+#'
+#' expect_equal(class(bd_tree), "phylo")
+#'
+#' # Branching times will differ, except the crown
+#' expect_false(
+#'   all(
+#'     ape::branching.times(phylogeny) ==
+#'     ape::branching.times(bd_tree)
+#'   )
+#' )
+#'
+#' # Crown age stays the same
+#' expect_equal(
+#'   max(ape::branching.times(bd_tree)),
+#'   max(ape::branching.times(phylogeny))
+#' )
 #' @export
 twin_to_bd_tree <- function(
   phylogeny,
@@ -11,7 +36,7 @@ twin_to_bd_tree <- function(
 ) {
   seed <- twinning_params$rng_seed
   method <- twinning_params$method
-  n_replicas <- twinning_params$n_replicas
+  n_replicates <- twinning_params$n_replicates
 
   age  <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
@@ -55,19 +80,12 @@ twin_to_bd_tree <- function(
     seed = seed,
     lambda = lambda_bd,
     mu = mu_bd,
-    n_replicas = n_replicas,
+    n_replicates = n_replicates,
     method = method
   )
 
-  bd_tree <- combine_brts_and_topology(
+  combine_brts_and_topology(
     brts = bd_brts0,
     tree = phylogeny
-  )
-
-  bd_l_matrix <- bd_phylo_2_l_table(bd_tree) # nolint
-
-  list(
-    tree = bd_tree,
-    l_matrix = bd_l_matrix
   )
 }

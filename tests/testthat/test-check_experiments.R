@@ -28,45 +28,34 @@ test_that("must have same MCMC chain length", {
   )
 })
 
-test_that("two experiments, both generative is not allowed", {
+test_that("correct order of experiments", {
 
-  experiment_1 <- create_experiment()
-  experiment_2 <- create_experiment()
-  experiments <- list(experiment_1, experiment_2)
-  expect_error(
-    check_experiments(experiments),
-    "Specifying more than one 'generative' model experiment is redundant"
-  )
-})
+  gen_exp <- create_test_gen_experiment()
+  check_experiment(gen_exp)
 
-test_that("two experiments, first candidate, then generative is not allowed", {
+  cand_exp <- create_test_cand_experiment()
+  check_experiment(cand_exp)
 
-  if (!beastier::is_on_travis()) return()
-
-  experiment_1 <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = "TRUE"
+  # OK order
+  expect_silent(
+    check_experiments(
+      experiments = list(gen_exp, cand_exp)
     )
   )
-  experiment_2 <- create_experiment()
-  experiments <- list(experiment_1, experiment_2)
+
+  # Generative must be first
   expect_error(
-    check_experiments(experiments),
+    check_experiments(
+      experiments = list(cand_exp, gen_exp)
+    ),
     "If multiple experiments, generative is either first or absent"
   )
-})
 
-test_that("two experiments, first candidate, then generative is not allowed", {
-
-  if (!beastier::is_on_travis()) return()
-
-  experiments <- create_all_experiments()
-  experiment_generative <- create_experiment()
-  experiments[[length(experiments) + 1]] <- experiment_generative
+  # Only one generative experiment
   expect_error(
-    check_experiments(experiments),
-    "If multiple experiments, generative is either first or absent"
+    check_experiments(
+      experiments = list(gen_exp, gen_exp)
+    ),
+    "Specifying more than one 'generative' model experiment is redundant"
   )
 })

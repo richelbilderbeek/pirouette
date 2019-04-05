@@ -12,6 +12,14 @@ the twin methods
 \description{
 Twin methods
 }
+\examples{
+library(testthat)
+
+expect_true("random_tree" \%in\% get_twin_methods())
+expect_true("max_clade_cred" \%in\% get_twin_methods())
+expect_true("max_likelihood" \%in\% get_twin_methods())
+expect_false("nonsense" \%in\% get_twin_methods())
+}
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

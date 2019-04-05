@@ -15,12 +15,21 @@ convert_tree2brts(tree, precision = 8)
 the branching times
 }
 \description{
-Convert a tree into branching times. Differently from the ape's
- function, it will keep the multiple events. Since the units are million
- years, a precision of 8 means that the approximation goes up to the 8-th
- digits. With such approximation we consider events happening within an
- interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
+Convert a tree into branching times.
+Differently from the \link[ape]{branching.times} function in \link{ape},
+it will keep the multiple events. Since the units are million
+years, a precision of 8 means that the approximation goes up to the 8-th
+digits. With such approximation we consider events happening within an
+interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
+}
+\examples{
+phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+
+branching_times <- convert_tree2brts(phylogeny)
+
+library(testthat)
+expect_equal(c(3.0, 2.0), as.numeric(branching_times))
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

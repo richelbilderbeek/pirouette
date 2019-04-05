@@ -6,6 +6,8 @@ test_that("use", {
 
 test_that("errors are stored correctly", {
 
+  if (!beastier::is_beast2_installed()) return()
+
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, (C:1, D:1):1);")
 
   alignment_params <- pirouette::create_alignment_params(

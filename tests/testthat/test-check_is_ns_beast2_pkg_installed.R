@@ -4,6 +4,7 @@ test_that("use", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
 
   # Uninstall
   if (mauricer::is_beast2_pkg_installed("NS")) {

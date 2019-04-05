@@ -2,18 +2,15 @@
 #' @param pir_out the output created by \code{\link{pir_run}}
 #' @return a ggplot2 plot
 #' @seealso
-#'   Use \link{pir_table} to display the output of \link{pir_run} as a
-#'   table.
 #'   Use \link{create_test_pir_run_output} to create a test output
 #'   of \link{pir_run}
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   pir_plot(
-#'     create_test_pir_run_output(
-#'       add_twin = TRUE,
-#'       add_best = TRUE
-#'     )
-#'   )
+#' pir_out <- create_test_pir_run_output(
+#'   add_twin = TRUE,
+#'   add_best = TRUE
+#' )
+#' pir_plot(pir_out)
 #' @export
 pir_plot <- function(pir_out) {
 

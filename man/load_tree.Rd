@@ -14,6 +14,12 @@ load_tree(tree_model = "mbd", seed = 1)
 \description{
 Load pre-simulated tree generated under requested model and seed
 }
+\examples{
+phylogeny <- load_tree()
+
+library(testthat)
+expect_true(is_phylo(phylogeny))
+}
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

@@ -1,5 +1,11 @@
 context("test-load_tree")
 
+test_that("use", {
+
+  phylogeny <- load_tree()
+  expect_true(is_phylo(phylogeny))
+})
+
 test_that("abuse", {
   expect_error(
     load_tree(

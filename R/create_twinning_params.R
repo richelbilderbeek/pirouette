@@ -8,16 +8,33 @@
 #'   simulation of a twin tree
 #' @return a twinning parameter set
 #' @examples
-#'  twinning_params <- create_twinning_params()
-#'  testit::assert("rng_seed" %in% names(twinning_params))
-#'  testit::assert("twin_tree_filename" %in% names(twinning_params))
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' twinning_params <- create_twinning_params()
+#'
+#' library(testthat)
+#' expect_true("rng_seed" %in% names(twinning_params))
+#' expect_true("twin_tree_filename" %in% names(twinning_params))
+#' expect_silent(check_twinning_params(twinning_params))
+#'
+#' pir_params <- create_test_pir_params(
+#'   twinning_params = twinning_params
+#' )
+#' expect_silent(check_pir_params(pir_params))
+#'
+#' if (is_on_ci() &&
+#'   rappdirs::app_dir()$os == "unix" &&
+#'   is_beast2_installed()) {
+#'   pir_out <- pir_run(
+#'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+#'     pir_params = pir_params
+#'   )
+#' }
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_twinning_params <- function(
   rng_seed = 0,
   twin_model = "birth_death",
   method = "random_tree",
-  n_replicas = 1e4,
+  n_replicates = 1e4,
   twin_tree_filename = tempfile(
     pattern = "tree_twin_", fileext = ".newick"
   ),
@@ -32,7 +49,7 @@ create_twinning_params <- function(
     rng_seed = rng_seed,
     twin_model = twin_model,
     method = method,
-    n_replicas = n_replicas,
+    n_replicates = n_replicates,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename,
     twin_evidence_filename = twin_evidence_filename

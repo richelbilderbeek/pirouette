@@ -67,7 +67,9 @@
 #'   Use \link[beastier]{get_default_beast2_bin_path} for the default
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
-#' @param brts set of branching times
+#' @param brts numeric vector of (all postive) branching times,
+#'   in time units before the present. Assuming no stem, the heighest
+#'   value equals the crown age.
 #' @param burn_in_fraction the fraction of the posterior trees (starting
 #'   from the ones generated first)
 #'   that will be discarded,
@@ -154,9 +156,9 @@
 #' @param method determines how to create the twin tree
 #' \itemize{
 #'     \item 'random_tree' just produces a random tree;
-#'     \item 'max_clade_cred' simulates \code{n_replicas} trees and
+#'     \item 'max_clade_cred' simulates \code{n_replicates} trees and
 #'       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-#'     \item 'max_likelihood' simulates \code{n_replicas} trees
+#'     \item 'max_likelihood' simulates \code{n_replicates} trees
 #'      and selects the most likely;
 #'   }
 #' @param model_selection one ways to select the models used in
@@ -178,7 +180,7 @@
 #' @param mutation_rate the mutation rate per base pair per time unit
 #' @param n_0 number of starting species
 #' @param n_taxa number of tree tips
-#' @param n_replicas number of replicas to evaluate in order to create the
+#' @param n_replicates number of replicas to evaluate in order to create the
 #'   twin tree
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
@@ -275,14 +277,13 @@
 #'     \item \code{most_evidence} picks the model with most evidence
 #'   }
 #'   See \link{get_model_selections} for a list.
-#' @param use_new_interface set to TRUE to use a new interface
 #' @param verbose if TRUE, show more output
 #' @param weight the weight of the model, compared to other (candidate)
 #'   models. This weight will be between 0.0 (there is no evidence for
 #'   this model) to 1.0 (all evidence indicates this is the best model).
 #'   A weight of NA denotes that the weight is not measured
 #' @author Documentation by Giovanni Laudanno,
-#'   use of this function by Richel J.C. Bilderbeek
+#'   use of this function by Richèl J.C. Bilderbeek
 #' @note This is an internal function, so it should be marked with
 #'   \code{@noRd}. This is not done, as this will disallow all
 #'   functions to find the documentation parameters
@@ -347,7 +348,7 @@ default_params_doc <- function(
   mutation_rate,
   n_0,
   n_taxa,
-  n_replicas,
+  n_replicates,
   nu,
   nu_events,
   parameter_filename,
@@ -390,7 +391,6 @@ default_params_doc <- function(
   twin_tree_filename,
   twinning_params,
   type,
-  use_new_interface,
   verbose,
   weight
 ) {

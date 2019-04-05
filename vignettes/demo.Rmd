@@ -1,6 +1,6 @@
 ---
 title: "pirouette demo"
-author: "Richel J.C. Bilderbeek"
+author: "Richèl J.C. Bilderbeek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -24,9 +24,11 @@ for example the PBD or MBD models.
 library(pirouette)
 ```
 
-```{r}
-check_is_ns_beast2_pkg_installed()
-```
+`pirouette` has a the option to do model comparison,
+picking the model that has most evidence (aka marginal likelihood).
+This option only works under Linux and Mac.
+When working on such a system, the BEAST2 package 'NS' is expected
+to be installed.
 
 In this demo, we use a simple 'true' phylogeny:
 
@@ -84,16 +86,25 @@ pir_params <- create_pir_params(
 Running it:
 
 ```{r}
-errors <- pir_run(
-  phylogeny = true_phylogeny,
-  pir_params = pir_params
-)
+errors <- NULL
+
+if (beastier::is_beast2_installed()) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output(
+    add_twin = FALSE,
+    add_best = FALSE
+  )
+}
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:
@@ -157,28 +168,29 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
+if (rappdirs::app_dir()$os != "win" && 
+    is_beast2_installed() &&
+    is_beast2_pkg_installed("NS")
+) {
   errors <- pir_run(
     phylogeny = true_phylogeny,
     pir_params = pir_params
   )
+} else {
+  errors <- create_test_pir_run_output(add_best = TRUE)
 }
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win") {
-  knitr::kable(head(errors))
-}
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:
 
 ```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win") {
-  pir_plot(errors)
-}
+pir_plot(errors)
 ```
 
 
@@ -243,16 +255,23 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-errors <- pir_run(
-  phylogeny = true_phylogeny,
-  pir_params = pir_params
-)
+if (rappdirs::app_dir()$os != "win" && 
+    is_beast2_installed() &&
+    is_beast2_pkg_installed("NS")
+) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output(add_best = TRUE)
+}
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:

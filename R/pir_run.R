@@ -10,12 +10,67 @@
 #' @seealso
 #'   Use \link{pir_plot} to display the output of \link{pir_run} as a
 #'   figure.
-#'   Use \link{pir_table} to display the output of \link{pir_run} as a
-#'   table.
 #'   Use \link{create_test_pir_run_output} to create a test output
 #'   of \link{pir_run}
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#'   library(testthat)
+#'
+#'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+#'
+#'   # Select all experiments with 'run_if' is 'always'
+#'   experiment <- create_test_gen_experiment()
+#'   experiments <- list(experiment)
+#'
+#'   pir_params <- create_pir_params(
+#'     alignment_params = create_test_alignment_params(),
+#'     experiments = experiments
+#'   )
+#'
+#'   errors <- NA
+#'   if (is_on_ci() && is_beast2_installed()) {
+#'     errors <- pir_run(
+#'       phylogeny = phylogeny,
+#'       pir_params = pir_params
+#'     )
+#'   } else {
+#'     errors <- create_test_pir_run_output()
+#'   }
+#'
+#'   # Return value
+#'   expect_true("tree" %in% names(errors))
+#'   expect_true(is.factor(errors$tree))
+#'   expect_true("true" %in% errors$tree)
+#'
+#'   expect_true("inference_model" %in% names(errors))
+#'   expect_true(is.factor(errors$inference_model))
+#'   expect_true("generative" %in% errors$inference_model)
+#'
+#'   expect_true("inference_model_weight" %in% names(errors))
+#'   expect_true(!is.factor(errors$inference_model_weight))
+#'
+#'   expect_true("site_model" %in% names(errors))
+#'   expect_true(is.factor(errors$site_model))
+#'   expect_true("JC69" %in% errors$site_model)
+#'
+#'   expect_true("clock_model" %in% names(errors))
+#'   expect_true(is.factor(errors$clock_model))
+#'   expect_true("strict" %in% errors$clock_model)
+#'
+#'   expect_true("tree_prior" %in% names(errors))
+#'   expect_true(is.factor(errors$tree_prior))
+#'   expect_true("BD" %in% errors$tree_prior || "yule" %in% errors$tree_prior)
+#'
+#'   expect_true("error_1" %in% names(errors))
+#'   expect_true(!is.factor(errors$error_1))
+#'
+#'   # Errors more than zero
+#'   col_first_error <- which(colnames(errors) == "error_1")
+#'   col_last_error <- ncol(errors)
+#'   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+#'   n_errors <- col_last_error - col_first_error + 1
+#'   expect_true(n_errors < 11) # due to burn-in
 #' @export
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 pir_run <- function(
   phylogeny,
   pir_params = create_pir_params(
@@ -74,8 +129,7 @@ pir_run <- function(
     for (j in 1:nrow(pir_outs)) {
       # Create specific twin pir_params
       pir_params_twin <- create_pir_params_twin(
-        pir_params = pir_params,
-        pir_out = pir_outs[j, ]
+        pir_params = pir_params
       )
 
       # Create and save twin tree
@@ -111,7 +165,7 @@ pir_run <- function(
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets
 #' @export
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
@@ -119,8 +173,7 @@ pir_run_tree <- function(
   experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE,
-  use_new_interface = FALSE
+  verbose = FALSE
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
 
@@ -195,10 +248,6 @@ pir_run_tree <- function(
     testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
   }
 
-  if (use_new_interface == TRUE) {
-    # Future
-    return(experiments)
-  }
   # Put inference models and errors a data frame
   n_rows <- length(experiments)
   df <- data.frame(

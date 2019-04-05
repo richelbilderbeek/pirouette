@@ -19,19 +19,51 @@ an alignment of type \code{DNAbin}
 Converts a phylogeny to a random DNA alignment
 }
 \examples{
-n_taxa <- 5
+library(testthat)
+
+# Create the ancestor's DNA sequence
 n_base_pairs <- 4
+root_sequence <- create_blocked_dna(length = n_base_pairs)
+
+# How to simulate the alignment
+alignment_params <- create_alignment_params(
+  root_sequence = root_sequence,
+  mutation_rate = 0.1
+)
+
+# Create a phylogeny to simulate the DNA sequences on
+n_taxa <- 5
+phylogeny <- ape::rcoal(n_taxa)
+
+# Simulate the alignment
 alignment <- sim_alignment(
-   phylogeny = ape::rcoal(n_taxa),
-   alignment_params = create_alignment_params(
-     root_sequence = create_blocked_dna(length = n_base_pairs),
-     mutation_rate = 0.1
-   )
+   phylogeny = phylogeny,
+   alignment_params = alignment_params
  )
- testit::assert(class(alignment) == "DNAbin")
- testit::assert(nrow(alignment) == n_taxa)
- testit::assert(ncol(alignment) == n_base_pairs)
+
+expect_equal(class(alignment), "DNAbin")
+expect_equal(nrow(alignment), n_taxa)
+expect_equal(ncol(alignment), n_base_pairs)
+
+# Use all different site models
+for (site_model in create_site_models()) {
+  alignment_params <- create_alignment_params(
+    root_sequence = root_sequence,
+    mutation_rate = 0.1,
+    site_model = site_model
+  )
+  expect_silent(
+    sim_alignment(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params
+    )
+  )
+}
+}
+\seealso{
+Use \link{sim_alignment_file} to save the simulated alignment
+  directly to a file
 }
 \author{
-Richel Bilderbeek
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

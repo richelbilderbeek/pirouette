@@ -32,5 +32,5 @@ a list of alignment parameters
 Create testing parameters for the alignment simulation.
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }
