@@ -6,7 +6,7 @@
 \usage{
 pir_run(phylogeny, pir_params = create_pir_params(alignment_params =
   create_alignment_params(mutation_rate = create_standard_mutation_rate),
-  twinning_params = create_twinning_params(rng_seed = "same_seed")))
+  twinning_params = create_twinning_params()))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

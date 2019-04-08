@@ -47,12 +47,6 @@ create_pir_params_twin <- function(
     }
   }
 
-  # same seed
-  if (pir_params$twinning_params$rng_seed == "same_seed") {
-    pir_params_twin$twinning_params$rng_seed <-
-      pir_params$alignment_params$rng_seed
-  }
-
   check_pir_params(pir_params_twin) # nolint pirouette function
   pir_params_twin
 }

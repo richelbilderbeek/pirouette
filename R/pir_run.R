@@ -77,7 +77,7 @@ pir_run <- function(
     alignment_params = create_alignment_params(
       mutation_rate = create_standard_mutation_rate
     ),
-    twinning_params = create_twinning_params(rng_seed = "same_seed")
+    twinning_params = create_twinning_params()
   )
 ) {
 
