@@ -23,9 +23,11 @@ test_that("use", {
   )
 
   # All elements mus be present
-  check_pir_params(
-    pir_params = list()
-
+  expect_error(
+    check_pir_params(
+      pir_params = list()
+    ),
+    "'alignment_params' must be an element of an 'pir_params'"
   )
 
   # Wrong alignment_params
