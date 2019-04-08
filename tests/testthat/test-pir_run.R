@@ -930,3 +930,14 @@ test_that("Errors files exist", {
     )
   )
 })
+
+test_that("Abuse", {
+
+  expect_error(
+    pir_run(
+      phylogeny = "nonsense",
+      pir_params = create_test_pir_params()
+    ),
+    "'phylogeny' must be of class 'phylo'"
+  )
+})
