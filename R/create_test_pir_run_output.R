@@ -20,9 +20,9 @@ create_test_pir_run_output <- function(
 
   df$inference_model <- c("generative", "best", "generative", "best")
   df$inference_model_weight <- c(0.5, 0.4, 0.6, 0.3)
-  df$site_model <- c("JC69", "HKY", "JC69", "GTR")
-  df$clock_model <- c("strict", "strict", "strict", "RLN")
-  df$tree_prior <- c("BD", "Yule", "BD", "CCP")
+  df$site_model <- beautier::get_site_model_names()[1:4]
+  df$clock_model <- rep(beautier::get_clock_model_names()[1:2], 2)
+  df$tree_prior <- beautier::get_tree_prior_names()[1:4]
   df$error_1 <- c(0.1, 0.2, 0.3, 0.4)
   df$error_2 <- c(0.11, 0.23, 0.35, 0.47)
   df$error_3 <- c(0.12, 0.24, 0.36, 0.48)

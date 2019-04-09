@@ -14,13 +14,7 @@
 #' @export
 pir_plot <- function(pir_out) {
 
-  df <- pir_out
-  first_col_index <- which(names(df) == "error_1")
-  df_long <- tidyr::gather(
-    df, "error_index", "error_value", first_col_index:ncol(df)
-  )
-
-  # Satisfy R CMD check
+    # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
   error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
   inference_model <- NULL; rm(inference_model) # nolint, fixes warning: no visible binding for global variable
@@ -28,14 +22,29 @@ pir_plot <- function(pir_out) {
   ..y.. <- NULL; rm(..y..) # nolint, fixes warning: no visible binding for global variable
   model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
 
-  # Plot options
-  label_size <- 13
-  label_face <- "italic"
-  title_size <- 18
-  title_face <- "bold"
-  ticks_size <- 12
-  ticks_face <- "plain"
-  ticks_color <- "black"
+  df <- pir_out
+  first_col_index <- which(names(df) == "error_1")
+  df_long <- tidyr::gather(
+    df, "error_index", "error_value", first_col_index:ncol(df)
+  )
+
+  df_long$site_model <- plyr::revalue(
+    df_long$site_model, c("JC69" = "JC", "TN93" = "TN"), warn_missing = FALSE)
+  df_long$clock_model <- plyr::revalue(
+    df_long$clock_model,
+    c("strict" = "Strict", "relaxed_log_normal" = "RLN"), warn_missing = FALSE
+  )
+  df_long$tree_prior <- plyr::revalue(
+    df_long$tree_prior,
+    c(
+      "yule" = "Yule",
+      "birth_death" = "BD",
+      "coalescent_bayesian_skyline" = "CBS",
+      "coalescent_constant_population" = "CCP",
+      "coalescent_exp_population" = "CEP"
+    ),
+    warn_missing = FALSE
+  )
 
   df_long$model_setting <- interaction(
     df_long$site_model,
@@ -49,6 +58,15 @@ pir_plot <- function(pir_out) {
   df_long$inference_model <-
     factor(df_long$inference_model, levels = unique(df_long$inference_model))
   rownames(df_long) <- mapply(1:nrow(df_long), FUN = toString)
+
+  # Plot options
+  label_size <- 13
+  label_face <- "italic"
+  title_size <- 18
+  title_face <- "bold"
+  ticks_size <- 12
+  ticks_face <- "plain"
+  ticks_color <- "black"
 
   ggplot2::ggplot(
     data = df_long,
@@ -78,7 +96,7 @@ pir_plot <- function(pir_out) {
       "Inference model (Site model, Clock model, Tree prior)"
     ) +
     ggplot2::facet_grid(
-      scale = "free", # Show only those categories that have values
+      scales = "free", # Show only those categories that have values
       . ~ inference_model,
       labeller = ggplot2::labeller(
         inference_model = c
