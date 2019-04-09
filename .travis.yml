@@ -1,6 +1,16 @@
 language: r
 cache: packages
 
+r_packages:
+  - devtools
+  - ggplot2
+  - hunspell
+  - magrittr
+  - xml2
+
+r_binary_packages:
+  - phangorn
+
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
