@@ -84,18 +84,26 @@ bd_phylo_2_l_table <- function(
   # compute the relative branching times
   brt <- convert_tree2brts(phylo) # nolint pirouette function
 
-  if (min(brt) < 0) {
-    brt <- brt + abs(min(brt))
-  }
+  testit::assert(min(brt) >= 0)
+  # used to be this line:
+  # if (min(brt) < 0) brt <- brt + abs(min(brt)) # nolint indeed this is code
+  # but I, @richelbilderbeek, could not write a test to trigger it
+
+
   # number of species including extinct species.
   num_species <- phylo$Nnode + 1
   brt_pre_l <- c(brt[phylo$edge[, 1] - length(phylo$tip.label)]) # nolint
+
   # check if the relative branching times are equal to the real branching times.
+  testit::assert(min(brt_pre_l) != 0.0)
   # if not correct it to the real branching times.
-  if (min(brt_pre_l) == 0) {
-    correction <- max(phylo$edge.length[which(brt_pre_l == 0)]) # nolint
-    brt_pre_l <- brt_pre_l + correction
-  }
+  # used to be these lines:
+  # if (min(brt_pre_l) == 0) { # nolint indeed this is code
+  #   correction <- max(phylo$edge.length[which(brt_pre_l == 0)]) # nolint indeed this is code
+  #   brt_pre_l <- brt_pre_l + correction # nolint indeed this is code
+  # } # nolint indeed this is code
+  # but I, @richelbilderbeek, could not write a test to trigger it
+
   # preliminary l_table table
   pre_l_table <- cbind(
     brt_pre_l,
