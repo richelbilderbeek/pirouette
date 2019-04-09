@@ -14,12 +14,16 @@ r_github_packages:
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
 
+
 before_install:
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
   - sudo apt-get update
   - sudo apt-get install -y libmagick++-dev
   # Rmpfr
   - sudo apt install -qq libmpfr-dev
+  # temporary workaround for failed devtools install, 
+  # see https://github.com/r-lib/devtools/issues/2020
+  - R -e 'source("https://install-github.me/r-lib/remotes")'
 
 before_script:
   - Rscript -e "beastier::install_beast2()"
