@@ -14,13 +14,15 @@
 #' @export
 pir_plot <- function(pir_out) {
 
-    # Satisfy R CMD check
+  # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
   error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
   inference_model <- NULL; rm(inference_model) # nolint, fixes warning: no visible binding for global variable
   quantile <- NULL; rm(quantile) # nolint, fixes warning: no visible binding for global variable
   ..y.. <- NULL; rm(..y..) # nolint, fixes warning: no visible binding for global variable
   model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
+  tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
+
 
   df <- pir_out
   first_col_index <- which(names(df) == "error_1")
@@ -46,11 +48,17 @@ pir_plot <- function(pir_out) {
     warn_missing = FALSE
   )
 
+  df_long$tree_and_model <- interaction(
+    df_long$tree,
+    df_long$inference_model,
+    sep = "_"
+  )
+
   df_long$model_setting <- interaction(
     df_long$site_model,
     df_long$clock_model,
     df_long$tree_prior,
-    sep = "\n"
+    sep = ", "
   )
   df_long <- df_long[order(df_long$tree), ]
   df_long$model_setting <-
@@ -68,30 +76,132 @@ pir_plot <- function(pir_out) {
   ticks_face <- "plain"
   ticks_color <- "black"
 
-  ggplot2::ggplot(
-    data = df_long,
-    ggplot2::aes(
-      x = model_setting,
-      y = error_value,
-      fill = tree
+  theme <- ggplot2::theme(
+    plot.title = ggplot2::element_text(hjust = 0.5, face = title_face, size = title_size), # nolint
+    axis.title.x = ggplot2::element_text(face = label_face, size = label_size), # nolint
+    axis.title.y = ggplot2::element_text(face = label_face, size = label_size), # nolint
+    legend.title = ggplot2::element_text(face = label_face, size = label_size), # nolint
+    axis.text.x = ggplot2::element_text(face = ticks_face, color = ticks_color, size = ticks_size), # nolint
+    axis.text.y = ggplot2::element_text(face = ticks_face, color = ticks_color, size = ticks_size), # nolint
+    legend.text = ggplot2::element_text(face = ticks_face, color = ticks_color, size = ticks_size), # nolint
+    strip.text.x = ggplot2::element_text(size = 12)
+  )
+
+  if (1 + 1 == 2) {
+
+    # Prepare the legend labels
+    # True, Generative
+    tg_label <- NULL
+    tg_model <- head(df_long$model_setting[ df_long$tree_and_model == "true_generative"], n = 1)
+    if (length(tg_model)) {
+      tg_label <- paste("Generative, true:", tg_model)
+    }
+    # Twin, Generative
+    wg_label <- NULL
+    wg_model <- head(df_long$model_setting[ df_long$tree_and_model == "twin_generative"], n = 1)
+    if (length(wg_model)) {
+      wg_label <- paste("Generative, twin:", wg_model)
+    }
+    # True, Best
+    tb_label <- NULL
+    tb_model <- head(df_long$model_setting[ df_long$tree_and_model == "true_best"], n = 1)
+    if (length(tg_model)) {
+      tb_label <- paste("Best, true:", tb_model)
+    }
+    # Twin, Best
+    wb_label <- NULL
+    wb_model <- head(df_long$model_setting[ df_long$tree_and_model == "twin_best"], n = 1)
+    if (length(wg_model)) {
+      wb_label <- paste("Best, twin:", wb_model)
+    }
+
+    # Collect all labels. Absent models have NULL labels and are thus ignored
+    tree_and_model_labels <- c(
+      tg_label,
+      wg_label,
+      tb_label,
+      wb_label
     )
-  ) + ggplot2::geom_violin() +
+
+    # Line colors: must be darker than the fill color
+    # Tree true has primary color, twin a lighter shade
+    # Generative model is red, candidate blue
+    tree_and_model_line_colors <- c(
+      "true_generative" = "#FF0000", # Red
+      "twin_generative" = "#FF8888", # Light red
+      "true_best" = "#0000FF", # Blue
+      "twin_best" = "#8888FF"  # Light blue
+    )
+
+    # Fill colors: must be lighter than the colors at the edges
+    # Tree true has primary color, twin a lighter shade
+    # Generative model is red, candidate blue
+    tree_and_model_fill_colors <- c(
+      "true_generative" = "#FF3333", # Red
+      "twin_generative" = "#FFAAAA", # Light red
+      "true_best" = "#3333FF", # Blue
+      "twin_best" = "#AAAAFF"  # Light blue
+    )
+
+    # Collect the medians
+    medians <- df_long %>%
+      dplyr::group_by(tree_and_model) %>%
+      dplyr::summarise(median = median(error_value))
+
+    ggplot2::ggplot(
+      data = df_long,
+      ggplot2::aes(
+        x = error_value,
+        color = tree_and_model,
+        fill = tree_and_model
+      )
+    ) +
+      ggplot2::geom_density() +
+      ggplot2::scale_color_manual(
+        values = tree_and_model_line_colors,
+        labels = tree_and_model_labels
+      ) +
+      ggplot2::scale_fill_manual(
+        values = tree_and_model_fill_colors,
+        labels = tree_and_model_labels
+      ) +
+      ggplot2::scale_x_continuous(
+        minor_breaks = seq(0.0, 1.0, 0.01)
+      ) +
+      ggplot2::coord_cartesian(xlim = c(0.0, 1.0)) +
+      ggplot2::geom_vline(
+        data = medians,
+        ggplot2::aes(
+          xintercept = median,
+          color = tree_and_model
+        ),
+        linetype = "dashed"
+      ) +
+      ggplot2::ggtitle("Inference error distribution") +
+      ggplot2::labs(
+      x = "Error",
+      y = "Density",
+      fill = "Model and tree",
+      color = "Model and tree"
+    ) + theme
+
+    # Put legend at bottom: ggplot2::theme(legend.position = "bottom", legend.direction="vertical") # nolint indeed a long line
+  } else {
+    # Previous way to do it
+    ggplot2::ggplot(
+      data = df_long,
+      ggplot2::aes(
+        x = model_setting,
+        y = error_value,
+        fill = tree
+      )
+    ) + ggplot2::geom_violin() +
     ggplot2::ggtitle("Inference error distribution") +
     ggplot2::labs(
       x = "Tree types",
       y = "Errors",
       fill = "Tree type"
-    ) +
-    ggplot2::theme(
-      plot.title = ggplot2::element_text(hjust = 0.5, face = title_face, size = title_size), # nolint
-      axis.title.x = ggplot2::element_text(face = label_face, size = label_size), # nolint
-      axis.title.y = ggplot2::element_text(face = label_face, size = label_size), # nolint
-      legend.title = ggplot2::element_text(face = label_face, size = label_size), # nolint
-      axis.text.x = ggplot2::element_text(face = ticks_face, color = ticks_color, size = ticks_size), # nolint
-      axis.text.y = ggplot2::element_text(face = ticks_face, color = ticks_color, size = ticks_size), # nolint
-      legend.text = ggplot2::element_text(face = ticks_face, color = ticks_color, size = ticks_size), # nolint
-      strip.text.x = ggplot2::element_text(size = 12)
-    ) +
+    ) + theme +
     ggplot2::xlab(
       "Inference model (Site model, Clock model, Tree prior)"
     ) +
@@ -106,5 +216,5 @@ pir_plot <- function(pir_out) {
         )
       )
     ) + ggplot2::scale_x_discrete(drop = TRUE)
-
+  }
 }

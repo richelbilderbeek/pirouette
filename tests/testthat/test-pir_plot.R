@@ -13,7 +13,7 @@ test_that("use", {
 
   expect_silent(
     pir_plot(
-      create_test_pir_run_output(
+      pir_out = create_test_pir_run_output(
         add_twin = FALSE,
         add_best = TRUE
       )
