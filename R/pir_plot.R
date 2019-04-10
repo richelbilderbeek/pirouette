@@ -106,7 +106,7 @@ pir_plot <- function(pir_out) {
   ##############################################################################
   # Legend labels
   ##############################################################################
-  get_first <- function(x) head(x, n = 1)
+  get_first <- function(x) utils::head(x, n = 1)
   # True, Generative
   tg_label <- NULL
   tg_model <- get_first(
@@ -178,7 +178,7 @@ pir_plot <- function(pir_out) {
   # Collect the medians
   medians <- df_long %>%
     dplyr::group_by(tree_and_model) %>%
-    dplyr::summarise(median = median(error_value))
+    dplyr::summarise(median = stats::median(error_value))
 
   ##############################################################################
   # Plot it
