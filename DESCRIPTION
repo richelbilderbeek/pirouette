@@ -34,7 +34,8 @@ Imports:
     TESS,
     testit,
     tidyr,
-    tracerer
+    tracerer,
+    magrittr
 Suggests:
     becosys,
     devtools,
