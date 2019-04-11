@@ -22,6 +22,7 @@ pir_plot <- function(pir_out) {
   ..y.. <- NULL; rm(..y..) # nolint, fixes warning: no visible binding for global variable
   model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
   tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
+  median <- NULL; rm(median) # nolint, fixes warning: no visible binding for global variable
 
   ##############################################################################
   # Data wrangling
@@ -191,7 +192,7 @@ pir_plot <- function(pir_out) {
       fill = tree_and_model
     )
   ) +
-    ggplot2::geom_density() +
+    ggplot2::geom_density(alpha = 0.5) +
     ggplot2::scale_color_manual(
       values = tree_and_model_line_colors,
       labels = tree_and_model_labels
