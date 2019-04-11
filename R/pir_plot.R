@@ -203,7 +203,6 @@ pir_plot <- function(pir_out) {
     ggplot2::scale_x_continuous(
       minor_breaks = seq(0.0, 1.0, 0.01)
     ) +
-    ggplot2::coord_cartesian(xlim = c(0.0, 1.0)) +
     ggplot2::geom_vline(
       data = medians,
       ggplot2::aes(
