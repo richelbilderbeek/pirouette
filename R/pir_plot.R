@@ -126,17 +126,17 @@ pir_plot <- function(pir_out) {
   # True, Best
   tb_label <- NULL
   tb_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "true_best"]
+    df_long$model_setting[df_long$tree_and_model == "true_candidate"]
   )
-  if (length(tg_model)) {
+  if (length(tb_model)) {
     tb_label <- paste("Best, true:", tb_model)
   }
   # Twin, Best
   wb_label <- NULL
   wb_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "twin_best"]
+    df_long$model_setting[df_long$tree_and_model == "twin_candidate"]
   )
-  if (length(wg_model)) {
+  if (length(wb_model)) {
     wb_label <- paste("Best, twin:", wb_model)
   }
 
@@ -158,8 +158,8 @@ pir_plot <- function(pir_out) {
   tree_and_model_line_colors <- c(
     "true_generative" = "#FF0000", # Red
     "twin_generative" = "#FF8888", # Light red
-    "true_best" = "#0000FF", # Blue
-    "twin_best" = "#8888FF"  # Light blue
+    "true_candidate" = "#0000FF", # Blue
+    "twin_candidate" = "#8888FF"  # Light blue
   )
 
   # Fill colors: must be lighter than the colors at the edges
@@ -168,8 +168,8 @@ pir_plot <- function(pir_out) {
   tree_and_model_fill_colors <- c(
     "true_generative" = "#FF3333", # Red
     "twin_generative" = "#FFAAAA", # Light red
-    "true_best" = "#3333FF", # Blue
-    "twin_best" = "#AAAAFF"  # Light blue
+    "true_candidate" = "#3333FF", # Blue
+    "twin_candidate" = "#AAAAFF"  # Light blue
   )
 
   ##############################################################################
