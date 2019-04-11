@@ -110,7 +110,7 @@ pir_plot <- function(pir_out) {
   # True, Generative
   tg_label <- NULL
   tg_model <- get_first(
-    df_long$model_setting[ df_long$tree_and_model == "true_generative"]
+    df_long$model_setting[df_long$tree_and_model == "true_generative"]
   )
   if (length(tg_model)) {
     tg_label <- paste("Generative, true:", tg_model)
@@ -118,7 +118,7 @@ pir_plot <- function(pir_out) {
   # Twin, Generative
   wg_label <- NULL
   wg_model <- get_first(
-    df_long$model_setting[ df_long$tree_and_model == "twin_generative"]
+    df_long$model_setting[df_long$tree_and_model == "twin_generative"]
   )
   if (length(wg_model)) {
     wg_label <- paste("Generative, twin:", wg_model)
@@ -126,7 +126,7 @@ pir_plot <- function(pir_out) {
   # True, Best
   tb_label <- NULL
   tb_model <- get_first(
-    df_long$model_setting[ df_long$tree_and_model == "true_best"]
+    df_long$model_setting[df_long$tree_and_model == "true_best"]
   )
   if (length(tg_model)) {
     tb_label <- paste("Best, true:", tb_model)
@@ -134,7 +134,7 @@ pir_plot <- function(pir_out) {
   # Twin, Best
   wb_label <- NULL
   wb_model <- get_first(
-    df_long$model_setting[ df_long$tree_and_model == "twin_best"]
+    df_long$model_setting[df_long$tree_and_model == "twin_best"]
   )
   if (length(wg_model)) {
     wb_label <- paste("Best, twin:", wb_model)
