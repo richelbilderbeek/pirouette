@@ -53,6 +53,17 @@ rm_pir_param_files <- function(pir_params) {
       )
     )
   }
+
+  if (!beautier::is_one_na(pir_params$twinning_params)) {
+    filenames <- c(filenames,
+      c(
+        pir_params$twinning_params$twin_tree_filename,
+        pir_params$twinning_params$twin_alignment_filename,
+        pir_params$twinning_params$twin_evidence_filename
+      )
+    )
+  }
+
   file.remove(filenames[file.exists(filenames)])
   testit::assert(all(!file.exists(filenames)))
 }
