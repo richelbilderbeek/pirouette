@@ -46,7 +46,8 @@ check_pir_out <- function(
   }
 
 
-  if (!all(is.na(pir_out$inference_model_weight) | pir_out$inference_model_weight >= 0.0 )) {
+  if (!all(is.na(pir_out$inference_model_weight) |
+      pir_out$inference_model_weight >= 0.0)) {
     stop("Invalid 'inference_model_weight' value")
   }
 
