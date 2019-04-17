@@ -112,7 +112,7 @@ pir_run <- function(
     # Find experiments
     pir_outs <- pir_out
     j <- 0
-    max_model_weight <- max(na.omit(pir_out$inference_model_weight))
+    max_model_weight <- max(stats::na.omit(pir_out$inference_model_weight))
     testit::assert(!is.na(max_model_weight))
 
     for (i in 1:nrow(pir_out)) {
