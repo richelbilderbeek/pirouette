@@ -15,7 +15,7 @@ nothing. Will \link{stop} if not
 \description{
 Will \link{stop} if not.
 A valid \link{pirouette} parameter set
-can be created by \link{create_pir_out}.
+can be created by \link{create_pir_params}.
 }
 \examples{
   library(testthat)

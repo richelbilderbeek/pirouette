@@ -2,7 +2,7 @@
 #'
 #' Will \link{stop} if not.
 #' A valid \link{pirouette} parameter set
-#' can be created by \link{create_pir_out}.
+#' can be created by \link{create_pir_params}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
 #' @author Richèl J.C. Bilderbeek
