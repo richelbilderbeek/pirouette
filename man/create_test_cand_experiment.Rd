@@ -45,7 +45,6 @@ library(testthat)
 experiment <- create_test_cand_experiment()
 
 expect_true("inference_conditions" \%in\% names(experiment))
-
 expect_true("inference_model" \%in\% names(experiment))
 expect_true("beast2_options" \%in\% names(experiment))
 expect_true("est_evidence_mcmc" \%in\% names(experiment))
