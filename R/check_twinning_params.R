@@ -32,10 +32,8 @@ check_twinning_params <- function(
       )
     }
   }
-  if (!(twinning_params$rng_seed == "same_seed")) {
-    if (!is.numeric(twinning_params$rng_seed)) {
-      stop("'rng_seed' must be a number or 'same_seed'")
-    }
+  if (!is.numeric(twinning_params$rng_seed)) {
+    stop("'rng_seed' must be a number")
   }
   if (!is.character(twinning_params$twin_model)) {
     stop("'twin_model' must be a character vector")

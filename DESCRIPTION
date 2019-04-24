@@ -23,18 +23,21 @@ Imports:
     beastier,
     beautier,
     DDD,
+    dplyr,
     geiger,
     mauricer,
     mcbette,
     phangorn,
     phytools,
+    plyr,
     rappdirs,
     Rmpfr,
     stringr,
     TESS,
     testit,
     tidyr,
-    tracerer
+    tracerer,
+    magrittr
 Suggests:
     becosys,
     devtools,

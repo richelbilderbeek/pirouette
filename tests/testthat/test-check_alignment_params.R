@@ -73,6 +73,27 @@ test_that("use", {
     ),
     "'mutation_rate' must be a non-zero and positive value"
   )
+
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        root_sequence = "acgt",
+        mutation_rate = function(phylogeny) "nonsense"
+      )
+    ),
+    "'mutation_rate' function must return a number"
+  )
+
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        root_sequence = "acgt",
+        mutation_rate = function(phylogeny) -1234567
+      )
+    ),
+    "'mutation_rate' function must return non-zero and positive value"
+  )
+
   expect_error(
     check_alignment_params(
       create_alignment_params(

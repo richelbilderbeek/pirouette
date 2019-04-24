@@ -18,20 +18,9 @@ test_that("generative", {
   #
   # All weights and errors are random, but possibly valid, numbers
 
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-  # Select all experiments with 'run_if' is 'always'
-  experiment <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "generative",
-      run_if = "always",
-      do_measure_evidence = FALSE
-    ),
-    inference_model = create_inference_model(
-      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    beast2_options = create_beast2_options(rng_seed = 314)
-  )
+  experiment <- create_test_gen_experiment()
   experiments <- list(experiment)
 
   pir_params <- create_pir_params(
@@ -928,5 +917,16 @@ test_that("Errors files exist", {
     file.exists(
       pir_params$experiments[[1]]$errors_filename
     )
+  )
+})
+
+test_that("Abuse", {
+
+  expect_error(
+    pir_run(
+      phylogeny = "nonsense",
+      pir_params = create_test_pir_params()
+    ),
+    "'phylogeny' must be of class 'phylo'"
   )
 })
