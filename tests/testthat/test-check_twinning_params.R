@@ -70,34 +70,34 @@ test_that("use", {
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        n_replicas = "nonsense"
+        n_replicates = "nonsense"
       )
     ),
-    "'n_replicas' must be a number"
+    "'n_replicates' must be a number"
   )
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        n_replicas = 1.5
+        n_replicates = 1.5
       )
     ),
-    "'n_replicas' must be a finite positive integer number"
+    "'n_replicates' must be a finite positive integer number"
   )
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        n_replicas = Inf
+        n_replicates = Inf
       )
     ),
-    "'n_replicas' must be a finite positive integer number"
+    "'n_replicates' must be a finite positive integer number"
   )
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        n_replicas = -10
+        n_replicates = -10
       )
     ),
-    "'n_replicas' must be a finite positive integer number"
+    "'n_replicates' must be a finite positive integer number"
   )
 
   # Wrong twin_evidence_filename

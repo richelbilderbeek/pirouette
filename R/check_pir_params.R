@@ -5,12 +5,14 @@
 #' can be created by \link{create_pir_params}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'  testthat::expect_silent(check_pir_params(create_test_pir_params()))
-#'  testthat::expect_error(check_pir_params("nonsense"))
-#'  testthat::expect_error(check_pir_params(NULL))
-#'  testthat::expect_error(check_pir_params(NA))
+#'   library(testthat)
+#'
+#'   expect_silent(check_pir_params(create_test_pir_params()))
+#'   expect_error(check_pir_params("nonsense"))
+#'   expect_error(check_pir_params(NULL))
+#'   expect_error(check_pir_params(NA))
 #' @export
 check_pir_params <- function(
   pir_params
@@ -80,7 +82,7 @@ check_pir_params <- function(
     nchar(basename(filename))
   )
   if (file_extenstion != ".csv") {
-    stop("'evidence_filename' must be a csv file")
+    stop("'evidence_filename' must be a csv filename")
   }
   if (length(pir_params$verbose) != 1 ||
     is.na(pir_params$verbose) ||

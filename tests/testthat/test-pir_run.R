@@ -3,6 +3,7 @@ context("test-pir_run")
 test_that("generative", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -17,20 +18,9 @@ test_that("generative", {
   #
   # All weights and errors are random, but possibly valid, numbers
 
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-  # Select all experiments with 'run_if' is 'always'
-  experiment <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "generative",
-      run_if = "always",
-      do_measure_evidence = FALSE
-    ),
-    inference_model = create_inference_model(
-      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    beast2_options = create_beast2_options(rng_seed = 314)
-  )
+  experiment <- create_test_gen_experiment()
   experiments <- list(experiment)
 
   pir_params <- create_pir_params(
@@ -101,6 +91,7 @@ test_that("generative", {
 test_that("generative, using gamma statistic", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -152,6 +143,7 @@ test_that("generative, using gamma statistic", {
 test_that("generative, with MRCA prior", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -231,6 +223,7 @@ test_that("generative, CBS", {
 test_that("most_evidence, one candidate", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -297,6 +290,7 @@ test_that("most_evidence, one candidate", {
 test_that("most_evidence, two candidates", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -372,6 +366,7 @@ test_that("most_evidence, two candidates", {
 test_that("generative and most_evidence, generative not in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -437,6 +432,7 @@ test_that("generative and most_evidence, generative not in most_evidence", {
 test_that("generative and most_evidence, generative in most_evidence", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -497,6 +493,7 @@ test_that("generative and most_evidence, generative in most_evidence", {
 test_that("most_evidence, three candidates", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -570,6 +567,7 @@ test_that("most_evidence, three candidates", {
 test_that("most_evidence, four candidates", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -647,6 +645,7 @@ test_that("most_evidence, four candidates", {
 test_that("generative with twin", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -734,7 +733,7 @@ test_that("generative with twin", {
 test_that("most_evidence, with twinning", {
 
   if (!beastier::is_on_travis()) return()
-
+  if (!beastier::is_beast2_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -831,6 +830,7 @@ test_that("most_evidence, with twinning", {
 test_that("twin parameters", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
@@ -880,6 +880,7 @@ test_that("twin parameters", {
 test_that("Errors files exist", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
@@ -916,5 +917,16 @@ test_that("Errors files exist", {
     file.exists(
       pir_params$experiments[[1]]$errors_filename
     )
+  )
+})
+
+test_that("Abuse", {
+
+  expect_error(
+    pir_run(
+      phylogeny = "nonsense",
+      pir_params = create_test_pir_params()
+    ),
+    "'phylogeny' must be of class 'phylo'"
   )
 })

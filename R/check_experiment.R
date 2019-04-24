@@ -7,14 +7,14 @@
 #' @return nothing. Will \link{stop} if not
 #' @seealso Use \link{check_experiments} to check if an object
 #'   is a list of experiments
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
-#'     check_experiment(create_test_experiment())
-#'   )
-#'   testthat::expect_error(check_experiment("nonsense"))
-#'   testthat::expect_error(check_experiment(NA))
-#'   testthat::expect_error(check_experiment(NULL))
+#'   library(testthat)
+#'
+#'   expect_silent(check_experiment(create_test_experiment()))
+#'   expect_error(check_experiment("nonsense"))
+#'   expect_error(check_experiment(NA))
+#'   expect_error(check_experiment(NULL))
 #' @export
 check_experiment <- function(
   experiment

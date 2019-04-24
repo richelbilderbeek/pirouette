@@ -19,6 +19,21 @@ A test data frame can be created by \link{create_test_marg_liks}}
 \description{
 Select the evidences for candidate experiments
 }
+\examples{
+library(testthat)
+
+experiment_1 <- create_test_gen_experiment()
+experiment_2 <- create_test_cand_experiment()
+expect_equal(experiment_1$inference_conditions$model_type, "generative")
+expect_equal(experiment_2$inference_conditions$model_type, "candidate")
+experiments <- list(experiment_1, experiment_2)
+
+candidate_evidences <- select_candidate_evidences(
+  experiments = experiments,
+  marg_liks = create_test_marg_liks()
+)
+expect_equal(1, nrow(candidate_evidences))
+}
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }

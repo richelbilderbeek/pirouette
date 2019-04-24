@@ -6,7 +6,7 @@
 \usage{
 create_experiment(inference_conditions = create_inference_conditions(),
   inference_model = beautier::create_inference_model(mcmc =
-  create_mcmc(store_every = 1000)),
+  beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
   tempfile(pattern = "beast2_", fileext = ".xml"), output_log_filename =
   tempfile(pattern = "beast2_", fileext = ".log"), output_trees_filenames =
@@ -46,14 +46,18 @@ a \link{pirouette} experiment.
 The arguments are checked by \link{check_experiment}.
 }
 \examples{
+ library(testthat)
+
  experiment <- create_experiment()
- testthat::expect_silent(check_experiment(create_experiment()))
- testit::assert("inference_conditions" \%in\% names(experiment))
- testit::assert("inference_model" \%in\% names(experiment))
- testit::assert("beast2_options" \%in\% names(experiment))
- testit::assert("est_evidence_mcmc" \%in\% names(experiment))
- testit::assert("beast2_bin_path" \%in\% names(experiment))
+
+ expect_true("inference_conditions" \%in\% names(experiment))
+ expect_true("inference_model" \%in\% names(experiment))
+ expect_true("beast2_options" \%in\% names(experiment))
+ expect_true("est_evidence_mcmc" \%in\% names(experiment))
+ expect_true("beast2_bin_path" \%in\% names(experiment))
+
+ expect_silent(check_experiment(experiment))
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

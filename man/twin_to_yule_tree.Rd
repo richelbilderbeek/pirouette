@@ -14,11 +14,37 @@ or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 }
 \value{
-a twin Yule tree of class \code{phylo},
+a twin Yule tree of class \link[ape]{phylo},
 }
 \description{
 Create a twin tree from a phylogeny using a Yule process
 }
+\examples{
+library(testthat)
+
+phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+twinning_params <- create_twinning_params()
+yule_tree <- twin_to_yule_tree(
+  phylogeny = phylogeny,
+  twinning_params = twinning_params
+)
+
+expect_equal(class(yule_tree), "phylo")
+
+# Branching times will differ, except the crown
+expect_false(
+  all(
+    ape::branching.times(phylogeny) ==
+    ape::branching.times(yule_tree)
+  )
+)
+
+# Crown age stays the same
+expect_equal(
+  max(ape::branching.times(yule_tree)),
+  max(ape::branching.times(phylogeny))
+)
+}
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

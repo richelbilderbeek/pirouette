@@ -1,8 +1,38 @@
 #' Estimate the evidences
 #' @inheritParams default_params_doc
-#' @return a data frame with evidences
+#' @return a data frame with evidences. Returns NULL if there
+#'   are no experiments that have their evidence measured.
+#' @author Richèl J.C. Bilderbeek
+#' @examples
+#' fasta_filename <- system.file(
+#'   "extdata", "alignment.fas", package = "pirouette"
+#' )
+#'
+#' # Create a single one candidate experiment
+#' experiments <- list(create_test_cand_experiment())
+#'
+#' # Be sloppy amd fast in estimating the evidence
+#' evidence_epsilon <- 100.0
+#'
+#' if (is_on_ci() && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+#'   evidences <- est_evidences(
+#'     fasta_filename = fasta_filename,
+#'     experiments = experiments,
+#'     evidence_epsilon = evidence_epsilon
+#'   )
+#'
+#'   library(testthat)
+#'   expect_true("site_model_name" %in% names(evidences))
+#'   expect_true("clock_model_name" %in% names(evidences))
+#'   expect_true("tree_prior_name" %in% names(evidences))
+#'   expect_true("marg_log_lik" %in% names(evidences))
+#'   expect_true("marg_log_lik_sd" %in% names(evidences))
+#'   expect_true("weight" %in% names(evidences))
+#'
+#'   # As the only experiment, its weight is 1.0
+#'   expect_equal(1.0, evidences$weight[1])
+#' }
 #' @export
-#' @author Richel J.C. Bilderbeek
 est_evidences <- function(
   fasta_filename,
   experiments = list(create_test_experiment()),
@@ -10,10 +40,22 @@ est_evidences <- function(
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
-  testit::assert(file.exists(fasta_filename))
-  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
-
+  if (!beastier::is_beast2_installed()) {
+    stop("BEAST2 not installed. Tip: use 'beastier::install_beast2()'")
+  }
+  if (!file.exists(fasta_filename)) {
+    stop(
+      "'fasta_filename' must be the name of an existing file. ",
+      "File '", fasta_filename, "' not found"
+    )
+  }
   check_experiments(experiments) # nolint pirouette function
+  if (!is.numeric(evidence_epsilon) || length(evidence_epsilon) != 1) {
+    stop(
+      "'evidence_epsilon' must be one numerical value. ",
+      "Actual value(s): ", evidence_epsilon
+    )
+  }
 
   # Collect inference models and BEAST2 optionses
   inference_models <- list()
@@ -41,6 +83,7 @@ est_evidences <- function(
   testit::assert(length(inference_models) > 0)
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)
+  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
   marg_liks <- mcbette::est_marg_liks_from_models(
     fasta_filename = fasta_filename,
     inference_models = inference_models,
@@ -76,6 +119,8 @@ est_evidences <- function(
       file.remove(experiment$beast2_options$output_trees_filenames)
     }
   }
+  if (abs(1.0 - sum(marg_liks$weight)) > 0.01) {
 
+  }
   marg_liks
 }

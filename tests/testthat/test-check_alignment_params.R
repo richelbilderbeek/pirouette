@@ -73,6 +73,27 @@ test_that("use", {
     ),
     "'mutation_rate' must be a non-zero and positive value"
   )
+
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        root_sequence = "acgt",
+        mutation_rate = function(phylogeny) "nonsense"
+      )
+    ),
+    "'mutation_rate' function must return a number"
+  )
+
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        root_sequence = "acgt",
+        mutation_rate = function(phylogeny) -1234567
+      )
+    ),
+    "'mutation_rate' function must return non-zero and positive value"
+  )
+
   expect_error(
     check_alignment_params(
       create_alignment_params(
@@ -86,12 +107,17 @@ test_that("use", {
   expect_error(
     check_alignment_params(
       create_alignment_params(
-        clock_model = create_clock_model(
-          name = "relaxed_log_normal",
-          id = NA
-        )
+        clock_model = "nonsense"
       )
     ),
-    "This 'clock_model' has not been implemented yet"
+    "'clock_model' must be a clock model"
+  )
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        clock_model = create_rln_clock_model()
+      )
+    ),
+    "Unsupported 'clock_model'"
   )
 })

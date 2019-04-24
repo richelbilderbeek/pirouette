@@ -8,7 +8,7 @@ pir_run_tree(phylogeny, tree_type = "true", alignment_params,
   experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE, use_new_interface = FALSE)
+  verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -34,8 +34,6 @@ a parameter set}
 evidences (aka marginal likelihoods)}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{use_new_interface}{set to TRUE to use a new interface}
 }
 \value{
 a data frame with errors, with as many rows as model selection
@@ -45,5 +43,5 @@ a data frame with errors, with as many rows as model selection
 The phylogeny can be the true tree or its twin.
 }
 \author{
-Richel J.C. Bilderbeek, Giovanni Laudanno
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

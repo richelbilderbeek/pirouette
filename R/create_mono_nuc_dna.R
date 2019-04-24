@@ -2,10 +2,12 @@
 #' with four equal-sized nucleotide sections
 #' @param length number of nucleotides
 #' @param nucleotide number of nucleotides
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_equal(create_mono_nuc_dna(length = 3), "aaa")
-#'   testthat::expect_equal(
+#'   library(testthat)
+#'
+#'   expect_equal(create_mono_nuc_dna(length = 3), "aaa")
+#'   expect_equal(
 #'     create_mono_nuc_dna(nucleotide = "c", length = 5),
 #'     "ccccc"
 #'   )

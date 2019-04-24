@@ -3,14 +3,14 @@
 #' Will \link{stop} if not.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if not
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   testthat::expect_silent(
-#'     check_alignment_params(create_test_alignment_params())
-#'   )
-#'   testthat::expect_error(check_alignment_params("nonsense"))
-#'   testthat::expect_error(check_alignment_params(NA))
-#'   testthat::expect_error(check_alignment_params(NULL))
+#' library(testthat)
+#'
+#' expect_silent(check_alignment_params(create_test_alignment_params()))
+#' expect_error(check_alignment_params("nonsense"))
+#' expect_error(check_alignment_params(NA))
+#' expect_error(check_alignment_params(NULL))
 #' @export
 check_alignment_params <- function(
   alignment_params
@@ -39,7 +39,7 @@ check_alignment_params <- function(
     test_1 <- alignment_params$mutation_rate(phylogeny_1)
     phylogeny_2 <- load_tree(tree_model = "mbd", seed = 1) # nolint pirouette function
     test_2 <- alignment_params$mutation_rate(phylogeny_2)
-    if (!is.numeric(test_1) | !is.numeric(test_2)) {
+    if (!is.numeric(test_1) || !is.numeric(test_2)) {
       stop("'mutation_rate' function must return a number")
     } else {
       if (test_1 < 0 | test_2 < 0) {
@@ -54,7 +54,18 @@ check_alignment_params <- function(
   if (!is.numeric(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
+  if (!beautier::is_clock_model(alignment_params$clock_model)) {
+    stop(
+      "'clock_model' must be a clock model. \n",
+      "Tip: use 'create_strict_clock_model'. \n",
+      "Actual value: ", alignment_params$clock_model
+    )
+  }
   if (alignment_params$clock_model$name != "strict") {
-    stop(" This 'clock_model' has not been implemented yet")
+    stop(
+      "Unsupported 'clock_model'. \n",
+      "Tip: use 'create_strict_clock_model'. \n",
+      "Actual clock model name: ", alignment_params$clock_model$name
+    )
   }
 }

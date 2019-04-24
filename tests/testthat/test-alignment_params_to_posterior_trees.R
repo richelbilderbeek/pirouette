@@ -3,6 +3,7 @@ context("test-alignment_params_to_posterior_trees")
 test_that("returns a multiPhylo", {
 
   if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   alignment_params <- create_test_alignment_params()
   sim_alignment_file(

@@ -2,22 +2,40 @@
 % Please edit documentation in R/create_pir_params_twin.R
 \name{create_pir_params_twin}
 \alias{create_pir_params_twin}
-\title{Create the twin parameters for \code{pirouette}}
+\title{Create the twin parameters for \link{pirouette}}
 \usage{
-create_pir_params_twin(pir_params, pir_out)
+create_pir_params_twin(pir_params)
 }
 \arguments{
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
-
-\item{pir_out}{the output of \link{pir_run_tree} applied on the original tree}
 }
 \value{
-a list with all \code{pirouette} twin parameters
+a list with all \link{pirouette} twin parameters
 }
 \description{
-Create the twin parameters for \code{pirouette}
+Or: puts the twin in the front row, by copying all parameters
+for the twin-something to the spots for the true-something
+}
+\examples{
+  library(testthat)
+
+  pir_params <- create_test_pir_params(
+    twinning_params = create_twinning_params()
+  )
+
+ expect_false(
+   pir_params$alignment_params$fasta_filename ==
+   pir_params$twinning_params$twin_alignment_filename
+ )
+
+ pir_params <- create_pir_params_twin(pir_params)
+
+ expect_true(
+   pir_params$alignment_params$fasta_filename ==
+   pir_params$twinning_params$twin_alignment_filename
+ )
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

@@ -8,20 +8,14 @@
 #' @seealso Use \link{check_experiment} to check if an object
 #'   is one valid experiment
 #' @examples
-#'   testthat::expect_silent(
-#'     check_experiments(
-#'       list(create_test_experiment())
-#'     )
-#'   )
-#'   testthat::expect_error(
-#'     check_experiments(
-#'       create_test_experiment()
-#'     )
-#'   )
-#'   testthat::expect_error(check_experiments("nonsense"))
-#'   testthat::expect_error(check_experiments(NA))
-#'   testthat::expect_error(check_experiments(NULL))
-#' @author Richel J.C. Bilderbeek
+#'   library(testthat)
+#'
+#'   expect_silent(check_experiments(list(create_test_experiment())))
+#'   expect_error(check_experiments(create_test_experiment()))
+#'   expect_error(check_experiments("nonsense"))
+#'   expect_error(check_experiments(NA))
+#'   expect_error(check_experiments(NULL))
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_experiments <- function(
   experiments
@@ -64,9 +58,9 @@ check_experiments <- function(
           "Difference between experiment[[", i, "]] ",
           "and experiment[[", j, "]].\n",
           "Value experiment[[", i, "]]$inference_model$mcmc: ",
-          experiments[[i]]$inference_model$mcmc, "\n",
+          paste0(experiments[[i]]$inference_model$mcmc, collapse = ", "), "\n",
           "Value experiment[[", j, "]]$inference_model$mcmc: ",
-          experiments[[j]]$inference_model$mcmc, "\n"
+          paste0(experiments[[j]]$inference_model$mcmc, collapse = ", "), "\n"
         )
       }
     }

@@ -1,7 +1,13 @@
 #' Create a twin tree
 #' @inheritParams default_params_doc
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+#' twin_phylogeny <- create_twin_tree(phylogeny)
+#'
+#' library(testthat)
+#' expect_true(is_phylo(twin_phylogeny))
 #' @export
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
 create_twin_tree <- function(
   phylogeny,
   twinning_params = create_twinning_params()
@@ -13,13 +19,13 @@ create_twin_tree <- function(
     twin_tree <- twin_to_bd_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
-    )$tree
+    )
   }
   if (twinning_params$twin_model == "yule") {
     twin_tree <- twin_to_yule_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
-    )$tree
+    )
   }
   testit::assert(beautier::is_phylo(twin_tree))
   testit::assert(

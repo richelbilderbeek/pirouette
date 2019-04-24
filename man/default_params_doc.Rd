@@ -20,7 +20,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   init_speciation_rate, init_extinction_rate, lambda, log_evidence,
   marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
   mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
-  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicas, nu, nu_events,
+  mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicates, nu, nu_events,
   parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
   pir_out, posterior_trees, precision, project_folder_name, result,
   rng_seed, root_sequence, run_experiment, run_experiments, run_if,
@@ -29,7 +29,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
   tree_type, true_result, twin_alignment_filename, twin_evidence_filename,
   twin_model, twin_result, twin_tree_filename, twinning_params, type,
-  use_new_interface, verbose, weight)
+  verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment}
@@ -117,7 +117,9 @@ BEAST2 binary file path.}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
-\item{brts}{set of branching times}
+\item{brts}{numeric vector of (all postive) branching times,
+in time units before the present. Assuming no stem, the heighest
+value equals the crown age.}
 
 \item{burn_in_fraction}{the fraction of the posterior trees (starting
 from the ones generated first)
@@ -240,9 +242,9 @@ from a MBD tree}
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates \code{n_replicas} trees and
+    \item 'max_clade_cred' simulates \code{n_replicates} trees and
       uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates \code{n_replicas} trees
+    \item 'max_likelihood' simulates \code{n_replicates} trees
      and selects the most likely;
   }}
 
@@ -272,7 +274,7 @@ as created by \link[beautier]{create_mrca_prior}}
 
 \item{n_taxa}{number of tree tips}
 
-\item{n_replicas}{number of replicas to evaluate in order to create the
+\item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
@@ -413,8 +415,6 @@ as can be created by \link{create_twinning_params}}
 }
 See \link{get_model_selections} for a list.}
 
-\item{use_new_interface}{set to TRUE to use a new interface}
-
 \item{verbose}{if TRUE, show more output}
 
 \item{weight}{the weight of the model, compared to other (candidate)
@@ -433,5 +433,5 @@ This is an internal function, so it should be marked with
 }
 \author{
 Documentation by Giovanni Laudanno,
-  use of this function by Richel J.C. Bilderbeek
+  use of this function by Richèl J.C. Bilderbeek
 }

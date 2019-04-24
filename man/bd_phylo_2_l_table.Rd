@@ -15,6 +15,18 @@ the L table
 \description{
 Convert bd phylo to L table. Don't use for mbd.
 }
+\examples{
+phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+
+l_table <- bd_phylo_2_l_table(phylogeny)
+
+library(testthat)
+expect_equal("matrix", class(l_table))
+expect_true("birth_time" \%in\% colnames(l_table))
+expect_true("parent" \%in\% colnames(l_table))
+expect_true("id" \%in\% colnames(l_table))
+expect_true("death_time" \%in\% colnames(l_table))
+}
 \author{
-Xu Liang, Giovanni Laudanno
+Xu Liang, Giovanni Laudanno, Richèl J.C. Bilderbeek
 }
