@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: xenial
+# dist: xenial
 
 r_github_packages:
   - Giappo/mbd
