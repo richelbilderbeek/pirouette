@@ -35,10 +35,33 @@ test_that("use", {
   #
 
   phylogeny_1 <- ape::read.tree(text = "(A:4, B:4);")
+  root_sequence <- "aaaaaaaa"
+  alignment_1 <- ape::as.DNAbin(x = list(
+      species_1 = strsplit("aaaacccc", split = "")[[1]],
+      species_2 = strsplit("aaaatttt", split = "")[[1]]
+    )
+  )
+  ape::image.DNAbin(alignment)
+  expect_equal(
+    count_n_mutation(alignment = alignment, root_sequence = root_sequence),
+    8
+  )
+
   phylogeny_2 <- ape::read.tree(text = "(A:8, B:8);")
   ape::plot.phylo(phylogeny_1); ape::add.scale.bar(x = 0.0, y = 0.99, length = 2) # nolint too long, but used only temporarily
   ape::plot.phylo(phylogeny_2); ape::add.scale.bar(x = 0.0, y = 0.99, length = 2) # nolint too long, but used only temporarily
 
+  expect_equal(
+    count_n_mutation(alignment = alignment_1, root_sequence = root_sequence),
+    count_n_mutation(alignment = alignment_2, root_sequence = root_sequence)
+  )
+
+  create_twin_alignment(
+    root_sequence = root_sequence,
+    phylogeny,
+    n_mutations
+
+  )
 
 
 })

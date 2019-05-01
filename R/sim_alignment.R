@@ -65,16 +65,66 @@ sim_alignment <- function(
     }
   )
 
-  root_sequence <- alignment_params$root_sequence
+  sim_alignment_raw(
+    phylogeny = phylogeny,
+    root_sequence = alignment_params$root_sequence,
+    rng_seed = alignment_params$rng_seed,
+    mutation_rate = alignment_params$mutation_rate,
+    site_model = alignment_params$site_model
+  )
+}
 
-  set.seed(alignment_params$rng_seed)
+#' Converts a phylogeny to a random DNA alignment
+#' @inheritParams default_params_doc
+#' @return an alignment of type \code{DNAbin}
+#' @seealso Use \link{sim_alignment_file} to save the simulated alignment
+#'   directly to a file
+#' @examples
+#' library(testthat)
+#'
+#' # Create the ancestor's DNA sequence
+#' n_base_pairs <- 4
+#' root_sequence <- create_blocked_dna(length = n_base_pairs)
+#' mutation_rate <- 0.1
+#' n_taxa <- 5
+#' rng_seed <- 314
+#' phylogeny <- ape::rcoal(n_taxa)
+#' site_model <- create_jc69_site_model()
+#'
+#' # Simulate the alignment
+#' alignment <- sim_alignment_raw(
+#'    phylogeny = phylogeny,
+#'    root_sequence = root_sequence,
+#'    rng_seed = rng_seed,
+#'    mutation_rate = mutation_rate,
+#'    site_model = site_model
+#'
+#'  )
+#'
+#' expect_equal(class(alignment), "DNAbin")
+#' expect_equal(nrow(alignment), n_taxa)
+#' expect_equal(ncol(alignment), n_base_pairs)
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @export
+sim_alignment_raw <- function(
+  phylogeny,
+  root_sequence,
+  rng_seed,
+  mutation_rate,
+  site_model
+) {
+  beautier::check_phylogeny(phylogeny)
+  if (!is.null(geiger::is.extinct(phylogeny))) {
+    stop("phylogeny must not contain extant species")
+  }
+  set.seed(rng_seed)
   alignment_phydat <- phangorn::simSeq(
     phylogeny,
     l = nchar(root_sequence),
-    rate = alignment_params$mutation_rate,
+    rate = mutation_rate,
     rootseq = strsplit(root_sequence, split = "")[[1]],
     Q = create_rate_matrix(
-      site_model = alignment_params$site_model,
+      site_model = site_model,
       base_frequencies = calc_base_freq(root_sequence)
     )
   )
