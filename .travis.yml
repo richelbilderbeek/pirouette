@@ -1,15 +1,16 @@
 language: r
 cache: packages
+dist: xenial
 
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
   - MangoTheCat/goodpractice
-  - ropensci/beastier
+  - ropensci/beastier@develop
   - ropensci/mauricer
   - ropensci/babette
-  - richelbilderbeek/mcbette@develop
+  - richelbilderbeek/mcbette
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
@@ -29,8 +30,8 @@ before_script:
   - sudo pip install proselint
 
 script:
-  - travis_wait 50 R CMD build .
-  - travis_wait 50 R CMD check *tar.gz
+  - # travis_wait 60 R CMD build .
+  - # travis_wait 60 R CMD check *tar.gz
 
 after_success:
   - Rscript -e 'lintr::lint_package()'

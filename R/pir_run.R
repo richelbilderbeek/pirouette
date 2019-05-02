@@ -112,13 +112,15 @@ pir_run <- function(
     # Find experiments
     pir_outs <- pir_out
     j <- 0
+    max_model_weight <- max(stats::na.omit(pir_out$inference_model_weight))
+    testit::assert(!is.na(max_model_weight))
+
     for (i in 1:nrow(pir_out)) {
       if (pir_out$inference_model[i] == "generative") {
         pir_outs[j <- j + 1, ] <- pir_out[i, ]
       }
       if (pir_out$inference_model[i] == "candidate") {
-        if (pir_out$inference_model_weight[i] ==
-            max(pir_out$inference_model_weight)
+        if (pir_out$inference_model_weight[i] == max_model_weight
         ) {
           pir_outs[j <- j + 1, ] <- pir_out[i, ]
         }
