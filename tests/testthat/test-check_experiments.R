@@ -30,6 +30,8 @@ test_that("must have same MCMC chain length", {
 
 test_that("correct order of experiments", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   gen_exp <- create_test_gen_experiment()
   check_experiment(gen_exp)
 
