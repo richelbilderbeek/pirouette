@@ -182,6 +182,12 @@ pir_plot <- function(pir_out) {
     dplyr::summarise(median = stats::median(error_value))
 
   ##############################################################################
+  # Only keep 95% of x axis values
+  ##############################################################################
+  index <- trunc(0.95 * length(df_long$error_value))
+  x_top <- sort(df_long$error_value)[index]
+
+  ##############################################################################
   # Plot it
   ##############################################################################
   ggplot2::ggplot(
@@ -203,6 +209,9 @@ pir_plot <- function(pir_out) {
     ) +
     ggplot2::scale_x_continuous(
       minor_breaks = seq(0.0, 1.0, 0.01)
+    ) +
+    ggplot2::coord_cartesian(
+      xlim = c(min(df_long$error_value), x_top)
     ) +
     ggplot2::geom_vline(
       data = medians,

@@ -52,6 +52,9 @@ test_that("generative", {
   # Evidence file will not be created
   testit::assert(!file.exists(pir_params$evidence_filename))
 
+  # Return value all at once
+  check_pir_out(errors)
+
   # Return value
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
