@@ -109,6 +109,8 @@ test_that("cleans up", {
 
 test_that("abuse", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   fasta_filename <- system.file(
     "extdata",
     "alignment.fas",
