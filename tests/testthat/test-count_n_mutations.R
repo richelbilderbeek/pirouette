@@ -1,7 +1,7 @@
 context("test-count_n_mutations")
 
 test_that("use, single taxon", {
-  skip("count_n_mutations")
+
   #
   # Root sequence is known:AAAA
   #
@@ -22,7 +22,7 @@ test_that("use, single taxon", {
 })
 
 test_that("use, two taxa", {
-  skip("count_n_mutations")
+
   #
   # Root sequence is known
   #
@@ -49,7 +49,7 @@ test_that("use, two taxa", {
 })
 
 test_that("use, three taxa", {
-  skip("count_n_mutations")
+
   #
   # Root sequence is known
   #
@@ -80,7 +80,6 @@ test_that("use, three taxa", {
 
 
 test_that("abuse", {
-  skip("count_n_mutations")
 
   expect_error(
     count_n_mutation(
@@ -109,6 +108,6 @@ test_that("abuse", {
       alignment = alignment,
       root_sequence = root_sequence
     ),
-    "'root_sequence' must have the same length as the alignments' taxa"
+    "'root_sequence' must have the same length as each taxon's sequence length"
   )
 })
