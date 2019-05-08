@@ -972,7 +972,7 @@ test_that("mcbette issue #7", {
   phylogeny  <- ape::read.tree(text = "(((A:8, B:8):1, C:9):1, ((D:8, E:8):1, F:9):1);")
 
   alignment_params <- create_alignment_params(
-    root_sequence = create_blocked_dna(length = 1000),
+    root_sequence = create_blocked_dna(length = 100),
     mutation_rate = 0.1,
     rng_seed = rng_seed
   )
