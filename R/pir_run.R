@@ -112,17 +112,24 @@ pir_run <- function(
     # Find experiments
     pir_outs <- pir_out
     j <- 0
-    max_model_weight <- max(stats::na.omit(pir_out$inference_model_weight))
-    testit::assert(!is.na(max_model_weight))
+    inference_model_weights <- stats::na.omit(pir_out$inference_model_weight)
+    # Only have a maximum model weight with at least one candidate model
+    max_model_weight <- NA
+    if (length(inference_model_weights) > 0) {
+      max_model_weight <- max(inference_model_weights)
+    }
 
     for (i in 1:nrow(pir_out)) {
       if (pir_out$inference_model[i] == "generative") {
-        pir_outs[j <- j + 1, ] <- pir_out[i, ]
+        j <- j + 1
+        pir_outs[j, ] <- pir_out[i, ]
       }
       if (pir_out$inference_model[i] == "candidate") {
+        testit::assert(!is.na(max_model_weight))
         if (pir_out$inference_model_weight[i] == max_model_weight
         ) {
-          pir_outs[j <- j + 1, ] <- pir_out[i, ]
+          j <- j + 1
+          pir_outs[j, ] <- pir_out[i, ]
         }
       }
     }
