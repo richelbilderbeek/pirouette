@@ -934,8 +934,9 @@ test_that("Abuse", {
   )
 })
 
-test_that("mcbette issue #7", {
+test_that("pirouette issue #255, mcbette issue #7", {
   # See:
+  # https://github.com/richelbilderbeek/pirouette/issues/255
   # https://github.com/richelbilderbeek/mcbette/issues/7
 
   if (!beastier::is_beast2_installed()) return()
@@ -977,12 +978,14 @@ test_that("mcbette issue #7", {
     rng_seed = rng_seed
   )
 
-  experiments <- list(create_gen_experiment(beast2_options = create_beast2_options(rng_seed = rng_seed)))
+  experiments <- list(
+    create_gen_experiment(beast2_options = create_beast2_options(rng_seed = rng_seed)))
 
   # Testing
   if (1 == 2) {
     for (i in seq_along(experiments)) {
-      experiments[[i]]$inference_model$mcmc <- create_mcmc(chain_length = 10000, store_every = 1000)
+      experiments[[i]]$inference_model$mcmc <- create_mcmc(
+        chain_length = 10000, store_every = 1000)
       experiments[[i]]$est_evidence_mcmc <- create_mcmc_nested_sampling(
         chain_length = 10000,
         store_every = 1000,
@@ -1004,26 +1007,36 @@ test_that("mcbette issue #7", {
   )
 
   if (1 == 1) {
-    print("#######################################################################")
+    print("###################################################################")
     print("Settings to run on Peregrine cluster")
-    print("#######################################################################")
-    pir_params$alignment_params$fasta_filename <- file.path(example_folder, "true.fasta")
+    print("###################################################################")
+    pir_params$alignment_params$fasta_filename <- file.path(
+      example_folder, "true.fasta")
     for (i in seq_along(pir_params$experiments)) {
-      pir_params$experiments[[i]]$beast2_options$input_filename <- file.path(example_folder, "beast2_input.xml")
-      pir_params$experiments[[i]]$beast2_options$output_log_filename <- file.path(example_folder, "beast2_output.log")
-      pir_params$experiments[[i]]$beast2_options$output_trees_filenames <- file.path(example_folder, "beast2_output.trees")
-      pir_params$experiments[[i]]$beast2_options$output_state_filename <- file.path(example_folder, "beast2_output.xml.state")
-      pir_params$experiments[[i]]$beast2_options$beast2_working_dir <- example_folder
-      pir_params$experiments[[i]]$errors_filename <- file.path(example_folder, "error.csv")
+      pir_params$experiments[[i]]$beast2_options$input_filename <-
+        file.path(example_folder, "beast2_input.xml")
+      pir_params$experiments[[i]]$beast2_options$output_log_filename <-
+        file.path(example_folder, "beast2_output.log")
+      pir_params$experiments[[i]]$beast2_options$output_trees_filenames <-
+        file.path(example_folder, "beast2_output.trees")
+      pir_params$experiments[[i]]$beast2_options$output_state_filename <-
+        file.path(example_folder, "beast2_output.xml.state")
+      pir_params$experiments[[i]]$beast2_options$beast2_working_dir <-
+        example_folder
+      pir_params$experiments[[i]]$errors_filename <-
+        file.path(example_folder, "error.csv")
     }
     pir_params$evidence_filename <- file.path(example_folder, "evidence_true.csv")
     if (!is_one_na(pir_params$twinning_params)) {
-      pir_params$twinning_params$twin_tree_filename <- file.path(example_folder, "twin.tree")
-      pir_params$twinning_params$twin_alignment_filename <- file.path(example_folder, "twin.fasta")
-      pir_params$twinning_params$twin_evidence_filename <- file.path(example_folder, "evidence_twin.csv")
+      pir_params$twinning_params$twin_tree_filename <- file.path(
+        example_folder, "twin.tree")
+      pir_params$twinning_params$twin_alignment_filename <- file.path(
+        example_folder, "twin.fasta")
+      pir_params$twinning_params$twin_evidence_filename <- file.path(
+        example_folder, "evidence_twin.csv")
     }
     rm_pir_param_files(pir_params)
-    print("#######################################################################")
+    print("###################################################################")
   }
 
   Sys.time()
