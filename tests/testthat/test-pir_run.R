@@ -945,7 +945,9 @@ test_that("pirouette issue #255, mcbette issue #7", {
   example_no <- 3
   root_folder <- path.expand("~/GitHubs/pirouette_article")
   rng_seed <- 33
-  example_folder <- file.path(root_folder, paste0("example_", example_no, "_", rng_seed))
+  example_folder <- file.path(
+    root_folder, paste0("example_", example_no, "_", rng_seed)
+  )
 
   dir.create(example_folder, showWarnings = FALSE)
   setwd(example_folder)

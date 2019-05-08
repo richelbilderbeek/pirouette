@@ -112,7 +112,6 @@ pir_run <- function(
     # Find experiments
     pir_outs <- pir_out
     j <- 0
-    #testit::assert(!all(is.na(pir_out$inference_model_weight)))
     inference_model_weights <- stats::na.omit(pir_out$inference_model_weight)
     # Only have a maximum model weight with at least one candidate model
     max_model_weight <- NA
