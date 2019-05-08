@@ -16,7 +16,7 @@ test_that("use, single taxon", {
   )
   ape::image.DNAbin(alignment)
   expect_equal(
-    count_n_mutation(alignment = alignment, root_sequence = root_sequence),
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
     2
   )
 })
@@ -43,7 +43,7 @@ test_that("use, two taxa", {
   )
   ape::image.DNAbin(alignment)
   expect_equal(
-    count_n_mutation(alignment = alignment, root_sequence = root_sequence),
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
     8
   )
 })
@@ -73,7 +73,7 @@ test_that("use, three taxa", {
   )
   ape::image.DNAbin(alignment)
   expect_equal(
-    count_n_mutation(alignment = alignment, root_sequence = root_sequence),
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
     12
   )
 })
@@ -82,7 +82,7 @@ test_that("use, three taxa", {
 test_that("abuse", {
 
   expect_error(
-    count_n_mutation(
+    count_n_mutations(
       alignment = "nonsense",
       root_sequence = "aaaa"
     ),
@@ -90,7 +90,7 @@ test_that("abuse", {
   )
 
   expect_error(
-    count_n_mutation(
+    count_n_mutations(
       alignment = ape::as.DNAbin(
         x = list(species_1 = strsplit("aaaa", split = "")[[1]])
       ),
@@ -104,7 +104,7 @@ test_that("abuse", {
     x = list(species_1 = strsplit("aaaaaaaaaaaaaaaaaaaaaaaaa", split = "")[[1]])
   )
   expect_error(
-    count_n_mutation(
+    count_n_mutations(
       alignment = alignment,
       root_sequence = root_sequence
     ),
