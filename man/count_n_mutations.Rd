@@ -21,13 +21,18 @@ Count mutations
 \examples{
 library(testthat)
 
-# it works
+# Create an AAAA alignent
 alignment <- ape::as.DNAbin(
   x = list(species_1 = strsplit("aaaa", split = "")[[1]])
 )
+# Count the number of mutations from AAAA
+expect_equal(count_n_mutations(alignment, "aaaa"), 0)
+expect_equal(count_n_mutations(alignment, "acaa"), 1)
+expect_equal(count_n_mutations(alignment, "acga"), 2)
 expect_equal(count_n_mutations(alignment, "acgt"), 3)
+expect_equal(count_n_mutations(alignment, "ccgt"), 4)
 
 }
 \author{
-Giovanni Laudanno
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }
