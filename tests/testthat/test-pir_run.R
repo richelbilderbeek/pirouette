@@ -935,6 +935,7 @@ test_that("Abuse", {
 })
 
 test_that("pirouette issue #255, mcbette issue #7", {
+  skip("Fix #255")
   # See:
   # https://github.com/richelbilderbeek/pirouette/issues/255
   # https://github.com/richelbilderbeek/mcbette/issues/7
@@ -943,7 +944,7 @@ test_that("pirouette issue #255, mcbette issue #7", {
   if (!is_beast2_pkg_installed("NS")) return()
 
   example_no <- 3
-  root_folder <- path.expand("~/GitHubs/pirouette_article")
+  root_folder <- path.expand("~/GitHubs/pirouette_article") # nolint really need this folder to reproduce the error
   rng_seed <- 33
   example_folder <- file.path(
     root_folder, paste0("example_", example_no, "_", rng_seed)

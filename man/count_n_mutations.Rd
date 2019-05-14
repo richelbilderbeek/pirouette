@@ -7,7 +7,7 @@
 count_n_mutations(alignment, root_sequence)
 }
 \arguments{
-\item{alignment}{a DNA alignment}
+\item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}

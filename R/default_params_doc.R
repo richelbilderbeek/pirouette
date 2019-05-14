@@ -1,6 +1,6 @@
 #' This function does nothing. It is intended to inherit is parameters'
 #' documentation.
-#' @param alignment a DNA alignment
+#' @param alignment a DNA alignment, of class \link[ape]{DNAbin}
 #' @param alignment_params parameters to simulate an alignment,
 #'   as can be created by \link{create_alignment_params}
 #' @param alignment_rng_seed The random number generator seed used
@@ -253,7 +253,10 @@
 #' @param tree_type type of tree, can be \code{true} for the true
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
+#' @param true_alignment a DNA alignment, of class \link[ape]{DNAbin}
+#' @param true_phylogeny a phylogeny of class \link[ape]{phylo}
 #' @param true_result result obtained from using the true tree
+#' @param twin_alignment a DNA alignment, of class \link[ape]{DNAbin}
 #' @param twin_alignment_filename name of the FASTA file the twin
 #'   alignment will be saved to
 #' @param twin_evidence_filename filename to store the estimated
@@ -265,6 +268,7 @@
 #'   }
 #'   See \link{get_twin_models} to see all possible
 #'   values of \code{twin_model}
+#' @param twin_phylogeny a phylogeny of class \link[ape]{phylo}
 #' @param twin_result result obtained from using the twin tree
 #' @param twin_tree_filename  name of the (\code{.newick}) file the twin
 #'   tree will be saved to
@@ -383,9 +387,13 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
+  true_alignment,
+  true_phylogeny,
   true_result,
+  twin_alignment,
   twin_alignment_filename,
   twin_evidence_filename,
+  twin_phylogeny,
   twin_model,
   twin_result,
   twin_tree_filename,
