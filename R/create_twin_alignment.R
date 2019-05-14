@@ -6,13 +6,20 @@
 #' @return an alignment of class DNAbin that has as much
 #'   mutations accumulated from crown to the tips as the
 #'   original, 'true' alignment
-#' @author Richèl J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 create_twin_alignment <- function(
-  true_phylogeny,
   twin_phylogeny,
   true_alignment,
   alignment_params
 ) {
+  # Check inputs
+  if (!is_phylo(twin_phylogeny)) {
+    stop("'twin_phylogeny' must be a of class 'phylo'")
+  }
+  if (class(true_alignment) != "DNAbin") {
+    stop("'true_alignmnent' must be a of class 'DNAbin'")
+  }
+
   # Count the goal number of mutations
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
