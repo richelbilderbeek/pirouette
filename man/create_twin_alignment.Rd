@@ -4,12 +4,9 @@
 \alias{create_twin_alignment}
 \title{Creates a twin alignment.}
 \usage{
-create_twin_alignment(true_phylogeny, twin_phylogeny, true_alignment,
-  alignment_params)
+create_twin_alignment(twin_phylogeny, true_alignment, alignment_params)
 }
 \arguments{
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
-
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -27,5 +24,5 @@ A twin alignment is an alignment that has as much
 mutations accumulated from crown to the tips
 }
 \author{
-Richèl J.C. Bilderbeek
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }
