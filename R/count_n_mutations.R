@@ -9,7 +9,6 @@
 #' alignment <- ape::as.DNAbin(
 #'   x = list(species_1 = strsplit("aaaa", split = "")[[1]])
 #' )
-#'
 #' # Count the number of mutations from AAAA
 #' expect_equal(count_n_mutations(alignment, "aaaa"), 0)
 #' expect_equal(count_n_mutations(alignment, "acaa"), 1)
@@ -26,25 +25,35 @@ count_n_mutations <- function(
   if (class(alignment) != "DNAbin") {
     stop("'alignment' must be of class 'ape::DNAbin'")
   }
-  alignment_sequences <- strsplit(
-    gsub(
-      unname(unlist(lapply(alignment, FUN = toString))),
-      pattern = " ",
-      replacement = ""
-    ),
-    ","
-  )
+
+  if (is.matrix(alignment)) {
+    alignment_sequences <- matrix(
+      unname(unlist(as.character(alignment))),
+      nrow = length(labels(alignment)),
+      ncol = ncol(alignment),
+      byrow = TRUE
+    )
+  }
+  if (is.list(alignment)) {
+    alignment_sequences <- matrix(
+      unname(unlist(as.character(alignment))),
+      nrow = length(labels(alignment)),
+      ncol = length(as.character(alignment)[[1]]),
+      byrow = TRUE
+    )
+  }
+
   root_vector <- unlist(strsplit(root_sequence, split = ""))
   if (!all(root_vector %in% c("a", "c", "g", "t"))) {
     stop("'root_sequence' must be one character vector of lowercase nucleotides") # nolint long string
   }
-  if (length(alignment_sequences[[1]]) != length(root_vector)) {
+  if (ncol(alignment_sequences) != length(root_vector)) {
     stop("'root_sequence' must have the same length as each taxon's sequence length") # nolint long string
   }
 
   n_mutations <- 0
-  for (i in 1:length(alignment)) {
-    sequence_vector <- alignment_sequences[[i]]
+  for (i in 1:nrow(alignment_sequences)) {
+    sequence_vector <- alignment_sequences[i, ]
     n_mutations <- n_mutations + sum(root_vector != sequence_vector)
   }
   n_mutations

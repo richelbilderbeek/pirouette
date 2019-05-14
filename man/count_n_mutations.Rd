@@ -25,7 +25,6 @@ library(testthat)
 alignment <- ape::as.DNAbin(
   x = list(species_1 = strsplit("aaaa", split = "")[[1]])
 )
-
 # Count the number of mutations from AAAA
 expect_equal(count_n_mutations(alignment, "aaaa"), 0)
 expect_equal(count_n_mutations(alignment, "acaa"), 1)

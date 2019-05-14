@@ -20,7 +20,7 @@ test_that("use, two taxa", {
     n_mutations = n_mutations
   )
   expect_equal(
-    count_n_mutation(alignment, root_sequence = root_sequence),
+    count_n_mutations(alignment, root_sequence = root_sequence),
     n_mutations
   )
 })
@@ -41,7 +41,7 @@ test_that("use, three taxa", {
     n_mutations = n_mutations
   )
   expect_equal(
-    count_n_mutation(alignment, root_sequence = root_sequence),
+    count_n_mutations(alignment, root_sequence = root_sequence),
     n_mutations
   )
 })

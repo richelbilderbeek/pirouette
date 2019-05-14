@@ -113,7 +113,7 @@ test_that("abuse", {
 })
 
 test_that("Bug #257", {
-  skip("#257")
+
   true_tree <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   root_sequence <- create_blocked_dna(1000)
   true_alignment <- sim_alignment(
@@ -122,7 +122,6 @@ test_that("Bug #257", {
       root_sequence = root_sequence
     )
   )
-  image(true_alignment)
   expect_silent(
     count_n_mutations(
       alignment = true_alignment, root_sequence = root_sequence
