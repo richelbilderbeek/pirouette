@@ -122,7 +122,6 @@ test_that("Bug #257", {
       root_sequence = root_sequence
     )
   )
-  # image(true_alignment)
   expect_silent(
     count_n_mutations(
       alignment = true_alignment, root_sequence = root_sequence
