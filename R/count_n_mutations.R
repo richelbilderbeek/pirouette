@@ -26,11 +26,14 @@ count_n_mutations <- function(
   if (class(alignment) != "DNAbin") {
     stop("'alignment' must be of class 'ape::DNAbin'")
   }
-  alignment_sequences <- strsplit(gsub(
-    unname(unlist(lapply(alignment, FUN = toString))),
-    pattern = " ",
-    replacement = ""
-  ), "," )
+  alignment_sequences <- strsplit(
+    gsub(
+      unname(unlist(lapply(alignment, FUN = toString))),
+      pattern = " ",
+      replacement = ""
+    ),
+    ","
+  )
   root_vector <- unlist(strsplit(root_sequence, split = ""))
   if (!all(root_vector %in% c("a", "c", "g", "t"))) {
     stop("'root_sequence' must be one character vector of lowercase nucleotides") # nolint long string
