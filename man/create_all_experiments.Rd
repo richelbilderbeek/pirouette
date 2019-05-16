@@ -33,15 +33,18 @@ These experiments are used in the \link{create_pir_params} function
 \examples{
   library(testthat)
 
-  experiments <- create_all_experiments()
-  check_experiments(experiments)
+  if (rappdirs::app_dir()$os != "win") {
+  # it does not work on Windows
+     experiments <- create_all_experiments()
+     check_experiments(experiments)
 
-  expect_true(length(experiments) >= 40)
+     expect_true(length(experiments) >= 40)
 
-  pir_params <- create_pir_params(
-    alignment_params = create_test_alignment_params(),
-    experiments = experiments
-  )
+     pir_params <- create_pir_params(
+       alignment_params = create_test_alignment_params(),
+       experiments = experiments
+     )
+  }
 
 }
 \author{
