@@ -85,7 +85,7 @@ test_that("abuse", {
 
   expect_error(
     create_twin_alignment(
-      twin_phylogeny = twin_tree,
+      twin_phylogeny = twin_phylogeny,
       true_alignment = "nonsense",
       alignment_params = alignment_params
     ),
