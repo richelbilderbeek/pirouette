@@ -55,7 +55,7 @@ test_that("use, twin has less info", {
 })
 
 test_that("abuse", {
-  skip("#255")
+
   true_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   root_sequence <- create_blocked_dna(1000)
