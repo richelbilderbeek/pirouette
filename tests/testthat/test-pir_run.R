@@ -935,7 +935,9 @@ test_that("Abuse", {
 })
 
 test_that("pirouette issue #255, mcbette issue #7", {
+
   skip("Fix #255")
+
   # See:
   # https://github.com/richelbilderbeek/pirouette/issues/255
   # https://github.com/richelbilderbeek/mcbette/issues/7
