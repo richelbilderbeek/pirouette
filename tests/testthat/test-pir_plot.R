@@ -2,15 +2,16 @@ context("test-pir_plot")
 
 test_that("use", {
 
+  suppressPackageStartupMessages(library(ggplot2))
+
   expect_silent(
     pir_plot(
-      create_test_pir_run_output(
+      pir_out = create_test_pir_run_output(
         add_twin = FALSE,
         add_best = FALSE
       )
     )
   )
-
   expect_silent(
     pir_plot(
       pir_out = create_test_pir_run_output(

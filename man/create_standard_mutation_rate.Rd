@@ -31,6 +31,7 @@ Create the parameters for the mutation rate
   expected <- 1.0 / 4.0
   created <- create_standard_mutation_rate(phylogeny)
   expect_equal(expected, created)
+
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

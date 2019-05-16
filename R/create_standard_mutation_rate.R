@@ -18,6 +18,7 @@
 #'   expected <- 1.0 / 4.0
 #'   created <- create_standard_mutation_rate(phylogeny)
 #'   expect_equal(expected, created)
+#'
 #' @export
 create_standard_mutation_rate <- function(
   phylogeny

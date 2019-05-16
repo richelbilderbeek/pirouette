@@ -5,7 +5,7 @@
 \title{Create a valid testing \link{pirouette} candidate experiment.}
 \usage{
 
-  create_test_cand_experiment(inference_conditions = create_inference_conditions(model_type
+  create_test_cand_experiment(inference_conditions = create_inf_conds(model_type
   = "candidate", run_if = "best_candidate", do_measure_evidence = TRUE),
   inference_model = beautier::create_inference_model(mcmc =
   beautier::create_mcmc(chain_length = 2000, store_every = 1000)),
@@ -42,14 +42,16 @@ Create a valid testing \link{pirouette} candidate experiment.
 \examples{
 library(testthat)
 
-experiment <- create_test_cand_experiment()
+if (rappdirs::app_dir()$os != "win") {
+  experiment <- create_test_cand_experiment()
 
-expect_true("inference_conditions" \%in\% names(experiment))
-expect_true("inference_model" \%in\% names(experiment))
-expect_true("beast2_options" \%in\% names(experiment))
-expect_true("est_evidence_mcmc" \%in\% names(experiment))
-expect_true("beast2_bin_path" \%in\% names(experiment))
-expect_silent(check_experiment(experiment))
+  expect_true("inference_conditions" \%in\% names(experiment))
+  expect_true("inference_model" \%in\% names(experiment))
+  expect_true("beast2_options" \%in\% names(experiment))
+  expect_true("est_evidence_mcmc" \%in\% names(experiment))
+  expect_true("beast2_bin_path" \%in\% names(experiment))
+  expect_silent(check_experiment(experiment))
+}
 }
 \author{
 Richèl J.C. Bilderbeek
