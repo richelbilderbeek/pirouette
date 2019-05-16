@@ -61,7 +61,7 @@ test_that("abuse", {
   root_sequence <- create_blocked_dna(1000)
   alignment_params <- create_test_alignment_params()
   true_alignment <- sim_alignment(
-    phylogeny = true_tree,
+    phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   # Works, just to verify
