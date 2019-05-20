@@ -7,14 +7,24 @@
 #' @examples
 #'  library(testthat)
 #'
-#'  # Model type can be 'generative' or 'candidate'
-#'  model_type <- "candidate"
-#'  # Run condition can be 'always' or 'best_candidate'
-#'  run_if <- "best_candidate"
-#'  # Evidence (aka marginal likelihood) can be measured yes or no
-#'  do_measure_evidence <- TRUE
-#'
 #'  # Create the inference conditions parameter set
+#'  if (rappdirs::app_dir()$os != "win") {
+#'    # it does not work on Windows
+#'    # Model type can be 'generative' or 'candidate'
+#'    model_type <- "candidate"
+#'    # Run condition can be 'always' or 'best_candidate'
+#'    run_if <- "best_candidate"
+#'    # Evidence (aka marginal likelihood) can be measured yes or no
+#'    do_measure_evidence <- TRUE
+#'  } else {
+#'    # Model type can be 'generative' or 'candidate'
+#'    model_type <- "generative"
+#'    # Run condition can be 'always' or 'best_candidate'
+#'    run_if <- "always"
+#'    # Evidence (aka marginal likelihood) can be measured yes or no
+#'    do_measure_evidence <- FALSE
+#'  }
+#'
 #'  inference_conditions <- create_inference_conditions(
 #'    model_type = model_type,
 #'    run_if = run_if,
@@ -24,7 +34,7 @@
 #'  expect_true("run_if" %in% names(inference_conditions))
 #'  expect_true("do_measure_evidence" %in% names(inference_conditions))
 #'
-#'  # Usingt the inference conditions, create a testing candidate experiment
+#'  # Using the inference conditions, create a testing candidate experiment
 #'  experiment <- create_test_cand_experiment(
 #'    inference_conditions = inference_conditions
 #'  )
@@ -45,7 +55,7 @@
 #'    pir_plot(pir_out)
 #'  }
 #' @export
-create_inference_conditions <- function(
+create_inference_conditions <- create_inf_conds <- function(
   model_type = "generative",
   run_if = "always",
   do_measure_evidence = FALSE

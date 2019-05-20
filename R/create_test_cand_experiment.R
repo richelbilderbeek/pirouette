@@ -5,17 +5,19 @@
 #' @examples
 #' library(testthat)
 #'
-#' experiment <- create_test_cand_experiment()
+#' if (rappdirs::app_dir()$os != "win") {
+#'   experiment <- create_test_cand_experiment()
 #'
-#' expect_true("inference_conditions" %in% names(experiment))
-#' expect_true("inference_model" %in% names(experiment))
-#' expect_true("beast2_options" %in% names(experiment))
-#' expect_true("est_evidence_mcmc" %in% names(experiment))
-#' expect_true("beast2_bin_path" %in% names(experiment))
-#' expect_silent(check_experiment(experiment))
+#'   expect_true("inference_conditions" %in% names(experiment))
+#'   expect_true("inference_model" %in% names(experiment))
+#'   expect_true("beast2_options" %in% names(experiment))
+#'   expect_true("est_evidence_mcmc" %in% names(experiment))
+#'   expect_true("beast2_bin_path" %in% names(experiment))
+#'   expect_silent(check_experiment(experiment))
+#' }
 #' @export
 create_test_cand_experiment <- function(
-  inference_conditions = create_inference_conditions(
+  inference_conditions = create_inf_conds(
     model_type = "candidate",
     run_if = "best_candidate",
     do_measure_evidence = TRUE
