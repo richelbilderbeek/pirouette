@@ -55,13 +55,13 @@ test_that("use, twin has less info", {
 })
 
 test_that("abuse", {
-  skip("#255")
+
   true_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   root_sequence <- create_blocked_dna(1000)
   alignment_params <- create_test_alignment_params()
   true_alignment <- sim_alignment(
-    phylogeny = true_tree,
+    phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   # Works, just to verify
@@ -85,7 +85,7 @@ test_that("abuse", {
 
   expect_error(
     create_twin_alignment(
-      twin_phylogeny = twin_tree,
+      twin_phylogeny = twin_phylogeny,
       true_alignment = "nonsense",
       alignment_params = alignment_params
     ),

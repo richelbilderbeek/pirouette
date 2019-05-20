@@ -7,6 +7,7 @@
 #'   mutations accumulated from crown to the tips as the
 #'   original, 'true' alignment
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @export
 create_twin_alignment <- function(
   twin_phylogeny,
   true_alignment,
