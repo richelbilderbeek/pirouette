@@ -28,7 +28,7 @@ before_script:
   - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
   # proselint
-  - sudo pip install proselint
+  # - sudo pip install proselint
 
 script:
   - travis_wait 60 R CMD build .
