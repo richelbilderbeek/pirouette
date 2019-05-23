@@ -27,20 +27,14 @@ before_script:
   - Rscript -e "beastier::install_beast2()"
   - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
-  # proselint
-  # - sudo pip install proselint
 
 script:
   - travis_wait 60 R CMD build .
   - travis_wait 60 R CMD check *tar.gz
 
 after_success:
-  - Rscript -e 'lintr::lint_package()'
-  - travis_wait 20 Rscript -e 'covr::codecov()'
-  #- Rscript -e 'goodpractice::gp()'
-  #- proselint *.md | egrep -v "typography\.symbols\.curly_quotes"
-  # temporarily removed due to CERT_UNTRUSTED
-  #- ./scripts/check_dead_links
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'lintr::lint_package()'; fi
+  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'travis_wait 20 Rscript -e 'covr::codecov()'; fi
 
 after_failure:
   - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
