@@ -2,6 +2,13 @@ language: r
 cache: packages
 dist: xenial
 
+# ----------------+-------------+---------+--------------+-------------+
+# Environment     | R CMD CHECK | codecov | goodpractice | rough tests |
+# ----------------+-------------+---------+--------------+-------------+
+# MacOS           | Yes         | Yes     | No           | No          |
+# Linux r-devel   | Yes         | No      | Yes          | No          |
+# Linux r-release | No          | No      | No           | Yes         |
+# ----------------+-------------+---------+--------------+-------------+
 matrix:
   include:
   - r: release
@@ -10,6 +17,7 @@ matrix:
     os: linux
   - r: release
     os: osx
+
 
 r_github_packages:
   - Giappo/mbd
