@@ -9,9 +9,7 @@ test_that("use, always", {
 
 test_that("use, most_evidence", {
 
-  if (rappdirs::app_dir()$os == "win") {
-    skip("Cannot run on windows")
-  }
+  if (rappdirs::app_dir()$os == "win") return()
 
   marg_liks <- create_test_marg_liks(
     site_models = list(create_jc69_site_model()),
