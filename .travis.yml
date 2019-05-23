@@ -34,6 +34,7 @@ r_github_packages:
   - richelbilderbeek/becosys
 
 before_install:
+  - echo $TRAVIS_R_VERSION_STRING
   - sudo add-apt-repository -y ppa:opencpu/imagemagick
   - sudo apt-get update
   - sudo apt-get install -y libmagick++-dev
@@ -47,11 +48,15 @@ before_script:
 
 script:
   - travis_wait 60 R CMD build .
-  - travis_wait 60 R CMD check *tar.gz
+  # Check on Mac and r-devel
+  - if [ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_R_VERSION_STRING" == "devel"]; then travis_wait 60 R CMD check *tar.gz; fi
+  - if [ "$TRAVIS_OS_NAME" != "linux"]; then travis_wait 60 R CMD check *tar.gz; fi
 
 after_success:
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'lintr::lint_package()'; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then Rscript -e 'travis_wait 20 Rscript -e 'covr::codecov()'; fi
+  # Mac only
+  - if [ "$TRAVIS_OS_NAME" != "linux" ]; then Rscript -e 'travis_wait 20 Rscript -e 'covr::codecov()'; fi
+  # r-devel
+  - if [ "$TRAVIS_OS_NAME" == "linux" && "$TRAVIS_R_VERSION_STRING" == "devel"]; then Rscript -e 'lintr::lint_package()'; fi
 
 after_failure:
   - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
