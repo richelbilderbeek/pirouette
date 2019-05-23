@@ -945,6 +945,9 @@ test_that("pirouette issue #255, mcbette issue #7", {
   if (!beastier::is_beast2_installed()) return()
   if (!is_beast2_pkg_installed("NS")) return()
 
+  testit::assert(beastier::is_beast2_installed())
+  testit::assert(is_beast2_pkg_installed("NS"))
+
   example_no <- 3
   root_folder <- path.expand("~/GitHubs/pirouette_article") # nolint really need this folder to reproduce the error
   rng_seed <- 33
