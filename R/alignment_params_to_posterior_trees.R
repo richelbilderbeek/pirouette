@@ -59,7 +59,8 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
         "Mismatch between number of trees and expected number of trees. \n",
         "Number of trees (read from .trees file): ", length(trees), " \n",
         "Expected number of trees: ", expected_n_trees, " \n",
-        ".trees filename: ", experiment$beast2_options$output_trees_filenames, " \n",
+        ".trees filename: ",
+          experiment$beast2_options$output_trees_filenames, " \n",
         "MCMC chain length: ", mcmc$chain_length, " \n",
         "MCMC store_every: ", mcmc$store_every, " \n",
         "Maybe .trees file of older experiment is used?"
