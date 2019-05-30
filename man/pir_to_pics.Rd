@@ -4,13 +4,16 @@
 \alias{pir_to_pics}
 \title{Create all pictures created by the \link{pirouette} pipeline}
 \usage{
-pir_to_pics(phylogeny, pir_params, folder = tempdir())
+pir_to_pics(phylogeny, pir_params,
+  consensus = rev(sort(phylogeny$tip.label)), folder = tempdir())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
+
+\item{consensus}{the order of which the taxon labels are plotted}
 
 \item{folder}{folder where the files are stored in.
 By default, this is a temporary folder}

@@ -80,6 +80,7 @@
 #' @param clock_models a list of one or more clock models,
 #'   as created by \link[beautier]{create_clock_model}
 #' @param clock_model_name name of a clock model
+#' @param consensus the order of which the taxon labels are plotted
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
 #' @param do_measure_evidence boolean to indicate if the
@@ -315,6 +316,7 @@ default_params_doc <- function(
   chain_length,
   clock_model, clock_models,
   clock_model_name,
+  consensus,
   crown_age,
   do_measure_evidence,
   epsilon,
