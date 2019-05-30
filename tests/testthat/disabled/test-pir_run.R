@@ -1003,7 +1003,7 @@ test_that("pirouette issue #255, mcbette issue #7", {
     pir_params$experiments[[i]]$beast2_options$output_state_filename <-
       file.path(example_folder, "beast2_output.xml.state")
     pir_params$experiments[[i]]$beast2_options$beast2_working_dir <-
-      example_folder
+      file.path(tempdir(), basename(tempfile()))
     pir_params$experiments[[i]]$errors_filename <-
       file.path(example_folder, "error.csv")
   }
