@@ -48,3 +48,4 @@ Suggests:
     PBD,
     rmarkdown,
     testthat
+SystemRequirements: BEAST2 (http://www.beast2.org/)
