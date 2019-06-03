@@ -278,7 +278,8 @@ pir_to_pics <- function(
 #' @noRd
 pir_to_pics_twin <- function(
   pir_params,
-  consensus = rev(sort(phylogeny$tip.label)),
+  consensus = rev(sort(ape::read.tree(
+    pir_params$twinning_params$twin_tree_filename)$tip.label)),
   folder = tempdir()
 ) {
   testit::assert(!beautier::is_one_na(pir_params$twinning_params))
