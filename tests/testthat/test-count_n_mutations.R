@@ -162,23 +162,25 @@ test_that("Simplified version of bug #269", {
 test_that("Bug #269, no mutations for mutation rate zero", {
 
   # Thanks to @thijsjanzen for finding and sharing this bug
-  if (1 == 2) {
-    sequence_length <- 40
-    phy <- TESS::tess.sim.taxa.age(n = 1, nTaxa = 10, age = 1, lambda = 1, mu = 0)[[1]]
-    root_sequence <- pirouette::create_blocked_dna(length = sequence_length)
-    root_sequence_for_phangorn <- strsplit(root_sequence, split = "")[[1]]
-    alignment_phydat <- phangorn::simSeq(
-      x = phy,
-      l = sequence_length,
-      rootseq = root_sequence_for_phangorn,
-      rate = 0.0
-    )
-    alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
-    alignment <- alignment_dnabin
-    image(alignment_dnabin)
-    expect_equal(
-      0,
-      count_n_mutations(alignment = alignment, root_sequence = root_sequence)
-    )
-  }
+  sequence_length <- 40
+  # Simulated the Newick using:
+  #
+  # phy <- TESS::tess.sim.taxa.age(n = 1, nTaxa = 10, age = 1, lambda = 1, mu = 0)[[1]] # nolint indeed this is code
+  #
+  phy <- ape::read.tree(text = "((t2:0.8025722798,t7:0.8025722798):0.1974277202,(((t4:0.3850106179,t9:0.3850106179):0.4928072344,t6:0.8778178522):0.04975597904,((t1:0.4535164265,(t8:0.04947219126,t5:0.04947219126):0.4040442352):0.224021363,(t3:0.2922007622,t10:0.2922007622):0.3853370273):0.2500360418):0.07242616874);") # nolint indeed a long line
+  root_sequence <- pirouette::create_blocked_dna(length = sequence_length)
+  root_sequence_for_phangorn <- strsplit(root_sequence, split = "")[[1]]
+  alignment_phydat <- phangorn::simSeq(
+    x = phy,
+    l = sequence_length,
+    rootseq = root_sequence_for_phangorn,
+    rate = 0.0
+  )
+  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  alignment <- alignment_dnabin
+  image(alignment_dnabin)
+  expect_equal(
+    0,
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence)
+  )
 })
