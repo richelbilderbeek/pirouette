@@ -31,7 +31,7 @@ count_n_mutations <- function(
       unname(unlist(as.character(alignment))),
       nrow = length(labels(alignment)),
       ncol = ncol(alignment),
-      byrow = TRUE
+      byrow = FALSE
     )
   }
   if (is.list(alignment)) {
