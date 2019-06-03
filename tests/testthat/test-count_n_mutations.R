@@ -48,6 +48,34 @@ test_that("use, two taxa", {
   )
 })
 
+test_that("use, two taxa with 9 nucleotides", {
+
+  skip("#269")
+  #
+  # Root sequence is known
+  #
+  #            +---- AAAACCCCG 5 mutations
+  # AAAAAAAAC -+
+  #            +---- AAAATTTTT 5 mutations
+  #                            ----------- +
+  #                           10 mutations
+  #
+  # Those are eight mutations in total
+  #
+  # Don't forget: ape assumes lowercase
+  root_sequence <- "aaaaaaaac"
+  alignment <- ape::as.DNAbin(x = list(
+      species_1 = strsplit("aaaaccccg", split = "")[[1]],
+      species_2 = strsplit("aaaattttt", split = "")[[1]]
+    )
+  )
+  ape::image.DNAbin(alignment)
+  expect_equal(
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
+    10
+  )
+})
+
 test_that("use, three taxa", {
 
   #
@@ -127,4 +155,24 @@ test_that("Bug #257", {
       alignment = true_alignment, root_sequence = root_sequence
     )
   )
+})
+
+test_that("Bug #269, no mutations for mutation rate zero", {
+
+  skip("Fix #269")
+  # Thanks to @thijsjanzen for finding and sharing this bug
+
+  sequence_length <- 4*10
+  phy <- TESS::tess.sim.taxa.age(n = 1, nTaxa = 10, age = 1, lambda = 1, mu = 0)[[1]]
+  root_sequence <- pirouette::create_blocked_dna(length = sequence_length)
+  root_sequence_for_phangorn <- strsplit(root_sequence, split = "")[[1]]
+  alignment_phydat <- phangorn::simSeq(
+    x = phy,
+    l = sequence_length,
+    rootseq = root_sequence_for_phangorn,
+    rate = 0.0
+  )
+  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  image(alignment_dnabin)
+  expect_equal(0, pirouette::count_n_mutations(alignment_dnabin, root_sequence))
 })
