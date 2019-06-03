@@ -163,7 +163,7 @@ test_that("Bug #269, no mutations for mutation rate zero", {
 
   # Thanks to @thijsjanzen for finding and sharing this bug
   if (1 == 2) {
-    sequence_length <- 4*10
+    sequence_length <- 40
     phy <- TESS::tess.sim.taxa.age(n = 1, nTaxa = 10, age = 1, lambda = 1, mu = 0)[[1]]
     root_sequence <- pirouette::create_blocked_dna(length = sequence_length)
     root_sequence_for_phangorn <- strsplit(root_sequence, split = "")[[1]]
