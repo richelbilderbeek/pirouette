@@ -75,6 +75,33 @@ test_that("use, two taxa with 9 nucleotides", {
   )
 })
 
+test_that("use, two taxa with 9 nucleotides", {
+
+  #
+  # Root sequence is known
+  #
+  #            +---- AAAACCCCG 5 mutations
+  # AAAAAAAAC -+
+  #            +---- AAAATTTTT 5 mutations
+  #                            ----------- +
+  #                           10 mutations
+  #
+  # Those are eight mutations in total
+  #
+  # Don't forget: ape assumes lowercase
+  root_sequence <- "aaaaaaaaa"
+  alignment <- ape::as.DNAbin(x = list(
+      species_1 = strsplit("aaaaaaaaa", split = "")[[1]],
+      species_2 = strsplit("aaaaaaaaa", split = "")[[1]]
+    )
+  )
+  ape::image.DNAbin(alignment)
+  expect_equal(
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
+    0
+  )
+})
+
 test_that("use, three taxa", {
 
   #
