@@ -39,12 +39,15 @@ create_pir_params_twin <- function(
     pir_params$twinning_params$twin_evidence_filename
   for (i in seq_along(pir_params$experiments)) {
     # BUG HERE
-    filenames <- pir_params$experiments[[i]]$beast2_options[
-      grepl(
-        "filename",
-        names(pir_params$experiments[[i]]$beast2_options)
-      )
-      ]
+    # Attempt to use 'as.character', untested
+    filenames <- as.character(
+        pir_params$experiments[[i]]$beast2_options[
+        grepl(
+          "filename",
+          names(pir_params$experiments[[i]]$beast2_options)
+        )
+        ]
+    )
     for (ii in seq_along(filenames)) {
       if (!is.character(filenames[ii])) {
         stop(
