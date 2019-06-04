@@ -14,7 +14,6 @@ test_that("use on filesnames with two dots", {
 })
 
 test_that("convert file correctly from path with dots", {
-  skip("https://github.com/richelbilderbeek/razzo/issues/182")
   # See https://github.com/richelbilderbeek/razzo/issues/182
   filename <- "/my/path.with.dots/file.csv"
   expected <- "/my/path.with.dots/file_twin.csv"
