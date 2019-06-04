@@ -2,7 +2,12 @@ Package: pirouette
 Type: Package
 Title: Create a Bayesian Posterior From a Phylogeny
 Version: 1.2
-Author: Richèl J.C. Bilderbeek <richel@richelbilderbeek.nl>, Giovanni Laudanno <glaudanno@gmail.com>
+
+Authors@R: c(
+  person("Richèl J.C.", "Bilderbeek", email = "richel@richelbilderbeek.nl", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1107-7049")),
+  person("Giovanni", "Laudanno", role = "aut"),
+  person("Thijs", "Janzen", role = "ctb"))
+ <glaudanno@gmail.com>
 Maintainer: Richèl J.C. Bilderbeek <richel@richelbilderbeek.nl>
 Description: 
     Theoretical biologists are interested in measuring the extent
