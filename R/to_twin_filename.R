@@ -13,8 +13,21 @@
 to_twin_filename <- function(
   filename
 ) {
+  testit::assert(is.character(filename))
   # Get the basename with extension
-  base_filename <- basename(filename)
+  base_filename <- NA
+  tryCatch({
+      base_filename <- basename(filename)
+    },
+    error = function(e) {
+      stop(
+        "Cannot take basename of filename '", filename, "' \n",
+        "of class '", class(filename), "' \n",
+        "Error: ", e$message
+      )
+    }
+  )
+  testit::assert(is.character(base_filename))
 
   # Replace the first dot with '_twin.'
   twin_basename <- stringr::str_replace(
