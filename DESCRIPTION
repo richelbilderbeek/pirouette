@@ -50,5 +50,5 @@ Suggests:
     nLTT,
     PBD,
     rmarkdown,
-    testthat
+    testthat (>= 2.1.0)
 SystemRequirements: BEAST2 (http://www.beast2.org/)
