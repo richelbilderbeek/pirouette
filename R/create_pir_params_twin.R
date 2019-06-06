@@ -61,7 +61,8 @@ create_pir_params_twin <- function(
           "ii:\n", ii, " \n",
           "filenames[ii]:\n", filenames[ii], " \n",
           "class(filenames[ii]):\n", class(filenames[ii]), " \n",
-          "pir_params$experiments[[i]]$beast2_options:\n", pir_params$experiments[[i]]$beast2_options, " \n"
+          "pir_params$experiments[[i]]$beast2_options:\n",
+          pir_params$experiments[[i]]$beast2_options, " \n"
         )
       }
       testit::assert(is.character(filenames[ii]))
