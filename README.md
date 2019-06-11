@@ -41,6 +41,12 @@ or use:
 beastier::install_beast2()
 ```
 
+## [Examples](https://github.com/richelbilderbeek/pirouette_examples)
+
+See [https://github.com/richelbilderbeek/pirouette_examples](https://github.com/richelbilderbeek/pirouette_examples)
+for all [https://github.com/richelbilderbeek/pirouette](https://github.com/richelbilderbeek/pirouette)
+examples.
+
 ## [FAQ](doc/faq.md)
 
 See the [FAQ](doc/faq.md).
