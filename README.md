@@ -28,7 +28,6 @@ devtools::install_github("richelbilderbeek/pirouette")
 To install the non-CRAN prerequisites, do this:
 
 ```{r}
-devtools::install_github("ropensci/beastier")
 devtools::install_github("ropensci/mauricer")
 devtools::install_github("ropensci/babette")
 devtools::install_github("richelbilderbeek/mcbette")
