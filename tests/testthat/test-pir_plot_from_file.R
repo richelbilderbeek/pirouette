@@ -1,3 +1,5 @@
+context("test-pir_plot_from_file")
+
 test_that("use, generative", {
 
   pir_out_filename <- tempfile(fileext = ".csv")

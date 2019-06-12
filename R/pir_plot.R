@@ -6,7 +6,7 @@
 #'   of \link{pir_run}.
 #'   Use \link{pir_plot_from_file} to plot the errors after have
 #'   being saved to a \code{.csv} file
-#' @author Richèl J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #' pir_out <- create_test_pir_run_output(
 #'   add_twin = TRUE,
@@ -190,44 +190,125 @@ pir_plot <- function(pir_out) {
   x_top <- sort(df_long$error_value)[index]
 
   ##############################################################################
-  # Plot it
+  # Plot it (Single Plot)
   ##############################################################################
-  ggplot2::ggplot(
-    data = df_long,
-    ggplot2::aes(
-      x = error_value,
-      color = tree_and_model,
-      fill = tree_and_model
-    )
-  ) +
-    ggplot2::geom_density(alpha = 0.5) +
-    ggplot2::scale_color_manual(
-      values = tree_and_model_line_colors,
-      labels = tree_and_model_labels
-    ) +
-    ggplot2::scale_fill_manual(
-      values = tree_and_model_fill_colors,
-      labels = tree_and_model_labels
-    ) +
-    ggplot2::scale_x_continuous(
-      minor_breaks = seq(0.0, 1.0, 0.01)
-    ) +
-    ggplot2::coord_cartesian(
-      xlim = c(min(df_long$error_value), x_top)
-    ) +
-    ggplot2::geom_vline(
-      data = medians,
+  if (length(unique(df_long$inference_model)) == 1) {
+    plot <- ggplot2::ggplot(
+      data = df_long,
       ggplot2::aes(
-        xintercept = median,
-        color = tree_and_model
-      ),
-      linetype = "dashed"
+        x = error_value,
+        color = tree_and_model,
+        fill = tree_and_model
+      )
     ) +
-    ggplot2::ggtitle("Inference error distribution") +
-    ggplot2::labs(
-    x = "Error",
-    y = "Density",
-    fill = "Model and tree",
-    color = "Model and tree"
-  ) + theme
+      ggplot2::geom_density(alpha = 0.5) +
+      ggplot2::scale_color_manual(
+        values = tree_and_model_line_colors,
+        labels = tree_and_model_labels
+      ) +
+      ggplot2::scale_fill_manual(
+        values = tree_and_model_fill_colors,
+        labels = tree_and_model_labels
+      ) +
+      ggplot2::scale_x_continuous(
+        minor_breaks = seq(0.0, 1.0, 0.01)
+      ) +
+      ggplot2::coord_cartesian(
+        xlim = c(min(df_long$error_value), x_top)
+      ) +
+      ggplot2::geom_vline(
+        data = medians,
+        ggplot2::aes(
+          xintercept = median,
+          color = tree_and_model
+        ),
+        linetype = "dashed"
+      ) +
+      ggplot2::ggtitle("Inference error distribution") +
+      ggplot2::labs(
+        x = "Error",
+        y = "Density",
+        fill = "Model and tree",
+        color = "Model and tree"
+      ) + theme
+  }
+  ##############################################################################
+  # Split Candidate plot from Generative Plot
+  ##############################################################################
+  if (length(unique(df_long$inference_model)) > 1) {
+    medians$inference_model <- gsub(
+      x = gsub(
+        x = medians$tree_and_model,
+        pattern = "true_",
+        replacement = ""
+      ),
+      pattern = "twin_",
+      replacement = ""
+    )
+    df_long$inference_model <- plyr::revalue(
+      df_long$inference_model,
+      c(
+        "candidate" = "Best",
+        "generative" = "Generative"
+      ),
+      warn_missing = FALSE
+    )
+    medians$inference_model <- plyr::revalue(
+      medians$inference_model,
+      c(
+        "candidate" = "Best",
+        "generative" = "Generative"
+      ),
+      warn_missing = FALSE
+    )
+    inference_model_labels <- c("Best", "Generative")
+    names(inference_model_labels) <- c("Generative", "Best")
+    ##############################################################################
+    # Plot it (Double plot)
+    ##############################################################################
+    plot <- ggplot2::ggplot(
+      data = df_long,
+      ggplot2::aes(
+        x = error_value,
+        color = tree_and_model,
+        fill = tree_and_model
+      )
+    ) +
+      ggplot2::geom_density(alpha = 0.5) +
+      ggplot2::facet_wrap( # new
+        .~ inference_model,
+        ncol = 1,
+        labeller = ggplot2::labeller(inference_model = inference_model_labels)
+      ) +
+      ggplot2::scale_color_manual(
+        values = tree_and_model_line_colors,
+        labels = tree_and_model_labels
+      ) +
+      ggplot2::scale_fill_manual(
+        values = tree_and_model_fill_colors,
+        labels = tree_and_model_labels
+      ) +
+      ggplot2::scale_x_continuous(
+        minor_breaks = seq(0.0, 1.0, 0.01)
+      ) +
+      ggplot2::coord_cartesian(
+        xlim = c(min(df_long$error_value), x_top)
+      ) +
+      ggplot2::geom_vline(
+        data = medians,
+        ggplot2::aes(
+          xintercept = median,
+          color = tree_and_model
+        ),
+        linetype = "dashed"
+      ) +
+      ggplot2::ggtitle("Inference error distribution") +
+      ggplot2::labs(
+        x = "Error",
+        y = "Density",
+        fill = "Model and tree",
+        color = "Model and tree"
+      ) + theme
+  }
+  plot
 }
