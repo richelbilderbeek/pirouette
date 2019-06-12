@@ -2,9 +2,7 @@ context("test-create_all_experiments")
 
 test_that("use", {
 
-  if (rappdirs::app_dir()$os == "win") {
-    skip("Cannot run on windows")
-  }
+  if (rappdirs::app_dir()$os == "win") return()
   all_experiments <- create_all_experiments()
   for (i in seq_along(all_experiments)) {
     experiment <- all_experiments[[i]]
@@ -14,9 +12,7 @@ test_that("use", {
 
 test_that("it can exclude an experiment", {
 
-  if (rappdirs::app_dir()$os == "win") {
-    skip("Cannot run on windows")
-  }
+  if (rappdirs::app_dir()$os == "win")  return()
 
   all_experiments <- create_all_experiments(
     exclude_model = create_inference_model(

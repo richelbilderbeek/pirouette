@@ -2,6 +2,12 @@
 
 ## Package
 
+## Could you show some [examples](https://github.com/richelbilderbeek/pirouette_examples)?
+
+See [https://github.com/richelbilderbeek/pirouette_examples](https://github.com/richelbilderbeek/pirouette_examples)
+for all [https://github.com/richelbilderbeek/pirouette](https://github.com/richelbilderbeek/pirouette)
+examples.
+
 ### What are the dependencies?
 
 `pirouette` depends on (non-CRAN) packages like this:

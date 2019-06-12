@@ -111,6 +111,7 @@
 pir_to_pics <- function(
   phylogeny,
   pir_params,
+  consensus = rev(sort(phylogeny$tip.label)),
   folder = tempdir()
 ) {
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
@@ -164,7 +165,7 @@ pir_to_pics <- function(
         first_experiment$beast2_options$output_trees_filenames
       ),
       alpha = 0.01,
-      # consensus = rev(LETTERS[1:6]),
+      consensus = consensus,
       cex = 2.0,
       scaleX = TRUE,
       scale.bar = FALSE
@@ -184,7 +185,7 @@ pir_to_pics <- function(
         last_experiment$beast2_options$output_trees_filenames
       ),
       alpha = 0.01,
-      consensus = rev(LETTERS[1:6]),
+      consensus = consensus,
       cex = 2.0,
       scaleX = TRUE,
       scale.bar = FALSE
@@ -261,6 +262,7 @@ pir_to_pics <- function(
   if (!beautier::is_one_na(pir_params$twinning_params)) {
     twin_filenames <- pir_to_pics_twin( # nolint pirouette function
       pir_params = pir_params,
+      consensus = consensus,
       folder = folder
     )
     filenames <- c(filenames, twin_filenames)
@@ -276,6 +278,8 @@ pir_to_pics <- function(
 #' @noRd
 pir_to_pics_twin <- function(
   pir_params,
+  consensus = rev(sort(ape::read.tree(
+    pir_params$twinning_params$twin_tree_filename)$tip.label)),
   folder = tempdir()
 ) {
   testit::assert(!beautier::is_one_na(pir_params$twinning_params))
@@ -333,7 +337,7 @@ pir_to_pics_twin <- function(
         )
       ),
       alpha = 0.01,
-      consensus = rev(LETTERS[1:6]),
+      consensus = consensus,
       cex = 2.0,
       scaleX = TRUE,
       scale.bar = FALSE
@@ -355,7 +359,7 @@ pir_to_pics_twin <- function(
       )
     ),
     alpha = 0.01,
-    consensus = rev(LETTERS[1:6]),
+    consensus = consensus,
     cex = 2.0,
     scaleX = TRUE,
     scale.bar = FALSE

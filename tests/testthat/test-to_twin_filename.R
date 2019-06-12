@@ -12,3 +12,11 @@ test_that("use on filesnames with two dots", {
   expected <- "example_3_beast2_output_twin.xml.state"
   expect_equal(expected, created)
 })
+
+test_that("convert file correctly from path with dots", {
+  # See https://github.com/richelbilderbeek/razzo/issues/182
+  filename <- "/my/path.with.dots/file.csv" # nolint do use absolute paths in testing
+  expected <- "/my/path.with.dots/file_twin.csv" # nolint do use absolute paths in testing
+  created <- to_twin_filename(filename)
+  expect_equal(created, expected)
+})

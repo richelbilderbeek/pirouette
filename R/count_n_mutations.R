@@ -27,19 +27,26 @@ count_n_mutations <- function(
   }
 
   if (is.matrix(alignment)) {
+    # We know from
+    # https://github.com/richelbilderbeek/pirouette/commit/a96ec3fef34c79e38bed292092c0370e5312c3f6 # nolint indeed long
+    # that byrow must be FALSE
     alignment_sequences <- matrix(
       unname(unlist(as.character(alignment))),
       nrow = length(labels(alignment)),
       ncol = ncol(alignment),
-      byrow = TRUE
+      byrow = FALSE
     )
   }
   if (is.list(alignment)) {
+    # I assume from
+    # https://github.com/richelbilderbeek/pirouette/commit/a96ec3fef34c79e38bed292092c0370e5312c3f6 # nolint indeed long
+    # that byrow must be FALSE here as well, but I cannot
+    # write a test to verify this
     alignment_sequences <- matrix(
       unname(unlist(as.character(alignment))),
       nrow = length(labels(alignment)),
       ncol = length(as.character(alignment)[[1]]),
-      byrow = TRUE
+      byrow = FALSE
     )
   }
 

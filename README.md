@@ -28,8 +28,6 @@ devtools::install_github("richelbilderbeek/pirouette")
 To install the non-CRAN prerequisites, do this:
 
 ```{r}
-devtools::install_github("ropensci/beautier")
-devtools::install_github("ropensci/tracerer")
 devtools::install_github("ropensci/beastier")
 devtools::install_github("ropensci/mauricer")
 devtools::install_github("ropensci/babette")
@@ -42,6 +40,12 @@ or use:
 ```{r}
 beastier::install_beast2()
 ```
+
+## [Examples](https://github.com/richelbilderbeek/pirouette_examples)
+
+See [https://github.com/richelbilderbeek/pirouette_examples](https://github.com/richelbilderbeek/pirouette_examples)
+for all [https://github.com/richelbilderbeek/pirouette](https://github.com/richelbilderbeek/pirouette)
+examples.
 
 ## [FAQ](doc/faq.md)
 

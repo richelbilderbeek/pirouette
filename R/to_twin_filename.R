@@ -13,5 +13,37 @@
 to_twin_filename <- function(
   filename
 ) {
-  stringr::str_replace(string = filename, pattern = "\\.", "_twin.")
+  testit::assert(is.character(filename))
+  # Get the basename with extension
+  base_filename <- NA
+  tryCatch({
+      base_filename <- basename(filename)
+    },
+    error = function(e) {
+      stop(
+        "Cannot take basename of filename '", filename, "' \n",
+        "of class '", class(filename), "' \n",
+        "Error: ", e$message
+      )
+    }
+  )
+  testit::assert(is.character(base_filename))
+
+  # Replace the first dot with '_twin.'
+  twin_basename <- stringr::str_replace(
+    string = base_filename,
+    pattern = "\\.", "_twin."
+  )
+
+  # Complete the path
+  twin_path <- file.path(
+    dirname(filename),
+    twin_basename
+  )
+
+  # Remove the './' at the beginning if present
+  stringr::str_replace(
+    string = twin_path,
+    pattern = "^\\./", ""
+  )
 }

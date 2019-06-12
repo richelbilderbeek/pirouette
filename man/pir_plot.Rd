@@ -24,7 +24,9 @@ pir_plot(pir_out)
 }
 \seealso{
 Use \link{create_test_pir_run_output} to create a test output
-  of \link{pir_run}
+  of \link{pir_run}.
+  Use \link{pir_plot_from_file} to plot the errors after have
+  being saved to a \code{.csv} file
 }
 \author{
 Richèl J.C. Bilderbeek
