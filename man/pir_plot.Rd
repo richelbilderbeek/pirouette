@@ -29,5 +29,5 @@ Use \link{create_test_pir_run_output} to create a test output
   being saved to a \code{.csv} file
 }
 \author{
-Richèl J.C. Bilderbeek
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }
