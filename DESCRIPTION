@@ -28,6 +28,7 @@ Imports:
     DDD,
     dplyr,
     geiger,
+    magrittr,
     mauricer,
     mcbette,
     phangorn,
@@ -39,8 +40,7 @@ Imports:
     TESS,
     testit,
     tidyr,
-    tracerer,
-    magrittr
+    tracerer
 Suggests:
     becosys,
     devtools,
