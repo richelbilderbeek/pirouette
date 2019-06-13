@@ -8,7 +8,7 @@
 #'   library(testthat)
 #'
 #'   if (rappdirs::app_dir()$os != "win") {
-#'   # it does not work on Windows
+#'      # it does not work on Windows
 #'      experiments <- create_all_experiments()
 #'      check_experiments(experiments)
 #'
@@ -25,12 +25,12 @@ create_all_experiments <- function(
   site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors(),
-  mcmc = create_mcmc(store_every = 1000),
+  mcmc = beautier::create_mcmc(store_every = 1000),
   exclude_model = NA
 ) {
-  check_site_models(site_models) # nolint pirouette function
-  check_clock_models(clock_models) # nolint pirouette function
-  check_tree_priors(tree_priors) # nolint pirouette function
+  beautier::check_site_models(site_models) # nolint pirouette function
+  beautier::check_clock_models(clock_models) # nolint pirouette function
+  beautier::check_tree_priors(tree_priors) # nolint pirouette function
   if (!all(is.na(exclude_model))) {
     beautier::check_inference_model(exclude_model)
   }
@@ -51,13 +51,13 @@ create_all_experiments <- function(
             run_if = "best_candidate",
             do_measure_evidence = TRUE
           ),
-          inference_model = create_inference_model(
+          inference_model = beautier::create_inference_model(
             site_model = site_model,
             clock_model = clock_model,
             tree_prior = tree_prior,
             mcmc = mcmc
           ),
-          beast2_options = create_beast2_options(
+          beast2_options = beastier::create_beast2_options(
             input_filename = tempfile(
               pattern = paste0("beast2_", i, "_"), fileext = ".xml"
             ),
@@ -80,8 +80,7 @@ create_all_experiments <- function(
           !(
             identical(new_model$site_model, exclude_model$site_model) &&
             identical(new_model$clock_model, exclude_model$clock_model) &&
-            identical(new_model$tree_prior, exclude_model$tree_prior) &&
-            identical(new_model$mcmc, exclude_model$mcmc)
+            identical(new_model$tree_prior, exclude_model$tree_prior)
           )
         ) {
           all_experiments[[i]] <- new_experiment
