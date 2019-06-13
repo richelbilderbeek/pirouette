@@ -35,12 +35,7 @@ create_all_experiments <- function(
     beautier::check_inference_model(exclude_model)
   }
 
-  all_experiments <- vector(
-    "list",
-    length(site_models) *
-      length(clock_models) *
-      length(tree_priors)
-  )
+  all_experiments <- list()
   i <- 1
   for (site_model in site_models) {
     for (clock_model in clock_models) {
