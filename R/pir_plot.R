@@ -263,9 +263,9 @@ pir_plot <- function(pir_out) {
     )
     inference_model_labels <- c("Best", "Generative")
     names(inference_model_labels) <- c("Generative", "Best")
-    ##############################################################################
+    ############################################################################
     # Plot it (Double plot)
-    ##############################################################################
+    ############################################################################
     plot <- ggplot2::ggplot(
       data = df_long,
       ggplot2::aes(
@@ -275,7 +275,7 @@ pir_plot <- function(pir_out) {
       )
     ) +
       ggplot2::geom_density(alpha = 0.5) +
-      ggplot2::facet_wrap( # new
+      ggplot2::facet_wrap(
         .~ inference_model,
         ncol = 1,
         labeller = ggplot2::labeller(inference_model = inference_model_labels)
