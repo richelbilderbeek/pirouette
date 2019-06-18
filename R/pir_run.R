@@ -282,11 +282,6 @@ pir_run_tree <- function(
     df$clock_model[i] <- experiment$inference_model$clock_model$name
     df$tree_prior[i] <- experiment$inference_model$tree_prior$name
     from_col_idx <- which(colnames(df) == "error_1")
-    if (verbose == TRUE) {
-      print(paste("from_col_idx:", from_col_idx))
-      print(paste("ncol(df):", ncol(df)))
-      print(paste("length(nltts):", length(nltts)))
-    }
     df[i, from_col_idx:ncol(df)] <- nltts
   }
 
