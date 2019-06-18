@@ -9,6 +9,17 @@ pir_to_tables <- function(
   pir_params,
   folder = tempdir()
 ) {
+  # The names of the files created
+  filenames <- c()
+
+  first_experiment <- pir_params$experiments[[1]]
+  last_experiment <- pir_params$experiments[[length(pir_params$experiments)]]
+  testit::assert(first_experiment$inference_model$mcmc$store_every != -1)
+  testit::assert(last_experiment$inference_model$mcmc$store_every != -1)
+
+  ##############################################################################
+  # Evidence
+  ##############################################################################
   # Very custom layout function
   tidy_df <- function(df) {
     df$site_model_name <- plyr::revalue(
@@ -37,52 +48,53 @@ pir_to_tables <- function(
     df
   }
 
-  # The files to be created
-  filenames <- c(
-    file.path(folder, "evidence_true.latex"),
-    file.path(folder, "evidence_twin.latex")
-  )
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    ################
+    # Evidence, true
+    ################
+    df <- tidy_df(
+      utils::read.csv(pir_params$evidence_filename)[, c(-1, -6)]
+    )
 
-  # Evidence, true
-  df <- tidy_df(
-    utils::read.csv(pir_params$evidence_filename)[, c(-1, -6)]
-  )
+    filename <- file.path(folder, "evidence_true.latex")
+    filenames <- c(filenames, filename)
+    sink(filename)
+    xtable::print.xtable(
+      xtable::xtable(
+        df,
+        caption = "Evidences for the true phylogeny", digits = 3
+      ),
+      include.rownames = FALSE
+    )
+    sink()
 
-  sink(filenames[1])
-  xtable::print.xtable(
-    xtable::xtable(
-      df,
-      caption = "Evidences for the true phylogeny", digits = 3
-    ),
-    include.rownames = FALSE
-  )
-  sink()
+    if (!beautier::is_one_na(pir_params$twinning_params)) {
+      ################
+      # Evidence, twin
+      ################
+      df <- tidy_df(
+        utils::read.csv(
+          pir_params$twinning_params$twin_evidence_filename
+        )[, c(-1, -6)]
+      )
 
-  # Evidence, twin
-  df <- tidy_df(
-    utils::read.csv(
-      pir_params$twinning_params$twin_evidence_filename
-    )[, c(-1, -6)]
-  )
-
-  sink(filenames[2])
-  xtable::print.xtable(
-    xtable::xtable(
-      df,
-      caption = "Evidences for twin phylogeny", digits = 3
-    ),
-    include.rownames = FALSE
-  )
-  sink()
+      filename <- file.path(folder, "evidence_twin.latex")
+      filenames <- c(filenames, filename)
+      sink(filename)
+      xtable::print.xtable(
+        xtable::xtable(
+          df,
+          caption = "Evidences for twin phylogeny", digits = 3
+        ),
+        include.rownames = FALSE
+      )
+      sink()
+    }
+  }
 
   ##############################################################################
   # ESS
   ##############################################################################
-  first_experiment <- pir_params$experiments[[1]]
-  last_experiment <- pir_params$experiments[[length(pir_params$experiments)]]
-  testit::assert(first_experiment$inference_model$mcmc$store_every != -1)
-  testit::assert(last_experiment$inference_model$mcmc$store_every != -1)
-
   if (first_experiment$inference_conditions$model_type == "generative") {
     #######################
     # Generative, true tree
