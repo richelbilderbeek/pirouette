@@ -52,20 +52,32 @@ twin_to_bd_tree <- function(
 
   if (rappdirs::app_dir()$os != "win") {
     sink(tempfile())
+    bd_pars <- DDD::bd_ML(
+      brts = sort(phylo_brts, decreasing = TRUE),
+      cond = 1, #conditioning on stem or crown age # nolint
+      initparsopt = c(lambda, mu),
+      idparsopt = 1:2,
+      missnumspec = 0,
+      tdmodel = 0,
+      btorph = 1,
+      soc = soc
+    )
+    sink()
   } else {
-    sink(rappdirs::user_cache_dir())
+    x <- capture.output(
+      bd_pars <- DDD::bd_ML(
+        brts = sort(phylo_brts, decreasing = TRUE),
+        cond = 1,
+        initparsopt = c(lambda, mu),
+        idparsopt = 1:2,
+        missnumspec = 0,
+        tdmodel = 0,
+        btorph = 1,
+        soc = soc
+      )
+    )
+    rm(x)
   }
-  bd_pars <- DDD::bd_ML(
-    brts = sort(phylo_brts, decreasing = TRUE),
-    cond = 1, #conditioning on stem or crown age # nolint
-    initparsopt = c(lambda, mu),
-    idparsopt = 1:2,
-    missnumspec = 0,
-    tdmodel = 0,
-    btorph = 1,
-    soc = soc
-  )
-  sink()
 
   lambda_bd <- as.numeric(unname(bd_pars[1]))
   mu_bd <- as.numeric(unname(bd_pars[2]))
