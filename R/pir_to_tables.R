@@ -174,10 +174,15 @@ pir_to_tables <- function(
     #######################
     if (!beautier::is_one_na(pir_params$twinning_params)) {
       esses_twin_best <- tracerer::calc_esses(
-        traces = tracerer::parse_beast_log(to_twin_filename(last_experiment$beast2_options$output_log_filename)),
+        traces = tracerer::parse_beast_log(to_twin_filename(
+          last_experiment$beast2_options$output_log_filename)
+        ),
         sample_interval = last_experiment$inference_model$mcmc$store_every
       )
-      df_esses_twin_best <- data.frame(parameter = colnames(esses_twin_best), ESS = as.character(esses_twin_best))
+      df_esses_twin_best <- data.frame(
+        parameter = colnames(esses_twin_best),
+        ESS = as.character(esses_twin_best)
+      )
       filename <- file.path(folder, "esses_twin_best.latex")
       filenames <- c(filenames, filename)
       sink(filename)
