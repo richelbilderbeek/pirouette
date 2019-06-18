@@ -152,10 +152,15 @@ pir_to_tables <- function(
     # Candidate, true tree
     #######################
     esses_best <- tracerer::calc_esses(
-      traces = tracerer::parse_beast_log(last_experiment$beast2_options$output_log_filename),
+      traces = tracerer::parse_beast_log(
+        last_experiment$beast2_options$output_log_filename
+      ),
       sample_interval = last_experiment$inference_model$mcmc$store_every
     )
-    df_esses_best <- data.frame(parameter = colnames(esses_best), ESS = as.character(esses_best))
+    df_esses_best <- data.frame(
+      parameter = colnames(esses_best),
+      ESS = as.character(esses_best)
+    )
     filename <- file.path(folder, "esses_best.latex")
     filenames <- c(filenames, filename)
     sink(filename)
