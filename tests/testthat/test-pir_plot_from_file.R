@@ -25,7 +25,7 @@ test_that("use, best_candidate", {
 test_that("use, generative + best_candidate", {
 
   pir_out_filename <- tempfile(fileext = ".csv")
-  url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_5/master/example_5/errors.csv" # nolint indeed a long URL
+  url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_5/master/example_5_314/errors.csv" # nolint indeed a long URL
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
@@ -58,7 +58,7 @@ test_that("use, best_candidate + twinning", {
 test_that("use, generative + best_candidate + twinning", {
 
   pir_out_filename <- tempfile(fileext = ".csv")
-  url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_6/master/example_6/errors.csv" # nolint indeed a long URL
+  url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_6/master/example_6_314/errors.csv" # nolint indeed a long URL
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
