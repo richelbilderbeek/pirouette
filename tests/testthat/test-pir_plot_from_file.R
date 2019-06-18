@@ -7,7 +7,6 @@ test_that("use, generative", {
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
-  plot # service to @Giappo :-)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
@@ -19,7 +18,6 @@ test_that("use, best_candidate", {
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
-  plot # service to @Giappo :-)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
@@ -31,7 +29,6 @@ test_that("use, generative + best_candidate", {
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
-  plot # service to @Giappo :-)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
@@ -43,7 +40,6 @@ test_that("use, generative + twinning", {
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
-  plot # service to @Giappo :-)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
@@ -55,7 +51,6 @@ test_that("use, best_candidate + twinning", {
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
-  plot # service to @Giappo :-)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
@@ -67,7 +62,6 @@ test_that("use, generative + best_candidate + twinning", {
   utils::download.file(url = url, destfile = pir_out_filename)
 
   plot <- pir_plot_from_file(pir_out_filename)
-  plot # service to @Giappo :-)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
