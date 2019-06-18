@@ -7,7 +7,7 @@
 create_all_experiments(site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
   tree_priors = beautier::create_tree_priors(),
-  mcmc = create_mcmc(store_every = 1000), exclude_model = NA)
+  mcmc = beautier::create_mcmc(store_every = 1000), exclude_model = NA)
 }
 \arguments{
 \item{site_models}{a list of one or more site models,
@@ -34,7 +34,7 @@ These experiments are used in the \link{create_pir_params} function
   library(testthat)
 
   if (rappdirs::app_dir()$os != "win") {
-  # it does not work on Windows
+     # it does not work on Windows
      experiments <- create_all_experiments()
      check_experiments(experiments)
 
