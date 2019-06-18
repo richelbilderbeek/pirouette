@@ -40,7 +40,8 @@ Imports:
     TESS,
     testit,
     tidyr,
-    tracerer
+    tracerer,
+    xtable
 Suggests:
     becosys,
     devtools,

@@ -31,6 +31,7 @@ Create a valid testing \link{pirouette} generative experiment.
  library(testthat)
 
  # Create a testing candidate experiment
+ if (rappdirs::app_dir()$os != "win") {
  experiment <- create_test_cand_experiment()
  expect_true("inference_conditions" \%in\% names(experiment))
  expect_true("inference_model" \%in\% names(experiment))
@@ -38,6 +39,7 @@ Create a valid testing \link{pirouette} generative experiment.
  expect_true("est_evidence_mcmc" \%in\% names(experiment))
  expect_true("beast2_bin_path" \%in\% names(experiment))
  expect_silent(check_experiment(experiment))
+ }
 
  # Create a testing generative experiment
  experiment <- create_test_gen_experiment()
