@@ -100,7 +100,9 @@ pir_to_tables <- function(
     # Generative, true tree
     #######################
     esses_gen <- tracerer::calc_esses(
-      traces = tracerer::parse_beast_log(first_experiment$beast2_options$output_log_filename),
+      traces = tracerer::parse_beast_log(
+        first_experiment$beast2_options$output_log_filename
+      ),
       sample_interval = first_experiment$inference_model$mcmc$store_every
     )
     df_esses_gen <- data.frame(
