@@ -75,5 +75,110 @@ pir_to_tables <- function(
   )
   sink()
 
+  ##############################################################################
+  # ESS
+  ##############################################################################
+  first_experiment <- pir_params$experiments[[1]]
+  last_experiment <- pir_params$experiments[[length(pir_params$experiments)]]
+  testit::assert(first_experiment$inference_model$mcmc$store_every != -1)
+  testit::assert(last_experiment$inference_model$mcmc$store_every != -1)
+
+  if (first_experiment$inference_conditions$model_type == "generative") {
+    #######################
+    # Generative, true tree
+    #######################
+    esses_gen <- tracerer::calc_esses(
+      traces = tracerer::parse_beast_log(first_experiment$beast2_options$output_log_filename),
+      sample_interval = first_experiment$inference_model$mcmc$store_every
+    )
+    df_esses_gen <- data.frame(
+      parameter = colnames(esses_gen),
+      ESS = as.character(esses_gen)
+    )
+    filename <- file.path(folder, "esses_gen.latex")
+    filenames <- c(filenames, filename)
+    sink(filename)
+    xtable::print.xtable(
+      xtable::xtable(
+        df_esses_gen,
+        caption = paste0("ESSes for generative model"),
+        digits = 0
+      ),
+      include.rownames = FALSE
+    )
+    sink()
+    #######################
+    # Generative, twin tree
+    #######################
+    if (!beautier::is_one_na(pir_params$twinning_params)) {
+      esses_twin_gen <- tracerer::calc_esses(
+        traces = tracerer::parse_beast_log(to_twin_filename(
+          first_experiment$beast2_options$output_log_filename)
+        ),
+        sample_interval = first_experiment$inference_model$mcmc$store_every
+      )
+      df_esses_twin_gen <- data.frame(
+        parameter = colnames(esses_twin_gen),
+        ESS = as.character(esses_twin_gen)
+      )
+      filename <- file.path(folder, "esses_twin_gen.latex")
+      filenames <- c(filenames, filename)
+      sink(filename)
+      xtable::print.xtable(
+        xtable::xtable(
+          df_esses_twin_gen,
+          caption = paste0("ESSes for generative model, twin tree"),
+          digits = 0
+        ),
+        include.rownames = FALSE
+      )
+      sink()
+    }
+  }
+  if (last_experiment$inference_conditions$model_type == "candidate") {
+    #######################
+    # Candidate, true tree
+    #######################
+    esses_best <- tracerer::calc_esses(
+      traces = tracerer::parse_beast_log(last_experiment$beast2_options$output_log_filename),
+      sample_interval = last_experiment$inference_model$mcmc$store_every
+    )
+    df_esses_best <- data.frame(parameter = colnames(esses_best), ESS = as.character(esses_best))
+    filename <- file.path(folder, "esses_best.latex")
+    filenames <- c(filenames, filename)
+    sink(filename)
+    xtable::print.xtable(
+      xtable::xtable(
+        df_esses_best,
+        caption = paste0("ESSes for best candidate model"),
+        digits = 0
+      ),
+      include.rownames = FALSE
+    )
+    sink()
+
+    #######################
+    # Candidate, twin tree
+    #######################
+    if (!beautier::is_one_na(pir_params$twinning_params)) {
+      esses_twin_best <- tracerer::calc_esses(
+        traces = tracerer::parse_beast_log(to_twin_filename(last_experiment$beast2_options$output_log_filename)),
+        sample_interval = last_experiment$inference_model$mcmc$store_every
+      )
+      df_esses_twin_best <- data.frame(parameter = colnames(esses_twin_best), ESS = as.character(esses_twin_best))
+      filename <- file.path(folder, "esses_twin_best.latex")
+      filenames <- c(filenames, filename)
+      sink(filename)
+      xtable::print.xtable(
+        xtable::xtable(
+          df_esses_twin_best,
+          caption = paste0("ESSes for best candidate model, twin tree"),
+          digits = 0
+        ),
+        include.rownames = FALSE
+      )
+      sink()
+    }
+  }
   filenames
 }
