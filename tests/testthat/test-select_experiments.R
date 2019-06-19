@@ -107,7 +107,7 @@ test_that("use, verbose", {
   experiment <- create_experiment()
   experiment$inference_conditions$run_if <- "always"
   experiments <- list(experiment)
-  output <- capture.output(
+  output <- utils::capture.output(
     select_experiments(experiments, verbose = TRUE)
   )
   expect_true(

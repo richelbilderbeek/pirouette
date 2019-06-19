@@ -64,7 +64,7 @@ twin_to_bd_tree <- function(
     )
     sink()
   } else {
-    x <- capture.output(
+    x <- utils::capture.output(
       bd_pars <- DDD::bd_ML(
         brts = sort(phylo_brts, decreasing = TRUE),
         cond = 1,
