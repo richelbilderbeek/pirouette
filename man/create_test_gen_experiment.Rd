@@ -50,7 +50,8 @@ Create a valid testing \link{pirouette} generative experiment.
  expect_true("beast2_bin_path" \%in\% names(experiment))
  expect_silent(check_experiment(experiment))
 
- # Use the experiment to create the full pirouette parameter set
+ # Use the generative experiment
+ # to create the full pirouette parameter set
  pir_params <- create_pir_params(
    alignment_params = create_test_alignment_params(),
    experiments = list(experiment)

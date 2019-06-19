@@ -50,11 +50,15 @@
 #'
 #'   expect_true("clock_model" %in% names(errors))
 #'   expect_true(is.factor(errors$clock_model))
-#'   expect_true("strict" %in% errors$clock_model)
+#'   expect_true("strict" %in% errors$clock_model
+#'     || "relaxed_log_normal" %in% errors$clock_model
+#'   )
 #'
 #'   expect_true("tree_prior" %in% names(errors))
 #'   expect_true(is.factor(errors$tree_prior))
-#'   expect_true("BD" %in% errors$tree_prior || "yule" %in% errors$tree_prior)
+#'   expect_true("birth_death" %in% errors$tree_prior ||
+#'     "yule" %in% errors$tree_prior
+#'   )
 #'
 #'   expect_true("error_1" %in% names(errors))
 #'   expect_true(!is.factor(errors$error_1))
