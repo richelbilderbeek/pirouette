@@ -4,10 +4,12 @@
 \alias{pir_plot}
 \title{Plot the error BEAST2 make from the known phylogeny}
 \usage{
-pir_plot(pir_out)
+pir_plot(pir_out, show_title = TRUE)
 }
 \arguments{
 \item{pir_out}{the output created by \code{\link{pir_run}}}
+
+\item{show_title}{TRUE if you want to show the title. FALSE otherwise.}
 }
 \value{
 a ggplot2 plot
