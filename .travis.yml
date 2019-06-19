@@ -48,14 +48,14 @@ before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then R --quiet -e 'install.packages("rJava", type="source", repos="http://cran.us.r-project.org")'; fi
 
 before_script:
-  - Rscript -e "beastier::install_beast2()"
-  - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
+  - # Rscript -e "beastier::install_beast2()"
+  - # Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
 
 script:
-  #- travis_wait 60 R CMD build .
+  - # travis_wait 60 R CMD build .
   # Check
-  #- if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 60 R CMD check *tar.gz; fi
+  - # if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 60 R CMD check *tar.gz; fi
 
 after_success:
   # Codecov
