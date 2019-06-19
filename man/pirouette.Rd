@@ -56,7 +56,9 @@ authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
 
   expect_true("clock_model" \%in\% names(errors))
   expect_true(is.factor(errors$clock_model))
-  expect_true("strict" \%in\% errors$clock_model)
+  expect_true("strict" \%in\% errors$clock_model
+    || "relaxed_log_normal" \%in\% errors$clock_model
+  )
 
   expect_true("tree_prior" \%in\% names(errors))
   expect_true(is.factor(errors$tree_prior))

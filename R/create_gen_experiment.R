@@ -32,7 +32,7 @@
 #'   experiments = list(experiment)
 #' )
 #'
-#' \dontrun{
+#' if (is_on_ci() && is_beast2_installed()) {
 #'   pir_out <- pir_run(
 #'     phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
 #'     pir_params = pir_params
