@@ -1,6 +1,5 @@
 #' Plot the error BEAST2 make from the known phylogeny
 #' @param pir_out the output created by \code{\link{pir_run}}
-#' @param show_title TRUE if you want to show the title. FALSE otherwise.
 #' @return a ggplot2 plot
 #' @seealso
 #'   Use \link{create_test_pir_run_output} to create a test output
@@ -15,10 +14,7 @@
 #' )
 #' pir_plot(pir_out)
 #' @export
-pir_plot <- function(
-  pir_out,
-  show_title = TRUE
-) {
+pir_plot <- function(pir_out) {
 
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
@@ -194,21 +190,6 @@ pir_plot <- function(
   x_top <- sort(df_long$error_value)[index]
 
   ##############################################################################
-  # Plot settings
-  ##############################################################################
-  if (show_title == TRUE) {
-    plot_title <- "Inference error distribution"
-  } else {
-    plot_title <- NULL
-  }
-  labs <- ggplot2::labs(
-    x = "Error",
-    y = "Density",
-    fill = "Model and tree",
-    color = "Model and tree"
-  )
-
-  ##############################################################################
   # Plot it (Single Plot)
   ##############################################################################
   if (length(unique(df_long$inference_model)) == 1) {
@@ -243,8 +224,13 @@ pir_plot <- function(
         ),
         linetype = "dashed"
       ) +
-      ggplot2::ggtitle(plot_title) +
-      labs + theme
+      ggplot2::ggtitle("Inference error distribution") +
+      ggplot2::labs(
+        x = "Error",
+        y = "Density",
+        fill = "Model and tree",
+        color = "Model and tree"
+      ) + theme
   }
   ##############################################################################
   # Split Candidate plot from Generative Plot
@@ -316,8 +302,13 @@ pir_plot <- function(
         ),
         linetype = "dashed"
       ) +
-      ggplot2::ggtitle(plot_title) +
-      labs + theme
+      ggplot2::ggtitle("Inference error distribution") +
+      ggplot2::labs(
+        x = "Error",
+        y = "Density",
+        fill = "Model and tree",
+        color = "Model and tree"
+      ) + theme
   }
   plot
 }
