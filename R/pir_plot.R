@@ -26,9 +26,7 @@ pir_plot <- function(pir_out) {
   tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
   median <- NULL; rm(median) # nolint, fixes warning: no visible binding for global variable
 
-  ##############################################################################
-  # Data wrangling
-  ##############################################################################
+  ##### Data wrangling #####
   # Convert to long form
   df <- pir_out
   first_col_index <- which(names(df) == "error_1")
@@ -76,9 +74,7 @@ pir_plot <- function(pir_out) {
     factor(df_long$inference_model, levels = unique(df_long$inference_model))
   rownames(df_long) <- mapply(1:nrow(df_long), FUN = toString)
 
-  ##############################################################################
-  # Theme
-  ##############################################################################
+  ##### Theme #####
   label_size <- 13
   label_face <- "italic"
   title_size <- 18
@@ -106,9 +102,7 @@ pir_plot <- function(pir_out) {
     strip.text.x = ggplot2::element_text(size = 12)
   )
 
-  ##############################################################################
-  # Legend labels
-  ##############################################################################
+  ##### Legend labels #####
   get_first <- function(x) utils::head(x, n = 1)
   # True, Generative
   tg_label <- NULL
@@ -151,9 +145,7 @@ pir_plot <- function(pir_out) {
     wb_label
   )
 
-  ##############################################################################
-  # Fill and line colors
-  ##############################################################################
+  ##### Fill and line colors #####
 
   # Line colors: must be darker than the fill color
   # Tree true has primary color, twin a lighter shade
@@ -175,23 +167,20 @@ pir_plot <- function(pir_out) {
     "twin_candidate" = "#AAAAFF"  # Light blue
   )
 
-  ##############################################################################
-  # Medians for the vertical lines
-  ##############################################################################
+  ##### Medians for the vertical lines #####
+
   # Collect the medians
   medians <- df_long %>%
     dplyr::group_by(tree_and_model) %>%
     dplyr::summarise(median = stats::median(error_value))
 
-  ##############################################################################
-  # Only keep 95% of x axis values
-  ##############################################################################
+  ##### Only keep 95% of x axis values #####
+
   index <- trunc(0.95 * length(df_long$error_value))
   x_top <- sort(df_long$error_value)[index]
 
-  ##############################################################################
-  # Plot it (Single Plot)
-  ##############################################################################
+  ##### Plot it (Single Plot) #####
+
   if (length(unique(df_long$inference_model)) == 1) {
     plot <- ggplot2::ggplot(
       data = df_long,
@@ -232,9 +221,8 @@ pir_plot <- function(pir_out) {
         color = "Model and tree"
       ) + theme
   }
-  ##############################################################################
-  # Split Candidate plot from Generative Plot
-  ##############################################################################
+  ##### Split Candidate plot from Generative Plot #####
+
   if (length(unique(df_long$inference_model)) > 1) {
     medians$inference_model <- gsub(
       x = gsub(
@@ -263,9 +251,8 @@ pir_plot <- function(pir_out) {
     )
     inference_model_labels <- c("Best", "Generative")
     names(inference_model_labels) <- c("Generative", "Best")
-    ############################################################################
-    # Plot it (Double plot)
-    ############################################################################
+    ##### Plot it (Double plot) #####
+
     plot <- ggplot2::ggplot(
       data = df_long,
       ggplot2::aes(
