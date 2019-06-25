@@ -23,6 +23,7 @@ test_that("generative", {
   experiment <- create_test_gen_experiment()
   experiments <- list(experiment)
 
+  # Create and bundle the parameters
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
     experiments = experiments
@@ -37,11 +38,12 @@ test_that("generative", {
     pir_params$experiments[[1]]$beast2_options$output_state_filename
   )
   testit::assert(all(!file.exists(filenames)))
+
   # Evidence files will not be created,
   #   as all models have do_measure_evidence == FALSE
   testit::assert(!file.exists(pir_params$evidence_filename))
 
-
+  # Run pirouette
   errors <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
@@ -49,6 +51,7 @@ test_that("generative", {
 
   # Files created
   testit::assert(all(file.exists(filenames)))
+
   # Evidence file will not be created
   testit::assert(!file.exists(pir_params$evidence_filename))
 
