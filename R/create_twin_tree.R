@@ -28,6 +28,7 @@ create_twin_tree <- function(
     )
   }
   testit::assert(beautier::is_phylo(twin_tree))
+  testit::assert(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
   testit::assert(
     all.equal(
       max(ape::branching.times(phylogeny)),
