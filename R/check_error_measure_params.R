@@ -61,7 +61,7 @@ check_error_measure_params <- function(
     lambda = 0.33,
     mu = 0.1
   )
-  trees <- rep(tess_sim, 1e3)
+  trees <- rep(tess_sim, 1)
   tree <- tess_sim[[1]]
   class(trees) <- "multiPhylo"
   test_errors <- error_measure_params$error_function(
