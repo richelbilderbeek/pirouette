@@ -84,9 +84,7 @@ check_pir_params <- function(
   if (file_extenstion != ".csv") {
     stop("'evidence_filename' must be a csv filename")
   }
-  if (length(pir_params$verbose) != 1 ||
-    is.na(pir_params$verbose) ||
-    !is.logical(pir_params$verbose)) {
+  if (!beautier::is_one_bool(pir_params$verbose)) {
     stop("'verbose' must be one boolean")
   }
 }
