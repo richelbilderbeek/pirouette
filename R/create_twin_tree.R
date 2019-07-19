@@ -6,7 +6,17 @@
 #' twin_phylogeny <- create_twin_tree(phylogeny)
 #'
 #' library(testthat)
+#' # Twin is a phylogeny
 #' expect_true(is_phylo(twin_phylogeny))
+#'
+#' # Twin tree has the same number of taxa as the original tree
+#' expect_equal(ape::Ntip(phylogeny), ape::Ntip(twin_phylogeny))
+#'
+#' # Twin tree has the same crown age as the original tree
+#' expect_equal(
+#'   max(ape::branching.times(phylogeny)),
+#'   max(ape::branching.times(twin_phylogeny))
+#' )
 #' @export
 create_twin_tree <- function(
   phylogeny,
