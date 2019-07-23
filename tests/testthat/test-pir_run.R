@@ -289,7 +289,7 @@ test_that("most_evidence, with twinning", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
-  if (!mauricer::is_beast2_pkg_installed("NS")) return()
+  if (!mauricer::is_beast2_ns_pkg_installed()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -309,7 +309,7 @@ test_that("most_evidence, with twinning", {
   # All weights and errors are random, but possibly valid, numbers
 
   testit::assert(beastier::is_beast2_installed())
-  testit::assert(mauricer::is_beast2_pkg_installed("NS"))
+  testit::assert(mauricer::is_beast2_ns_pkg_installed())
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   beast2_options <- create_beast2_options(rng_seed = 314)

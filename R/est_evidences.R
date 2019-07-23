@@ -14,7 +14,7 @@
 #' # Be sloppy amd fast in estimating the evidence
 #' evidence_epsilon <- 100.0
 #'
-#' if (is_on_ci() && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+#' if (is_on_ci() && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
 #'   evidences <- est_evidences(
 #'     fasta_filename = fasta_filename,
 #'     experiments = experiments,
