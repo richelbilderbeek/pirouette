@@ -4,13 +4,15 @@
 \alias{sim_alignment}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-sim_alignment(phylogeny, alignment_params)
+sim_alignment(phylogeny, alignment_params, n_mutations = NA)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
+
+\item{n_mutations}{costrained number of mutations}
 }
 \value{
 an alignment of type \code{DNAbin}

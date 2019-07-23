@@ -2,7 +2,6 @@ context("test-sim_alignment_twin")
 
 test_that("use, two taxa", {
 
-  skip("sim_alignment_twin")
   # If we can create an alignment with any desired number of
   # mutations, we can create a twin alignment:
   # just create an alignmnet with the same number of mutations
@@ -26,8 +25,6 @@ test_that("use, two taxa", {
 })
 
 test_that("use, three taxa", {
-
-  skip("sim_alignment_twin")
 
   n_mutations <- 12
 
