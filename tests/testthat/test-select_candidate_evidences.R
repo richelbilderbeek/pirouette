@@ -11,7 +11,7 @@ test_that("one if there is one candidate", {
   if (1 == 2) {
     if (!is_on_ci()) return()
     if (!is_beast2_installed()) return()
-    if (!is_beast2_pkg_installed("NS")) return()
+    if (!is_beast2_ns_pkg_installed()) return()
   }
 
   experiment <- create_experiment(
@@ -36,7 +36,7 @@ test_that("one if there is one candidate and one generative", {
   if (1 == 2) {
     if (!is_on_ci()) return()
     if (!is_beast2_installed()) return()
-    if (!is_beast2_pkg_installed("NS")) return()
+    if (!is_beast2_ns_pkg_installed()) return()
   }
 
   experiment_1 <- create_test_gen_experiment()

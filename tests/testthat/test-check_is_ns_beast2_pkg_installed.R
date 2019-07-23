@@ -7,10 +7,10 @@ test_that("use", {
   if (!beastier::is_beast2_installed()) return()
 
   # Uninstall
-  if (mauricer::is_beast2_pkg_installed("NS")) {
+  if (mauricer::is_beast2_ns_pkg_installed()) {
     mauricer::uninstall_beast2_pkg("NS")
   }
-  testit::assert(!mauricer::is_beast2_pkg_installed("NS"))
+  testit::assert(!mauricer::is_beast2_ns_pkg_installed())
 
   # Must give error
   expect_error(check_is_ns_beast2_pkg_installed())
