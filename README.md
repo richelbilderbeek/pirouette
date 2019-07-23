@@ -18,19 +18,36 @@ The heavy lifting is done by these packages:
 
 ## Installation
 
-If you use the `devtools` R package, this is easy:
+`pirouette` can be installed
 
-```{r}
-devtools::install_github("KlausVigo/phangorn", ref = "devel")
-devtools::install_github("richelbilderbeek/pirouette")
+ * from script (easiest)
+ * from R 
+
+### From script
+
+All the manual steps are put in the `install_pir_deps`
+script, which is located in the `scripts` folder.
+
+To call the script:
+
+```
+cd scripts
+./install_pir_deps
 ```
 
-To install the non-CRAN prerequisites, do this:
+### From R
+
+Thanks to the `remotes` R package, this is easy:
 
 ```{r}
-devtools::install_github("ropensci/mauricer")
-devtools::install_github("ropensci/babette")
-devtools::install_github("richelbilderbeek/mcbette")
+remotes::install_github("KlausVigo/phangorn")
+remotes::install_github("ropensci/beautier")
+remotes::install_github("ropensci/tracerer")
+remotes::install_github("ropensci/beastier")
+remotes::install_github("ropensci/mauricer")
+remotes::install_github("ropensci/babette")
+remotes::install_github("richelbilderbeek/mcbette")
+remotes::install_github("richelbilderbeek/pirouette")
 ```
 
 To install BEAST2, see [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md)
@@ -38,6 +55,12 @@ or use:
 
 ```{r}
 beastier::install_beast2()
+```
+
+To install the BEAST2 `NS` package:
+
+```{r}
+mauricer::install_beast2_pkg("NS")
 ```
 
 ## [Examples](https://github.com/richelbilderbeek/pirouette_examples)

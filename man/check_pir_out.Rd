@@ -18,12 +18,12 @@ A valid \link{pirouette} parameter set
 can be created by \link{create_pir_params}.
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  expect_silent(check_pir_out(create_test_pir_run_output()))
-  expect_error(check_pir_out("nonsense"))
-  expect_error(check_pir_out(NULL))
-  expect_error(check_pir_out(NA))
+expect_silent(check_pir_out(create_test_pir_run_output()))
+expect_error(check_pir_out("nonsense"))
+expect_error(check_pir_out(NULL))
+expect_error(check_pir_out(NA))
 }
 \author{
 Richèl J.C. Bilderbeek

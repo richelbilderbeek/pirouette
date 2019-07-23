@@ -5,12 +5,12 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   expect_silent(check_inference_conditions(create_inference_conditions()))
-#'   expect_error(check_inference_conditions("nonsense"))
-#'   expect_error(check_inference_conditions(NA))
-#'   expect_error(check_inference_conditions(NULL))
+#' expect_silent(check_inference_conditions(create_inference_conditions()))
+#' expect_error(check_inference_conditions("nonsense"))
+#' expect_error(check_inference_conditions(NA))
+#' expect_error(check_inference_conditions(NULL))
 #' @export
 check_inference_conditions <- function(
   inference_conditions

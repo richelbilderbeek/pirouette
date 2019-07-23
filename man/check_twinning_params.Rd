@@ -2,9 +2,7 @@
 % Please edit documentation in R/check_twinning_params.R
 \name{check_twinning_params}
 \alias{check_twinning_params}
-\title{Checks if the argument is a valid twinning parameters structure,
-as created by \link{create_twinning_params}.
-Will \link{stop} if not.}
+\title{Checks if the argument is a valid twinning parameters structure.}
 \usage{
 check_twinning_params(twinning_params)
 }
@@ -17,17 +15,17 @@ as can be created by \link{create_twinning_params}}
 nothing. Will \link{stop} if nit
 }
 \description{
-Checks if the argument is a valid twinning parameters structure,
-as created by \link{create_twinning_params}.
 Will \link{stop} if not.
+A valid twinning parameters structure can be created
+by \link{create_twinning_params}.
 }
 \examples{
- library(testthat)
+library(testthat)
 
- expect_silent(check_twinning_params(create_twinning_params()))
- expect_error(check_twinning_params("nonsense"))
- expect_error(check_twinning_params(NULL))
- expect_error(check_twinning_params(NA))
+expect_silent(check_twinning_params(create_twinning_params()))
+expect_error(check_twinning_params("nonsense"))
+expect_error(check_twinning_params(NULL))
+expect_error(check_twinning_params(NA))
 }
 \author{
 Richèl J.C. Bilderbeek

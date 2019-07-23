@@ -1,16 +1,18 @@
-#' Checks if the argument is a valid twinning parameters structure,
-#' as created by \link{create_twinning_params}.
+#' Checks if the argument is a valid twinning parameters structure.
+#'
 #' Will \link{stop} if not.
+#' A valid twinning parameters structure can be created
+#' by \link{create_twinning_params}.
 #' @inheritParams default_params_doc
 #' @return nothing. Will \link{stop} if nit
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'  library(testthat)
+#' library(testthat)
 #'
-#'  expect_silent(check_twinning_params(create_twinning_params()))
-#'  expect_error(check_twinning_params("nonsense"))
-#'  expect_error(check_twinning_params(NULL))
-#'  expect_error(check_twinning_params(NA))
+#' expect_silent(check_twinning_params(create_twinning_params()))
+#' expect_error(check_twinning_params("nonsense"))
+#' expect_error(check_twinning_params(NULL))
+#' expect_error(check_twinning_params(NA))
 #' @export
 check_twinning_params <- function(
   twinning_params
