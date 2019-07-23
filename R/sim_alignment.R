@@ -48,7 +48,8 @@
 #' @export
 sim_alignment <- function(
   phylogeny,
-  alignment_params
+  alignment_params,
+  n_mutations = NA
 ) {
   beautier::check_phylogeny(phylogeny)
   if (!is.null(geiger::is.extinct(phylogeny))) {
@@ -70,7 +71,8 @@ sim_alignment <- function(
     root_sequence = alignment_params$root_sequence,
     rng_seed = alignment_params$rng_seed,
     mutation_rate = alignment_params$mutation_rate,
-    site_model = alignment_params$site_model
+    site_model = alignment_params$site_model,
+    n_mutations = n_mutations
   )
 }
 
@@ -98,39 +100,57 @@ sim_alignment <- function(
 #'    rng_seed = rng_seed,
 #'    mutation_rate = mutation_rate,
 #'    site_model = site_model
-#'
 #'  )
 #'
 #' expect_equal(class(alignment), "DNAbin")
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), n_base_pairs)
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
-#' @export
-sim_alignment_raw <- function(
+#' @aliases sim_alignment_twin sim_alignment_raw
+#' @export sim_alignment_twin sim_alignment_raw
+sim_alignment_twin <- sim_alignment_raw <- function(
   phylogeny,
   root_sequence,
   rng_seed,
   mutation_rate,
-  site_model
+  site_model,
+  n_mutations = NA
 ) {
   beautier::check_phylogeny(phylogeny)
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
-  set.seed(rng_seed)
-  alignment_phydat <- phangorn::simSeq(
-    phylogeny,
-    l = nchar(root_sequence),
-    rate = mutation_rate,
-    rootseq = strsplit(root_sequence, split = "")[[1]],
-    Q = create_rate_matrix(
-      site_model = site_model,
-      base_frequencies = calc_base_freq(root_sequence)
+  if (!(is.na(n_mutations) || floor(n_mutations) == ceiling(n_mutations))) {
+    stop(
+      "n_mutations must be integer or NA (meaning no constraint on the number)"
     )
-  )
-  testit::assert(class(alignment_phydat) == "phyDat")
+  }
+  set.seed(rng_seed)
 
-  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  correct_n_mutations <- FALSE
+  while (correct_n_mutations == FALSE) {
+    alignment_phydat <- phangorn::simSeq(
+      phylogeny,
+      l = nchar(root_sequence),
+      rate = mutation_rate,
+      rootseq = strsplit(root_sequence, split = "")[[1]],
+      Q = create_rate_matrix(
+        site_model = site_model,
+        base_frequencies = calc_base_freq(root_sequence)
+      )
+    )
+
+    testit::assert(class(alignment_phydat) == "phyDat")
+
+    alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+
+    sim_mutations <- count_n_mutations(
+      alignment = alignment_dnabin,
+      root_sequence = root_sequence
+    )
+
+    correct_n_mutations <- (sim_mutations == n_mutations) || is.na(n_mutations)
+  }
 
   testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))
   testit::assert(ncol(alignment_dnabin) == nchar(root_sequence))

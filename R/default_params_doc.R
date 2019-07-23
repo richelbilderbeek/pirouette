@@ -180,6 +180,7 @@
 #' @param mu per-species extinction rate
 #' @param mutation_rate the mutation rate per base pair per time unit
 #' @param n_0 number of starting species
+#' @param n_mutations costrained number of mutations
 #' @param n_taxa number of tree tips
 #' @param n_replicates number of replicas to evaluate in order to create the
 #'   twin tree
@@ -353,6 +354,7 @@ default_params_doc <- function(
   mu,
   mutation_rate,
   n_0,
+  n_mutations,
   n_taxa,
   n_replicates,
   nu,

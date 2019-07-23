@@ -20,17 +20,17 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   inference_conditions, init_speciation_rate, init_extinction_rate, lambda,
   log_evidence, marg_lik_filename, marg_liks, max_evidence_epsilon,
   mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, method, model_selection,
-  model_type, mrca_prior, mu, mutation_rate, n_0, n_taxa, n_replicates, nu,
-  nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
-  pir_params, pir_out, posterior_trees, precision, project_folder_name,
-  result, rng_seed, root_sequence, run_experiment, run_experiments, run_if,
-  sample_interval, seed, sequence_length, sim_pars, sim_phylo, site_model,
-  site_models, site_model_name, sub_chain_length, sum_lamu, t_0, tree,
-  tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
-  tree_type, true_alignment, true_phylogeny, true_result, twin_alignment,
-  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
-  twin_model, twin_result, twin_tree_filename, twinning_params, type,
-  verbose, weight)
+  model_type, mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa,
+  n_replicates, nu, nu_events, parameter_filename, parameters_filename,
+  phylo, phylogeny, pir_params, pir_out, posterior_trees, precision,
+  project_folder_name, result, rng_seed, root_sequence, run_experiment,
+  run_experiments, run_if, sample_interval, seed, sequence_length,
+  sim_pars, sim_phylo, site_model, site_models, site_model_name,
+  sub_chain_length, sum_lamu, t_0, tree, tree_filename, tree_model,
+  tree_prior, tree_priors, tree_prior_name, tree_type, true_alignment,
+  true_phylogeny, true_result, twin_alignment, twin_alignment_filename,
+  twin_evidence_filename, twin_phylogeny, twin_model, twin_result,
+  twin_tree_filename, twinning_params, type, verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -274,6 +274,8 @@ as created by \link[beautier]{create_mrca_prior}}
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
 \item{n_0}{number of starting species}
+
+\item{n_mutations}{costrained number of mutations}
 
 \item{n_taxa}{number of tree tips}
 
