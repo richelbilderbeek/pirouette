@@ -106,7 +106,8 @@ sim_alignment <- function(
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), n_base_pairs)
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
-#' @export
+#' @aliases sim_alignment_twin sim_alignment_raw
+#' @export sim_alignment_twin sim_alignment_raw
 sim_alignment_twin <- sim_alignment_raw <- function(
   phylogeny,
   root_sequence,

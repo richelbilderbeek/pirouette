@@ -2,6 +2,7 @@
 % Please edit documentation in R/sim_alignment.R
 \name{sim_alignment_twin}
 \alias{sim_alignment_twin}
+\alias{sim_alignment_raw}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
 sim_alignment_twin(phylogeny, root_sequence, rng_seed, mutation_rate,
