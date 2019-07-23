@@ -24,12 +24,12 @@ as created by \link{create_error_measure_params}.
 Will \link{stop} if not.
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  expect_silent(check_error_measure_params(create_error_measure_params()))
-  expect_error(check_error_measure_params("nonsense"))
-  expect_error(check_error_measure_params(NA))
-  expect_error(check_error_measure_params(NULL))
+expect_silent(check_error_measure_params(create_error_measure_params()))
+expect_error(check_error_measure_params("nonsense"))
+expect_error(check_error_measure_params(NA))
+expect_error(check_error_measure_params(NULL))
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

@@ -21,12 +21,12 @@ as created by \link{create_inference_conditions}.
 Will \link{stop} if not.
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  expect_silent(check_inference_conditions(create_inference_conditions()))
-  expect_error(check_inference_conditions("nonsense"))
-  expect_error(check_inference_conditions(NA))
-  expect_error(check_inference_conditions(NULL))
+expect_silent(check_inference_conditions(create_inference_conditions()))
+expect_error(check_inference_conditions("nonsense"))
+expect_error(check_inference_conditions(NA))
+expect_error(check_inference_conditions(NULL))
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek
