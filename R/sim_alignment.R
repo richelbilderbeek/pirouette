@@ -145,6 +145,29 @@ sim_alignment_raw <- function(
 
     alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
 
+    testit::assert(class(alignment_dnabin) == "DNAbin")
+
+    # DEBUG
+    if (!beautier::is_one_na(n_mutations)) {
+      if (get_alignment_sequence_length(alignment_dnabin) !=
+        nchar(root_sequence)) {
+        stop(
+          "Length of alignment and root sequence disagree. \n",
+          "get_alignment_sequence_length(alignment_dnabin): ",
+            get_alignment_sequence_length(alignment_dnabin), " \n",
+          "nchar(root_sequence): ", nchar(root_sequence), " \n",
+          "root_sequence: ", root_sequence
+        )
+      }
+
+      # n_mutations must not be NA
+      testit::assert(
+        get_alignment_sequence_length(alignment_dnabin) ==
+        nchar(root_sequence)
+      )
+    }
+
+
     sim_mutations <- count_n_mutations(
       alignment = alignment_dnabin,
       root_sequence = root_sequence

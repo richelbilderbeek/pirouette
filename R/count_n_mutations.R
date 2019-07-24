@@ -25,6 +25,19 @@ count_n_mutations <- function(
   if (class(alignment) != "DNAbin") {
     stop("'alignment' must be of class 'ape::DNAbin'")
   }
+  if (!(get_alignment_sequence_length(alignment) == nchar(root_sequence))) {
+    stop(
+      "'root_sequence' must have the same length ",
+      "as each taxon's sequence length. \n",
+      "get_alignment_sequence_length(alignment): ", get_alignment_sequence_length(alignment), ". \n",
+      "nchar(root_sequence): ", nchar(root_sequence), " \n"
+    )
+  }
+
+  testit::assert(
+    get_alignment_sequence_length(alignment) # nolint pirouette function
+    == nchar(root_sequence)
+  )
 
   if (is.matrix(alignment)) {
     # We know from
@@ -54,7 +67,17 @@ count_n_mutations <- function(
   if (!all(root_vector %in% c("a", "c", "g", "t"))) {
     stop("'root_sequence' must be one character vector of lowercase nucleotides") # nolint long string
   }
+
   n_nucleotides <- ncol(alignment_sequences)
+  n_nucleotides_as_well <- get_alignment_sequence_length(alignment)
+
+  if (n_nucleotides != n_nucleotides_as_well) {
+    stop(
+      "Number of nucleotides disagree. \n",
+      "n_nucleotides: ", n_nucleotides, " \n",
+      "n_nucleotides_as_well: ", n_nucleotides_as_well
+    )
+  }
   testit::assert(n_nucleotides == get_alignment_sequence_length(alignment))
 
   if (n_nucleotides != length(root_vector)) {
@@ -62,7 +85,7 @@ count_n_mutations <- function(
       "'root_sequence' must have the same length ",
       "as each taxon's sequence length. \n",
       "Number of nucleotides in alignment: ", ncol(alignment_sequences), ". \n",
-      "Number of nucleotides in root_sequence: ", length(root_vector), ". \n",
+      "Number of nucleotides in root_vector: ", length(root_vector), ". \n",
       "'root_sequence': ", root_sequence
     )
   }

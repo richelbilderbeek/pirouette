@@ -14,6 +14,7 @@ test_that("use, single taxon", {
   alignment <- ape::as.DNAbin(
     x = list(species_1 = strsplit("aagg", split = "")[[1]])
   )
+  get_alignment_sequence_length(alignment)
   ape::image.DNAbin(alignment)
   expect_equal(
     count_n_mutations(alignment = alignment, root_sequence = root_sequence),
@@ -146,7 +147,7 @@ test_that("abuse", {
   expect_error(
     count_n_mutations(
       alignment = ape::as.DNAbin(
-        x = list(species_1 = strsplit("aaaa", split = "")[[1]])
+        x = list(species_1 = strsplit("aaaaaaaa", split = "")[[1]])
       ),
       root_sequence = "nonsense"
     ),
@@ -205,6 +206,7 @@ test_that("Bug #269, no mutations for mutation rate zero", {
   )
   alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
   alignment <- alignment_dnabin
+  testit::assert(get_alignment_sequence_length(alignment) == sequence_length)
   image(alignment_dnabin)
   expect_equal(
     0,
