@@ -19,7 +19,7 @@ check_twinning_params <- function(
 ) {
   argument_names <- c(
     "rng_seed_tree",
-    "rng_seed_alignment",
+    "rng_seed_twin_alignment",
     "twin_model",
     "method",
     "n_replicates",
@@ -35,11 +35,12 @@ check_twinning_params <- function(
       )
     }
   }
-  if (!is.numeric(twinning_params$rng_seed_tree)) {
+  if (!is_one_int(twinning_params$rng_seed_tree)) { # nolint pirouette function
     stop("'rng_seed_tree' must be a number")
   }
-  if (!is.numeric(twinning_params$rng_seed_alignment)) {
-    stop("'rng_seed_alignment' must be a number")
+
+  if (!is_one_int(twinning_params$rng_seed_twin_alignment)) { # nolint pirouette function
+    stop("'rng_seed_twin_alignment' must be a number")
   }
   if (!is.character(twinning_params$twin_model)) {
     stop("'twin_model' must be a character vector")
@@ -58,7 +59,7 @@ check_twinning_params <- function(
   if (!(twinning_params$method %in% get_twin_methods())) {
     stop("This 'method' is not implemented")
   }
-  if (!is.numeric(twinning_params$n_replicates)) {
+  if (!is_one_int(twinning_params$n_replicates)) { # nolint pirouette function
     stop("'n_replicates' must be a number")
   }
   if (

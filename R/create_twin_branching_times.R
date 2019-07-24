@@ -47,9 +47,7 @@ create_twin_branching_times <- function(
   if (length(mu) != 1) {
     stop("'mu' must be one numerical value")
   }
-  if (!beautier::is_phylo(phylogeny)) {
-    stop("'phylogeny' must be of class 'phylo'")
-  }
+  beautier::check_phylogeny(phylogeny)
   if (!is.numeric(n_replicates)) {
     stop("'n_replicates' must be numerical")
   }

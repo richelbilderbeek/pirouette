@@ -78,6 +78,8 @@ sim_alignment <- function(
 
 #' Converts a phylogeny to a random DNA alignment
 #' @inheritParams default_params_doc
+#' @param n_mutations the number of different base pairs between
+#' root sequence and the resulting alignment
 #' @return an alignment of type \code{DNAbin}
 #' @seealso Use \link{sim_alignment_file} to save the simulated alignment
 #'   directly to a file
@@ -106,9 +108,8 @@ sim_alignment <- function(
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), n_base_pairs)
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
-#' @aliases sim_alignment_twin sim_alignment_raw
-#' @export sim_alignment_twin sim_alignment_raw
-sim_alignment_twin <- sim_alignment_raw <- function(
+#' @export
+sim_alignment_raw <- function(
   phylogeny,
   root_sequence,
   rng_seed,
@@ -120,9 +121,9 @@ sim_alignment_twin <- sim_alignment_raw <- function(
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
-  if (!(is.na(n_mutations) || floor(n_mutations) == ceiling(n_mutations))) {
+  if (!is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
     stop(
-      "n_mutations must be integer or NA (meaning no constraint on the number)"
+      "n_mutations must be integer or NA"
     )
   }
   set.seed(rng_seed)

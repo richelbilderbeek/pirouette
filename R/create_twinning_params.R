@@ -10,7 +10,7 @@
 #'
 #' library(testthat)
 #' expect_true("rng_seed_tree" %in% names(twinning_params))
-#' expect_true("rng_seed_alignment" %in% names(twinning_params))
+#' expect_true("rng_seed_twin_alignment" %in% names(twinning_params))
 #' expect_true("twin_tree_filename" %in% names(twinning_params))
 #' expect_silent(check_twinning_params(twinning_params))
 #'
@@ -31,7 +31,7 @@
 #' @export
 create_twinning_params <- function(
   rng_seed_tree = 0,
-  rng_seed_alignment = 0,
+  rng_seed_twin_alignment = 0,
   twin_model = "birth_death",
   method = "random_tree",
   n_replicates = 1e4,
@@ -47,7 +47,7 @@ create_twinning_params <- function(
 ) {
   twinning_params <- list(
     rng_seed_tree = rng_seed_tree,
-    rng_seed_alignment = rng_seed_alignment,
+    rng_seed_twin_alignment = rng_seed_twin_alignment,
     twin_model = twin_model,
     method = method,
     n_replicates = n_replicates,

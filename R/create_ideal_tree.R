@@ -46,6 +46,6 @@ create_ideal_tree <- function(
   best_n <- which(liks == max(liks))
   ideal_tree <- sim_trees[[best_n]]
 
-  testit::assert(beautier::is_phylo(ideal_tree))
+  beautier::check_phylogeny(ideal_tree)
   ideal_tree
 }

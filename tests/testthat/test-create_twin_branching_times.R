@@ -126,7 +126,7 @@ test_that("abuse", {
       n_replicates = 1,
       method = "random_tree"
     ),
-    "'phylogeny' must be of class 'phylo'"
+    "phylogeny' must be a valid phylogeny"
   )
 
   expect_error(

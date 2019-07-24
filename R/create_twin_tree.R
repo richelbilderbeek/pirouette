@@ -22,6 +22,7 @@ create_twin_tree <- function(
   phylogeny,
   twinning_params = create_twinning_params()
 ) {
+  beautier::check_phylogeny(phylogeny)
   if (!(twinning_params$twin_model %in% get_twin_models())) {
     stop("This twin model is not implemented")
   }

@@ -22,12 +22,12 @@ test_that("use", {
   )
 
   twinning_params <- good_twinning_params
-  twinning_params$rng_seed_alignment <- NULL
+  twinning_params$rng_seed_twin_alignment <- NULL
   expect_error(
     check_twinning_params(
       twinning_params
     ),
-    "'rng_seed_alignment' must be an element of an 'twinning_params'"
+    "'rng_seed_twin_alignment' must be an element of an 'twinning_params'"
   )
 
   twinning_params <- good_twinning_params
@@ -51,10 +51,10 @@ test_that("use", {
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        rng_seed_alignment = "nonsense"
+        rng_seed_twin_alignment = "nonsense"
       )
     ),
-    "'rng_seed_alignment' must be a number"
+    "'rng_seed_twin_alignment' must be a number"
   )
   expect_error(
     check_twinning_params(

@@ -81,11 +81,8 @@ pir_run <- function(
     twinning_params = create_twinning_params()
   )
 ) {
-
   # Check the inputs
-  if (!beautier::is_phylo(phylogeny)) {
-    stop("'phylogeny' must be of class 'phylo'")
-  }
+  beautier::check_phylogeny(phylogeny)
   check_pir_params(pir_params) # nolint pirouette function
 
   # Higher-level checks
