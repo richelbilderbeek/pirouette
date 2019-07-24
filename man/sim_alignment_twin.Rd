@@ -5,7 +5,7 @@
 \title{Converts a twin phylogeny to a random DNA alignment}
 \usage{
 sim_alignment_twin(twin_phylogeny, root_sequence, rng_seed_twin_alignment,
-  mutation_rate, site_model, n_mutations = NA)
+  mutation_rate, site_model, n_mutations)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -13,8 +13,8 @@ sim_alignment_twin(twin_phylogeny, root_sequence, rng_seed_twin_alignment,
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}
 
-\item{rng_seed_twin_alignment}{the random number generator seed as used in the
-simulation of a twin alignment}
+\item{rng_seed_twin_alignment}{the random number generator seed
+as used in the simulation of a twin alignment}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 

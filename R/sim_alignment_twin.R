@@ -11,9 +11,10 @@ sim_alignment_twin <- function(
   rng_seed_twin_alignment,
   mutation_rate,
   site_model,
-  n_mutations = NA
+  n_mutations
 ) {
-  sim_alignment_raw( # nolint pirouette function
+  testit::assert(is_one_int(n_mutations))
+  twin_alignment <- sim_alignment_raw( # nolint pirouette function
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     rng_seed = rng_seed_twin_alignment,
@@ -22,4 +23,10 @@ sim_alignment_twin <- function(
     n_mutations = n_mutations
   )
 
+  actual_n_mutations <- count_n_mutations(
+    alignment = twin_alignment,
+    root_sequence = root_sequence
+  )
+  testit::assert(n_mutations == actual_n_mutations)
+  twin_alignment
 }

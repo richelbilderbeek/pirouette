@@ -17,8 +17,8 @@ create_twinning_params(rng_seed_twin_tree = 0,
 \item{rng_seed_twin_tree}{the random number generator seed as used in the
 simulation of a twin tree}
 
-\item{rng_seed_twin_alignment}{the random number generator seed as used in the
-simulation of a twin alignment}
+\item{rng_seed_twin_alignment}{the random number generator seed
+as used in the simulation of a twin alignment}
 
 \item{twin_model}{the model you want to use to generate the twin tree:
 \itemize{

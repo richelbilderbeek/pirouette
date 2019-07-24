@@ -32,6 +32,13 @@ sim_alignment_twin_file <- function(
     site_model = alignment_params$site_model,
     n_mutations = n_mutations_true
   )
+
+  n_mutations_twin <- count_n_mutations(
+    alignment = twin_alignment,
+    root_sequence = alignment_params$root_sequence
+  )
+  testit::assert(n_mutations_true == n_mutations_twin)
+
   # Save
   phangorn::write.phyDat(
     alignment_twin,

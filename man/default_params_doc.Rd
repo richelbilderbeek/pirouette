@@ -322,8 +322,8 @@ of class \code{multiphylo}}
 
 \item{rng_seed}{a random number generator seed}
 
-\item{rng_seed_twin_alignment}{the random number generator seed as used in the
-simulation of a twin alignment}
+\item{rng_seed_twin_alignment}{the random number generator seed
+as used in the simulation of a twin alignment}
 
 \item{rng_seed_twin_tree}{the random number generator seed as used in the
 simulation of a twin tree}

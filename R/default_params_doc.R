@@ -210,8 +210,8 @@
 #'       Will be NA if these are not measured.
 #'   }
 #' @param rng_seed a random number generator seed
-#' @param rng_seed_twin_alignment the random number generator seed as used in the
-#'   simulation of a twin alignment
+#' @param rng_seed_twin_alignment the random number generator seed
+#'   as used in the simulation of a twin alignment
 #' @param rng_seed_twin_tree the random number generator seed as used in the
 #'   simulation of a twin tree
 #' @param root_sequence the DNA sequence at the root of the phylogeny.

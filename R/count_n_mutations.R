@@ -55,7 +55,13 @@ count_n_mutations <- function(
     stop("'root_sequence' must be one character vector of lowercase nucleotides") # nolint long string
   }
   if (ncol(alignment_sequences) != length(root_vector)) {
-    stop("'root_sequence' must have the same length as each taxon's sequence length") # nolint long string
+    stop(
+      "'root_sequence' must have the same length ",
+      "as each taxon's sequence length. \n",
+      "Number of nucleotides in alignment: ", ncol(alignment_sequences), ". \n",
+      "Number of nucleotides in root_sequence: ", length(root_vector), ". \n",
+      "'root_sequence': ", root_sequence
+    )
   }
 
   n_mutations <- 0
