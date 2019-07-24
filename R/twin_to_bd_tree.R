@@ -35,7 +35,7 @@ twin_to_bd_tree <- function(
   twinning_params
 ) {
   check_twinning_params(twinning_params) # nolint pirouette function
-  seed <- twinning_params$rng_seed_tree
+  seed <- twinning_params$rng_seed_twin_tree
   method <- twinning_params$method
   n_replicates <- twinning_params$n_replicates
 

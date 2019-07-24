@@ -4,7 +4,7 @@ test_that("use", {
 
   phylogeny <- load_tree(tree_model = "mbd", seed = 1)
   twinning_params <- create_twinning_params()
-  twinning_params$rng_seed_tree <- 1
+  twinning_params$rng_seed_twin_tree <- 1
   yule_tree <- twin_to_yule_tree(
     phylogeny = phylogeny,
     twinning_params = twinning_params

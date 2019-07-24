@@ -18,7 +18,7 @@ check_twinning_params <- function(
   twinning_params
 ) {
   argument_names <- c(
-    "rng_seed_tree",
+    "rng_seed_twin_tree",
     "rng_seed_twin_alignment",
     "twin_model",
     "method",
@@ -35,8 +35,8 @@ check_twinning_params <- function(
       )
     }
   }
-  if (!is_one_int(twinning_params$rng_seed_tree)) { # nolint pirouette function
-    stop("'rng_seed_tree' must be a number")
+  if (!is_one_int(twinning_params$rng_seed_twin_tree)) { # nolint pirouette function
+    stop("'rng_seed_twin_tree' must be a number")
   }
 
   if (!is_one_int(twinning_params$rng_seed_twin_alignment)) { # nolint pirouette function
