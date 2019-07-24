@@ -4,10 +4,10 @@
 \alias{sim_alignment_twin_file}
 \title{Simulates a twin DNA alignment and saves it to a FASTA file.}
 \usage{
-sim_alignment_twin_file(phylogeny, alignment_params, twinning_params)
+sim_alignment_twin_file(twin_phylogeny, alignment_params, twinning_params)
 }
 \arguments{
-\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}

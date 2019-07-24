@@ -8,11 +8,11 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 sim_alignment_twin_file <- function(
-  phylogeny,
+  twin_phylogeny,
   alignment_params,
   twinning_params
 ) {
-  beautier::check_phylogeny(phylogeny)
+  check_twin_phylogeny(twin_phylogeny) # nolint pirouette function
   check_alignment_params(alignment_params) # nolint pirouette function
   check_twinning_params(twinning_params) # nolint pirouette function
 
@@ -25,9 +25,9 @@ sim_alignment_twin_file <- function(
 
   # Simulate
   alignment_twin <- sim_alignment_twin(
-    phylogeny = phylogeny,
+    twin_phylogeny = twin_phylogeny,
     root_sequence = alignment_params$root_sequence,
-    rng_seed = twinning_params$rng_seed_twin_alignment,
+    rng_seed_twin_alignment = twinning_params$rng_seed_twin_alignment,
     mutation_rate = alignment_params$mutation_rate,
     site_model = alignment_params$site_model,
     n_mutations = n_mutations_true
