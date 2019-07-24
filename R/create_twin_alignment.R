@@ -15,7 +15,7 @@ create_twin_alignment <- function(
   twinning_params
 ) {
   # Check inputs
-  if (!is_phylo(twin_phylogeny)) {
+  if (!beautier::is_phylo(twin_phylogeny)) {
     stop("'twin_phylogeny' must be a of class 'phylo'")
   }
   if (class(true_alignment) != "DNAbin") {
@@ -60,6 +60,10 @@ create_twin_alignment <- function(
     )
 
     rng_seed <- rng_seed + 1
+    print(paste(rng_seed, n_mutations_true, n_mutations_twin))
+    if (rng_seed > twinning_params$rng_seed_alignment + 1e7) {
+      stop("One million attemps without success")
+    }
   }
   twin_alignment
 }

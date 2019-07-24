@@ -116,3 +116,55 @@ test_that("sim_alignment: abuse", {
   )
 
 })
+
+test_that("no mutations when mutation rate is zero", {
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  sequence_length <- 1000
+  root_sequence <- create_mono_nuc_dna(length = sequence_length)
+  alignment_params <- create_alignment_params(
+    root_sequence = root_sequence,
+    mutation_rate = 0.0
+  )
+  alignment <- sim_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params
+  )
+  n_mutations <- count_n_mutations(
+    alignment = alignment,
+    root_sequence = root_sequence
+  )
+  expect_equal(0, n_mutations)
+})
+
+test_that("low mutation rate must have less mutations", {
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  sequence_length <- 1000
+  root_sequence <- create_mono_nuc_dna(length = sequence_length)
+  alignment_params_low <- create_alignment_params(
+    root_sequence = root_sequence,
+    mutation_rate = 0.01,
+    rng_seed = 314
+  )
+  alignment_params_high <- create_alignment_params(
+    root_sequence = root_sequence,
+    mutation_rate = 0.1,
+    rng_seed = 314
+  )
+  alignment_low <- sim_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params_low
+  )
+  alignment_high <- sim_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params_high
+  )
+  n_mutations_low <- count_n_mutations(
+    alignment = alignment_low,
+    root_sequence = root_sequence
+  )
+  n_mutations_high <- count_n_mutations(
+    alignment = alignment_high,
+    root_sequence = root_sequence
+  )
+  expect_true(n_mutations_low * 5 < n_mutations_high)
+})
