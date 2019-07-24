@@ -59,6 +59,8 @@ twin_alignment <- create_twin_alignment(
 n_mutations_twin <- count_n_mutations(
   alignment = twin_alignment, root_sequence = root_sequence
 )
+
+library(testthat)
 expect_equal(n_mutations_true, n_mutations_twin)
 }
 \author{
