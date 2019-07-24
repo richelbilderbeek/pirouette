@@ -108,7 +108,7 @@ test_that("mutation rate does not matter", {
   )
   set.seed(314)
   twin_phylogeny <- create_yule_tree(n_taxa = 6, crown_age = 10)
-  root_sequence <- create_blocked_dna(1000)
+  root_sequence <- create_blocked_dna(100000)
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence,
     rng_seed = 314
