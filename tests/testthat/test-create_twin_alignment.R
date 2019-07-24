@@ -101,27 +101,26 @@ test_that("abuse", {
   )
 })
 
-test_that("mutation rate does not matter", {
+test_that("non-zero mutation rate has an effect", {
 
-  skip("Not now, Issue 294, Issue #294")
-  # Long tips
   true_phylogeny  <- ape::read.tree(
-    text = "(((((((((((A:90, B:90):1, C:91):1, D:92):1, E:93):1, F:94):1, G:95):1, H:96):1, I:97):1, J:98):1, K:99):1, L:100);"
-  )
-  twin_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:1, B:1):1, C:2):1, D:3):1, E:4):1, F:5):1, G:6):1, H:7):1, I:8):1, J:9):1, K:10):90, L:100);"
   )
-  ape::plot.phylo(true_phylogeny)
-  ape::plot.phylo(twin_phylogeny)
+  twin_phylogeny  <- ape::read.tree(
+    text = "(((((((((((A:90, B:90):1, C:91):1, D:92):1, E:93):1, F:94):1, G:95):1, H:96):1, I:97):1, J:98):1, K:99):1, L:100);"
+  )
   root_sequence <- create_blocked_dna(1000)
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence,
     rng_seed = 314,
-    mutation_rate = 10000.0
+    mutation_rate = 0.001
   )
   true_alignment <- sim_alignment(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
+  )
+  n_mutations_true <- count_n_mutations(
+    alignment = true_alignment, root_sequence = root_sequence
   )
   twinning_params <- create_twinning_params()
   twin_alignment <- create_twin_alignment(
@@ -130,12 +129,8 @@ test_that("mutation rate does not matter", {
     alignment_params = alignment_params,
     twinning_params = twinning_params
   )
-  expect_equal(
-    count_n_mutations(
-      alignment = true_alignment, root_sequence = root_sequence
-    ),
-    count_n_mutations(
-      alignment = twin_alignment, root_sequence = root_sequence
-    )
+  n_mutations_twin <- count_n_mutations(
+    alignment = twin_alignment, root_sequence = root_sequence
   )
+  expect_equal(n_mutations_true, n_mutations_twin)
 })

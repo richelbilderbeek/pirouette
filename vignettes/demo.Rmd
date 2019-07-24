@@ -170,7 +170,7 @@ Run this setup:
 ```{r}
 if (rappdirs::app_dir()$os != "win" && 
     is_beast2_installed() &&
-    is_beast2_pkg_installed("NS")
+    is_beast2_ns_pkg_installed()
 ) {
   errors <- pir_run(
     phylogeny = true_phylogeny,
@@ -257,7 +257,7 @@ Run this setup:
 ```{r}
 if (rappdirs::app_dir()$os != "win" && 
     is_beast2_installed() &&
-    is_beast2_pkg_installed("NS")
+    is_beast2_ns_pkg_installed()
 ) {
   errors <- pir_run(
     phylogeny = true_phylogeny,

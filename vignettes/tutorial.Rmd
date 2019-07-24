@@ -258,7 +258,7 @@ Now we again have all in place to do a `pirouette` run:
 ```{r fig.width=7, fig.height=7}
 if (rappdirs::app_dir()$os != "win" && 
     is_beast2_installed() &&
-    is_beast2_pkg_installed("NS")) {
+    is_beast2_ns_pkg_installed()) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
     pir_params = create_pir_params(

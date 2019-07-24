@@ -1,7 +1,7 @@
 #!/bin/bash
 # Script to install pirouette and its dependencies
 # on the Peregrine computer cluster
-# 
+#
 # Usage:
 #
 # * To install master:
@@ -24,7 +24,7 @@ if [ "$#" -ne 1 ]; then
   branch=master
 fi
 
-module load GCCcore/4.9.3 
+module load GCCcore/4.9.3
 module load XZ/5.2.2-foss-2016a
 module load R
 module load ImageMagick
@@ -39,6 +39,6 @@ Rscript -e 'devtools::install_github("ropensci/mauricer")'
 Rscript -e 'devtools::install_github("ropensci/babette")'
 Rscript -e 'devtools::install_github("richelbilderbeek/mcbette")'
 Rscript -e 'devtools::install_github("richelbilderbeek/becosys")'
-Rscript -e "devtools::install_github(\"richelbilderbeek/pirouette\", ref = \"$branch\")" 
+Rscript -e "devtools::install_github(\"richelbilderbeek/pirouette\", ref = \"$branch\")"
 Rscript -e 'if (!beastier::is_beast2_installed()) beastier::install_beast2()'
-Rscript -e 'if (!mauricer::is_beast2_pkg_installed("NS")) mauricer::install_beast2_pkg("NS")'
+Rscript -e 'if (!mauricer::is_beast2_ns_pkg_installed()) mauricer::install_beast2_pkg("NS")'

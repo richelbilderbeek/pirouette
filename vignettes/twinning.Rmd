@@ -43,9 +43,7 @@ will have a likelihood of zero for all of the BEAST2 tree priors.
 Twinning:
 
 ```{r}
-twinning_params <- pirouette::create_twinning_params(
-  rng_seed = 42
-)
+twinning_params <- pirouette::create_twinning_params()
 ```
 
 ```{r}
@@ -119,7 +117,7 @@ Run:
 df <- NULL
 if (rappdirs::app_dir()$os != "win" && 
     is_beast2_installed() && 
-    is_beast2_pkg_installed("NS")
+    is_beast2_ns_pkg_installed()
 ) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
@@ -159,7 +157,7 @@ ape::plot.phylo(phylogeny, main = "The True Phylogeny")
 See the alignment generated from the true tree:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   testit::assert(file.exists(pir_params$alignment_params$fasta_filename))
   ape::image.DNAbin(ape::read.FASTA(file = pir_params$alignment_params$fasta_filename))
 }
@@ -168,7 +166,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior trees generated from the true alignment, for the generative model:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames))
   babette::plot_densitree(
     tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
@@ -179,7 +177,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the evidence of the true alignments for the models:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   knitr::kable(utils::read.csv(pir_params$evidence_filename))
 }
 ```
@@ -187,7 +185,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior trees generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   trees_filename <- pir_params$experiments[[2]]$beast2_options$output_trees_filenames
   testit::assert(file.exists(trees_filename))
   babette::plot_densitree(tracerer::parse_beast_trees(trees_filename))
@@ -197,7 +195,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior parameter estimates generated from the true alignment, for the generative model:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_log_filename))
   df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$beast2_options$output_log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
@@ -207,7 +205,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior parameter estimates generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   log_filename <- pir_params$experiments[[2]]$beast2_options$output_log_filename
   testit::assert(file.exists(log_filename))
   df <- tracerer::parse_beast_log(log_filename)
@@ -220,7 +218,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the twin tree:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename), main = "The Twin Tree")
 }
 ```
@@ -228,7 +226,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the alignment generated from the twin tree:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
   ape::image.DNAbin(ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename))
 }
@@ -237,7 +235,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior trees generated from the twin alignment, for the generative model:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   trees_filename <- to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
   testit::assert(file.exists(trees_filename))
   babette::plot_densitree(
@@ -249,14 +247,14 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the evidence of the true alignments for the models:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   knitr::kable(utils::read.csv(pir_params$twinning_params$twin_evidence_filename))
 }
 ```
 See the posterior trees generated from the twin alignment, for the model with the most evidence:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   trees_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_trees_filenames)
   testit::assert(file.exists(trees_filename))
   babette::plot_densitree(tracerer::parse_beast_trees(trees_filename))
@@ -266,7 +264,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior parameter estimates generated from the true alignment, for the generative model:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   log_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_log_filename)
   testit::assert(file.exists(log_filename))
   df <- tracerer::parse_beast_log(log_filename)
@@ -277,7 +275,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_in
 See the posterior parameter estimates generated from the true alignment, for the model with the most evidence:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_pkg_installed("NS")) {
+if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   log_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_log_filename)
   testit::assert(file.exists(log_filename))
   df <- tracerer::parse_beast_log(log_filename)
