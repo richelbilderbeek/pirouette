@@ -23,10 +23,12 @@ sim_alignment_twin <- function(
     n_mutations = n_mutations
   )
 
+  # Postcondition
   actual_n_mutations <- count_n_mutations(
     alignment = twin_alignment,
     root_sequence = root_sequence
   )
   testit::assert(n_mutations == actual_n_mutations)
+
   twin_alignment
 }

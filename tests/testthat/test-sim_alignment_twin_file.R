@@ -1,5 +1,6 @@
 test_that("must create file", {
-  alignment_params <- create_test_alignment_params()
+  alignment_params <- create_test_alignment_params(
+    root_sequence = "acgtac")
   twinning_params <- create_twinning_params()
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(
@@ -30,6 +31,8 @@ test_that("must create file", {
   file.exists(twin_alignment_filename)
   true_alignment <- ape::read.FASTA(true_alignment_filename)
   twin_alignment <- ape::read.FASTA(twin_alignment_filename)
+  image(true_alignment)
+  image(twin_alignment)
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
     root_sequence = alignment_params$root_sequence

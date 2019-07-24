@@ -51,4 +51,7 @@ sim_alignment_file <- function(
     file = fasta_filename,
     format = "fasta"
   )
+
+  print("DEBUG: sim_alignment_file FASTA:")
+  readLines(fasta_filename)
 }

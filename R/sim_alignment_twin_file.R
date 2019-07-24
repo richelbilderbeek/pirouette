@@ -18,6 +18,11 @@ sim_alignment_twin_file <- function(
 
   true_alignment_filename <- alignment_params$fasta_filename
   true_alignment <- ape::read.FASTA(true_alignment_filename)
+
+  print("DEBUG: true_alignment_filename FASTA:")
+  readLines(true_alignment_filename)
+  print("after")
+
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
     root_sequence = alignment_params$root_sequence
@@ -45,4 +50,7 @@ sim_alignment_twin_file <- function(
     file = twinning_params$twin_alignment_filename,
     format = "fasta"
   )
+
+  print("DEBUG: twinning_params$twin_alignment_filename FASTA:")
+  readLines(twinning_params$twin_alignment_filename)
 }

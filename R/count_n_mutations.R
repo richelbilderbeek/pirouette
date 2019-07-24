@@ -54,7 +54,10 @@ count_n_mutations <- function(
   if (!all(root_vector %in% c("a", "c", "g", "t"))) {
     stop("'root_sequence' must be one character vector of lowercase nucleotides") # nolint long string
   }
-  if (ncol(alignment_sequences) != length(root_vector)) {
+  n_nucleotides <- ncol(alignment_sequences)
+  testit::assert(n_nucleotides == get_alignment_sequence_length(alignment))
+
+  if (n_nucleotides != length(root_vector)) {
     stop(
       "'root_sequence' must have the same length ",
       "as each taxon's sequence length. \n",
