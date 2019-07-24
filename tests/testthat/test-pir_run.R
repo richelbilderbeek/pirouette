@@ -99,6 +99,7 @@ test_that("generative", {
       pir_params$experiments[[1]]$errors_filename
     )
   )
+
 })
 
 test_that("abuse: generative, CBS with too few taxa", {
@@ -282,6 +283,22 @@ test_that("generative with twin", {
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
   expect_true("twin" %in% errors$tree)
+
+  # True and twin alignment have an equal amount of mutations
+  skip("Issue 295, #295")
+  true_alignment_filename <- pir_params$alignment_params$fasta_filename
+  twin_alignment_filename <- pir_params$twinning_params$twin_alignment_filename
+  true_alignment <- ape::read.FASTA(true_alignment_filename)
+  twin_alignment <- ape::read.FASTA(twin_alignment_filename)
+  n_mutations_true <- count_n_mutations(
+    alignment = true_alignment,
+    root_sequence = pir_params$alignment_params$root_sequence
+  )
+  n_mutations_twin <- count_n_mutations(
+    alignment = twin_alignment,
+    root_sequence = pir_params$alignment_params$root_sequence
+  )
+  expect_equal(n_mutations_true, n_mutations_twin)
 })
 
 

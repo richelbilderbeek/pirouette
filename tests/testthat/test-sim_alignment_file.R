@@ -7,4 +7,8 @@ test_that("must create file", {
     alignment_params = alignment_params
   )
   expect_true(file.exists(alignment_params$fasta_filename))
+  expect_s3_class(
+    ape::read.FASTA(alignment_params$fasta_filename),
+    "DNAbin"
+  )
 })
