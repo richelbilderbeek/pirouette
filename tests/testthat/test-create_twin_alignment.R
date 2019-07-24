@@ -92,3 +92,34 @@ test_that("abuse", {
     "'true_alignmnent' must be a of class 'DNAbin'"
   )
 })
+
+test_that("mutation rate does not matter", {
+
+  true_phylogeny  <- ape::read.tree(
+    text = "(((A:8, B:8):1, C:9):1, ((D:8, E:8):1, F:9):1);"
+  )
+  set.seed(314)
+  twin_phylogeny <- create_yule_tree(n_taxa = 6, crown_age = 10)
+  root_sequence <- create_blocked_dna(1000)
+  alignment_params <- create_test_alignment_params(
+    root_sequence = root_sequence,
+    rng_seed = 314
+  )
+  true_alignment <- sim_alignment(
+    phylogeny = true_phylogeny,
+    alignment_params = alignment_params
+  )
+  twin_alignment <- create_twin_alignment(
+    twin_phylogeny = twin_phylogeny,
+    true_alignment = true_alignment,
+    alignment_params = alignment_params
+  )
+  expect_equal(
+    count_n_mutations(
+      alignment = true_alignment, root_sequence = root_sequence
+    ),
+    count_n_mutations(
+      alignment = twin_alignment, root_sequence = root_sequence
+    )
+  )
+})
