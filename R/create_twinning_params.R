@@ -4,14 +4,13 @@
 #' their combination will be called the generative model
 #' of the twinning.
 #' @inheritParams default_params_doc
-#' @param rng_seed the random number generator seed as used in the
-#'   simulation of a twin tree
 #' @return a twinning parameter set
 #' @examples
 #' twinning_params <- create_twinning_params()
 #'
 #' library(testthat)
-#' expect_true("rng_seed" %in% names(twinning_params))
+#' expect_true("rng_seed_tree" %in% names(twinning_params))
+#' expect_true("rng_seed_alignment" %in% names(twinning_params))
 #' expect_true("twin_tree_filename" %in% names(twinning_params))
 #' expect_silent(check_twinning_params(twinning_params))
 #'
@@ -31,7 +30,8 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_twinning_params <- function(
-  rng_seed = 0,
+  rng_seed_tree = 0,
+  rng_seed_alignment = 0,
   twin_model = "birth_death",
   method = "random_tree",
   n_replicates = 1e4,
@@ -46,7 +46,8 @@ create_twinning_params <- function(
   )
 ) {
   twinning_params <- list(
-    rng_seed = rng_seed,
+    rng_seed_tree = rng_seed_tree,
+    rng_seed_alignment = rng_seed_alignment,
     twin_model = twin_model,
     method = method,
     n_replicates = n_replicates,

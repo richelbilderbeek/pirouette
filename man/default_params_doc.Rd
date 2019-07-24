@@ -23,14 +23,15 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   model_type, mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa,
   n_replicates, nu, nu_events, parameter_filename, parameters_filename,
   phylo, phylogeny, pir_params, pir_out, posterior_trees, precision,
-  project_folder_name, result, rng_seed, root_sequence, run_experiment,
-  run_experiments, run_if, sample_interval, seed, sequence_length,
-  sim_pars, sim_phylo, site_model, site_models, site_model_name,
-  sub_chain_length, sum_lamu, t_0, tree, tree_filename, tree_model,
-  tree_prior, tree_priors, tree_prior_name, tree_type, true_alignment,
-  true_phylogeny, true_result, twin_alignment, twin_alignment_filename,
-  twin_evidence_filename, twin_phylogeny, twin_model, twin_result,
-  twin_tree_filename, twinning_params, type, verbose, weight)
+  project_folder_name, result, rng_seed, rng_seed_alignment, rng_seed_tree,
+  root_sequence, run_experiment, run_experiments, run_if, sample_interval,
+  seed, sequence_length, sim_pars, sim_phylo, site_model, site_models,
+  site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
+  true_alignment, true_phylogeny, true_result, twin_alignment,
+  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
+  twin_model, twin_result, twin_tree_filename, twinning_params, type,
+  verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -320,6 +321,12 @@ of class \code{multiphylo}}
 }}
 
 \item{rng_seed}{a random number generator seed}
+
+\item{rng_seed_alignment}{the random number generator seed as used in the
+simulation of a twin alignment}
+
+\item{rng_seed_tree}{the random number generator seed as used in the
+simulation of a twin tree}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}

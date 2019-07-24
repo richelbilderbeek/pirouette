@@ -8,6 +8,7 @@ test_that("use, twin has more info", {
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
+  twinning_params <- create_twinning_params()
   true_alignment <- sim_alignment(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
@@ -15,7 +16,8 @@ test_that("use, twin has more info", {
   twin_alignment <- create_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
-    alignment_params = alignment_params
+    alignment_params = alignment_params,
+    twinning_params = twinning_params
   )
   expect_equal(
     count_n_mutations(
@@ -39,10 +41,12 @@ test_that("use, twin has less info", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+  twinning_params <- create_twinning_params()
   twin_alignment <- create_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
-    alignment_params = alignment_params
+    alignment_params = alignment_params,
+    twinning_params = twinning_params
   )
   expect_equal(
     count_n_mutations(
@@ -64,12 +68,14 @@ test_that("abuse", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+  twinning_params <- create_twinning_params()
   # Works, just to verify
   expect_silent(
     create_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = true_alignment,
-      alignment_params = alignment_params
+      alignment_params = alignment_params,
+      twinning_params = twinning_params
     )
   )
 
@@ -78,7 +84,8 @@ test_that("abuse", {
     create_twin_alignment(
       twin_phylogeny = "nonsense",
       true_alignment = true_alignment,
-      alignment_params = alignment_params
+      alignment_params = alignment_params,
+      twinning_params = twinning_params
     ),
     "'twin_phylogeny' must be a of class 'phylo'"
   )
@@ -87,7 +94,8 @@ test_that("abuse", {
     create_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = "nonsense",
-      alignment_params = alignment_params
+      alignment_params = alignment_params,
+      twinning_params = twinning_params
     ),
     "'true_alignmnent' must be a of class 'DNAbin'"
   )
@@ -109,10 +117,12 @@ test_that("mutation rate does not matter", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+  twinning_params <- create_twinning_params()
   twin_alignment <- create_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
-    alignment_params = alignment_params
+    alignment_params = alignment_params,
+    twinning_params = twinning_params
   )
   expect_equal(
     count_n_mutations(

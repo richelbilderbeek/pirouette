@@ -4,7 +4,8 @@
 \alias{create_twin_alignment}
 \title{Creates a twin alignment.}
 \usage{
-create_twin_alignment(twin_phylogeny, true_alignment, alignment_params)
+create_twin_alignment(twin_phylogeny, true_alignment, alignment_params,
+  twinning_params)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -13,6 +14,10 @@ create_twin_alignment(twin_phylogeny, true_alignment, alignment_params)
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 }
 \value{
 an alignment of class DNAbin that has as much

@@ -32,7 +32,8 @@ twin_to_yule_tree <- function(
   phylogeny,
   twinning_params
 ) {
-  seed <- twinning_params$rng_seed
+  check_twinning_params(twinning_params)
+  seed <- twinning_params$rng_seed_tree
   method <- twinning_params$method
   n_replicates <- twinning_params$n_replicates
 

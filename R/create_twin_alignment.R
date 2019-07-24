@@ -11,7 +11,8 @@
 create_twin_alignment <- function(
   twin_phylogeny,
   true_alignment,
-  alignment_params
+  alignment_params,
+  twinning_params
 ) {
   # Check inputs
   if (!is_phylo(twin_phylogeny)) {
@@ -20,6 +21,8 @@ create_twin_alignment <- function(
   if (class(true_alignment) != "DNAbin") {
     stop("'true_alignmnent' must be a of class 'DNAbin'")
   }
+  check_alignment_params(alignment_params)
+  check_twinning_params(twinning_params)
 
   # Count the goal number of mutations
   n_mutations_true <- count_n_mutations(
@@ -37,7 +40,7 @@ create_twin_alignment <- function(
 
   # Will increase the RNG seed up until
   # a twin alignment is found
-  rng_seed <- alignment_params$rng_seed
+  rng_seed <- twinning_params$rng_seed_alignment
 
   # Prepare for the search for the twin alignment
   n_mutations_twin <- -1 # nonsense value

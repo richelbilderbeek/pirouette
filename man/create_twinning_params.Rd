@@ -4,17 +4,20 @@
 \alias{create_twinning_params}
 \title{Create the parameters for the twinning simulation}
 \usage{
-create_twinning_params(rng_seed = 0, twin_model = "birth_death",
-  method = "random_tree", n_replicates = 10000,
-  twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
-  ".newick"), twin_alignment_filename = tempfile(pattern =
-  "alignment_twin_", fileext = ".fasta"),
-  twin_evidence_filename = tempfile(pattern = "evidence_twin_", fileext =
-  ".csv"))
+create_twinning_params(rng_seed_tree = 0, rng_seed_alignment = 0,
+  twin_model = "birth_death", method = "random_tree",
+  n_replicates = 10000, twin_tree_filename = tempfile(pattern =
+  "tree_twin_", fileext = ".newick"),
+  twin_alignment_filename = tempfile(pattern = "alignment_twin_", fileext
+  = ".fasta"), twin_evidence_filename = tempfile(pattern =
+  "evidence_twin_", fileext = ".csv"))
 }
 \arguments{
-\item{rng_seed}{the random number generator seed as used in the
+\item{rng_seed_tree}{the random number generator seed as used in the
 simulation of a twin tree}
+
+\item{rng_seed_alignment}{the random number generator seed as used in the
+simulation of a twin alignment}
 
 \item{twin_model}{the model you want to use to generate the twin tree:
 \itemize{
@@ -58,7 +61,8 @@ of the twinning.
 twinning_params <- create_twinning_params()
 
 library(testthat)
-expect_true("rng_seed" \%in\% names(twinning_params))
+expect_true("rng_seed_tree" \%in\% names(twinning_params))
+expect_true("rng_seed_alignment" \%in\% names(twinning_params))
 expect_true("twin_tree_filename" \%in\% names(twinning_params))
 expect_silent(check_twinning_params(twinning_params))
 

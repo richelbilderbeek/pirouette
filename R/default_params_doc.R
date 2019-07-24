@@ -210,6 +210,10 @@
 #'       Will be NA if these are not measured.
 #'   }
 #' @param rng_seed a random number generator seed
+#' @param rng_seed_alignment the random number generator seed as used in the
+#'   simulation of a twin alignment
+#' @param rng_seed_tree the random number generator seed as used in the
+#'   simulation of a twin tree
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of an equal amount of each letter
 #' @param run_if the condition for an experiment's inference model to be run.
@@ -370,6 +374,8 @@ default_params_doc <- function(
   project_folder_name,
   result,
   rng_seed,
+  rng_seed_alignment,
+  rng_seed_tree,
   root_sequence,
   run_experiment,
   run_experiments,
