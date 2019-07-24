@@ -52,8 +52,8 @@ create_twin_alignment <- function(
   if (class(true_alignment) != "DNAbin") {
     stop("'true_alignmnent' must be a of class 'DNAbin'")
   }
-  check_alignment_params(alignment_params)
-  check_twinning_params(twinning_params)
+  check_alignment_params(alignment_params) # nolint pirouette function
+  check_twinning_params(twinning_params) # nolint pirouette function
 
   # Count the goal number of mutations
   n_mutations_true <- count_n_mutations(
