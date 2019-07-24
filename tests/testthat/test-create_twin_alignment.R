@@ -87,7 +87,7 @@ test_that("abuse", {
       alignment_params = alignment_params,
       twinning_params = twinning_params
     ),
-    "'twin_phylogeny' must be a of class 'phylo'"
+    "'twin_phylogeny' must be a valid phylogeny"
   )
 
   expect_error(

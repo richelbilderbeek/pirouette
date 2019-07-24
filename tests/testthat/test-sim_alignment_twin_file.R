@@ -12,7 +12,7 @@ test_that("must create file", {
   )
 
   sim_alignment_twin_file(
-    phylogeny = twin_phylogeny,
+    twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,
     twinning_params =  twinning_params
   )

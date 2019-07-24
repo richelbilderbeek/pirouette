@@ -410,6 +410,6 @@ test_that("Abuse", {
       phylogeny = "nonsense",
       pir_params = create_test_pir_params()
     ),
-    "'phylogeny' must be of class 'phylo'"
+    "'phylogeny' must be a valid phylogeny"
   )
 })

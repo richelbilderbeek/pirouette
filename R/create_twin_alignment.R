@@ -48,6 +48,12 @@ create_twin_alignment <- function(
   twinning_params
 ) {
   # Check inputs
+  if (!beautier::is_phylo(twin_phylogeny)) {
+    stop(
+      "'twin_phylogeny' must be a valid phylogeny.\n",
+      "Actual value: ", twin_phylogeny
+    )
+  }
   beautier::check_phylogeny(twin_phylogeny)
   if (class(true_alignment) != "DNAbin") {
     stop("'true_alignmnent' must be a of class 'DNAbin'")

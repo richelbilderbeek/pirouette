@@ -11,9 +11,9 @@ test_that("use, two taxa", {
   root_sequence <- "aaaaaaaa"
 
   alignment <- sim_alignment_twin(
-    phylogeny = ape::read.tree(text = "(A:4, B:4);"),
+    twin_phylogeny = ape::read.tree(text = "(A:4, B:4);"),
     root_sequence = root_sequence,
-    rng_seed = 314,
+    rng_seed_twin_alignment = 314,
     mutation_rate = 0.125,
     site_model = create_jc69_site_model(),
     n_mutations = n_mutations
@@ -32,7 +32,7 @@ test_that("use, three taxa", {
   alignment <- sim_alignment_twin(
     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
     root_sequence = root_sequence,
-    rng_seed = 314,
+    rng_seed_twin_alignment = 314,
     mutation_rate = 0.25,
     site_model = create_jc69_site_model(),
     n_mutations = n_mutations
