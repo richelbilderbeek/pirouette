@@ -30,7 +30,7 @@ test_that("use, three taxa", {
   root_sequence <- "aaaaaaaa"
 
   alignment <- sim_alignment_twin(
-    phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+    twin_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
     root_sequence = root_sequence,
     rng_seed_twin_alignment = 314,
     mutation_rate = 0.25,
