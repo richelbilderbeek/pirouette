@@ -13,7 +13,7 @@ sim_alignment_twin <- function(
   site_model,
   n_mutations
 ) {
-  testit::assert(is_one_int(n_mutations))
+  testit::assert(is_one_int(n_mutations)) # nolint pirouette function
   twin_alignment <- sim_alignment_raw( # nolint pirouette function
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
