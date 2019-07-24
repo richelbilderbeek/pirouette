@@ -24,7 +24,7 @@ sim_alignment_twin_file <- function(
   )
 
   # Simulate
-  alignment_twin <- sim_alignment_twin(
+  twin_alignment <- sim_alignment_twin(
     twin_phylogeny = twin_phylogeny,
     root_sequence = alignment_params$root_sequence,
     rng_seed_twin_alignment = twinning_params$rng_seed_twin_alignment,
@@ -41,7 +41,7 @@ sim_alignment_twin_file <- function(
 
   # Save
   phangorn::write.phyDat(
-    alignment_twin,
+    twin_alignment,
     file = twinning_params$twin_alignment_filename,
     format = "fasta"
   )
