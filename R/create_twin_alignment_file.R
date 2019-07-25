@@ -28,11 +28,9 @@ create_twin_alignment_file <- function(
   # Simulate
   twin_alignment <- create_twin_alignment(
     twin_phylogeny = twin_phylogeny,
-    root_sequence = alignment_params$root_sequence,
-    rng_seed_twin_alignment = twinning_params$rng_seed_twin_alignment,
-    mutation_rate = alignment_params$mutation_rate,
-    site_model = alignment_params$site_model,
-    n_mutations = n_mutations_true,
+    true_alignment = true_alignment,
+    alignment_params = alignment_params,
+    twinning_params = twinning_params,
     verbose = verbose
   )
 

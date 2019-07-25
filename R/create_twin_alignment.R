@@ -45,7 +45,8 @@ create_twin_alignment <- function(
   twin_phylogeny,
   true_alignment,
   alignment_params,
-  twinning_params
+  twinning_params,
+  verbose = FALSE
 ) {
   # Check inputs
   check_twin_phylogeny(twin_phylogeny) # nolint pirouette function
@@ -91,6 +92,20 @@ create_twin_alignment <- function(
     )
 
     rng_seed <- rng_seed + 1
+
+    if (verbose == TRUE) {
+      print(
+        paste0(
+          "Number of mutations needed: ",
+          n_mutations_true,
+          ", got: ",
+          n_mutations_twin,
+          " (attempt: ",
+          rng_seed - twinning_params$rng_seed_twin_alignment,
+          ")"
+        )
+      )
+    }
   }
   twin_alignment
 }
