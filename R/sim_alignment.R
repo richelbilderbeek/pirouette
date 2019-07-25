@@ -154,14 +154,14 @@ sim_alignment_raw <- function(
       root_sequence = root_sequence
     )
 
-    if (beautier::is_one_na(n_mutations)) break()
+    if (beautier::is_one_na(n_mutations)) break
 
     testit::assert(
       get_alignment_sequence_length(alignment_dnabin) ==
       nchar(root_sequence)
     )
 
-    if (sim_mutations == n_mutations) break()
+    if (sim_mutations == n_mutations) break
 
     if (verbose == TRUE) {
       print(paste(rng_seed, n_mutations, sim_mutations))
