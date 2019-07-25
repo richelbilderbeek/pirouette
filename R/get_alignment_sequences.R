@@ -4,16 +4,12 @@
 #' @return a numeric vector with the sequences
 #' @export
 get_alignment_sequences <- function(
-  alignment,
-  verbose = FALSE
+  alignment
 ) {
   if (class(alignment) != "DNAbin") {
     stop("'alignment' must be of class 'ape::DNAbin'")
   }
   if (is.matrix(alignment)) {
-    if (verbose) {
-      print("Hey, a matrix")
-    }
     # We know from
     # https://github.com/richelbilderbeek/pirouette/commit/a96ec3fef34c79e38bed292092c0370e5312c3f6 # nolint indeed long
     # that byrow must be FALSE
@@ -25,9 +21,6 @@ get_alignment_sequences <- function(
     )
   }
   if (is.list(alignment)) {
-    if (verbose) {
-      print("Hey, a list")
-    }
     # Nah, 'byrow' really must be TRUE here
     alignment_sequences <- matrix(
       unname(unlist(as.character(alignment))),

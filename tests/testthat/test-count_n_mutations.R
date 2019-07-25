@@ -191,9 +191,7 @@ test_that("use, three taxa, bug", {
   )
   ape::image.DNAbin(alignment, main = root_sequence, show.bases = TRUE)
   expect_equal(
-    count_n_mutations(
-      alignment = alignment, root_sequence = root_sequence, verbose = TRUE
-    ),
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
     4
   )
 })

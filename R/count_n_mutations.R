@@ -38,69 +38,22 @@ count_n_mutations <- function(
     )
   }
 
-  if (is.matrix(alignment)) {
-    # We know from
-    # https://github.com/richelbilderbeek/pirouette/commit/a96ec3fef34c79e38bed292092c0370e5312c3f6 # nolint indeed long
-    # that byrow must be FALSE
-    alignment_sequences <- matrix(
-      unname(unlist(as.character(alignment))),
-      nrow = length(labels(alignment)),
-      ncol = ncol(alignment),
-      byrow = FALSE
-    )
-  }
-  if (is.list(alignment)) {
-    # I assume from
-    # https://github.com/richelbilderbeek/pirouette/commit/a96ec3fef34c79e38bed292092c0370e5312c3f6 # nolint indeed long
-    # that byrow must be FALSE here as well, but I cannot
-    # write a test to verify this
-    alignment_sequences <- matrix(
-      unname(unlist(as.character(alignment))),
-      nrow = length(labels(alignment)),
-      ncol = length(as.character(alignment)[[1]]),
-      byrow = FALSE
-    )
-  }
-
-  root_vector <- unlist(strsplit(root_sequence, split = ""))
-  if (!all(root_vector %in% c("a", "c", "g", "t"))) {
-    stop("'root_sequence' must be one character vector of lowercase nucleotides") # nolint long string
-  }
-
-  n_nucleotides <- ncol(alignment_sequences)
-  n_nucleotides_as_well <- get_alignment_sequence_length(alignment) # nolint pirouette function
-
-  if (n_nucleotides != n_nucleotides_as_well) {
-    stop(
-      "Number of nucleotides disagree. \n",
-      "n_nucleotides: ", n_nucleotides, " \n",
-      "n_nucleotides_as_well: ", n_nucleotides_as_well
-    )
-  }
-  testit::assert(n_nucleotides == get_alignment_sequence_length(alignment)) # nolint pirouette function
-
-  if (n_nucleotides != length(root_vector)) {
-    stop(
-      "'root_sequence' must have the same length ",
-      "as each taxon's sequence length. \n",
-      "Number of nucleotides in alignment: ", ncol(alignment_sequences), ". \n",
-      "Number of nucleotides in root_vector: ", length(root_vector), ". \n",
-      "'root_sequence': ", root_sequence
-    )
-  }
+  sequences <- get_alignment_sequences(alignment)
 
   n_mutations <- 0
-  for (i in 1:nrow(alignment_sequences)) {
-    sequence_vector <- alignment_sequences[i, ]
-    n_mutations_here <- sum(root_vector != sequence_vector)
+  for (i in seq_along(sequences)) {
+    sequence <- sequences[i]
+    n_mutations_here <- sum(
+      strsplit(root_sequence, "")[[1]] != strsplit(sequence, "")[[1]]
+    )
     if (verbose) {
       print(
         paste0(
-          "Sequence ", i, "/", nrow(alignment_sequences),
+          "Sequence ", i, "/", length(sequences),
           " has ", n_mutations_here, " mutations when comparing ",
-          "root sequence '", paste0(root_vector, collapse = ""),
+          "root sequence '", root_sequence,
           "' with taxon sequence '",
-          paste0(sequence_vector, collapse = ""), "'"
+          sequence, "'"
         )
       )
     }
