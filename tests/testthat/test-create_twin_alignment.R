@@ -134,7 +134,6 @@ test_that("works for simple trees", {
 
 test_that("works in poor conditions as well", {
 
-  skip("Does work, but takes too long on Travis, Issue #294")
   true_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:1, B:1):1, C:2):1, D:3):1, E:4):1, F:5):1, G:6):1, H:7):1, I:8):1, J:9):1, K:10):90, L:100);" # nolint indeed long
   )
@@ -160,7 +159,7 @@ test_that("works in poor conditions as well", {
     true_alignment = true_alignment,
     alignment_params = alignment_params,
     twinning_params = twinning_params,
-    verbose = TRUE
+    verbose = FALSE
   )
   n_mutations_twin <- count_n_mutations(
     alignment = twin_alignment, root_sequence = root_sequence
