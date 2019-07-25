@@ -2,8 +2,9 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @export
-#' @export
-get_alignment_n_taxa <- function(alignment) {
-  testit::assert(class(alignment) == "DNAbin")
-  length(get_alignment_sequences(alignment))
+get_alignment_n_taxa <- function(alignment, verbose = FALSE) {
+  if (class(alignment) != "DNAbin") {
+    stop("'alignment' must be of class 'ape::DNAbin'")
+  }
+  length(labels(alignment))
 }
