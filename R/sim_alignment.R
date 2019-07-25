@@ -115,7 +115,8 @@ sim_alignment_raw <- function(
   rng_seed,
   mutation_rate,
   site_model,
-  n_mutations = NA
+  n_mutations = NA,
+  verbose = FALSE
 ) {
   beautier::check_phylogeny(phylogeny)
   if (!is.null(geiger::is.extinct(phylogeny))) {
@@ -128,8 +129,7 @@ sim_alignment_raw <- function(
   }
   set.seed(rng_seed)
 
-  correct_n_mutations <- FALSE
-  while (correct_n_mutations == FALSE) {
+  while (1) {
     alignment_phydat <- phangorn::simSeq(
       phylogeny,
       l = nchar(root_sequence),
@@ -147,33 +147,27 @@ sim_alignment_raw <- function(
 
     testit::assert(class(alignment_dnabin) == "DNAbin")
 
-    # DEBUG
-    if (!beautier::is_one_na(n_mutations)) {
-      if (get_alignment_sequence_length(alignment_dnabin) !=
-        nchar(root_sequence)) {
-        stop(
-          "Length of alignment and root sequence disagree. \n",
-          "get_alignment_sequence_length(alignment_dnabin): ",
-            get_alignment_sequence_length(alignment_dnabin), " \n",
-          "nchar(root_sequence): ", nchar(root_sequence), " \n",
-          "root_sequence: ", root_sequence
-        )
-      }
-
-      # n_mutations must not be NA
-      testit::assert(
-        get_alignment_sequence_length(alignment_dnabin) ==
-        nchar(root_sequence)
-      )
-    }
-
+    image(alignment_dnabin)
 
     sim_mutations <- count_n_mutations(
       alignment = alignment_dnabin,
       root_sequence = root_sequence
     )
 
-    correct_n_mutations <- (sim_mutations == n_mutations) || is.na(n_mutations)
+    if (beautier::is_one_na(n_mutations)) break()
+
+    testit::assert(
+      get_alignment_sequence_length(alignment_dnabin) ==
+      nchar(root_sequence)
+    )
+
+    if (sim_mutations == n_mutations) break()
+
+    if (verbose == TRUE) {
+      print(paste(rng_seed, n_mutations, sim_mutations))
+    }
+
+    rng_seed <- rng_seed + 1
   }
 
   testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))

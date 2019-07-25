@@ -5,7 +5,7 @@
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
 sim_alignment_raw(phylogeny, root_sequence, rng_seed, mutation_rate,
-  site_model, n_mutations = NA)
+  site_model, n_mutations = NA, verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -22,6 +22,8 @@ as created by \link[beautier]{create_site_model}}
 
 \item{n_mutations}{the number of different base pairs between
 root sequence and the resulting alignment}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 an alignment of type \code{DNAbin}

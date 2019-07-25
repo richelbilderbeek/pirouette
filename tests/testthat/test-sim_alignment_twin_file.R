@@ -1,6 +1,6 @@
 test_that("must create file", {
   alignment_params <- create_test_alignment_params(
-    root_sequence = "acgtac")
+    root_sequence = "acgt")
   twinning_params <- create_twinning_params()
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(
@@ -11,7 +11,7 @@ test_that("must create file", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-
+  skip("Takes too long #294")
   sim_alignment_twin_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,

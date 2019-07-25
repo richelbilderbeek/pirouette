@@ -10,7 +10,9 @@ get_alignment_sequence_length(alignment)
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 }
 \description{
-Get the sequence length of an alignment
+It appears DNAbin stores its internals differently for
+alignments of different sizes. Due to that, this
+function is more complicated as one would expect
 }
 \author{
 Richèl J.C. Bilderbeek

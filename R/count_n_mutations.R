@@ -25,10 +25,17 @@ count_n_mutations <- function(
   if (class(alignment) != "DNAbin") {
     stop("'alignment' must be of class 'ape::DNAbin'")
   }
-  testit::assert(
-    get_alignment_sequence_length(alignment) # nolint pirouette function
-    == nchar(root_sequence)
-  )
+  if (get_alignment_sequence_length(alignment) # nolint pirouette function
+    != nchar(root_sequence)
+  ) {
+    stop(
+      "'root_sequence' must have the same length ",
+      "as each taxon's sequence length. \n",
+      "'root_sequence' length: ", nchar(root_sequence), " \n",
+      "alignment sequence length: ",
+        get_alignment_sequence_length(alignment)
+    )
+  }
 
   if (is.matrix(alignment)) {
     # We know from
