@@ -103,6 +103,7 @@ test_that("abuse", {
 
 test_that("works in poor conditions as well", {
 
+  skip("Does work, but takes too long on Travis, Issue #94")
   true_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:1, B:1):1, C:2):1, D:3):1, E:4):1, F:5):1, G:6):1, H:7):1, I:8):1, J:9):1, K:10):90, L:100);" # nolint indeed long
   )
