@@ -78,7 +78,7 @@ create_twin_alignment <- function(
   twin_alignment <- NA
 
   while (n_mutations_true != n_mutations_twin) {
-    twin_alignment <- sim_alignment_raw(
+    twin_alignment <- create_alignment_impl(
       phylogeny = twin_phylogeny,
       root_sequence = alignment_params$root_sequence,
       rng_seed = rng_seed,
