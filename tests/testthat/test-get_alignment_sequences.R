@@ -84,7 +84,6 @@ test_that("use, three taxa", {
 
 test_that("use, three taxa, bug", {
 
-  skip("Issue 298, Issue #298")
   alignment <- ape::as.DNAbin(x = list(
       species_1 = strsplit("aggca", split = "")[[1]],
       species_2 = strsplit("agcca", split = "")[[1]],

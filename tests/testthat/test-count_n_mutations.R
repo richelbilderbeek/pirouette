@@ -167,7 +167,6 @@ test_that("use, three taxa", {
 
 test_that("use, three taxa, bug", {
 
-  skip("Issue 298, Issue #298")
   #
   # Root sequence is known
   #
