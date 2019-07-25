@@ -113,7 +113,7 @@ create_twin_alignment <- function(
       twin_alignment,
       main = paste0("DEBUG: attempt ", attempt, ")")
     )
-    if (attempt == 3) stop("Too many attempts")
+    if (attempt == 10) stop("Too many attempts")
   }
   twin_alignment
 }

@@ -21,7 +21,7 @@ test_that("use, two taxa", {
   )
   ape::image.DNAbin(alignment, show.bases = TRUE)
   expect_equal(
-    get_alignment_sequences(alignment, verbose = TRUE),
+    get_alignment_sequences(alignment),
     c("ac", "gt")
   )
 })

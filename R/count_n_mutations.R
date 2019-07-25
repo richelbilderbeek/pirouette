@@ -37,8 +37,16 @@ count_n_mutations <- function(
         get_alignment_sequence_length(alignment)
     )
   }
+  if (!is_dna_seq(root_sequence)) {
+    stop(
+      "'root_sequence' must be one character vector ",
+      "of lowercase nucleotides. \n",
+      "Actual value: ", root_sequence
+    )
+  }
 
-  sequences <- get_alignment_sequences(alignment)
+
+  sequences <- get_alignment_sequences(alignment, verbose = verbose)
 
   n_mutations <- 0
   for (i in seq_along(sequences)) {

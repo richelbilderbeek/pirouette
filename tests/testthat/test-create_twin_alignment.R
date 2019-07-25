@@ -119,7 +119,7 @@ test_that("works for simple trees", {
     true_alignment = true_alignment,
     alignment_params = alignment_params,
     twinning_params =  twinning_params,
-    verbose = TRUE
+    verbose = FALSE
   )
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,

@@ -5,5 +5,5 @@
 #' @export
 get_alignment_n_taxa <- function(alignment) {
   testit::assert(class(alignment) == "DNAbin")
-  length(alignment)
+  length(get_alignment_sequences(alignment))
 }

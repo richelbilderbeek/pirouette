@@ -244,9 +244,7 @@ test_that("Simplified version of bug #269", {
   image(alignment)
   expect_equal(
     0,
-    count_n_mutations(
-      alignment = alignment, root_sequence = root_sequence
-    )
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence)
   )
 })
 
