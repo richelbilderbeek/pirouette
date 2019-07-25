@@ -276,4 +276,3 @@ test_that("Bug #269, no mutations for mutation rate zero", {
     count_n_mutations(alignment = alignment, root_sequence = root_sequence)
   )
 })
-

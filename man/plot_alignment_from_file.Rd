@@ -2,12 +2,14 @@
 % Please edit documentation in R/plot_alignment_from_file.R
 \name{plot_alignment_from_file}
 \alias{plot_alignment_from_file}
-\title{the plot title}
+\title{Plot an alignment stored as a file}
 \usage{
 plot_alignment_from_file(fasta_filename, title)
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file}
+
+\item{title}{the plot title}
 }
 \description{
 Plot an alignment stored as a file

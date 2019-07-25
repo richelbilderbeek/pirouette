@@ -1,7 +1,7 @@
 #' Plot an alignment stored as a file
 #'
 #' @inheritParams default_params_doc
-#' @title the plot title
+#' @param title the plot title
 #' @export
 plot_alignment_from_file <- function(
   fasta_filename,
