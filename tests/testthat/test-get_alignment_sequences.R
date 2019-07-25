@@ -90,7 +90,6 @@ test_that("use, three taxa, bug", {
       species_3 = strsplit("aacta", split = "")[[1]]
     )
   )
-  ape::image.DNAbin(alignment, main = root_sequence, show.bases = TRUE)
   expect_equal(
     get_alignment_sequences(alignment),
     c("aggca", "agcca", "aacta")
