@@ -26,8 +26,8 @@ nothing
 The simulation is performed by \link{create_twin_alignment}.
 }
 \seealso{
-Use \link{create_twin_alignment} to only simulate the twin alignment,
-  without saving the alignment to file
+Use \link{create_twin_alignment} to only simulate
+  the twin alignment, without saving the alignment to file
 }
 \author{
 Richèl J.C. Bilderbeek

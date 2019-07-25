@@ -3,8 +3,8 @@
 #' The simulation is performed by \link{create_twin_alignment}.
 #' @inheritParams default_params_doc
 #' @return nothing
-#' @seealso Use \link{create_twin_alignment} to only simulate the twin alignment,
-#'   without saving the alignment to file
+#' @seealso Use \link{create_twin_alignment} to only simulate
+#'   the twin alignment, without saving the alignment to file
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_twin_alignment_file <- function(

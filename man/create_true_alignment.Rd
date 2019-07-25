@@ -16,7 +16,9 @@ as can be created by \link{create_alignment_params}}
 an alignment of type \code{DNAbin}
 }
 \description{
-Create the true alignment from the true/given phylogeny.
+We call this the true alignment, as it could thruthfully be found
+in nature, when assuming the true phylogeny is the true
+evolutionary history.
 }
 \examples{
 library(testthat)
@@ -37,7 +39,7 @@ phylogeny <- ape::rcoal(n_taxa)
 
 # Simulate the alignment
 alignment <- create_true_alignment(
-   phylogeny = phylogeny,
+   true_phylogeny = phylogeny,
    alignment_params = alignment_params
  )
 
