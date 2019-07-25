@@ -35,7 +35,6 @@ get_alignment_sequences <- function(
 
   n_taxa <- nrow(alignment_sequences)
   if (verbose) print(paste0("alignment has ", n_taxa, " taxa"))
-  testit::assert(n_taxa == get_alignment_n_taxa(alignment))
 
   sequences <- rep(NA, n_taxa)
 
