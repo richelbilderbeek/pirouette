@@ -4,10 +4,12 @@
 \alias{get_alignment_sequences}
 \title{Get the sequences from an alignment}
 \usage{
-get_alignment_sequences(alignment)
+get_alignment_sequences(alignment, verbose = FALSE)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 a numeric vector with the sequences

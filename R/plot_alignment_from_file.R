@@ -5,7 +5,7 @@
 #' @export
 plot_alignment_from_file <- function(
   fasta_filename,
-  title
+  title = ""
 ) {
   if (!file.exists(fasta_filename)) {
     stop("Alignment file not found, with filename '", fasta_filename, "'")

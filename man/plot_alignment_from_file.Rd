@@ -4,7 +4,7 @@
 \alias{plot_alignment_from_file}
 \title{Plot an alignment stored as a file}
 \usage{
-plot_alignment_from_file(fasta_filename, title)
+plot_alignment_from_file(fasta_filename, title = "")
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file}
