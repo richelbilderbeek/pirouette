@@ -12,8 +12,9 @@ plot_alignment_from_file <- function(
   }
   alignment <- NULL
   tryCatch({
-    alignment <- ape::read.FASTA(file = fasta_filename)
-  }, warning = function(e) {
+      alignment <- ape::read.FASTA(file = fasta_filename)
+    },
+    warning = function(e) {
       stop(
         "Alignment file invalid. \n",
         "Error message: ", e$msg

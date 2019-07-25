@@ -37,7 +37,7 @@ count_n_mutations <- function(
         get_alignment_sequence_length(alignment)
     )
   }
-  if (!is_dna_seq(root_sequence)) {
+  if (!is_dna_seq(root_sequence)) { # nolint pirouette function
     stop(
       "'root_sequence' must be one character vector ",
       "of lowercase nucleotides. \n",
@@ -46,7 +46,7 @@ count_n_mutations <- function(
   }
 
 
-  sequences <- get_alignment_sequences(alignment, verbose = verbose)
+  sequences <- get_alignment_sequences(alignment, verbose = verbose) # nolint pirouette function
 
   n_mutations <- 0
   for (i in seq_along(sequences)) {
