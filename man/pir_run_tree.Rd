@@ -4,11 +4,8 @@
 \alias{pir_run_tree}
 \title{Measure the error BEAST2 makes from a phylogeny}
 \usage{
-pir_run_tree(phylogeny, tree_type = "true", alignment_params,
-  experiments = list(create_test_experiment()),
-  error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE)
+pir_run_tree(phylogeny, tree_type = "true",
+  pir_params = create_test_pir_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -16,24 +13,8 @@ pir_run_tree(phylogeny, tree_type = "true", alignment_params,
 \item{tree_type}{type of tree, can be \code{true} for the true
 phylogeny, and \code{twin} for its twin tree}
 
-\item{alignment_params}{parameters to simulate an alignment,
-as can be created by \link{create_alignment_params}}
-
-\item{experiments}{a list of one or more \link{pirouette} experiments,
-as can be created by \link{create_experiment}. If more than one experiment
-is provided and a "generative" experiment is part of them, the "generative"
-one has to be the first in the list.}
-
-\item{error_measure_params}{parameter set to specify how the
-error between the given phylogeny and the Bayesian
-posterior is determined.
-Use \link{create_error_measure_params} to create such
-a parameter set}
-
-\item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods)}
-
-\item{verbose}{if TRUE, show more output}
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
 }
 \value{
 a data frame with errors, with as many rows as model selection

@@ -97,11 +97,7 @@ pir_run <- function(
   pir_out <- pir_run_tree(
     phylogeny = phylogeny,
     tree_type = "true",
-    alignment_params = pir_params$alignment_params,
-    experiments = pir_params$experiments,
-    error_measure_params = pir_params$error_measure_params,
-    evidence_filename = pir_params$evidence_filename,
-    verbose = pir_params$verbose
+    pir_params = pir_params
   )
 
   # Run for the twin tree
@@ -134,30 +130,21 @@ pir_run <- function(
     pir_outs <- pir_outs[1:j, ]
 
     for (j in 1:nrow(pir_outs)) {
-      # Create specific twin pir_params
-      pir_params_twin <- create_pir_params_twin(
-        pir_params = pir_params
-      )
-
       # Create and save twin tree
       twin_tree <- create_twin_tree(
         phylogeny,
-        twinning_params = pir_params_twin$twinning_params
+        twinning_params = pir_params$twinning_params
       ) # nolint pirouette function
       ape::write.tree(
         phy = twin_tree,
-        file = pir_params_twin$twinning_params$twin_tree_filename
+        file = pir_params$twinning_params$twin_tree_filename
       )
 
       # Re-run pir_run for the twin
       pir_out_twin <- pir_run_tree(
         phylogeny = twin_tree,
         tree_type = "twin",
-        alignment_params = pir_params_twin$alignment_params,
-        experiments = pir_params_twin$experiments,
-        error_measure_params = pir_params_twin$error_measure_params,
-        evidence_filename = pir_params_twin$evidence_filename,
-        verbose = pir_params_twin$verbose
+        pir_params = pir_params
       )
       pir_out <- rbind(pir_out, pir_out_twin)
     }
@@ -176,36 +163,63 @@ pir_run <- function(
 pir_run_tree <- function(
   phylogeny,
   tree_type = "true",
-  alignment_params,
-  experiments = list(create_test_experiment()),
-  error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE
+  pir_params = create_test_pir_params()
 ) {
   testit::assert(tree_type %in% c("true", "twin"))
+
+  # Shorthand notations
+  alignment_params <- pir_params$alignment_params
+  twinning_params <- pir_params$twinning_params
+  experiments <- pir_params$experiments
+  error_measure_params <- pir_params$error_measure_params
 
   # If alignment_params$mutation_rate is function, apply it to the phylogeny
   if (is.function(alignment_params$mutation_rate)) {
     mutation_function <- alignment_params$mutation_rate
     mutation_rate <- mutation_function(phylogeny)
+    # Write it to both shorthand form and function argument:
+    # the reader of this code expects these are the same
     alignment_params$mutation_rate <- mutation_rate
+    pir_params$alignment_params$mutation_rate <- mutation_rate
   }
 
-  # Simulate an alignment and save it to file (specified in alignment_params)
-  create_alignment_file(
-    phylogeny = phylogeny,
-    alignment_params = alignment_params
-  )
-  testit::assert(file.exists(alignment_params$fasta_filename))
+  # Simulate an alignment and save it to file
+  if (tree_type == "true") {
+    create_alignment_file(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params
+    )
+    testit::assert(file.exists(alignment_params$fasta_filename))
+  } else {
+    testit::assert(tree_type == "twin")
+    create_twin_alignment_file(
+      twin_phylogeny = phylogeny,
+      alignment_params = alignment_params,
+      twinning_params = twinning_params
+    )
+    testit::assert(file.exists(twinning_params$twin_alignment_filename))
+  }
+
+  # Select the alignment file for model comparison
+  fasta_filename <- NA
+  if (tree_type == "true") fasta_filename <- alignment_params$fasta_filename
+  if (tree_type == "twin") fasta_filename <- twinning_params$twin_alignment_filename
+  testit::assert(!beautier::is_one_na(fasta_filename))
+
+  # Select the evidence filename the model comparison is written to
+  evidence_filename <- NA
+  if (tree_type == "true") evidence_filename <- pir_params$evidence_filename
+  if (tree_type == "twin") evidence_filename <- twinning_params$twin_evidence_filename
+  testit::assert(!beautier::is_one_na(evidence_filename))
 
   # Estimate evidences (aka marginal likelihoods) if needed
   # marg_liks will be NULL if this was unneeded, for example, when
   # interested in the generative model only
   marg_liks <- est_evidences(
-    fasta_filename = alignment_params$fasta_filename,
+    fasta_filename = fasta_filename,
     experiments = experiments,
     evidence_filename = evidence_filename,
-    verbose = verbose
+    verbose = pir_params$verbose
   )
 
   # Select the experiments
@@ -213,7 +227,7 @@ pir_run_tree <- function(
   experiments <- select_experiments(
     experiments = experiments,
     marg_liks = marg_liks, # For most evidence
-    verbose = verbose
+    verbose = pir_params$verbose
   )
   testit::assert(length(experiments) > 0)
 
@@ -222,6 +236,7 @@ pir_run_tree <- function(
   for (i in seq_along(experiments)) {
     experiment <- experiments[[i]]
 
+    HIERO
     errorses[[i]] <- phylo_to_errors(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
