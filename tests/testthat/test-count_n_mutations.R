@@ -49,6 +49,7 @@ test_that("use, two taxa", {
   )
 })
 
+
 test_that("use, two taxa with 9 nucleotides", {
 
   #
@@ -76,16 +77,16 @@ test_that("use, two taxa with 9 nucleotides", {
   )
 })
 
-test_that("use, two taxa with 9 nucleotides", {
+test_that("use, two taxa with 9 nucleotides, no mutation", {
 
   #
   # Root sequence is known
   #
-  #            +---- AAAACCCCG 5 mutations
+  #            +---- AAAAAAAAA 0 mutations
   # AAAAAAAAC -+
-  #            +---- AAAATTTTT 5 mutations
+  #            +---- AAAAAAAAA 0 mutations
   #                            ----------- +
-  #                           10 mutations
+  #                            0 mutations
   #
   # Those are eight mutations in total
   #
@@ -100,6 +101,34 @@ test_that("use, two taxa with 9 nucleotides", {
   expect_equal(
     count_n_mutations(alignment = alignment, root_sequence = root_sequence),
     0
+  )
+})
+
+test_that("use, two taxa with 9 nucleotides, from FASTA", {
+
+  #
+  # Root sequence is known
+  #
+  #            +---- AAAACCCCG 5 mutations
+  # AAAAAAAAC -+
+  #            +---- AAAATTTTT 5 mutations
+  #                            ----------- +
+  #                           10 mutations
+  #
+  # Those are eight mutations in total
+  #
+  # Don't forget: ape assumes lowercase
+  fasta_filename <- tempfile()
+  writeLines(
+    text = c(">X", "AAAACCCCG", ">Y", "AAAATTTTT"),
+    con = fasta_filename
+  )
+  root_sequence <- "aaaaaaaac"
+  alignment <- ape::read.FASTA(fasta_filename)
+  ape::image.DNAbin(alignment)
+  expect_equal(
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
+    10
   )
 })
 
@@ -130,6 +159,40 @@ test_that("use, three taxa", {
   expect_equal(
     count_n_mutations(alignment = alignment, root_sequence = root_sequence),
     12
+  )
+})
+
+
+
+
+test_that("use, three taxa, bug", {
+
+  skip("Issue 298, Issue #298")
+  #
+  # Root sequence is known
+  #
+  #        +------- AGGCA 2 mutations
+  # AGCTA -+          ^^
+  #        |    +-- AGCCA 1 mutations
+  #        +----+      ^
+  #             +-- AACTA 1 mutations
+  #                  ^      ----------- +
+  #                       4 mutations
+  #
+  # Those are four mutations in total
+  #
+  # Don't forget: ape assumes lowercase
+  root_sequence <- "agcta"
+  alignment <- ape::as.DNAbin(x = list(
+      species_1 = strsplit("aggca", split = "")[[1]],
+      species_2 = strsplit("agcca", split = "")[[1]],
+      species_3 = strsplit("aacta", split = "")[[1]]
+    )
+  )
+  ape::image.DNAbin(alignment, main = root_sequence, show.bases = TRUE)
+  expect_equal(
+    count_n_mutations(alignment = alignment, root_sequence = root_sequence),
+    4
   )
 })
 
@@ -213,3 +276,4 @@ test_that("Bug #269, no mutations for mutation rate zero", {
     count_n_mutations(alignment = alignment, root_sequence = root_sequence)
   )
 })
+

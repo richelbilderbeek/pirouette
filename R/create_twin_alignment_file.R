@@ -25,6 +25,15 @@ create_twin_alignment_file <- function(
     root_sequence = alignment_params$root_sequence
   )
 
+  plot_alignment_from_file(
+    alignment_params$fasta_filename,
+    title = paste0(
+      "DEBUG create_twin_alignment_file, ",
+      "n_mut: ", n_mutations_true,
+      ", root_sequence: ", alignment_params$root_sequence
+    )
+  )
+
   # Simulate
   twin_alignment <- create_twin_alignment(
     twin_phylogeny = twin_phylogeny,

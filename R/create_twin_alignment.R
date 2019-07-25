@@ -93,6 +93,7 @@ create_twin_alignment <- function(
 
     rng_seed <- rng_seed + 1
 
+    attempt <- rng_seed - twinning_params$rng_seed_twin_alignment
     if (verbose == TRUE) {
       print(
         paste0(
@@ -101,11 +102,16 @@ create_twin_alignment <- function(
           ", got: ",
           n_mutations_twin,
           " (attempt: ",
-          rng_seed - twinning_params$rng_seed_twin_alignment,
+          attempt,
           ")"
         )
       )
     }
+    ape::image.DNAbin(
+      twin_alignment,
+      main = paste0("DEBUG: attempt ", attempt, ")")
+    )
+    if (attempt == 3) stop("Too many attempts")
   }
   twin_alignment
 }

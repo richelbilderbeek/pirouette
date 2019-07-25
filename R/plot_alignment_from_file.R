@@ -1,4 +1,12 @@
-plot_alignment_from_file <- function(fasta_filename) {
+#' Plot an alignment stored as a file
+#'
+#' @inheritParams default_params_doc
+#' @title the plot title
+#' @export
+plot_alignment_from_file <- function(
+  fasta_filename,
+  title
+) {
   if (!file.exists(fasta_filename)) {
     stop("Alignment file not found, with filename '", fasta_filename, "'")
   }
@@ -13,5 +21,5 @@ plot_alignment_from_file <- function(fasta_filename) {
     }
   )
   testit::assert(class(alignment) == "DNAbin")
-  ape::image.DNAbin(alignment)
+  ape::image.DNAbin(alignment, main = title, show.bases = TRUE)
 }
