@@ -1,7 +1,7 @@
 #' Converts a twin phylogeny to a random DNA alignment
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{sim_alignment_twin_file}
+#' @seealso Use \link{create_twin_alignment_file}
 #'   to save the simulated alignment directly to a file
 #' @author Richèl J.C. Bilderbeek
 #' @export

@@ -12,7 +12,7 @@ test_that("must create file", {
     alignment_params = alignment_params
   )
   skip("Takes too long #294")
-  sim_alignment_twin_file(
+  create_twin_alignment_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,
     twinning_params =  twinning_params,

@@ -7,7 +7,7 @@
 #'   without saving the alignment to file
 #' @author Richèl J.C. Bilderbeek
 #' @export
-sim_alignment_twin_file <- function(
+create_twin_alignment_file <- function(
   twin_phylogeny,
   alignment_params,
   twinning_params,
