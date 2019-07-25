@@ -10,7 +10,8 @@
 sim_alignment_twin_file <- function(
   twin_phylogeny,
   alignment_params,
-  twinning_params
+  twinning_params,
+  verbose = FALSE
 ) {
   check_twin_phylogeny(twin_phylogeny) # nolint pirouette function
   check_alignment_params(alignment_params) # nolint pirouette function
@@ -18,10 +19,6 @@ sim_alignment_twin_file <- function(
 
   true_alignment_filename <- alignment_params$fasta_filename
   true_alignment <- ape::read.FASTA(true_alignment_filename)
-
-  print("DEBUG: true_alignment_filename FASTA:")
-  readLines(true_alignment_filename)
-  print("after")
 
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
@@ -35,7 +32,8 @@ sim_alignment_twin_file <- function(
     rng_seed_twin_alignment = twinning_params$rng_seed_twin_alignment,
     mutation_rate = alignment_params$mutation_rate,
     site_model = alignment_params$site_model,
-    n_mutations = n_mutations_true
+    n_mutations = n_mutations_true,
+    verbose = verbose
   )
 
   n_mutations_twin <- count_n_mutations(
@@ -50,7 +48,4 @@ sim_alignment_twin_file <- function(
     file = twinning_params$twin_alignment_filename,
     format = "fasta"
   )
-
-  print("DEBUG: twinning_params$twin_alignment_filename FASTA:")
-  readLines(twinning_params$twin_alignment_filename)
 }

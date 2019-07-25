@@ -5,7 +5,7 @@
 \title{Converts a twin phylogeny to a random DNA alignment}
 \usage{
 sim_alignment_twin(twin_phylogeny, root_sequence, rng_seed_twin_alignment,
-  mutation_rate, site_model, n_mutations)
+  mutation_rate, site_model, n_mutations, verbose = FALSE)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -22,6 +22,8 @@ as used in the simulation of a twin alignment}
 as created by \link[beautier]{create_site_model}}
 
 \item{n_mutations}{costrained number of mutations}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 an alignment of type \code{DNAbin}

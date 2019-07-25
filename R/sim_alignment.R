@@ -57,10 +57,10 @@ sim_alignment <- function(
   }
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
-    error = function(msg) {
+    error = function(e) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters. ",
-        msg
+        e$msg
       )
       stop(msg)
     }
@@ -127,7 +127,11 @@ sim_alignment_raw <- function(
       "n_mutations must be integer or NA"
     )
   }
+
+  # Only need to set the seed once
   set.seed(rng_seed)
+
+  n_tries <- 1
 
   while (1) {
     alignment_phydat <- phangorn::simSeq(
@@ -147,8 +151,6 @@ sim_alignment_raw <- function(
 
     testit::assert(class(alignment_dnabin) == "DNAbin")
 
-    image(alignment_dnabin)
-
     sim_mutations <- count_n_mutations(
       alignment = alignment_dnabin,
       root_sequence = root_sequence
@@ -161,13 +163,19 @@ sim_alignment_raw <- function(
       nchar(root_sequence)
     )
 
-    if (sim_mutations == n_mutations) break
-
     if (verbose == TRUE) {
-      print(paste(rng_seed, n_mutations, sim_mutations))
+      print(
+        paste0(
+          "Mutations needed: ", n_mutations,
+          ", got: ", sim_mutations,
+          ", number of tries: ", n_tries
+        )
+      )
     }
 
-    rng_seed <- rng_seed + 1
+    if (sim_mutations == n_mutations) break
+
+    n_tries <- n_tries + 1
   }
 
   testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))

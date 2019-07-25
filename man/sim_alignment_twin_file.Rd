@@ -4,7 +4,8 @@
 \alias{sim_alignment_twin_file}
 \title{Simulates a twin DNA alignment and saves it to a FASTA file.}
 \usage{
-sim_alignment_twin_file(twin_phylogeny, alignment_params, twinning_params)
+sim_alignment_twin_file(twin_phylogeny, alignment_params, twinning_params,
+  verbose = FALSE)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -15,6 +16,8 @@ as can be created by \link{create_alignment_params}}
 \item{twinning_params}{can be \code{NA} if no twinning is desired,
 or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 nothing

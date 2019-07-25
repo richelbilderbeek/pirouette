@@ -15,7 +15,8 @@ test_that("must create file", {
   sim_alignment_twin_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,
-    twinning_params =  twinning_params
+    twinning_params =  twinning_params,
+    verbose = TRUE
   )
   expect_true(file.exists(alignment_params$fasta_filename))
   expect_s3_class(

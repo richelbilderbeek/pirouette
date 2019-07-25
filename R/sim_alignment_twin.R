@@ -11,7 +11,8 @@ sim_alignment_twin <- function(
   rng_seed_twin_alignment,
   mutation_rate,
   site_model,
-  n_mutations
+  n_mutations,
+  verbose = FALSE
 ) {
   testit::assert(is_one_int(n_mutations)) # nolint pirouette function
   twin_alignment <- sim_alignment_raw( # nolint pirouette function
@@ -20,7 +21,8 @@ sim_alignment_twin <- function(
     rng_seed = rng_seed_twin_alignment,
     mutation_rate = mutation_rate,
     site_model = site_model,
-    n_mutations = n_mutations
+    n_mutations = n_mutations,
+    verbose = verbose
   )
 
   # Postcondition
