@@ -1,4 +1,8 @@
 #' Create the true alignment from the true/given phylogeny.
+#'
+#' We call this the true alignment, as it could thruthfully be found
+#' in nature, when assuming the true phylogeny is the true
+#' evolutionary history.
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @seealso Use \link{create_alignment_file} to save the created alignment
@@ -22,7 +26,7 @@
 #'
 #' # Simulate the alignment
 #' alignment <- create_true_alignment(
-#'    phylogeny = phylogeny,
+#'    true_phylogeny = phylogeny,
 #'    alignment_params = alignment_params
 #'  )
 #'
@@ -50,8 +54,13 @@ create_true_alignment <- function(
   true_phylogeny,
   alignment_params
 ) {
-  beautier::check_phylogeny(phylogeny)
-  if (!is.null(geiger::is.extinct(phylogeny))) {
+  if (class(true_phylogeny) != "phylo") {
+    stop(
+      "'true_phylogeny' must be a valid phylogeny. \n",
+      "Actual value: ", true_phylogeny
+    )
+  }
+  if (!is.null(geiger::is.extinct(true_phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
   tryCatch(
@@ -66,7 +75,7 @@ create_true_alignment <- function(
   )
 
   create_alignment_impl(
-    phylogeny = phylogeny,
+    phylogeny = true_phylogeny,
     root_sequence = alignment_params$root_sequence,
     rng_seed = alignment_params$rng_seed,
     mutation_rate = alignment_params$mutation_rate,

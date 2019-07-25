@@ -172,7 +172,7 @@ test_that("Simplified version of bug #269", {
   true_tree <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   root_sequence <- create_blocked_dna(8)
   alignment <- create_true_alignment(
-    phylogeny = true_tree,
+    true_phylogeny = true_tree,
     alignment_params = create_test_alignment_params(
       root_sequence = root_sequence,
       mutation_rate = 0.0

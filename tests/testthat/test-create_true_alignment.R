@@ -11,7 +11,7 @@ test_that("create_true_alignment: basic", {
   )
 
   alignment <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   expect_true(class(alignment) == "DNAbin")
@@ -31,7 +31,7 @@ test_that("create_true_alignment: HKY", {
   )
 
   alignment <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   expect_true(class(alignment) == "DNAbin")
@@ -51,7 +51,7 @@ test_that("create_true_alignment: TN93", {
   )
 
   alignment <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   expect_true(class(alignment) == "DNAbin")
@@ -71,7 +71,7 @@ test_that("create_true_alignment: GTR", {
   )
 
   alignment <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   expect_true(class(alignment) == "DNAbin")
@@ -89,15 +89,15 @@ test_that("create_true_alignment: abuse", {
 
   expect_error(
     create_true_alignment(
-      phylogeny = "not a phylogeny",
+      true_phylogeny = "not a phylogeny",
       alignment_params = alignment_params
     ),
-    "'phylogeny' must be a valid phylogeny" #nolint
+    "'true_phylogeny' must be a valid phylogeny" #nolint
   )
 
   expect_error(
     create_true_alignment(
-      phylogeny = phylogeny,
+      true_phylogeny = phylogeny,
       alignment_params = "nonsense"
     ),
     "'alignment_params' must be a set of alignment parameters"
@@ -109,7 +109,7 @@ test_that("create_true_alignment: abuse", {
 
   expect_error(
     create_true_alignment(
-      phylogeny = p_with_extant,
+      true_phylogeny = p_with_extant,
       alignment_params = alignment_params
     ),
     "phylogeny must not contain extant species"
@@ -126,7 +126,7 @@ test_that("no mutations when mutation rate is zero", {
     mutation_rate = 0.0
   )
   alignment <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   n_mutations <- count_n_mutations(
@@ -151,11 +151,11 @@ test_that("low mutation rate must have less mutations", {
     rng_seed = 314
   )
   alignment_low <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params_low
   )
   alignment_high <- create_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params_high
   )
   n_mutations_low <- count_n_mutations(

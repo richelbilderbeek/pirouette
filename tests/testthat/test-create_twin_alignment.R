@@ -10,7 +10,7 @@ test_that("use, twin has more info", {
   )
   twinning_params <- create_twinning_params()
   true_alignment <- create_true_alignment(
-    phylogeny = true_phylogeny,
+    true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   twin_alignment <- create_twin_alignment(
@@ -38,7 +38,7 @@ test_that("use, twin has less info", {
     root_sequence = root_sequence
   )
   true_alignment <- create_true_alignment(
-    phylogeny = true_phylogeny,
+    true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params()
@@ -65,7 +65,7 @@ test_that("abuse", {
   root_sequence <- create_blocked_dna(1000)
   alignment_params <- create_test_alignment_params()
   true_alignment <- create_true_alignment(
-    phylogeny = true_phylogeny,
+    true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params()
@@ -117,7 +117,7 @@ test_that("works in poor conditions as well", {
     mutation_rate = 0.001
   )
   true_alignment <- create_true_alignment(
-    phylogeny = true_phylogeny,
+    true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   n_mutations_true <- count_n_mutations(
