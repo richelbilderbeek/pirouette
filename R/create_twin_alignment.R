@@ -109,11 +109,7 @@ create_twin_alignment <- function(
         )
       )
     }
-    ape::image.DNAbin(
-      twin_alignment,
-      main = paste0("DEBUG: attempt ", attempt, ")")
-    )
-    if (attempt == 10) stop("Too many attempts")
+    if (attempt == 10000) stop("Too many attempts")
   }
   twin_alignment
 }

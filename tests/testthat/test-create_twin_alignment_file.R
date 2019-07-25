@@ -11,11 +11,6 @@ test_that("must create file", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  plot_alignment_from_file(
-    alignment_params$fasta_filename,
-    title = "DEBUG: test-create_twin_alignment_file.R"
-  )
-
   skip("Takes too long #294")
   create_twin_alignment_file(
     twin_phylogeny = twin_phylogeny,
