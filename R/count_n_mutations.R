@@ -19,7 +19,8 @@
 #' @export
 count_n_mutations <- function(
   alignment,
-  root_sequence
+  root_sequence,
+  verbose = FALSE
 ) {
 
   if (class(alignment) != "DNAbin") {
@@ -91,7 +92,19 @@ count_n_mutations <- function(
   n_mutations <- 0
   for (i in 1:nrow(alignment_sequences)) {
     sequence_vector <- alignment_sequences[i, ]
-    n_mutations <- n_mutations + sum(root_vector != sequence_vector)
+    n_mutations_here <- sum(root_vector != sequence_vector)
+    if (verbose) {
+      print(
+        paste0(
+          "Sequence ", i, "/", nrow(alignment_sequences),
+          " has ", n_mutations_here, " mutations when comparing ",
+          "root sequence '", paste0(root_vector, collapse = ""),
+          "' with taxon sequence '",
+          paste0(sequence_vector, collapse = ""), "'"
+        )
+      )
+    }
+    n_mutations <- n_mutations + n_mutations_here
   }
   n_mutations
 }

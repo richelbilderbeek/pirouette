@@ -4,13 +4,15 @@
 \alias{count_n_mutations}
 \title{Count mutations}
 \usage{
-count_n_mutations(alignment, root_sequence)
+count_n_mutations(alignment, root_sequence, verbose = FALSE)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 the number of mutations
