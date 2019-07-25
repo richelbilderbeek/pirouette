@@ -101,6 +101,37 @@ test_that("abuse", {
   )
 })
 
+test_that("works for simple trees", {
+  alignment_params <- create_test_alignment_params(
+    root_sequence = "acgt")
+  twinning_params <- create_twinning_params()
+  true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twin_phylogeny <- create_twin_tree(
+    phylogeny = true_phylogeny,
+    twinning_params = twinning_params
+  )
+  true_alignment <- create_true_alignment(
+    true_phylogeny = true_phylogeny,
+    alignment_params = alignment_params
+  )
+  twin_alignment <- create_twin_alignment(
+    twin_phylogeny = twin_phylogeny,
+    true_alignment = true_alignment,
+    alignment_params = alignment_params,
+    twinning_params =  twinning_params,
+    verbose = TRUE
+  )
+  n_mutations_true <- count_n_mutations(
+    alignment = true_alignment,
+    root_sequence = alignment_params$root_sequence
+  )
+  n_mutations_twin <- count_n_mutations(
+    alignment = twin_alignment,
+    root_sequence = alignment_params$root_sequence
+  )
+  expect_equal(n_mutations_true, n_mutations_twin)
+})
+
 test_that("works in poor conditions as well", {
 
   skip("Does work, but takes too long on Travis, Issue #294")
@@ -128,7 +159,8 @@ test_that("works in poor conditions as well", {
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
-    twinning_params = twinning_params
+    twinning_params = twinning_params,
+    verbose = TRUE
   )
   n_mutations_twin <- count_n_mutations(
     alignment = twin_alignment, root_sequence = root_sequence
