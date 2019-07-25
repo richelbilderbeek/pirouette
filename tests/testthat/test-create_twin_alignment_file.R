@@ -11,12 +11,11 @@ test_that("must create file", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  skip("Takes too long #294")
   create_twin_alignment_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,
     twinning_params =  twinning_params,
-    verbose = TRUE
+    verbose = FALSE
   )
   expect_true(file.exists(alignment_params$fasta_filename))
   expect_s3_class(
@@ -24,16 +23,11 @@ test_that("must create file", {
     "DNAbin"
   )
 
-  skip("Issue 295, #295")
   # Files must contain equally much mutations
   true_alignment_filename <- alignment_params$fasta_filename
   twin_alignment_filename <- twinning_params$twin_alignment_filename
-  file.exists(true_alignment_filename)
-  file.exists(twin_alignment_filename)
   true_alignment <- ape::read.FASTA(true_alignment_filename)
   twin_alignment <- ape::read.FASTA(twin_alignment_filename)
-  image(true_alignment)
-  image(twin_alignment)
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
     root_sequence = alignment_params$root_sequence

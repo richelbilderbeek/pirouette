@@ -4,10 +4,12 @@
 \alias{get_alignment_n_taxa}
 \title{Get the number of taxa of an alignment}
 \usage{
-get_alignment_n_taxa(alignment)
+get_alignment_n_taxa(alignment, verbose = FALSE)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \description{
 Get the number of taxa of an alignment

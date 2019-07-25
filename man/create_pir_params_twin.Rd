@@ -31,13 +31,10 @@ for the twin-something to the spots for the true-something
 
  pir_params <- create_pir_params_twin(pir_params)
 
- # Commented out due to bug reported at
- # https://travis-ci.community/t/travis-cuts-off-roxygen-examples/3319
- #
- # expect_true(
- #   pir_params$alignment_params$fasta_filename ==
- #   pir_params$twinning_params$twin_alignment_filename
- # )
+ expect_true(
+  pir_params$alignment_params$fasta_filename ==
+  pir_params$twinning_params$twin_alignment_filename
+ )
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

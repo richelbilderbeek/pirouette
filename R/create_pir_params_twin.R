@@ -19,13 +19,10 @@
 #'
 #'  pir_params <- create_pir_params_twin(pir_params)
 #'
-#'  # Commented out due to bug reported at
-#'  # https://travis-ci.community/t/travis-cuts-off-roxygen-examples/3319
-#'  #
-#'  # expect_true(
-#'  #   pir_params$alignment_params$fasta_filename ==
-#'  #   pir_params$twinning_params$twin_alignment_filename
-#'  # )
+#'  expect_true(
+#'   pir_params$alignment_params$fasta_filename ==
+#'   pir_params$twinning_params$twin_alignment_filename
+#'  )
 #' @export
 create_pir_params_twin <- function(
   pir_params
@@ -45,8 +42,6 @@ create_pir_params_twin <- function(
   pir_params_twin$evidence_filename <-
     pir_params$twinning_params$twin_evidence_filename
   for (i in seq_along(pir_params$experiments)) {
-    # BUG HERE
-    # Attempt to use 'as.character', untested
     filenames <- as.character(
         pir_params$experiments[[i]]$beast2_options[
         grepl(
