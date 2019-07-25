@@ -9,7 +9,7 @@ test_that("use, twin has more info", {
     root_sequence = root_sequence
   )
   twinning_params <- create_twinning_params()
-  true_alignment <- sim_alignment(
+  true_alignment <- create_true_alignment(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
@@ -37,7 +37,7 @@ test_that("use, twin has less info", {
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
-  true_alignment <- sim_alignment(
+  true_alignment <- create_true_alignment(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
@@ -64,7 +64,7 @@ test_that("abuse", {
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   root_sequence <- create_blocked_dna(1000)
   alignment_params <- create_test_alignment_params()
-  true_alignment <- sim_alignment(
+  true_alignment <- create_true_alignment(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
@@ -116,7 +116,7 @@ test_that("works in poor conditions as well", {
     rng_seed = 314,
     mutation_rate = 0.001
   )
-  true_alignment <- sim_alignment(
+  true_alignment <- create_true_alignment(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )

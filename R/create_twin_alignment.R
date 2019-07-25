@@ -20,8 +20,8 @@
 #'   rng_seed = 314,
 #'   mutation_rate = 0.001
 #' )
-#' true_alignment <- sim_alignment(
-#'   phylogeny = true_phylogeny,
+#' true_alignment <- create_true_alignment(
+#'   true_phylogeny = true_phylogeny,
 #'   alignment_params = alignment_params
 #' )
 #' n_mutations_true <- count_n_mutations(

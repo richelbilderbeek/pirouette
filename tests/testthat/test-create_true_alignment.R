@@ -1,6 +1,6 @@
-context("test-sim_alignment")
+context("test-create_true_alignment")
 
-test_that("sim_alignment: basic", {
+test_that("create_true_alignment: basic", {
   n_taxa <- 3
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
@@ -10,7 +10,7 @@ test_that("sim_alignment: basic", {
     mutation_rate = 1
   )
 
-  alignment <- sim_alignment(
+  alignment <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
@@ -19,7 +19,7 @@ test_that("sim_alignment: basic", {
   expect_true(ncol(alignment) == sequence_length)
 })
 
-test_that("sim_alignment: HKY", {
+test_that("create_true_alignment: HKY", {
   n_taxa <- 3
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
@@ -30,7 +30,7 @@ test_that("sim_alignment: HKY", {
     site_model = beautier::create_hky_site_model()
   )
 
-  alignment <- sim_alignment(
+  alignment <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
@@ -39,7 +39,7 @@ test_that("sim_alignment: HKY", {
   expect_true(ncol(alignment) == sequence_length)
 })
 
-test_that("sim_alignment: TN93", {
+test_that("create_true_alignment: TN93", {
   n_taxa <- 3
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
@@ -50,7 +50,7 @@ test_that("sim_alignment: TN93", {
     site_model = beautier::create_tn93_site_model()
   )
 
-  alignment <- sim_alignment(
+  alignment <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
@@ -59,7 +59,7 @@ test_that("sim_alignment: TN93", {
   expect_true(ncol(alignment) == sequence_length)
 })
 
-test_that("sim_alignment: GTR", {
+test_that("create_true_alignment: GTR", {
   n_taxa <- 3
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
@@ -70,7 +70,7 @@ test_that("sim_alignment: GTR", {
     site_model = beautier::create_gtr_site_model()
   )
 
-  alignment <- sim_alignment(
+  alignment <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
@@ -79,7 +79,7 @@ test_that("sim_alignment: GTR", {
   expect_true(ncol(alignment) == sequence_length)
 })
 
-test_that("sim_alignment: abuse", {
+test_that("create_true_alignment: abuse", {
 
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   alignment_params <- create_alignment_params(
@@ -88,7 +88,7 @@ test_that("sim_alignment: abuse", {
   )
 
   expect_error(
-    sim_alignment(
+    create_true_alignment(
       phylogeny = "not a phylogeny",
       alignment_params = alignment_params
     ),
@@ -96,7 +96,7 @@ test_that("sim_alignment: abuse", {
   )
 
   expect_error(
-    sim_alignment(
+    create_true_alignment(
       phylogeny = phylogeny,
       alignment_params = "nonsense"
     ),
@@ -108,7 +108,7 @@ test_that("sim_alignment: abuse", {
   testit::assert(geiger::is.extinct(p_with_extant))
 
   expect_error(
-    sim_alignment(
+    create_true_alignment(
       phylogeny = p_with_extant,
       alignment_params = alignment_params
     ),
@@ -125,7 +125,7 @@ test_that("no mutations when mutation rate is zero", {
     root_sequence = root_sequence,
     mutation_rate = 0.0
   )
-  alignment <- sim_alignment(
+  alignment <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
@@ -150,11 +150,11 @@ test_that("low mutation rate must have less mutations", {
     mutation_rate = 0.1,
     rng_seed = 314
   )
-  alignment_low <- sim_alignment(
+  alignment_low <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params_low
   )
-  alignment_high <- sim_alignment(
+  alignment_high <- create_true_alignment(
     phylogeny = phylogeny,
     alignment_params = alignment_params_high
   )

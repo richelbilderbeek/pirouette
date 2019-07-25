@@ -16,7 +16,7 @@ as can be created by \link{create_alignment_params}}
 nothing
 }
 \description{
-The simulation is performed by \link{sim_alignment}.
+The simulation is performed by \link{create_true_alignment}.
 }
 \examples{
 library(testthat)
@@ -47,7 +47,7 @@ alignment <- create_alignment_file(
 expect_true(file.exists(alignment_params$fasta_filename))
 }
 \seealso{
-Use \link{sim_alignment} to only simulate the alignment,
+Use \link{create_true_alignment} to only simulate the alignment,
   without saving the alignment to file
 }
 \author{

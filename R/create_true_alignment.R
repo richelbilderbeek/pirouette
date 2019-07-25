@@ -1,7 +1,7 @@
-#' Converts a phylogeny to a random DNA alignment
+#' Create the true alignment from the true/given phylogeny.
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the simulated alignment
+#' @seealso Use \link{create_alignment_file} to save the created alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)
@@ -21,7 +21,7 @@
 #' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # Simulate the alignment
-#' alignment <- sim_alignment(
+#' alignment <- create_true_alignment(
 #'    phylogeny = phylogeny,
 #'    alignment_params = alignment_params
 #'  )
@@ -38,18 +38,17 @@
 #'     site_model = site_model
 #'   )
 #'   expect_silent(
-#'     sim_alignment(
-#'       phylogeny = phylogeny,
+#'     create_true_alignment(
+#'       true_phylogeny = phylogeny,
 #'       alignment_params = alignment_params
 #'     )
 #'   )
 #' }
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-sim_alignment <- function(
-  phylogeny,
-  alignment_params,
-  n_mutations = NA
+create_true_alignment <- function(
+  true_phylogeny,
+  alignment_params
 ) {
   beautier::check_phylogeny(phylogeny)
   if (!is.null(geiger::is.extinct(phylogeny))) {
@@ -72,6 +71,6 @@ sim_alignment <- function(
     rng_seed = alignment_params$rng_seed,
     mutation_rate = alignment_params$mutation_rate,
     site_model = alignment_params$site_model,
-    n_mutations = n_mutations
+    n_mutations = NA
   )
 }

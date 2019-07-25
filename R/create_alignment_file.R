@@ -1,9 +1,9 @@
 #' Simulates a DNA alignment and saves it to a FASTA file.
 #'
-#' The simulation is performed by \link{sim_alignment}.
+#' The simulation is performed by \link{create_true_alignment}.
 #' @inheritParams default_params_doc
 #' @return nothing
-#' @seealso Use \link{sim_alignment} to only simulate the alignment,
+#' @seealso Use \link{create_true_alignment} to only simulate the alignment,
 #'   without saving the alignment to file
 #' @examples
 #' library(testthat)
@@ -41,8 +41,8 @@ create_alignment_file <- function(
   fasta_filename <- alignment_params$fasta_filename
 
   # Simulate
-  alignment <- sim_alignment(
-    phylogeny = phylogeny,
+  alignment <- create_true_alignment(
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   # Save
