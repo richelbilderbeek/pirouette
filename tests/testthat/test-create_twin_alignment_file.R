@@ -7,7 +7,7 @@ test_that("must create file", {
     phylogeny = true_phylogeny,
     twinning_params = twinning_params
   )
-  sim_alignment_file(
+  create_alignment_file(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )

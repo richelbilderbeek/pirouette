@@ -11,7 +11,7 @@ test_that("use", {
   alignment_params <- create_test_alignment_params()
 
   # Create the alignment
-  sim_alignment_file(
+  create_alignment_file(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )

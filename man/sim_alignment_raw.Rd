@@ -57,7 +57,7 @@ expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), n_base_pairs)
 }
 \seealso{
-Use \link{sim_alignment_file} to save the simulated alignment
+Use \link{create_alignment_file} to save the simulated alignment
   directly to a file
 }
 \author{

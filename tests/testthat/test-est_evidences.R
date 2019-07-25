@@ -8,7 +8,7 @@ test_that("use", {
 
   # Create an alignment
   fasta_filename <- tempfile(fileext = ".fasta")
-  sim_alignment_file(
+  create_alignment_file(
     phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
     alignment_params = create_alignment_params(
       root_sequence = "acgt",
@@ -58,7 +58,7 @@ test_that("cleans up", {
 
   # Create an alignment
   fasta_filename <- tempfile(fileext = ".fasta")
-  sim_alignment_file(
+  create_alignment_file(
     phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
     alignment_params = create_alignment_params(
       root_sequence = "acgt",

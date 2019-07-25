@@ -63,7 +63,7 @@ for (site_model in create_site_models()) {
 }
 }
 \seealso{
-Use \link{sim_alignment_file} to save the simulated alignment
+Use \link{create_alignment_file} to save the simulated alignment
   directly to a file
 }
 \author{

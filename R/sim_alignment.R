@@ -1,7 +1,7 @@
 #' Converts a phylogeny to a random DNA alignment
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{sim_alignment_file} to save the simulated alignment
+#' @seealso Use \link{create_alignment_file} to save the simulated alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)
@@ -81,7 +81,7 @@ sim_alignment <- function(
 #' @param n_mutations the number of different base pairs between
 #' root sequence and the resulting alignment
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{sim_alignment_file} to save the simulated alignment
+#' @seealso Use \link{create_alignment_file} to save the simulated alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)

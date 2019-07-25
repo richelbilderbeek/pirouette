@@ -192,7 +192,7 @@ pir_run_tree <- function(
   }
 
   # Simulate an alignment and save it to file (specified in alignment_params)
-  sim_alignment_file(
+  create_alignment_file(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )

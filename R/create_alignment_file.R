@@ -26,7 +26,7 @@
 #' expect_false(file.exists(alignment_params$fasta_filename))
 #'
 #' # Simulate and save the alignment
-#' alignment <- sim_alignment_file(
+#' alignment <- create_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
@@ -34,7 +34,7 @@
 #' expect_true(file.exists(alignment_params$fasta_filename))
 #' @author Richèl J.C. Bilderbeek
 #' @export
-sim_alignment_file <- function(
+create_alignment_file <- function(
   phylogeny,
   alignment_params
 ) {
