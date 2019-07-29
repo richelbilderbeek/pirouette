@@ -298,6 +298,14 @@ test_that("generative with twin", {
     root_sequence = pir_params$alignment_params$root_sequence
   )
   expect_equal(n_mutations_true, n_mutations_twin)
+
+  skip("Issue 299, Issue #299")
+  expect_silent(
+    pir_to_pics(phylogeny = phylogeny,
+      pir_params = pir_params,
+      folder = tempdir()
+    )
+  )
 })
 
 

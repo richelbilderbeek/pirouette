@@ -370,6 +370,9 @@ pir_to_pics_twin <- function(
   # Hist
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
+    testit::assert(
+      file.exists(to_twin_filename(first_experiment$errors_filename))
+    )
     df_errors_twin_gen <- data.frame(
       error = utils::read.csv(
         to_twin_filename(first_experiment$errors_filename)
