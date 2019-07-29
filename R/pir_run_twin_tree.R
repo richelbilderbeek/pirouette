@@ -10,21 +10,20 @@ pir_run_twin_tree <- function(
   twin_phylogeny,
   pir_params = create_test_pir_params()
 ) {
-  # Simulate the twin alignm  ent and save it to file
+  # Simulate the twin alignment and save it to file
   create_twin_alignment_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = pir_params$alignment_params,
     twinning_params = pir_params$twinning_params
   )
-  testit::assert(
-    file.exists(pir_params$twinning_params$twin_alignment_filename)
-  )
 
   # Select the alignment file for model comparison
   fasta_filename <- pir_params$twinning_params$twin_alignment_filename
+  testit::assert(file.exists(fasta_filename))
 
   # Select the evidence filename the model comparison is written to
   evidence_filename <- pir_params$twinning_params$twin_evidence_filename
+
 
   # Estimate evidences (aka marginal likelihoods) if needed
   # marg_liks will be NULL if this was unneeded, for example, when
@@ -57,12 +56,10 @@ pir_run_twin_tree <- function(
       experiment = experiment
     )
 
+    # Select the filename the errors are written to
+    errors_filename <- to_twin_filename(pir_params$experiment$errors_filename) # nolint pirouette function
+
     # Save errors to file
-    errors_filename <- experiment$errors_filename
-
-    # Unique for twin
-    errors_filename <- to_twin_filename(errors_filename) # nolint pirouette function
-
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename

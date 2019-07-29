@@ -11,30 +11,26 @@ pir_run_true_tree <- function(
   pir_params = create_test_pir_params()
 ) {
 
-  # Shorthand notations
-  alignment_params <- pir_params$alignment_params
-  experiments <- pir_params$experiments
-  error_measure_params <- pir_params$error_measure_params
-
   # Simulate the true alignment and save it to file
   create_alignment_file(
     phylogeny = true_phylogeny,
-    alignment_params = alignment_params
+    alignment_params = pir_params$alignment_params
   )
-  testit::assert(file.exists(alignment_params$fasta_filename))
 
   # Select the alignment file for model comparison
-  fasta_filename <- alignment_params$fasta_filename
+  fasta_filename <- pir_params$alignment_params$fasta_filename
+  testit::assert(file.exists(fasta_filename))
 
   # Select the evidence filename the model comparison is written to
   evidence_filename <- pir_params$evidence_filename
+
 
   # Estimate evidences (aka marginal likelihoods) if needed
   # marg_liks will be NULL if this was unneeded, for example, when
   # interested in the generative model only
   marg_liks <- est_evidences(
     fasta_filename = fasta_filename,
-    experiments = experiments,
+    experiments = pir_params$experiments,
     evidence_filename = evidence_filename,
     verbose = pir_params$verbose
   )
@@ -42,7 +38,7 @@ pir_run_true_tree <- function(
   # Select the experiments
   # to do inference with
   experiments <- select_experiments(
-    experiments = experiments,
+    experiments = pir_params$experiments,
     marg_liks = marg_liks, # For most evidence
     verbose = pir_params$verbose
   )
@@ -55,13 +51,15 @@ pir_run_true_tree <- function(
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = true_phylogeny,
-      alignment_params = alignment_params,
-      error_measure_params = error_measure_params,
+      alignment_params = pir_params$alignment_params,
+      error_measure_params = pir_params$error_measure_params,
       experiment = experiment
     )
 
-    # Save errors to file
+    # Select the filename the errors are written to
     errors_filename <- experiment$errors_filename
+
+    # Save errors to file
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename
