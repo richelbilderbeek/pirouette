@@ -10,42 +10,26 @@ pir_run_twin_tree <- function(
   twin_phylogeny,
   pir_params = create_test_pir_params()
 ) {
-  # Shorthand notations
-  alignment_params <- pir_params$alignment_params
-  twinning_params <- pir_params$twinning_params
-  experiments <- pir_params$experiments
-  error_measure_params <- pir_params$error_measure_params
-
-  # If alignment_params$mutation_rate is function, apply it to the phylogeny
-  if (is.function(alignment_params$mutation_rate)) {
-    mutation_function <- alignment_params$mutation_rate
-    mutation_rate <- mutation_function(twin_phylogeny)
-    # Write it to both shorthand form and function argument:
-    # the reader of this code expects these are the same
-    alignment_params$mutation_rate <- mutation_rate
-    pir_params$alignment_params$mutation_rate <- mutation_rate
-  }
-
   # Simulate the twin alignm  ent and save it to file
   create_twin_alignment_file(
     twin_phylogeny = twin_phylogeny,
-    alignment_params = alignment_params,
-    twinning_params = twinning_params
+    alignment_params = pir_params$alignment_params,
+    twinning_params = pir_params$twinning_params
   )
-  testit::assert(file.exists(twinning_params$twin_alignment_filename))
+  testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
 
   # Select the alignment file for model comparison
-  fasta_filename <- twinning_params$twin_alignment_filename
+  fasta_filename <- pir_params$twinning_params$twin_alignment_filename
 
   # Select the evidence filename the model comparison is written to
-  evidence_filename <- twinning_params$twin_evidence_filename
+  evidence_filename <- pir_params$twinning_params$twin_evidence_filename
 
   # Estimate evidences (aka marginal likelihoods) if needed
   # marg_liks will be NULL if this was unneeded, for example, when
   # interested in the generative model only
   marg_liks <- est_evidences(
     fasta_filename = fasta_filename,
-    experiments = experiments,
+    experiments = pir_params$experiments,
     evidence_filename = evidence_filename,
     verbose = pir_params$verbose
   )
@@ -53,7 +37,7 @@ pir_run_twin_tree <- function(
   # Select the experiments
   # to do inference with
   experiments <- select_experiments(
-    experiments = experiments,
+    experiments = pir_params$experiments,
     marg_liks = marg_liks, # For most evidence
     verbose = pir_params$verbose
   )
@@ -66,8 +50,8 @@ pir_run_twin_tree <- function(
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = twin_phylogeny,
-      alignment_params = alignment_params,
-      error_measure_params = error_measure_params,
+      alignment_params = pir_params$alignment_params,
+      error_measure_params = pir_params$error_measure_params,
       experiment = experiment
     )
 
