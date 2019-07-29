@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @export
 get_experiment_filenames <- function(experiment) {
-  check_experiment(experiment)
+  check_experiment(experiment) # nolint pirouette function
   c(
     experiment$beast2_options$input_filename,
     experiment$beast2_options$output_log_filename,

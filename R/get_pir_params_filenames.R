@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @export
 get_pir_params_filenames <- function(pir_params) {
-  check_pir_params(pir_params)
+  check_pir_params(pir_params) # nolint pirouette function
 
   filenames <- c(
     get_experiments_filenames(pir_params$experiments),
@@ -12,7 +12,7 @@ get_pir_params_filenames <- function(pir_params) {
 
   if (!beautier::is_one_na(pir_params$twinning_params)) {
     filenames <- c(
-      to_twin_filenames(get_experiments_filenames(pir_params$experiments)),
+      to_twin_filenames(get_experiments_filenames(pir_params$experiments)), # nolint pirouette function
       filenames,
       pir_params$twinning_params$twin_tree_filename,
       pir_params$twinning_params$twin_alignment_filename,
