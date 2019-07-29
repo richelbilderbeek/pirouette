@@ -16,7 +16,9 @@ pir_run_twin_tree <- function(
     alignment_params = pir_params$alignment_params,
     twinning_params = pir_params$twinning_params
   )
-  testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
+  testit::assert(
+    file.exists(pir_params$twinning_params$twin_alignment_filename)
+  )
 
   # Select the alignment file for model comparison
   fasta_filename <- pir_params$twinning_params$twin_alignment_filename
