@@ -49,6 +49,12 @@ pir_run_twin_tree <- function(
   for (i in seq_along(experiments)) {
     experiment <- experiments[[i]]
 
+    experiment$beast2_options$input_filename <- to_twin_filename(experiment$beast2_options$input_filename) # nolint indeed too long ...
+    experiment$beast2_options$output_log_filename <- to_twin_filename(experiment$beast2_options$output_log_filename) # nolint indeed too long ...
+    experiment$beast2_options$output_trees_filenames <- to_twin_filename(experiment$beast2_options$output_trees_filenames) # nolint indeed too long ...
+    experiment$beast2_options$output_state_filename <- to_twin_filename(experiment$beast2_options$output_state_filename) # nolint indeed too long ...
+    experiment$errors_filename <- to_twin_filename(experiment$errors_filename) # nolint pirouette function
+
     errorses[[i]] <- phylo_to_errors(
       phylogeny = twin_phylogeny,
       alignment_params = pir_params$alignment_params,
@@ -57,7 +63,7 @@ pir_run_twin_tree <- function(
     )
 
     # Select the filename the errors are written to
-    errors_filename <- to_twin_filename(pir_params$experiment$errors_filename) # nolint pirouette function
+    errors_filename <- to_twin_filename(experiment$errors_filename) # nolint pirouette function
 
     # Save errors to file
     utils::write.csv(
@@ -65,7 +71,11 @@ pir_run_twin_tree <- function(
       file = errors_filename
     )
   }
-  df <- errorses_to_data_frame(errorses)
+  df <- errorses_to_data_frame(
+    errorses = errorses,
+    experiments = experiments,
+    marg_liks = marg_liks
+  )
   df$tree <- "twin"
   df$tree <- as.factor(df$tree)
   df

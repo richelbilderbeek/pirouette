@@ -285,7 +285,6 @@ test_that("generative with twin", {
   expect_true("twin" %in% errors$tree)
 
   # True and twin alignment have an equal amount of mutations
-  skip("Issue 295, #295")
   true_alignment_filename <- pir_params$alignment_params$fasta_filename
   twin_alignment_filename <- pir_params$twinning_params$twin_alignment_filename
   true_alignment <- ape::read.FASTA(true_alignment_filename)

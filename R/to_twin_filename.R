@@ -13,7 +13,13 @@
 to_twin_filename <- function(
   filename
 ) {
-  testit::assert(is.character(filename))
+  if (!beautier::is_one_string(filename)) {
+    stop(
+      "'filename' must be one string. \n",
+      "Actual value: ", filename
+    )
+  }
+  testit::assert(beautier::is_one_string(filename))
   # Get the basename with extension
   base_filename <- NA
   tryCatch({

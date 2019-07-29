@@ -20,3 +20,11 @@ test_that("convert file correctly from path with dots", {
   created <- to_twin_filename(filename)
   expect_equal(created, expected)
 })
+
+test_that("abuse", {
+  expect_silent(to_twin_filename("OK"))
+  expect_error(to_twin_filename(NA), "'filename' must be one string")
+  expect_error(to_twin_filename(NULL), "'filename' must be one string")
+  expect_error(to_twin_filename(c()), "'filename' must be one string")
+  expect_error(to_twin_filename(c("a", "b")), "'filename' must be one string")
+})
