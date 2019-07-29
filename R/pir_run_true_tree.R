@@ -24,7 +24,6 @@ pir_run_true_tree <- function(
   # Select the evidence filename the model comparison is written to
   evidence_filename <- pir_params$evidence_filename
 
-
   # Estimate evidences (aka marginal likelihoods) if needed
   # marg_liks will be NULL if this was unneeded, for example, when
   # interested in the generative model only
