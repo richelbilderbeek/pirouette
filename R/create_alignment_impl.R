@@ -44,6 +44,13 @@ create_alignment_impl <- function(
   if (!is.null(geiger::is.extinct(phylogeny))) {
     stop("phylogeny must not contain extant species")
   }
+
+  # If mutation_rate is function, apply it to the phylogeny
+  if (is.function(mutation_rate)) {
+    mutation_function <- mutation_rate
+    mutation_rate <- mutation_function(phylogeny)
+  }
+
   if (!is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
     stop(
       "n_mutations must be integer or NA"

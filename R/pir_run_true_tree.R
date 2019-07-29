@@ -16,16 +16,6 @@ pir_run_true_tree <- function(
   experiments <- pir_params$experiments
   error_measure_params <- pir_params$error_measure_params
 
-  # If alignment_params$mutation_rate is function, apply it to the phylogeny
-  if (is.function(alignment_params$mutation_rate)) {
-    mutation_function <- alignment_params$mutation_rate
-    mutation_rate <- mutation_function(true_phylogeny)
-    # Write it to both shorthand form and function argument:
-    # the reader of this code expects these are the same
-    alignment_params$mutation_rate <- mutation_rate
-    pir_params$alignment_params$mutation_rate <- mutation_rate
-  }
-
   # Simulate the true alignment and save it to file
   create_alignment_file(
     phylogeny = true_phylogeny,
