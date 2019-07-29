@@ -102,51 +102,22 @@ pir_run <- function(
   # Run for the twin tree
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
-    # Find experiments
-    pir_outs <- pir_out
-    j <- 0
-    inference_model_weights <- stats::na.omit(pir_out$inference_model_weight)
-    # Only have a maximum model weight with at least one candidate model
-    max_model_weight <- NA
-    if (length(inference_model_weights) > 0) {
-      max_model_weight <- max(inference_model_weights)
-    }
+    # Create and save twin tree
+    twin_tree <- create_twin_tree(
+      phylogeny,
+      twinning_params = pir_params$twinning_params
+    ) # nolint pirouette function
+    ape::write.tree(
+      phy = twin_tree,
+      file = pir_params$twinning_params$twin_tree_filename
+    )
 
-    for (i in 1:nrow(pir_out)) {
-      if (pir_out$inference_model[i] == "generative") {
-        j <- j + 1
-        pir_outs[j, ] <- pir_out[i, ]
-      }
-      if (pir_out$inference_model[i] == "candidate") {
-        testit::assert(!is.na(max_model_weight))
-        if (pir_out$inference_model_weight[i] == max_model_weight
-        ) {
-          j <- j + 1
-          pir_outs[j, ] <- pir_out[i, ]
-        }
-      }
-    }
-    pir_outs <- pir_outs[1:j, ]
-
-    testit::assert(nrow(pir_outs) == 1) # nolint It makes no sense to run 'create_twin_tree' twice
-    for (j in 1:nrow(pir_outs)) {
-      # Create and save twin tree
-      twin_tree <- create_twin_tree(
-        phylogeny,
-        twinning_params = pir_params$twinning_params
-      ) # nolint pirouette function
-      ape::write.tree(
-        phy = twin_tree,
-        file = pir_params$twinning_params$twin_tree_filename
-      )
-
-      # Re-run pir_run for the twin
-      pir_out_twin <- pir_run_twin_tree(
-        twin_phylogeny = twin_tree,
-        pir_params = pir_params
-      )
-      pir_out <- rbind(pir_out, pir_out_twin)
-    }
+    # Re-run pir_run for the twin
+    pir_out_twin <- pir_run_twin_tree(
+      twin_phylogeny = twin_tree,
+      pir_params = pir_params
+    )
+    pir_out <- rbind(pir_out, pir_out_twin)
   }
   pir_out
 }
