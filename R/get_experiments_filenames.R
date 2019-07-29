@@ -1,5 +1,6 @@
-#' @export
+#' Extract the filesnames in the experiments
 #' @inheritParams default_params_doc
+#' @export
 get_experiments_filenames <- function(experiments) {
   check_experiments(experiments)
   n_filenames_per_experiment <- length(

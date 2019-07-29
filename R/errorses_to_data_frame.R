@@ -1,8 +1,7 @@
 #' Convert the collect of errors to a data frame
 #'
-#' @param errorses a collection of errors (hence the
-#' @param experiments
-#' reduplicated plural)
+#' @inheritParams default_params_doc
+#' @param errorses a collection of errors (hence the reduplicated plural)
 errorses_to_data_frame <- function(
   errorses,
   experiments,

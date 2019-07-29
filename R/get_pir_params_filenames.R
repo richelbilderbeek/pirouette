@@ -1,3 +1,5 @@
+#' Extract the filenames from a \code{pir_params}
+#' @inheritParams default_params_doc
 #' @export
 get_pir_params_filenames <- function(pir_params) {
   check_pir_params(pir_params)

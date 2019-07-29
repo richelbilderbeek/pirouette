@@ -7,9 +7,15 @@
 errorses_to_data_frame(errorses, experiments, marg_liks)
 }
 \arguments{
-\item{errorses}{a collection of errors (hence the}
+\item{errorses}{a collection of errors (hence the reduplicated plural)}
 
-\item{experiments}{reduplicated plural)}
+\item{experiments}{a list of one or more \link{pirouette} experiments,
+as can be created by \link{create_experiment}. If more than one experiment
+is provided and a "generative" experiment is part of them, the "generative"
+one has to be the first in the list.}
+
+\item{marg_liks}{a data frame with marginal likelihoods/evidences.
+A test data frame can be created by \link{create_test_marg_liks}}
 }
 \description{
 Convert the collect of errors to a data frame

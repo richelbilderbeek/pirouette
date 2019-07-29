@@ -7,7 +7,7 @@
 check_pir_out(pir_out)
 }
 \arguments{
-\item{pir_out}{the output of \link{pir_run_tree} applied on the original tree}
+\item{pir_out}{the output of \link{pir_run}}
 }
 \value{
 nothing. Will \link{stop} if not

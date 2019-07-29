@@ -30,10 +30,14 @@ test_that("use, twinning", {
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)
     # Twin
-    expect_true(to_twin_filename(experiment$beast2_options$input_filename) %in% filenames)
-    expect_true(to_twin_filename(experiment$beast2_options$output_log_filename) %in% filenames)
-    expect_true(to_twin_filename(experiment$beast2_options$output_trees_filenames) %in% filenames)
-    expect_true(to_twin_filename(experiment$beast2_options$output_state_filename) %in% filenames)
+    expect_true(to_twin_filename(
+      experiment$beast2_options$input_filename) %in% filenames)
+    expect_true(to_twin_filename(
+      experiment$beast2_options$output_log_filename) %in% filenames)
+    expect_true(to_twin_filename(
+      experiment$beast2_options$output_trees_filenames) %in% filenames)
+    expect_true(to_twin_filename(
+      experiment$beast2_options$output_state_filename) %in% filenames)
     expect_true(to_twin_filename(experiment$errors_filename) %in% filenames)
 
   }

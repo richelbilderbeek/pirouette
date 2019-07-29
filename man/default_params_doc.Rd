@@ -299,7 +299,7 @@ present in the simulated tree}
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
 
-\item{pir_out}{the output of \link{pir_run_tree} applied on the original tree}
+\item{pir_out}{the output of \link{pir_run}}
 
 \item{posterior_trees}{phylogenetic trees in a BEAST2 posterior,
 of class \code{multiphylo}}

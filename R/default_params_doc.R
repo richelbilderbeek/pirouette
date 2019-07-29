@@ -193,7 +193,7 @@
 #' @param phylogeny a phylogeny of class \link[ape]{phylo}
 #' @param pir_params the parameters of \link[pirouette]{pirouette}.
 #'   They are created by \link{create_pir_params}.
-#' @param pir_out the output of \link{pir_run_tree} applied on the original tree
+#' @param pir_out the output of \link{pir_run}
 #' @param posterior_trees phylogenetic trees in a BEAST2 posterior,
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
