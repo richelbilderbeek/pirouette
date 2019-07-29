@@ -70,14 +70,6 @@ create_twin_alignment <- function(
   #
   # If the tests still pass easily, no worries, and this is great.
   # If the tests take too long, then yes, this correction must be made
-
-  # If alignment_params$mutation_rate is function, apply it to the phylogeny
-  if (is.function(alignment_params$mutation_rate)) {
-    mutation_function <- alignment_params$mutation_rate
-    mutation_rate <- mutation_function(twin_phylogeny)
-    alignment_params$mutation_rate <- mutation_rate
-  }
-
   mutation_rate <- alignment_params$mutation_rate
 
   # Will increase the RNG seed up until
