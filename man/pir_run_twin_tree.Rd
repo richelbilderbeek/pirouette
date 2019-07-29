@@ -4,10 +4,10 @@
 \alias{pir_run_twin_tree}
 \title{Measure the error BEAST2 makes from a phylogeny}
 \usage{
-pir_run_twin_tree(phylogeny, pir_params = create_test_pir_params())
+pir_run_twin_tree(twin_phylogeny, pir_params = create_test_pir_params())
 }
 \arguments{
-\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
