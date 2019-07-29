@@ -128,6 +128,7 @@ pir_run <- function(
     }
     pir_outs <- pir_outs[1:j, ]
 
+    testit::assert(nrow(pir_outs) == 1) # nolint It makes no sense to run 'create_twin_tree' twice
     for (j in 1:nrow(pir_outs)) {
       # Create and save twin tree
       twin_tree <- create_twin_tree(
