@@ -63,7 +63,7 @@ pir_run_twin_tree <- function(
     )
 
     # Select the filename the errors are written to
-    errors_filename <- to_twin_filename(experiment$errors_filename) # nolint pirouette function
+    errors_filename <- experiment$errors_filename # nolint pirouette function
 
     # Save errors to file
     utils::write.csv(

@@ -240,32 +240,8 @@ test_that("generative with twin", {
     twinning_params = twinning_params
   )
 
-  filenames <- c(
-    pir_params$alignment_params$fasta_filename,
-    pir_params$experiments[[1]]$beast2_options$input_filename,
-    pir_params$experiments[[1]]$beast2_options$output_log_filename,
-    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename,
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$input_filename
-    ),
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$output_log_filename
-    ),
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$output_trees_filenames
-    ),
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$output_state_filename
-    ),
-    pir_params$twinning_params$twin_tree_filename,
-    pir_params$twinning_params$twin_alignment_filename
-  )
+  filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
-  # Evidence files will not be created,
-  #   as all models have do_measure_evidence == FALSE
-  testit::assert(!file.exists(pir_params$evidence_filename))
-  testit::assert(!file.exists(twinning_params$twin_evidence_filename))
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -274,9 +250,6 @@ test_that("generative with twin", {
 
   # Files created
   testit::assert(all(file.exists(filenames)))
-  # Evidence files will not be created
-  testit::assert(!file.exists(pir_params$evidence_filename))
-  testit::assert(!file.exists(twinning_params$twin_evidence_filename))
 
   # Return value
   expect_true("tree" %in% names(errors))
@@ -300,6 +273,7 @@ test_that("generative with twin", {
   expect_equal(n_mutations_true, n_mutations_twin)
 
   skip("Issue 299, Issue #299")
+  get_pir_params_filenames(pir_params)[!file.exists(get_pir_params_filenames(pir_params))]
   expect_silent(
     pir_to_pics(phylogeny = phylogeny,
       pir_params = pir_params,

@@ -25,7 +25,7 @@ create_experiment <- function(
   beast2_options = beastier::create_beast2_options(
     input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
     output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
-    output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
+    output_trees_filenames = tempfile(pattern = "beast2_", fileext = ".trees"),
     output_state_filename = tempfile(
       pattern = "beast2_", fileext = ".state.xml"
     )
