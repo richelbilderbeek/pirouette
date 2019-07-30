@@ -37,33 +37,7 @@
 #' @export
 rm_pir_param_files <- function(pir_params) {
 
-  filenames <- c(
-    pir_params$alignment_params$fasta_filename,
-    pir_params$evidence_filename
-  )
-
-  for (experiment in pir_params$experiments) {
-    filenames <- c(
-      filenames,
-      c(
-        experiment$beast2_options$input_filename,
-        experiment$beast2_options$output_log_filename,
-        experiment$beast2_options$output_trees_filenames,
-        experiment$beast2_options$output_state_filename
-      )
-    )
-  }
-
-  if (!beautier::is_one_na(pir_params$twinning_params)) {
-    filenames <- c(filenames,
-      c(
-        pir_params$twinning_params$twin_tree_filename,
-        pir_params$twinning_params$twin_alignment_filename,
-        pir_params$twinning_params$twin_evidence_filename
-      )
-    )
-  }
-
+  filenames <- get_pir_params_filenames(pir_params)
   file.remove(filenames[file.exists(filenames)])
   testit::assert(all(!file.exists(filenames)))
 }

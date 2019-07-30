@@ -10,8 +10,6 @@ test_that("use", {
     twinning_params = create_twinning_params()
   )
 
-  create_test_experiment
-
   if (rappdirs::app_dir()$os != "win") {
     # Also add a best_candidate experiment
     pir_params$experiments[[2]] <- create_experiment(

@@ -10,17 +10,8 @@ test_that("use", {
   )
 
   # Files not yet created
-  filenames <- c(
-    pir_params$alignment_params$fasta_filename,
-    pir_params$experiments[[1]]$beast2_options$input_filename,
-    pir_params$experiments[[1]]$beast2_options$output_log_filename,
-    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename
-  )
+  filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
-  # Evidence files will not be created,
-  #   as all models have do_measure_evidence == FALSE
-  testit::assert(!file.exists(pir_params$evidence_filename))
 
   # Running all one experiments
   errors <- pir_run(
@@ -30,13 +21,10 @@ test_that("use", {
 
   # Files exist
   testit::assert(all(file.exists(filenames)))
-  # Evidence file will not exist
-  testit::assert(!file.exists(pir_params$evidence_filename))
 
   # Removing the files
   rm_pir_param_files(pir_params)
 
   # All files should be gone
   expect_true(all(!file.exists(filenames)))
-  expect_true(!file.exists(pir_params$evidence_filename))
 })
