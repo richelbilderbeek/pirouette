@@ -24,7 +24,7 @@ Imports:
     ape,
     babette,
     beastier (>= 2.0.17),
-    beautier,
+    beautier (>= 2.2.2),
     DDD,
     dplyr,
     geiger,

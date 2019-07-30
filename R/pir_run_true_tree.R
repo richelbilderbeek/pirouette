@@ -19,7 +19,7 @@ pir_run_true_tree <- function(
 
   # Select the alignment file for model comparison
   fasta_filename <- pir_params$alignment_params$fasta_filename
-  testit::assert(file.exists(fasta_filename))
+  beautier::check_file_exists(fasta_filename, "fasta_filename")
 
   # Select the evidence filename the model comparison is written to
   evidence_filename <- pir_params$evidence_filename

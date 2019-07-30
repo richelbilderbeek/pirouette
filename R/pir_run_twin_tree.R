@@ -19,7 +19,8 @@ pir_run_twin_tree <- function(
 
   # Select the alignment file for model comparison
   fasta_filename <- pir_params$twinning_params$twin_alignment_filename
-  testit::assert(file.exists(fasta_filename))
+  beautier::check_file_exists(fasta_filename, "fasta_filename")
+
 
   # Select the evidence filename the model comparison is written to
   evidence_filename <- pir_params$twinning_params$twin_evidence_filename

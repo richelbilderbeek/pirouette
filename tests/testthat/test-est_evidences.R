@@ -16,7 +16,7 @@ test_that("use", {
       fasta_filename = fasta_filename
     )
   )
-  testit::assert(file.exists(fasta_filename))
+  beautier::check_file_exists(fasta_filename, "fasta_filename")
 
   # Setup experiments
   experiment_1 <- create_experiment(
@@ -66,7 +66,7 @@ test_that("cleans up", {
       fasta_filename = fasta_filename
     )
   )
-  testit::assert(file.exists(fasta_filename))
+  beautier::check_file_exists(fasta_filename, "fasta_filename")
 
   # Setup experiments
   experiment_1 <- create_experiment(
@@ -116,7 +116,7 @@ test_that("abuse", {
     "alignment.fas",
     package = "pirouette"
   )
-  testit::assert(file.exists(fasta_filename))
+  beautier::check_file_exists(fasta_filename, "fasta_filename")
   experiments <- list(create_test_cand_experiment())
   evidence_epsilon <- 100.0
 

@@ -11,6 +11,8 @@ test_that("use, gen", {
 
 test_that("use, cand", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiment <- create_test_cand_experiment()
   filenames <- get_experiment_filenames(experiment)
   expect_true(experiment$beast2_options$input_filename %in% filenames)

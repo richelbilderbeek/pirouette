@@ -31,7 +31,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_experiment(experiment) # nolint pirouette function
-  testit::assert(file.exists(alignment_params$fasta_filename))
+  beautier::check_file_exists(alignment_params$fasta_filename)
   testit::assert(
     !beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
   )
