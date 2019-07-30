@@ -11,18 +11,21 @@
 #' library(testthat)
 #'
 #' expect_silent(check_experiments(list(create_test_experiment())))
-#' expect_silent(
-#'   check_experiments(
-#'     list(
-#'       create_test_experiment(),
-#'       create_test_cand_experiment()
-#'     )
-#'   )
-#' )
 #' expect_error(check_experiments(create_test_experiment()))
 #' expect_error(check_experiments("nonsense"))
 #' expect_error(check_experiments(NA))
 #' expect_error(check_experiments(NULL))
+#'
+#' if (rappdirs::app_dir()$os != "win") {
+#'   expect_silent(
+#'     check_experiments(
+#'       list(
+#'         create_test_experiment(),
+#'         create_test_cand_experiment()
+#'       )
+#'     )
+#'   )
+#' }
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_experiments <- function(
