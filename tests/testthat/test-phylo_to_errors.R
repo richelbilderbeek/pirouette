@@ -15,7 +15,7 @@ test_that("use", {
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
-  testit::assert(file.exists(alignment_params$fasta_filename))
+  beautier::check_file_exists(alignment_params$fasta_filename)
 
   experiment <- create_experiment(
     inference_model = create_inference_model(

@@ -158,7 +158,7 @@ See the alignment generated from the true tree:
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  testit::assert(file.exists(pir_params$alignment_params$fasta_filename))
+  check_file_exists(pir_params$alignment_params$fasta_filename)
   ape::image.DNAbin(ape::read.FASTA(file = pir_params$alignment_params$fasta_filename))
 }
 ```
@@ -167,7 +167,7 @@ See the posterior trees generated from the true alignment, for the generative mo
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames))
+  check_file_exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
   babette::plot_densitree(
     tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
   )
@@ -187,7 +187,7 @@ See the posterior trees generated from the true alignment, for the model with th
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   trees_filename <- pir_params$experiments[[2]]$beast2_options$output_trees_filenames
-  testit::assert(file.exists(trees_filename))
+  check_file_exists(trees_filename)
   babette::plot_densitree(tracerer::parse_beast_trees(trees_filename))
 }
 ```
@@ -196,7 +196,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  testit::assert(file.exists(pir_params$experiments[[1]]$beast2_options$output_log_filename))
+  check_file_exists(pir_params$experiments[[1]]$beast2_options$output_log_filename)
   df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$beast2_options$output_log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
@@ -207,7 +207,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   log_filename <- pir_params$experiments[[2]]$beast2_options$output_log_filename
-  testit::assert(file.exists(log_filename))
+  check_file_exists(log_filename))
   df <- tracerer::parse_beast_log(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
@@ -227,7 +227,7 @@ See the alignment generated from the twin tree:
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  testit::assert(file.exists(pir_params$twinning_params$twin_alignment_filename))
+  check_file_exists(pir_params$twinning_params$twin_alignment_filename)
   ape::image.DNAbin(ape::read.FASTA(file = pir_params$twinning_params$twin_alignment_filename))
 }
 ```
@@ -237,7 +237,7 @@ See the posterior trees generated from the twin alignment, for the generative mo
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   trees_filename <- to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
-  testit::assert(file.exists(trees_filename))
+  check_file_exists(trees_filename)
   babette::plot_densitree(
     tracerer::parse_beast_trees(trees_filename)
   )
@@ -256,7 +256,7 @@ See the posterior trees generated from the twin alignment, for the model with th
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   trees_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_trees_filenames)
-  testit::assert(file.exists(trees_filename))
+  check_file_exists(trees_filename)
   babette::plot_densitree(tracerer::parse_beast_trees(trees_filename))
 }
 ```
@@ -266,7 +266,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   log_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_log_filename)
-  testit::assert(file.exists(log_filename))
+  check_file_exists(log_filename)
   df <- tracerer::parse_beast_log(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
@@ -277,7 +277,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   log_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_log_filename)
-  testit::assert(file.exists(log_filename))
+  check_file_exists(log_filename)
   df <- tracerer::parse_beast_log(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
