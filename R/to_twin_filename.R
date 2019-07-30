@@ -35,11 +35,15 @@ to_twin_filename <- function(
   )
   testit::assert(is.character(base_filename))
 
-  # Replace the first dot with '_twin.'
-  twin_basename <- stringr::str_replace(
-    string = base_filename,
-    pattern = "\\.", "_twin."
-  )
+  if (!stringr::str_count(base_filename, pattern = "\\.")) {
+    twin_basename <- paste0(base_filename, "_twin")
+  } else {
+    # Replace the first dot with '_twin.'
+    twin_basename <- stringr::str_replace(
+      string = base_filename,
+      pattern = "\\.", "_twin."
+    )
+  }
 
   # Complete the path
   twin_path <- file.path(
