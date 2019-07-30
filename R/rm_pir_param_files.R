@@ -9,13 +9,7 @@
 #'   experiments = list(create_test_gen_experiment())
 #' )
 #'
-#' filenames <- c(
-#'   pir_params$alignment_params$fasta_filename,
-#'   pir_params$experiments[[1]]$beast2_options$input_filename,
-#'   pir_params$experiments[[1]]$beast2_options$output_log_filename,
-#'   pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-#'   pir_params$experiments[[1]]$beast2_options$output_state_filename
-#' )
+#' filenames <- get_pir_params_filenames(pir_params)
 #'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
@@ -37,7 +31,7 @@
 #' @export
 rm_pir_param_files <- function(pir_params) {
 
-  filenames <- get_pir_params_filenames(pir_params)
+  filenames <- get_pir_params_filenames(pir_params) # nolint pirouette function
   file.remove(filenames[file.exists(filenames)])
   testit::assert(all(!file.exists(filenames)))
 }
