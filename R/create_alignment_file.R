@@ -46,6 +46,13 @@ create_alignment_file <- function(
     alignment_params = alignment_params
   )
   # Save
+  # Make sure the (sub-sub-) folder exists for the file,
+  # but do not warn if it already exists
+  dir.create(
+    path = dirname(fasta_filename),
+    showWarnings = FALSE,
+    recursive = TRUE
+  )
   phangorn::write.phyDat(
     alignment,
     file = fasta_filename,
