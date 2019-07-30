@@ -30,18 +30,8 @@ test_that("generative", {
   )
 
   # Files not yet created
-  filenames <- c(
-    pir_params$alignment_params$fasta_filename,
-    pir_params$experiments[[1]]$beast2_options$input_filename,
-    pir_params$experiments[[1]]$beast2_options$output_log_filename,
-    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename
-  )
+  filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
-
-  # Evidence files will not be created,
-  #   as all models have do_measure_evidence == FALSE
-  testit::assert(!file.exists(pir_params$evidence_filename))
 
   # Run pirouette
   errors <- pir_run(
@@ -51,9 +41,6 @@ test_that("generative", {
 
   # Files created
   testit::assert(all(file.exists(filenames)))
-
-  # Evidence file will not be created
-  testit::assert(!file.exists(pir_params$evidence_filename))
 
   # Return value all at once
   expect_silent(check_pir_out(errors))
@@ -92,14 +79,6 @@ test_that("generative", {
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
   n_errors <- col_last_error - col_first_error + 1
   expect_true(n_errors < 11) # due to burn-in
-
-  # Error files created
-  expect_true(
-    file.exists(
-      pir_params$experiments[[1]]$errors_filename
-    )
-  )
-
 })
 
 test_that("abuse: generative, CBS with too few taxa", {
@@ -174,14 +153,7 @@ test_that("most_evidence, one candidate", {
   )
 
   # Files not yet created
-  filenames <- c(
-    pir_params$alignment_params$fasta_filename,
-    pir_params$evidence_filename,
-    pir_params$experiments[[1]]$beast2_options$input_filename,
-    pir_params$experiments[[1]]$beast2_options$output_log_filename,
-    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename
-  )
+  filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
 
   errors <- pir_run(
@@ -194,7 +166,6 @@ test_that("most_evidence, one candidate", {
 
   expect_true("candidate" %in% errors$inference_model)
   expect_true(file.exists(pir_params$evidence_filename))
-
   expect_true(all(errors$inference_model_weight > 0.0))
 })
 
@@ -344,29 +315,7 @@ test_that("most_evidence, with twinning", {
     twinning_params = create_twinning_params()
   )
 
-  filenames <- c(
-    pir_params$alignment_params$fasta_filename,
-    pir_params$evidence_filename,
-    pir_params$experiments[[1]]$beast2_options$input_filename,
-    pir_params$experiments[[1]]$beast2_options$output_log_filename,
-    pir_params$experiments[[1]]$beast2_options$output_trees_filenames,
-    pir_params$experiments[[1]]$beast2_options$output_state_filename,
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$input_filename
-    ),
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$output_log_filename
-    ),
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$output_trees_filenames
-    ),
-    to_twin_filename(
-      pir_params$experiments[[1]]$beast2_options$output_state_filename
-    ),
-    pir_params$twinning_params$twin_tree_filename,
-    pir_params$twinning_params$twin_alignment_filename,
-    pir_params$twinning_params$twin_evidence_filename
-  )
+  filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
 
   errors <- pir_run(
