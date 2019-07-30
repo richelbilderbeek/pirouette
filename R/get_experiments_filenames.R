@@ -1,5 +1,6 @@
 #' Extract the filesnames in the experiments
 #' @inheritParams default_params_doc
+#' @author Richèl J.C. Bilderbeek
 #' @export
 get_experiments_filenames <- function(experiments) {
   check_experiments(experiments) # nolint pirouette function

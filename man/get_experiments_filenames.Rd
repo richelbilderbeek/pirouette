@@ -15,3 +15,6 @@ one has to be the first in the list.}
 \description{
 Extract the filesnames in the experiments
 }
+\author{
+Richèl J.C. Bilderbeek
+}

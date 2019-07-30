@@ -13,3 +13,6 @@ They are created by \link{create_pir_params}.}
 \description{
 Extract the filenames from a \code{pir_params}
 }
+\author{
+Richèl J.C. Bilderbeek
+}

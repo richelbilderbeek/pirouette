@@ -13,3 +13,6 @@ as can be created by \link{create_experiment}}
 \description{
 Extract the filenames from an experiment
 }
+\author{
+Richèl J.C. Bilderbeek
+}

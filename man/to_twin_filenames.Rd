@@ -6,6 +6,20 @@
 \usage{
 to_twin_filenames(filenames)
 }
+\arguments{
+\item{filenames}{the paths to files, may be relative or absolute paths}
+}
 \description{
 Convert multiple filenames to their twin equivalent
+}
+\examples{
+library(testthat)
+
+filenames <- c("a.csv", "b.xml")
+created <- to_twin_filenames(filenames)
+expected <- c("a_twin.csv", "b_twin.xml")
+expect_equal(expected, created)
+}
+\author{
+Richèl J.C. Bilderbeek
 }

@@ -48,8 +48,12 @@ to_twin_filename <- function(
   )
 
   # Remove the './' at the beginning if present
-  stringr::str_replace(
+  twin_path <- stringr::str_replace(
     string = twin_path,
     pattern = "^\\./", ""
   )
+
+  testit::assert(twin_path != filename)
+
+twin_path
 }
