@@ -70,8 +70,7 @@ twin_to_yule_tree <- function(
 
   lambda_yule <- as.numeric(unname(yule_pars[1]))
   mu_yule <- mu
-  testit::assert(!is.null(lambda_yule))
-  testit::assert(is.numeric(lambda_yule))
+  testit::assert(beautier::is_one_double(lambda_yule))
 
   # generate bd branching times from the inferred parameters
   yule_brts0 <- create_twin_branching_times(

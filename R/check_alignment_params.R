@@ -39,7 +39,7 @@ check_alignment_params <- function(
     test_1 <- alignment_params$mutation_rate(phylogeny_1)
     phylogeny_2 <- load_tree(tree_model = "mbd", seed = 1) # nolint pirouette function
     test_2 <- alignment_params$mutation_rate(phylogeny_2)
-    if (!is.numeric(test_1) || !is.numeric(test_2)) {
+    if (!beautier::is_one_double(test_1) || !beautier::is_one_double(test_2)) {
       stop("'mutation_rate' function must return a number")
     } else {
       if (test_1 < 0 | test_2 < 0) {
@@ -51,7 +51,7 @@ check_alignment_params <- function(
       stop("'mutation_rate' must be a non-zero and positive value")
     }
   }
-  if (!is.numeric(alignment_params$rng_seed)) {
+  if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
   if (!beautier::is_clock_model(alignment_params$clock_model)) {

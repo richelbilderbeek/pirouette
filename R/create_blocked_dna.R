@@ -13,7 +13,7 @@
 create_blocked_dna <- function(
   length
 ) {
-  if (!is.numeric(length)) {
+  if (!beautier::is_one_int(length)) {
     stop("'length' must be numerical")
   }
   if (length < 0) {

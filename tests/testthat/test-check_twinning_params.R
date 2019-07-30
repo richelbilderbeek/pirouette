@@ -90,7 +90,7 @@ test_that("use", {
         n_replicates = "nonsense"
       )
     ),
-    "'n_replicates' must be a number"
+    "'n_replicates' must be a whole number"
   )
   expect_error(
     check_twinning_params(
@@ -98,7 +98,7 @@ test_that("use", {
         n_replicates = 1.5
       )
     ),
-    "'n_replicates' must be a finite positive integer number"
+    "'n_replicates' must be a whole number"
   )
   expect_error(
     check_twinning_params(
@@ -106,7 +106,7 @@ test_that("use", {
         n_replicates = Inf
       )
     ),
-    "'n_replicates' must be a finite positive integer number"
+    "'n_replicates' must be a whole number"
   )
   expect_error(
     check_twinning_params(

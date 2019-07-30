@@ -18,7 +18,7 @@ create_mono_nuc_dna <- function(
   length,
   nucleotide = "a"
 ) {
-  if (!is.numeric(length)) {
+  if (!beautier::is_one_int(length)) {
     stop("'length' must be numerical")
   }
   if (length < 0) {

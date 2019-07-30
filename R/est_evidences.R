@@ -50,7 +50,7 @@ est_evidences <- function(
     )
   }
   check_experiments(experiments) # nolint pirouette function
-  if (!is.numeric(evidence_epsilon) || length(evidence_epsilon) != 1) {
+  if (!beautier::is_one_double(evidence_epsilon)) {
     stop(
       "'evidence_epsilon' must be one numerical value. ",
       "Actual value(s): ", evidence_epsilon

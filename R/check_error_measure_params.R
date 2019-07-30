@@ -27,7 +27,7 @@ check_error_measure_params <- function(
       )
     }
   }
-  if (!is.numeric(error_measure_params$burn_in_fraction)) {
+  if (!beautier::is_one_double(error_measure_params$burn_in_fraction)) {
     stop("'burn_in_fraction' must be a number")
   }
   if (error_measure_params$burn_in_fraction < 0.0 ||

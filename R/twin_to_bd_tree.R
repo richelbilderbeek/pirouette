@@ -82,10 +82,8 @@ twin_to_bd_tree <- function(
 
   lambda_bd <- as.numeric(unname(bd_pars[1]))
   mu_bd <- as.numeric(unname(bd_pars[2]))
-  testit::assert(!is.null(lambda_bd))
-  testit::assert(is.numeric(lambda_bd))
-  testit::assert(!is.null(mu_bd))
-  testit::assert(is.numeric(mu_bd))
+  testit::assert(beautier::is_one_double(lambda_bd))
+  testit::assert(beautier::is_one_double(mu_bd))
 
   # generate bd branching times from the inferred parameters
   bd_brts0 <- create_twin_branching_times(

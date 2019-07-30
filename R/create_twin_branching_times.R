@@ -29,29 +29,17 @@ create_twin_branching_times <- function(
   n_replicates,
   method
 ) {
-  if (!is.numeric(seed)) {
-    stop("'seed' must be numerical")
-  }
-  if (length(seed) != 1) {
+  if (!beautier::is_one_int(seed)) {
     stop("'seed' must be one numerical value")
   }
-  if (!is.numeric(lambda)) {
-    stop("'lambda' must be numerical")
-  }
-  if (length(lambda) != 1) {
+  if (!beautier::is_one_double(lambda)) {
     stop("'lambda' must be one numerical value")
   }
-  if (!is.numeric(mu)) {
-    stop("'mu' must be numerical")
-  }
-  if (length(mu) != 1) {
+  if (!beautier::is_one_double(mu)) {
     stop("'mu' must be one numerical value")
   }
   beautier::check_phylogeny(phylogeny)
-  if (!is.numeric(n_replicates)) {
-    stop("'n_replicates' must be numerical")
-  }
-  if (length(n_replicates) != 1) {
+  if (!beautier::is_one_int(n_replicates)) {
     stop("'n_replicates' must be one numerical value")
   }
   methods <- c("random_tree", "max_clade_cred", "max_likelihood")

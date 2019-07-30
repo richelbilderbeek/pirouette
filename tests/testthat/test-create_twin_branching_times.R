@@ -54,7 +54,7 @@ test_that("abuse", {
       n_replicates = 1,
       method = "random_tree"
     ),
-    "'seed' must be numerical"
+    "'seed' must be one numerical value"
   )
 
   expect_error(
@@ -78,7 +78,7 @@ test_that("abuse", {
       n_replicates = 1,
       method = "random_tree"
     ),
-    "'lambda' must be numerical"
+    "'lambda' must be one numerical value"
   )
 
   expect_error(
@@ -102,7 +102,7 @@ test_that("abuse", {
       n_replicates = 1,
       method = "random_tree"
     ),
-    "'mu' must be numerical"
+    "'mu' must be one numerical value"
   )
 
   expect_error(
@@ -138,10 +138,10 @@ test_that("abuse", {
       n_replicates = "nonsense",
       method = "random_tree"
     ),
-    "'n_replicates' must be numerical"
+    "'n_replicates' must be one numerical value"
   )
 
-    expect_error(
+  expect_error(
     create_twin_branching_times(
       seed = 314,
       lambda = 0.1,

@@ -71,7 +71,7 @@ create_twin_alignment <- function(
   # If the tests still pass easily, no worries, and this is great.
   # If the tests take too long, then yes, this correction must be made
   testit::assert(
-    is.numeric(alignment_params$mutation_rate) ||
+    beautier::is_one_double(alignment_params$mutation_rate) ||
     is.function(alignment_params$mutation_rate)
   )
   mutation_rate <- alignment_params$mutation_rate

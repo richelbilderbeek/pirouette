@@ -51,7 +51,7 @@ create_alignment_impl <- function(
     mutation_rate <- mutation_function(phylogeny)
   }
 
-  if (!is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
+  if (!beautier::is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
     stop(
       "n_mutations must be integer or NA"
     )

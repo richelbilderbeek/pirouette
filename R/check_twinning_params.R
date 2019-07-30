@@ -35,11 +35,11 @@ check_twinning_params <- function(
       )
     }
   }
-  if (!is_one_int(twinning_params$rng_seed_twin_tree)) { # nolint pirouette function
+  if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
     stop("'rng_seed_twin_tree' must be a number")
   }
 
-  if (!is_one_int(twinning_params$rng_seed_twin_alignment)) { # nolint pirouette function
+  if (!beautier::is_one_int(twinning_params$rng_seed_twin_alignment)) {
     stop("'rng_seed_twin_alignment' must be a number")
   }
   if (!is.character(twinning_params$twin_model)) {
@@ -59,14 +59,10 @@ check_twinning_params <- function(
   if (!(twinning_params$method %in% get_twin_methods())) {
     stop("This 'method' is not implemented")
   }
-  if (!is_one_int(twinning_params$n_replicates)) { # nolint pirouette function
-    stop("'n_replicates' must be a number")
+  if (!beautier::is_one_int(twinning_params$n_replicates)) {
+    stop("'n_replicates' must be a whole number")
   }
-  if (
-    is.infinite(twinning_params$n_replicates) |
-    !(twinning_params$n_replicates %% 1 == 0) |
-    twinning_params$n_replicates < 0
-  ) {
+  if (twinning_params$n_replicates < 0) {
     stop("'n_replicates' must be a finite positive integer number")
   }
 
