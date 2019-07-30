@@ -166,6 +166,7 @@ if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg
 See the posterior trees generated from the true alignment, for the generative model:
 
 ```{r}
+
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   check_file_exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
   babette::plot_densitree(
