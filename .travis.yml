@@ -31,7 +31,7 @@ r_github_packages:
   - ropensci/beautier@develop
   - ropensci/beastier@develop
   - ropensci/mauricer
-  - ropensci/babette
+  - ropensci/babette@develop
   - richelbilderbeek/mcbette
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
