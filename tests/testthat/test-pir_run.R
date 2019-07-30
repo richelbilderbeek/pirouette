@@ -272,8 +272,6 @@ test_that("generative with twin", {
   )
   expect_equal(n_mutations_true, n_mutations_twin)
 
-  skip("Issue 299, Issue #299")
-  get_pir_params_filenames(pir_params)[!file.exists(get_pir_params_filenames(pir_params))]
   expect_silent(
     pir_to_pics(phylogeny = phylogeny,
       pir_params = pir_params,
