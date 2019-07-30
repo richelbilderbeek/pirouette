@@ -23,7 +23,7 @@ BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Imports:
     ape,
     babette,
-    beastier,
+    beastier (>= 2.0.17),
     beautier,
     DDD,
     dplyr,
