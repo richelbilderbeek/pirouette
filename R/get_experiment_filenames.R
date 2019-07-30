@@ -5,10 +5,7 @@
 get_experiment_filenames <- function(experiment) {
   check_experiment(experiment) # nolint pirouette function
   c(
-    experiment$beast2_options$input_filename,
-    experiment$beast2_options$output_log_filename,
-    experiment$beast2_options$output_trees_filenames,
-    experiment$beast2_options$output_state_filename,
+    get_beast2_options_filenames(experiment$beast2_options),
     experiment$errors_filename
   )
 }

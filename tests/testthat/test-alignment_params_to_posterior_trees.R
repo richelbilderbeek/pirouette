@@ -12,9 +12,15 @@ test_that("returns a multiPhylo", {
   )
   expect_true(file.exists(alignment_params$fasta_filename))
 
+  experiment <- create_test_experiment()
+
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
-    experiment = create_test_experiment()
+    experiment = experiment
   )
   expect_equal("multiPhylo", class(trees))
+
+  expect_true(all(file.exists(
+      get_beast2_options_filenames(experiment$beast2_options)
+  )))
 })
