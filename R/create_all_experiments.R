@@ -36,6 +36,24 @@ create_all_experiments <- function(
   }
 
   all_experiments <- list()
+
+  # All experiments use the same BEAST2 options,
+  # or at least the filenames should be the same
+  beast2_options <- beastier::create_beast2_options(
+    input_filename = tempfile(
+      pattern = "beast2_", fileext = ".xml"
+    ),
+    output_log_filename = tempfile(
+      pattern = "beast2_", fileext = ".log"
+    ),
+    output_trees_filenames = tempfile(
+      pattern = "beast2_", fileext = "trees"
+    ),
+    output_state_filename = tempfile(
+      pattern = "beast2_", fileext = ".state.xml"
+    )
+  )
+
   i <- 1
   for (site_model in site_models) {
     for (clock_model in clock_models) {
@@ -52,20 +70,7 @@ create_all_experiments <- function(
             tree_prior = tree_prior,
             mcmc = mcmc
           ),
-          beast2_options = beastier::create_beast2_options(
-            input_filename = tempfile(
-              pattern = paste0("beast2_", i, "_"), fileext = ".xml"
-            ),
-            output_log_filename = tempfile(
-              pattern = paste0("beast2_", i, "_"), fileext = ".log"
-            ),
-            output_trees_filenames = tempfile(
-              pattern = paste0("beast2_", i, "_"), fileext = "trees"
-            ),
-            output_state_filename = tempfile(
-              pattern = paste0("beast2_", i, "_"), fileext = ".state.xml"
-            )
-          )
+          beast2_options = beast2_options
         )
         new_model <- new_experiment$inference_model
         if (all(is.na(exclude_model))) {
@@ -86,5 +91,8 @@ create_all_experiments <- function(
   }
   names(all_experiments) <- seq_along(all_experiments)
   all_experiments[sapply(all_experiments, is.null)] <- NULL
+
+  check_experiments(all_experiments)
+
   all_experiments
 }

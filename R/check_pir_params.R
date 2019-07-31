@@ -64,9 +64,9 @@ check_pir_params <- function(
     error = function(e) {
       msg <- paste0(
         "'experiments' must be one experiment or a list of one or more ",
-        "experiments.\n",
-        "Tip: use 'create_experiments'\n",
-        "Error message: ", e$message, "\n",
+        "experiments. \n",
+        "Tip: use a list of 'create_experiment'. \n",
+        "Error message: ", e$message, " \n",
         "Actual value: ", pir_params$experiments
       )
       stop(msg)
