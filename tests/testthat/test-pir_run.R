@@ -254,7 +254,6 @@ test_that("generative with twin", {
 
 test_that("most_evidence, with twinning", {
 
-  skip("Issue 301, Issue #301")
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
   if (!mauricer::is_beast2_ns_pkg_installed()) return()
