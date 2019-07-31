@@ -8,11 +8,6 @@ test_that("nothing if no candidates", {
 test_that("one if there is one candidate", {
 
   if (rappdirs::app_dir()$os == "win") return()
-  if (1 == 2) {
-    if (!is_on_ci()) return()
-    if (!is_beast2_installed()) return()
-    if (!is_beast2_ns_pkg_installed()) return()
-  }
 
   experiment <- create_experiment(
     inference_conditions = create_inference_conditions(
@@ -33,11 +28,6 @@ test_that("one if there is one candidate", {
 test_that("one if there is one candidate and one generative", {
 
   if (rappdirs::app_dir()$os == "win") return()
-  if (1 == 2) {
-    if (!is_on_ci()) return()
-    if (!is_beast2_installed()) return()
-    if (!is_beast2_ns_pkg_installed()) return()
-  }
 
   experiment_1 <- create_test_gen_experiment()
   experiment_2 <- create_test_cand_experiment()
