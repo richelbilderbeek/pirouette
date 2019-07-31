@@ -6,23 +6,23 @@
 #' @return a list with all \link{pirouette} twin parameters
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   pir_params <- create_test_pir_params(
-#'     twinning_params = create_twinning_params()
-#'   )
+#' pir_params <- create_test_pir_params(
+#'   twinning_params = create_twinning_params()
+#' )
 #'
-#'  expect_false(
-#'    pir_params$alignment_params$fasta_filename ==
-#'    pir_params$twinning_params$twin_alignment_filename
-#'  )
-#'
-#'  pir_params <- create_pir_params_twin(pir_params)
-#'
-#'  expect_true(
+#' expect_false(
 #'   pir_params$alignment_params$fasta_filename ==
 #'   pir_params$twinning_params$twin_alignment_filename
-#'  )
+#' )
+#'
+#' pir_params <- create_pir_params_twin(pir_params)
+#'
+#' expect_true(
+#'   pir_params$alignment_params$fasta_filename ==
+#'   pir_params$twinning_params$twin_alignment_filename
+#' )
 #' @export
 create_pir_params_twin <- function(
   pir_params
