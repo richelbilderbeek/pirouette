@@ -5,7 +5,8 @@
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
 phylo_to_errors(phylogeny, alignment_params, experiment,
-  error_measure_params, verbose = FALSE)
+  error_measure_params = create_error_measure_params(),
+  verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -59,7 +60,8 @@ experiments <- list(experiment)
 if (is_on_ci() && is_beast2_installed()) {
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
-    alignment_params = alignment_params
+    alignment_params = alignment_params,
+    experiment = experiment
   )
 
   expect_true(length(nltts) > 0)
