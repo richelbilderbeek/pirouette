@@ -88,14 +88,13 @@ test_that("cleans up", {
   )
   experiment_2 <- experiment_1
   experiment_2$inference_model$site_model <- beautier::create_hky_site_model()
-  experiment_2$beast2_options <- beastier::create_beast2_options()
   experiments <- list(experiment_1, experiment_2)
   check_experiments(experiments)
 
   trees_filename_1 <- experiment_1$beast2_options$output_trees_filenames
   trees_filename_2 <- experiment_2$beast2_options$output_trees_filenames
-  expect_false(trees_filename_1 == trees_filename_2)
-  expect_true(all(!file.exists(c(trees_filename_1, trees_filename_2))))
+  expect_true(trees_filename_1 == trees_filename_2)
+  expect_true(!file.exists(trees_filename_1))
 
   df <- est_evidences(
     fasta_filename = fasta_filename,
@@ -103,7 +102,7 @@ test_that("cleans up", {
   )
 
   # Still no files exist, as they are deleted by est_evidences
-  expect_true(all(!file.exists(c(trees_filename_1, trees_filename_2))))
+  expect_true(!file.exists(trees_filename_1))
 })
 
 

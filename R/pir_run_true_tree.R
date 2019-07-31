@@ -53,7 +53,8 @@ pir_run_true_tree <- function(
       phylogeny = true_phylogeny,
       alignment_params = pir_params$alignment_params,
       error_measure_params = pir_params$error_measure_params,
-      experiment = experiment
+      experiment = experiment,
+      verbose = pir_params$verbose
     )
 
     # Save errors to file

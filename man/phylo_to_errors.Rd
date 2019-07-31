@@ -4,9 +4,8 @@
 \alias{phylo_to_errors}
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
-phylo_to_errors(phylogeny, alignment_params,
-  experiment = create_experiment(),
-  error_measure_params = create_error_measure_params())
+phylo_to_errors(phylogeny, alignment_params, experiment,
+  error_measure_params, verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -22,6 +21,8 @@ error between the given phylogeny and the Bayesian
 posterior is determined.
 Use \link{create_error_measure_params} to create such
 a parameter set}
+
+\item{verbose}{if TRUE, show more output}
 }
 \description{
 The supplied phylogeny (\code{phylogeny}) is the true/known phylogeny.

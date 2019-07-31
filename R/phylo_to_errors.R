@@ -44,14 +44,16 @@
 phylo_to_errors <- function(
   phylogeny,
   alignment_params,
-  experiment = create_experiment(),
-  error_measure_params = create_error_measure_params()
+  experiment,
+  error_measure_params,
+  verbose = FALSE
 ) {
   testit::assert(experiment$beast2_options$overwrite == TRUE)
   # Run
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
-    experiment = experiment
+    experiment = experiment,
+    verbose = verbose
   )
 
   # Check the number of trees
@@ -63,7 +65,6 @@ phylo_to_errors <- function(
   }
 
   # Measure error by comparing true tree with BEAST2 posterior trees
-  # Old version: nLTT::nltts_diff(tree = phylogeny, trees = trees)
   all_errors <- error_measure_params$error_function(phylogeny, trees)
 
   # Then remove the burn-in

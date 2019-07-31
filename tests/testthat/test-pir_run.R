@@ -318,6 +318,7 @@ test_that("most_evidence, with twinning", {
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule, experiment_bd)
+  check_experiments(experiments)
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),

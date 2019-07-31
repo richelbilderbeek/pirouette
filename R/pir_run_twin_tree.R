@@ -60,7 +60,8 @@ pir_run_twin_tree <- function(
       phylogeny = twin_phylogeny,
       alignment_params = pir_params$alignment_params,
       error_measure_params = pir_params$error_measure_params,
-      experiment = experiment
+      experiment = experiment,
+      verbose = pir_params$verbose
     )
 
     # Save errors to file

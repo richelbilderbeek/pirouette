@@ -27,7 +27,8 @@
 #' @noRd
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
-  experiment = create_experiment()
+  experiment,
+  verbose = FALSE
 ) {
   check_alignment_params(alignment_params) # nolint pirouette function
   check_experiment(experiment) # nolint pirouette function
@@ -41,6 +42,36 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     inference_model = experiment$inference_model,
     beast2_options = experiment$beast2_options
   )
+  if (verbose) {
+    print(
+      paste0(
+        "Saved BEAST2 input file to '",
+        experiment$beast2_options$input_filename, "'"
+      )
+    )
+    print(
+      paste0(
+        "Saved BEAST2 output log file to '",
+        experiment$beast2_options$output_log_filename, "'"
+      )
+    )
+    print(
+      paste0(
+        "Saved BEAST2 output trees file to '",
+        experiment$beast2_options$output_trees_filenames, "'"
+      )
+    )
+    print(
+      paste0(
+        "Saved BEAST2 output state file to '",
+        experiment$beast2_options$output_state_filename, "'"
+      )
+    )
+  }
+  beautier::check_file_exists(experiment$beast2_options$input_filename)
+  beautier::check_file_exists(experiment$beast2_options$output_log_filename)
+  beautier::check_file_exists(experiment$beast2_options$output_trees_filenames)
+  beautier::check_file_exists(experiment$beast2_options$output_state_filename)
 
   trees <- c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
 

@@ -70,6 +70,19 @@ est_evidences <- function(
       # Overwrite Nested Sampling MCMC
       inference_models[[i]]$mcmc <- experiment$est_evidence_mcmc
       beast2_optionses[[i]] <- experiment$beast2_options
+      # Change the filenames, else good BEAST2 runs may be deleted
+      beast2_optionses[[i]]$input_filename <- to_evidence_filename(
+        beast2_optionses[[i]]$input_filename
+      )
+      beast2_optionses[[i]]$output_log_filename <- to_evidence_filename(
+        beast2_optionses[[i]]$output_log_filename
+      )
+      beast2_optionses[[i]]$output_trees_filenames <- to_evidence_filename(
+        beast2_optionses[[i]]$output_trees_filenames
+      )
+      beast2_optionses[[i]]$output_state_filename <- to_evidence_filename(
+        beast2_optionses[[i]]$output_state_filename
+      )
       # Overwrite BEAST2 bin path
       beast2_optionses[[i]]$beast2_path <- experiment$beast2_bin_path
       i <- i + 1
@@ -87,7 +100,7 @@ est_evidences <- function(
   marg_liks <- mcbette::est_marg_liks_from_models(
     fasta_filename = fasta_filename,
     inference_models = inference_models,
-    beast2_optionses = beast2_optionses,
+    beast2_optionses =  beast2_optionses,
     epsilon = evidence_epsilon,
     verbose = verbose
   )
@@ -119,8 +132,15 @@ est_evidences <- function(
       file.remove(experiment$beast2_options$output_trees_filenames)
     }
   }
-  if (abs(1.0 - sum(marg_liks$weight)) > 0.01) {
-
+  sum_marg_liks <- sum(marg_liks$weight)
+  tolerance <- 0.1
+  if (abs(1.0 - sum_marg_liks) > tolerance) {
+    stop(
+      "Sum of evidences (aka marginal likelihoods) deviates too much from ",
+        " one \n",
+      "Sum: ", sum_marg_liks, "\n",
+      "Tolerance: ", tolerance, "\n"
+    )
   }
   marg_liks
 }
