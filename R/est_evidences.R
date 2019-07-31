@@ -123,12 +123,33 @@ est_evidences <- function(
   # Delete files
   for (experiment in experiments) {
     if (file.exists(experiment$beast2_options$output_log_filename)) {
+      if (isTRUE(verbose)) {
+        print(
+          paste0("Deleting file '",
+            experiment$beast2_options$output_log_filename, "'"
+          )
+        )
+      }
       file.remove(experiment$beast2_options$output_log_filename)
     }
     if (file.exists(experiment$beast2_options$output_state_filename)) {
+      if (isTRUE(verbose)) {
+        print(
+          paste0("Deleting file '",
+            experiment$beast2_options$output_state_filename, "'"
+          )
+        )
+      }
       file.remove(experiment$beast2_options$output_state_filename)
     }
     if (file.exists(experiment$beast2_options$output_trees_filenames)) {
+      if (isTRUE(verbose)) {
+        print(
+          paste0("Deleting file '",
+            experiment$beast2_options$output_trees_filenames, "'"
+          )
+        )
+      }
       file.remove(experiment$beast2_options$output_trees_filenames)
     }
   }

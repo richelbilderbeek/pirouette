@@ -45,3 +45,5 @@ phylogeny.png
 input.xml
 input_twin.xml
 output_twin.xml.state
+input_evidence.xml
+output_evidence.xml.state
