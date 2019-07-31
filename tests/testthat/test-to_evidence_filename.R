@@ -33,5 +33,8 @@ test_that("abuse", {
   expect_error(to_evidence_filename(NA), "'filename' must be one string")
   expect_error(to_evidence_filename(NULL), "'filename' must be one string")
   expect_error(to_evidence_filename(c()), "'filename' must be one string")
-  expect_error(to_evidence_filename(c("a", "b")), "'filename' must be one string")
+  expect_error(
+    to_evidence_filename(c("a", "b")),
+    "'filename' must be one string"
+  )
 })
