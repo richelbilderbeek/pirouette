@@ -100,10 +100,15 @@ if (rappdirs::app_dir()$os != "win") {
     beast2_options = create_beast2_options(rng_seed = 314)
   )
   experiment_1$inference_conditions$do_measure_evidence <- TRUE
+  
+  # Must share same BEAST2 options
+  experiment_1$beast2_options <- experiment_2$beast2_options
   experiments <- list(experiment_1, experiment_2)
 } else {
   experiments <- list(experiment_1)  
 }
+
+check_experiments(experiments)
 
 pir_params <- create_pir_params(
   alignment_params = alignment_params,
