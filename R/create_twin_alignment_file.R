@@ -41,9 +41,18 @@ create_twin_alignment_file <- function(
   testit::assert(n_mutations_true == n_mutations_twin)
 
   # Save
+  twin_alignment_filename <- twinning_params$twin_alignment_filename
+  if (isTRUE(verbose)) {
+    print(paste0("Saving twin alignment to '", twin_alignment_filename, "'"))
+  }
+
   phangorn::write.phyDat(
     twin_alignment,
-    file = twinning_params$twin_alignment_filename,
+    file = twin_alignment_filename,
     format = "fasta"
+  )
+  beautier::check_file_exists(
+    twin_alignment_filename,
+    "twin_alignment_filename"
   )
 }

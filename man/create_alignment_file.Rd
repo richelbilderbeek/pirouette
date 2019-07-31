@@ -4,13 +4,15 @@
 \alias{create_alignment_file}
 \title{Simulates a DNA alignment and saves it to a FASTA file.}
 \usage{
-create_alignment_file(phylogeny, alignment_params)
+create_alignment_file(phylogeny, alignment_params, verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 nothing

@@ -14,7 +14,8 @@ pir_run_true_tree <- function(
   # Simulate the true alignment and save it to file
   create_alignment_file(
     phylogeny = true_phylogeny,
-    alignment_params = pir_params$alignment_params
+    alignment_params = pir_params$alignment_params,
+    verbose = pir_params$verbose
   )
 
   # Select the alignment file for model comparison
@@ -57,12 +58,18 @@ pir_run_true_tree <- function(
 
     # Select the filename the errors are written to
     errors_filename <- experiment$errors_filename
+    if (isTRUE(pir_params$verbose)) {
+      print(
+        paste0("Saving experiment #", i, " errors to '", errors_filename, "'")
+      )
+    }
 
     # Save errors to file
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename
     )
+    beautier::check_file_exists(errors_filename)
   }
 
   df <- errorses_to_data_frame(

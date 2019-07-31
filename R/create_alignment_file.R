@@ -36,7 +36,8 @@
 #' @export
 create_alignment_file <- function(
   phylogeny,
-  alignment_params
+  alignment_params,
+  verbose = FALSE
 ) {
   fasta_filename <- alignment_params$fasta_filename
 
@@ -48,6 +49,9 @@ create_alignment_file <- function(
   # Save
   # Make sure the (sub-sub-) folder exists for the file,
   # but do not warn if it already exists
+  if (isTRUE(verbose)) {
+    print(paste0("Saving alignment to '", fasta_filename, "'"))
+  }
   dir.create(
     path = dirname(fasta_filename),
     showWarnings = FALSE,
@@ -58,4 +62,5 @@ create_alignment_file <- function(
     file = fasta_filename,
     format = "fasta"
   )
+  beautier::check_file_exists(fasta_filename, "fasta_filename")
 }
