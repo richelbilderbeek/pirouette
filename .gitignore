@@ -42,3 +42,6 @@ doc/beast2_output.xml_twin.state
 doc/error.csv
 doc/error_twin.csv
 phylogeny.png
+input.xml
+input_twin.xml
+output_twin.xml.state

@@ -287,6 +287,7 @@ test_that("most_evidence, with twinning", {
     output_state_filename = "output.xml.state",
     rng_seed = 314
   )
+  errors_filename <- tempfile(pattern = "errors_", fileext = ".csv")
 
   experiment_yule <- create_experiment(
     inference_conditions = create_inference_conditions(
@@ -299,6 +300,7 @@ test_that("most_evidence, with twinning", {
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     beast2_options = beast2_options,
+    errors_filename = errors_filename,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- create_experiment(
@@ -312,6 +314,7 @@ test_that("most_evidence, with twinning", {
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     beast2_options = beast2_options,
+    errors_filename = errors_filename,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule, experiment_bd)
