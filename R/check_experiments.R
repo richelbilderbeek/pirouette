@@ -59,7 +59,7 @@ check_experiments <- function(
       testit::assert(j > i)
       experiment_2 <- experiments[[j]]
       if (
-        !are_equal_mcmcs(
+        !beautier::are_equal_mcmcs(
           experiment_1$inference_model$mcmc,
           experiment_2$inference_model$mcmc
         )
@@ -73,6 +73,23 @@ check_experiments <- function(
           "Value experiment[[", j, "]]$inference_model$mcmc: ",
           paste0(experiments[[j]]$inference_model$mcmc, collapse = ", "), "\n"
         )
+      }
+      if (experiment_1$inference_conditions$model_type == "candidate" &&
+          experiment_2$inference_conditions$model_type == "candidate"
+      ) {
+        filenames_1 <- get_beast2_options_filenames(experiment_1$beast2_options)
+        filenames_2 <- get_beast2_options_filenames(experiment_2$beast2_options)
+        if (!all(filenames_1 %in% filenames_2)) {
+          stop(
+            "Candidate models must have same beast2_options filename.\n",
+            "Difference between experiment[[", i, "]] ",
+            "and experiment[[", j, "]].\n",
+            "Filenames experiment[[", i, "]]$beast2_options: ",
+            paste0(filenames_1, collapse = ", "), "\n",
+            "Filenames experiment[[", j, "]]$beast2_options: ",
+            paste0(filenames_2, collapse = ", "), "\n"
+          )
+        }
       }
     }
   }

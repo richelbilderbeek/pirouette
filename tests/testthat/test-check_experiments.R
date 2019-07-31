@@ -62,18 +62,40 @@ test_that("correct order of experiments", {
   )
 })
 
-test_that("must have same beast2_options_filenames in candidates", {
+test_that("same beast2_options_filenames in candidates", {
 
-  skip("Issue 301. Issue #301")
   cand_experiment_1 <- create_test_cand_experiment()
   cand_experiment_2 <- create_test_cand_experiment()
+  gen_experiment <- create_test_gen_experiment()
+  expect_silent(
+    check_experiments(list(gen_experiment, cand_experiment_1))
+  )
+  expect_silent(
+    check_experiments(list(gen_experiment, cand_experiment_2))
+  )
+  expect_silent(
+    check_experiments(list(cand_experiment_1, cand_experiment_1))
+  )
+  expect_silent(
+    check_experiments(list(cand_experiment_2, cand_experiment_2))
+  )
   expect_error(
     check_experiments(list(cand_experiment_1, cand_experiment_2)),
-    "All beast2_option's filenames of the candidate experiments must be the same" # nolint keep error message on one line
+    "Candidate models must have same beast2_options filename"
+  )
+  expect_error(
+    check_experiments(
+      list(gen_experiment, cand_experiment_1, cand_experiment_2)
+    ),
+    "Candidate models must have same beast2_options filename"
   )
   cand_experiment_1$beast2_options <- cand_experiment_2$beast2_options
   expect_silent(
     check_experiments(list(cand_experiment_1, cand_experiment_2))
   )
-
+  expect_silent(
+    check_experiments(
+      list(gen_experiment, cand_experiment_1, cand_experiment_2)
+    )
+  )
 })

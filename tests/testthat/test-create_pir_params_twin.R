@@ -24,6 +24,8 @@ test_that("two candidates", {
     create_test_cand_experiment(),
     create_test_cand_experiment()
   )
+  experiments[[1]]$beast2_options <- experiments[[2]]$beast2_options
+  check_experiments(experiments)
   pir_params <- create_test_pir_params(
     experiments = experiments,
     twinning_params = create_twinning_params()
@@ -39,6 +41,9 @@ test_that("one generative, two candidates", {
     create_test_cand_experiment(),
     create_test_cand_experiment()
   )
+  experiments[[2]]$beast2_options <- experiments[[3]]$beast2_options
+  check_experiments(experiments)
+
   pir_params <- create_test_pir_params(
     experiments = experiments,
     twinning_params = create_twinning_params()

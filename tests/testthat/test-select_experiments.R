@@ -39,6 +39,9 @@ test_that("use, most_evidence", {
     )
   )
   experiments <- list(experiment_yule, experiment_bd)
+  experiments[[1]]$beast2_options <- experiments[[2]]$beast2_options
+  check_experiments(experiments)
+
   selected <- select_experiments(experiments, marg_liks)
 
   expect_equal(1, length(selected))
