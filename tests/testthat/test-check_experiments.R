@@ -64,6 +64,8 @@ test_that("correct order of experiments", {
 
 test_that("same beast2_options_filenames and error fileanames in candidates", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   cand_experiment_1 <- create_test_cand_experiment()
   cand_experiment_2 <- create_test_cand_experiment()
   gen_experiment <- create_test_gen_experiment()
