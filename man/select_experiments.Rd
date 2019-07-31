@@ -36,6 +36,7 @@ experiment_yule <- create_test_cand_experiment()
 experiment_bd <- create_test_cand_experiment()
 experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
 experiment_yule$beast2_options <- experiment_bd$beast2_options
+experiment_yule$errors_filename <- experiment_bd$errors_filename
 experiments <- list(experiment_yule, experiment_bd)
 
 # Select the experiment.

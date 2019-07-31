@@ -280,7 +280,13 @@ test_that("most_evidence, with twinning", {
   testit::assert(mauricer::is_beast2_ns_pkg_installed())
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-  beast2_options <- create_beast2_options(rng_seed = 314)
+  beast2_options <- create_beast2_options(
+    input_filename = "input.xml",
+    output_log_filename = "output.log",
+    output_trees_filenames = "output.trees",
+    output_state_filename = "output.xml.state",
+    rng_seed = 314
+  )
 
   experiment_yule <- create_experiment(
     inference_conditions = create_inference_conditions(
@@ -308,10 +314,6 @@ test_that("most_evidence, with twinning", {
     beast2_options = beast2_options,
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
   )
-  if (1 == 2) {
-    # This will fix error rightfully given by check_experiments
-    experiment_yule$beast2_options <- experiment_bd$beast2_options
-  }
   experiments <- list(experiment_yule, experiment_bd)
 
   pir_params <- create_pir_params(
@@ -322,6 +324,7 @@ test_that("most_evidence, with twinning", {
 
   filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
+  pir_params$verbose <- TRUE
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -330,6 +333,7 @@ test_that("most_evidence, with twinning", {
 
   # Files created
   testit::assert(all(file.exists(filenames)))
+  filenames[!file.exists(filenames)]
 
   expect_true("candidate" %in% errors$inference_model)
 

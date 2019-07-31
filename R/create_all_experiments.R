@@ -53,6 +53,9 @@ create_all_experiments <- function(
       pattern = "beast2_", fileext = ".state.xml"
     )
   )
+  errors_filename <- tempfile(
+    pattern = "errors_", fileext = ".csv"
+  )
 
   i <- 1
   for (site_model in site_models) {
@@ -70,7 +73,8 @@ create_all_experiments <- function(
             tree_prior = tree_prior,
             mcmc = mcmc
           ),
-          beast2_options = beast2_options
+          beast2_options = beast2_options,
+          errors_filename = errors_filename
         )
         new_model <- new_experiment$inference_model
         if (all(is.na(exclude_model))) {

@@ -62,7 +62,7 @@ test_that("correct order of experiments", {
   )
 })
 
-test_that("same beast2_options_filenames in candidates", {
+test_that("same beast2_options_filenames and error fileanames in candidates", {
 
   cand_experiment_1 <- create_test_cand_experiment()
   cand_experiment_2 <- create_test_cand_experiment()
@@ -89,7 +89,17 @@ test_that("same beast2_options_filenames in candidates", {
     ),
     "Candidate models must have same beast2_options filename"
   )
+
+  # Fix BEAST2 options
   cand_experiment_1$beast2_options <- cand_experiment_2$beast2_options
+
+  expect_error(
+    check_experiments(list(cand_experiment_1, cand_experiment_2)),
+    "Candidate models must have same errors filename"
+  )
+  # Fix error filenames
+  cand_experiment_1$errors_filename <- cand_experiment_2$errors_filename
+
   expect_silent(
     check_experiments(list(cand_experiment_1, cand_experiment_2))
   )

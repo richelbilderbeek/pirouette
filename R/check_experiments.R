@@ -90,6 +90,17 @@ check_experiments <- function(
             paste0(filenames_2, collapse = ", "), "\n"
           )
         }
+        if (experiment_1$errors_filename != experiment_2$errors_filename) {
+          stop(
+            "Candidate models must have same errors filename.\n",
+            "Difference between experiment[[", i, "]] ",
+            "and experiment[[", j, "]].\n",
+            "Filenames experiment[[", i, "]]$errors_filename: ",
+            experiment_1$errors_filename, "\n",
+            "Filenames experiment[[", j, "]]$errors_filename: ",
+            experiment_2$errors_filename, "\n"
+          )
+        }
       }
     }
   }

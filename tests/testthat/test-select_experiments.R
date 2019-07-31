@@ -40,6 +40,7 @@ test_that("use, most_evidence", {
   )
   experiments <- list(experiment_yule, experiment_bd)
   experiments[[1]]$beast2_options <- experiments[[2]]$beast2_options
+  experiments[[1]]$errors_filename <- experiments[[2]]$errors_filename
   check_experiments(experiments)
 
   selected <- select_experiments(experiments, marg_liks)
