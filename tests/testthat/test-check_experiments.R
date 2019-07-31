@@ -61,3 +61,19 @@ test_that("correct order of experiments", {
     "Specifying more than one 'generative' model experiment is redundant"
   )
 })
+
+test_that("must have same beast2_options_filenames in candidates", {
+
+  skip("Issue 310. Issue #310")
+  cand_experiment_1 <- create_test_cand_experiment()
+  cand_experiment_2 <- create_test_cand_experiment()
+  expect_error(
+    check_experiments(list(cand_experiment_1, cand_experiment_2)),
+    "All beast2_option's filenames of the candidate experiments must be the same" # nolint keep error message on one line
+  )
+  cand_experiment_1$beast2_options <- cand_experiment_2$beast2_options
+  expect_silent(
+    check_experiments(list(cand_experiment_1, cand_experiment_2))
+  )
+
+})
