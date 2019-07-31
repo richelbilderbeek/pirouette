@@ -127,6 +127,7 @@ candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 if (rappdirs::app_dir()$os != "win") {
+  beast2_options <- create_beast2_options(rng_seed = 314)
   experiment_yule <- create_experiment(
     inference_conditions = create_inference_conditions(
       model_type = "candidate",
@@ -138,7 +139,7 @@ if (rappdirs::app_dir()$os != "win") {
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 314)
+    beast2_options = beast2_options
   )
   experiment_bd <- create_experiment(
     inference_conditions = create_inference_conditions(
@@ -151,9 +152,10 @@ if (rappdirs::app_dir()$os != "win") {
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
     est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 314)
+    beast2_options = beast2_options
   )
   experiments <- list(experiment_yule, experiment_bd)
+  check_experiments(experiments)
   
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
