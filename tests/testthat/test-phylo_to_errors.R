@@ -22,10 +22,9 @@ test_that("use", {
       mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
     )
   )
-  experiments <- list(experiment)
-
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
+    experiment = experiment,
     alignment_params = alignment_params
   )
 
