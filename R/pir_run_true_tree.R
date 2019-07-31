@@ -56,15 +56,13 @@ pir_run_true_tree <- function(
       experiment = experiment
     )
 
-    # Select the filename the errors are written to
+    # Save errors to file
     errors_filename <- experiment$errors_filename
     if (isTRUE(pir_params$verbose)) {
       print(
         paste0("Saving experiment #", i, " errors to '", errors_filename, "'")
       )
     }
-
-    # Save errors to file
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename

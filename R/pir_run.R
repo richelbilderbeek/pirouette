@@ -102,15 +102,19 @@ pir_run <- function(
   # Run for the twin tree
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
-    # Create and save twin tree
+    # Create twin tree
     twin_tree <- create_twin_tree( # nolint pirouette function
       phylogeny,
       twinning_params = pir_params$twinning_params
     )
-    ape::write.tree(
-      phy = twin_tree,
-      file = pir_params$twinning_params$twin_tree_filename
-    )
+
+    # Save twin tree
+    twin_tree_filename <- pir_params$twinning_params$twin_tree_filename
+    if (isTRUE(pir_params$verbose)) {
+      print(paste0("Saving twin tree to '", twin_tree_filename, "'"))
+    }
+    ape::write.tree(phy = twin_tree, file = twin_tree_filename)
+    beautier::check_file_exists(twin_tree_filename, "twin_tree_filename")
 
     # pir_run for the twin
     pir_out_twin <- pir_run_twin_tree( # nolint pirouette function

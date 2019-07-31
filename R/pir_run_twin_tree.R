@@ -63,14 +63,20 @@ pir_run_twin_tree <- function(
       experiment = experiment
     )
 
-    # Select the filename the errors are written to
-    errors_filename <- experiment$errors_filename # nolint pirouette function
-
     # Save errors to file
+    errors_filename <- experiment$errors_filename # nolint pirouette function
+    if (isTRUE(pir_params$verbose)) {
+      print(
+        paste0(
+          "Saving twin experiment #", i, " errors to '", errors_filename, "'"
+        )
+      )
+    }
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename
     )
+    beautier::check_file_exists(errors_filename, "errors_filename")
   }
   df <- errorses_to_data_frame(
     errorses = errorses,
