@@ -35,7 +35,7 @@
 #' @export
 est_evidences <- function(
   fasta_filename,
-  experiments = list(create_test_experiment()),
+  experiments,
   evidence_epsilon = 1e-12,
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
@@ -49,6 +49,20 @@ est_evidences <- function(
       "File '", fasta_filename, "' not found"
     )
   }
+  # Must use a different FASTA file name, else the evidence estimation
+  # will overwrite normal inference files
+  evidence_fasta_filename <- to_evidence_filename(fasta_filename)
+  file.copy(from = fasta_filename, to = evidence_fasta_filename)
+  beautier::check_file_exists(evidence_fasta_filename)
+  if (isTRUE(verbose)) {
+    print(
+      paste0(
+        "Copied FASTA file from '", fasta_filename,
+        "' to '", evidence_fasta_filename, "'"
+      )
+    )
+  }
+
   check_experiments(experiments) # nolint pirouette function
   if (!beautier::is_one_double(evidence_epsilon)) {
     stop(
@@ -56,6 +70,7 @@ est_evidences <- function(
       "Actual value(s): ", evidence_epsilon
     )
   }
+
 
   # Collect inference models and BEAST2 optionses
   inference_models <- list()
@@ -97,8 +112,23 @@ est_evidences <- function(
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)
   check_is_ns_beast2_pkg_installed() # nolint long function name indeed
+
+  if (verbose) {
+    for (i in seq_along(beast2_optionses)) {
+      print(
+        paste(
+          i,
+          beast2_optionses[[i]]$input_filename,
+          beast2_optionses[[i]]$output_log_filename,
+          beast2_optionses[[i]]$output_trees_filenames,
+          beast2_optionses[[i]]$output_state_filename
+        )
+      )
+    }
+  }
+
   marg_liks <- mcbette::est_marg_liks_from_models(
-    fasta_filename = fasta_filename,
+    fasta_filename = evidence_fasta_filename,
     inference_models = inference_models,
     beast2_optionses =  beast2_optionses,
     epsilon = evidence_epsilon,
@@ -119,38 +149,41 @@ est_evidences <- function(
       )
     }
   )
+  beautier::check_file_exists(evidence_filename)
+
+  file.remove(evidence_fasta_filename)
 
   # Delete files
-  for (experiment in experiments) {
-    if (file.exists(experiment$beast2_options$output_log_filename)) {
+  for (beast2_options in beast2_optionses) {
+    if (file.exists(beast2_options$output_log_filename)) {
       if (isTRUE(verbose)) {
         print(
           paste0("Deleting file '",
-            experiment$beast2_options$output_log_filename, "'"
+            beast2_options$output_log_filename, "'"
           )
         )
       }
-      file.remove(experiment$beast2_options$output_log_filename)
+      file.remove(beast2_options$output_log_filename)
     }
-    if (file.exists(experiment$beast2_options$output_state_filename)) {
+    if (file.exists(beast2_options$output_state_filename)) {
       if (isTRUE(verbose)) {
         print(
           paste0("Deleting file '",
-            experiment$beast2_options$output_state_filename, "'"
+            beast2_options$output_state_filename, "'"
           )
         )
       }
-      file.remove(experiment$beast2_options$output_state_filename)
+      file.remove(beast2_options$output_state_filename)
     }
-    if (file.exists(experiment$beast2_options$output_trees_filenames)) {
+    if (file.exists(beast2_options$output_trees_filenames)) {
       if (isTRUE(verbose)) {
         print(
           paste0("Deleting file '",
-            experiment$beast2_options$output_trees_filenames, "'"
+            beast2_options$output_trees_filenames, "'"
           )
         )
       }
-      file.remove(experiment$beast2_options$output_trees_filenames)
+      file.remove(beast2_options$output_trees_filenames)
     }
   }
   sum_marg_liks <- sum(marg_liks$weight)

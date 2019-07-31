@@ -339,7 +339,6 @@ test_that("most_evidence, with twinning", {
 
   # Files created
   testit::assert(all(file.exists(filenames)))
-  filenames[!file.exists(filenames)]
 
   expect_true("candidate" %in% errors$inference_model)
 
