@@ -101,9 +101,11 @@ if (rappdirs::app_dir()$os != "win") {
   )
   experiment_1$inference_conditions$do_measure_evidence <- TRUE
   
-  # Must share same BEAST2 options
+  # Must share same BEAST2 options and errors filenae
   experiment_1$beast2_options <- experiment_2$beast2_options
+  experiment_1$errors_filename <- experiment_2$errors_filename
   experiments <- list(experiment_1, experiment_2)
+  check_experiments(experiments)
 } else {
   experiments <- list(experiment_1)  
 }
