@@ -112,6 +112,11 @@ pir_run <- function(
 
     # Save twin tree
     twin_tree_filename <- pir_params$twinning_params$twin_tree_filename
+    # Create a sub-sub-sub folder, don't warn when it already exists
+    dir.create(
+      dirname(twin_tree_filename),
+      showWarnings = FALSE, recursive = TRUE
+    )
     if (isTRUE(pir_params$verbose)) {
       print(paste0("Saving twin tree to '", twin_tree_filename, "'"))
     }
