@@ -38,6 +38,7 @@ check_alignment_params <- function(
     phylogeny_1 <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
     test_1 <- alignment_params$mutation_rate(phylogeny_1)
     phylogeny_2 <- load_tree(tree_model = "mbd", seed = 1) # nolint pirouette function
+    phylogeny_2 <- ape::read.tree(text = "(((A:1, B:1):1, C:2):2, D:4);")
     test_2 <- alignment_params$mutation_rate(phylogeny_2)
     if (!beautier::is_one_double(test_1) || !beautier::is_one_double(test_2)) {
       stop("'mutation_rate' function must return a number")
