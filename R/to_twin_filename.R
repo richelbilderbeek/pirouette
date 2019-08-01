@@ -21,19 +21,8 @@ to_twin_filename <- function(
   }
   testit::assert(beautier::is_one_string(filename))
   # Get the basename with extension
-  base_filename <- NA
-  tryCatch({
-      base_filename <- basename(filename)
-    },
-    error = function(e) {
-      stop(
-        "Cannot take basename of filename '", filename, "' \n",
-        "of class '", class(filename), "' \n",
-        "Error: ", e$message
-      )
-    }
-  )
-  testit::assert(is.character(base_filename))
+  base_filename <- basename(filename)
+  testit::assert(beautier::is_one_string(base_filename))
 
   if (!stringr::str_count(base_filename, pattern = "\\.")) {
     twin_basename <- paste0(base_filename, "_twin")
