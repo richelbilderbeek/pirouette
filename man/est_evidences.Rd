@@ -32,17 +32,19 @@ a data frame with evidences. Returns NULL if there
 Estimate the evidences
 }
 \examples{
-fasta_filename <- system.file(
-  "extdata", "alignment.fas", package = "pirouette"
-)
+if (is_on_travis() &&
+  is_beast2_installed() && is_beast2_ns_pkg_installed()
+) {
+  fasta_filename <- system.file(
+    "extdata", "alignment.fas", package = "pirouette"
+  )
 
-# Create a single one candidate experiment
-experiments <- list(create_test_cand_experiment())
+  # Create a single one candidate experiment
+  experiments <- list(create_test_cand_experiment())
 
-# Be sloppy amd fast in estimating the evidence
-evidence_epsilon <- 100.0
+  # Be sloppy amd fast in estimating the evidence
+  evidence_epsilon <- 100.0
 
-if (is_on_ci() && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
   evidences <- est_evidences(
     fasta_filename = fasta_filename,
     experiments = experiments,
