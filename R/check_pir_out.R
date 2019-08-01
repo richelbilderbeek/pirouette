@@ -45,10 +45,15 @@ check_pir_out <- function(
     stop("Invalid 'inference_model' value")
   }
 
-
-  if (!all(is.na(pir_out$inference_model_weight) |
-      pir_out$inference_model_weight >= 0.0)) {
-    stop("Invalid 'inference_model_weight' value")
+  for (i in seq_along(pir_out$inference_model_weight)) {
+    weight <- pir_out$inference_model_weight[i]
+    if (beautier::is_one_na(weight)) next
+    if (!beautier::is_one_double(weight)) {
+      stop("Each 'model_weight' must be NA or a double")
+    }
+    if (weight < 0.0 || weight > 1.0) {
+      stop("Each 'model_weight' must be a double in range [0.0, 1.0]")
+    }
   }
 
   if (!all(pir_out$site_model %in% beautier::get_site_model_names())) {
