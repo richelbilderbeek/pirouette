@@ -73,6 +73,11 @@ pir_run_twin_tree <- function(
         )
       )
     }
+    # Create a sub-sub-sub folder, don't warn when it already exists
+    dir.create(dirname(
+      errors_filename),
+      showWarnings = FALSE, recursive = TRUE
+    )
     utils::write.csv(
       x = errorses[[i]],
       file = errors_filename
