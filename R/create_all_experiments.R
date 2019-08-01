@@ -96,7 +96,7 @@ create_all_experiments <- function(
   names(all_experiments) <- seq_along(all_experiments)
   all_experiments[sapply(all_experiments, is.null)] <- NULL
 
-  check_experiments(all_experiments)
+  check_experiments(all_experiments) # nolint pirouette function
 
   all_experiments
 }
