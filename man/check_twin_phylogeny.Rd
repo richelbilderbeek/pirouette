@@ -12,6 +12,15 @@ check_twin_phylogeny(twin_phylogeny)
 \description{
 Check if a twin phylogeny is a valid phylogeny
 }
+\examples{
+library(testthat)
+
+phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+expect_silent(check_twin_phylogeny(phylogeny))
+expect_error(check_twin_phylogeny("nonsense"))
+expect_error(check_twin_phylogeny(NULL))
+expect_error(check_twin_phylogeny(NA))
+}
 \seealso{
 Use \link[beautier]{check_phylogeny}
 for checking phylogenies in general

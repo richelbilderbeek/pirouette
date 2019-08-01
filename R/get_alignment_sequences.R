@@ -2,6 +2,12 @@
 #'
 #' @inheritParams default_params_doc
 #' @return a numeric vector with the sequences
+#' @examples
+#' get_alignment_sequences(
+#'   alignment = ape::as.DNAbin(
+#'     x = list(species_1 = strsplit("aaaa", split = "")[[1]])
+#'   )
+#' )
 #' @export
 get_alignment_sequences <- function(
   alignment,

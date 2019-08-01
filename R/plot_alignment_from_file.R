@@ -2,6 +2,15 @@
 #'
 #' @inheritParams default_params_doc
 #' @param title the plot title
+#' alignment_params <- create_alignment_params(
+#'   root_sequence = root_sequence,
+#'   mutation_rate = 0.1
+#' )
+#' alignment <- create_alignment_file(
+#'   phylogeny = ape::rcoal(4),
+#'   alignment_params = alignment_params
+#' )
+#' plot_alignment_from_file(fasta_filename = alignment_params$fasta_filename)
 #' @export
 plot_alignment_from_file <- function(
   fasta_filename,

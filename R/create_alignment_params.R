@@ -71,8 +71,12 @@ create_alignment_params <- function(
 #' Create testing parameters for the alignment simulation.
 #' @inheritParams default_params_doc
 #' @return a list of alignment parameters
-#' @export
+#' library(testthat)
+#'
+#' alignment_params <- create_test_alignment_params()
+#' expect_silent(check_alignment_params(alignment_params))
 #' @author Richèl J.C. Bilderbeek
+#' @export
 create_test_alignment_params <- function(
   root_sequence = "acgt",
   mutation_rate = pirouette::create_standard_mutation_rate,

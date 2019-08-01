@@ -17,3 +17,10 @@ a numeric vector with the sequences
 \description{
 Get the sequences from an alignment
 }
+\examples{
+get_alignment_sequences(
+  alignment = ape::as.DNAbin(
+    x = list(species_1 = strsplit("aaaa", split = "")[[1]])
+  )
+)
+}

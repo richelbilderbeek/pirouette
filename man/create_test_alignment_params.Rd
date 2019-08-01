@@ -28,6 +28,10 @@ as created by \link[beautier]{create_clock_model}}
 }
 \value{
 a list of alignment parameters
+library(testthat)
+
+alignment_params <- create_test_alignment_params()
+expect_silent(check_alignment_params(alignment_params))
 }
 \description{
 Create testing parameters for the alignment simulation.

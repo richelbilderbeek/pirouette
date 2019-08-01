@@ -15,6 +15,11 @@ one has to be the first in the list.}
 \description{
 Extract the filesnames in the experiments
 }
+\examples{
+get_experiments_filenames(
+  experiments = list(create_test_experiment())
+)
+}
 \author{
 Richèl J.C. Bilderbeek
 }

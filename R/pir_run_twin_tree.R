@@ -4,8 +4,10 @@
 #' @inheritParams default_params_doc
 #' @return a data frame with errors, with as many rows as model selection
 #'   parameter sets
-#' @export
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#' pir_run_twin_tree(twin_phylogeny = ape::rcoal(4))
+#' @export
 pir_run_twin_tree <- function(
   twin_phylogeny,
   pir_params = create_test_pir_params()

@@ -25,6 +25,43 @@ nothing
 \description{
 The simulation is performed by \link{create_twin_alignment}.
 }
+\examples{
+library(testthat)
+
+# Create a true phylogeny to simulate the DNA sequences on
+n_taxa <- 5
+set.seed(1); phylogeny <- ape::rcoal(n_taxa)
+
+# Create the ancestor's DNA sequence
+n_base_pairs <- 4
+root_sequence <- create_blocked_dna(length = n_base_pairs)
+
+# Simulate and save the true alignment
+alignment_params <- create_alignment_params(
+ root_sequence = root_sequence,
+ mutation_rate = 0.1
+)
+create_alignment_file(
+ phylogeny = phylogeny,
+ alignment_params = alignment_params
+)
+
+# Create a twin phylogeny to simulate the DNA sequences on
+set.seed(2); twin_phylogeny <- ape::rcoal(n_taxa)
+
+# File does not exist yet
+twinning_params <- create_twinning_params()
+expect_true(!file.exists(twinning_params$twin_alignment_filename))
+
+# Simulate and save the twin alignment
+alignment <- create_twin_alignment_file(
+ twin_phylogeny = twin_phylogeny,
+ alignment_params = alignment_params,
+ twinning_params = twinning_params
+)
+# File does exist now
+expect_true(file.exists(twinning_params$twin_alignment_filename))
+}
 \seealso{
 Use \link{create_twin_alignment} to only simulate
   the twin alignment, without saving the alignment to file
