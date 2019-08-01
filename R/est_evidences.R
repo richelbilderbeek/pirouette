@@ -137,6 +137,13 @@ est_evidences <- function(
   if (verbose == TRUE) {
     print(marg_liks)
   }
+
+  # Create a sub-sub-folder for the evidence file to be put in,
+  # do not warn if it already exists
+  dir.create(
+    dirname(evidence_filename),
+    recursive = TRUE, showWarnings = FALSE
+  )
   tryCatch(
     utils::write.csv(
       x = marg_liks, file = evidence_filename
