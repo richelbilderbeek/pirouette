@@ -98,7 +98,7 @@ pir_params <- create_test_pir_params(
   twinning_params = create_twinning_params()
 )
 
-if (rappdirs::app_dir()$os &&
+if (rappdirs::app_dir()$os != "win" &&
   is_on_ci() && is_beast2_installed()
 ) {
 
