@@ -66,10 +66,10 @@ check_twinning_params <- function(
     stop("'n_replicates' must be a finite positive integer number")
   }
 
-  if (!beautier::is_one_string(twinning_params$twin_tree_filename)) {
+  if (!assertive::is_a_string(twinning_params$twin_tree_filename)) {
     stop("'twin_tree_filename' must be a character vector")
   }
-  if (!beautier::is_one_string(twinning_params$twin_alignment_filename)) {
+  if (!assertive::is_a_string(twinning_params$twin_alignment_filename)) {
     stop("'twin_alignment_filename' must be a character vector")
   }
   if (!is.character(twinning_params$twin_evidence_filename)) {
