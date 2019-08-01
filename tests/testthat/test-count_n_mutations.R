@@ -229,24 +229,6 @@ test_that("abuse", {
   )
 })
 
-test_that("Simplified version of bug #269", {
-
-  true_tree <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
-  root_sequence <- create_blocked_dna(8)
-  alignment <- create_true_alignment(
-    true_phylogeny = true_tree,
-    alignment_params = create_test_alignment_params(
-      root_sequence = root_sequence,
-      mutation_rate = 0.0
-    )
-  )
-  image(alignment)
-  expect_equal(
-    0,
-    count_n_mutations(alignment = alignment, root_sequence = root_sequence)
-  )
-})
-
 test_that("Bug #269, no mutations for mutation rate zero", {
 
   # Thanks to @thijsjanzen for finding and sharing this bug

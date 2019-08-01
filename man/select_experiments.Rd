@@ -32,23 +32,25 @@ evidences <- create_test_marg_liks(
 )
 evidences$weight <- c(0.9, 0.1) # in favor of Yule
 
-experiment_yule <- create_test_cand_experiment()
-experiment_bd <- create_test_cand_experiment()
-experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
-experiment_yule$beast2_options <- experiment_bd$beast2_options
-experiment_yule$errors_filename <- experiment_bd$errors_filename
-experiments <- list(experiment_yule, experiment_bd)
+if (rappdirs::app_dir()$os != "win") {
+  experiment_yule <- create_test_cand_experiment()
+  experiment_bd <- create_test_cand_experiment()
+  experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
+  experiment_yule$beast2_options <- experiment_bd$beast2_options
+  experiment_yule$errors_filename <- experiment_bd$errors_filename
+  experiments <- list(experiment_yule, experiment_bd)
 
-# Select the experiment.
-# In this case, select the candidate experiment with the highest evidence
-selected <- select_experiments(
-  experiments = experiments,
-  marg_liks = evidences
-)
+  # Select the experiment.
+  # In this case, select the candidate experiment with the highest evidence
+  selected <- select_experiments(
+    experiments = experiments,
+    marg_liks = evidences
+  )
 
-library(testthat)
-expect_equal(1, length(selected))
-expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
+  library(testthat)
+  expect_equal(1, length(selected))
+  expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
+}
 }
 \seealso{
 Use \link{check_experiments} to check if an object

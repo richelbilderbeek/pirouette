@@ -29,6 +29,7 @@ test_that("check usage with brts coming from the same tree", {
   max_seed <- 5
   for (seed in 1:max_seed) {
     tree <- load_tree(seed = seed)
+    tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
     brts <- pirouette:::convert_tree2brts(tree)
 
     test <- combine_brts_and_topology(
@@ -36,19 +37,19 @@ test_that("check usage with brts coming from the same tree", {
       tree = tree
     )
 
-    testthat::expect_true(
+    expect_true(
       all(test$edge == tree$edge)
     )
-    testthat::expect_true(
+    expect_true(
       all(test$Nnode == tree$Nnode)
     )
-    testthat::expect_true(
+    expect_true(
       all(test$tip.label == tree$tip.label)
     )
-    testthat::expect_true(
+    expect_true(
       all(test$root.edge == tree$root.edge)
     )
-    testthat::expect_true(
+    expect_true(
       max(unname(test$edge.length) - tree$edge.length) <
         max(tree$edge.length * 1e-6)
     )
@@ -59,7 +60,7 @@ test_that("all the tree features (but the branching times) are preserved", {
 
   max_seed <- 5
   for (seed in 1:max_seed) {
-    tree <- load_tree(tree_model = "mbd", seed = seed)
+    tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
     brts <- sort(c(
       age <- max(pirouette:::convert_tree2brts(tree)),
@@ -75,16 +76,16 @@ test_that("all the tree features (but the branching times) are preserved", {
       tree = tree
     )
 
-    testthat::expect_true(
+    expect_true(
       all(test$edge == tree$edge)
     )
-    testthat::expect_true(
+    expect_true(
       all(test$Nnode == tree$Nnode)
     )
-    testthat::expect_true(
+    expect_true(
       all(test$tip.label == tree$tip.label)
     )
-    testthat::expect_true(
+    expect_true(
       all(test$root.edge == tree$root.edge)
     )
   }
@@ -92,11 +93,11 @@ test_that("all the tree features (but the branching times) are preserved", {
 
 test_that("abuse", {
 
-  tree <- load_tree(tree_model = "mbd", seed = 1)
+  tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   brts0 <- pirouette:::convert_tree2brts(tree)
   brts <- brts0[1:floor(length(brts0) / 2)]
 
-  testthat::expect_error(
+  expect_error(
     combine_brts_and_topology(
       brts = brts,
       tree = tree

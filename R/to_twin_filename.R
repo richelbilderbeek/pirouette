@@ -13,16 +13,16 @@
 to_twin_filename <- function(
   filename
 ) {
-  if (!beautier::is_one_string(filename)) {
+  if (!assertive::is_a_string(filename)) {
     stop(
       "'filename' must be one string. \n",
       "Actual value: ", filename
     )
   }
-  testit::assert(beautier::is_one_string(filename))
+  testit::assert(assertive::is_a_string(filename))
   # Get the basename with extension
   base_filename <- basename(filename)
-  testit::assert(beautier::is_one_string(base_filename))
+  testit::assert(assertive::is_a_string(base_filename))
 
   if (!stringr::str_count(base_filename, pattern = "\\.")) {
     twin_basename <- paste0(base_filename, "_twin")

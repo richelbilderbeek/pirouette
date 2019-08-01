@@ -53,7 +53,12 @@ est_evidences <- function(
   }
   # Must use a different FASTA file name, else the evidence estimation
   # will overwrite normal inference files
-  evidence_fasta_filename <- to_evidence_filename(fasta_filename)
+  evidence_fasta_filename <- to_evidence_filename(fasta_filename) # nolint pirouette function
+  # Create the subsubsubfolder for target, do not warn if it already exists
+  dir.create(
+    dirname(evidence_fasta_filename),
+    recursive = TRUE, showWarnings = FALSE
+  )
   file.copy(from = fasta_filename, to = evidence_fasta_filename)
   beautier::check_file_exists(evidence_fasta_filename)
   if (isTRUE(verbose)) {

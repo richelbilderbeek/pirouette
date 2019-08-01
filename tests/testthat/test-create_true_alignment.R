@@ -117,25 +117,6 @@ test_that("create_true_alignment: abuse", {
 
 })
 
-test_that("no mutations when mutation rate is zero", {
-  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  sequence_length <- 1000
-  root_sequence <- create_mono_nuc_dna(length = sequence_length)
-  alignment_params <- create_alignment_params(
-    root_sequence = root_sequence,
-    mutation_rate = 0.0
-  )
-  alignment <- create_true_alignment(
-    true_phylogeny = phylogeny,
-    alignment_params = alignment_params
-  )
-  n_mutations <- count_n_mutations(
-    alignment = alignment,
-    root_sequence = root_sequence
-  )
-  expect_equal(0, n_mutations)
-})
-
 test_that("low mutation rate must have less mutations", {
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   sequence_length <- 1000
