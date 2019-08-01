@@ -144,17 +144,9 @@ est_evidences <- function(
     dirname(evidence_filename),
     recursive = TRUE, showWarnings = FALSE
   )
-  tryCatch(
-    utils::write.csv(
-      x = marg_liks, file = evidence_filename
-    ),
-    error = function(e) {
-      stop(
-        "Saving evidence to file failed. \n",
-        "Filename: ", evidence_filename, "\n",
-        "Error: ", e$message
-      )
-    }
+  utils::write.csv(
+    x = marg_liks,
+    file = evidence_filename
   )
   beautier::check_file_exists(evidence_filename)
 
