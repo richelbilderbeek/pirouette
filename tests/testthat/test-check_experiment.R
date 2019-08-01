@@ -2,8 +2,10 @@ context("test-check_experiment")
 
 test_that("use", {
   expect_silent(check_experiment(create_experiment()))
-  expect_silent(check_experiment(create_cand_experiment()))
   expect_silent(check_experiment(create_gen_experiment()))
+
+  if (rappdirs::app_dir()$os == "win") return()
+  expect_silent(check_experiment(create_cand_experiment()))
 })
 
 test_that("wrong parameter names", {
