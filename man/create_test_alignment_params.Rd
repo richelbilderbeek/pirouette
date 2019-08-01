@@ -5,7 +5,8 @@
 \title{Create testing parameters for the alignment simulation.}
 \usage{
 create_test_alignment_params(root_sequence = "acgt",
-  mutation_rate = 0.1, site_model = beautier::create_jc69_site_model(),
+  mutation_rate = pirouette::create_standard_mutation_rate,
+  site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
   fasta_filename = tempfile(pattern = "alignment_", fileext = ".fasta"))
 }
