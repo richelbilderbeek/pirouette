@@ -370,17 +370,10 @@ pir_to_pics_twin <- function(
   # Hist
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
-    if (!file.exists(to_twin_filename(first_experiment$errors_filename))) {
-      stop(
-        "File not found for the first (generative) experiment's twin errors ",
-          "filename. \n",
-        "Filename: ", to_twin_filename(first_experiment$errors_filename), "\n",
-        "Untwinned filename: ", first_experiment$errors_filename
-      )
-    }
-    testit::assert(
-      file.exists(to_twin_filename(first_experiment$errors_filename))
+    beautier::check_file_exists(
+      to_twin_filename(first_experiment$errors_filename)
     )
+
     df_errors_twin_gen <- data.frame(
       error = utils::read.csv(
         to_twin_filename(first_experiment$errors_filename)
