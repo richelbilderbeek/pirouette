@@ -51,15 +51,6 @@ create_pir_params_twin <- function(
         ]
     )
     for (ii in seq_along(filenames)) {
-      if (!is.character(filenames[ii])) {
-        stop(
-          "ii:\n", ii, " \n",
-          "filenames[ii]:\n", filenames[ii], " \n",
-          "class(filenames[ii]):\n", class(filenames[ii]), " \n",
-          "pir_params$experiments[[i]]$beast2_options:\n",
-          pir_params$experiments[[i]]$beast2_options, " \n"
-        )
-      }
       testit::assert(is.character(filenames[ii]))
       pir_params_twin$experiments[[i]]$beast2_options[ii] <-
         to_twin_filename(filenames[ii]) # nolint pirouette function
