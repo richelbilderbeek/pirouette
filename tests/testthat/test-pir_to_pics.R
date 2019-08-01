@@ -53,6 +53,7 @@ test_that("use", {
       file.path(folder, "twin_error_violin_best.png")
     )
   }
+  file.remove(expected_filenames)
   expect_true(all(!file.exists(expected_filenames)))
 
   created_filenames <- pir_to_pics(
