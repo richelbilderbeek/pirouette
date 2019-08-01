@@ -67,10 +67,13 @@ create_pir_params <- function(
 #' @inheritParams default_params_doc
 #' @return a list with all \link{pirouette} parameters
 #' @examples
-#' pir_params <- create_test_pir_params()
-#' check_pir_params(pir_params)
+#' if (rappdirs::app_dir()$os != "win" &&
+#'   is_on_ci() &&
+#'   is_beast2_installed()
+#' ) {
+#'   pir_params <- create_test_pir_params()
+#'   check_pir_params(pir_params)
 #'
-#'  if (is_on_ci() && is_beast2_installed()) {
 #'   pir_out <- pir_run(
 #'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'     pir_params = pir_params
