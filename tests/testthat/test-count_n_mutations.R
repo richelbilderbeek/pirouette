@@ -273,3 +273,20 @@ test_that("Bug #269, no mutations for mutation rate zero", {
     count_n_mutations(alignment = alignment, root_sequence = root_sequence)
   )
 })
+
+
+
+
+test_that("use, verbose", {
+
+  alignment <- ape::as.DNAbin(
+    x = list(species_1 = strsplit("aagg", split = "")[[1]])
+  )
+  expect_output(
+    count_n_mutations(
+      alignment = alignment,
+      root_sequence = "aaaa",
+      verbose = TRUE
+    )
+  )
+})
