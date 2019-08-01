@@ -81,10 +81,10 @@ check_experiments <- function(
         input_filename_2 <- experiment_2$beast2_options$input_filename
         output_log_filename_1 <- experiment_1$beast2_options$output_log_filename
         output_log_filename_2 <- experiment_2$beast2_options$output_log_filename
-        output_trees_filenames_1 <- experiment_1$beast2_options$output_trees_filenames
-        output_trees_filenames_2 <- experiment_2$beast2_options$output_trees_filenames
-        output_state_filename_1 <- experiment_1$beast2_options$output_state_filename
-        output_state_filename_2 <- experiment_2$beast2_options$output_state_filename
+        output_trees_filenames_1 <- experiment_1$beast2_options$output_trees_filenames # nolint long names indeed, sorry Demeter
+        output_trees_filenames_2 <- experiment_2$beast2_options$output_trees_filenames # nolint long names indeed, sorry Demeter
+        output_state_filename_1 <- experiment_1$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
+        output_state_filename_2 <- experiment_2$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
         if (input_filename_1 != input_filename_2) {
           stop(
             "Candidate models must have same BEAST2 input filename. \n",
