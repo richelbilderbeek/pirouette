@@ -38,7 +38,9 @@ as given by \code{alignment_params}.
   )
 
   errors <- NA
-  if (is_on_ci() && is_beast2_installed()) {
+  if (rappdirs::app_dir()$os != "win" &&
+    is_on_ci() && is_beast2_installed()
+  ) {
     errors <- pir_run(
       phylogeny = phylogeny,
       pir_params = pir_params
