@@ -98,7 +98,9 @@ pir_params <- create_test_pir_params(
   twinning_params = create_twinning_params()
 )
 
-if (is_on_ci() && is_beast2_installed()) {
+if (rappdirs::app_dir()$os &&
+  is_on_ci() && is_beast2_installed()
+) {
 
   pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 
