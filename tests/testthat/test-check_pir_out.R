@@ -97,10 +97,9 @@ test_that("abuse", {
   pir_out$error_1 <- -123.456
   expect_error(check_pir_out(pir_out))
 
-  skip("Not now")
   # error_1
   pir_out <- good_pir_out
   expect_silent(check_pir_out(pir_out))
-  pir_out$error_1 <- "nonsense"
+  pir_out$error_1[2] <- "nonsense"
   expect_error(check_pir_out(pir_out))
 })
