@@ -10,6 +10,7 @@ errorses_to_data_frame <- function(
   testit::assert(length(errorses) > 0)
   testit::assert(length(experiments) == length(errorses))
   if (length(errorses) > 1) {
+    testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
     if (length(errorses[[1]]) != length(errorses[[2]])) {
       warning(
         "Lengths between errorses differ (", length(errorses[[1]]),
