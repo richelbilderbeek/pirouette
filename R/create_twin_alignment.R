@@ -112,7 +112,6 @@ create_twin_alignment <- function(
         )
       )
     }
-    if (attempt == 10000) stop("Too many attempts")
   }
   twin_alignment
 }
