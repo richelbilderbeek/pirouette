@@ -45,8 +45,10 @@ create_alignment_impl <- function(
     stop("phylogeny must not contain extant species")
   }
   testit::assert(beautier::is_one_int(rng_seed))
-  testit::assert(beautier::is_one_double(mutation_rate))
-  testit::assert(mutation_rate >= 0.0)
+  testit::assert(
+    is.function(mutation_rate) ||
+    beautier::is_one_double(mutation_rate)
+  )
   beautier::check_site_model(site_model)
   testit::assert(
     beautier::is_one_int(n_mutations) ||
@@ -56,15 +58,16 @@ create_alignment_impl <- function(
     beautier::is_one_na(n_mutations) ||
     n_mutations >= 0
   )
-  if (!beautier::is_one_na(n_mutations) && n_mutations > 0) {
-    testit::assert(mutation_rate > 0.0)
-  }
   testit::assert(beautier::is_one_bool(verbose))
 
   # If mutation_rate is function, apply it to the phylogeny
   if (is.function(mutation_rate)) {
     mutation_function <- mutation_rate
     mutation_rate <- mutation_function(phylogeny)
+  }
+  testit::assert(mutation_rate >= 0.0)
+  if (!beautier::is_one_na(n_mutations) && n_mutations > 0) {
+    testit::assert(mutation_rate > 0.0)
   }
 
   if (!beautier::is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
