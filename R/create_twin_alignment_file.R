@@ -42,6 +42,11 @@ create_twin_alignment_file <- function(
 
   # Save
   twin_alignment_filename <- twinning_params$twin_alignment_filename
+  # Create a sub-sub-sub folder, don't warn when it already exists
+  dir.create(dirname(
+    twin_alignment_filename),
+    showWarnings = FALSE, recursive = TRUE
+  )
   if (isTRUE(verbose)) {
     print(paste0("Saving twin alignment to '", twin_alignment_filename, "'"))
   }
