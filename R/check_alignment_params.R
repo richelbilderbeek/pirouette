@@ -41,11 +41,11 @@ check_alignment_params <- function(
       stop("'mutation_rate' function must return a number")
     }
     if (mutation_rate <= 0.0) {
-      stop("'mutation_rate' function must return a positive value")
+      stop("'mutation_rate' function must return non-zero and positive value")
     }
   } else {
-    if (alignment_params$mutation_rate < 0.0) {
-      stop("'mutation_rate' must be a positive value")
+    if (alignment_params$mutation_rate <= 0.0) {
+      stop("'mutation_rate' must be a non-zero and positive value")
     }
   }
   if (!beautier::is_one_int(alignment_params$rng_seed)) {

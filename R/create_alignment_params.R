@@ -50,7 +50,7 @@
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
-  mutation_rate = 0.0,
+  mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,
@@ -75,7 +75,7 @@ create_alignment_params <- function(
 #' @author Richèl J.C. Bilderbeek
 create_test_alignment_params <- function(
   root_sequence = "acgt",
-  mutation_rate = 0.1,
+  mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,

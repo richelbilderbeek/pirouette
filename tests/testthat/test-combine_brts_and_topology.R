@@ -60,6 +60,7 @@ test_that("all the tree features (but the branching times) are preserved", {
   max_seed <- 5
   for (seed in 1:max_seed) {
     tree <- load_tree(tree_model = "mbd", seed = seed)
+    tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
     brts <- sort(c(
       age <- max(pirouette:::convert_tree2brts(tree)),
@@ -93,6 +94,7 @@ test_that("all the tree features (but the branching times) are preserved", {
 test_that("abuse", {
 
   tree <- load_tree(tree_model = "mbd", seed = 1)
+  tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   brts0 <- pirouette:::convert_tree2brts(tree)
   brts <- brts0[1:floor(length(brts0) / 2)]
 
