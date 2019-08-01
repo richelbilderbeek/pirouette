@@ -53,10 +53,7 @@ test_that("use", {
       file.path(folder, "twin_error_violin_best.png")
     )
   }
-  if (1 == 2) {
-    # Perhaps in an ideal world
-    expect_true(all(!file.exists(expected_filenames)))
-  }
+  expect_true(all(!file.exists(expected_filenames)))
 
   created_filenames <- pir_to_pics(
     phylogeny = phylogeny,
