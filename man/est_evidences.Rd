@@ -32,7 +32,7 @@ a data frame with evidences. Returns NULL if there
 Estimate the evidences
 }
 \examples{
-if (is_on_travis() &&
+if (rappdirs::app_dir()$os != "win" && is_on_travis() &&
   is_beast2_installed() && is_beast2_ns_pkg_installed()
 ) {
   fasta_filename <- system.file(
