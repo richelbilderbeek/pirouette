@@ -57,7 +57,9 @@ experiment <- create_experiment(
 )
 experiments <- list(experiment)
 
-if (is_on_ci() && is_beast2_installed()) {
+if (rappdirs::app_dir()$os != "win" &&
+  is_on_ci() && is_beast2_installed()
+) {
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
