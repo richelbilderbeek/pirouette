@@ -83,13 +83,13 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
   )
   expect_error(
     check_experiments(list(cand_experiment_1, cand_experiment_2)),
-    "Candidate models must have same beast2_options filename"
+    "Candidate models must have same BEAST2 input filename"
   )
   expect_error(
     check_experiments(
       list(gen_experiment, cand_experiment_1, cand_experiment_2)
     ),
-    "Candidate models must have same beast2_options filename"
+    "Candidate models must have same BEAST2 input filename"
   )
 
   # Fix BEAST2 options
@@ -110,4 +110,58 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
       list(gen_experiment, cand_experiment_1, cand_experiment_2)
     )
   )
+})
+
+test_that("differ each beast2_options_filename and error filename", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
+  experiment_1 <- create_test_cand_experiment()
+  experiment_2 <- experiment_1
+  expect_silent(check_experiments(list(experiment_1, experiment_2)))
+
+  # BEAST2 input filename
+  experiment_2$beast2_options$input_filename <- "different"
+  expect_error(
+    check_experiments(list(experiment_1, experiment_2)),
+    "Candidate models must have same BEAST2 input filename"
+  )
+  experiment_2 <- experiment_1
+  expect_silent(check_experiments(list(experiment_1, experiment_2)))
+
+  # BEAST2 output log filename
+  experiment_2$beast2_options$output_log_filename <- "different"
+  expect_error(
+    check_experiments(list(experiment_1, experiment_2)),
+    "Candidate models must have same BEAST2 output log filename"
+  )
+  experiment_2 <- experiment_1
+  expect_silent(check_experiments(list(experiment_1, experiment_2)))
+
+  # BEAST2 output trees filenames
+  experiment_2$beast2_options$output_trees_filenames <- "different"
+  expect_error(
+    check_experiments(list(experiment_1, experiment_2)),
+    "Candidate models must have same BEAST2 output trees filename"
+  )
+  experiment_2 <- experiment_1
+  expect_silent(check_experiments(list(experiment_1, experiment_2)))
+
+  # BEAST2 output state
+  experiment_2$beast2_options$output_state_filename <- "different"
+  expect_error(
+    check_experiments(list(experiment_1, experiment_2)),
+    "Candidate models must have same BEAST2 output state filename"
+  )
+  experiment_2 <- experiment_1
+  expect_silent(check_experiments(list(experiment_1, experiment_2)))
+
+  # Errors filename
+  experiment_2$errors_filename <- "different.csv"
+  expect_error(
+    check_experiments(list(experiment_1, experiment_2)),
+    "Candidate models must have same errors filename"
+  )
+  experiment_2 <- experiment_1
+  expect_silent(check_experiments(list(experiment_1, experiment_2)))
 })
