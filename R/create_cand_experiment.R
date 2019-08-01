@@ -32,7 +32,9 @@
 #'   experiments = list(experiment)
 #' )
 #'
-#'  if (is_on_ci() && is_beast2_installed()) {
+#'  if (rappdirs::app_dir()$os != "win" &&
+#'    is_on_ci() && is_beast2_installed()
+#'  ) {
 #'   pir_out <- pir_run(
 #'     phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
 #'     pir_params = pir_params
