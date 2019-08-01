@@ -1,10 +1,9 @@
 context("test-check_experiment")
 
 test_that("use", {
-
-  check_experiment(create_experiment())
-
   expect_silent(check_experiment(create_experiment()))
+  expect_silent(check_experiment(create_cand_experiment()))
+  expect_silent(check_experiment(create_gen_experiment()))
 })
 
 test_that("wrong parameter names", {
