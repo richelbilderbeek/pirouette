@@ -37,8 +37,6 @@ create_alignment_file(
 
 # Create a twin phylogeny to simulate the DNA sequences on
 set.seed(2); twin_phylogeny <- ape::rcoal(n_taxa)
-
-# File does not exist yet
 twinning_params <- create_twinning_params()
 
 # Simulate and save the twin alignment
