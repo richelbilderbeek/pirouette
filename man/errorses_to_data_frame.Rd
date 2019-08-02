@@ -36,7 +36,7 @@ pir_params <- create_pir_params(
 
 create_alignment_file(
   phylogeny = phylogeny,
-  alignment_params = alignment_params,
+  alignment_params = pir_params$alignment_params,
   verbose = FALSE
 )
 

@@ -6,7 +6,43 @@
 #'   parameter sets
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#' pir_run_twin_tree(twin_phylogeny = ape::rcoal(4))
+#'
+#' # Create a true phylogeny to simulate the DNA sequences on
+#' n_taxa <- 5
+#' set.seed(1); phylogeny <- ape::rcoal(n_taxa)
+#'
+#' # Simulate and save the true alignment
+#' alignment_params <- create_alignment_params(
+#'   root_sequence = create_blocked_dna(length = 4),
+#'   mutation_rate = 0.1
+#' )
+#' create_alignment_file(
+#'   phylogeny = phylogeny,
+#'   alignment_params = alignment_params
+#' )
+#'
+#' # Create a twin phylogeny to simulate the DNA sequences on
+#' set.seed(2); twin_phylogeny <- ape::rcoal(n_taxa)
+#'
+#' # File does not exist yet
+#' twinning_params <- create_twinning_params()
+#'
+#' # Simulate and save the twin alignment
+#' alignment <- create_twin_alignment_file(
+#'   twin_phylogeny = twin_phylogeny,
+#'   alignment_params = alignment_params,
+#'   twinning_params = twinning_params
+#' )
+#'
+#' # Bundle parameters in pir_params
+#' pir_params <- create_test_pir_params()
+#' pir_params$alignment_params <- alignment_params
+#' pir_params$twinning_params <- twinning_params
+#'
+#' pir_run_twin_tree(
+#'   twin_phylogeny = twin_phylogeny,
+#'   pir_params = pir_params
+#' )
 #' @export
 pir_run_twin_tree <- function(
   twin_phylogeny,

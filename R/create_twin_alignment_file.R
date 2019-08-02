@@ -19,12 +19,12 @@
 #'
 #' # Simulate and save the true alignment
 #' alignment_params <- create_alignment_params(
-#'  root_sequence = root_sequence,
-#'  mutation_rate = 0.1
+#'   root_sequence = root_sequence,
+#'   mutation_rate = 0.1
 #' )
 #' create_alignment_file(
-#'  phylogeny = phylogeny,
-#'  alignment_params = alignment_params
+#'   phylogeny = phylogeny,
+#'   alignment_params = alignment_params
 #' )
 #'
 #' # Create a twin phylogeny to simulate the DNA sequences on
