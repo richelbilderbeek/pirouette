@@ -49,7 +49,7 @@ test_that("all the tree features (but the branching times) are preserved", {
   tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   brts <- sort(c(
-    max(pirouette:::convert_tree2brts(tree)),
+    age <- max(pirouette:::convert_tree2brts(tree)),
     runif(
       n = (length(pirouette:::convert_tree2brts(tree)) - 1),
       min = 0,
