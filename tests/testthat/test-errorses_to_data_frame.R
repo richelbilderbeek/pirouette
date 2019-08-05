@@ -2,9 +2,6 @@ context("test-errorses_to_data_frame")
 
 test_that("use", {
 
-  skip("ISSUE #308: This is still a stub")
-  # In memoriam :-(
-
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   pir_params <- create_pir_params(
@@ -18,7 +15,7 @@ test_that("use", {
 
   create_alignment_file(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
+    alignment_params = pir_params$alignment_params,
     verbose = FALSE
   )
 
@@ -41,11 +38,15 @@ test_that("use", {
     )
   )
   expect_true(is.data.frame(df))
+  expected_column_names <- c(
+    "tree", "inference_model", "inference_model_weight",
+    "site_model", "clock_model", "tree_prior",
+    "error_1", "error_2", "error_3"
+  )
+  expect_true(all(expected_column_names %in% names(df)))
 })
 
 test_that("abuse", {
-
-  skip("ISSUE #308: This is still a stub")
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
@@ -60,7 +61,7 @@ test_that("abuse", {
 
   create_alignment_file(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
+    alignment_params = pir_params$alignment_params,
     verbose = FALSE
   )
 
@@ -86,6 +87,6 @@ test_that("abuse", {
         tree_priors = list(create_yule_tree_prior())
       )
     ),
-    "length(errorses[[1]]) == length(errorses[[2]]) is not TRUE"
+    "length.*1.*==.*length.*2.*is not TRUE"
   )
 })
