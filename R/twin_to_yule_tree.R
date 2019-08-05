@@ -49,11 +49,7 @@ twin_to_yule_tree <- function(
   mu <- 0
   lambda <- mu + difference
 
-  if (rappdirs::app_dir()$os != "win") {
-    sink(tempfile())
-  } else {
-    sink(rappdirs::user_cache_dir())
-  }
+  sink(tempfile())
   yule_pars <- DDD::bd_ML(
     brts = sort(phylo_brts, decreasing = TRUE),
     cond = 1, #conditioning on stem or crown age # nolint

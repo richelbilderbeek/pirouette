@@ -14,6 +14,13 @@ get_alignment_n_taxa(alignment, verbose = FALSE)
 \description{
 Get the number of taxa of an alignment
 }
+\examples{
+get_alignment_n_taxa(
+  alignment = ape::as.DNAbin(
+    x = list(species_1 = strsplit("aaaa", split = "")[[1]])
+  )
+)
+}
 \author{
 Richèl J.C. Bilderbeek
 }

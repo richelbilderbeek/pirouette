@@ -4,6 +4,13 @@
 #'   By default, this is a temporary folder
 #' @return the names of all files created
 #' @author Richèl J.C. Bilderbeek
+#' @examples
+#' pir_params <- create_test_pir_params()
+#' pir_run_true_tree(
+#'   true_phylogeny = ape::rcoal(4),
+#'   pir_params = pir_params
+#' )
+#' file.exists(pir_to_tables(pir_params = pir_params))
 #' @export
 pir_to_tables <- function(
   pir_params,

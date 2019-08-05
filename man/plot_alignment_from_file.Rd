@@ -9,7 +9,16 @@ plot_alignment_from_file(fasta_filename, title = "")
 \arguments{
 \item{fasta_filename}{name of a FASTA file}
 
-\item{title}{the plot title}
+\item{title}{the plot title
+alignment_params <- create_alignment_params(
+  root_sequence = root_sequence,
+  mutation_rate = 0.1
+)
+alignment <- create_alignment_file(
+  phylogeny = ape::rcoal(4),
+  alignment_params = alignment_params
+)
+plot_alignment_from_file(fasta_filename = alignment_params$fasta_filename)}
 }
 \description{
 Plot an alignment stored as a file

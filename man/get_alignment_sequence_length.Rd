@@ -14,6 +14,13 @@ It appears DNAbin stores its internals differently for
 alignments of different sizes. Due to that, this
 function is more complicated as one would expect
 }
+\examples{
+get_alignment_sequence_length(
+  alignment = ape::as.DNAbin(
+    x = list(species_1 = strsplit("aaaa", split = "")[[1]])
+  )
+)
+}
 \author{
 Richèl J.C. Bilderbeek
 }

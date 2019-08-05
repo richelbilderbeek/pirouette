@@ -19,6 +19,14 @@ the names of all files created
 \description{
 Create all tables to checks \link{pirouette} pipeline
 }
+\examples{
+pir_params <- create_test_pir_params()
+pir_run_true_tree(
+  true_phylogeny = ape::rcoal(4),
+  pir_params = pir_params
+)
+file.exists(pir_to_tables(pir_params = pir_params))
+}
 \author{
 Richèl J.C. Bilderbeek
 }

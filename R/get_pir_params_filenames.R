@@ -1,6 +1,14 @@
 #' Extract the filenames from a \code{pir_params}
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
+#' @examples
+#' pir_params <- create_pir_params(
+#'   alignment_params = create_test_alignment_params(),
+#'   experiments = list(create_test_experiment())
+#' )
+#' get_pir_params_filenames(
+#'   pir_params = pir_params
+#' )
 #' @export
 get_pir_params_filenames <- function(pir_params) {
   check_pir_params(pir_params) # nolint pirouette function

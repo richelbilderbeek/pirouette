@@ -19,6 +19,9 @@ a data frame with errors, with as many rows as model selection
 \description{
 The phylogeny can be the true tree or its twin.
 }
+\examples{
+pir_run_true_tree(true_phylogeny = ape::rcoal(4))
+}
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
 }
