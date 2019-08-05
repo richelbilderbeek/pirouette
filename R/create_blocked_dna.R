@@ -1,6 +1,6 @@
 #' Create a 'blocked' DNA sequence, which is a sequence
 #' with four equal-sized nucleotide sections
-#' @param length number of nucleotides. Must be a multitude of four.
+#' @param length number of nucleotides. Must be a multiple of four.
 #' @examples
 #'   library(testthat)
 #'
