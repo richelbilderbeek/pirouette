@@ -1,6 +1,6 @@
 language: r
 cache: packages
-dist: xenial
+dist: bionic
 
 # ----------------+-------------+---------+-------+--------------+-------------+
 # Environment     | R CMD CHECK | codecov | lintr | goodpractice | rough tests |

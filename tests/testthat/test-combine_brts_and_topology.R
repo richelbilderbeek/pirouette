@@ -26,69 +26,46 @@ test_that("check usage with brts coming from the same tree", {
 
 test_that("check usage with brts coming from the same tree", {
 
-  max_seed <- 5
-  for (seed in 1:max_seed) {
-    tree <- load_tree(seed = seed)
-    tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-    brts <- pirouette:::convert_tree2brts(tree)
+  tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  brts <- pirouette:::convert_tree2brts(tree)
 
-    test <- combine_brts_and_topology(
-      brts = brts,
-      tree = tree
-    )
+  test <- combine_brts_and_topology(
+    brts = brts,
+    tree = tree
+  )
 
-    expect_true(
-      all(test$edge == tree$edge)
-    )
-    expect_true(
-      all(test$Nnode == tree$Nnode)
-    )
-    expect_true(
-      all(test$tip.label == tree$tip.label)
-    )
-    expect_true(
-      all(test$root.edge == tree$root.edge)
-    )
-    expect_true(
-      max(unname(test$edge.length) - tree$edge.length) <
-        max(tree$edge.length * 1e-6)
-    )
-  }
+  expect_true(all(test$edge == tree$edge))
+  expect_true(all(test$Nnode == tree$Nnode))
+  expect_true(all(test$tip.label == tree$tip.label))
+  expect_true(all(test$root.edge == tree$root.edge))
+  expect_true(
+    max(unname(test$edge.length) - tree$edge.length) <
+      max(tree$edge.length * 1e-6)
+  )
 })
 
 test_that("all the tree features (but the branching times) are preserved", {
 
-  max_seed <- 5
-  for (seed in 1:max_seed) {
-    tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  tree <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-    brts <- sort(c(
-      age <- max(pirouette:::convert_tree2brts(tree)),
-      runif(
-        n = (length(pirouette:::convert_tree2brts(tree)) - 1),
-        min = 0,
-        max = age - 0.001)
-    ),
-    decreasing = TRUE)
+  brts <- sort(c(
+    age <- max(pirouette:::convert_tree2brts(tree)),
+    runif(
+      n = (length(pirouette:::convert_tree2brts(tree)) - 1),
+      min = 0,
+      max = age - 0.001)
+  ),
+  decreasing = TRUE)
 
-    test <- combine_brts_and_topology(
-      brts = brts,
-      tree = tree
-    )
+  test <- combine_brts_and_topology(
+    brts = brts,
+    tree = tree
+  )
 
-    expect_true(
-      all(test$edge == tree$edge)
-    )
-    expect_true(
-      all(test$Nnode == tree$Nnode)
-    )
-    expect_true(
-      all(test$tip.label == tree$tip.label)
-    )
-    expect_true(
-      all(test$root.edge == tree$root.edge)
-    )
-  }
+  expect_true(all(test$edge == tree$edge))
+  expect_true(all(test$Nnode == tree$Nnode))
+  expect_true(all(test$tip.label == tree$tip.label))
+  expect_true(all(test$root.edge == tree$root.edge))
 })
 
 test_that("abuse", {
