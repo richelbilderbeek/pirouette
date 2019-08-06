@@ -10,12 +10,12 @@
 #' library(testthat)
 #'
 #' pir_out_filename <- tempfile(fileext = ".csv")
-#' if (1 == 2) {
-#'   url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_6/master/example_6_314/errors.csv" # nolint indeed a long URL
-#'   utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
-#'
-#'   expect_silent(pir_plot_from_file(pir_out_filename))
-#' }
+#' url <- paste0(
+#'   "https://raw.githubusercontent.com/richelbilderbeek/",
+#'   "pirouette_example_3/master/example_3_314/errors.csv"
+#' )
+#' utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
+#' expect_silent(pir_plot_from_file(pir_out_filename))
 #' @export
 pir_plot_from_file <- function(pir_out_filename) {
 
