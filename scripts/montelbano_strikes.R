@@ -8,17 +8,18 @@ phylogeny_example_3 <- ape::read.tree( # taken from example 3
     text = "(((A:8, B:8):1, C:9):1, ((D:8, E:8):1, F:9):1);"
 ); plot(phylogeny_example_3)
 
-max_seed <- 50
+max_seed <- 3
 pir_outs <- vector("list", max_seed)
 for (seed in 1:max_seed) {
   print(seed)
-  set.seed(seed)
-  twin_seed <- sample(x = 1:1e5, size = 1)
+  twin_seed <- seed
 
   # generate "true" phylogeny
   true_phylogeny <- phylogeny_example_3
   pir_params <- create_pir_params(
-    alignment_params = create_test_alignment_params(),
+    alignment_params = create_test_alignment_params(
+      root_sequence = create_blocked_dna(length = 1000)
+    ),
     experiments = list(create_experiment(
       inference_conditions = create_inference_conditions(
         model_type = "generative",
