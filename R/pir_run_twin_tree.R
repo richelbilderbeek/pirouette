@@ -57,10 +57,8 @@ pir_run_twin_tree <- function(
   fasta_filename <- pir_params$twinning_params$twin_alignment_filename
   beautier::check_file_exists(fasta_filename, "fasta_filename")
 
-
   # Select the evidence filename the model comparison is written to
   evidence_filename <- pir_params$twinning_params$twin_evidence_filename
-
 
   # Estimate evidences (aka marginal likelihoods) if needed
   # marg_liks will be NULL if this was unneeded, for example, when
@@ -110,8 +108,8 @@ pir_run_twin_tree <- function(
       )
     }
     # Create a sub-sub-sub folder, don't warn when it already exists
-    dir.create(dirname(
-      errors_filename),
+    dir.create(
+      dirname(errors_filename),
       showWarnings = FALSE, recursive = TRUE
     )
     utils::write.csv(
