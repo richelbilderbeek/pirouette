@@ -97,7 +97,7 @@ pir_run_twin_tree <- function(
     # and 'twin_phylo_to_errors' that probably call a same
     # function 'phylo_to_errors_impl' in the back
     alignment_params <- pir_params$alignment_params
-    alignment_params$fasta_filename <- twinning_params$twin_alignment_filename
+    alignment_params$fasta_filename <- pir_params$twinning_params$twin_alignment_filename # nolint sorry Demeter
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = twin_phylogeny,
