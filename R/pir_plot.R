@@ -196,7 +196,6 @@ pir_plot <- function(pir_out) {
         fill = tree_and_model
       )
     ) +
-      # ggplot2::geom_density(alpha = 0.5) +
       ggplot2::geom_histogram(
         data = df_long,
         ggplot2::aes(y = bindwidth * ..density..),
@@ -275,7 +274,6 @@ pir_plot <- function(pir_out) {
         fill = tree_and_model
       )
     ) +
-      # ggplot2::geom_density(alpha = 0.5) +
       ggplot2::geom_histogram(
       data = df_long,
       ggplot2::aes(y = bindwidth * ..density..),
