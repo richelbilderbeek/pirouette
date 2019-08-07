@@ -90,9 +90,18 @@ pir_run_twin_tree <- function(
     experiment$beast2_options$output_state_filename <- to_twin_filename(experiment$beast2_options$output_state_filename) # nolint indeed too long ...
     experiment$errors_filename <- to_twin_filename(experiment$errors_filename) # nolint pirouette function
 
+    # Dirty hack: use a modified alignment_params for informing
+    # 'phylo_to_errors' about the filename of the alignment
+    #
+    # I would have preferred two functions, 'true_phylo_to_errors'
+    # and 'twin_phylo_to_errors' that probably call a same
+    # function 'phylo_to_errors_impl' in the back
+    alignment_params <- pir_params$alignment_params
+    alignment_params$fasta_filename <- twinning_params$twin_alignment_filename
+
     errorses[[i]] <- phylo_to_errors(
       phylogeny = twin_phylogeny,
-      alignment_params = pir_params$alignment_params,
+      alignment_params = alignment_params,
       error_measure_params = pir_params$error_measure_params,
       experiment = experiment,
       verbose = pir_params$verbose
