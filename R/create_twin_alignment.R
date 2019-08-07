@@ -57,6 +57,15 @@ create_twin_alignment <- function(
   check_alignment_params(alignment_params) # nolint pirouette function
   check_twinning_params(twinning_params) # nolint pirouette function
 
+  print(
+    paste0(
+      "DEBUG: Creating a twin alignment based on phylogeny ",
+      ape::write.tree(twin_phylogeny),
+      "'"
+    )
+  )
+
+
   # Count the goal number of mutations
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
