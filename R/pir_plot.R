@@ -179,9 +179,15 @@ pir_plot <- function(pir_out) {
   index <- trunc(0.95 * length(df_long$error_value))
   x_top <- sort(df_long$error_value)[index]
 
+  ##### More aesthetic settings for the plots #####
+
+  bindwidth <- 0.05
+  alpha <- 0.5
+
   ##### Plot it (Single Plot) #####
 
   if (length(unique(df_long$inference_model)) == 1) {
+
     plot <- ggplot2::ggplot(
       data = df_long,
       ggplot2::aes(
@@ -190,7 +196,14 @@ pir_plot <- function(pir_out) {
         fill = tree_and_model
       )
     ) +
-      ggplot2::geom_density(alpha = 0.5) +
+      # ggplot2::geom_density(alpha = 0.5) +
+      ggplot2::geom_histogram(
+        data = df_long,
+        ggplot2::aes(y = bindwidth * ..density..),
+        binwidth = bindwidth,
+        alpha = alpha,
+        position = "identity"
+      ) +
       ggplot2::scale_color_manual(
         values = tree_and_model_line_colors,
         labels = tree_and_model_labels
@@ -251,6 +264,7 @@ pir_plot <- function(pir_out) {
     )
     inference_model_labels <- c("Best", "Generative")
     names(inference_model_labels) <- c("Generative", "Best")
+
     ##### Plot it (Double plot) #####
 
     plot <- ggplot2::ggplot(
@@ -261,7 +275,14 @@ pir_plot <- function(pir_out) {
         fill = tree_and_model
       )
     ) +
-      ggplot2::geom_density(alpha = 0.5) +
+      # ggplot2::geom_density(alpha = 0.5) +
+      ggplot2::geom_histogram(
+      data = df_long,
+      ggplot2::aes(y = bindwidth * ..density..),
+      binwidth = bindwidth,
+      alpha = alpha,
+      position = "identity"
+    ) +
       ggplot2::facet_wrap(
         .~ inference_model,
         ncol = 1,
