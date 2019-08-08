@@ -150,48 +150,20 @@ pir_plot <- function(pir_out) {
   ##### Fill and line colors #####
 
   # Line colors: must be darker than the fill color
-  # Tree true has primary color, twin a lighter shade
-  # Generative model is red, candidate blue
-  # tree_and_model_line_colors <- c(
-  #   "true_generative" = "#FF0000", # Red
-  #   "twin_generative" = "#FF8888", # Light red
-  #   "true_candidate" = "#0000FF", # Blue
-  #   "twin_candidate" = "#8888FF"  # Light blue
-  # )
   tree_and_model_line_colors <- c(
     "true_generative" = "#FF0000", # Red
-    "twin_generative" = "#E77E22", # Cyan
+    "twin_generative" = "#E77E22", # Orange
     "true_candidate" = "#0000FF", # Blue
     "twin_candidate" = "#229955"  # Green
   )
-  # tree_and_model_line_colors <- c(
-  #   "true_generative" = "#0000FF", # Red
-  #   "twin_generative" = "#00FF00", # Cyan
-  #   "true_candidate" = "#0000FF", # Blue
-  #   "twin_candidate" = "#00FF00"  # Light blue
-  # )
 
   # Fill colors: must be lighter than the colors at the edges
-  # Tree true has primary color, twin a lighter shade
-  # Generative model is red, candidate blue
-  # tree_and_model_fill_colors <- c(
-  #   "true_generative" = "#FF3333", # Red
-  #   "twin_generative" = "#FFAAAA", # Light red
-  #   "true_candidate" = "#3333FF", # Blue
-  #   "twin_candidate" = "#AAAAFF"  # Light blue
-  # )
   tree_and_model_fill_colors <- c(
     "true_generative" = "#FF3333", # Red
-    "twin_generative" = "#F99F55", # Cyan
+    "twin_generative" = "#F99F55", # Orange
     "true_candidate" = "#3333FF", # Blue
     "twin_candidate" = "#559988"  # Green
   )
-  # tree_and_model_fill_colors <- c(
-  #   "true_generative" = "#3333FF", # Red
-  #   "twin_generative" = "#AAFFAA", # Cyan
-  #   "true_candidate" = "#3333FF", # Blue
-  #   "twin_candidate" = "#AAFFAA"  # Light blue
-  # )
 
   ##### Medians for the vertical lines #####
 
