@@ -8,7 +8,11 @@ test_that("use_no_twin_no_best", {
   expect_true("generative" %in% errors$inference_model)
   expect_false("candidate" %in% errors$inference_model)
 
-  errors <- create_test_pir_run_output2(add_twin = FALSE, add_best = FALSE)
+  errors <- create_test_pir_run_output2(
+    add_twin = FALSE,
+    add_best = FALSE,
+    n_errors = 30
+  )
   check_pir_out(errors)
   expect_true("true" %in% errors$tree)
   expect_false("twin" %in% errors$tree)
@@ -24,7 +28,11 @@ test_that("use_twin_best", {
   expect_true("generative" %in% errors$inference_model)
   expect_true("candidate" %in% errors$inference_model)
 
-  errors <- create_test_pir_run_output2(add_twin = TRUE, add_best = TRUE)
+  errors <- create_test_pir_run_output2(
+    add_twin = TRUE,
+    add_best = TRUE,
+    n_errors = 30
+  )
   check_pir_out(errors)
   expect_true("true" %in% errors$tree)
   expect_true("twin" %in% errors$tree)

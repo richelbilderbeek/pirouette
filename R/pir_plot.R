@@ -25,6 +25,7 @@ pir_plot <- function(pir_out) {
   model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
   tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
   median <- NULL; rm(median) # nolint, fixes warning: no visible binding for global variable
+  ..density.. <- NULL; rm(..density..) # nolint, fixes warning: no visible binding for global variable
 
   ##### Data wrangling #####
   # Convert to long form

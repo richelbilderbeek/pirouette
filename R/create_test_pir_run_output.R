@@ -68,10 +68,10 @@ create_test_pir_run_output2 <- function(
   df$clock_model <- rep(beautier::get_clock_model_names()[1:2], 2)
   df$tree_prior <- beautier::get_tree_prior_names()[1:4]
 
-  dist1 <- rnorm(n = n_errors, mean = 0.14, sd = 0.021)
-  dist2 <- rnorm(n = n_errors, mean = 0.21, sd = 0.032)
-  dist3 <- rnorm(n = n_errors, mean = 0.18, sd = 0.033)
-  dist4 <- rnorm(n = n_errors, mean = 0.25, sd = 0.041)
+  dist1 <- stats::rnorm(n = n_errors, mean = 0.14, sd = 0.021)
+  dist2 <- stats::rnorm(n = n_errors, mean = 0.21, sd = 0.032)
+  dist3 <- stats::rnorm(n = n_errors, mean = 0.18, sd = 0.033)
+  dist4 <- stats::rnorm(n = n_errors, mean = 0.25, sd = 0.041)
 
   df$tree <- as.factor(df$tree)
   df$inference_model <- as.factor(df$inference_model)
