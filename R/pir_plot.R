@@ -100,7 +100,8 @@ pir_plot <- function(pir_out) {
     axis.text.y = theme_minor_label,
     legend.text = theme_minor_label,
     strip.text.x = ggplot2::element_text(size = 12)
-  )
+  ) +
+    ggplot2::theme_bw()
 
   ##### Legend labels #####
   get_first <- function(x) utils::head(x, n = 1)
@@ -150,22 +151,46 @@ pir_plot <- function(pir_out) {
   # Line colors: must be darker than the fill color
   # Tree true has primary color, twin a lighter shade
   # Generative model is red, candidate blue
+  # tree_and_model_line_colors <- c(
+  #   "true_generative" = "#FF0000", # Red
+  #   "twin_generative" = "#FF8888", # Light red
+  #   "true_candidate" = "#0000FF", # Blue
+  #   "twin_candidate" = "#8888FF"  # Light blue
+  # )
   tree_and_model_line_colors <- c(
     "true_generative" = "#FF0000", # Red
-    "twin_generative" = "#FF8888", # Light red
+    "twin_generative" = "#E77E22", # Cyan
     "true_candidate" = "#0000FF", # Blue
-    "twin_candidate" = "#8888FF"  # Light blue
+    "twin_candidate" = "#229955"  # Green
   )
+  # tree_and_model_line_colors <- c(
+  #   "true_generative" = "#0000FF", # Red
+  #   "twin_generative" = "#00FF00", # Cyan
+  #   "true_candidate" = "#0000FF", # Blue
+  #   "twin_candidate" = "#00FF00"  # Light blue
+  # )
 
   # Fill colors: must be lighter than the colors at the edges
   # Tree true has primary color, twin a lighter shade
   # Generative model is red, candidate blue
+  # tree_and_model_fill_colors <- c(
+  #   "true_generative" = "#FF3333", # Red
+  #   "twin_generative" = "#FFAAAA", # Light red
+  #   "true_candidate" = "#3333FF", # Blue
+  #   "twin_candidate" = "#AAAAFF"  # Light blue
+  # )
   tree_and_model_fill_colors <- c(
     "true_generative" = "#FF3333", # Red
-    "twin_generative" = "#FFAAAA", # Light red
+    "twin_generative" = "#F99F55", # Cyan
     "true_candidate" = "#3333FF", # Blue
-    "twin_candidate" = "#AAAAFF"  # Light blue
+    "twin_candidate" = "#559988"  # Green
   )
+  # tree_and_model_fill_colors <- c(
+  #   "true_generative" = "#3333FF", # Red
+  #   "twin_generative" = "#AAFFAA", # Cyan
+  #   "true_candidate" = "#3333FF", # Blue
+  #   "twin_candidate" = "#AAFFAA"  # Light blue
+  # )
 
   ##### Medians for the vertical lines #####
 
@@ -181,7 +206,8 @@ pir_plot <- function(pir_out) {
 
   ##### More aesthetic settings for the plots #####
 
-  bindwidth <- 0.05
+  n_error <- length(unique(df_long$error_index))
+  bindwidth <- 0.1 / sqrt(n_error) # 0.1 * exp(-n_error)
   alpha <- 0.5
 
   ##### Plot it (Single Plot) #####
