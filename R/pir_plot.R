@@ -180,7 +180,7 @@ pir_plot <- function(pir_out) {
   ##### More aesthetic settings for the plots #####
 
   n_error <- length(unique(df_long$error_index))
-  bindwidth <- 0.1 / sqrt(n_error) # 0.1 * exp(-n_error)
+  bindwidth <- 0.1 / sqrt(n_error)
   alpha <- 0.5
 
   ##### Plot it (Single Plot) #####
