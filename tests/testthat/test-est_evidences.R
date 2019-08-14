@@ -46,6 +46,29 @@ test_that("use, 1 candidate", {
   expect_true(df$weight == 1.0)
 })
 
+test_that("use, 1 candidate, CBS tree prior that should give error", {
+
+  if (!beastier::is_on_ci()) return()
+  if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
+
+  fasta_filename <- system.file(
+    "extdata", "test_output_3.fas", package = "pirouette"
+  )
+  experiment <- create_test_cand_experiment()
+  experiment$inference_model$tree_prior <- create_cbs_tree_prior()
+  experiments <- list(experiment)
+
+  df <- est_evidences(
+    fasta_filename = fasta_filename,
+    experiments = experiments
+  )
+  expect_true(!is.na(df$marg_log_lik))
+  expect_true(!is.na(df$marg_log_lik_sd))
+  expect_true(!is.na(df$weight))
+  expect_true(df$weight == 1.0)
+})
+
 test_that("cleans up", {
 
   if (!beastier::is_on_ci()) return()
