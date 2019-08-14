@@ -53,6 +53,13 @@ est_evidences <- function(
   }
   # Must use a different FASTA file name, else the evidence estimation
   # will overwrite normal inference files
+  #
+  # Do not forget: this is only a marginal likelihood estimation, not
+  # the actual BEAST2 run, so the files in the experiments (that determine
+  # where actual run results are stored) should not be created.
+  # Instead, some temporary files that BEAST2 uses in a nested sampling
+  # run should be created and deleted afterwards.
+  #
   evidence_fasta_filename <- to_evidence_filename(fasta_filename) # nolint pirouette function
   # Create the subsubsubfolder for target, do not warn if it already exists
   dir.create(
