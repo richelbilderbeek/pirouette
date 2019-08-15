@@ -38,15 +38,14 @@ check_experiments <- function(
     )
   }
   for (i in seq_along(experiments)) {
-    experiment <- experiments[[i]]
     tryCatch(
-      check_experiment(experiment), # nolint pirouette function
+      check_experiment(experiments[[i]]), # nolint pirouette function
       error = function(e) {
         stop(
           "'experiments[[", i, "]] invalid.\n",
           "Tip: use 'create_experiment' for each list element.\n",
           "Error: ", e$message, "\n",
-          "Value: ", experiment
+          "Value: ", experiments[[i]]
         )
       }
     )
