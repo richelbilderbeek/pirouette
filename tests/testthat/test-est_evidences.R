@@ -115,16 +115,17 @@ test_that("abuse", {
     package = "pirouette"
   )
   beautier::check_file_exists(fasta_filename, "fasta_filename")
-  experiments <- list(create_test_cand_experiment())
-  evidence_epsilon <- 100.0
+  experiments <- list(
+    create_test_cand_experiment()
+  )
+
 
   # No BEAST2 installed
   if (!beastier::is_beast2_installed()) {
     expect_error(
       est_evidences(
         fasta_filename = fasta_filename,
-        experiments = experiments,
-        evidence_epsilon = evidence_epsilon
+        experiments = experiments
       ),
       "BEAST2 not installed"
     )
@@ -136,8 +137,7 @@ test_that("abuse", {
   expect_error(
     est_evidences(
       fasta_filename = "nonsense",
-      experiments = experiments,
-      evidence_epsilon = evidence_epsilon
+      experiments = experiments
     ),
     "'fasta_filename' must be the name of an existing file"
   )
@@ -146,20 +146,9 @@ test_that("abuse", {
   expect_error(
     est_evidences(
       fasta_filename = fasta_filename,
-      experiments = "nonsense",
-      evidence_epsilon = evidence_epsilon
+      experiments = "nonsense"
     ),
     "'experiments' must be a list of one or more experiments"
-  )
-
-  # evidence_epsilon
-  expect_error(
-    est_evidences(
-      fasta_filename = fasta_filename,
-      experiments = experiments,
-      evidence_epsilon = "nonsense"
-    ),
-    "'evidence_epsilon' must be one numerical value."
   )
 
   if (!beastier::is_on_ci()) return()
@@ -169,8 +158,7 @@ test_that("abuse", {
   expect_silent(
     est_evidences(
       fasta_filename = fasta_filename,
-      experiments = experiments,
-      evidence_epsilon = evidence_epsilon
+      experiments = experiments
     )
   )
 })

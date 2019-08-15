@@ -4,7 +4,7 @@
 \alias{est_evidences}
 \title{Estimate the evidences}
 \usage{
-est_evidences(fasta_filename, experiments, evidence_epsilon = 1e-12,
+est_evidences(fasta_filename, experiments,
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE)
 }
@@ -15,9 +15,6 @@ est_evidences(fasta_filename, experiments, evidence_epsilon = 1e-12,
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
 one has to be the first in the list.}
-
-\item{evidence_epsilon}{relative error in estimating the
-evidence (aka marginal likelihood).}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods)}
@@ -42,13 +39,9 @@ if (rappdirs::app_dir()$os != "win" && is_on_travis() &&
   # Create a single one candidate experiment
   experiments <- list(create_test_cand_experiment())
 
-  # Be sloppy amd fast in estimating the evidence
-  evidence_epsilon <- 100.0
-
   evidences <- est_evidences(
     fasta_filename = fasta_filename,
-    experiments = experiments,
-    evidence_epsilon = evidence_epsilon
+    experiments = experiments
   )
 
   library(testthat)
