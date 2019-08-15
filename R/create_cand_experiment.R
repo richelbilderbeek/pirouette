@@ -53,7 +53,8 @@ create_cand_experiment <- function(
   ),
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(
-    store_every = 1000
+    store_every = 1000,
+    epsilon = 1e-12
   )
 ) {
   create_experiment(
