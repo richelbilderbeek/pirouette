@@ -48,9 +48,6 @@ test_that("use, 1 candidate", {
 
 test_that("use, 1 candidate, CBS tree prior that should give error", {
 
-  skip("Issue 318, Issue #318")
-
-  if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
@@ -61,14 +58,13 @@ test_that("use, 1 candidate, CBS tree prior that should give error", {
   experiment$inference_model$tree_prior <- create_cbs_tree_prior()
   experiments <- list(experiment)
 
-  df <- est_evidences(
-    fasta_filename = fasta_filename,
-    experiments = experiments
+  expect_error(
+    est_evidences(
+      fasta_filename = fasta_filename,
+      experiments = experiments
+    ),
+    "'group_sizes_dimension' .* must be less than the number of taxa"
   )
-  expect_true(!is.na(df$marg_log_lik))
-  expect_true(!is.na(df$marg_log_lik_sd))
-  expect_true(!is.na(df$weight))
-  expect_true(df$weight == 1.0)
 })
 
 test_that("cleans up", {
