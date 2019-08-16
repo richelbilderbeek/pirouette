@@ -30,7 +30,7 @@ create_experiment <- function(
       pattern = "beast2_", fileext = ".state.xml"
     )
   ),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(),
+  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 1e-12),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
 ) {

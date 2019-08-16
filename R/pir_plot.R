@@ -197,7 +197,7 @@ pir_plot <- function(pir_out) {
     ) +
       ggplot2::geom_histogram(
         data = df_long,
-        ggplot2::aes(y = bindwidth * ..density..),
+        ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
         binwidth = bindwidth,
         alpha = alpha,
         position = "identity"
@@ -275,7 +275,7 @@ pir_plot <- function(pir_out) {
     ) +
       ggplot2::geom_histogram(
       data = df_long,
-      ggplot2::aes(y = bindwidth * ..density..),
+      ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
       binwidth = bindwidth,
       alpha = alpha,
       position = "identity"

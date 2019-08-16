@@ -14,13 +14,9 @@
 #'   # Create a single one candidate experiment
 #'   experiments <- list(create_test_cand_experiment())
 #'
-#'   # Be sloppy amd fast in estimating the evidence
-#'   evidence_epsilon <- 100.0
-#'
 #'   evidences <- est_evidences(
 #'     fasta_filename = fasta_filename,
-#'     experiments = experiments,
-#'     evidence_epsilon = evidence_epsilon
+#'     experiments = experiments
 #'   )
 #'
 #'   library(testthat)
@@ -38,7 +34,6 @@
 est_evidences <- function(
   fasta_filename,
   experiments,
-  evidence_epsilon = 1e-12,
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
@@ -53,6 +48,13 @@ est_evidences <- function(
   }
   # Must use a different FASTA file name, else the evidence estimation
   # will overwrite normal inference files
+  #
+  # Do not forget: this is only a marginal likelihood estimation, not
+  # the actual BEAST2 run, so the files in the experiments (that determine
+  # where actual run results are stored) should not be created.
+  # Instead, some temporary files that BEAST2 uses in a nested sampling
+  # run should be created and deleted afterwards.
+  #
   evidence_fasta_filename <- to_evidence_filename(fasta_filename) # nolint pirouette function
   # Create the subsubsubfolder for target, do not warn if it already exists
   dir.create(
@@ -71,13 +73,6 @@ est_evidences <- function(
   }
 
   check_experiments(experiments) # nolint pirouette function
-  if (!beautier::is_one_double(evidence_epsilon)) {
-    stop(
-      "'evidence_epsilon' must be one numerical value. ",
-      "Actual value(s): ", evidence_epsilon
-    )
-  }
-
 
   # Collect inference models and BEAST2 optionses
   inference_models <- list()
@@ -138,7 +133,6 @@ est_evidences <- function(
     fasta_filename = evidence_fasta_filename,
     inference_models = inference_models,
     beast2_optionses =  beast2_optionses,
-    epsilon = evidence_epsilon,
     verbose = verbose
   )
   if (verbose == TRUE) {

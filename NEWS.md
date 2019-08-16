@@ -2,21 +2,21 @@
 
 Newest versions at top.
 
-## pirouette ...
+## `pirouette` 1.3 (2019-08-15)
 
 ### NEW FEATURES
 
-  * None
+ * Removed duplicate `evidence_epsilon` argument from `est_evidences`:
+   use the `epsilon` supplied in the experiments' `est_evidence_mcmc$epsilon`
 
 ### MINOR IMPROVEMENTS
 
-  * Can specify a root sequence in `pir_run`
+ * Better error message when using a CBS site model and too few taxa
 
 ### BUG FIXES
 
-  * None
+ * None
 
 ### DEPRECATED AND DEFUNCT
 
-  * Start of deprecation of using `sequence_length` in `pir_run`.
-
+ * None

@@ -12,8 +12,8 @@ create_experiment(inference_conditions = create_inference_conditions(),
   tempfile(pattern = "beast2_", fileext = ".log"), output_trees_filenames =
   tempfile(pattern = "beast2_", fileext = ".trees"), output_state_filename
   = tempfile(pattern = "beast2_", fileext = ".state.xml")),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(),
-  beast2_bin_path = beastier::get_default_beast2_bin_path(),
+  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon =
+  1e-12), beast2_bin_path = beastier::get_default_beast2_bin_path(),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
 }
 \arguments{

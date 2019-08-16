@@ -1,41 +1,15 @@
 context("test-est_evidences")
 
-test_that("use", {
+test_that("use, 2 candidates", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
-  # Create an alignment
-  fasta_filename <- tempfile(fileext = ".fasta")
-  create_alignment_file(
-    phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
-    alignment_params = create_alignment_params(
-      root_sequence = "acgt",
-      mutation_rate = 0.1,
-      fasta_filename = fasta_filename
-    )
+  fasta_filename <- system.file(
+    "extdata", "test_output_3.fas", package = "pirouette"
   )
-  beautier::check_file_exists(fasta_filename, "fasta_filename")
-
-  # Setup experiments
-  experiment_1 <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = beautier::create_inference_model(
-      site_model = beautier::create_jc69_site_model(),
-      clock_model = beautier::create_strict_clock_model(),
-      tree_prior = beautier::create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    beast2_options = beastier::create_beast2_options(
-      beast2_path = beastier::get_default_beast2_bin_path()
-    ),
-    est_evidence_mcmc = create_mcmc_nested_sampling(epsilon = 100.0)
-  )
+  experiment_1 <- create_test_cand_experiment()
   experiment_2 <- experiment_1
   experiment_2$inference_model$site_model <- beautier::create_hky_site_model()
   experiments <- list(experiment_1, experiment_2)
@@ -50,42 +24,59 @@ test_that("use", {
   expect_true(all(df$weight <= 1.0))
 })
 
+test_that("use, 1 candidate", {
+
+  if (!beastier::is_on_ci()) return()
+  if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
+
+  fasta_filename <- system.file(
+    "extdata", "test_output_3.fas", package = "pirouette"
+  )
+  experiment <- create_test_cand_experiment()
+  experiments <- list(experiment)
+
+  df <- est_evidences(
+    fasta_filename = fasta_filename,
+    experiments = experiments
+  )
+  expect_true(!is.na(df$marg_log_lik))
+  expect_true(!is.na(df$marg_log_lik_sd))
+  expect_true(!is.na(df$weight))
+  expect_true(df$weight == 1.0)
+})
+
+test_that("use, 1 candidate, CBS tree prior that should give error", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+  if (!beastier::is_beast2_installed()) return()
+
+  fasta_filename <- system.file(
+    "extdata", "test_output_3.fas", package = "pirouette"
+  )
+  experiment <- create_test_cand_experiment()
+  experiment$inference_model$tree_prior <- create_cbs_tree_prior()
+  experiments <- list(experiment)
+
+  expect_error(
+    est_evidences(
+      fasta_filename = fasta_filename,
+      experiments = experiments
+    ),
+    "'group_sizes_dimension' .* must be less than the number of taxa"
+  )
+})
+
 test_that("cleans up", {
 
   if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
-  # Create an alignment
-  fasta_filename <- tempfile(fileext = ".fasta")
-  create_alignment_file(
-    phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
-    alignment_params = create_alignment_params(
-      root_sequence = "acgt",
-      mutation_rate = 0.1,
-      fasta_filename = fasta_filename
-    )
+  fasta_filename <- system.file(
+    "extdata", "test_output_3.fas", package = "pirouette"
   )
-  beautier::check_file_exists(fasta_filename, "fasta_filename")
-
-  # Setup experiments
-  experiment_1 <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = beautier::create_inference_model(
-      site_model = beautier::create_jc69_site_model(),
-      clock_model = beautier::create_strict_clock_model(),
-      tree_prior = beautier::create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    beast2_options = beastier::create_beast2_options(
-      beast2_path = beastier::get_default_beast2_bin_path()
-    ),
-    est_evidence_mcmc = create_mcmc_nested_sampling(epsilon = 100.0)
-  )
+  experiment_1 <- create_test_cand_experiment()
   experiment_2 <- experiment_1
   experiment_2$inference_model$site_model <- beautier::create_hky_site_model()
   experiments <- list(experiment_1, experiment_2)
@@ -94,6 +85,10 @@ test_that("cleans up", {
   trees_filename_1 <- experiment_1$beast2_options$output_trees_filenames
   trees_filename_2 <- experiment_2$beast2_options$output_trees_filenames
   expect_true(trees_filename_1 == trees_filename_2)
+
+  # These are regular BEAST2 run files. A marginal likelihood estimation
+  # is a different kind of run and stores its BEAST2 files in a
+  # temporary location after which these files are deleted
   expect_true(!file.exists(trees_filename_1))
 
   df <- est_evidences(
@@ -116,16 +111,17 @@ test_that("abuse", {
     package = "pirouette"
   )
   beautier::check_file_exists(fasta_filename, "fasta_filename")
-  experiments <- list(create_test_cand_experiment())
-  evidence_epsilon <- 100.0
+  experiments <- list(
+    create_test_cand_experiment()
+  )
+
 
   # No BEAST2 installed
   if (!beastier::is_beast2_installed()) {
     expect_error(
       est_evidences(
         fasta_filename = fasta_filename,
-        experiments = experiments,
-        evidence_epsilon = evidence_epsilon
+        experiments = experiments
       ),
       "BEAST2 not installed"
     )
@@ -137,8 +133,7 @@ test_that("abuse", {
   expect_error(
     est_evidences(
       fasta_filename = "nonsense",
-      experiments = experiments,
-      evidence_epsilon = evidence_epsilon
+      experiments = experiments
     ),
     "'fasta_filename' must be the name of an existing file"
   )
@@ -147,20 +142,9 @@ test_that("abuse", {
   expect_error(
     est_evidences(
       fasta_filename = fasta_filename,
-      experiments = "nonsense",
-      evidence_epsilon = evidence_epsilon
+      experiments = "nonsense"
     ),
     "'experiments' must be a list of one or more experiments"
-  )
-
-  # evidence_epsilon
-  expect_error(
-    est_evidences(
-      fasta_filename = fasta_filename,
-      experiments = experiments,
-      evidence_epsilon = "nonsense"
-    ),
-    "'evidence_epsilon' must be one numerical value."
   )
 
   if (!beastier::is_on_ci()) return()
@@ -170,8 +154,7 @@ test_that("abuse", {
   expect_silent(
     est_evidences(
       fasta_filename = fasta_filename,
-      experiments = experiments,
-      evidence_epsilon = evidence_epsilon
+      experiments = experiments
     )
   )
 })
