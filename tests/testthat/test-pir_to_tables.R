@@ -75,7 +75,6 @@ test_that("use, no twinning", {
       )
     )
   )
-  skip("Issue 320, Issue #320")
   expect_true(
     !all(
       is.na(

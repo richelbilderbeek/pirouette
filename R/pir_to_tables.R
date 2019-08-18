@@ -29,6 +29,19 @@ pir_to_tables <- function(
   ##############################################################################
   # Very custom layout function
   tidy_df <- function(df) {
+    testit::assert(
+      all(
+        c(
+          "site_model_name",
+          "clock_model_name",
+          "tree_prior_name",
+          "marg_log_lik",
+          "marg_log_lik_sd",
+          "weight",
+          "ess"
+        ) %in% names(df)
+      )
+    )
     df$site_model_name <- plyr::revalue(
       df$site_model_name, c("JC69" = "JC", "TN93" = "TN"),
       warn_missing = FALSE
@@ -50,7 +63,8 @@ pir_to_tables <- function(
       warn_missing = FALSE
     )
     names(df) <- c(
-      "Site model", "Clock model", "Tree prior", "log(evidence)", "Weight"
+      "Site model", "Clock model", "Tree prior", "log(evidence)",
+      "log(evidence error)", "Weight", "ESS"
     )
     df
   }
@@ -60,7 +74,7 @@ pir_to_tables <- function(
     # Evidence, true
     ################
     df <- tidy_df(
-      utils::read.csv(pir_params$evidence_filename)[, c(-1, -6)]
+      utils::read.csv(pir_params$evidence_filename)[, c(-1)]
     )
 
     filename <- file.path(folder, "evidence_true.latex")
