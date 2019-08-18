@@ -78,7 +78,8 @@ test_that("use, no twinning", {
   expect_true(
     !all(
       is.na(
-        stringr::str_match(string = latex_text, pattern = "log\\(evidence error\\)")
+        stringr::str_match(string = latex_text,
+          pattern = "log\\(evidence error\\)")
       )
     )
   )
