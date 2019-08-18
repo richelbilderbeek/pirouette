@@ -33,7 +33,7 @@ r_github_packages:
   - ropensci/beastier
   - ropensci/mauricer
   - ropensci/babette
-  - richelbilderbeek/mcbette@develop
+  - richelbilderbeek/mcbette
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
