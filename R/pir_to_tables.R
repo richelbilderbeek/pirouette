@@ -96,7 +96,7 @@ pir_to_tables <- function(
       df <- tidy_df(
         utils::read.csv(
           pir_params$twinning_params$twin_evidence_filename
-        )[, c(-1, -6)]
+        )[, c(-1)]
       )
 
       filename <- file.path(folder, "evidence_twin.latex")
