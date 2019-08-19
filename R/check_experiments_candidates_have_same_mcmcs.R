@@ -1,6 +1,6 @@
 #' @author Richèl J.C. Bilderbeek
 #' @noRd
-check_experiments_candidates_have_same_mcmcs <- function(
+check_experiments_candidates_have_same_mcmcs <- function( # nolint indeed a long name, which is fine for an internal function
   experiments
 ) {
   testit::assert(length(experiments) >= 2)

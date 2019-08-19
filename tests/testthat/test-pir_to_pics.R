@@ -20,6 +20,7 @@ test_that("use", {
         do_measure_evidence = TRUE
       ),
       inference_model = create_inference_model(
+        site_model = create_gtr_site_model(),
         mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
       )
     )
