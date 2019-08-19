@@ -120,7 +120,7 @@ test_that("use, twinning", {
   }
   pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 
-  folder <- tempdir()
+  folder <- tempfile()
   expected_filenames <- c()
 
   if (rappdirs::app_dir()$os != "win") {
