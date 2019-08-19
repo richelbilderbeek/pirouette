@@ -54,81 +54,8 @@ check_experiments <- function(
 
   testit::assert(length(experiments) >= 2)
 
-  for (i in seq(1, length(experiments) - 1)) {
-    experiment_1 <- experiments[[i]]
-    for (j in seq(i + 1, length(experiments))) {
-      testit::assert(j > i)
-      experiment_2 <- experiments[[j]]
-      if (
-        !beautier::are_equal_mcmcs(
-          experiment_1$inference_model$mcmc,
-          experiment_2$inference_model$mcmc
-        )
-      ) {
-        stop(
-          "All MCMCs in the experiments must be identical.\n",
-          "Difference between experiment[[", i, "]] ",
-          "and experiment[[", j, "]].\n",
-          "Value experiment[[", i, "]]$inference_model$mcmc: ",
-          paste0(experiments[[i]]$inference_model$mcmc, collapse = ", "), "\n",
-          "Value experiment[[", j, "]]$inference_model$mcmc: ",
-          paste0(experiments[[j]]$inference_model$mcmc, collapse = ", "), "\n"
-        )
-      }
-      if (experiment_1$inference_conditions$model_type == "candidate" &&
-          experiment_2$inference_conditions$model_type == "candidate"
-      ) {
-        input_filename_1 <- experiment_1$beast2_options$input_filename
-        input_filename_2 <- experiment_2$beast2_options$input_filename
-        output_log_filename_1 <- experiment_1$beast2_options$output_log_filename
-        output_log_filename_2 <- experiment_2$beast2_options$output_log_filename
-        output_trees_filenames_1 <- experiment_1$beast2_options$output_trees_filenames # nolint long names indeed, sorry Demeter
-        output_trees_filenames_2 <- experiment_2$beast2_options$output_trees_filenames # nolint long names indeed, sorry Demeter
-        output_state_filename_1 <- experiment_1$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
-        output_state_filename_2 <- experiment_2$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
-        if (input_filename_1 != input_filename_2) {
-          stop(
-            "Candidate models must have same BEAST2 input filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", input_filename_1, "\n",
-            "Filename #", j, ": ", input_filename_2, "\n"
-          )
-        }
-        if (output_log_filename_1 != output_log_filename_2) {
-          stop(
-            "Candidate models must have same BEAST2 output log filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", output_log_filename_1, "\n",
-            "Filename #", j, ": ", output_log_filename_2, "\n"
-          )
-        }
-        if (output_trees_filenames_1 != output_trees_filenames_2) {
-          stop(
-            "Candidate models must have same BEAST2 output trees filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", output_trees_filenames_1, "\n",
-            "Filename #", j, ": ", output_trees_filenames_2, "\n"
-          )
-        }
-        if (output_state_filename_1 != output_state_filename_2) {
-          stop(
-            "Candidate models must have same BEAST2 output state filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", output_state_filename_1, "\n",
-            "Filename #", j, ": ", output_state_filename_2, "\n"
-          )
-        }
-        if (experiment_1$errors_filename != experiment_2$errors_filename) {
-          stop(
-            "Candidate models must have same errors filename.\n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filenames #", i, ": ", experiment_1$errors_filename, "\n",
-            "Filenames #", j, ": ", experiment_2$errors_filename, "\n"
-          )
-        }
-      }
-    }
-  }
+  check_experiments_candidates_have_same_beast2_files(experiments)
+  check_experiments_candidates_have_same_mcmcs(experiments)
 
   model_types <- rep("", length(experiments))
   for (i in 1:length(experiments)) {
@@ -145,28 +72,5 @@ check_experiments <- function(
   if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
     stop("If multiple experiments, generative is either first or absent")
   }
-  if (exp_types[1] == "generative") {
-    gen_inference_model <- experiments[[1]]$inference_model
-    gen_site_model_name <- gen_inference_model$site_model$name
-    gen_clock_model_name <- gen_inference_model$clock_model$name
-    gen_tree_prior_name <- gen_inference_model$tree_prior$name
-    for (experiment in experiments[c(-1)]) {
-      testit::assert(
-        experiment$inference_conditions$model_type == "candidate"
-      )
-      cand_inference_model <- experiment$inference_model
-      cand_site_model_name <- cand_inference_model$site_model$name
-      cand_clock_model_name <- cand_inference_model$clock_model$name
-      cand_tree_prior_name <- cand_inference_model$tree_prior$name
-      if (gen_site_model_name == cand_site_model_name &&
-        gen_clock_model_name == cand_clock_model_name &&
-        gen_tree_prior_name == cand_tree_prior_name
-      ) {
-        stop(
-          "Generative and candidate model cannot have the same inference model"
-        )
-      }
-
-    }
-  }
+  check_experiments_all_inference_models_are_unique(experiments)
 }
