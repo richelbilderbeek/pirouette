@@ -22,6 +22,9 @@ test_that("use, gen and cand", {
     create_test_gen_experiment(),
     create_test_cand_experiment()
   )
+  # Must use different inference model than generative model
+  experiments[[2]]$inference_model$site_model <-
+    beautier::create_gtr_site_model()
 
   filenames <- get_experiments_filenames(experiments)
   for (experiment in experiments) {

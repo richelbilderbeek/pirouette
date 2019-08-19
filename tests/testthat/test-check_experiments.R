@@ -1,8 +1,6 @@
-context("test-check_experiments")
-
 test_that("use", {
 
-  expect_silent(check_experiments(experiments = list(create_experiment())))
+  expect_silent(check_experiments(list(create_experiment())))
 })
 
 test_that("each element in the list must be a proper experiment", {
@@ -33,10 +31,9 @@ test_that("correct order of experiments", {
   if (rappdirs::app_dir()$os == "win") return()
 
   gen_exp <- create_test_gen_experiment()
-  check_experiment(gen_exp)
-
   cand_exp <- create_test_cand_experiment()
-  check_experiment(cand_exp)
+  # Must use different inference model than generative model
+  cand_exp$inference_model$site_model <- beautier::create_gtr_site_model()
 
   # OK order
   expect_silent(
@@ -69,6 +66,12 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
   cand_experiment_1 <- create_test_cand_experiment()
   cand_experiment_2 <- create_test_cand_experiment()
   gen_experiment <- create_test_gen_experiment()
+  # Must use different inference model than generative model
+  cand_experiment_1$inference_model$site_model <-
+    beautier::create_tn93_site_model()
+  cand_experiment_2$inference_model$site_model <-
+    beautier::create_gtr_site_model()
+
   expect_silent(
     check_experiments(list(gen_experiment, cand_experiment_1))
   )
@@ -164,4 +167,28 @@ test_that("differ each beast2_options_filename and error filename", {
   )
   experiment_2 <- experiment_1
   expect_silent(check_experiments(list(experiment_1, experiment_2)))
+})
+
+test_that("detect same model in generative and candidate model", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
+  inference_model <- create_inference_model()
+  gen_exp <- create_test_gen_experiment(
+    inference_model = inference_model
+  )
+  check_experiment(gen_exp)
+
+  cand_exp <- create_test_cand_experiment(
+    inference_model = inference_model
+  )
+  check_experiment(cand_exp)
+
+  experiments <- list(gen_exp, cand_exp)
+
+  # OK order
+  expect_error(
+    check_experiments(experiments),
+    "Generative and candidate model cannot have the same inference model"
+  )
 })

@@ -52,6 +52,8 @@ check_experiments <- function(
   }
   if (length(experiments) == 1) return()
 
+  testit::assert(length(experiments) >= 2)
+
   for (i in seq(1, length(experiments) - 1)) {
     experiment_1 <- experiments[[i]]
     for (j in seq(i + 1, length(experiments))) {
@@ -135,13 +137,36 @@ check_experiments <- function(
   if (sum(model_types == "generative") > 1) {
     stop("Specifying more than one 'generative' model experiment is redundant")
   }
-  if (length(experiments) > 1) {
-    exp_types <- rep(NA, length(experiments))
-    for (i in seq_along(experiments)) {
-      exp_types[i] <- experiments[[i]]$inference_conditions$model_type
-    }
-    if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
-      stop("If multiple experiments, generative is either first or absent")
+  testit::assert(length(experiments) >= 2)
+  exp_types <- rep(NA, length(experiments))
+  for (i in seq_along(experiments)) {
+    exp_types[i] <- experiments[[i]]$inference_conditions$model_type
+  }
+  if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
+    stop("If multiple experiments, generative is either first or absent")
+  }
+  if (exp_types[1] == "generative") {
+    gen_inference_model <- experiments[[1]]$inference_model
+    gen_site_model_name <- gen_inference_model$site_model$name
+    gen_clock_model_name <- gen_inference_model$clock_model$name
+    gen_tree_prior_name <- gen_inference_model$tree_prior$name
+    for (experiment in experiments[c(-1)]) {
+      testit::assert(
+        experiment$inference_conditions$model_type == "candidate"
+      )
+      cand_inference_model <- experiment$inference_model
+      cand_site_model_name <- cand_inference_model$site_model$name
+      cand_clock_model_name <- cand_inference_model$clock_model$name
+      cand_tree_prior_name <- cand_inference_model$tree_prior$name
+      if (gen_site_model_name == cand_site_model_name &&
+        gen_clock_model_name == cand_clock_model_name &&
+        gen_tree_prior_name == cand_tree_prior_name
+      ) {
+        stop(
+          "Generative and candidate model cannot have the same inference model"
+        )
+      }
+
     }
   }
 }
