@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.5 (2019-08-19)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * Checks that all experiments have a unique inference model
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.4.1 (2019-08-19)
 
 ### NEW FEATURES
