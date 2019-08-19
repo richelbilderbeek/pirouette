@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.4.1 (2019-08-19)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * None
+
+### BUG FIXES
+
+ * Table with evidences for twin models works
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.4 (2019-08-18)
 
 ### NEW FEATURES
