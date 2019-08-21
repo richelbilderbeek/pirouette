@@ -16,6 +16,10 @@ pir_to_tables <- function(
   pir_params,
   folder = tempdir()
 ) {
+  # Create a folder for the files if needed,
+  # no warning if it is already present
+  dir.create(folder, showWarnings = FALSE, recursive = TRUE)
+
   # The names of the files created
   filenames <- c()
 
