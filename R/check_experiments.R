@@ -17,14 +17,14 @@
 #' expect_error(check_experiments(NULL))
 #'
 #' if (rappdirs::app_dir()$os != "win") {
-#'   expect_silent(
-#'     check_experiments(
-#'       list(
-#'         create_test_experiment(),
-#'         create_test_cand_experiment()
-#'       )
-#'     )
+#'   experiments <- list(
+#'     create_test_experiment(),
+#'     create_test_cand_experiment()
 #'   )
+#'   # Experiments must have different inference models
+#'   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+#'
+#'   expect_silent(check_experiments(experiments))
 #' }
 #' @author Richèl J.C. Bilderbeek
 #' @export
@@ -38,96 +38,24 @@ check_experiments <- function(
     )
   }
   for (i in seq_along(experiments)) {
-    experiment <- experiments[[i]]
     tryCatch(
-      check_experiment(experiment), # nolint pirouette function
+      check_experiment(experiments[[i]]), # nolint pirouette function
       error = function(e) {
         stop(
           "'experiments[[", i, "]] invalid.\n",
           "Tip: use 'create_experiment' for each list element.\n",
           "Error: ", e$message, "\n",
-          "Value: ", experiment
+          "Value: ", experiments[[i]]
         )
       }
     )
   }
   if (length(experiments) == 1) return()
 
-  for (i in seq(1, length(experiments) - 1)) {
-    experiment_1 <- experiments[[i]]
-    for (j in seq(i + 1, length(experiments))) {
-      testit::assert(j > i)
-      experiment_2 <- experiments[[j]]
-      if (
-        !beautier::are_equal_mcmcs(
-          experiment_1$inference_model$mcmc,
-          experiment_2$inference_model$mcmc
-        )
-      ) {
-        stop(
-          "All MCMCs in the experiments must be identical.\n",
-          "Difference between experiment[[", i, "]] ",
-          "and experiment[[", j, "]].\n",
-          "Value experiment[[", i, "]]$inference_model$mcmc: ",
-          paste0(experiments[[i]]$inference_model$mcmc, collapse = ", "), "\n",
-          "Value experiment[[", j, "]]$inference_model$mcmc: ",
-          paste0(experiments[[j]]$inference_model$mcmc, collapse = ", "), "\n"
-        )
-      }
-      if (experiment_1$inference_conditions$model_type == "candidate" &&
-          experiment_2$inference_conditions$model_type == "candidate"
-      ) {
-        input_filename_1 <- experiment_1$beast2_options$input_filename
-        input_filename_2 <- experiment_2$beast2_options$input_filename
-        output_log_filename_1 <- experiment_1$beast2_options$output_log_filename
-        output_log_filename_2 <- experiment_2$beast2_options$output_log_filename
-        output_trees_filenames_1 <- experiment_1$beast2_options$output_trees_filenames # nolint long names indeed, sorry Demeter
-        output_trees_filenames_2 <- experiment_2$beast2_options$output_trees_filenames # nolint long names indeed, sorry Demeter
-        output_state_filename_1 <- experiment_1$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
-        output_state_filename_2 <- experiment_2$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
-        if (input_filename_1 != input_filename_2) {
-          stop(
-            "Candidate models must have same BEAST2 input filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", input_filename_1, "\n",
-            "Filename #", j, ": ", input_filename_2, "\n"
-          )
-        }
-        if (output_log_filename_1 != output_log_filename_2) {
-          stop(
-            "Candidate models must have same BEAST2 output log filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", output_log_filename_1, "\n",
-            "Filename #", j, ": ", output_log_filename_2, "\n"
-          )
-        }
-        if (output_trees_filenames_1 != output_trees_filenames_2) {
-          stop(
-            "Candidate models must have same BEAST2 output trees filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", output_trees_filenames_1, "\n",
-            "Filename #", j, ": ", output_trees_filenames_2, "\n"
-          )
-        }
-        if (output_state_filename_1 != output_state_filename_2) {
-          stop(
-            "Candidate models must have same BEAST2 output state filename. \n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filename #", i, ": ", output_state_filename_1, "\n",
-            "Filename #", j, ": ", output_state_filename_2, "\n"
-          )
-        }
-        if (experiment_1$errors_filename != experiment_2$errors_filename) {
-          stop(
-            "Candidate models must have same errors filename.\n",
-            "Difference between experiments #", i, " and #", j, ". \n",
-            "Filenames #", i, ": ", experiment_1$errors_filename, "\n",
-            "Filenames #", j, ": ", experiment_2$errors_filename, "\n"
-          )
-        }
-      }
-    }
-  }
+  testit::assert(length(experiments) >= 2)
+
+  check_experiments_candidates_have_same_beast2_files(experiments)
+  check_experiments_candidates_have_same_mcmcs(experiments)
 
   model_types <- rep("", length(experiments))
   for (i in 1:length(experiments)) {
@@ -136,13 +64,13 @@ check_experiments <- function(
   if (sum(model_types == "generative") > 1) {
     stop("Specifying more than one 'generative' model experiment is redundant")
   }
-  if (length(experiments) > 1) {
-    exp_types <- rep(NA, length(experiments))
-    for (i in seq_along(experiments)) {
-      exp_types[i] <- experiments[[i]]$inference_conditions$model_type
-    }
-    if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
-      stop("If multiple experiments, generative is either first or absent")
-    }
+  testit::assert(length(experiments) >= 2)
+  exp_types <- rep(NA, length(experiments))
+  for (i in seq_along(experiments)) {
+    exp_types[i] <- experiments[[i]]$inference_conditions$model_type
   }
+  if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
+    stop("If multiple experiments, generative is either first or absent")
+  }
+  check_experiments_all_inference_models_are_unique(experiments)
 }

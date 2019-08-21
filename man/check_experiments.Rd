@@ -30,14 +30,14 @@ expect_error(check_experiments(NA))
 expect_error(check_experiments(NULL))
 
 if (rappdirs::app_dir()$os != "win") {
-  expect_silent(
-    check_experiments(
-      list(
-        create_test_experiment(),
-        create_test_cand_experiment()
-      )
-    )
+  experiments <- list(
+    create_test_experiment(),
+    create_test_cand_experiment()
   )
+  # Experiments must have different inference models
+  experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+
+  expect_silent(check_experiments(experiments))
 }
 }
 \seealso{

@@ -12,6 +12,9 @@
 #'   expect_equal(experiment_2$inference_conditions$model_type, "candidate")
 #'   experiments <- list(experiment_1, experiment_2)
 #'
+#'   # Experiments must have different inference models
+#'   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+#'
 #'   candidate_evidences <- select_candidate_evidences(
 #'     experiments = experiments,
 #'     marg_liks = create_test_marg_liks()

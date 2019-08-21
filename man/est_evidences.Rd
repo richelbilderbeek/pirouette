@@ -51,6 +51,7 @@ if (rappdirs::app_dir()$os != "win" && is_on_travis() &&
   expect_true("marg_log_lik" \%in\% names(evidences))
   expect_true("marg_log_lik_sd" \%in\% names(evidences))
   expect_true("weight" \%in\% names(evidences))
+  expect_true("ess" \%in\% names(evidences))
 
   # As the only experiment, its weight is 1.0
   expect_equal(1.0, evidences$weight[1])

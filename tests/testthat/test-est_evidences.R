@@ -40,6 +40,7 @@ test_that("use, 1 candidate", {
     fasta_filename = fasta_filename,
     experiments = experiments
   )
+  expect_true("ess" %in% colnames(df))
   expect_true(!is.na(df$marg_log_lik))
   expect_true(!is.na(df$marg_log_lik_sd))
   expect_true(!is.na(df$weight))

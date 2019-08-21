@@ -31,6 +31,9 @@ test_that("one if there is one candidate and one generative", {
 
   experiment_1 <- create_test_gen_experiment()
   experiment_2 <- create_test_cand_experiment()
+  # Candidates must have different model than generative model
+  experiment_2$inference_model$site_model <-
+    beautier::create_tn93_site_model()
   testit::assert(experiment_1$inference_conditions$model_type == "generative")
   testit::assert(experiment_2$inference_conditions$model_type == "candidate")
   experiments <- list(experiment_1, experiment_2)
