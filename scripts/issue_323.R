@@ -1,5 +1,6 @@
 library(babette)
 library(peregrine)
+library(testthat)
 
 beast2_options <- peregrine::create_pff_beast2_options()
 
