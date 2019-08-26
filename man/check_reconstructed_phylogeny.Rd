@@ -6,6 +6,9 @@
 \usage{
 check_reconstructed_phylogeny(phylogeny)
 }
+\arguments{
+\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+}
 \description{
 Will \link{stop} if there are extinct species in the phylogeny
 }
