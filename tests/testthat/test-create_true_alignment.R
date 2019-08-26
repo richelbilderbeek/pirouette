@@ -112,7 +112,7 @@ test_that("create_true_alignment: abuse", {
       true_phylogeny = p_with_extant,
       alignment_params = alignment_params
     ),
-    "phylogeny must not contain extant species"
+    "A reconstructed phylogeny must not contain extinct species"
   )
 
 })

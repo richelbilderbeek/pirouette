@@ -47,11 +47,16 @@ create_gen_experiment <- function(
   inference_model = beautier::create_inference_model(
     mcmc = beautier::create_mcmc(store_every = 1000)
   ),
-  beast2_options = beastier::create_beast2_options()
+  beast2_options = beastier::create_beast2_options(),
+  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 1e-12),
+  errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
 ) {
   create_experiment( # nolint pirouette function
     inference_conditions = inference_conditions,
     inference_model = inference_model,
-    beast2_options = beast2_options
+    beast2_options = beast2_options,
+    est_evidence_mcmc = est_evidence_mcmc,
+    errors_filename = errors_filename
+
   )
 }

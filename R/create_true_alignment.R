@@ -60,9 +60,7 @@ create_true_alignment <- function(
       "Actual value: ", true_phylogeny
     )
   }
-  if (!is.null(geiger::is.extinct(true_phylogeny))) {
-    stop("phylogeny must not contain extant species")
-  }
+  check_reconstructed_phylogeny(true_phylogeny) # nolint pirouette function
   tryCatch(
     check_alignment_params(alignment_params), # nolint pirouette function
     error = function(e) {
