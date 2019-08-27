@@ -41,20 +41,20 @@ r_github_packages:
 before_install:
   - echo $TRAVIS_R_VERSION_STRING
   # ImageMagick
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository -y ppa:opencpu/imagemagick; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y libmagick++-dev; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install imagemagick@6; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository -y ppa:opencpu/imagemagick; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get update; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt-get install -y libmagick++-dev; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install imagemagick@6; fi
   # Rmpfr
-  - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install -qq libmpfr-dev; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo apt install -qq libmpfr-dev; fi
   # Java
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then R CMD javareconf; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then R --quiet -e 'install.packages("rJava", type="source", repos="http://cran.us.r-project.org")'; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then R CMD javareconf; fi
+  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then R --quiet -e 'install.packages("rJava", type="source", repos="http://cran.us.r-project.org")'; fi
 
 before_script:
-  - Rscript -e "beastier::install_beast2()"
-  - Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
-  - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
+  #- Rscript -e "beastier::install_beast2()"
+  #- Rscript -e "mauricer::install_beast2_pkg(\"NS\")"
+  #- if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
 
 script:
   #- travis_wait 60 R CMD build .
@@ -63,12 +63,12 @@ script:
 
 after_success:
   # Codecov
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 20 Rscript -e 'covr::codecov()'; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 20 Rscript -e 'covr::codecov()'; fi
   # Lint
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then Rscript -e 'lintr::lint_package()'; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then Rscript -e 'lintr::lint_package()'; fi
   #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then Rscript -e 'lintr::lint_package()'; fi
   # Goodpractice, takes >30 mins on Mac
-  #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then Rscript -e 'goodpractice::gp()'; fi
+  ##- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then Rscript -e 'goodpractice::gp()'; fi
 
 after_failure:
   - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
