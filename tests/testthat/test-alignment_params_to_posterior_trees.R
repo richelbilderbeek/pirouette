@@ -21,6 +21,6 @@ test_that("returns a multiPhylo", {
   expect_equal("multiPhylo", class(trees))
 
   expect_true(all(file.exists(
-      get_beast2_options_filenames(experiment$beast2_options)
+      beastier::get_beast2_options_filenames(experiment$beast2_options)
   )))
 })
