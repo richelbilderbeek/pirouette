@@ -41,7 +41,7 @@ create_alignment_impl <- function(
   verbose = FALSE
 ) {
   beautier::check_phylogeny(phylogeny)
-  check_reconstructed_phylogeny(phylogeny)
+  check_reconstructed_phylogeny(phylogeny) # nolint pirouette function
   testit::assert(beautier::is_one_int(rng_seed))
   testit::assert(
     is.function(mutation_rate) ||
