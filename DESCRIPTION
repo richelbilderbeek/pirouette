@@ -31,7 +31,7 @@ Imports:
     geiger,
     magrittr,
     mauricer,
-    mcbette (>= 1.6),
+    mcbette (>= 1.7),
     phangorn,
     phytools,
     plyr,
