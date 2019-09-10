@@ -2,6 +2,26 @@
 
 Newest versions at top.
 
+## `pirouette` 1.5.1 (2019-09-10)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * Use `mcbette` version in which a higher number of particles in 
+   Nested Sampling does result in a better marginal likelihood
+   estimation
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.5 (2019-08-19)
 
 ### NEW FEATURES
