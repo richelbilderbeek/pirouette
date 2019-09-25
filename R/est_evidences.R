@@ -130,7 +130,7 @@ est_evidences <- function(
     }
   }
 
-  marg_liks <- mcbette::est_marg_liks_from_models(
+  marg_liks <- mcbette::est_marg_liks(
     fasta_filename = evidence_fasta_filename,
     inference_models = inference_models,
     beast2_optionses =  beast2_optionses,

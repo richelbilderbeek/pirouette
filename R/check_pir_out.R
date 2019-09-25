@@ -69,5 +69,5 @@ check_pir_out <- function(
   }
 
   # Errors more than zero
-  check_pir_out_errors_above_zero(pir_out)
+  check_pir_out_errors_above_zero(pir_out) # nolint pirouette function
 }
