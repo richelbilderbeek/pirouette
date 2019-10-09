@@ -1,6 +1,4 @@
-context("test-create_true_alignment")
-
-test_that("create_true_alignment: basic", {
+test_that("basic", {
   n_taxa <- 3
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
@@ -14,9 +12,9 @@ test_that("create_true_alignment: basic", {
     true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
-  expect_true(class(alignment) == "DNAbin")
-  expect_true(nrow(alignment) == n_taxa)
-  expect_true(ncol(alignment) == sequence_length)
+  expect_equal(class(alignment), "DNAbin")
+  expect_equal(nrow(alignment), n_taxa)
+  expect_equal(ncol(alignment), sequence_length)
 })
 
 test_that("create_true_alignment: HKY", {

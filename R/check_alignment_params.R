@@ -51,6 +51,14 @@ check_alignment_params <- function(
   if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
+  if (!beautier::is_site_model(alignment_params$site_model)) {
+    stop(
+      "'site_model' must be a site model. \n",
+      "Tip: use 'create_site_model'. \n",
+      "Actual value: ", alignment_params$site_model
+    )
+  }
+
   if (!beautier::is_clock_model(alignment_params$clock_model)) {
     stop(
       "'clock_model' must be a clock model. \n",

@@ -14,7 +14,9 @@ test_that("use", {
     )
   )
 
-  # Wrong parameter names
+  ##############################################################################
+  # Missing elements
+  ##############################################################################
   alignment_params <- good_alignment_params
   alignment_params$root_sequence <- NULL
   expect_error(
@@ -54,7 +56,9 @@ test_that("use", {
     "'clock_model' must be an element of an 'alignment_params'"
   )
 
-  # Wrong parameter values
+  ##############################################################################
+  # Wrong element values
+  ##############################################################################
   expect_error(
     check_alignment_params(
       create_alignment_params(
@@ -104,6 +108,46 @@ test_that("use", {
     ),
     "'rng_seed' must be a number"
   )
+
+  # site_model
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = beautier::create_jc69_site_model()
+      )
+    )
+  )
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = beautier::create_hky_site_model()
+      )
+    )
+  )
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = beautier::create_tn93_site_model()
+      )
+    )
+  )
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = beautier::create_gtr_site_model()
+      )
+    )
+  )
+
+  expect_error(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = "nonsense"
+      )
+    ),
+    "'site_model' must be a site model"
+  )
+
   expect_error(
     check_alignment_params(
       create_alignment_params(

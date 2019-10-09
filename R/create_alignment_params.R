@@ -64,7 +64,7 @@ create_alignment_params <- function(
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )
-  check_alignment_params(alignment_params = alignment_params) # nolint pirouette function
+  pirouette::check_alignment_params(alignment_params)
   alignment_params
 }
 
