@@ -68,6 +68,6 @@ create_inference_conditions <- create_inf_conds <- function(
     run_if = run_if,
     do_measure_evidence = do_measure_evidence
   )
-  check_inference_conditions(inference_conditions = inference_conditions) # nolint pirouette function
+  pirouette::check_inference_conditions(inference_conditions)
   inference_conditions
 }

@@ -31,7 +31,7 @@
 #' @export
 rm_pir_param_files <- function(pir_params) {
 
-  filenames <- get_pir_params_filenames(pir_params) # nolint pirouette function
+  filenames <- pirouette::get_pir_params_filenames(pir_params)
   file.remove(filenames[file.exists(filenames)])
   testit::assert(all(!file.exists(filenames)))
 }

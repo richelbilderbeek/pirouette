@@ -60,9 +60,9 @@ create_true_alignment <- function(
       "Actual value: ", true_phylogeny
     )
   }
-  check_reconstructed_phylogeny(true_phylogeny) # nolint pirouette function
+  pirouette::check_reconstructed_phylogeny(true_phylogeny) # nolint pirouette function
   tryCatch(
-    check_alignment_params(alignment_params), # nolint pirouette function
+    pirouette::check_alignment_params(alignment_params),
     error = function(e) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters. ",

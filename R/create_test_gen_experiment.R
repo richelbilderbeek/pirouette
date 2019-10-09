@@ -52,7 +52,7 @@ create_test_gen_experiment <- function(
   ),
   beast2_options = beastier::create_beast2_options()
 ) {
-  create_test_experiment( # nolint pirouette function
+  pirouette::create_test_experiment(
     inference_conditions = inference_conditions,
     inference_model = inference_model,
     beast2_options = beast2_options

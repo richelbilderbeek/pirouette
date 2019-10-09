@@ -84,11 +84,24 @@ pir_run_twin_tree <- function(
   for (i in seq_along(experiments)) {
     experiment <- experiments[[i]]
 
-    experiment$beast2_options$input_filename <- to_twin_filename(experiment$beast2_options$input_filename) # nolint indeed too long ...
-    experiment$beast2_options$output_log_filename <- to_twin_filename(experiment$beast2_options$output_log_filename) # nolint indeed too long ...
-    experiment$beast2_options$output_trees_filenames <- to_twin_filename(experiment$beast2_options$output_trees_filenames) # nolint indeed too long ...
-    experiment$beast2_options$output_state_filename <- to_twin_filename(experiment$beast2_options$output_state_filename) # nolint indeed too long ...
-    experiment$errors_filename <- to_twin_filename(experiment$errors_filename) # nolint pirouette function
+    experiment$beast2_options$input_filename <- pirouette::to_twin_filename(
+      experiment$beast2_options$input_filename
+    )
+    experiment$beast2_options$output_log_filename <-
+      pirouette::to_twin_filename(
+        experiment$beast2_options$output_log_filename
+    )
+    experiment$beast2_options$output_trees_filenames <-
+      pirouette::to_twin_filename(
+      experiment$beast2_options$output_trees_filenames
+    )
+    experiment$beast2_options$output_state_filename <-
+      pirouette::to_twin_filename(
+      experiment$beast2_options$output_state_filename
+    )
+    experiment$errors_filename <- pirouette::to_twin_filename(
+      experiment$errors_filename
+    )
 
     # Dirty hack: use a modified alignment_params for informing
     # 'phylo_to_errors' about the filename of the alignment
@@ -97,7 +110,8 @@ pir_run_twin_tree <- function(
     # and 'twin_phylo_to_errors' that probably call a same
     # function 'phylo_to_errors_impl' in the back
     alignment_params <- pir_params$alignment_params
-    alignment_params$fasta_filename <- pir_params$twinning_params$twin_alignment_filename # nolint sorry Demeter
+    alignment_params$fasta_filename <-
+      pir_params$twinning_params$twin_alignment_filename # sorry Demeter
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = twin_phylogeny,
@@ -108,7 +122,7 @@ pir_run_twin_tree <- function(
     )
 
     # Save errors to file
-    errors_filename <- experiment$errors_filename # nolint pirouette function
+    errors_filename <- experiment$errors_filename
     if (isTRUE(pir_params$verbose)) {
       print(
         paste0(

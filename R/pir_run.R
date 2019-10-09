@@ -87,7 +87,7 @@ pir_run <- function(
 ) {
   # Check the inputs
   beautier::check_phylogeny(phylogeny)
-  check_pir_params(pir_params) # nolint pirouette function
+  pirouette::check_pir_params(pir_params)
 
   # Higher-level checks
   for (experiment in pir_params$experiments) {
@@ -107,7 +107,7 @@ pir_run <- function(
   if (!beautier::is_one_na(pir_params$twinning_params)) {
 
     # Create twin tree
-    twin_tree <- create_twin_tree( # nolint pirouette function
+    twin_tree <- pirouette::create_twin_tree(
       phylogeny,
       twinning_params = pir_params$twinning_params
     )
@@ -126,7 +126,7 @@ pir_run <- function(
     beautier::check_file_exists(twin_tree_filename, "twin_tree_filename")
 
     # pir_run for the twin
-    pir_out_twin <- pir_run_twin_tree( # nolint pirouette function
+    pir_out_twin <- pirouette::pir_run_twin_tree(
       twin_phylogeny = twin_tree,
       pir_params = pir_params
     )

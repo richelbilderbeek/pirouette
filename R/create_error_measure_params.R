@@ -48,6 +48,6 @@ create_error_measure_params <- function(
     burn_in_fraction = burn_in_fraction,
     error_function = error_function
   )
-  check_error_measure_params(error_measure_params = error_measure_params) # nolint pirouette function
+  pirouette::check_error_measure_params(error_measure_params)
   error_measure_params
 }

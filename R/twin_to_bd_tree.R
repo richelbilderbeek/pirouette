@@ -34,14 +34,14 @@ twin_to_bd_tree <- function(
   phylogeny,
   twinning_params
 ) {
-  check_twinning_params(twinning_params) # nolint pirouette function
+  pirouette::check_twinning_params(twinning_params)
   seed <- twinning_params$rng_seed_twin_tree
   method <- twinning_params$method
   n_replicates <- twinning_params$n_replicates
 
   age  <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
-    convert_tree2brts(phylogeny), # nolint pirouette function
+    pirouette::convert_tree2brts(phylogeny),
     decreasing = TRUE
   )
   n_tips <- ape::Ntip(phylogeny)
@@ -55,7 +55,7 @@ twin_to_bd_tree <- function(
     sink(tempfile())
     bd_pars <- DDD::bd_ML(
       brts = sort(phylo_brts, decreasing = TRUE),
-      cond = 1, #conditioning on stem or crown age # nolint
+      cond = 1, # conditioning on stem or crown age # nolint
       initparsopt = c(lambda, mu),
       idparsopt = 1:2,
       missnumspec = 0,

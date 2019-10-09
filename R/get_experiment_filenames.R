@@ -7,7 +7,7 @@
 #' )
 #' @export
 get_experiment_filenames <- function(experiment) {
-  check_experiment(experiment) # nolint pirouette function
+  pirouette::check_experiment(experiment)
   c(
     beastier::get_beast2_options_filenames(experiment$beast2_options),
     experiment$errors_filename

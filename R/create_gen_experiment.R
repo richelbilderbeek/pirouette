@@ -51,7 +51,7 @@ create_gen_experiment <- function(
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 1e-12),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
 ) {
-  create_experiment( # nolint pirouette function
+  pirouette::create_experiment(
     inference_conditions = inference_conditions,
     inference_model = inference_model,
     beast2_options = beast2_options,

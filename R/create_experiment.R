@@ -43,6 +43,6 @@ create_experiment <- function(
     errors_filename = errors_filename
   )
 
-  check_experiment(experiment) # nolint pirouette function
+  pirouette::check_experiment(experiment)
   experiment
 }

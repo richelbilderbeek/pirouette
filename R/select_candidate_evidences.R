@@ -26,13 +26,13 @@ select_candidate_evidences <- function(
   experiments = list(create_test_experiment()),
   marg_liks = create_test_marg_liks()
 ) {
-  check_experiments(experiments) # nolint pirouette function
+  pirouette::check_experiments(experiments)
 
   selected_row_indices <- c()
 
   for (experiment in experiments) {
-    if (experiment$inference_conditions$model_type == "generative") next ()
-    for (i in seq(1: nrow(marg_liks))) {
+    if (experiment$inference_conditions$model_type == "generative") next()
+    for (i in seq(1, nrow(marg_liks))) {
       if (marg_liks$site_model_name[i] ==
           experiment$inference_model$site_model$name &&
         marg_liks$clock_model_name[i] ==

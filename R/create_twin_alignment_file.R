@@ -49,9 +49,9 @@ create_twin_alignment_file <- function(
   twinning_params,
   verbose = FALSE
 ) {
-  check_twin_phylogeny(twin_phylogeny) # nolint pirouette function
-  check_alignment_params(alignment_params) # nolint pirouette function
-  check_twinning_params(twinning_params) # nolint pirouette function
+  pirouette::check_twin_phylogeny(twin_phylogeny)
+  pirouette::check_alignment_params(alignment_params)
+  pirouette::check_twinning_params(twinning_params)
 
   true_alignment_filename <- alignment_params$fasta_filename
   true_alignment <- ape::read.FASTA(true_alignment_filename)

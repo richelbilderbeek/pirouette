@@ -53,10 +53,10 @@ create_pir_params_twin <- function(
     for (ii in seq_along(filenames)) {
       testit::assert(is.character(filenames[ii]))
       pir_params_twin$experiments[[i]]$beast2_options[ii] <-
-        to_twin_filename(filenames[ii]) # nolint pirouette function
+        pirouette::to_twin_filename(filenames[ii])
     }
   }
 
-  check_pir_params(pir_params_twin) # nolint pirouette function
+  pirouette::check_pir_params(pir_params_twin)
   pir_params_twin
 }
