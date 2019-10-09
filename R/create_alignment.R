@@ -87,21 +87,16 @@ create_alignment <- function(
   while (1) {
     if (alignment_params$site_model != "node_sub") {
       # Standard site models
-      alignment_phydat <- phangorn::simSeq(
-        phylogeny,
-        l = nchar(alignment_params$root_sequence),
-        rate = alignment_params$mutation_rate,
-        rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-        Q = create_rate_matrix(
-          site_model = alignment_params$site_model,
-          base_frequencies = calc_base_freq(alignment_params$root_sequence)
-        )
+      alignment_phydat <- create_alignment_with_standard_site_model(
+        phylogeny = phylogeny,
+        alignment_params = alignment_params
       )
     } else {
       testit::assert(alignment_params$site_model == "node_sub")
-
-      # STUB: code @thijsjanzen here
-      alignment_phydat <- phangorn::simSeq(phylogeny)
+      alignment_phydat <- create_alignment_with_node_sub_site_model(
+        phylogeny = phylogeny,
+        alignment_params = alignment_params
+      )
     }
 
     testit::assert(class(alignment_phydat) == "phyDat")
@@ -143,4 +138,34 @@ create_alignment <- function(
   )
 
   alignment_dnabin
+}
+
+#' Create an alignment with a standard site model
+#' @noRd
+create_alignment_with_standard_site_model <- function(
+  phylogeny,
+  alignment_params
+) {
+  phangorn::simSeq(
+    phylogeny,
+    l = nchar(alignment_params$root_sequence),
+    rate = alignment_params$mutation_rate,
+    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
+    Q = create_rate_matrix(
+      site_model = alignment_params$site_model,
+      base_frequencies = calc_base_freq(alignment_params$root_sequence)
+    )
+  )
+}
+
+#' Create an alignment with the \code{node_sub} site model
+#' @noRd
+create_alignment_with_node_sub_site_model <- function(
+  phylogeny,
+  alignment_params
+) {
+  testit::assert(alignment_params$site_model == "node_sub")
+
+  # STUB for @thijsjanzen
+  phangorn::simSeq(phylogeny)
 }
