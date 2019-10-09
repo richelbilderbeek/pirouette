@@ -93,7 +93,7 @@ test_that("use", {
         rng_seed_twin_tree = "nonsense"
       )
     ),
-    "'rng_seed_twin_tree' must be a number"
+    "'rng_seed_twin_tree' must be a whole number"
   )
   expect_error(
     check_twinning_params(
@@ -101,7 +101,7 @@ test_that("use", {
         rng_seed_twin_alignment = "nonsense"
       )
     ),
-    "'rng_seed_twin_alignment' must be a number"
+    "'rng_seed_twin_alignment' must be a whole number"
   )
   expect_error(
     check_twinning_params(
@@ -180,13 +180,11 @@ test_that("use", {
       create_twinning_params(twin_model = "birth_death")
     )
   )
-  if (1 == 2) {
-    expect_silent(
-      check_twinning_params(
-        create_twinning_params(twin_model = "copy_true")
-      )
+  expect_silent(
+    check_twinning_params(
+      create_twinning_params(twin_model = "copy_true")
     )
-  }
+  )
   expect_error(
     check_twinning_params(
       create_twinning_params(

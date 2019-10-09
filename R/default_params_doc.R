@@ -271,6 +271,8 @@
 #'   \itemize{
 #'     \item \code{birth_death}: birth death
 #'     \item \code{yule}: Yule or pure-birth
+#'     \item \code{copy_true}: use a copy of the true tree in the twinning
+#'      pipeline
 #'   }
 #'   See \link{get_twin_models} to see all possible
 #'   values of \code{twin_model}

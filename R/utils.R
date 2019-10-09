@@ -31,10 +31,11 @@ convert_tree2brts <- function(tree, precision = 8) {
 #'
 #' expect_true("yule" %in% get_twin_models())
 #' expect_true("birth_death" %in% get_twin_models())
+#' expect_true("copy_true" %in% get_twin_models())
 #' expect_false("nonsense" %in% get_twin_models())
 #' @export
 get_twin_models <- function() {
-  c("birth_death", "yule")
+  c("birth_death", "yule", "copy_true")
 }
 
 #' @title Twin methods
