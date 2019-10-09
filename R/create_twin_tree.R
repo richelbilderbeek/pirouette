@@ -32,11 +32,14 @@ create_twin_tree <- function(
       twinning_params = twinning_params
     )
   }
-  if (twinning_params$twin_model == "yule") {
+  else if (twinning_params$twin_model == "yule") {
     twin_tree <- twin_to_yule_tree(
       phylogeny = phylogeny,
       twinning_params = twinning_params
     )
+  } else {
+    testit::assert(twinning_params$twin_model == "copy_true")
+    twin_tree <- phylogeny
   }
   testit::assert(beautier::is_phylo(twin_tree))
   testit::assert(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
