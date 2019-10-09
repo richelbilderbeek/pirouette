@@ -86,6 +86,7 @@ create_alignment <- function(
 
   while (1) {
     if (alignment_params$site_model != "node_sub") {
+      # Standard site models
       alignment_phydat <- phangorn::simSeq(
         phylogeny,
         l = nchar(alignment_params$root_sequence),
