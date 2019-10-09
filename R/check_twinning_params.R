@@ -21,18 +21,17 @@ check_twinning_params <- function(
   check_twinning_params_list_elements(twinning_params) # nolint pirouette function
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
-    stop("'rng_seed_twin_tree' must be a number")
+    stop("'rng_seed_twin_tree' must be a whole number")
   }
-
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_alignment)) {
-    stop("'rng_seed_twin_alignment' must be a number")
+    stop("'rng_seed_twin_alignment' must be a whole number")
   }
   if (!is.character(twinning_params$twin_model)) {
     stop("'twin_model' must be a character vector")
   }
   if (!(twinning_params$twin_model %in% get_twin_models())) {
     stop(
-      "'twin model' is not implemented. \n",
+      "'twin_model' is not implemented. \n",
       "Possible values: '",
         paste0(get_twin_models(), collapse = ", "), "'. \n",
       "Actual value: '", twinning_params$twin_model, "'"

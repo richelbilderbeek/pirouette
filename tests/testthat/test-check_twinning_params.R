@@ -11,7 +11,9 @@ test_that("use", {
     )
   )
 
-  # Wrong parameter names
+  ##############################################################################
+  # Missing elements
+  ##############################################################################
   twinning_params <- good_twinning_params
   twinning_params$rng_seed_twin_tree <- NULL
   expect_error(
@@ -31,12 +33,57 @@ test_that("use", {
   )
 
   twinning_params <- good_twinning_params
+  twinning_params$twin_model <- NULL
+  expect_error(
+    check_twinning_params(
+      twinning_params
+    ),
+    "'twin_model' must be an element of an 'twinning_params'"
+  )
+
+  twinning_params <- good_twinning_params
+  twinning_params$method <- NULL
+  expect_error(
+    check_twinning_params(
+      twinning_params
+    ),
+    "'method' must be an element of an 'twinning_params'"
+  )
+
+  twinning_params <- good_twinning_params
+  twinning_params$n_replicates <- NULL
+  expect_error(
+    check_twinning_params(
+      twinning_params
+    ),
+    "'n_replicates' must be an element of an 'twinning_params'"
+  )
+
+  twinning_params <- good_twinning_params
   twinning_params$twin_tree_filename <- NULL
   expect_error(
     check_twinning_params(
       twinning_params
     ),
     "'twin_tree_filename' must be an element of an 'twinning_params'"
+  )
+
+  twinning_params <- good_twinning_params
+  twinning_params$twin_alignment_filename <- NULL
+  expect_error(
+    check_twinning_params(
+      twinning_params
+    ),
+    "'twin_alignment_filename' must be an element of an 'twinning_params'"
+  )
+
+  twinning_params <- good_twinning_params
+  twinning_params$twin_evidence_filename <- NULL
+  expect_error(
+    check_twinning_params(
+      twinning_params
+    ),
+    "'twin_evidence_filename' must be an element of an 'twinning_params'"
   )
 
   # Wrong parameter values
@@ -83,7 +130,83 @@ test_that("use", {
     "This 'method' is not implemented"
   )
 
-  # Wrong methods
+  ##############################################################################
+  # Wrong element data types
+  ##############################################################################
+  # rng_seed_twin_tree
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        rng_seed_twin_tree = "nonsense"
+      )
+    ),
+    "'rng_seed_twin_tree' must be a whole number"
+  )
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        rng_seed_twin_tree = 3.14
+      )
+    ),
+    "'rng_seed_twin_tree' must be a whole number"
+  )
+
+  # rng_seed_twin_alignment
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        rng_seed_twin_alignment = "nonsense"
+      )
+    ),
+    "'rng_seed_twin_alignment' must be a whole number"
+  )
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        rng_seed_twin_alignment = 3.14
+      )
+    ),
+    "'rng_seed_twin_alignment' must be a whole number"
+  )
+
+  # twin_model
+  expect_silent(
+    check_twinning_params(
+      create_twinning_params(twin_model = "yule")
+    )
+  )
+  expect_silent(
+    check_twinning_params(
+      create_twinning_params(twin_model = "birth_death")
+    )
+  )
+  if (1 == 2) {
+    expect_silent(
+      check_twinning_params(
+        create_twinning_params(twin_model = "copy_true")
+      )
+    )
+  }
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        twin_model = "nonsense"
+      )
+    ),
+    "'twin_model' is not implemented"
+  )
+
+  # method
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        method = "nonsense"
+      )
+    ),
+    "'method' is not implemented"
+  )
+
+  # n_replicates
   expect_error(
     check_twinning_params(
       create_twinning_params(
@@ -117,7 +240,27 @@ test_that("use", {
     "'n_replicates' must be a finite positive integer number"
   )
 
-  # Wrong twin_evidence_filename
+  # twin_tree_filename
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        twin_tree_filename = 13
+      )
+    ),
+    "'twin_tree_filename' must be a character vector"
+  )
+
+  # twin_alignment_filename
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        twin_alignment_filename = 13
+      )
+    ),
+    "'twin_alignment_filename' must be a character vector"
+  )
+
+  # twin_evidence_filename
   expect_error(
     check_twinning_params(
       create_twinning_params(
