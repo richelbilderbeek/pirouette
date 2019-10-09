@@ -82,7 +82,7 @@ errorses_to_data_frame <- function(
   for (i in seq_along(experiments)) {
     experiment <- experiments[[i]]
     nltts <- errorses[[i]]
-    check_experiment(experiment) # nolint pirouette function
+    pirouette::check_experiment(experiment)
     df$inference_model[i] <- experiment$inference_conditions$model_type
     df$inference_model_weight[i] <- NA
     df$site_model[i] <- experiment$inference_model$site_model$name

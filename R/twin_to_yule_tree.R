@@ -32,14 +32,14 @@ twin_to_yule_tree <- function(
   phylogeny,
   twinning_params
 ) {
-  check_twinning_params(twinning_params) # nolint pirouette function
+  pirouette::check_twinning_params(twinning_params)
   seed <- twinning_params$rng_seed_twin_tree
   method <- twinning_params$method
   n_replicates <- twinning_params$n_replicates
 
   age <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
-    convert_tree2brts(phylogeny), # nolint pirouette function
+    pirouette::convert_tree2brts(phylogeny),
     decreasing = TRUE
   )
   n_tips <- ape::Ntip(phylogeny)

@@ -37,10 +37,10 @@ select_experiments <- function(
   marg_liks = NULL,
   verbose = FALSE
 ) {
-  check_experiments(experiments) # nolint pirouette function
+  pirouette::check_experiments(experiments)
 
   # Keep only the candidate marginal likelihoods
-  candidate_marg_liks <- select_candidate_evidences( # nolint pirouette function
+  candidate_marg_liks <- pirouette::select_candidate_evidences(
     experiments,
     marg_liks
   )

@@ -59,7 +59,7 @@ create_pir_params <- function(
     evidence_filename = evidence_filename,
     verbose = verbose
   )
-  check_pir_params(pir_params) # nolint pirouette function
+  pirouette::check_pir_params(pir_params)
   pir_params
 }
 

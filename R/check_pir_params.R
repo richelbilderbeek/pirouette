@@ -35,7 +35,7 @@ check_pir_params <- function(
   }
 
   tryCatch(
-    check_alignment_params(pir_params$alignment_params), # nolint pirouette function
+    pirouette::check_alignment_params(pir_params$alignment_params),
     error = function(e) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters.\n",
@@ -47,7 +47,7 @@ check_pir_params <- function(
     }
   )
   tryCatch(
-    check_error_measure_params(pir_params$error_measure_params), # nolint pirouette function
+    pirouette::check_error_measure_params(pir_params$error_measure_params),
     error = function(e) {
       msg <- paste0(
         "'error_measure_params' must be a set of error measurement ",
@@ -60,7 +60,7 @@ check_pir_params <- function(
     }
   )
   tryCatch(
-    check_experiments(pir_params$experiments), # nolint pirouette function
+    pirouette::check_experiments(pir_params$experiments),
     error = function(e) {
       msg <- paste0(
         "'experiments' must be one experiment or a list of one or more ",

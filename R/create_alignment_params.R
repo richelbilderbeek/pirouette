@@ -64,7 +64,7 @@ create_alignment_params <- function(
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )
-  check_alignment_params(alignment_params = alignment_params) # nolint pirouette function
+  pirouette::check_alignment_params(alignment_params)
   alignment_params
 }
 
@@ -85,12 +85,12 @@ create_test_alignment_params <- function(
   rng_seed = 0,
   fasta_filename = tempfile(pattern = "alignment_", fileext = ".fasta")
 ) {
-  create_alignment_params(
+  pirouette::create_alignment_params(
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model,
     clock_model = clock_model,
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
-  ) # nolint pirouette function
+  )
 }

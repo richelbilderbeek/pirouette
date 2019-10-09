@@ -56,7 +56,7 @@ est_evidences <- function(
   # Instead, some temporary files that BEAST2 uses in a nested sampling
   # run should be created and deleted afterwards.
   #
-  evidence_fasta_filename <- to_evidence_filename(fasta_filename) # nolint pirouette function
+  evidence_fasta_filename <- pirouette::to_evidence_filename(fasta_filename)
   # Create the subsubsubfolder for target, do not warn if it already exists
   dir.create(
     dirname(evidence_fasta_filename),
@@ -73,7 +73,7 @@ est_evidences <- function(
     )
   }
 
-  check_experiments(experiments) # nolint pirouette function
+  pirouette::check_experiments(experiments)
 
   # Collect inference models and BEAST2 optionses
   inference_models <- list()

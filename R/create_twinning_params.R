@@ -55,6 +55,6 @@ create_twinning_params <- function(
     twin_alignment_filename = twin_alignment_filename,
     twin_evidence_filename = twin_evidence_filename
   )
-  check_twinning_params(twinning_params) # nolint pirouette function
+  pirouette::check_twinning_params(twinning_params)
   twinning_params
 }

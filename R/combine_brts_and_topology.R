@@ -40,7 +40,7 @@ combine_brts_and_topology <- function(
   # if(!is.null(tree$edge.lengths)){
   #   message("Warning: input tree has $edge.lengths present, these
   #           will be replaced")}
-  tree$edge.length <- NULL # nolint
+  tree$edge.length <- NULL # nolint oldskool naming
 
   #add zero ages for tips
   all_ages <- c(rep(0, ape::Ntip(tree)), brts)

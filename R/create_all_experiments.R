@@ -28,9 +28,9 @@ create_all_experiments <- function(
   mcmc = beautier::create_mcmc(store_every = 1000),
   exclude_model = NA
 ) {
-  beautier::check_site_models(site_models) # nolint pirouette function
-  beautier::check_clock_models(clock_models) # nolint pirouette function
-  beautier::check_tree_priors(tree_priors) # nolint pirouette function
+  beautier::check_site_models(site_models)
+  beautier::check_clock_models(clock_models)
+  beautier::check_tree_priors(tree_priors)
   if (!all(is.na(exclude_model))) {
     beautier::check_inference_model(exclude_model)
   }
@@ -96,7 +96,7 @@ create_all_experiments <- function(
   names(all_experiments) <- seq_along(all_experiments)
   all_experiments[sapply(all_experiments, is.null)] <- NULL
 
-  check_experiments(all_experiments) # nolint pirouette function
+  pirouette::check_experiments(all_experiments)
 
   all_experiments
 }

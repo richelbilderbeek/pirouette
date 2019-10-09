@@ -54,7 +54,7 @@ create_twin_branching_times <- function(
   # Retrieve info from the phylogeny
   age  <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
-    convert_tree2brts(phylogeny), # nolint pirouette function
+    pirouette::convert_tree2brts(phylogeny),
     decreasing = TRUE
   )
   n_tips <- ape::Ntip(phylogeny)
@@ -89,6 +89,6 @@ create_twin_branching_times <- function(
     testit::assert(method == "max_clade_cred" || method == "random_tree")
     tree0 <- phangorn::maxCladeCred(sim_trees)
   }
-  brts0 <- convert_tree2brts(tree0) # nolint pirouette function
+  brts0 <- pirouette::convert_tree2brts(tree0)
   brts0
 }
