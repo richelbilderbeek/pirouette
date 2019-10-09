@@ -74,10 +74,7 @@ create_true_alignment <- function(
 
   create_alignment_impl(
     phylogeny = true_phylogeny,
-    root_sequence = alignment_params$root_sequence,
-    rng_seed = alignment_params$rng_seed,
-    mutation_rate = alignment_params$mutation_rate,
-    site_model = alignment_params$site_model,
+    alignment_params = alignment_params,
     n_mutations = NA
   )
 }

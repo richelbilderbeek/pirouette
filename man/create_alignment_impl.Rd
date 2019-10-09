@@ -4,24 +4,18 @@
 \alias{create_alignment_impl}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-create_alignment_impl(phylogeny, root_sequence, rng_seed, mutation_rate,
-  site_model, n_mutations = NA, verbose = FALSE)
+create_alignment_impl(phylogeny, alignment_params, n_mutations = NA,
+  verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
-
-\item{rng_seed}{a random number generator seed}
-
-\item{mutation_rate}{the mutation rate per base pair per time unit}
-
-\item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
+\item{alignment_params}{parameters to simulate an alignment,
+as can be created by \link{create_alignment_params}}
 
 \item{n_mutations}{the number of different base pairs between
-root sequence and the resulting alignment}
+root sequence and the resulting alignment. Set to \link{NA} if
+any number of mutations is fine.}
 
 \item{verbose}{if TRUE, show more output}
 }
@@ -29,32 +23,29 @@ root sequence and the resulting alignment}
 an alignment of type \code{DNAbin}
 }
 \description{
-Converts a phylogeny to a random DNA alignment
+The function is used to create both
+the true (see \link{create_true_alignment})
+and twin alignment (see \link{create_twin_alignment}).
 }
 \examples{
 library(testthat)
 
-# Create the ancestor's DNA sequence
-n_base_pairs <- 4
-root_sequence <- create_blocked_dna(length = n_base_pairs)
-mutation_rate <- 0.1
+# Create the phylogeny to simulate the alignment on
 n_taxa <- 5
-rng_seed <- 314
 phylogeny <- ape::rcoal(n_taxa)
-site_model <- create_jc69_site_model()
+
+# Use default settings to create the alignment
+alignment_params <- pirouette::create_alignment_params()
 
 # Simulate the alignment
 alignment <- create_alignment_impl(
    phylogeny = phylogeny,
-   root_sequence = root_sequence,
-   rng_seed = rng_seed,
-   mutation_rate = mutation_rate,
-   site_model = site_model
+   alignment_params = alignment_params,
  )
 
 expect_equal(class(alignment), "DNAbin")
 expect_equal(nrow(alignment), n_taxa)
-expect_equal(ncol(alignment), n_base_pairs)
+expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }
 \seealso{
 Use \link{create_alignment_file} to save the simulated alignment

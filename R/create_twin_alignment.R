@@ -73,7 +73,6 @@ create_twin_alignment <- function(
     beautier::is_one_double(alignment_params$mutation_rate) ||
     is.function(alignment_params$mutation_rate)
   )
-  mutation_rate <- alignment_params$mutation_rate
 
   # Will increase the RNG seed up until
   # a twin alignment is found
@@ -84,12 +83,13 @@ create_twin_alignment <- function(
   twin_alignment <- NA
 
   while (n_mutations_true != n_mutations_twin) {
+
+    twin_alignment_params <- alignment_params
+    twin_alignment_params$rng_seed <- rng_seed
+
     twin_alignment <- create_alignment_impl(
       phylogeny = twin_phylogeny,
-      root_sequence = alignment_params$root_sequence,
-      rng_seed = rng_seed,
-      mutation_rate = mutation_rate,
-      site_model = alignment_params$site_model
+      alignment_params = twin_alignment_params
     )
     n_mutations_twin <- count_n_mutations(
       alignment = twin_alignment,
