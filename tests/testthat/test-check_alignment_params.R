@@ -138,6 +138,13 @@ test_that("use", {
       )
     )
   )
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = "node_sub"
+      )
+    )
+  )
 
   expect_error(
     check_alignment_params(

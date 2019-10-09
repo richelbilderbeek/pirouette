@@ -85,16 +85,23 @@ create_alignment <- function(
   n_tries <- 1
 
   while (1) {
-    alignment_phydat <- phangorn::simSeq(
-      phylogeny,
-      l = nchar(alignment_params$root_sequence),
-      rate = alignment_params$mutation_rate,
-      rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-      Q = create_rate_matrix(
-        site_model = alignment_params$site_model,
-        base_frequencies = calc_base_freq(alignment_params$root_sequence)
+    if (alignment_params$site_model != "node_sub") {
+      alignment_phydat <- phangorn::simSeq(
+        phylogeny,
+        l = nchar(alignment_params$root_sequence),
+        rate = alignment_params$mutation_rate,
+        rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
+        Q = create_rate_matrix(
+          site_model = alignment_params$site_model,
+          base_frequencies = calc_base_freq(alignment_params$root_sequence)
+        )
       )
-    )
+    } else {
+      testit::assert(alignment_params$site_model == "node_sub")
+
+      # STUB: code @thijsjanzen here
+      alignment_phydat <- phangorn::simSeq(phylogeny)
+    }
 
     testit::assert(class(alignment_phydat) == "phyDat")
 

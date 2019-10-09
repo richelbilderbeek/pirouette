@@ -10,7 +10,9 @@ test_that("use", {
       n_mutations = n_mutations
     )
   )
-  # It's an impl, so error messages matter less
+  ##############################################################################
+  # Wrong element values
+  ##############################################################################
   expect_error(
     create_alignment(
       phylogeny = "nonsense",
@@ -43,5 +45,18 @@ test_that("use", {
       verbose = TRUE
     ),
     "Cannot have more mutations than the total number of nucleotides"
+  )
+})
+
+test_that("use node_sub", {
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    site_model = "node_sub"
+  )
+  expect_silent(
+    create_alignment(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params,
+    )
   )
 })
