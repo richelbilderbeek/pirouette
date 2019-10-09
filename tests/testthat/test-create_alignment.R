@@ -4,7 +4,7 @@ test_that("use", {
   n_mutations <- NA
 
   expect_silent(
-    create_alignment_impl(
+    create_alignment(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       n_mutations = n_mutations
@@ -12,21 +12,21 @@ test_that("use", {
   )
   # It's an impl, so error messages matter less
   expect_error(
-    create_alignment_impl(
+    create_alignment(
       phylogeny = "nonsense",
       alignment_params = alignment_params,
       n_mutations = n_mutations
     )
   )
   expect_error(
-    create_alignment_impl(
+    create_alignment(
       phylogeny = phylogeny,
       alignment_params = "nonsense",
       n_mutations = n_mutations
     )
   )
   expect_error(
-    create_alignment_impl(
+    create_alignment(
       phylogeny = phylogeny,
       root_sequence = root_sequence,
       rng_seed = rng_seed,
@@ -36,7 +36,7 @@ test_that("use", {
     )
   )
   expect_error(
-    create_alignment_impl(
+    create_alignment(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       n_mutations = 1e123,

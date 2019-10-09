@@ -87,7 +87,7 @@ create_twin_alignment <- function(
     twin_alignment_params <- alignment_params
     twin_alignment_params$rng_seed <- rng_seed
 
-    twin_alignment <- create_alignment_impl(
+    twin_alignment <- create_alignment(
       phylogeny = twin_phylogeny,
       alignment_params = twin_alignment_params
     )

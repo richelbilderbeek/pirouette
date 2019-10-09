@@ -21,7 +21,7 @@
 #' alignment_params <- pirouette::create_alignment_params()
 #'
 #' # Simulate the alignment
-#' alignment <- create_alignment_impl(
+#' alignment <- create_alignment(
 #'    phylogeny = phylogeny,
 #'    alignment_params = alignment_params,
 #'  )
@@ -31,7 +31,7 @@
 #' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-create_alignment_impl <- function(
+create_alignment <- function(
   phylogeny,
   alignment_params,
   n_mutations = NA,
