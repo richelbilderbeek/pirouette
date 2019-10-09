@@ -51,8 +51,9 @@ check_alignment_params <- function(
   if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
-  if (alignment_params$site_model != "node_sub" &&
+  if (
     !beautier::is_site_model(alignment_params$site_model)
+    && alignment_params$site_model != "node_sub"
   ) {
     stop(
       "'site_model' must be a site model. \n",

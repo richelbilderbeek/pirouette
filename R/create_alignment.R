@@ -85,7 +85,7 @@ create_alignment <- function(
   n_tries <- 1
 
   while (1) {
-    if (alignment_params$site_model != "node_sub") {
+    if (beautier::is_site_model(alignment_params$site_model)) {
       # Standard site models
       alignment_phydat <- create_alignment_with_standard_site_model(
         phylogeny = phylogeny,
