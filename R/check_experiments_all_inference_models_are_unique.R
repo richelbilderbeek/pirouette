@@ -1,5 +1,5 @@
 #' @author Richèl J.C. Bilderbeek
-#' @noRd
+#' @export
 check_experiments_all_inference_models_are_unique <- function( # nolint indeed a long function, which is fine for an internal function
   experiments
 ) {

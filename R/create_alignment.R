@@ -39,7 +39,7 @@ create_alignment <- function(
 ) {
   beautier::check_phylogeny(phylogeny)
   pirouette::check_alignment_params(alignment_params)
-  check_reconstructed_phylogeny(phylogeny) # nolint pirouette function
+  pirouette::check_reconstructed_phylogeny(phylogeny)
   testit::assert(
     beautier::is_one_int(n_mutations) ||
     beautier::is_one_na(n_mutations)

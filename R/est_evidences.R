@@ -114,7 +114,7 @@ est_evidences <- function(
   testit::assert(length(inference_models) > 0)
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)
-  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
+  pirouette::check_is_ns_beast2_pkg_installed()
 
   if (verbose) {
     for (i in seq_along(beast2_optionses)) {

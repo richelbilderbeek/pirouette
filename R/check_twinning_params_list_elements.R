@@ -1,5 +1,5 @@
 #' Check that the \code{twinning_params} has all the list elements
-#' @noRd
+#' @export
 check_twinning_params_list_elements <- function(twinning_params) { # nolint indeed long function name, which is fine for an internal function
   argument_names <- c(
     "rng_seed_twin_tree",

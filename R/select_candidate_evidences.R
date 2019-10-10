@@ -31,7 +31,7 @@ select_candidate_evidences <- function(
   selected_row_indices <- c()
 
   for (experiment in experiments) {
-    if (experiment$inference_conditions$model_type == "generative") next()
+    if (experiment$inference_conditions$model_type == "generative") next () # @lintr-bot likes a space between next and the braces?
     for (i in seq(1, nrow(marg_liks))) {
       if (marg_liks$site_model_name[i] ==
           experiment$inference_model$site_model$name &&

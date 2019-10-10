@@ -18,7 +18,7 @@ check_twinning_params <- function(
   twinning_params
 ) {
   # Check that the structure has all the list elements
-  check_twinning_params_list_elements(twinning_params)
+  pirouette::check_twinning_params_list_elements(twinning_params)
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
     stop("'rng_seed_twin_tree' must be a whole number")

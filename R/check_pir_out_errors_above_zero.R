@@ -1,5 +1,5 @@
 #' Checks that \code{pir_out} errors all are more than zero
-#' @noRd
+#' @export
 check_pir_out_errors_above_zero <- function(pir_out) { # nolint indeed long function name, which is fine for an internal function
 
   col_first_error <- which(colnames(pir_out) == "error_1")

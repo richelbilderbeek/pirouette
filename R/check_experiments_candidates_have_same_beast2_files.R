@@ -1,6 +1,6 @@
 #' @author Richèl J.C. Bilderbeek
-#' @noRd
-check_experiments_candidates_have_same_beast2_files <- function( # nolint long unexported function
+#' @export
+check_experiments_candidates_have_same_beast2_files <- function( # nolint long function
   experiments
 ) {
   testit::assert(length(experiments) >= 2)

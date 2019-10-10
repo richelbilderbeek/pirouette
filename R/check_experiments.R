@@ -54,11 +54,11 @@ check_experiments <- function(
 
   testit::assert(length(experiments) >= 2)
 
-  check_experiments_candidates_have_same_beast2_files(experiments)
-  check_experiments_candidates_have_same_mcmcs(experiments)
+  pirouette::check_experiments_candidates_have_same_beast2_files(experiments)
+  pirouette::check_experiments_candidates_have_same_mcmcs(experiments)
 
   model_types <- rep("", length(experiments))
-  for (i in 1:length(experiments)) {
+  for (i in seq_along(experiments)) {
     model_types[i] <- experiments[[i]]$inference_conditions$model_type
   }
   if (sum(model_types == "generative") > 1) {
@@ -72,5 +72,5 @@ check_experiments <- function(
   if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
     stop("If multiple experiments, generative is either first or absent")
   }
-  check_experiments_all_inference_models_are_unique(experiments)
+  pirouette::check_experiments_all_inference_models_are_unique(experiments)
 }
