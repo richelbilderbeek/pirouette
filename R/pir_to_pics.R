@@ -262,7 +262,7 @@ pir_to_pics <- function(
   }
 
   if (!beautier::is_one_na(pir_params$twinning_params)) {
-    twin_filenames <- pirouette::pir_to_pics_twin(
+    twin_filenames <- pir_to_pics_twin(
       pir_params = pir_params,
       consensus = consensus,
       folder = folder
