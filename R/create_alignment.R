@@ -104,6 +104,7 @@ create_alignment <- function(
       )
     }
 
+    testthat::expect_equal(class(alignment_phydat), "phyDat")
     testit::assert(class(alignment_phydat) == "phyDat")
 
     alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
@@ -169,9 +170,7 @@ create_alignment_with_linked_node_sub_site_model <- function(
   alignment_params
 ) {
   testit::assert(alignment_params$site_model == "linked_node_sub")
-
-  # STUB for @thijsjanzen
-  phangorn::simSeq(phylogeny)
+  nodeSub::sim_dual_linked(phylogeny)$alignment
 }
 
 #' Create an alignment with the \code{unlinked_node_sub} site model
@@ -181,7 +180,5 @@ create_alignment_with_unlinked_node_sub_site_model <- function(
   alignment_params
 ) {
   testit::assert(alignment_params$site_model == "unlinked_node_sub")
-
-  # STUB for @thijsjanzen
-  phangorn::simSeq(phylogeny)
+  nodeSub::sim_dual_independent(phylogeny)$alignment
 }

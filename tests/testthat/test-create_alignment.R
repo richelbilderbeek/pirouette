@@ -30,10 +30,7 @@ test_that("use", {
   expect_error(
     create_alignment(
       phylogeny = phylogeny,
-      root_sequence = root_sequence,
-      rng_seed = rng_seed,
-      mutation_rate = mutation_rate,
-      site_model = site_model,
+      alignment_params = alignment_params,
       n_mutations = "nonsense"
     )
   )
