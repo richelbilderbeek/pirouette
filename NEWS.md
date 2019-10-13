@@ -2,6 +2,27 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6 (2019-10-13)
+
+### NEW FEATURES
+
+ * Can create a twin tree that is a copy, by using `copy_tree` as the
+   `method` used in `create_twin_tree`
+ * Can use node substitution model, by using `linked_node_sub` 
+   or `unlinked_node_sub` as the `site_model` used in `create_alignment`
+
+### MINOR IMPROVEMENTS
+
+ * None
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.5.1 (2019-09-10)
 
 ### NEW FEATURES
