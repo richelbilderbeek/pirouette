@@ -364,7 +364,19 @@ makes a measurement}
 \item{sim_phylo}{something}
 
 \item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
 
 \item{site_models}{a list of one or more site models,
 as created by \link[beautier]{create_site_model}}

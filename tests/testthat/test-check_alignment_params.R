@@ -141,7 +141,14 @@ test_that("use", {
   expect_silent(
     check_alignment_params(
       create_alignment_params(
-        site_model = "node_sub"
+        site_model = "linked_node_sub"
+      )
+    )
+  )
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        site_model = "unlinked_node_sub"
       )
     )
   )

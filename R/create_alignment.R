@@ -91,9 +91,14 @@ create_alignment <- function(
         phylogeny = phylogeny,
         alignment_params = alignment_params
       )
+    } else if (alignment_params$site_model == "linked_node_sub") {
+      alignment_phydat <- create_alignment_with_linked_node_sub_site_model(
+        phylogeny = phylogeny,
+        alignment_params = alignment_params
+      )
     } else {
-      testit::assert(alignment_params$site_model == "node_sub")
-      alignment_phydat <- create_alignment_with_node_sub_site_model(
+      testit::assert(alignment_params$site_model == "unlinked_node_sub")
+      alignment_phydat <- create_alignment_with_unlinked_node_sub_site_model(
         phylogeny = phylogeny,
         alignment_params = alignment_params
       )
@@ -158,13 +163,24 @@ create_alignment_with_standard_site_model <- function(
   )
 }
 
-#' Create an alignment with the \code{node_sub} site model
-#' @noRd
-create_alignment_with_node_sub_site_model <- function(
+
+create_alignment_with_linked_node_sub_site_model <- function(
   phylogeny,
   alignment_params
 ) {
-  testit::assert(alignment_params$site_model == "node_sub")
+  testit::assert(alignment_params$site_model == "linked_node_sub")
+
+  # STUB for @thijsjanzen
+  phangorn::simSeq(phylogeny)
+}
+
+#' Create an alignment with the \code{unlinked_node_sub} site model
+#' @noRd
+create_alignment_with_unlinked_node_sub_site_model <- function(
+  phylogeny,
+  alignment_params
+) {
+  testit::assert(alignment_params$site_model == "unlinked_node_sub")
 
   # STUB for @thijsjanzen
   phangorn::simSeq(phylogeny)

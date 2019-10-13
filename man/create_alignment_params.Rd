@@ -18,7 +18,19 @@ By default, this will consist out of an equal amount of each letter}
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 
 \item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
 
 \item{clock_model}{a clock model,
 as created by \link[beautier]{create_clock_model}}

@@ -21,7 +21,8 @@ create_rate_matrix <- function(
   base_frequencies = rep(0.25, 4)
 ) {
   implemented_models <- beautier::get_site_model_names()
-  testit::assert(site_model != "node_sub")
+  testit::assert(site_model != "linked_node_sub")
+  testit::assert(site_model != "unlinked_node_sub")
   testit::assert("name" %in% names(site_model))
   if (!(site_model$name %in% implemented_models)) {
     stop(

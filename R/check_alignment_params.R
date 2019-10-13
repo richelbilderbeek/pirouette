@@ -53,11 +53,13 @@ check_alignment_params <- function(
   }
   if (
     !beautier::is_site_model(alignment_params$site_model)
-    && alignment_params$site_model != "node_sub"
+    && alignment_params$site_model != "linked_node_sub"
+    && alignment_params$site_model != "unlinked_node_sub"
   ) {
     stop(
-      "'site_model' must be a site model. \n",
-      "Tip: use 'create_site_model'. \n",
+      "'site_model' must be a site model, or 'linked_node_sub' ",
+      "or 'unlinked_node_sub'. \n",
+      "Tip: use 'create_site_model' to create a site model. \n",
       "Actual value: ", alignment_params$site_model
     )
   }

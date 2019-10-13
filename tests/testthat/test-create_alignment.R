@@ -48,10 +48,23 @@ test_that("use", {
   )
 })
 
-test_that("use node_sub", {
+test_that("use linked_node_sub", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
-    site_model = "node_sub"
+    site_model = "linked_node_sub"
+  )
+  expect_silent(
+    create_alignment(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params,
+    )
+  )
+})
+
+test_that("use unlinked_node_sub", {
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    site_model = "unlinked_node_sub"
   )
   expect_silent(
     create_alignment(
