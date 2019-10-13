@@ -10,4 +10,5 @@ digraph G
   pirouette -> babette;
   pirouette -> mcbette [style=dotted];
   pirouette -> mbd;
+  pirouette -> nodeSub;
 }
