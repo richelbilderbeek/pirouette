@@ -32,6 +32,7 @@ Imports:
     magrittr,
     mauricer,
     mcbette (>= 1.7),
+    nodeSub,
     phangorn,
     phytools,
     plyr,
