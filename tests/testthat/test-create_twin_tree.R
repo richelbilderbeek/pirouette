@@ -219,3 +219,18 @@ test_that("abuse", {
     )
   )
 })
+
+test_that(
+  "create_copy_twin_tree_from_true_function makes true and twin tree identical",
+{
+  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twinning_params <- create_twinning_params(
+    sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+  )
+  twin_tree <- create_twin_tree(
+    phylogeny = tree,
+    twinning_params = twinning_params
+  )
+  expect_equal(ape::write.tree(tree), ape::write.tree(twin_tree))
+})
+
