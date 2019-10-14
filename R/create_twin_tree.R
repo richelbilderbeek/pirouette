@@ -23,9 +23,7 @@ create_twin_tree <- function(
   twinning_params = create_twinning_params()
 ) {
   beautier::check_phylogeny(phylogeny)
-  if (!(twinning_params$twin_model %in% get_twin_models())) {
-    stop("This twin model is not implemented")
-  }
+  pirouette::check_twinning_params(twinning_params)
   if (twinning_params$twin_model == "birth_death") {
     twin_tree <- twin_to_bd_tree(
       phylogeny = phylogeny,

@@ -268,3 +268,30 @@ test_that("use", {
     "'twin_evidence_filename' must be a character vector"
   )
 })
+
+
+test_that("use", {
+
+  skip("#340")
+  expect_silent(create_sim_yule_twin_tree_function())
+  expect_silent(create_sim_bd_twin_tree_function())
+  expect_silent(create_copy_twin_tree_from_true_function())
+
+  expect_silent(
+    create_twinning_params(
+      sim_twin_tree_function = create_sim_yule_twin_tree_function()
+    )
+  )
+  expect_silent(
+    create_twinning_params(
+      sim_twin_tree_function = create_sim_bd_twin_tree_function()
+    )
+  )
+  expect_silent(
+    create_twinning_params(
+      sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+    )
+  )
+
+})
+
