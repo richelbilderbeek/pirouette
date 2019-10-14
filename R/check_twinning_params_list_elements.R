@@ -4,9 +4,10 @@ check_twinning_params_list_elements <- function(twinning_params) { # nolint inde
   argument_names <- c(
     "rng_seed_twin_tree",
     "rng_seed_twin_alignment",
-    "twin_model",
-    "method",
-    "n_replicates",
+    "twin_model", # to be obsoleted
+    "method", # to be obsoleted
+    "n_replicates", # to be obsoleted
+    "sim_twin_tree_function",
     "twin_tree_filename",
     "twin_alignment_filename",
     "twin_evidence_filename"
