@@ -272,10 +272,10 @@ test_that("use", {
 
 test_that("use", {
 
-  skip("#340")
   expect_silent(create_sim_yule_twin_tree_function())
   expect_silent(create_sim_bd_twin_tree_function())
   expect_silent(create_copy_twin_tree_from_true_function())
+  skip("#340")
 
   expect_silent(
     create_twinning_params(
