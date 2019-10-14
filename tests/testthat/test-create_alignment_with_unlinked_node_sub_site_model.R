@@ -9,7 +9,5 @@ test_that("number of nucleotides must match", {
     alignment_params = alignment_params
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
-
-  skip("Issue #338")
   expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 })
