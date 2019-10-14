@@ -37,7 +37,7 @@ r_github_packages:
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
-  - thijsjanzen/nodeSub@develop
+  - thijsjanzen/nodeSub
 
 before_install:
   - echo $TRAVIS_R_VERSION_STRING
