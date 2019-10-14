@@ -81,6 +81,87 @@ test_that("generative", {
   expect_true(n_errors < 11) # due to burn-in
 })
 
+test_that("nodeSub: true and twin alignments must differ", {
+
+  skip("nodeSub must first return an alignment of the right length, #338")
+
+  if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
+
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+
+  alignment_params <- create_test_alignment_params()
+  alignment_params$site_model <- "linked_node_sub"
+  alignment_params$root_sequence
+  check_alignment_params(alignment_params)
+
+  experiment <- create_test_gen_experiment()
+  check_experiment(experiment)
+
+  experiments <- list(experiment)
+
+  # This is wrong: the twin alignment must follow a JC69 site model,
+  # currently it uses the same models as the true alignment
+  twinning_params <- create_twinning_params(
+    twin_model = "copy_true"
+  )
+  check_twinning_params(twinning_params)
+
+  # Create and bundle the parameters
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    experiments = experiments,
+    twinning_params = twinning_params
+  )
+
+  # Run pirouette
+  errors <- pir_run(
+    phylogeny = phylogeny,
+    pir_params = pir_params
+  )
+
+  # Files created
+  testit::assert(all(file.exists(filenames)))
+
+  # Return value all at once
+  expect_silent(check_pir_out(errors))
+
+  # Return value
+  expect_true("tree" %in% names(errors))
+  expect_true(is.factor(errors$tree))
+  expect_true("true" %in% errors$tree)
+
+  expect_true("inference_model" %in% names(errors))
+  expect_true(is.factor(errors$inference_model))
+  expect_true("generative" %in% errors$inference_model)
+
+  expect_true("inference_model_weight" %in% names(errors))
+  expect_true(is.na(errors$inference_model_weight))
+  expect_true(!is.factor(errors$inference_model_weight))
+
+  expect_true("site_model" %in% names(errors))
+  expect_true(is.factor(errors$site_model))
+  expect_true("JC69" %in% errors$site_model)
+
+  expect_true("clock_model" %in% names(errors))
+  expect_true(is.factor(errors$clock_model))
+  expect_true("strict" %in% errors$clock_model)
+
+  expect_true("tree_prior" %in% names(errors))
+  expect_true(is.factor(errors$tree_prior))
+  expect_true("yule" %in% errors$tree_prior)
+
+  expect_true("error_1" %in% names(errors))
+  expect_true(!is.factor(errors$error_1))
+
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  n_errors <- col_last_error - col_first_error + 1
+  expect_true(n_errors < 11) # due to burn-in
+})
+
 test_that("abuse: generative, CBS with too few taxa", {
 
   # https://github.com/richelbilderbeek/pirouette/issues/153
@@ -352,5 +433,13 @@ test_that("Abuse", {
       pir_params = create_test_pir_params()
     ),
     "'phylogeny' must be a valid phylogeny"
+  )
+
+  expect_error(
+    pir_run(
+      phylogeny = ape::rcoal(2),
+      pir_params = "nonsense"
+    ),
+    "pir_params"
   )
 })
