@@ -85,29 +85,25 @@ create_alignment <- function(
   n_tries <- 1
 
   while (1) {
+    alignment_dnabin <- NA
     if (beautier::is_site_model(alignment_params$site_model)) {
       # Standard site models
-      alignment_phydat <- create_alignment_with_standard_site_model(
+      alignment_dnabin <- create_alignment_with_standard_site_model(
         phylogeny = phylogeny,
         alignment_params = alignment_params
       )
     } else if (alignment_params$site_model == "linked_node_sub") {
-      alignment_phydat <- create_alignment_with_linked_node_sub_site_model(
+      alignment_dnabin <- create_alignment_with_linked_node_sub_site_model(
         phylogeny = phylogeny,
         alignment_params = alignment_params
       )
     } else {
       testit::assert(alignment_params$site_model == "unlinked_node_sub")
-      alignment_phydat <- create_alignment_with_unlinked_node_sub_site_model(
+      alignment_dnabin <- create_alignment_with_unlinked_node_sub_site_model(
         phylogeny = phylogeny,
         alignment_params = alignment_params
       )
     }
-
-    testthat::expect_equal(class(alignment_phydat), "phyDat")
-    testit::assert(class(alignment_phydat) == "phyDat")
-
-    alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
 
     testit::assert(class(alignment_dnabin) == "DNAbin")
 
@@ -147,12 +143,13 @@ create_alignment <- function(
 }
 
 #' Create an alignment with a standard site model
+#' @return an alignment of type \code{DNAbin}
 #' @noRd
 create_alignment_with_standard_site_model <- function(
   phylogeny,
   alignment_params
 ) {
-  phangorn::simSeq(
+  alignment_phydat <- phangorn::simSeq(
     phylogeny,
     l = nchar(alignment_params$root_sequence),
     rate = alignment_params$mutation_rate,
@@ -162,23 +159,50 @@ create_alignment_with_standard_site_model <- function(
       base_frequencies = calc_base_freq(alignment_params$root_sequence)
     )
   )
+  testthat::expect_equal(class(alignment_phydat), "phyDat")
+  testit::assert(class(alignment_phydat) == "phyDat")
+
+  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  alignment_dnabin
 }
 
-
+#' Create an alignment with the \code{linked_node_sub} site model
+#' @return an alignment of type \code{DNAbin}
+#' @noRd
 create_alignment_with_linked_node_sub_site_model <- function(
   phylogeny,
   alignment_params
 ) {
+  beautier::check_phylogeny(phylogeny)
+  pirouette::check_alignment_params(alignment_params)
+  pirouette::check_reconstructed_phylogeny(phylogeny)
   testit::assert(alignment_params$site_model == "linked_node_sub")
-  nodeSub::sim_dual_linked(phylogeny)$alignment
+  alignment_phydat <- nodeSub::sim_dual_linked(phylogeny)$alignment
+
+  testthat::expect_equal(class(alignment_phydat), "phyDat")
+  testit::assert(class(alignment_phydat) == "phyDat")
+
+  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  alignment_dnabin
+
 }
 
 #' Create an alignment with the \code{unlinked_node_sub} site model
+#' @return an alignment of type \code{DNAbin}
 #' @noRd
 create_alignment_with_unlinked_node_sub_site_model <- function(
   phylogeny,
   alignment_params
 ) {
+  beautier::check_phylogeny(phylogeny)
+  pirouette::check_alignment_params(alignment_params)
+  pirouette::check_reconstructed_phylogeny(phylogeny)
   testit::assert(alignment_params$site_model == "unlinked_node_sub")
-  nodeSub::sim_dual_independent(phylogeny)$alignment
+  alignment_phydat <- nodeSub::sim_dual_independent(phylogeny)$alignment
+
+  testthat::expect_equal(class(alignment_phydat), "phyDat")
+  testit::assert(class(alignment_phydat) == "phyDat")
+
+  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  alignment_dnabin
 }

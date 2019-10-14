@@ -56,6 +56,8 @@ test_that("use linked_node_sub", {
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
   expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
+  # More detailed test are in
+  # test-create_alignment_with_linked_node_sub_site_model.R
 })
 
 test_that("use unlinked_node_sub", {
@@ -69,4 +71,6 @@ test_that("use unlinked_node_sub", {
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
   expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
+  # More detailed test are in
+  # test-create_alignment_with_unlinked_node_sub_site_model.R
 })
