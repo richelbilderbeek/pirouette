@@ -24,20 +24,24 @@ create_twin_tree <- function(
 ) {
   beautier::check_phylogeny(phylogeny)
   pirouette::check_twinning_params(twinning_params)
-  if (twinning_params$twin_model == "birth_death") {
-    twin_tree <- twin_to_bd_tree(
-      phylogeny = phylogeny,
-      twinning_params = twinning_params
-    )
-  }
-  else if (twinning_params$twin_model == "yule") {
-    twin_tree <- twin_to_yule_tree(
-      phylogeny = phylogeny,
-      twinning_params = twinning_params
-    )
+  if (twinning_params$method != "oldskool") {
+    twin_tree <- twinning_params$sim_twin_tree_function(phylogeny)
   } else {
-    testit::assert(twinning_params$twin_model == "copy_true")
-    twin_tree <- phylogeny
+    if (twinning_params$twin_model == "birth_death") {
+      twin_tree <- twin_to_bd_tree(
+        phylogeny = phylogeny,
+        twinning_params = twinning_params
+      )
+    }
+    else if (twinning_params$twin_model == "yule") {
+      twin_tree <- twin_to_yule_tree(
+        phylogeny = phylogeny,
+        twinning_params = twinning_params
+      )
+    } else {
+      testit::assert(twinning_params$twin_model == "copy_true")
+      twin_tree <- phylogeny
+    }
   }
   testit::assert(beautier::is_phylo(twin_tree))
   testit::assert(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
