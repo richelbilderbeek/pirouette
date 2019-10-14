@@ -177,7 +177,11 @@ create_alignment_with_linked_node_sub_site_model <- function(
   pirouette::check_alignment_params(alignment_params)
   pirouette::check_reconstructed_phylogeny(phylogeny)
   testit::assert(alignment_params$site_model == "linked_node_sub")
-  alignment_phydat <- nodeSub::sim_dual_linked(phylogeny)$alignment
+  alignment_phydat <- nodeSub::sim_dual_linked(
+    phylogeny,
+    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
+    l = nchar(alignment_params$root_sequence)
+  )$alignment
 
   testthat::expect_equal(class(alignment_phydat), "phyDat")
   testit::assert(class(alignment_phydat) == "phyDat")
@@ -198,7 +202,11 @@ create_alignment_with_unlinked_node_sub_site_model <- function(
   pirouette::check_alignment_params(alignment_params)
   pirouette::check_reconstructed_phylogeny(phylogeny)
   testit::assert(alignment_params$site_model == "unlinked_node_sub")
-  alignment_phydat <- nodeSub::sim_dual_independent(phylogeny)$alignment
+  alignment_phydat <- nodeSub::sim_dual_independent(
+    phylogeny,
+    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
+    l = nchar(alignment_params$root_sequence)
+  )$alignment
 
   testthat::expect_equal(class(alignment_phydat), "phyDat")
   testit::assert(class(alignment_phydat) == "phyDat")
