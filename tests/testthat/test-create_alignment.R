@@ -50,12 +50,12 @@ test_that("use linked_node_sub", {
   alignment_params <- create_alignment_params(
     site_model = "linked_node_sub"
   )
-  expect_silent(
-    create_alignment(
-      phylogeny = phylogeny,
-      alignment_params = alignment_params,
-    )
+  alignment <- create_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
   )
+  expect_equal(nrow(alignment), ape::Ntip(phylogeny))
+  expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 })
 
 test_that("use unlinked_node_sub", {
@@ -63,10 +63,10 @@ test_that("use unlinked_node_sub", {
   alignment_params <- create_alignment_params(
     site_model = "unlinked_node_sub"
   )
-  expect_silent(
-    create_alignment(
-      phylogeny = phylogeny,
-      alignment_params = alignment_params,
-    )
+  alignment <- create_alignment(
+    phylogeny = phylogeny,
+    alignment_params = alignment_params,
   )
+  expect_equal(nrow(alignment), ape::Ntip(phylogeny))
+  expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 })
