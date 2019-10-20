@@ -28,7 +28,7 @@ r_github_packages:
   - jimhester/covr
   - jimhester/lintr
   - MangoTheCat/goodpractice
-  - ropensci/beautier
+  - ropensci/beautier@develop
   - ropensci/tracerer
   - ropensci/beastier
   - ropensci/mauricer
