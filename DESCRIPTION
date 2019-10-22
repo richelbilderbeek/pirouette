@@ -25,7 +25,7 @@ Imports:
     assertive,
     babette,
     beastier (>= 2.0.25),
-    beautier (>= 2.2.4),
+    beautier (>= 2.3),
     DDD,
     dplyr,
     geiger,
