@@ -36,7 +36,7 @@ pir_params <- create_pir_params(
 ################################################################################
 pir_params$alignment_params$fasta_filename <- file.path(root_folder, "alignment.fasta")
 pir_params$experiments[[1]]$beast2_options$input_filename <- file.path(root_folder, "beast2_input.xml")
-pir_params$experiments[[1]]$beast2_options$output_log_filename <- file.path(root_folder, "beast2_output.log")
+pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename <- file.path(root_folder, "beast2_output.log")
 pir_params$experiments[[1]]$beast2_options$output_trees_filenames <- file.path(root_folder, "beast2_output.trees")
 pir_params$experiments[[1]]$beast2_options$output_state_filename <- file.path(root_folder, "beast2_output.xml.state")
 pir_params$experiments[[1]]$errors_filename <- file.path(root_folder, "error.csv")

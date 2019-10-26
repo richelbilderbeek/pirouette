@@ -52,7 +52,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     print(
       paste0(
         "Saved BEAST2 output log file to '",
-        experiment$beast2_options$output_log_filename, "'"
+        experiment$inference_model$mcmc$tracelog$filename, "'"
       )
     )
     print(
@@ -69,7 +69,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     )
   }
   beautier::check_file_exists(experiment$beast2_options$input_filename)
-  beautier::check_file_exists(experiment$beast2_options$output_log_filename)
+  beautier::check_file_exists(experiment$inference_model$mcmc$tracelog$filename)
   beautier::check_file_exists(experiment$beast2_options$output_trees_filenames)
   beautier::check_file_exists(experiment$beast2_options$output_state_filename)
 

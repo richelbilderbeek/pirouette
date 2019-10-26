@@ -156,16 +156,6 @@ est_evidences <- function(
 
   # Delete files
   for (beast2_options in beast2_optionses) {
-    if (file.exists(beast2_options$output_log_filename)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_log_filename, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_log_filename)
-    }
     if (file.exists(beast2_options$output_state_filename)) {
       if (isTRUE(verbose)) {
         print(

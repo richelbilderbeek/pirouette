@@ -126,7 +126,7 @@ pir_to_tables <- function(
     #######################
     esses_gen <- tracerer::calc_esses(
       traces = tracerer::parse_beast_log(
-        first_experiment$beast2_options$output_log_filename
+        first_experiment$inference_model$mcmc$tracelog$filename
       ),
       sample_interval = first_experiment$inference_model$mcmc$store_every
     )
@@ -152,7 +152,7 @@ pir_to_tables <- function(
     if (!beautier::is_one_na(pir_params$twinning_params)) {
       esses_twin_gen <- tracerer::calc_esses(
         traces = tracerer::parse_beast_log(to_twin_filename(
-          first_experiment$beast2_options$output_log_filename)
+          first_experiment$inference_model$mcmc$tracelog$filename)
         ),
         sample_interval = first_experiment$inference_model$mcmc$store_every
       )
@@ -180,7 +180,7 @@ pir_to_tables <- function(
     #######################
     esses_best <- tracerer::calc_esses(
       traces = tracerer::parse_beast_log(
-        last_experiment$beast2_options$output_log_filename
+        last_experiment$inference_model$mcmc$tracelog$filename
       ),
       sample_interval = last_experiment$inference_model$mcmc$store_every
     )
@@ -207,7 +207,7 @@ pir_to_tables <- function(
     if (!beautier::is_one_na(pir_params$twinning_params)) {
       esses_twin_best <- tracerer::calc_esses(
         traces = tracerer::parse_beast_log(to_twin_filename(
-          last_experiment$beast2_options$output_log_filename)
+          last_experiment$inference_model$mcmc$tracelog$filename)
         ),
         sample_interval = last_experiment$inference_model$mcmc$store_every
       )

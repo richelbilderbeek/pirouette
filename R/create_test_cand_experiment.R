@@ -26,12 +26,8 @@ create_test_cand_experiment <- function(
     mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options(
-    input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
-    output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
-    output_trees_filenames = tempfile(pattern = "beast2_", fileext = "trees"),
-    output_state_filename = tempfile(
-      pattern = "beast2_", fileext = ".state.xml"
-    )
+    input_filename = beastier::create_temp_input_filename(),
+    output_state_filename = beastier::create_temp_output_state_filename()
   ),
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(
     chain_length = 2000,

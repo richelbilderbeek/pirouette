@@ -10,9 +10,7 @@
   inference_model = beautier::create_inference_model(mcmc =
   beautier::create_mcmc(chain_length = 2000, store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
-  tempfile(pattern = "beast2_", fileext = ".xml"), output_log_filename =
-  tempfile(pattern = "beast2_", fileext = ".log"), output_trees_filenames =
-  tempfile(pattern = "beast2_", fileext = "trees"), output_state_filename =
+  pirouette::create_temp_input_filename(), output_state_filename =
   tempfile(pattern = "beast2_", fileext = ".state.xml")),
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(chain_length
   = 2000, store_every = 1000, epsilon = 100))

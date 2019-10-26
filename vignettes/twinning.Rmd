@@ -203,8 +203,8 @@ See the posterior parameter estimates generated from the true alignment, for the
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  check_file_exists(pir_params$experiments[[1]]$beast2_options$output_log_filename)
-  df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$beast2_options$output_log_filename)
+  check_file_exists(pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename)
+  df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
 ```
@@ -213,7 +213,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  log_filename <- pir_params$experiments[[2]]$beast2_options$output_log_filename
+  log_filename <- pir_params$experiments[[2]]$inference_model$mcmc$tracelog$filename
   check_file_exists(log_filename)
   df <- tracerer::parse_beast_log(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
@@ -274,7 +274,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  log_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_log_filename)
+  log_filename <- to_twin_filename(pir_params$experiments[[2]]$inference_model$mcmc$tracelog$filename)
   check_file_exists(log_filename)
   df <- tracerer::parse_beast_log(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
@@ -285,7 +285,7 @@ See the posterior parameter estimates generated from the true alignment, for the
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  log_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_log_filename)
+  log_filename <- to_twin_filename(pir_params$experiments[[2]]$inference_model$mcmc$tracelog$filename)
   check_file_exists(log_filename)
   df <- tracerer::parse_beast_log(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
