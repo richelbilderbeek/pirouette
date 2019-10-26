@@ -30,10 +30,10 @@ r_github_packages:
   - MangoTheCat/goodpractice
   - ropensci/beautier@develop
   - ropensci/tracerer
-  - ropensci/beastier
+  - ropensci/beastier@develop
   - ropensci/mauricer
-  - ropensci/babette
-  - richelbilderbeek/mcbette
+  - ropensci/babette@develop
+  - richelbilderbeek/mcbette@develop
   - richelbilderbeek/nLTT
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
