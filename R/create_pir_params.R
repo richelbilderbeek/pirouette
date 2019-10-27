@@ -48,7 +48,11 @@ create_pir_params <- function(
   twinning_params = NA,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
+  evidence_filename = tempfile(
+    pattern = "evidence_",
+    tmpdir = rappdirs::user_cache_dir(),
+    fileext = ".csv"
+  ),
   verbose = FALSE
 ) {
   pir_params <- list(

@@ -16,21 +16,7 @@ test_that("errors are stored correctly", {
     mutation_rate = create_standard_mutation_rate,
     rng_seed = 1
   )
-  errors_filename <- tempfile(fileext = ".csv")
-  experiment <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "generative",
-      run_if = "always",
-      do_measure_evidence = FALSE # Set to TRUE if UNIX
-    ),
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 1),
-    errors_filename = errors_filename
-  )
+  experiment <- create_test_gen_experiment()
   error_measure_params <- create_error_measure_params()
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
@@ -40,7 +26,7 @@ test_that("errors are stored correctly", {
 
   expect_true(
     length(
-      list.files(dirname(errors_filename), pattern = basename(errors_filename))
+      list.files(dirname(experiment$errors_filename), pattern = basename(experiment$errors_filename))
     ) == 0
   )
 
@@ -51,7 +37,7 @@ test_that("errors are stored correctly", {
 
   expect_true(
     length(
-      list.files(dirname(errors_filename), pattern = basename(errors_filename))
+      list.files(dirname(experiment$errors_filename), pattern = basename(errors_filename))
     ) > 0
   )
 

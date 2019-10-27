@@ -97,6 +97,10 @@ pir_run <- function(
     }
   }
 
+  # Initialize the pir_params, as some defaults are handy,
+  # but really need to be filled with all information at hand
+  pir_params <- init_pir_params(pir_params)
+
   # Run for the true tree
   pir_out <- pir_run_true_tree(
     true_phylogeny = phylogeny,

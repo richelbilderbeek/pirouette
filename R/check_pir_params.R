@@ -17,6 +17,29 @@
 check_pir_params <- function(
   pir_params
 ) {
+  pirouette::check_pir_params_names(pir_params)
+  pirouette::check_pir_params_data_types(pir_params)
+  filename <- pir_params$evidence_filename
+  file_extenstion <- substr(
+    basename(filename),
+    nchar(basename(filename)) - 3,
+    nchar(basename(filename))
+  )
+  if (file_extenstion != ".csv") {
+    stop("'evidence_filename' must be a csv filename")
+  }
+}
+
+#' Checks if the \code{pir_params} has all the named elements needed
+#'
+#' Will \link{stop} if not.
+#' A valid \link{pirouette} parameter set
+#' can be created by \link{create_pir_params}.
+#' @inheritParams default_params_doc
+#' @return nothing. Will \link{stop} if not
+#' @author Richèl J.C. Bilderbeek
+#' @export
+check_pir_params_names <- function(pir_params) {
   argument_names <- c(
     "alignment_params",
     "twinning_params",
@@ -33,7 +56,18 @@ check_pir_params <- function(
       )
     }
   }
+}
 
+#' Checks if the \code{pir_params} elements are all of the right data type.
+#'
+#' Will \link{stop} if not.
+#' A valid \link{pirouette} parameter set
+#' can be created by \link{create_pir_params}.
+#' @inheritParams default_params_doc
+#' @return nothing. Will \link{stop} if not
+#' @author Richèl J.C. Bilderbeek
+#' @export
+check_pir_params_data_types <- function(pir_params) {
   tryCatch(
     pirouette::check_alignment_params(pir_params$alignment_params),
     error = function(e) {
@@ -72,17 +106,8 @@ check_pir_params <- function(
       stop(msg)
     }
   )
-  filename <- pir_params$evidence_filename
   if (!is.character(pir_params$evidence_filename)) {
     stop("'evidence_filename' must be a string")
-  }
-  file_extenstion <- substr(
-    basename(filename),
-    nchar(basename(filename)) - 3,
-    nchar(basename(filename))
-  )
-  if (file_extenstion != ".csv") {
-    stop("'evidence_filename' must be a csv filename")
   }
   if (!beautier::is_one_bool(pir_params$verbose)) {
     stop("'verbose' must be one boolean")
