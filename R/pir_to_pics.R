@@ -164,7 +164,7 @@ pir_to_pics <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        first_experiment$beast2_options$output_trees_filenames
+        first_experiment$inference_model$mcmc$treelog$filename
       ),
       alpha = 0.01,
       consensus = consensus,
@@ -184,7 +184,7 @@ pir_to_pics <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        last_experiment$beast2_options$output_trees_filenames
+        last_experiment$inference_model$mcmc$treelog$filename
       ),
       alpha = 0.01,
       consensus = consensus,
@@ -335,7 +335,7 @@ pir_to_pics_twin <- function(
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
         to_twin_filename(
-          first_experiment$beast2_options$output_trees_filenames
+          first_experiment$inference_model$mcmc$treelog$filename
         )
       ),
       alpha = 0.01,
@@ -357,7 +357,7 @@ pir_to_pics_twin <- function(
   babette::plot_densitree(
     phylos = tracerer::parse_beast_trees(
       to_twin_filename(
-        last_experiment$beast2_options$output_trees_filenames
+        last_experiment$inference_model$mcmc$treelog$filename
       )
     ),
     alpha = 0.01,

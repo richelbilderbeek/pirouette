@@ -158,16 +158,6 @@ est_evidences <- function(
       }
       file.remove(beast2_options$output_state_filename)
     }
-    if (file.exists(beast2_options$output_trees_filenames)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_trees_filenames, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_trees_filenames)
-    }
   }
   sum_marg_liks <- sum(marg_liks$weight)
   tolerance <- 0.1

@@ -7,7 +7,7 @@ test_that("use, no twinning, no evidence estimation", {
   for (experiment in pir_params$experiments) {
     expect_true(experiment$beast2_options$input_filename %in% filenames)
     expect_true(experiment$inference_model$mcmc$tracelog$filename %in% filenames)
-    expect_true(experiment$beast2_options$output_trees_filenames %in% filenames)
+    expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames)
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)
 
@@ -30,7 +30,7 @@ test_that("use, no twinning, evidence estimation", {
   for (experiment in pir_params$experiments) {
     expect_true(experiment$beast2_options$input_filename %in% filenames)
     expect_true(experiment$inference_model$mcmc$tracelog$filename %in% filenames)
-    expect_true(experiment$beast2_options$output_trees_filenames %in% filenames)
+    expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames)
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)
   }
@@ -50,7 +50,7 @@ test_that("use, twinning, no evidence estimation", {
     # True
     expect_true(experiment$beast2_options$input_filename %in% filenames)
     expect_true(experiment$inference_model$mcmc$tracelog$filename %in% filenames)
-    expect_true(experiment$beast2_options$output_trees_filenames %in% filenames)
+    expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames)
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)
     # Twin
@@ -59,7 +59,7 @@ test_that("use, twinning, no evidence estimation", {
     expect_true(to_twin_filename(
       experiment$inference_model$mcmc$tracelog$filename) %in% filenames)
     expect_true(to_twin_filename(
-      experiment$beast2_options$output_trees_filenames) %in% filenames)
+      experiment$inference_model$mcmc$treelog$filename) %in% filenames)
     expect_true(to_twin_filename(
       experiment$beast2_options$output_state_filename) %in% filenames)
     expect_true(to_twin_filename(experiment$errors_filename) %in% filenames)
@@ -90,7 +90,7 @@ test_that("use, twinning, evidence estimation", {
     # True
     expect_true(experiment$beast2_options$input_filename %in% filenames)
     expect_true(experiment$inference_model$mcmc$tracelog$filename %in% filenames)
-    expect_true(experiment$beast2_options$output_trees_filenames %in% filenames)
+    expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames)
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)
     # Twin
@@ -99,7 +99,7 @@ test_that("use, twinning, evidence estimation", {
     expect_true(to_twin_filename(
       experiment$inference_model$mcmc$tracelog$filename) %in% filenames)
     expect_true(to_twin_filename(
-      experiment$beast2_options$output_trees_filenames) %in% filenames)
+      experiment$inference_model$mcmc$treelog$filename) %in% filenames)
     expect_true(to_twin_filename(
       experiment$beast2_options$output_state_filename) %in% filenames)
     expect_true(to_twin_filename(experiment$errors_filename) %in% filenames)

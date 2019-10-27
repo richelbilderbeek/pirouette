@@ -91,9 +91,9 @@ pir_run_twin_tree <- function(
       pirouette::to_twin_filename(
         experiment$inference_model$mcmc$tracelog$filename
     )
-    experiment$beast2_options$output_trees_filenames <-
+    experiment$inference_model$mcmc$treelog$filename <-
       pirouette::to_twin_filename(
-      experiment$beast2_options$output_trees_filenames
+      experiment$inference_model$mcmc$treelog$filename
     )
     experiment$beast2_options$output_state_filename <-
       pirouette::to_twin_filename(

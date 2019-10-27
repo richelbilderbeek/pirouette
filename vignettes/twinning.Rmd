@@ -174,9 +174,13 @@ See the posterior trees generated from the true alignment, for the generative mo
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  check_file_exists(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
+  check_file_exists(
+    pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+  )
   babette::plot_densitree(
-    tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
+    tracerer::parse_beast_trees(
+      pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+    )
   )
 }
 ```
@@ -193,7 +197,7 @@ See the posterior trees generated from the true alignment, for the model with th
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  trees_filename <- pir_params$experiments[[2]]$beast2_options$output_trees_filenames
+  trees_filename <- pir_params$experiments[[2]]$inference_model$mcmc$treelog$filename
   check_file_exists(trees_filename)
   babette::plot_densitree(tracerer::parse_beast_trees(trees_filename))
 }
@@ -243,7 +247,9 @@ See the posterior trees generated from the twin alignment, for the generative mo
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  trees_filename <- to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)
+  trees_filename <- to_twin_filename(
+    pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+  )
   check_file_exists(trees_filename)
   babette::plot_densitree(
     tracerer::parse_beast_trees(trees_filename)
@@ -264,7 +270,9 @@ See the posterior trees generated from the twin alignment, for the model with th
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  trees_filename <- to_twin_filename(pir_params$experiments[[2]]$beast2_options$output_trees_filenames)
+  trees_filename <- to_twin_filename(
+    pir_params$experiments[[2]]$inference_model$mcmc$treelog$filename
+  )
   check_file_exists(trees_filename)
   babette::plot_densitree(tracerer::parse_beast_trees(trees_filename))
 }

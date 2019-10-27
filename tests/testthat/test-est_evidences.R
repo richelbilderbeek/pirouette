@@ -83,8 +83,8 @@ test_that("cleans up", {
   experiments <- list(experiment_1, experiment_2)
   check_experiments(experiments)
 
-  trees_filename_1 <- experiment_1$beast2_options$output_trees_filenames
-  trees_filename_2 <- experiment_2$beast2_options$output_trees_filenames
+  trees_filename_1 <- experiment_1$inference_model$mcmc$treelog$filename
+  trees_filename_2 <- experiment_2$inference_model$mcmc$treelog$filename
   expect_true(trees_filename_1 == trees_filename_2)
 
   # These are regular BEAST2 run files. A marginal likelihood estimation
