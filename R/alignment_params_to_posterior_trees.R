@@ -83,8 +83,8 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   #   )
   # }
   #
-  # treelog must be uninitialized, won't do it here
-  testit::assert(!
+  # treelog must be initialized, won't do it here
+  testit::assert(
     stringr::str_count(
       string = experiment$inference_model$mcmc$treelog$filename,
       pattern = "\\$"
