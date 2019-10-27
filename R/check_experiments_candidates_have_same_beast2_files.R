@@ -24,6 +24,7 @@ check_experiments_candidates_have_same_beast2_files <- function( # nolint long f
         if (input_filename_1 != input_filename_2) {
           stop(
             "Candidate models must have same BEAST2 input filename. \n",
+            "This is to assure they work on the same input. \n",
             "Difference between experiments #", i, " and #", j, ". \n",
             "Filename #", i, ": ", input_filename_1, "\n",
             "Filename #", j, ": ", input_filename_2, "\n"
