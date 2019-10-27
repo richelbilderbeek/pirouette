@@ -69,9 +69,30 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     )
   }
   beautier::check_file_exists(experiment$beast2_options$input_filename)
-  beautier::check_file_exists(experiment$inference_model$mcmc$tracelog$filename)
-  beautier::check_file_exists(experiment$inference_model$mcmc$treelog$filename)
-  beautier::check_file_exists(experiment$beast2_options$output_state_filename)
+
+  # tracelog must be uninitialized, won't do it here
+  testit::assert(
+    !beautier::is_one_na(experiment$inference_model$mcmc$tracelog$filename)
+  )
+  # Well, if you'd really want to, this is how:
+  # if (beautier::is_one_na(experiment$inference_model$mcmc$tracelog$filename)) {
+  #   experiment$inference_model$mcmc$tracelog$filename <- paste0(
+  #       beautier::get_alignment_id(
+  #       alignment_params$fasta_filename
+  #     ), ".log"
+  #   )
+  # }
+  #
+  # treelog must be uninitialized, won't do it here
+  testit::assert(!
+    stringr::str_count(
+      string = experiment$inference_model$mcmc$treelog$filename,
+      pattern = "\\$"
+    ) == 0
+  )
+  # Well, if you'd really want to, this is how:
+  # replace '$(tree)' in the filename
+  # by 'beautier::get_alignment_id(alignment_params$fasta_filename)
 
   trees <- c(bbt_out[[grep(x = names(bbt_out), pattern = "trees")]])
 

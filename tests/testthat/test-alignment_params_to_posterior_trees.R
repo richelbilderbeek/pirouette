@@ -12,7 +12,18 @@ test_that("returns a multiPhylo", {
   )
   expect_true(file.exists(alignment_params$fasta_filename))
 
-  experiment <- create_test_experiment()
+  tracelog_filename <- tempfile(tmpdir = rappdirs::user_cache_dir())
+  treelog_filename <- tempfile(tmpdir = rappdirs::user_cache_dir())
+  experiment <- create_test_experiment(
+    inference_model = create_test_inference_model(
+      mcmc = create_test_mcmc(
+        tracelog = create_test_tracelog(filename = tracelog_filename),
+        treelog = create_test_treelog(filename = treelog_filename)
+      )
+    )
+  )
+  expect_true(!file.exists(tracelog_filename))
+  expect_true(!file.exists(treelog_filename))
 
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
@@ -20,7 +31,6 @@ test_that("returns a multiPhylo", {
   )
   expect_equal("multiPhylo", class(trees))
 
-  expect_true(all(file.exists(
-      beastier::get_beast2_options_filenames(experiment$beast2_options)
-  )))
+  expect_true(file.exists(tracelog_filename))
+  expect_true(file.exists(treelog_filename))
 })
