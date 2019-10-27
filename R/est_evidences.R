@@ -92,12 +92,6 @@ est_evidences <- function(
       beast2_optionses[[i]]$input_filename <- to_evidence_filename(
         beast2_optionses[[i]]$input_filename
       )
-      beast2_optionses[[i]]$output_log_filename <- to_evidence_filename(
-        beast2_optionses[[i]]$output_log_filename
-      )
-      beast2_optionses[[i]]$output_trees_filenames <- to_evidence_filename(
-        beast2_optionses[[i]]$output_trees_filenames
-      )
       beast2_optionses[[i]]$output_state_filename <- to_evidence_filename(
         beast2_optionses[[i]]$output_state_filename
       )
@@ -122,8 +116,6 @@ est_evidences <- function(
         paste(
           i,
           beast2_optionses[[i]]$input_filename,
-          beast2_optionses[[i]]$output_log_filename,
-          beast2_optionses[[i]]$output_trees_filenames,
           beast2_optionses[[i]]$output_state_filename
         )
       )

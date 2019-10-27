@@ -40,18 +40,8 @@ create_all_experiments <- function(
   # All experiments use the same BEAST2 options,
   # or at least the filenames should be the same
   beast2_options <- beastier::create_beast2_options(
-    input_filename = tempfile(
-      pattern = "beast2_", fileext = ".xml"
-    ),
-    output_log_filename = tempfile(
-      pattern = "beast2_", fileext = ".log"
-    ),
-    output_trees_filenames = tempfile(
-      pattern = "beast2_", fileext = "trees"
-    ),
-    output_state_filename = tempfile(
-      pattern = "beast2_", fileext = ".state.xml"
-    )
+    input_filename = beastier::create_temp_input_filename(),
+    output_state_filename = beastier::create_temp_output_state_filename()
   )
   errors_filename <- tempfile(
     pattern = "errors_", fileext = ".csv"
