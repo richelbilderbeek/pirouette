@@ -89,11 +89,12 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
     "Candidate models must have same BEAST2 input filename"
   )
 
-  # Fix BEAST2 options
+  # Fix BEAST2 options and MCMC, as those hold the file location
   cand_experiment_1$beast2_options <- cand_experiment_2$beast2_options
+  cand_experiment_1$inference_model$mcmc <- cand_experiment_2$inference_model$mcmc
 
   expect_error(
-    check_experiments(list(cand_experiment_1, cand_experiment_2)),
+    check_experiments(experiments = list(cand_experiment_1, cand_experiment_2)),
     "Candidate models must have same errors filename"
   )
   # Fix error filenames

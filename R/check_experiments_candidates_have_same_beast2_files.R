@@ -15,8 +15,11 @@ check_experiments_candidates_have_same_beast2_files <- function( # nolint long f
       ) {
         input_filename_1 <- experiment_1$beast2_options$input_filename
         input_filename_2 <- experiment_2$beast2_options$input_filename
+
+        # An unitialized log filename is NA
         output_log_filename_1 <- experiment_1$inference_model$mcmc$tracelog$filename # nolint long names indeed, sorry Demeter
         output_log_filename_2 <- experiment_2$inference_model$mcmc$tracelog$filename # nolint long names indeed, sorry Demeter
+
         output_trees_filenames_1 <- experiment_1$inference_model$mcmc$treelog$filename # nolint long names indeed, sorry Demeter
         output_trees_filenames_2 <- experiment_2$inference_model$mcmc$treelog$filename # nolint long names indeed, sorry Demeter
         output_state_filename_1 <- experiment_1$beast2_options$output_state_filename # nolint long names indeed, sorry Demeter
@@ -30,7 +33,8 @@ check_experiments_candidates_have_same_beast2_files <- function( # nolint long f
             "Filename #", j, ": ", input_filename_2, "\n"
           )
         }
-        if (output_log_filename_1 != output_log_filename_2) {
+        if (!beautier::is_one_na(output_log_filename_1) &&
+            output_log_filename_1 != output_log_filename_2) {
           stop(
             "Candidate models must have same BEAST2 output log filename. \n",
             "Difference between experiments #", i, " and #", j, ". \n",
