@@ -142,7 +142,7 @@ test_that("differ each beast2_options_filename and error filename", {
   expect_silent(check_experiments(list(experiment_1, experiment_2)))
 
   # BEAST2 output trees filenames
-  experiment_2$beast2_options$output_trees_filenames <- "different"
+  experiment_2$inference_model$mcmc$treelog$filename <- "different"
   expect_error(
     check_experiments(list(experiment_1, experiment_2)),
     "Candidate models must have same BEAST2 output trees filename"

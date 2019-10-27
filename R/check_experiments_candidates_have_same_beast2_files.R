@@ -33,6 +33,17 @@ check_experiments_candidates_have_same_beast2_files <- function( # nolint long f
             "Filename #", j, ": ", input_filename_2, "\n"
           )
         }
+        # OK: both NA or both the same string
+        # Check if only 1 NA
+        if (sum(is.na(c(output_log_filename_1, output_log_filename_2))) == 1) {
+          stop(
+            "Candidate models must have same BEAST2 output log filename. \n",
+            "Difference between experiments #", i, " and #", j, ". \n",
+            "Filename #", i, ": ", output_log_filename_1, "\n",
+            "Filename #", j, ": ", output_log_filename_2, "\n"
+          )
+        }
+        # Check for two strings
         if (!beautier::is_one_na(output_log_filename_1) &&
             output_log_filename_1 != output_log_filename_2) {
           stop(
