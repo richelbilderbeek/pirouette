@@ -95,4 +95,5 @@
 #' }
 #' @docType package
 #' @name pirouette
+#' @import beautier tracerer beastier mauricer babette mcbette
 NULL

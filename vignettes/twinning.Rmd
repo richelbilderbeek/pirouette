@@ -72,7 +72,11 @@ generative | always         |`TRUE`            |Birth-Death
 candidate  | best_candidate |`TRUE`            |Yule
 
 ```{r}
-experiment_1 <- create_experiment(
+experiment_1 <- create_test_gen_experiment(
+  inference_model = create_test_inference_model(
+    tree_prior = create_bd_tree_prior()  
+  )
+)
   inference_conditions = create_inference_conditions(
     model_type = "generative",
     run_if = "always",
@@ -174,14 +178,22 @@ See the posterior trees generated from the true alignment, for the generative mo
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
-  check_file_exists(
+  
+  # BEAUti offers the '$(tree)' shorthand notation.
+  # Here, do what BEAUti does...
+  treelog_filename <- 
     pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
-  )
-  babette::plot_densitree(
-    tracerer::parse_beast_trees(
-      pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+
+  treelog_filename <- gsub(
+    x = treelog_filename,
+    pattern = "\\$\\(tree\\)",
+    replacement = beautier::get_alignment_id(
+      pir_params$alignment_params$fasta_filename
     )
   )
+  
+  check_file_exists(treelog_filename)
+  babette::plot_densitree(tracerer::parse_beast_trees(treelog_filename))
 }
 ```
 
@@ -207,6 +219,18 @@ See the posterior parameter estimates generated from the true alignment, for the
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
+    # A tracelog's filename is set to NA by default.
+    # Here, do what BEAUti does...
+    tracelog_filename <- 
+      pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename
+    if (is.na(tracelog_filename)) {
+      pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename <-
+      paste0(
+        beautier::get_alignment_id(pir_params$alignment_params$fasta_filename),
+        ".log"
+      )
+    }
+  
   check_file_exists(pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename)
   df <- tracerer::parse_beast_log(pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
