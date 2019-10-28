@@ -12,6 +12,8 @@ test_that("use", {
     evidence_filename = tempfile(fileext = ".csv"),
     verbose = FALSE
   )
+  # For developers only, using functions used by developers only
+  pir_params <- init_pir_params(pir_params)
 
   create_alignment_file(
     phylogeny = phylogeny,
@@ -58,6 +60,9 @@ test_that("abuse", {
     evidence_filename = tempfile(fileext = ".csv"),
     verbose = FALSE
   )
+
+  # For developers only, using functions used by developers only
+  pir_params <- init_pir_params(pir_params)
 
   create_alignment_file(
     phylogeny = phylogeny,
