@@ -11,7 +11,11 @@
 #' )
 #' @export
 get_pir_params_filenames <- function(pir_params) {
+
   pirouette::check_pir_params(pir_params)
+
+  # Initialize so the tracelog and treelog filenames are filled in
+  pir_params <- init_pir_params(pir_params)
 
   # If there is at least one experiment that has its evidence/marginal
   # likelihood measured, willl there be a file wih evidences
@@ -25,7 +29,9 @@ get_pir_params_filenames <- function(pir_params) {
 
   filenames <- c(
     get_experiments_filenames(pir_params$experiments),
-    pir_params$alignment_params$fasta_filename
+    pir_params$alignment_params$fasta_filename,
+    pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename,
+    pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
   )
   if (has_evidence_file) {
     filenames <- c(filenames, pir_params$evidence_filename)
