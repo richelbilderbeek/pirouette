@@ -1,11 +1,11 @@
 context("test-create_twin_tree")
 
+# A higher precision version of \link[ape]{dist.nodes}
 dist_nodes <- function(tree, precision = 12) {
-  ape::dist.nodes(tree)
-  #round(
-  #  ape::dist.nodes(tree),
-  #  digits = precision
-  #)
+  round(
+    ape::dist.nodes(tree),
+    digits = precision
+  )
 }
 
 test_that("tree and twin tree have 3 taxa", {
@@ -40,13 +40,9 @@ test_that("node distances should remain in the same order, 3 taxa", {
     n_tips <- ape::Ntip(tree)
     # Only care about nodes that are tips
     expect_equal(
-      order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
-      order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
+      order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
+      order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips])
     )
-    #expect_equal(
-    #  order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
-    #  order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips])
-    #)
   }
 })
 
@@ -83,8 +79,8 @@ test_that("node distances should remain in the same order, 4 taxa, easy", {
     n_tips <- ape::Ntip(tree)
     # Only care about node distances between tips
     expect_equal(
-      order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
-      order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
+      order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
+      order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips])
     )
   }
 })
@@ -192,27 +188,6 @@ test_that("node distances should remain in the same order, brute-force", {
   }
 })
 
-test_that("all methods are working", {
-
-  tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
-  twinning_params <- create_twinning_params()
-  twinning_params$n_replicates <- 1e2
-  for (twin_model in get_twin_models()) {
-
-    twinning_params$twin_model <- twin_model
-    for (method in get_twin_methods()) {
-      twinning_params$method <- method
-      twinning_params$n_replicates <- 10
-      expect_silent(
-        create_twin_tree(
-          phylogeny = tree,
-          twinning_params = twinning_params
-        )
-      )
-    }
-  }
-})
-
 test_that("abuse", {
   tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
   twinning_params <- create_twinning_params()
@@ -225,12 +200,36 @@ test_that("abuse", {
   )
 })
 
-test_that(
-  "create_copy_twin_tree_from_true_function makes true and twin tree identical",
-{
+test_that("newskool Yule", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+    sim_twin_tree_function = create_sim_yule_twin_tree_function(),
+    method = "newskool"
+  )
+  create_twin_tree(
+    phylogeny = tree,
+    twinning_params = twinning_params
+  )
+})
+
+test_that("newskool Yule", {
+  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twinning_params <- create_twinning_params(
+    sim_twin_tree_function = create_sim_bd_twin_tree_function(),
+    method = "newskool"
+  )
+  create_twin_tree(
+    phylogeny = tree,
+    twinning_params = twinning_params
+  )
+})
+
+
+test_that("newskool copy", {
+  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twinning_params <- create_twinning_params(
+    sim_twin_tree_function = create_copy_twin_tree_from_true_function(),
+    method = "newskool"
   )
   twin_tree <- create_twin_tree(
     phylogeny = tree,
@@ -238,4 +237,3 @@ test_that(
   )
   expect_equal(ape::write.tree(tree), ape::write.tree(twin_tree))
 })
-

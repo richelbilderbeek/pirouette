@@ -27,6 +27,7 @@ create_twin_tree <- function(
   if (twinning_params$method == "newskool") {
     twin_tree <- twinning_params$sim_twin_tree_function(phylogeny)
   } else {
+    testit::assert(!"deprecatedz")
     if (twinning_params$twin_model == "birth_death") {
       twin_tree <- twin_to_bd_tree_obsolete(
         phylogeny = phylogeny,
