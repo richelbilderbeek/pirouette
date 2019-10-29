@@ -43,7 +43,20 @@ values of \code{twin_model}}
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
-\item{sim_twin_tree_function}{function to simulate a twin tree with}
+\item{sim_twin_tree_function}{function to simulate a twin tree with.
+This function must have one argument called \code{phylogeny}
+of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
+as well.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{create_sim_yule_twin_tree_function} to use a
+    Yule (aka Pure Birth) process
+  \item Use \link{create_copy_true_tree_function} to for a function
+    that copies the true tree
+  \item Use \link{create_sim_bd_twin_tree_function} to use a
+    Birth-Death process
+}}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}

@@ -127,17 +127,9 @@ if (rappdirs::app_dir()$os != "win") {
       tree_prior = create_bd_tree_prior()  
     ) 
   )
-  # Use the same BEAST2 input file, to assure the experiments do
-  # operate on the same input
-  # ?Unsure why this is needed?
-  experiment_bd$beast2_options$input_filename <- 
-    experiment_yule$beast2_options$input_filename
-  experiment_bd$beast2_options$output_state_filename <-
-    experiment_yule$beast2_options$output_state_filename  
-  experiment_bd$inference_model$mcmc$tracelog$filename <-
-    experiment_yule$inference_model$mcmc$tracelog$filename
-  experiment_bd$inference_model$mcmc$treelog$filename <-
-    experiment_yule$inference_model$mcmc$treelog$filename
+  # Use the same files to work on, as only one will actually run an experiment
+  experiment_bd$beast2_options <- experiment_yule$beast2_options
+  experiment_bd$inference_model$mcmc <- experiment_yule$inference_model$mcmc
   experiment_bd$errors_filename <- experiment_yule$errors_filename
     
   experiments <- list(experiment_yule, experiment_bd)
@@ -210,19 +202,6 @@ if (rappdirs::app_dir()$os != "win") {
       tree_prior = create_bd_tree_prior()  
     ) 
   )
-  # Use the same BEAST2 input file, to assure the experiments do
-  # operate on the same input
-  # ?Unsure why this is needed?
-  experiment_bd$beast2_options$input_filename <- 
-    experiment_yule$beast2_options$input_filename
-  experiment_bd$beast2_options$output_state_filename <-
-    experiment_yule$beast2_options$output_state_filename  
-  experiment_bd$inference_model$mcmc$tracelog$filename <-
-    experiment_yule$inference_model$mcmc$tracelog$filename
-  experiment_bd$inference_model$mcmc$treelog$filename <-
-    experiment_yule$inference_model$mcmc$treelog$filename
-  experiment_bd$errors_filename <- experiment_yule$errors_filename
-
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
   

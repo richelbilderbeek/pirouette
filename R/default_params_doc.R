@@ -240,6 +240,20 @@
 #' @param seed a random number generator seed
 #' @param sim_pars something
 #' @param sim_phylo something
+#' @param sim_twin_tree_function function to simulate a twin tree with.
+#' This function must have one argument called \code{phylogeny}
+#' of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
+#' as well.
+#'
+#' Some standard functions:\cr
+#' \itemize{
+#'   \item Use \link{create_sim_yule_twin_tree_function} to use a
+#'     Yule (aka Pure Birth) process
+#'   \item Use \link{create_copy_true_tree_function} to for a function
+#'     that copies the true tree
+#'   \item Use \link{create_sim_bd_twin_tree_function} to use a
+#'     Birth-Death process
+#' }
 #' @param site_model a nucleotide substitution model,
 #'   which can be:
 #'   \itemize{

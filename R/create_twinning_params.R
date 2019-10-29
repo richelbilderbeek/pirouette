@@ -3,7 +3,6 @@
 #' The site model and clock models will be used and
 #' their combination will be called the generative model
 #' of the twinning.
-#' @param sim_twin_tree_function function to simulate a twin tree with
 #' @inheritParams default_params_doc
 #' @return a twinning parameter set
 #' @examples

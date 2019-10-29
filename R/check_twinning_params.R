@@ -17,8 +17,22 @@
 check_twinning_params <- function(
   twinning_params
 ) {
-  # Check that the structure has all the list elements
+  # Check that the structure has all the list elements with the right names
   pirouette::check_twinning_params_names(twinning_params)
+
+  # sim_twin_tree_function
+  if (!is.function(twinning_params$sim_twin_tree_function)) {
+    stop("'sim_twin_tree_function' must be a function")
+  }
+  # check if sim_twin_tree_function is indeed a function with 1 parameter
+  arguments <- utils::capture.output(
+    utils::str(args(twinning_params$sim_twin_tree_function))
+  )
+  if (stringr::str_count(string = arguments, pattern = ",") > 0) {
+    stop(
+      "'sim_twin_tree_function' must be a function with one argument"
+    )
+  }
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
     stop("'rng_seed_twin_tree' must be a whole number")

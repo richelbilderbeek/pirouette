@@ -1,6 +1,11 @@
 context("test-check_twinning_params")
 
-test_that("use", {
+test_that("minimal use", {
+
+  expect_silent(check_twinning_params(create_twinning_params()))
+})
+
+test_that("element names", {
 
   good_twinning_params <- create_twinning_params()
 
@@ -11,9 +16,6 @@ test_that("use", {
     )
   )
 
-  ##############################################################################
-  # Missing elements
-  ##############################################################################
   twinning_params <- good_twinning_params
   twinning_params$rng_seed_twin_tree <- NULL
   expect_error(
@@ -60,6 +62,15 @@ test_that("use", {
   )
 
   twinning_params <- good_twinning_params
+  twinning_params$sim_twin_tree_function <- NULL
+  expect_error(
+    check_twinning_params(
+      twinning_params
+    ),
+    "'sim_twin_tree_function' must be an element of an 'twinning_params'"
+  )
+
+  twinning_params <- good_twinning_params
   twinning_params$twin_tree_filename <- NULL
   expect_error(
     check_twinning_params(
@@ -86,7 +97,19 @@ test_that("use", {
     "'twin_evidence_filename' must be an element of an 'twinning_params'"
   )
 
-  # Wrong parameter values
+})
+
+test_that("element data types", {
+
+  good_twinning_params <- create_twinning_params()
+
+  # OK
+  expect_silent(
+    check_twinning_params(
+      good_twinning_params
+    )
+  )
+
   expect_error(
     check_twinning_params(
       create_twinning_params(
@@ -112,7 +135,6 @@ test_that("use", {
     "'twin_tree_filename' must be a character vector"
   )
 
-  # Wrong methods
   expect_error(
     check_twinning_params(
       create_twinning_params(
@@ -121,18 +143,19 @@ test_that("use", {
     ),
     "'method' must be a character vector"
   )
+
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        method = "nonsense"
+        sim_twin_tree_function = "nonsense"
       )
     ),
-    "This 'method' is not implemented"
+    "'sim_twin_tree_function' must be a function"
   )
+})
 
-  ##############################################################################
-  # Wrong element data types
-  ##############################################################################
+test_that("element values", {
+
   # rng_seed_twin_tree
   expect_error(
     check_twinning_params(
