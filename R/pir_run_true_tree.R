@@ -58,6 +58,7 @@ pir_run_true_tree <- function(
       experiment = experiment,
       verbose = pir_params$verbose
     )
+    testit::assert(is.numeric(errorses[[i]]))
 
     # Save errors to file
     errors_filename <- experiment$errors_filename

@@ -21,19 +21,19 @@ VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Depends:
-    babette,
-    mcbette (>= 1.7)
+    beautier (>= 2.3),
+    babette
 Imports:
     ape,
     assertive,
     beastier (>= 2.0.25),
-    beautier (>= 2.3),
     DDD,
     dplyr,
     functional,
     geiger,
     magrittr,
     mauricer,
+    mcbette (>= 1.7),
     nodeSub (>= 0.4.1),
     phangorn,
     phytools,

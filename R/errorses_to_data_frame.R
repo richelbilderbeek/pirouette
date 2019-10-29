@@ -44,19 +44,15 @@ errorses_to_data_frame <- function(
   experiments,
   marg_liks
 ) {
+  pirouette::check_experiments(experiments)
   testit::assert(length(errorses) > 0)
   testit::assert(length(experiments) == length(errorses))
   if (length(errorses) > 1) {
-    testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
     if (length(errorses[[1]]) != length(errorses[[2]])) {
-      warning(
+      stop(
         "Lengths between errorses differ (", length(errorses[[1]]),
-        " vs ", length(errorses[[2]]), "). This is related to #99. ",
-        "Fixing this by shortening the longer errorses"
+        " vs ", length(errorses[[2]]), ")."
       )
-      shortest <- min(length(errorses[[1]]), length(errorses[[2]]))
-      errorses[[1]] <- errorses[[1]][1:shortest]
-      errorses[[2]] <- errorses[[2]][1:shortest]
     }
     testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
   }

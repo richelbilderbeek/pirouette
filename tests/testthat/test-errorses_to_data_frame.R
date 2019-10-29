@@ -52,14 +52,21 @@ test_that("abuse", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-  pir_params <- create_pir_params(
-    alignment_params = create_test_alignment_params(),
-    twinning_params = create_twinning_params(),
-    experiments = list(create_test_experiment()),
-    error_measure_params = create_error_measure_params(),
-    evidence_filename = tempfile(fileext = ".csv"),
-    verbose = FALSE
+
+  pir_params <- create_test_pir_params(
+    experiments = c(
+      list(
+        create_test_gen_experiment()
+      ), list(
+        create_test_cand_experiment(
+          inference_model = create_test_inference_model(
+            tree_prior = create_bd_tree_prior()
+          )
+        )
+      )
+    )
   )
+  check_pir_params(pir_params)
 
   # For developers only, using functions used by developers only
   pir_params <- init_pir_params(pir_params)
@@ -79,19 +86,18 @@ test_that("abuse", {
     verbose = pir_params$verbose
   )
   errorses[[2]] <- errorses[[1]][1:2]
+  testit::assert(length(errorses[[1]]) != length(errorses[[2]]))
 
   expect_error(
     errorses_to_data_frame(
       errorses = errorses,
-      experiments = list(
-        pir_params$experiments[[1]], pir_params$experiments[[1]]
-      ),
+      experiments = pir_params$experiments,
       marg_liks = create_test_marg_liks(
         site_models = list(create_jc69_site_model()),
         clock_models = list(create_strict_clock_model()),
         tree_priors = list(create_yule_tree_prior())
       )
     ),
-    "length.*1.*==.*length.*2.*is not TRUE"
+    "Lengths between errorses differ \\(3 vs 2\\)"
   )
 })

@@ -7,6 +7,7 @@
 #' The posterior phylogenies are compared to the true/known phylogeny
 #' using the nLTT statistics. These nLTT statistics, all with values
 #' betweem (including) zero and (including) one, are returned.
+#' @return a numerical vector of error values
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
@@ -30,7 +31,10 @@
 #' # as this is done by 'pir_run'.
 #' # A develop, however, that wants to call 'phylo_to_errors',
 #' # should initialaze as such
-#' experiment <- init_experiment(experiment)
+#' experiment <- init_experiment(
+#'   experiment = experiment,
+#'   alignment_params = alignment_params
+#' )
 #'
 #' experiments <- list(experiment)
 #'
@@ -43,6 +47,7 @@
 #'     experiment = experiment
 #'   )
 #'
+#'   expect_true(is.numeric(nltts))
 #'   expect_true(length(nltts) > 0)
 #'   expect_true(all(nltts > 0) & all(nltts < 1))
 #' }
