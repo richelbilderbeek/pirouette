@@ -413,6 +413,7 @@ default_params_doc <- function(
   sequence_length,
   sim_pars,
   sim_phylo,
+  sim_twin_tree_function,
   site_model,
   site_models,
   site_model_name,

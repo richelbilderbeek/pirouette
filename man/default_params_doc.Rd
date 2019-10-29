@@ -26,12 +26,12 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   project_folder_name, result, rng_seed, rng_seed_twin_alignment,
   rng_seed_twin_tree, root_sequence, run_experiment, run_experiments,
   run_if, sample_interval, seed, sequence_length, sim_pars, sim_phylo,
-  site_model, site_models, site_model_name, sub_chain_length, sum_lamu,
-  t_0, tree, tree_filename, tree_model, tree_prior, tree_priors,
-  tree_prior_name, tree_type, true_alignment, true_phylogeny, true_result,
-  twin_alignment, twin_alignment_filename, twin_evidence_filename,
-  twin_phylogeny, twin_model, twin_result, twin_tree_filename,
-  twinning_params, type, verbose, weight)
+  sim_twin_tree_function, site_model, site_models, site_model_name,
+  sub_chain_length, sum_lamu, t_0, tree, tree_filename, tree_model,
+  tree_prior, tree_priors, tree_prior_name, tree_type, true_alignment,
+  true_phylogeny, true_result, twin_alignment, twin_alignment_filename,
+  twin_evidence_filename, twin_phylogeny, twin_model, twin_result,
+  twin_tree_filename, twinning_params, type, verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -363,6 +363,21 @@ makes a measurement}
 
 \item{sim_phylo}{something}
 
+\item{sim_twin_tree_function}{function to simulate a twin tree with.
+This function must have one argument called \code{phylogeny}
+of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
+as well.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{create_sim_yule_twin_tree_function} to use a
+    Yule (aka Pure Birth) process
+  \item Use \link{create_copy_true_tree_function} to for a function
+    that copies the true tree
+  \item Use \link{create_sim_bd_twin_tree_function} to use a
+    Birth-Death process
+}}
+
 \item{site_model}{a nucleotide substitution model,
 which can be:
 \itemize{
@@ -455,21 +470,6 @@ See \link{get_model_selections} for a list.}
 models. This weight will be between 0.0 (there is no evidence for
 this model) to 1.0 (all evidence indicates this is the best model).
 A weight of NA denotes that the weight is not measured}
-
-\item{sim_twin_tree_function}{function to simulate a twin tree with.
-This function must have one argument called \code{phylogeny}
-of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
-as well.
-
-Some standard functions:\cr
-\itemize{
-  \item Use \link{create_sim_yule_twin_tree_function} to use a
-    Yule (aka Pure Birth) process
-  \item Use \link{create_copy_true_tree_function} to for a function
-    that copies the true tree
-  \item Use \link{create_sim_bd_twin_tree_function} to use a
-    Birth-Death process
-}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
