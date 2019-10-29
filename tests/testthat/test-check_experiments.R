@@ -34,6 +34,8 @@ test_that("correct order of experiments", {
   cand_exp <- create_test_cand_experiment()
   # Must use different inference model than generative model
   cand_exp$inference_model$site_model <- beautier::create_gtr_site_model()
+  # Must have same MCMC
+  cand_exp$inference_model$mcmc <- gen_exp$inference_model$mcmc
 
   # OK order
   expect_silent(
@@ -71,6 +73,9 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
     beautier::create_tn93_site_model()
   cand_experiment_2$inference_model$site_model <-
     beautier::create_gtr_site_model()
+  # Must have same MCMC
+  cand_experiment_1$inference_model$mcmc <- cand_experiment_2$inference_model$mcmc
+  gen_experiment$inference_model$mcmc <- cand_experiment_2$inference_model$mcmc
 
   expect_silent(
     check_experiments(list(gen_experiment, cand_experiment_1))
@@ -89,9 +94,9 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
     "Candidate models must have same BEAST2 input filename"
   )
 
-  # Fix BEAST2 options and MCMC, as those hold the file location
+  # Fix BEAST2 options, as those hold the file location
   cand_experiment_1$beast2_options <- cand_experiment_2$beast2_options
-  cand_experiment_1$inference_model$mcmc <- cand_experiment_2$inference_model$mcmc
+  gen_experiment$beast2_options <- cand_experiment_2$beast2_options
 
   expect_error(
     check_experiments(experiments = list(cand_experiment_1, cand_experiment_2)),

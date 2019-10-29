@@ -55,7 +55,7 @@
 #'    pir_plot(pir_out)
 #'  }
 #' @export
-create_inference_conditions <- create_inf_conds <- function(
+create_inference_conditions <- function(
   model_type = "generative",
   run_if = "always",
   do_measure_evidence = FALSE

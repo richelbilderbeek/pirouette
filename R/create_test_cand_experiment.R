@@ -17,7 +17,7 @@
 #' }
 #' @export
 create_test_cand_experiment <- function(
-  inference_conditions = pirouette::create_inf_conds(
+  inference_conditions = pirouette::create_inference_conditions(
     model_type = "candidate",
     run_if = "best_candidate",
     do_measure_evidence = TRUE
