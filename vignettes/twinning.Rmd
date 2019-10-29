@@ -77,37 +77,19 @@ experiment_1 <- create_test_gen_experiment(
     tree_prior = create_bd_tree_prior()  
   )
 )
-  inference_conditions = create_inference_conditions(
-    model_type = "generative",
-    run_if = "always",
-    do_measure_evidence = FALSE # Set to TRUE if UNIX 
-  ), 
-  inference_model = create_inference_model(
-    tree_prior = create_bd_tree_prior(),
-    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-  ),
-  est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-  beast2_options = create_beast2_options(rng_seed = 314)
-)
 if (rappdirs::app_dir()$os != "win") {
-  experiment_2 <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = create_inference_model(
-      tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
-    beast2_options = create_beast2_options(rng_seed = 314)
+  experiment_2 <- create_test_cand_experiment(
+    inference_model = create_test_inference_model(
+      tree_prior = create_yule_tree_prior()  
+    )
   )
   experiment_1$inference_conditions$do_measure_evidence <- TRUE
   
-  # Must share same BEAST2 options and errors filenae
+  # Must share same BEAST2 options, MCMC and errors filenae
   experiment_1$beast2_options <- experiment_2$beast2_options
+  experiment_1$inference_model$mcmc <- experiment_2$inference_model$mcmc
   experiment_1$errors_filename <- experiment_2$errors_filename
+  
   experiments <- list(experiment_1, experiment_2)
 } else {
   experiments <- list(experiment_1)  

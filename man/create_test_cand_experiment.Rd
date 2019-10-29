@@ -5,15 +5,14 @@
 \title{Create a valid testing \link{pirouette} candidate experiment.}
 \usage{
 
-  create_test_cand_experiment(inference_conditions = create_inf_conds(model_type
+  create_test_cand_experiment(inference_conditions = pirouette::create_inf_conds(model_type
   = "candidate", run_if = "best_candidate", do_measure_evidence = TRUE),
-  inference_model = beautier::create_inference_model(mcmc =
-  beautier::create_mcmc(chain_length = 2000, store_every = 1000)),
-  beast2_options = beastier::create_beast2_options(input_filename =
-  beastier::create_temp_input_filename(), output_state_filename =
-  beastier::create_temp_output_state_filename()),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(chain_length
-  = 2000, store_every = 1000, epsilon = 100))
+  inference_model = beautier::create_test_inference_model(),
+  beast2_options = beastier::create_beast2_options(),
+  est_evidence_mcmc = beautier::create_test_ns_mcmc(),
+  beast2_bin_path = beastier::get_default_beast2_bin_path(),
+  errors_filename = tempfile(pattern = "errors_", tmpdir =
+  rappdirs::user_cache_dir(), fileext = ".csv"))
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model
@@ -30,6 +29,13 @@ as can be created by \link[beastier]{create_beast2_options}}
 the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
 as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+
+\item{beast2_bin_path}{path to BEAST2 binary file. The use of the
+binary BEAST2 file is required for estimation of the evidence (aka
+marginal likelihood). The default BEAST2 binary path can be
+obtained using \link[beastier]{get_default_beast2_bin_path}}
+
+\item{errors_filename}{baseline name for errors filenames}
 }
 \value{
 a \link{pirouette} experiment.

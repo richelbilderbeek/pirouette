@@ -17,28 +17,27 @@
 #' }
 #' @export
 create_test_cand_experiment <- function(
-  inference_conditions = create_inf_conds(
+  inference_conditions = pirouette::create_inf_conds(
     model_type = "candidate",
     run_if = "best_candidate",
     do_measure_evidence = TRUE
   ),
-  inference_model = beautier::create_inference_model(
-    mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-  ),
-  beast2_options = beastier::create_beast2_options(
-    input_filename = beastier::create_temp_input_filename(),
-    output_state_filename = beastier::create_temp_output_state_filename()
-  ),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(
-    chain_length = 2000,
-    store_every = 1000,
-    epsilon = 100.0
+  inference_model = beautier::create_test_inference_model(),
+  beast2_options = beastier::create_beast2_options(),
+  est_evidence_mcmc = beautier::create_test_ns_mcmc(),
+  beast2_bin_path = beastier::get_default_beast2_bin_path(),
+  errors_filename = tempfile(
+    pattern = "errors_",
+    tmpdir = rappdirs::user_cache_dir(),
+    fileext = ".csv"
   )
 ) {
   create_experiment(
     inference_conditions = inference_conditions,
     inference_model = inference_model,
     beast2_options = beast2_options,
-    est_evidence_mcmc = est_evidence_mcmc
+    est_evidence_mcmc = est_evidence_mcmc,
+    beast2_bin_path = beast2_bin_path,
+    errors_filename = errors_filename
   )
 }
