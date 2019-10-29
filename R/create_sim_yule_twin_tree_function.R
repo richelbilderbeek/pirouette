@@ -10,7 +10,11 @@
 #'   !all(ape::branching.times(phylo_in) == ape::branching.times(phylo_out))
 #' )
 #' @export
-create_sim_yule_twin_tree_function <- function() {
+create_sim_yule_twin_tree_function <- function(
+  seed = 0,
+  method = "random_tree",
+  n_replicates = 1e4
+) {
   functional::Curry(
     twin_to_yule_tree,
     seed = seed,

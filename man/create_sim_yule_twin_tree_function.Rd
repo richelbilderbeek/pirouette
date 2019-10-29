@@ -5,7 +5,23 @@
 \title{Create a function that can simulate the twin tree from the true tree,
 using the Yule speciation model}
 \usage{
-create_sim_yule_twin_tree_function()
+create_sim_yule_twin_tree_function(seed = 0, method = "random_tree",
+  n_replicates = 10000)
+}
+\arguments{
+\item{seed}{a random number generator seed}
+
+\item{method}{determines how to create the twin tree
+\itemize{
+    \item 'random_tree' just produces a random tree;
+    \item 'max_clade_cred' simulates \code{n_replicates} trees and
+      uses \link[phangorn]{maxCladeCred} to create a consensus tree;
+    \item 'max_likelihood' simulates \code{n_replicates} trees
+     and selects the most likely;
+  }}
+
+\item{n_replicates}{number of replicas to evaluate in order to create the
+twin tree}
 }
 \value{
 a function

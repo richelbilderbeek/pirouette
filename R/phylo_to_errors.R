@@ -24,11 +24,14 @@
 #' )
 #' expect_true(file.exists(alignment_params$fasta_filename))
 #'
-#' experiment <- create_experiment(
-#'   inference_model = create_inference_model(
-#'     mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
-#'   )
-#' )
+#' experiment <- create_test_gen_experiment()
+#'
+#' # A normal user should never need to initialize the experiment,
+#' # as this is done by 'pir_run'.
+#' # A develop, however, that wants to call 'phylo_to_errors',
+#' # should initialaze as such
+#' experiment <- init_experiment(experiment)
+#'
 #' experiments <- list(experiment)
 #'
 #' if (rappdirs::app_dir()$os != "win" &&
