@@ -31,10 +31,21 @@ Create a function that can simulate the twin tree from the true tree,
 using the Yule speciation model
 }
 \examples{
+library(testthat)
+
 f <- create_sim_yule_twin_tree_function()
 phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 phylo_out <- f(phylo_in)
 expect_true(
   !all(ape::branching.times(phylo_in) == ape::branching.times(phylo_out))
 )
+}
+\seealso{
+Use \link{create_sim_bd_twin_tree_function} to get a function to
+produce a Birth-Death tree.
+Use \link{create_copy_twin_tree_from_true_function} to get a
+function to simply copy the tree
+}
+\author{
+Richèl J.C. Bilderbeek
 }
