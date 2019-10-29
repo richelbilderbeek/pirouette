@@ -15,8 +15,12 @@ test_that("each element in the list must be a proper experiment", {
 
 test_that("must have same MCMC chain length", {
 
-  experiment_1 <- create_experiment()
-  experiment_2 <- create_experiment()
+  experiment_1 <- create_test_cand_experiment(
+    inference_model = create_test_inference_model(
+      tree_prior = beautier::create_bd_tree_prior()
+    )
+  )
+  experiment_2 <- experiment_1
   experiment_2$inference_model$mcmc$chain_length <-
     experiment_2$inference_model$mcmc$chain_length * 10
   experiments <- list(experiment_1, experiment_2)
