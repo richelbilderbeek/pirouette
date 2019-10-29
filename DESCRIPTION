@@ -32,6 +32,7 @@ Imports:
     assertive,
     DDD,
     dplyr,
+    functional,
     geiger,
     magrittr,
     nodeSub (>= 0.4.1),
