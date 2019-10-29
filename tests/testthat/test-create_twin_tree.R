@@ -188,18 +188,6 @@ test_that("node distances should remain in the same order, brute-force", {
   }
 })
 
-test_that("abuse", {
-  tree <- ape::read.tree(text = "(B:3, ((D:1, C:1):1, A:2):1);")
-  twinning_params <- create_twinning_params()
-  twinning_params$twin_model <- "nonsense"
-  expect_error(
-    create_twin_tree(
-      phylogeny = tree,
-      twinning_params = twinning_params
-    )
-  )
-})
-
 test_that("newskool Yule", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
