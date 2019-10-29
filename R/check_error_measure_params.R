@@ -53,22 +53,13 @@ check_error_measure_params <- function(
 
   # check if error_function is indeed a function that has a lowest
   # value for identical trees
-  set.seed(42)
-  tess_sim <- TESS::tess.sim.taxa.age(
-    n = 1,
-    nTaxa = 10,
-    age = 10,
-    lambda = 0.33,
-    mu = 0.1
-  )
-  trees <- rep(tess_sim, 1)
-  tree <- tess_sim[[1]]
-  class(trees) <- "multiPhylo"
+  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  trees <- c(tree)
   test_errors <- error_measure_params$error_function(
     tree = tree,
     trees = trees
   )
-  if (!all(test_errors == 0)) {
+  if (!all(test_errors == 0.0)) {
     stop(
       "'error_function' must be a function that is lowest for identical trees" # nolint long string
     )
