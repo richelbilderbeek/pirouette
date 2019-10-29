@@ -6,8 +6,7 @@
 \usage{
 
   create_test_gen_experiment(inference_conditions = create_inference_conditions(),
-  inference_model = beautier::create_inference_model(mcmc =
-  beautier::create_mcmc(chain_length = 2000, store_every = 1000)),
+  inference_model = beautier::create_test_inference_model(),
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_test_ns_mcmc(),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
