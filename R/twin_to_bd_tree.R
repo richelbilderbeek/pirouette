@@ -36,6 +36,15 @@ twin_to_bd_tree <- function(
   method = "random_tree",
   n_replicates = 1e4
 ) {
+  methods <- c("random_tree", "max_clade_cred", "max_likelihood")
+  if (!method %in% methods) {
+    stop(
+      "'method' not in the supported methods. \n",
+      "Supported methods: ", methods, ". \n",
+      "Actual value: ", method
+    )
+  }
+
   age  <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
     pirouette::convert_tree2brts(phylogeny),
