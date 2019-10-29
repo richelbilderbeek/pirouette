@@ -74,7 +74,7 @@ test_that("use", {
         }
       )
     ),
-    "'error_function' must be a function that is lowest for identical trees"
+    "'error_function' must be a function that is zero for identical trees"
   )
 
   # Wrong parameter values

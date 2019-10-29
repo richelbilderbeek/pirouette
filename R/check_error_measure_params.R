@@ -61,7 +61,7 @@ check_error_measure_params <- function(
   )
   if (!all(test_errors == 0.0)) {
     stop(
-      "'error_function' must be a function that is lowest for identical trees" # nolint long string
+      "'error_function' must be a function that is zero for identical trees"
     )
   }
 }
