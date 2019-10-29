@@ -33,6 +33,17 @@ check_twinning_params <- function(
       "'sim_twin_tree_function' must be a function with one argument"
     )
   }
+  # sim_twin_tree_function must return a phylo
+  if (!beautier::is_phylo(
+    twinning_params$sim_twin_tree_function(
+      ape::read.tree(text = "((A:1, B:1):1, C:2);"))
+    )
+  ) {
+    stop(
+      "'sim_twin_tree_function' must be a function that returns an ape::phylo"
+    )
+  }
+
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
     stop("'rng_seed_twin_tree' must be a whole number")

@@ -152,6 +152,24 @@ test_that("element data types", {
     ),
     "'sim_twin_tree_function' must be a function"
   )
+
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        sim_twin_tree_function = function(one_too, many_arguments) { }
+      )
+    ),
+    "'sim_twin_tree_function' must be a function with one argument"
+  )
+
+  expect_error(
+    check_twinning_params(
+      create_twinning_params(
+        sim_twin_tree_function = function(irrelevant) { "not a phylo" }
+      )
+    ),
+    "'sim_twin_tree_function' must be a function that returns an ape::phylo"
+  )
 })
 
 test_that("element values", {
@@ -298,7 +316,6 @@ test_that("use", {
   expect_silent(create_sim_yule_twin_tree_function())
   expect_silent(create_sim_bd_twin_tree_function())
   expect_silent(create_copy_twin_tree_from_true_function())
-  skip("#340")
 
   expect_silent(
     create_twinning_params(
