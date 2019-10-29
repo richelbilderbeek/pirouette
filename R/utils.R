@@ -55,6 +55,7 @@ get_twin_methods <- function() {
   c(
     "random_tree",
     "max_clade_cred",
-    "max_likelihood"
+    "max_likelihood",
+    "newskool"
   )
 }

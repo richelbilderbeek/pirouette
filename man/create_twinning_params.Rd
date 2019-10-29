@@ -6,7 +6,7 @@
 \usage{
 create_twinning_params(rng_seed_twin_tree = 0,
   rng_seed_twin_alignment = 0, twin_model = "birth_death",
-  method = "random_tree", n_replicates = 10000,
+  method = "newskool", n_replicates = 10000,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =

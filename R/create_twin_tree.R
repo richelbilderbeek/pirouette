@@ -24,17 +24,17 @@ create_twin_tree <- function(
 ) {
   beautier::check_phylogeny(phylogeny)
   pirouette::check_twinning_params(twinning_params)
-  if (twinning_params$method != "oldskool") {
+  if (twinning_params$method == "newskool") {
     twin_tree <- twinning_params$sim_twin_tree_function(phylogeny)
   } else {
     if (twinning_params$twin_model == "birth_death") {
-      twin_tree <- twin_to_bd_tree(
+      twin_tree <- twin_to_bd_tree_obsolete(
         phylogeny = phylogeny,
         twinning_params = twinning_params
       )
     }
     else if (twinning_params$twin_model == "yule") {
-      twin_tree <- twin_to_yule_tree(
+      twin_tree <- twin_to_yule_tree_obsolete(
         phylogeny = phylogeny,
         twinning_params = twinning_params
       )
