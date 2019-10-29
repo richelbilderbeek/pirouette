@@ -118,6 +118,9 @@ pir_to_pics <- function(
 ) {
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 
+  # Fill in the BEAUti shorthand notations
+  pir_params <- init_pir_params(pir_params)
+
   filenames <- NULL
 
   # Trees

@@ -25,6 +25,9 @@ a parameter set}
 
 \item{verbose}{if TRUE, show more output}
 }
+\value{
+a numerical vector of error values
+}
 \description{
 The supplied phylogeny (\code{phylogeny}) is the true/known phylogeny.
 From the phylogeny, already an alignment is simulated and saved
@@ -56,7 +59,10 @@ experiment <- create_test_gen_experiment()
 # as this is done by 'pir_run'.
 # A develop, however, that wants to call 'phylo_to_errors',
 # should initialaze as such
-experiment <- init_experiment(experiment)
+experiment <- init_experiment(
+  experiment = experiment,
+  alignment_params = alignment_params
+)
 
 experiments <- list(experiment)
 
@@ -69,6 +75,7 @@ if (rappdirs::app_dir()$os != "win" &&
     experiment = experiment
   )
 
+  expect_true(is.numeric(nltts))
   expect_true(length(nltts) > 0)
   expect_true(all(nltts > 0) & all(nltts < 1))
 }
