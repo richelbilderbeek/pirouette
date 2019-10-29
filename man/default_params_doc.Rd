@@ -372,7 +372,7 @@ Some standard functions:\cr
 \itemize{
   \item Use \link{create_sim_yule_twin_tree_function} to use a
     Yule (aka Pure Birth) process
-  \item Use \link{create_copy_true_tree_function} to for a function
+  \item Use \link{create_copy_twin_tree_from_true_function} to for a function
     that copies the true tree
   \item Use \link{create_sim_bd_twin_tree_function} to use a
     Birth-Death process
