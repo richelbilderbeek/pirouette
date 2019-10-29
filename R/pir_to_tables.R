@@ -16,6 +16,10 @@ pir_to_tables <- function(
   pir_params,
   folder = tempdir()
 ) {
+
+  # Fill in the BEAUti shorthands
+  pir_params <- init_pir_params(pir_params)
+
   # Create a folder for the files if needed,
   # no warning if it is already present
   dir.create(folder, showWarnings = FALSE, recursive = TRUE)
