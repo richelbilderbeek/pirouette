@@ -1,10 +1,11 @@
 context("test-create_twin_tree")
 
 dist_nodes <- function(tree, precision = 12) {
-  round(
-    ape::dist.nodes(tree),
-    digits = precision
-  )
+  ape::dist.nodes(tree)
+  #round(
+  #  ape::dist.nodes(tree),
+  #  digits = precision
+  #)
 }
 
 test_that("tree and twin tree have 3 taxa", {
@@ -39,9 +40,13 @@ test_that("node distances should remain in the same order, 3 taxa", {
     n_tips <- ape::Ntip(tree)
     # Only care about nodes that are tips
     expect_equal(
-      order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
-      order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips])
+      order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
+      order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
     )
+    #expect_equal(
+    #  order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
+    #  order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips])
+    #)
   }
 })
 
@@ -78,8 +83,8 @@ test_that("node distances should remain in the same order, 4 taxa, easy", {
     n_tips <- ape::Ntip(tree)
     # Only care about node distances between tips
     expect_equal(
-      order(dist_nodes(tree)[1:n_tips, 1:n_tips]),
-      order(dist_nodes(twin_tree)[1:n_tips, 1:n_tips])
+      order(ape::dist.nodes(tree)[1:n_tips, 1:n_tips]),
+      order(ape::dist.nodes(twin_tree)[1:n_tips, 1:n_tips])
     )
   }
 })
