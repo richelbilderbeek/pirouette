@@ -6,6 +6,9 @@
 \usage{
 check_pir_out_errors_above_zero(pir_out)
 }
+\arguments{
+\item{pir_out}{the output of \link{pir_run}}
+}
 \description{
 Checks that \code{pir_out} errors all are more than zero
 }

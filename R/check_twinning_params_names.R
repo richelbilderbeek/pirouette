@@ -1,6 +1,7 @@
-#' Check that the \code{twinning_params} has all the list elements
+#' Check that the \code{twinning_params} has all the list elements' names
+#' @inheritParams default_params_doc
 #' @export
-check_twinning_params_list_elements <- function(twinning_params) { # nolint indeed long function name, which is fine for an internal function
+check_twinning_params_names <- function(twinning_params) { # nolint indeed long function name, which is fine for an internal function
   argument_names <- c(
     "rng_seed_twin_tree",
     "rng_seed_twin_alignment",

@@ -1,6 +1,7 @@
 #' Initialize the \code{pir_params}.
 #'
 #' A normal user should never need to call this function.
+#' @inheritParams default_params_doc
 #' @export
 init_pir_params <- function(pir_params) {
 

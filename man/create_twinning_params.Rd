@@ -43,6 +43,8 @@ values of \code{twin_model}}
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
+\item{sim_twin_tree_function}{function to simulate a twin tree with}
+
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}
 
@@ -56,7 +58,6 @@ evidences (aka marginal likelihoods) of the twin tree}
 a twinning parameter set
 }
 \description{
-Create the parameters for the twinning simulation.
 The site model and clock models will be used and
 their combination will be called the generative model
 of the twinning.

@@ -6,6 +6,10 @@
 \usage{
 init_pir_params(pir_params)
 }
+\arguments{
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
+}
 \description{
 A normal user should never need to call this function.
 }
