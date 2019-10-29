@@ -34,20 +34,33 @@ ape::plot.phylo(phylogeny)
 The BD twinning parameters:
 
 ```{r}
-twinning_params <- create_twinning_params()
-twinning_params$twin_model <- "birth_death"
 bd_twin <- create_twin_tree(
   phylogeny = phylogeny,
-  twinning_params = twinning_params
+  twinning_params = create_twinning_params(
+    sim_twin_tree_function = create_sim_bd_twin_tree_function()
+  )
 )
 ```
+
 The Yule twinning parameters:
 
 ```{r}
-twinning_params$twin_model <- "yule"
 yule_twin <- create_twin_tree(
   phylogeny = phylogeny,
-  twinning_params = twinning_params
+  twinning_params = create_twinning_params(
+    sim_twin_tree_function = create_sim_yule_twin_tree_function()
+  )
+)
+```
+
+The copy twinning parameters:
+
+```{r}
+copy_twin <- create_twin_tree(
+  phylogeny = phylogeny,
+  twinning_params = create_twinning_params(
+    sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+  )
 )
 ```
 
@@ -55,8 +68,8 @@ Show the true tree in red and bd twin tree in gray:
 
 ```{r fig.width=7, fig.height=7}
 babette::plot_densitree(
-  phylos = c(phylogeny, bd_twin), 
-  col = c("red", "gray"), 
+  phylos = c(bd_twin, yule_twin, copy_twin), 
+  col = c("red", "blue", "gray"), 
   width = 4,
   consensus = phylogeny,
   alpha = 0.5
