@@ -14,7 +14,10 @@ or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 }
 \description{
-Create a twin tree
+It sets the seed with value \code{twinning_params$rng_seed_twin_tree},
+then generates a tree by
+calling \code{twinning_paramssim_twin_tree_function} on the
+given tree.
 }
 \examples{
 phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")

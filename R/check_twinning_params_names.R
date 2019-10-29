@@ -5,9 +5,6 @@ check_twinning_params_names <- function(twinning_params) { # nolint indeed long 
   argument_names <- c(
     "rng_seed_twin_tree",
     "rng_seed_twin_alignment",
-    "twin_model", # to be obsoleted
-    "method", # to be obsoleted
-    "n_replicates", # to be obsoleted
     "sim_twin_tree_function",
     "twin_tree_filename",
     "twin_alignment_filename",

@@ -32,9 +32,6 @@
 create_twinning_params <- function(
   rng_seed_twin_tree = 0,
   rng_seed_twin_alignment = 0,
-  twin_model = "birth_death",
-  method = "newskool",
-  n_replicates = 1e4,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
   twin_tree_filename = tempfile(
     pattern = "tree_twin_", fileext = ".newick"
@@ -49,9 +46,6 @@ create_twinning_params <- function(
   twinning_params <- list(
     rng_seed_twin_tree = rng_seed_twin_tree,
     rng_seed_twin_alignment = rng_seed_twin_alignment,
-    twin_model = twin_model, # to be obsoleted
-    method = method, # to be obsoleted
-    n_replicates = n_replicates, # to be obsoleted
     sim_twin_tree_function = sim_twin_tree_function,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename,

@@ -35,33 +35,6 @@ test_that("element names", {
   )
 
   twinning_params <- good_twinning_params
-  twinning_params$twin_model <- NULL
-  expect_error(
-    check_twinning_params(
-      twinning_params
-    ),
-    "'twin_model' must be an element of an 'twinning_params'"
-  )
-
-  twinning_params <- good_twinning_params
-  twinning_params$method <- NULL
-  expect_error(
-    check_twinning_params(
-      twinning_params
-    ),
-    "'method' must be an element of an 'twinning_params'"
-  )
-
-  twinning_params <- good_twinning_params
-  twinning_params$n_replicates <- NULL
-  expect_error(
-    check_twinning_params(
-      twinning_params
-    ),
-    "'n_replicates' must be an element of an 'twinning_params'"
-  )
-
-  twinning_params <- good_twinning_params
   twinning_params$sim_twin_tree_function <- NULL
   expect_error(
     check_twinning_params(
@@ -138,15 +111,6 @@ test_that("element data types", {
   expect_error(
     check_twinning_params(
       create_twinning_params(
-        method = 12
-      )
-    ),
-    "'method' must be a character vector"
-  )
-
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
         sim_twin_tree_function = "nonsense"
       )
     ),
@@ -208,75 +172,6 @@ test_that("element values", {
       )
     ),
     "'rng_seed_twin_alignment' must be a whole number"
-  )
-
-  # twin_model
-  expect_silent(
-    check_twinning_params(
-      create_twinning_params(twin_model = "yule")
-    )
-  )
-  expect_silent(
-    check_twinning_params(
-      create_twinning_params(twin_model = "birth_death")
-    )
-  )
-  expect_silent(
-    check_twinning_params(
-      create_twinning_params(twin_model = "copy_true")
-    )
-  )
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        twin_model = "nonsense"
-      )
-    ),
-    "'twin_model' is not implemented"
-  )
-
-  # method
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        method = "nonsense"
-      )
-    ),
-    "'method' is not implemented"
-  )
-
-  # n_replicates
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        n_replicates = "nonsense"
-      )
-    ),
-    "'n_replicates' must be a whole number"
-  )
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        n_replicates = 1.5
-      )
-    ),
-    "'n_replicates' must be a whole number"
-  )
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        n_replicates = Inf
-      )
-    ),
-    "'n_replicates' must be a whole number"
-  )
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        n_replicates = -10
-      )
-    ),
-    "'n_replicates' must be a finite positive integer number"
   )
 
   # twin_tree_filename

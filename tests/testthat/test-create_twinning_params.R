@@ -4,7 +4,21 @@ test_that("use", {
 
 test_that("Twin tree should be BD by default, #161", {
   twinning_params <- create_twinning_params()
-  expect_equal(twinning_params$twin_model, "birth_death")
+
+  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+
+  # Create using default function
+  set.seed(42)
+  twin_tree <- twinning_params$sim_twin_tree_function(tree)
+
+  # Create using BD function
+  set.seed(42)
+  bd_twin_tree <- create_sim_bd_twin_tree_function()(tree)
+
+  expect_equal(
+    ape::branching.times(twin_tree),
+    ape::branching.times(bd_twin_tree)
+  )
 })
 
 test_that("abuse", {

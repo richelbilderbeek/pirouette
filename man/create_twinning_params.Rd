@@ -5,8 +5,7 @@
 \title{Create the parameters for the twinning simulation}
 \usage{
 create_twinning_params(rng_seed_twin_tree = 0,
-  rng_seed_twin_alignment = 0, twin_model = "birth_death",
-  method = "newskool", n_replicates = 10000,
+  rng_seed_twin_alignment = 0,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =
@@ -20,28 +19,6 @@ simulation of a twin tree}
 
 \item{rng_seed_twin_alignment}{the random number generator seed
 as used in the simulation of a twin alignment}
-
-\item{twin_model}{the model you want to use to generate the twin tree:
-\itemize{
-  \item \code{birth_death}: birth death
-  \item \code{yule}: Yule or pure-birth
-  \item \code{copy_true}: use a copy of the true tree in the twinning
-   pipeline
-}
-See \link{get_twin_models} to see all possible
-values of \code{twin_model}}
-
-\item{method}{determines how to create the twin tree
-\itemize{
-    \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates \code{n_replicates} trees and
-      uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates \code{n_replicates} trees
-     and selects the most likely;
-  }}
-
-\item{n_replicates}{number of replicas to evaluate in order to create the
-twin tree}
 
 \item{sim_twin_tree_function}{function to simulate a twin tree with.
 This function must have one argument called \code{phylogeny}

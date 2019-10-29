@@ -203,8 +203,7 @@ test_that("abuse", {
 test_that("newskool Yule", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_sim_yule_twin_tree_function(),
-    method = "newskool"
+    sim_twin_tree_function = create_sim_yule_twin_tree_function()
   )
   create_twin_tree(
     phylogeny = tree,
@@ -215,8 +214,7 @@ test_that("newskool Yule", {
 test_that("newskool Yule", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_sim_bd_twin_tree_function(),
-    method = "newskool"
+    sim_twin_tree_function = create_sim_bd_twin_tree_function()
   )
   create_twin_tree(
     phylogeny = tree,
@@ -228,8 +226,7 @@ test_that("newskool Yule", {
 test_that("newskool copy", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_copy_twin_tree_from_true_function(),
-    method = "newskool"
+    sim_twin_tree_function = create_copy_twin_tree_from_true_function()
   )
   twin_tree <- create_twin_tree(
     phylogeny = tree,
