@@ -19,5 +19,5 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_copy_twin_tree_from_true_function <- function() {
-  function(phylogeny) phylogeny
+  function(true_phylogeny) true_phylogeny
 }

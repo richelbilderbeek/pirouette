@@ -5,11 +5,11 @@
 \title{Create an BD twin tree from a phylogeny
 and save it as a file}
 \usage{
-twin_to_bd_tree(phylogeny, seed = 0, method = "random_tree",
+twin_to_bd_tree(true_phylogeny, seed = 0, method = "random_tree",
   n_replicates = 10000)
 }
 \arguments{
-\item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{seed}{a random number generator seed}
 

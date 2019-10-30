@@ -26,11 +26,12 @@
 #' )
 #' @export
 twin_to_yule_tree <- function(
-  phylogeny,
+  true_phylogeny,
   seed = 0,
   method = "random_tree",
   n_replicates = 1e4
 ) {
+  phylogeny <- true_phylogeny
   age <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
     pirouette::convert_tree2brts(phylogeny),
