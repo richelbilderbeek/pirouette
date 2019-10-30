@@ -172,7 +172,7 @@ test_that("all list elements must have the right data type", {
   )
 })
 
-test_that("adding sim_alignment_function", {
+test_that("adding sim_true_alignment_function", {
 
   expect_silent(
     check_alignment_params(

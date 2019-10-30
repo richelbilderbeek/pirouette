@@ -18,11 +18,18 @@ check_sim_true_alignment_function <- function(sim_true_alignment_function) {
     )
   }
   # sim_true_alignment_function must return a DNAbin
-  if (class(
-    sim_true_alignment_function(
-      ape::read.tree(text = "((A:1, B:1):1, C:2);"))
-    ) != "DNAbin"
-  ) {
+  out <- NA
+  tryCatch({
+      out <- sim_true_alignment_function(
+        true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"))
+    }, condition = function(c) {
+      stop(
+        "'sim_true_alignment_function' must be a function ",
+        "with one argument called 'true_phylogeny'"
+      )
+    }
+  )
+  if (class(out) != "DNAbin") {
     stop(
       "'sim_true_alignment_function' must be a function that returns an ape::DNAbin"
     )
