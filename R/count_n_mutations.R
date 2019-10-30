@@ -22,10 +22,7 @@ count_n_mutations <- function(
   root_sequence,
   verbose = FALSE
 ) {
-
-  if (class(alignment) != "DNAbin") {
-    stop("'alignment' must be of class 'ape::DNAbin'")
-  }
+  pirouette::check_alignment(alignment)
   if (pirouette::get_alignment_sequence_length(alignment)
     != nchar(root_sequence)
   ) {

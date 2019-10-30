@@ -22,8 +22,8 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   true_alignment <- get_default_sim_true_alignment_function()(twin_phylogeny)
 
+  # function signature
   out <- NA
-
   tryCatch({
     out <- sim_twin_alignment_function(
       twin_phylogeny = twin_phylogeny,
@@ -35,11 +35,13 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
       )
     }
   )
-
-  if (class(out) != "DNAbin") {
-    stop(
-      "'sim_twin_alignment_function' must be a function that returns an ape::DNAbin"
-    )
-  }
-
+  # function return type
+  tryCatch(
+    check_alignment(out),
+    condition = function(c) {
+      stop(
+        "'sim_twin_alignment_function' must be a function that returns an ape::DNAbin"
+      )
+    }
+  )
 }

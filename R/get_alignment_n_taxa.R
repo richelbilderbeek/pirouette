@@ -9,8 +9,6 @@
 #' )
 #' @export
 get_alignment_n_taxa <- function(alignment, verbose = FALSE) {
-  if (class(alignment) != "DNAbin") {
-    stop("'alignment' must be of class 'ape::DNAbin'")
-  }
+  pirouette::check_alignment(alignment)
   length(labels(alignment))
 }

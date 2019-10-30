@@ -13,9 +13,7 @@ get_alignment_sequences <- function(
   alignment,
   verbose = FALSE
 ) {
-  if (class(alignment) != "DNAbin") {
-    stop("'alignment' must be of class 'ape::DNAbin'")
-  }
+  check_alignment(alignment)
   if (is.matrix(alignment)) {
     if (verbose) print("alignment is a matrix")
     # We know from
