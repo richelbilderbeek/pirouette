@@ -98,6 +98,6 @@ test_that("abuse", {
         tree_priors = list(create_yule_tree_prior())
       )
     ),
-    "Lengths between errorses differ \\(3 vs 2\\)"
+    "Lengths between errorses differ \\(4 vs 2\\)"
   )
 })
