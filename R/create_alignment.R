@@ -214,6 +214,26 @@ create_alignment_with_standard_site_model <- function(
   # alignment_dnabin
 }
 
+
+#' Create an alignment with a standard site model using a raw interface
+#' @inheritParams default_params_doc
+#' @return an alignment of type \code{DNAbin}
+#' @export
+create_twin_alignment_with_standard_site_model_raw <- function(
+  twin_phylogeny,
+  true_alignment,
+  root_sequence,
+  mutation_rate,
+  site_model
+) {
+  create_alignment_with_standard_site_model_raw(
+    phylogeny = phylogeny,
+    root_sequence = root_sequence,
+    mutation_rate = mutation_rate,
+    site_model = site_model
+  )
+}
+
 #' Create an alignment with a standard site model using a raw interface
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}

@@ -496,10 +496,12 @@ Some standard functions:\cr
 \itemize{
   \item Use \link{get_default_sim_twin_alignment_function} to use a
     default function
+  \item Use \link{get_sim_twin_alignment_with_standard_site_model} to
+    use a function that creates a twin alignment using a standard site
+    model
   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
     use a function that ensure that the twin alignment has as much
     mutations compared to the root sequence as the true alignment has
-
 }}
 }
 \description{

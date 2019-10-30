@@ -17,11 +17,15 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   arguments <- utils::capture.output(
     utils::str(args(sim_twin_alignment_function))
   )
-  if (stringr::str_count(string = arguments, pattern = ",") != 1) {
-    stop(
-      "'sim_twin_alignment_function' must be a function with two arguments"
-    )
-  }
+  # n_args <- stringr::str_count(string = arguments, pattern = ",") + 1
+  # if (n_args != 2) {
+  #   stop(
+  #     "'sim_twin_alignment_function' must be a function with two arguments. \n",
+  #     "Actual value: ", n_args, "\n",
+  #     "arguments: '", arguments, "'"
+  #   )
+  # }
+
   # sim_twin_alignment_function must return a DNAbin
   # Use a simple testing twin phylogeny and true alignment
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")

@@ -38,6 +38,7 @@ Imports:
     phangorn,
     phytools,
     plyr,
+    pryr,
     rappdirs,
     Rmpfr,
     stringr,
