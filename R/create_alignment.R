@@ -1,3 +1,44 @@
+#' Simulate an alignment from the true phylogeny
+#'
+#' @inheritParams default_params_doc
+#' @return an alignment of type \code{DNAbin}
+#' @seealso Use \link{create_alignment_file} to save the simulated alignment
+#'   directly to a file
+#' @examples
+#' library(testthat)
+#'
+#' # Create the phylogeny to simulate the alignment on
+#' n_taxa <- 5
+#' phylogeny <- ape::rcoal(n_taxa)
+#'
+#' # Use default settings to create the alignment
+#' alignment_params <- pirouette::create_alignment_params()
+#'
+#' # Simulate the alignment
+#' alignment <- create_alignment(
+#'    phylogeny = phylogeny,
+#'    alignment_params = alignment_params,
+#'  )
+#'
+#' expect_equal(class(alignment), "DNAbin")
+#' expect_equal(nrow(alignment), n_taxa)
+#' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
+#' @author Richèl J.C. Bilderbeek
+#' @export
+create_alignment_newskool <- function(
+  phylogeny,
+  alignment_params = create_alignment_params(),
+  verbose = FALSE
+) {
+  beautier::check_phylogeny(phylogeny)
+  pirouette::check_alignment_params(alignment_params)
+  pirouette::check_reconstructed_phylogeny(phylogeny)
+  testit::assert(beautier::is_one_bool(verbose))
+
+  set.seed(alignment_params$rng_seed)
+  alignment_params$sim_alignment_function(phylogeny)
+}
+
 #' Converts a phylogeny to a random DNA alignment
 #'
 #' The function is used to create both
