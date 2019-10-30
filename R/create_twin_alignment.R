@@ -52,6 +52,13 @@ create_twin_alignment <- function(
 ) {
   if (newskool == TRUE) {
     print("NEWSKOOL")
+    set.seed(twinning_params$rng_seed_twin_alignment)
+    return(
+      twinning_params$sim_twin_alignment_function(
+        twin_phylogeny = twin_phylogeny,
+        true_alignment = true_alignment
+      )
+    )
   }
   # Check inputs
   pirouette::check_twin_phylogeny(twin_phylogeny) # nolint pirouette function
