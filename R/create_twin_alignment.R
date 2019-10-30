@@ -47,8 +47,12 @@ create_twin_alignment <- function(
   true_alignment,
   alignment_params,
   twinning_params,
-  verbose = FALSE
+  verbose = FALSE,
+  newskool = FALSE
 ) {
+  if (newskool == TRUE) {
+    print("NEWSKOOL")
+  }
   # Check inputs
   pirouette::check_twin_phylogeny(twin_phylogeny) # nolint pirouette function
   if (class(true_alignment) != "DNAbin") {
