@@ -52,6 +52,7 @@ alignment <- create_twin_alignment_file(
 pir_params <- create_test_pir_params()
 pir_params$alignment_params <- alignment_params
 pir_params$twinning_params <- twinning_params
+pir_params <- init_pir_params(pir_params)
 
 pir_run_twin_tree(
   twin_phylogeny = twin_phylogeny,

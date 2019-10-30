@@ -4,7 +4,11 @@
 \alias{check_init_pir_params}
 \title{Check if the \code{pir_params} is initialized}
 \usage{
-check_init_pir_params()
+check_init_pir_params(pir_params)
+}
+\arguments{
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
 }
 \description{
 Will \link{stop} if not
