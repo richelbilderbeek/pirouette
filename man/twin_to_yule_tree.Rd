@@ -4,7 +4,7 @@
 \alias{twin_to_yule_tree}
 \title{Create a twin tree from a phylogeny using a Yule process}
 \usage{
-twin_to_yule_tree(phylogeny, seed, method = "random_tree",
+twin_to_yule_tree(phylogeny, seed = 0, method = "random_tree",
   n_replicates = 10000)
 }
 \arguments{
@@ -35,10 +35,7 @@ library(testthat)
 
 phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 twinning_params <- create_twinning_params()
-yule_tree <- twin_to_yule_tree(
-  phylogeny = phylogeny,
-  twinning_params = twinning_params
-)
+yule_tree <- twin_to_yule_tree(phylogeny)
 
 expect_equal(class(yule_tree), "phylo")
 

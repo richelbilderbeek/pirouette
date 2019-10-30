@@ -9,10 +9,7 @@
 #'
 #' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #' twinning_params <- create_twinning_params()
-#' bd_tree <- twin_to_bd_tree(
-#'   phylogeny = phylogeny,
-#'   twinning_params = twinning_params
-#' )
+#' bd_tree <- twin_to_bd_tree(phylogeny)
 #'
 #' expect_equal(class(bd_tree), "phylo")
 #'

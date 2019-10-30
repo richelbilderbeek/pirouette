@@ -7,10 +7,7 @@
 #'
 #' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #' twinning_params <- create_twinning_params()
-#' yule_tree <- twin_to_yule_tree(
-#'   phylogeny = phylogeny,
-#'   twinning_params = twinning_params
-#' )
+#' yule_tree <- twin_to_yule_tree(phylogeny)
 #'
 #' expect_equal(class(yule_tree), "phylo")
 #'
@@ -30,7 +27,7 @@
 #' @export
 twin_to_yule_tree <- function(
   phylogeny,
-  seed,
+  seed = 0,
   method = "random_tree",
   n_replicates = 1e4
 ) {
