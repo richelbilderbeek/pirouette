@@ -31,6 +31,10 @@ pir_run_true_tree <- function(
   true_phylogeny,
   pir_params
 ) {
+  # pir_params are initialized by pir_run, so a normal user
+  # need not do so. If this check gives an error to a developer using
+  # this function directly, he/she can use 'init_pir_params'
+  check_init_pir_params(pir_params)
 
   # Simulate the true alignment and save it to file
   create_alignment_file(
