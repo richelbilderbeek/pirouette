@@ -1,18 +1,18 @@
-test_that("use", {
+test_that("minimal use", {
+
+  expect_silent(
+    create_alignment(
+      phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
+      alignment_params = create_alignment_params()
+    )
+  )
+})
+
+test_that("inout is checked", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params()
   n_mutations <- NA
 
-  expect_silent(
-    create_alignment(
-      phylogeny = phylogeny,
-      alignment_params = alignment_params,
-      n_mutations = n_mutations
-    )
-  )
-  ##############################################################################
-  # Wrong element values
-  ##############################################################################
   expect_error(
     create_alignment(
       phylogeny = "nonsense",
@@ -74,3 +74,4 @@ test_that("use unlinked_node_sub", {
   # More detailed test are in
   # test-create_alignment_with_unlinked_node_sub_site_model.R
 })
+
