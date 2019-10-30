@@ -5,5 +5,4 @@ get_default_sim_twin_alignment_function <- function() {
   function(twin_phylogeny, true_alignment) {
     ape::as.DNAbin(phangorn::simSeq(twin_phylogeny))
   }
-
 }

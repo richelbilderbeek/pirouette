@@ -25,3 +25,7 @@ Some standard functions:\cr
 \description{
 Will \link{stop} if not
 }
+\seealso{
+Use \link{check_sim_twin_alignment_function} to check a function to
+generate a twin alignment.
+}

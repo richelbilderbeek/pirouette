@@ -8,11 +8,11 @@ test_that("use, twin has more info", {
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
-  twinning_params <- create_twinning_params()
   true_alignment <- create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+  twinning_params <- create_twinning_params()
   twin_alignment <- create_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,

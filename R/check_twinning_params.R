@@ -20,7 +20,12 @@ check_twinning_params <- function(
   # Check that the structure has all the list elements with the right names
   pirouette::check_twinning_params_names(twinning_params)
 
-  check_sim_twin_tree_function(twinning_params$sim_twin_tree_function)
+  pirouette::check_sim_twin_tree_function(
+    twinning_params$sim_twin_tree_function
+  )
+  pirouette::check_sim_twin_alignment_function(
+    twinning_params$sim_twin_alignment_function
+  )
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
     stop("'rng_seed_twin_tree' must be a whole number")

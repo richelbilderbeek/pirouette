@@ -249,6 +249,25 @@
 #' }
 #' @param sim_pars something
 #' @param sim_phylo something
+#' @param sim_twin_alignment_function function to simulate a
+#' twin alignment with.
+#' This function must have two arguments called \code{twin_phylogeny} (which
+#' will hold the twin phylogeny) and \code{true_alignment} (which will
+#' hold the alignment simulated from the true phylogeny). The
+#' return type must be \link[ape]{DNAbin}.
+#'
+#' Use \link{check_sim_twin_alignment_function} to verify if the function
+#' has the right signature and output.
+#'
+#' Some standard functions:\cr
+#' \itemize{
+#'   \item Use \link{get_default_sim_twin_alignment_function} to use a
+#'     default function
+#'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
+#'     use a function that ensure that the twin alignment has as much
+#'     mutations compared to the root sequence as the true alignment has
+#'
+#' }
 #' @param sim_twin_tree_function function to simulate a twin tree with.
 #' This function must have one argument called \code{phylogeny}
 #' of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}

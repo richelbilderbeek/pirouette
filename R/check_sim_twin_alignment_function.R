@@ -3,6 +3,11 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
+#' @seealso
+#' Use \link{check_sim_true_alignment_function} to check a function to
+#' generate a true alignment.
+#' Use \link{check_sim_twin_tree_function} to check a function to
+#' generate a twin phylogeny.
 #' @export
 check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   if (!is.function(sim_twin_alignment_function)) {

@@ -55,6 +55,8 @@ test_that("use, generative + twinning", {
 
 test_that("use, best_candidate + twinning", {
 
+  if (!beastier::is_on_travis()) return()
+
   pir_out_filename <- tempfile(fileext = ".csv")
   url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_10/master/example_10_314/errors.csv" # nolint indeed a long URL
   utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
@@ -65,6 +67,8 @@ test_that("use, best_candidate + twinning", {
 })
 
 test_that("use, generative + best_candidate + twinning", {
+
+  if (!beastier::is_on_travis()) return()
 
   pir_out_filename <- tempfile(fileext = ".csv")
   url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_3/master/example_3_314/errors.csv" # nolint indeed a long URL

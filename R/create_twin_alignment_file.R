@@ -68,7 +68,7 @@ create_twin_alignment_file <- function(
     alignment_params = alignment_params,
     twinning_params = twinning_params,
     verbose = verbose,
-    newskool = TRUE
+    newskool = FALSE
   )
 
   n_mutations_twin <- count_n_mutations(

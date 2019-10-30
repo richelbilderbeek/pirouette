@@ -5,7 +5,7 @@
 \title{Creates a twin alignment.}
 \usage{
 create_twin_alignment(twin_phylogeny, true_alignment, alignment_params,
-  twinning_params, verbose = FALSE)
+  twinning_params, verbose = FALSE, newskool = FALSE)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

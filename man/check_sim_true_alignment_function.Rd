@@ -10,3 +10,7 @@ check_sim_true_alignment_function(sim_true_alignment_function)
 \description{
 Will \link{stop} if not
 }
+\seealso{
+Use \link{check_sim_twin_alignment_function} to check a function to
+generate a twin alignment
+}
