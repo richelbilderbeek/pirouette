@@ -2,6 +2,9 @@ context("test-errorses_to_data_frame")
 
 test_that("use", {
 
+  # Takes too long..
+  if (!beastier::is_on_travis()) return()
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   pir_params <- create_pir_params(
