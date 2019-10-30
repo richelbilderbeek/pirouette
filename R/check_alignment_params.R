@@ -79,6 +79,7 @@ check_alignment_params_names <- function(
 ) {
   argument_names <- c(
     "root_sequence",
+    "sim_alignment_function",
     "mutation_rate", # to be obsoleted
     "rng_seed",
     "site_model", # to be obsoleted

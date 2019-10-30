@@ -6,6 +6,7 @@
 \usage{
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
+  sim_alignment_function = pirouette::get_default_sim_alignment_function(),
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
@@ -15,6 +16,16 @@
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter}
+
+\item{sim_alignment_function}{function to simulate an alignment with.
+This function must have one argument called \code{phylogeny}
+of type \link[ape]{phylo} and has a return type of type \link[ape]{DNAbin}.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_default_sim_alignment_function} to use a
+    default function
+}}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit}
 

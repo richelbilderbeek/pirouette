@@ -171,3 +171,14 @@ test_that("all list elements must have the right data type", {
     "Unsupported 'clock_model'"
   )
 })
+
+test_that("adding sim_alignment_function", {
+
+  expect_silent(
+    check_alignment_params(
+      create_alignment_params(
+        sim_alignment_function = get_default_sim_alignment_function()
+      )
+    )
+  )
+})
