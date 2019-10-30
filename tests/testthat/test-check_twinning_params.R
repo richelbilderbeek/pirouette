@@ -108,32 +108,7 @@ test_that("element data types", {
     "'twin_tree_filename' must be a character vector"
   )
 
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        sim_twin_tree_function = "nonsense"
-      )
-    ),
-    "'sim_twin_tree_function' must be a function"
-  )
 
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        sim_twin_tree_function = function(one_too, many_arguments) { }
-      )
-    ),
-    "'sim_twin_tree_function' must be a function with one argument"
-  )
-
-  expect_error(
-    check_twinning_params(
-      create_twinning_params(
-        sim_twin_tree_function = function(irrelevant) { "not a phylo" }
-      )
-    ),
-    "'sim_twin_tree_function' must be a function that returns an ape::phylo"
-  )
 })
 
 test_that("element values", {
@@ -230,3 +205,13 @@ test_that("use", {
 
 })
 
+test_that("adding sim_twin_alignment_function", {
+
+  expect_silent(
+    check_twinning_params(
+      create_twinning_params(
+        sim_twin_alignment_function = get_default_sim_twin_alignment_function()
+      )
+    )
+  )
+})

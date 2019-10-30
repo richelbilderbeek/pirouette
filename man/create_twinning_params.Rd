@@ -5,8 +5,9 @@
 \title{Create the parameters for the twinning simulation}
 \usage{
 create_twinning_params(rng_seed_twin_tree = 0,
-  rng_seed_twin_alignment = 0,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
+  rng_seed_twin_alignment = 0,
+  sim_twin_alignment_function = get_default_sim_twin_alignment_function(),
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =
   "alignment_twin_", fileext = ".fasta"),
@@ -16,9 +17,6 @@ create_twinning_params(rng_seed_twin_tree = 0,
 \arguments{
 \item{rng_seed_twin_tree}{the random number generator seed as used in the
 simulation of a twin tree}
-
-\item{rng_seed_twin_alignment}{the random number generator seed
-as used in the simulation of a twin alignment}
 
 \item{sim_twin_tree_function}{function to simulate a twin tree with.
 This function must have one argument called \code{phylogeny}
@@ -34,6 +32,9 @@ Some standard functions:\cr
   \item Use \link{create_sim_bd_twin_tree_function} to use a
     Birth-Death process
 }}
+
+\item{rng_seed_twin_alignment}{the random number generator seed
+as used in the simulation of a twin alignment}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin
 tree will be saved to}
