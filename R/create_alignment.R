@@ -184,20 +184,54 @@ create_alignment <- function(
 }
 
 #' Create an alignment with a standard site model
+#' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @noRd
+#' @export
 create_alignment_with_standard_site_model <- function(
   phylogeny,
   alignment_params
 ) {
+  pirouette::create_alignment_with_standard_site_model_raw(
+    phylogeny = phylogeny,
+    root_sequence = alignment_params$root_sequence,
+    mutation_rate = alignment_params$mutation_rate,
+    site_model = alignment_params$site_model
+  )
+  # alignment_phydat <- phangorn::simSeq(
+  #   phylogeny,
+  #   l = nchar(alignment_params$root_sequence),
+  #   rate = alignment_params$mutation_rate,
+  #   rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
+  #   Q = create_rate_matrix(
+  #     site_model = alignment_params$site_model,
+  #     base_frequencies = calc_base_freq(alignment_params$root_sequence)
+  #   )
+  # )
+  # testthat::expect_equal(class(alignment_phydat), "phyDat")
+  # testit::assert(class(alignment_phydat) == "phyDat")
+  #
+  # alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
+  # alignment_dnabin
+}
+
+#' Create an alignment with a standard site model using a raw interface
+#' @inheritParams default_params_doc
+#' @return an alignment of type \code{DNAbin}
+#' @export
+create_alignment_with_standard_site_model_raw <- function(
+  phylogeny,
+  root_sequence,
+  mutation_rate,
+  site_model
+) {
   alignment_phydat <- phangorn::simSeq(
     phylogeny,
-    l = nchar(alignment_params$root_sequence),
-    rate = alignment_params$mutation_rate,
-    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
+    l = nchar(root_sequence),
+    rate = mutation_rate,
+    rootseq = strsplit(root_sequence, split = "")[[1]],
     Q = create_rate_matrix(
-      site_model = alignment_params$site_model,
-      base_frequencies = calc_base_freq(alignment_params$root_sequence)
+      site_model = site_model,
+      base_frequencies = calc_base_freq(root_sequence)
     )
   )
   testthat::expect_equal(class(alignment_phydat), "phyDat")
