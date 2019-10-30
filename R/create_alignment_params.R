@@ -50,9 +50,9 @@
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
-  mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
+  mutation_rate = pirouette::create_standard_mutation_rate, # to be obsoleted
+  site_model = beautier::create_jc69_site_model(), # to be obsoleted
+  clock_model = beautier::create_strict_clock_model(), # to be obsoleted
   rng_seed = 0,
   fasta_filename = tempfile(
     pattern = "alignment_",
@@ -62,9 +62,9 @@ create_alignment_params <- function(
 ) {
   alignment_params <- list(
     root_sequence = root_sequence,
-    mutation_rate = mutation_rate,
-    site_model = site_model,
-    clock_model = clock_model,
+    mutation_rate = mutation_rate, # to be obsoleted
+    site_model = site_model, # to be obsoleted
+    clock_model = clock_model, # to be obsoleted
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )

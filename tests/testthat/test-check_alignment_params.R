@@ -1,22 +1,15 @@
-context("test-check_alignment_params")
+test_that("minimal use", {
 
-test_that("use", {
-
-  good_alignment_params <- create_alignment_params(
-    root_sequence = "acgt",
-    mutation_rate = 0.1
-  )
-
-  # OK
   expect_silent(
     check_alignment_params(
-      good_alignment_params
+      create_alignment_params()
     )
   )
+})
 
-  ##############################################################################
-  # Missing elements
-  ##############################################################################
+test_that("all list elements must be present", {
+  good_alignment_params <- create_alignment_params()
+
   alignment_params <- good_alignment_params
   alignment_params$root_sequence <- NULL
   expect_error(
@@ -55,10 +48,9 @@ test_that("use", {
     check_alignment_params(alignment_params),
     "'clock_model' must be an element of an 'alignment_params'"
   )
+})
 
-  ##############################################################################
-  # Wrong element values
-  ##############################################################################
+test_that("all list elements must have the right data type", {
   expect_error(
     check_alignment_params(
       create_alignment_params(

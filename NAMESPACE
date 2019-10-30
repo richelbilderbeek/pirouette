@@ -2,6 +2,7 @@
 
 export("%>%")
 export(check_alignment_params)
+export(check_alignment_params_names)
 export(check_candidates_save_to_same_files)
 export(check_error_measure_params)
 export(check_experiment)

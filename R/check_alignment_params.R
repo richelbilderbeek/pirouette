@@ -15,22 +15,8 @@
 check_alignment_params <- function(
   alignment_params
 ) {
-  argument_names <- c(
-    "root_sequence",
-    "mutation_rate",
-    "rng_seed",
-    "site_model",
-    "clock_model",
-    "fasta_filename"
-  )
-  for (arg_name in argument_names) {
-    if (!arg_name %in% names(alignment_params)) {
-      stop(
-        "'", arg_name, "' must be an element of an 'alignment_params'. ",
-        "Tip: use 'create_alignment_params'"
-      )
-    }
-  }
+  pirouette::check_alignment_params_names(alignment_params)
+
   if (!is_dna_seq(alignment_params$root_sequence)) {
     stop("'root_sequence' must be a lowercase DNA character string")
   }
@@ -77,5 +63,34 @@ check_alignment_params <- function(
       "Tip: use 'create_strict_clock_model'. \n",
       "Actual clock model name: ", alignment_params$clock_model$name
     )
+  }
+}
+
+#' Checks if the list elements' names match that
+#' of a valid \code{alignment_params}
+#'
+#' Will \link{stop} if not.
+#' @inheritParams default_params_doc
+#' @return nothing. Will \link{stop} if not
+#' @author Richèl J.C. Bilderbeek
+#' @export
+check_alignment_params_names <- function(
+  alignment_params
+) {
+  argument_names <- c(
+    "root_sequence",
+    "mutation_rate", # to be obsoleted
+    "rng_seed",
+    "site_model", # to be obsoleted
+    "clock_model", # to be obsoleted
+    "fasta_filename"
+  )
+  for (arg_name in argument_names) {
+    if (!arg_name %in% names(alignment_params)) {
+      stop(
+        "'", arg_name, "' must be an element of an 'alignment_params'. ",
+        "Tip: use 'create_alignment_params'"
+      )
+    }
   }
 }
