@@ -30,6 +30,8 @@
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @seealso Use \link{create_alignment} to create an alignment with
+#' any number of mutations
 #' @export
 create_alignment_with_n_mutations <- function(
   phylogeny,
@@ -43,6 +45,8 @@ create_alignment_with_n_mutations <- function(
   testit::assert(beautier::is_one_int(n_mutations))
   testit::assert(n_mutations >= 0)
   testit::assert(beautier::is_one_bool(verbose))
+
+  # Higher-level checks
   n_taxa <- ape::Ntip(phylogeny)
   n_nucleotides <- nchar(alignment_params$root_sequence)
   max_n_mutations <- n_taxa * n_nucleotides
@@ -56,90 +60,57 @@ create_alignment_with_n_mutations <- function(
       "Requested number of mutations: ", n_mutations
     )
   }
-
   # If mutation_rate is function, apply it to the phylogeny
   if (is.function(alignment_params$mutation_rate)) {
     mutation_function <- alignment_params$mutation_rate
     alignment_params$mutation_rate <- mutation_function(phylogeny)
   }
-  testit::assert(alignment_params$mutation_rate >= 0.0)
-  if (!beautier::is_one_na(n_mutations) && n_mutations > 0) {
+  if (n_mutations > 0) {
     testit::assert(alignment_params$mutation_rate > 0.0)
   }
-
-  if (!beautier::is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
-    stop(
-      "n_mutations must be integer or NA"
-    )
-  }
-
-  # Only need to set the seed once
-  set.seed(alignment_params$rng_seed)
 
   n_tries <- 1
 
   while (1) {
-    alignment_dnabin <- create_alignment(
+    # create_alignment sets the seed (for now)
+    alignment <- create_alignment(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       verbose = verbose
     )
-    # if (beautier::is_site_model(alignment_params$site_model)) {
-    #   # Standard site models
-    #   alignment_dnabin <-  create_alignment_with_standard_site_model_raw(
-    #     phylogeny = phylogeny,
-    #     root_sequence = alignment_params$root_sequence,
-    #     mutation_rate = alignment_params$mutation_rate,
-    #     site_model = alignment_params$site_model
-    #   )
-    #   # alignment_dnabin <- create_alignment_with_standard_site_model(
-    #   #   phylogeny = phylogeny,
-    #   #   alignment_params = alignment_params
-    #   # )
-    # } else if (alignment_params$site_model == "linked_node_sub") {
-    #   alignment_dnabin <- create_alignment_with_linked_node_sub_site_model(
-    #     phylogeny = phylogeny,
-    #     alignment_params = alignment_params
-    #   )
-    # } else {
-    #   testit::assert(alignment_params$site_model == "unlinked_node_sub")
-    #   alignment_dnabin <- create_alignment_with_unlinked_node_sub_site_model(
-    #     phylogeny = phylogeny,
-    #     alignment_params = alignment_params
-    #   )
-    # }
+    pirouette::check_alignment(alignment)
 
-    testit::assert(class(alignment_dnabin) == "DNAbin")
-
-    sim_mutations <- count_n_mutations(
-      alignment = alignment_dnabin,
+    actual_n_mutations <- count_n_mutations(
+      alignment = alignment,
       root_sequence = alignment_params$root_sequence
-    )
-
-    testit::assert(
-      get_alignment_sequence_length(alignment_dnabin) ==
-      nchar(alignment_params$root_sequence)
     )
 
     if (verbose == TRUE) {
       print(
         paste0(
           "Mutations needed: ", n_mutations,
-          ", got: ", sim_mutations,
+          ", got: ", actual_n_mutations,
           ", number of tries: ", n_tries
         )
       )
     }
 
-    if (sim_mutations == n_mutations) break
+    if (actual_n_mutations == n_mutations) break
 
     n_tries <- n_tries + 1
+
+    # Change the RNG seed that is set by 'create_alignment' (for now)
+    alignment_params$rng_seed <- alignment_params$rng_seed + 1
   }
 
-  testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))
+  pirouette::check_alignment(alignment)
   testit::assert(
-    ncol(alignment_dnabin) == nchar(alignment_params$root_sequence)
+    get_alignment_sequence_length(alignment) ==
+    nchar(alignment_params$root_sequence)
   )
-
-  alignment_dnabin
+  testit::assert(
+    get_alignment_n_taxa(alignment) ==
+    ape::Ntip(phylogeny)
+  )
+  alignment
 }
