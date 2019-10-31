@@ -27,12 +27,13 @@ the Tidyverse to get that functionality.
 library(pryr)
 ```
 
-## The problems
+## The functions
+
+These are the functions we'll create:
 
  1. Create a twin tree
  2. Create a true alignment
  3. Create a twin alignment
-
 
 ## 1. create a twin tree
 
