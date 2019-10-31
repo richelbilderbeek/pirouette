@@ -45,7 +45,7 @@
 create_twin_alignment <- function(
   twin_phylogeny,
   true_alignment,
-  alignment_params,
+  alignment_params, # To be obsoleted
   twinning_params,
   verbose = FALSE,
   newskool = FALSE

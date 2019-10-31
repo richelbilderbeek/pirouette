@@ -15,9 +15,11 @@
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 
 \item{site_model}{a nucleotide substitution model,
 which can be:

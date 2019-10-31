@@ -144,3 +144,97 @@ a twin tree.
 
 
 ## The problem: create a twin alignment
+
+To create a twin alignment, a function with more arguments is needed,
+because we need a twin tree and a true alignent.
+
+```{r}
+twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+ape::plot.phylo(twin_tree)
+```
+
+```{r}
+true_alignment <- create_true_alignment(
+  true_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
+  alignment_params = create_test_alignment_params()
+)
+ape::image.DNAbin(true_alignment)
+```
+
+Creating a twin alignment from this:
+
+```{r}
+twin_alignment <- create_twin_alignment(
+  twin_phylogeny = twin_phylogeny,
+  true_alignment = true_alignment,
+  alignment_params = create_test_alignment_params(),
+  twinning_params = create_twinning_params()
+)
+ape::image.DNAbin(twin_alignment)
+```
+
+Now we'll create our function we'll plug in:
+
+```{r}
+create_rnd_alignment <- function(twin_phylogeny, true_alignment) {
+  n_taxa <- ape::Ntip(twin_phylogeny)
+  n_nucleotides <- pirouette::get_alignment_sequence_length(true_alignment)
+  x <- list()
+  for (i in seq_len(n_taxa)) {
+    x[[i]] <- sample(x = c("a", "c", "g", "t"), size = n_nucleotides, replace = TRUE)
+  }
+  ape::as.DNAbin(x)
+}
+```
+
+Plugging it in:
+
+```{r}
+twin_alignment <- create_twin_alignment(
+  twin_phylogeny = twin_phylogeny,
+  true_alignment = true_alignment,
+  alignment_params = create_test_alignment_params(),
+  twinning_params = create_twinning_params(
+    sim_twin_alignment_function = create_rnd_alignment
+  ),
+  newskool = TRUE
+)
+ape::image.DNAbin(twin_alignment)
+```
+
+
+Now we want to plug in:
+
+```{r}
+head(create_twin_alignment_with_standard_site_model)
+```
+
+Here comes partial function evaluation to the rescue:
+
+```{r}
+root_sequence <- create_blocked_dna(get_alignment_sequence_length(true_alignment))  
+sim_twin_align_function <- pryr::partial(
+  create_twin_alignment_with_standard_site_model,
+  root_sequence = root_sequence,
+  mutation_rate = 0.1
+)
+head(sim_twin_align_function)
+check_sim_twin_alignment_function(sim_twin_align_function)
+```
+
+
+
+Plugging it in:
+
+```{r}
+twin_alignment <- create_twin_alignment(
+  twin_phylogeny = twin_phylogeny,
+  true_alignment = true_alignment,
+  alignment_params = create_test_alignment_params(),
+  twinning_params = create_twinning_params(
+    sim_twin_alignment_function = sim_twin_align_function
+  ),
+  newskool = TRUE
+)
+ape::image.DNAbin(twin_alignment)
+```

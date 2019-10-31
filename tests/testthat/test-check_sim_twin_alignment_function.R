@@ -18,15 +18,15 @@ test_that("abuse", {
 
   expect_error(
     check_sim_twin_alignment_function(
-      sim_twin_alignment_function = function(one_too_few_arguments) { }
+      sim_twin_alignment_function = function(twin_phylogeny) { }
     ),
-    "'sim_twin_alignment_function' must be a function with two arguments"
+    "unused argument .*true_alignment"
   )
   expect_error(
     check_sim_twin_alignment_function(
-      sim_twin_alignment_function = function(one, too, many_arguments) { }
+      sim_twin_alignment_function = function(true_alignment) { }
     ),
-    "'sim_twin_alignment_function' must be a function with two arguments"
+    "unused argument .*twin_phylogeny"
   )
   expect_error(
     check_sim_twin_alignment_function(
@@ -35,7 +35,7 @@ test_that("abuse", {
         invalid_argument_2 = "irrelevant"
       ) { "irrelevant" }
     ),
-    "'sim_twin_alignment_function' must be a function with two arguments called 'twin_phylogeny' and 'true_alignment'"
+    "unused arguments.*twin_phylogeny.*true_alignment"
   )
 
   expect_error(

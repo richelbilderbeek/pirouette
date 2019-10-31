@@ -273,7 +273,8 @@ as created by \link[beautier]{create_mrca_prior}}
 
 \item{mu}{per-species extinction rate}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 
 \item{n_0}{number of starting species}
 
@@ -330,7 +331,8 @@ as used in the simulation of a twin alignment}
 simulation of a twin tree}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{run_experiment}{one \link{pirouette} run experiment.
 A run experiment has these attributes:

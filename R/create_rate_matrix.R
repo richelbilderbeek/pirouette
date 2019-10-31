@@ -32,6 +32,7 @@ create_rate_matrix <- function(
       "Actual value: '", site_model$name, "'"
     )
   }
+  beautier::check_site_model(site_model)
 
   base_frequencies <- base_frequencies / sum(base_frequencies)
   q_matrix <- matrix(rep(base_frequencies, 4), 4, 4, byrow = TRUE)
@@ -109,6 +110,7 @@ create_rate_matrix <- function(
 calc_base_freq <- function(
   root_sequence
 ) {
+  pirouette::check_root_sequence(root_sequence)
   f_a <- stringr::str_count(root_sequence, pattern = "a")
   f_c <- stringr::str_count(root_sequence, pattern = "c")
   f_g <- stringr::str_count(root_sequence, pattern = "g")

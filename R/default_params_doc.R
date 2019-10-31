@@ -178,7 +178,8 @@
 #' @param mrca_prior an MRCA prior,
 #'   as created by \link[beautier]{create_mrca_prior}
 #' @param mu per-species extinction rate
-#' @param mutation_rate the mutation rate per base pair per time unit
+#' @param mutation_rate the mutation rate per base pair per time unit.
+#'   Use \link{check_mutation_rate} to check if a mutation rate is valid.
 #' @param n_0 number of starting species
 #' @param n_mutations costrained number of mutations
 #' @param n_taxa number of tree tips
@@ -216,6 +217,7 @@
 #'   simulation of a twin tree
 #' @param root_sequence the DNA sequence at the root of the phylogeny.
 #'   By default, this will consist out of an equal amount of each letter
+#'   Use \link{check_root_sequence} to check if a root sequence is valid.
 #' @param run_if the condition for an experiment's inference model to be run.
 #'   Possible values:
 #'   \itemize{

@@ -51,44 +51,9 @@ test_that("all list elements must be present", {
 })
 
 test_that("all list elements must have the right data type", {
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        root_sequence = "nonsense",
-        mutation_rate = 0.1
-      )
-    ),
-    "'root_sequence' must be a lowercase DNA character string"
-  )
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        root_sequence = "acgt",
-        mutation_rate = -123.456
-      )
-    ),
-    "'mutation_rate' must be a non-zero and positive value"
-  )
 
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        root_sequence = "acgt",
-        mutation_rate = function(phylogeny) "nonsense"
-      )
-    ),
-    "'mutation_rate' function must return a number"
-  )
-
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        root_sequence = "acgt",
-        mutation_rate = function(phylogeny) -1234567
-      )
-    ),
-    "'mutation_rate' function must return non-zero and positive value"
-  )
+  # 'root_sequence' is checked by 'check_root_sequence'
+  # 'mutation_rate' is checked by 'check_mutation_rate'
 
   expect_error(
     check_alignment_params(

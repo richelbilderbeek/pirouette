@@ -29,7 +29,10 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   # sim_twin_alignment_function must return a DNAbin
   # Use a simple testing twin phylogeny and true alignment
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  beautier::check_phylogeny(twin_phylogeny)
+
   true_alignment <- get_default_sim_true_alignment_function()(twin_phylogeny)
+  pirouette::check_alignment(true_alignment)
 
   # function signature
   out <- NA
@@ -40,7 +43,8 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
       )
     }, condition = function(c) {
       stop(
-      "'sim_twin_alignment_function' must be a function with two arguments called 'twin_phylogeny' and 'true_alignment'"
+        "'sim_twin_alignment_function' failed to run cleanly on test input. \n",
+        "Condition: ", c$message
       )
     }
   )

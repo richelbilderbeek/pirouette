@@ -7,21 +7,13 @@ get_sim_twin_alignment_with_standard_site_model_function <- function(
   mutation_rate,
   site_model = beautier::create_jc69_site_model()
 ) {
-  check_site_model(site_model)
-  functional::Curry(
-    create_twin_alignment_with_standard_site_model_raw
-  )
-
+  pirouette::check_root_sequence(root_sequence)
+  pirouette::check_mutation_rate(mutation_rate)
+  beautier::check_site_model(site_model)
   pryr::partial(
-    create_twin_alignment_with_standard_site_model_raw,
+    create_twin_alignment_with_standard_site_model,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model
   )
-  # functional::Curry(
-  #   create_twin_alignment_with_standard_site_model_raw,
-  #   root_sequence = root_sequence,
-  #   mutation_rate = mutation_rate,
-  #   site_model = site_model
-  # )
 }

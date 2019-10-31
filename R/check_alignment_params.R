@@ -17,23 +17,10 @@ check_alignment_params <- function(
 ) {
   pirouette::check_alignment_params_names(alignment_params)
 
-  if (!is_dna_seq(alignment_params$root_sequence)) {
-    stop("'root_sequence' must be a lowercase DNA character string")
-  }
-  if (is.function(alignment_params$mutation_rate)) {
-    phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-    mutation_rate <- alignment_params$mutation_rate(phylogeny)
-    if (!beautier::is_one_double(mutation_rate)) {
-      stop("'mutation_rate' function must return a number")
-    }
-    if (mutation_rate <= 0.0) {
-      stop("'mutation_rate' function must return non-zero and positive value")
-    }
-  } else {
-    if (alignment_params$mutation_rate <= 0.0) {
-      stop("'mutation_rate' must be a non-zero and positive value")
-    }
-  }
+
+  pirouette::check_root_sequence(alignment_params$root_sequence)
+  pirouette::check_mutation_rate(alignment_params$mutation_rate)
+
   if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
