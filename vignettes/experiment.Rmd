@@ -22,6 +22,7 @@ This vignette shows how to use `pirouette` in a scientific experiment.
 
 ```{r}
 library(pirouette)
+library(DDD)
 ```
 
 Remember the main question `pirouette` helps to answer:

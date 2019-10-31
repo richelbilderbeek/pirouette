@@ -18,6 +18,7 @@ This vignette describes partial function evaluation used in `pirouette`.
 
 ```{r}
 library(pirouette)
+library(DDD)
 ```
 
 We'll use `pryr` (from

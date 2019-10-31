@@ -33,6 +33,7 @@ The same question, but from the point of view of a theoretician:
 
 ```{r}
 library(pirouette)
+library(DDD)
 ```
 
 # Inferring a simplest world
