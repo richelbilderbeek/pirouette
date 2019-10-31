@@ -270,7 +270,7 @@ As the twin tree, we'll use this:
 
 ```{r}
 twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-ape::plot.phylo(twin_phylogeny)
+ape::plot.phylo(twin_phylogeny, main = "Twin phylogeny")
 ```
 As a true alignment, we'll use something simple:
 
@@ -279,8 +279,9 @@ x <- list()
 x[[1]] <- rep("c", 4)
 x[[2]] <- rep("g", 4)
 x[[3]] <- rep("t", 4)
+names(x) <- c("A", "B", "C")
 true_alignment <- ape::as.DNAbin(x)
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 testit::assert(get_alignment_n_taxa(true_alignment) == 3)
 ```
 
@@ -293,7 +294,7 @@ twin_alignment <- create_twin_alignment(
   alignment_params = create_test_alignment_params(),
   twinning_params = create_twinning_params()
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(twin_alignment, main = "Twin alignment")
 ```
 
 Creating a twin alignment from this:
