@@ -50,6 +50,9 @@ expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 \seealso{
 Use \link{create_alignment_file} to save the simulated alignment
   directly to a file
+
+Use \link{create_alignment} to create an alignment with
+any number of mutations
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
