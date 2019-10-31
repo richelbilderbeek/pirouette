@@ -10,15 +10,6 @@ check_sim_true_alignment_function <- function(sim_true_alignment_function) {
   if (!is.function(sim_true_alignment_function)) {
     stop("'sim_true_alignment_function' must be a function")
   }
-  # check if sim_true_alignment_function is indeed a function with 1 parameter
-  arguments <- utils::capture.output(
-    utils::str(args(sim_true_alignment_function))
-  )
-  if (stringr::str_count(string = arguments, pattern = ",") > 0) {
-    stop(
-      "'sim_true_alignment_function' must be a function with one argument"
-    )
-  }
   # sim_true_alignment_function must return a DNAbin
   out <- NA
   tryCatch({

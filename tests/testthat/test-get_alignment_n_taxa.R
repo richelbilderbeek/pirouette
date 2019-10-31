@@ -100,3 +100,17 @@ test_that("abuse", {
     "'alignment' must be of class 'ape::DNAbin'"
   )
 })
+
+
+
+test_that("use three unlabelled taxa", {
+
+  x <- list()
+  x[[1]] <- rep("c", 4)
+  x[[2]] <- rep("g", 4)
+  x[[3]] <- rep("t", 4)
+  alignment <- ape::as.DNAbin(x)
+  expect_equal(3, get_alignment_n_taxa(alignment))
+})
+
+

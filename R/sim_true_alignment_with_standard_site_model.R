@@ -1,0 +1,41 @@
+#' Simulate a twin alignment using a standard site model
+#'
+#' This is an adapter function
+#' (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
+#' with the purpose of passing \link{check_sim_twin_alignment_function},
+#' by being a function with the function arguments \code{twin_phylogeny}
+#' and \code{true_alignment}.
+#' @inheritParams default_params_doc
+#' @examples
+#' library(testthat)
+#'
+#' # This adapter function must be a sim_true_alignment function
+#' expect_silent(
+#'   check_sim_true_alignment_function(
+#'     sim_true_alignment_with_standard_site_model
+#'   )
+#' )
+#'
+#' # Simulate the true DNA alignment
+#' alignment <- sim_true_alignment_with_standard_site_model(
+#'   true_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
+#'   root_sequence = "aaaa",
+#'   mutation_rate = 0.1
+#' )
+#' expect_silent(check_alignment(alignment))
+#' @export
+sim_true_alignment_with_standard_site_model <- function(
+  true_phylogeny,
+  root_sequence = "acgt",
+  mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model()
+) {
+  alignment <- create_alignment_with_standard_site_model_raw(
+    phylogeny = true_phylogeny,
+    root_sequence = root_sequence,
+    mutation_rate = mutation_rate,
+    site_model = site_model
+  )
+  check_alignment(alignment)
+  alignment
+}

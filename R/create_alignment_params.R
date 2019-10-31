@@ -84,6 +84,7 @@ create_alignment_params <- function(
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_alignment_params <- function(
+  sim_true_alignment_function = pirouette::get_default_sim_true_alignment_function(),
   root_sequence = "acgt",
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
