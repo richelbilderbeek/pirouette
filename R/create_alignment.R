@@ -71,6 +71,8 @@ create_alignment_newskool <- function(
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @seealso Use \link{create_alignment_with_n_mutations} to
+#' simulate an alignmnet with a certain number of mutations
 #' @export
 create_alignment <- function(
   phylogeny,
@@ -129,10 +131,16 @@ create_alignment <- function(
     alignment_dnabin <- NA
     if (beautier::is_site_model(alignment_params$site_model)) {
       # Standard site models
-      alignment_dnabin <- create_alignment_with_standard_site_model(
+      alignment_dnabin <-  create_alignment_with_standard_site_model_raw(
         phylogeny = phylogeny,
-        alignment_params = alignment_params
+        root_sequence = alignment_params$root_sequence,
+        mutation_rate = alignment_params$mutation_rate,
+        site_model = alignment_params$site_model
       )
+      # alignment_dnabin <- create_alignment_with_standard_site_model(
+      #   phylogeny = phylogeny,
+      #   alignment_params = alignment_params
+      # )
     } else if (alignment_params$site_model == "linked_node_sub") {
       alignment_dnabin <- create_alignment_with_linked_node_sub_site_model(
         phylogeny = phylogeny,
@@ -197,21 +205,6 @@ create_alignment_with_standard_site_model <- function(
     mutation_rate = alignment_params$mutation_rate,
     site_model = alignment_params$site_model
   )
-  # alignment_phydat <- phangorn::simSeq(
-  #   phylogeny,
-  #   l = nchar(alignment_params$root_sequence),
-  #   rate = alignment_params$mutation_rate,
-  #   rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-  #   Q = create_rate_matrix(
-  #     site_model = alignment_params$site_model,
-  #     base_frequencies = calc_base_freq(alignment_params$root_sequence)
-  #   )
-  # )
-  # testthat::expect_equal(class(alignment_phydat), "phyDat")
-  # testit::assert(class(alignment_phydat) == "phyDat")
-  #
-  # alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
-  # alignment_dnabin
 }
 
 
