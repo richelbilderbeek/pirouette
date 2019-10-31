@@ -1,57 +1,60 @@
-#' @title Convert a tree into branching times
-#' @description Convert a tree into branching times. Differently from the ape's
-#'  function, it will keep the multiple events. Since the units are million
-#'  years, a precision of 8 means that the approximation goes up to the 8-th
-#'  digits. With such approximation we consider events happening within an
-#'  interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
+#' Convert a tree into branching times
+#'
+#' Convert a tree into branching times.
+#' Differently from the \link[ape]{branching.times} function in \link{ape},
+#' it will keep the multiple events. Since the units are million
+#' years, a precision of 8 means that the approximation goes up to the 8-th
+#' digits. With such approximation we consider events happening within an
+#' interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
 #' @inheritParams default_params_doc
 #' @return the branching times
-#' @author Giovanni Laudanno
-convert_tree2brts <- function(tree, precision = 8) {
-
-  brts0 <- ape::branching.times(tree)
-  brts <- DDD::roundn(brts0, digits = precision)
-
-  brts
-}
-
-#' @title Site models in Razzo
-#' @description Site models in Razzo
-#' @inheritParams default_params_doc
-#' @return the site models
-#' @author Giovanni Laudanno
-get_site_models <- function() {
-  c("jc69", "gtr")
-}
-
-#' @title Clock models in Razzo
-#' @description Clock models in Razzo
-#' @inheritParams default_params_doc
-#' @return the clock models
-#' @author Giovanni Laudanno
-get_clock_models <- function() {
-  c("strict", "rln")
-}
-
-#' @title Generative models in Razzo
-#' @description Generative models in Razzo
-#' @inheritParams default_params_doc
-#' @return the generative models
-#' @author Giovanni Laudanno
-get_gen_models <- function() {
-  c("bd", "mbd")
-}
-
-#' @title Convert bd phylo to L table
-#' @description Convert bd phylo to L table. Don't use for mbd.
-#' @inheritParams default_params_doc
-#' @return the L table
-#' @author Xu Liang, Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
+#' @examples
+#' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+#'
+#' branching_times <- convert_tree2brts(phylogeny)
+#'
+#' library(testthat)
+#' expect_equal(c(3.0, 2.0), as.numeric(branching_times))
 #' @export
-bd_phylo_2_l_table <- function(
-  phylo
-) {
-  l_table <- dododo::phylo2L(phylo) # nolint
-  colnames(l_table) <- c("birth_time", "parent", "id", "death_time")
-  return(l_table)
+convert_tree2brts <- function(tree, precision = 8) {
+  round(ape::branching.times(tree), digits = precision)
+}
+
+#' @title Twin models
+#' @description Twin models
+#' @inheritParams default_params_doc
+#' @return the twin models
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' expect_true("yule" %in% get_twin_models())
+#' expect_true("birth_death" %in% get_twin_models())
+#' expect_true("copy_true" %in% get_twin_models())
+#' expect_false("nonsense" %in% get_twin_models())
+#' @export
+get_twin_models <- function() {
+  c("birth_death", "yule", "copy_true")
+}
+
+#' @title Twin methods
+#' @description Twin methods
+#' @inheritParams default_params_doc
+#' @return the twin methods
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' expect_true("random_tree" %in% get_twin_methods())
+#' expect_true("max_clade_cred" %in% get_twin_methods())
+#' expect_true("max_likelihood" %in% get_twin_methods())
+#' expect_false("nonsense" %in% get_twin_methods())
+#' @export
+get_twin_methods <- function() {
+  c(
+    "random_tree",
+    "max_clade_cred",
+    "max_likelihood"
+  )
 }

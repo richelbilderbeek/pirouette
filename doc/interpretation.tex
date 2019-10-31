@@ -1,0 +1,86 @@
+\documentclass{article}
+
+\begin{document}
+
+\begin{table}
+  \begin{tabular}{ | r | c | c | c | }
+    \hline
+    \textbf{Compare with} & \textbf{TB} & \textbf{WG} & \textbf{WB} \\ 
+    \hline
+    \textbf{TG} & Y & Y & N \\
+    \textbf{TB} & . & N & Y \\
+    \textbf{WG} & . & . & Y \\
+    \textbf{WB} & . & . & . \\
+    \hline
+  \end{tabular}
+  \caption{
+    Error distributions that are relevant to compare.
+    TG: true tree, generative model.
+    TB: true tree, best candidate model.
+    WG: twin tree, generative model.
+    WB: twin tree, best candidate model.
+  }
+  \label{tab:relevant_comparisions}
+\end{table}
+
+\begin{table}
+  \begin{tabular}{ | r | c | p{9cm} | }
+    \hline
+    \textbf{Condition} & \textbf{Expectation} & \textbf{Interpretation} \\ 
+    \hline
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TG > TB$}       & Unexpected & Novel tree prior is more related to 
+      best candidate than hand-picked tree prior \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TG \approx TB$} & Possible   & Hand-picked tree prior is just as 
+      suitable as the best candidate tree prior \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TG < TB$}       & Expected   & Hand-picked tree prior is the most 
+      related tree prior \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \hline
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TG > WG$}       & Unknown    & Novel tree prior important \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TG \approx WG$} & Unknown    & Novel tree prior unimportant \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TG < WG$}       & Unexpected & Twinning procedure increases 
+      inference errors when using hand-picked tree prior \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \hline
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TB > WB$}       & Expected   & Impact of novel tree prior cannot 
+      be compensated for by model selection: twin tree with low likelihood? \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TB \approx WB$} & Possible   & Best candidate tree priors perform 
+      equally well in true and twin tree: true and twin tree similar? \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$TB < WB$}       & Unexpected & Twinning procedure increases 
+      inference errors  when using best tree prior candidate \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \hline
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$WG > WB$}       & Unexpected & Hand-picked tree prior (that equals 
+      the twinning tree prior!) worse than best candidate tree prior \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$WG \approx WB$} & Possible   & Twin tree fits equally well to the 
+      hand-picked and best candidate tree prior  \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \textbf{$WG < WB$}       & Expected   & Hand-pick tree prior (that equals 
+      the twinning tree prior) performs as expected \\
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \hline
+  \end{tabular}
+  \caption{
+    Interpretation of the different error distributions.
+    This assumes that the operators ($<$, $\approx$ and $>$) to compare
+    distributions are defined.
+    TG: true tree, generative model.
+    TB: true tree, best candidate model.
+    WG: true tree, generative model.
+    WB: true tree, best candidate model.
+  }
+  \label{tab:interpretation}
+\end{table}
+
+\end{document}

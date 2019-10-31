@@ -1,17 +1,19 @@
 #' Create a 'blocked' DNA sequence, which is a sequence
 #' with four equal-sized nucleotide sections
-#' @param length number of nucleotides. Must be a multitude of four.
+#' @param length number of nucleotides. Must be a multiple of four.
 #' @examples
-#'   testthat::expect_equal(create_blocked_dna(length = 4), "acgt")
-#'   testthat::expect_equal(create_blocked_dna(length = 8), "aaccggtt")
+#'   library(testthat)
+#'
+#'   expect_equal(create_blocked_dna(length = 4), "acgt")
+#'   expect_equal(create_blocked_dna(length = 8), "aaccggtt")
 #' @seealso Use \link{create_mono_nuc_dna} to create
 #'   a mono-nucleotide DNA sequence.
-#' @author Richel J.C. Bilderbeek
+#' @author Richèl J.C. Bilderbeek
 #' @export
 create_blocked_dna <- function(
   length
 ) {
-  if (!is.numeric(length)) {
+  if (!beautier::is_one_int(length)) {
     stop("'length' must be numerical")
   }
   if (length < 0) {

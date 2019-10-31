@@ -6,25 +6,46 @@
 documentation.}
 \usage{
 default_params_doc(alignment, alignment_params, alignment_rng_seed,
-  bd_mutation_rate, bd_tree, bd_tree_filename, beast2_path,
-  beast2_rng_seed, brts, chain_length, clock_model, crown_age,
-  fasta_filename, filename, folder_name, inference_params,
-  init_speciation_rate, init_extinction_rate, lambda, mbd_l_matrix,
-  mbd_mutation_rate, mbd_tree, mcmc, mrca_prior, mu, mutation_rate, nu,
-  nu_events, parameters, parameter_filename, parameters_filename, phylo,
-  phylogeny, posterior_trees, precision, project_folder_name,
-  root_sequence, sample_interval, seed, sequence_length, sim_pars,
-  sim_phylo, site_model, sub_chain_length, tree, tree_filename, tree_prior,
-  trees_filename, verbose)
+  base_frequencies, bd_mutation_rate, bd_tree, bd_tree_filename,
+  beast2_bin_path, beast2_input_filename, beast2_options,
+  beast2_options_inference, beast2_options_est_evidence,
+  beast2_output_log_filename, beast2_output_state_filename,
+  beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
+  beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
+  clock_models, clock_model_name, consensus, crown_age,
+  do_measure_evidence, epsilon, error_function, error_measure_params,
+  errors, errors_filename, est_evidence_mcmc, evidence_epsilon,
+  evidence_filename, exclude_model, experiment, experiments,
+  fasta_filename, filename, folder_name, ideal_method, inference_model,
+  inference_conditions, init_speciation_rate, init_extinction_rate, lambda,
+  log_evidence, marg_lik_filename, marg_liks, max_evidence_epsilon,
+  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, method, model_selection,
+  model_type, mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa,
+  n_replicates, nu, nu_events, parameter_filename, parameters_filename,
+  phylo, phylogeny, pir_params, pir_out, posterior_trees, precision,
+  project_folder_name, result, rng_seed, rng_seed_twin_alignment,
+  rng_seed_twin_tree, root_sequence, run_experiment, run_experiments,
+  run_if, sample_interval, seed, sequence_length, sim_alignment_function,
+  sim_pars, sim_phylo, sim_twin_tree_function, site_model, site_models,
+  site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
+  true_alignment, true_phylogeny, true_result, twin_alignment,
+  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
+  twin_model, twin_result, twin_tree_filename, twinning_params, type,
+  verbose, weight)
 }
 \arguments{
-\item{alignment}{a DNA alignment}
+\item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
 \item{alignment_rng_seed}{The random number generator seed used
 to generate an alignment}
+
+\item{base_frequencies}{the four base frequencies (a, c, g, t) to be
+specified to create the rate matrix (i.e. Q matrix)
+used to simulate alignments}
 
 \item{bd_mutation_rate}{the mutation rate when creating an alignment
 from a BD tree}
@@ -33,6 +54,61 @@ from a BD tree}
 created by a Birth Death process}
 
 \item{bd_tree_filename}{name of the file that stores a BD twin tree}
+
+\item{beast2_bin_path}{path to BEAST2 binary file. The use of the
+binary BEAST2 file is required for estimation of the evidence (aka
+marginal likelihood). The default BEAST2 binary path can be
+obtained using \link[beastier]{get_default_beast2_bin_path}}
+
+\item{beast2_input_filename}{path of the BEAST2 configuration file.
+By default, this file is put in a temporary folder with a random filename,
+as the user needs not read it: it is used as input of BEAST2.
+Specifying a \code{beast2_input_filename} allows
+to store that file in a more permanently stored location.}
+
+\item{beast2_options}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}}
+
+\item{beast2_options_inference}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}.
+The MCMC must be a normal MCMC,
+as can be created by \link[beautier]{create_mcmc}.}
+
+\item{beast2_options_est_evidence}{BEAST2 options to estimate
+the evidence (aka marginal likelihood),
+as can be created by \link[beastier]{create_beast2_options}.
+The MCMC must be a Nested Sampling MCMC,
+as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+
+\item{beast2_output_log_filename}{name of the log file created by BEAST2,
+containing the parameter estimates in time.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it.
+Specifying a beast2_output_log_filename allows to store that file
+in a more permanently stored location.}
+
+\item{beast2_output_state_filename}{name of the final state file
+created by BEAST2, containing the operator acceptances.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it.
+Specifying a beast2_output_state_filename allows to store
+that file in a more permanently stored location.}
+
+\item{beast2_output_trees_filename}{name of a trees files
+created by BEAST2.
+By default, this file is put a temporary folder with a random filename,
+as the user needs not read it: its content is parsed and
+compared to a true phylogeny to obtain the inference errors.
+Specifying \code{beast2_output_trees_filename} allows to store
+this file in a more permanently stored location.}
+
+\item{beast2_output_trees_filenames}{name of the one or more trees files
+created by BEAST2, one per alignment.
+By default, these files are put a temporary folder with a random filename,
+as the user needs not read it: its content is parsed and
+compared to a true phylogeny to obtain the inference errors.
+Specifying \code{beast2_output_trees_filenames} allows to store
+these one or more files in a more permanently stored location.}
 
 \item{beast2_path}{Path to the
 BEAST2 jar file (\code{beast.jar})
@@ -44,15 +120,87 @@ BEAST2 binary file path.}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
-\item{brts}{set of branching times}
+\item{brts}{numeric vector of (all postive) branching times,
+in time units before the present. Assuming no stem, the heighest
+value equals the crown age.}
+
+\item{burn_in_fraction}{the fraction of the posterior trees (starting
+from the ones generated first)
+that will be discarded,
+must be a value from 0.0 (keep all), to 1.0 (discard all).}
 
 \item{chain_length}{something}
 
 \item{clock_model}{a clock model,
 as created by \link[beautier]{create_clock_model}}
 
+\item{clock_models}{a list of one or more clock models,
+as created by \link[beautier]{create_clock_model}}
+
+\item{clock_model_name}{name of a clock model}
+
+\item{consensus}{the order of which the taxon labels are plotted}
+
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
+
+\item{do_measure_evidence}{boolean to indicate if the
+evidence (aka marginal likelihood) of an experiment must be
+measured}
+
+\item{epsilon}{measure of relative accuracy when estimating a model's
+evidence (also known as marginal likelihood).
+Smaller values result in more precise estimations, that take
+longer to compute}
+
+\item{error_function}{function that determines the error between
+a given phylogeny and a the trees in a Bayesian posterior.
+The function must have two arguments:
+\itemize{
+  \item the one given phylogeny, of class \link[ape]{phylo}
+  \item one or more posterior trees, of class \link[ape]{multiphylo}
+}
+The function must return as many errors as there are posterior
+trees given. The error must be lowest between identical trees.
+Example functions are:
+\itemize{
+  \item \link{get_gamma_error_function}: use the absolute difference
+    in gamma statistic
+  \item \link{get_nltt_error_function}: use the nLTT statistic
+}}
+
+\item{error_measure_params}{parameter set to specify how the
+error between the given phylogeny and the Bayesian
+posterior is determined.
+Use \link{create_error_measure_params} to create such
+a parameter set}
+
+\item{errors}{a numeric vector of (positive) Bayesian inference errors.
+Use NA if these are not measured (yet)}
+
+\item{errors_filename}{baseline name for errors filenames}
+
+\item{est_evidence_mcmc}{MCMC used in the estimation of
+the evidence (aka marginal likelihood).
+The MCMC must be a Nested Sampling MCMC,
+as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+
+\item{evidence_epsilon}{relative error in estimating the
+evidence (aka marginal likelihood).}
+
+\item{evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods)}
+
+\item{exclude_model}{an inference model that has to be excluded, as can be
+created by \link[beautier]{create_inference_model}}
+
+\item{experiment}{a \link{pirouette} experiment,
+as can be created by \link{create_experiment}}
+
+\item{experiments}{a list of one or more \link{pirouette} experiments,
+as can be created by \link{create_experiment}. If more than one experiment
+is provided and a "generative" experiment is part of them, the "generative"
+one has to be the first in the list.}
 
 \item{fasta_filename}{name of a FASTA file}
 
@@ -60,16 +208,32 @@ to let it be estimated}
 
 \item{folder_name}{name of the main folder}
 
-\item{inference_params}{parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
+\item{ideal_method}{method to generate the "ideal" tree}
+
+\item{inference_model}{an inference model, which is a combination
+of site model, clock model, tree prior and BEAST2 input and
+input filenames.}
+
+\item{inference_conditions}{conditions under which the inference model
+is used in the inference}
 
 \item{init_speciation_rate}{a speciation rate}
 
 \item{init_extinction_rate}{an extinction rate}
 
 \item{lambda}{per-lineage speciation rate}
+
+\item{log_evidence}{the natural logarithm of the evidence (aka marginal
+likelihood). Can be NA if this is not measured}
+
+\item{marg_lik_filename}{name of the file the marginal
+likelihoods (also known as 'evidences') are saved to}
+
+\item{marg_liks}{a data frame with marginal likelihoods/evidences.
+A test data frame can be created by \link{create_test_marg_liks}}
+
+\item{max_evidence_epsilon}{set the maximum acceptable threshold for the
+parameter \code{evidence_epsilon}}
 
 \item{mbd_l_matrix}{the L matrix of an MBD tree}
 
@@ -80,19 +244,51 @@ from a MBD tree}
 
 \item{mcmc}{MCMC options, as created by \link[beautier]{create_mcmc}}
 
+\item{method}{determines how to create the twin tree
+\itemize{
+    \item 'random_tree' just produces a random tree;
+    \item 'max_clade_cred' simulates \code{n_replicates} trees and
+      uses \link[phangorn]{maxCladeCred} to create a consensus tree;
+    \item 'max_likelihood' simulates \code{n_replicates} trees
+     and selects the most likely;
+  }}
+
+\item{model_selection}{one ways to select the models used in
+inference, for example, \code{generative} picks the generative
+model, where \code{most_evidence} picks the model with most
+evidence. See \link{get_model_selections} for a list of}
+
+\item{model_type}{type of inference model supplied for an experiment.
+Possible values:
+\itemize{
+  \item \code{generative}: the inference model is (or is assumed to be)
+    the inference model underlying the phylogeny
+  \item \code{candidate}: the inference model is a candidate model,
+    that competes with other models for having the most
+    evidence (aka highest marginal likelihood)
+}}
+
 \item{mrca_prior}{an MRCA prior,
 as created by \link[beautier]{create_mrca_prior}}
 
 \item{mu}{per-species extinction rate}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{n_0}{number of starting species}
+
+\item{n_mutations}{costrained number of mutations}
+
+\item{n_taxa}{number of tree tips}
+
+\item{n_replicates}{number of replicas to evaluate in order to create the
+twin tree}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
 
 \item{nu_events}{the number of nu-triggered events that have to be
 present in the simulated tree}
-
-\item{parameters}{the razzo parameters}
 
 \item{parameter_filename}{full path to a 'parameters.csv' file}
 
@@ -102,16 +298,62 @@ present in the simulated tree}
 
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
+
+\item{pir_out}{the output of \link{pir_run}}
+
 \item{posterior_trees}{phylogenetic trees in a BEAST2 posterior,
 of class \code{multiphylo}}
 
 \item{precision}{define the precision of the approximation.}
 
-\item{project_folder_name}{project folder name,
-will be the full path to \code{razzo_project}}
+\item{project_folder_name}{project folder name}
+
+\item{result}{results from measurements. These are:
+\itemize{
+  \item log_evidence the natural logarithm of the evidence (aka marginal
+    likelihood). Can be NA if this is not measured
+  \item weight the weight of the model, compared to other (candidate)
+    models. This weight will be between 0.0 (there is no evidence for
+    this model) to 1.0 (all evidence indicates this is the best model).
+    A weight of NA denotes that the weight is not measured
+  \item errors a numeric vector of (positive) Bayesian inference errors.
+    Will be NA if these are not measured.
+}}
+
+\item{rng_seed}{a random number generator seed}
+
+\item{rng_seed_twin_alignment}{the random number generator seed
+as used in the simulation of a twin alignment}
+
+\item{rng_seed_twin_tree}{the random number generator seed as used in the
+simulation of a twin tree}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
+
+\item{run_experiment}{one \link{pirouette} run experiment.
+A run experiment has these attributes:
+\itemize{
+  \item experiment the (original) experiment
+  \item true_result the result of running the original experiment on
+    the true phylogeny
+  \item twin_result the result of running the original experiment on
+    the twin phylogeny
+}}
+
+\item{run_experiments}{a list of one or more \link{pirouette} run experiments}
+
+\item{run_if}{the condition for an experiment's inference model to be run.
+Possible values:
+\itemize{
+  \item \code{always}: always
+  \item \code{best_candidate}: if the inference model is the
+    candidate model with the most evidence (aka highest marginal
+    likelihood)
+}}
 
 \item{sample_interval}{the interval at which the MCMC algorithm
 makes a measurement}
@@ -120,26 +362,149 @@ makes a measurement}
 
 \item{sequence_length}{the length of each DNA sequence in an alignment}
 
+\item{sim_alignment_function}{function to simulate an alignment with.
+This function must have one argument called \code{phylogeny}
+of type \link[ape]{phylo} and has a return type of type \link[ape]{DNAbin}.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_default_sim_alignment_function} to use a
+    default function
+}}
+
 \item{sim_pars}{something}
 
 \item{sim_phylo}{something}
 
+\item{sim_twin_tree_function}{function to simulate a twin tree with.
+This function must have one argument called \code{phylogeny}
+of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
+as well.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{create_sim_yule_twin_tree_function} to use a
+    Yule (aka Pure Birth) process
+  \item Use \link{create_copy_twin_tree_from_true_function} to for a function
+    that copies the true tree
+  \item Use \link{create_sim_bd_twin_tree_function} to use a
+    Birth-Death process
+}}
+
 \item{site_model}{a nucleotide substitution model,
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
+
+\item{site_models}{a list of one or more site models,
 as created by \link[beautier]{create_site_model}}
+
+\item{site_model_name}{name of a site model}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
+
+\item{sum_lamu}{is the sum lambda + mu}
+
+\item{t_0}{starting time of a tree}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 
 \item{tree_filename}{name of the phylogeny file}
 
+\item{tree_model}{model used to simulate the tree}
+
 \item{tree_prior}{a tree prior,
 as created by \link[beautier]{create_tree_prior}}
 
-\item{trees_filename}{name of the BEAST2 posterior phylogenies file}
+\item{tree_priors}{a list of one or more tree priors,
+as created by \link[beautier]{create_tree_prior}}
+
+\item{tree_prior_name}{name of a tree prior}
+
+\item{tree_type}{type of tree, can be \code{true} for the true
+phylogeny, and \code{twin} for its twin tree}
+
+\item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
+
+\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{true_result}{result obtained from using the true tree}
+
+\item{twin_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
+
+\item{twin_alignment_filename}{name of the FASTA file the twin
+alignment will be saved to}
+
+\item{twin_evidence_filename}{filename to store the estimated
+evidences (aka marginal likelihoods) of the twin tree}
+
+\item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{twin_model}{the model you want to use to generate the twin tree:
+\itemize{
+  \item \code{birth_death}: birth death
+  \item \code{yule}: Yule or pure-birth
+  \item \code{copy_true}: use a copy of the true tree in the twinning
+   pipeline
+}
+See \link{get_twin_models} to see all possible
+values of \code{twin_model}}
+
+\item{twin_result}{result obtained from using the twin tree}
+
+\item{twin_tree_filename}{name of the (\code{.newick}) file the twin
+tree will be saved to}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
+
+\item{type}{one or more ways to select the models used in inference:
+\itemize{
+  \item \code{"generative"}: pick the generative model
+  \item \code{most_evidence} picks the model with most evidence
+}
+See \link{get_model_selections} for a list.}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{weight}{the weight of the model, compared to other (candidate)
+models. This weight will be between 0.0 (there is no evidence for
+this model) to 1.0 (all evidence indicates this is the best model).
+A weight of NA denotes that the weight is not measured}
+
+\item{sim_twin_alignment_function}{function to simulate a
+twin alignment with.
+This function must have two arguments called \code{twin_phylogeny} (which
+will hold the twin phylogeny) and \code{true_alignment} (which will
+hold the alignment simulated from the true phylogeny). The
+return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_twin_alignment_function} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_default_sim_twin_alignment_function} to use a
+    default function
+  \item Use \link{get_sim_twin_alignment_with_standard_site_model} to
+    use a function that creates a twin alignment using a standard site
+    model
+  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
+    use a function that ensure that the twin alignment has as much
+    mutations compared to the root sequence as the true alignment has
+}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'
@@ -152,5 +517,5 @@ This is an internal function, so it should be marked with
 }
 \author{
 Documentation by Giovanni Laudanno,
-  use of this function by Richel J.C. Bilderbeek
+  use of this function by Richèl J.C. Bilderbeek
 }

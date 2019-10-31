@@ -1,11 +1,49 @@
 #' Create a twin tree
+#'
+#' It sets the seed with value \code{twinning_params$rng_seed_twin_tree},
+#' then generates a tree by
+#' calling \code{twinning_paramssim_twin_tree_function} on the
+#' given tree.
 #' @inheritParams default_params_doc
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @examples
+#' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+#' twin_phylogeny <- create_twin_tree(phylogeny)
+#'
+#' library(testthat)
+#' # Twin is a phylogeny
+#' expect_true(is_phylo(twin_phylogeny))
+#'
+#' # Twin tree has the same number of taxa as the original tree
+#' expect_equal(ape::Ntip(phylogeny), ape::Ntip(twin_phylogeny))
+#'
+#' # Twin tree has the same crown age as the original tree
+#' expect_equal(
+#'   max(ape::branching.times(phylogeny)),
+#'   max(ape::branching.times(twin_phylogeny))
+#' )
 #' @export
-#' @author Richel J.C. Bilderbeek
-create_twin_tree <- function(phylogeny) {
-  create_bd_tree(
-    parameters = list(lambda = 0.1, mu = 0.01, seed = 42),
-    mbd_tree = phylogeny,
-    mbd_l_matrix = dododo::phylo2L(phylogeny)
-  )$bd_tree
+create_twin_tree <- function(
+  phylogeny,
+  twinning_params = create_twinning_params()
+) {
+  beautier::check_phylogeny(phylogeny)
+  pirouette::check_twinning_params(twinning_params)
+
+  set.seed(twinning_params$rng_seed_twin_tree)
+  twin_tree <- twinning_params$sim_twin_tree_function(phylogeny)
+
+  testit::assert(beautier::is_phylo(twin_tree))
+
+  # Same number of tips
+  testit::assert(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
+
+  # Same crown age
+  testit::assert(
+    all.equal(
+      max(ape::branching.times(phylogeny)),
+      max(ape::branching.times(twin_tree))
+    )
+  )
+  twin_tree
 }

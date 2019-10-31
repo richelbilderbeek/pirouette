@@ -1,82 +1,19 @@
-context("utils")
+context("test-utils")
 
-test_that("get_site_models", {
+test_that("get_twin_models", {
   expect_true(
-    length(get_site_models()) > 0 # nolint internal function
+    length(get_twin_models()) > 0 # nolint internal function
   )
   expect_true(
-    is.character(get_site_models()) # nolint internal function
+    is.character(get_twin_models()) # nolint internal function
   )
 })
 
-test_that("get_clock_models", {
+test_that("get_twin_methods", {
   expect_true(
-    length(get_clock_models()) > 0 # nolint internal function
-  )
-  expect_true(
-    is.character(get_clock_models()) # nolint internal function
-  )
-})
-
-test_that("get_gen_models", {
-  expect_true(
-    length(get_gen_models()) > 0 # nolint internal function
+    length(get_twin_methods()) > 0 # nolint internal function
   )
   expect_true(
-    is.character(get_gen_models()) # nolint internal function
+    is.character(get_twin_methods()) # nolint internal function
   )
-})
-
-test_that("bd_phylo_2_l_table", {
-
-  skip("Rewrite to not depend on razzo")
-
-  parameters <- razzo::open_parameters_file(razzo::get_path("parameters.csv"))
-
-  mbd_sim <- razzo::create_mbd_tree(
-    parameters = parameters
-  )
-  mbd_tree <- mbd_sim$mbd_tree
-  mbd_l_matrix <- mbd_sim$mbd_l_matrix
-  bd_sim <- create_bd_tree(
-    parameters = parameters,
-    mbd_tree = mbd_tree,
-    mbd_l_matrix = mbd_l_matrix
-  )
-  bd_tree <- bd_sim$bd_tree
-  bd_l_matrix <- bd_sim$bd_l_matrix
-
-  # test phylo -> L -> phylo
-  bd_test_tree <- DDD::L2phylo(
-    bd_phylo_2_l_table(bd_tree),
-    dropextinct = FALSE
-  )
-  expect_equal(
-    bd_test_tree$edge,
-    bd_tree$edge
-  )
-  expect_equal(
-    bd_test_tree$edge.length,
-    unname(bd_tree$edge.length)
-  )
-  expect_equal(
-    bd_test_tree$Nnode,
-    bd_tree$Nnode
-  )
-  expect_equal(
-    bd_test_tree$root.edge,
-    bd_tree$root.edge
-  )
-
-  # test L -> phylo -> L
-  test_bd_l_matrix <- bd_phylo_2_l_table(DDD::L2phylo(
-    bd_l_matrix,
-    dropextinct = FALSE))
-  expect_equal(
-    test_bd_l_matrix,
-    bd_l_matrix
-  )
-  created_col_names <- colnames(test_bd_l_matrix)
-  expected_col_names <- c("birth_time", "parent", "id", "death_time")
-  expect_equal(created_col_names, expected_col_names)
 })

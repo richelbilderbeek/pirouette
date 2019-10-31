@@ -1,0 +1,240 @@
+---
+title: "partial_function_evaluation"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{partial_function_evaluation}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+This vignette describes partial function evaluation used in `pirouette`.
+
+```{r}
+library(pirouette)
+```
+
+We'll use `pryr` (from
+the Tidyverse to get that functionality.
+
+```{r}
+library(pryr)
+```
+
+
+## The problem: create a twin tree
+
+We start from a simple true tree:
+
+```{r}
+true_tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+ape::plot.phylo(true_tree)
+```
+
+We want to create a twin tree from it. There is a function that does
+so:
+
+```{r}
+twin_tree <- pirouette::create_twin_tree(true_tree)
+ape::plot.phylo(twin_tree)
+```
+
+The `create_twin_tree`, however, creates the twin tree in the way specified
+in its other function argument: the `twinning_params`.
+
+```{r}
+twinning_params <- create_twinning_params()
+```
+
+Calling `create_twin_tree` results in the same twin tree:
+
+```{r}
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_tree,
+  twinning_params = twinning_params
+)
+ape::plot.phylo(twin_tree)
+```
+
+How to specify *how* the twin tree is created? Use 
+the `twinning_params$sim_twin_tree_function`:
+
+```{r}
+twinning_params <- create_twinning_params(
+  sim_twin_tree_function = create_sim_bd_twin_tree_function()
+)
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_tree,
+  twinning_params = twinning_params
+)
+ape::plot.phylo(twin_tree)
+```
+
+Due to this architecture, `twinning_params$sim_twin_tree_function` must
+be a function that takes *one* argument, which is the true phylogeny.
+
+Here is an example that creates a twin tree by simulation 
+a random coalescent tree with the same number of tips:
+
+```{r}
+twinning_params <- create_twinning_params(
+  sim_twin_tree_function = function(true_phylogeny) {
+    ape::rcoal(n = ape::Ntip(true_phylogeny))
+  }
+)
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_tree,
+  twinning_params = twinning_params
+)
+ape::plot.phylo(twin_tree)
+```
+
+So, `twinning_params$sim_twin_tree_function` must
+be a function that takes *one* argument, which is the true phylogeny. What
+if we want a function that indeed has one argument for the true phylogeny,
+but also some additional ones?
+
+An example is `twin_to_bd_tree`, which uses a seed, 
+a method and a number of replicates:
+
+```{r}
+head(twin_to_bd_tree)
+```
+
+We cannot simply plug it in:
+
+```{r}
+tryCatch(
+  create_twinning_params(
+    sim_twin_tree_function = twin_to_bd_tree
+  ),
+  error = function(e) {
+    cat(e$message)
+  }
+)
+```
+
+Instead, we'll need partial function evaluation, which will create a function with one a
+ellipsis (`...`) argument that will fill in the values you specified: 
+
+```{r}
+sim_twin_tree_function <- pryr::partial(twin_to_bd_tree, seed = 314, method = "random_tree", n_replicates = 1)
+head(sim_twin_tree_function)
+```
+
+```{r}
+twinning_params <- create_twinning_params(
+  sim_twin_tree_function = sim_twin_tree_function
+)
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_tree,
+  twinning_params = twinning_params
+)
+ape::plot.phylo(twin_tree)
+```
+
+Using partial function evaluation you can now plug in any function to create
+a twin tree.
+
+
+## The problem: create a twin alignment
+
+To create a twin alignment, a function with more arguments is needed,
+because we need a twin tree and a true alignent.
+
+```{r}
+twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+ape::plot.phylo(twin_tree)
+```
+
+```{r}
+true_alignment <- create_true_alignment(
+  true_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
+  alignment_params = create_test_alignment_params()
+)
+ape::image.DNAbin(true_alignment)
+```
+
+Creating a twin alignment from this:
+
+```{r}
+twin_alignment <- create_twin_alignment(
+  twin_phylogeny = twin_phylogeny,
+  true_alignment = true_alignment,
+  alignment_params = create_test_alignment_params(),
+  twinning_params = create_twinning_params()
+)
+ape::image.DNAbin(twin_alignment)
+```
+
+Now we'll create our function we'll plug in:
+
+```{r}
+create_rnd_alignment <- function(twin_phylogeny, true_alignment) {
+  n_taxa <- ape::Ntip(twin_phylogeny)
+  n_nucleotides <- pirouette::get_alignment_sequence_length(true_alignment)
+  x <- list()
+  for (i in seq_len(n_taxa)) {
+    x[[i]] <- sample(x = c("a", "c", "g", "t"), size = n_nucleotides, replace = TRUE)
+  }
+  ape::as.DNAbin(x)
+}
+```
+
+Plugging it in:
+
+```{r}
+twin_alignment <- create_twin_alignment(
+  twin_phylogeny = twin_phylogeny,
+  true_alignment = true_alignment,
+  alignment_params = create_test_alignment_params(),
+  twinning_params = create_twinning_params(
+    sim_twin_alignment_function = create_rnd_alignment
+  ),
+  newskool = TRUE
+)
+ape::image.DNAbin(twin_alignment)
+```
+
+
+Now we want to plug in:
+
+```{r}
+head(create_twin_alignment_with_standard_site_model)
+```
+
+Here comes partial function evaluation to the rescue:
+
+```{r}
+root_sequence <- create_blocked_dna(get_alignment_sequence_length(true_alignment))  
+sim_twin_align_function <- pryr::partial(
+  create_twin_alignment_with_standard_site_model,
+  root_sequence = root_sequence,
+  mutation_rate = 0.1
+)
+head(sim_twin_align_function)
+check_sim_twin_alignment_function(sim_twin_align_function)
+```
+
+
+
+Plugging it in:
+
+```{r}
+twin_alignment <- create_twin_alignment(
+  twin_phylogeny = twin_phylogeny,
+  true_alignment = true_alignment,
+  alignment_params = create_test_alignment_params(),
+  twinning_params = create_twinning_params(
+    sim_twin_alignment_function = sim_twin_align_function
+  ),
+  newskool = TRUE
+)
+ape::image.DNAbin(twin_alignment)
+```

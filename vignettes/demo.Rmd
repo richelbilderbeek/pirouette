@@ -1,6 +1,6 @@
 ---
 title: "pirouette demo"
-author: "Richel J.C. Bilderbeek"
+author: "Richèl J.C. Bilderbeek"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -24,6 +24,12 @@ for example the PBD or MBD models.
 library(pirouette)
 ```
 
+`pirouette` has a the option to do model comparison,
+picking the model that has most evidence (aka marginal likelihood).
+This option only works under Linux and Mac.
+When working on such a system, the BEAST2 package 'NS' is expected
+to be installed.
+
 In this demo, we use a simple 'true' phylogeny:
 
 ```{r}
@@ -37,33 +43,202 @@ we'll use a short alignment:
 ```{r}
 alignment_params <- create_alignment_params(
   root_sequence = create_blocked_dna(length = 20),
-  mutation_rate = 1.0 / beautier:::get_phylo_crown_age(true_phylogeny)
+  mutation_rate = create_standard_mutation_rate
 )
 ```
 
-we use an MCMC chain that is short:
+## 1. Only use the generative model in inference
+
+There are multiple ways to select for an inference model.
+In the simplest case, which is the default, 
+we will do our inference with the generative model only:
+
+type       | run_if         | measure evidence  | inference model
+-----------|----------------|-------------------|-----------
+generative | always         |FALSE              | Default
 
 ```{r}
-inference_params <- create_inference_params(
-  mcmc = beautier::create_mcmc(chain_length = 5000, store_every = 1000),
-  rng_seed = 42
-)
+experiment <- create_test_gen_experiment()
+experiments <- list(experiment)
 ```
 
-Here we measure the error:
+Here we measure the baseline error: the error that BEAST2 makes
+when the inference model is the correct generative 
+model (JC69 and strict clock):
 
 ```{r}
-errors <- pir_run(
-  true_phylogeny,
+pir_params <- create_pir_params(
   alignment_params = alignment_params,
-  inference_params = inference_params
+  experiments = experiments
 )
+```
+
+Running it:
+
+```{r}
+errors <- NULL
+
+if (beastier::is_beast2_installed()) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output(
+    add_twin = FALSE,
+    add_best = FALSE
+  )
+}
 ```
 
 Here we show the errors as a table:
 
 ```{r}
-knitr::kable(head(errors))
+knitr::kable(utils::head(errors))
+```
+
+Here we plot the error:
+
+```{r fig.width=7, fig.height=7}
+pir_plot(errors)
+```
+
+## 2. Do inference on candidate models
+
+Again, there are multiple ways to select for which inference model(s)
+to use. Here we assume we do not know the generative model.
+Instead, we only run the inference model that has the highest evidence (also
+called 'marginal likelihood'). 
+
+type       | run_if         | measure evidence | inference model
+-----------|----------------|------------------|----------------
+candidate  | best_candidate |TRUE              |Yule       
+candidate  | best_candidate |TRUE              |Birth-Death
+
+```{r}
+if (rappdirs::app_dir()$os != "win") {
+  experiment_yule <- create_test_cand_experiment(
+    inference_model = create_test_inference_model(
+      tree_prior = create_yule_tree_prior()  
+    ) 
+  )
+  experiment_bd <- create_test_cand_experiment(
+    inference_model = create_test_inference_model(
+      tree_prior = create_bd_tree_prior()  
+    ) 
+  )
+  # Use the same files to work on, as only one will actually run an experiment
+  experiment_bd$beast2_options <- experiment_yule$beast2_options
+  experiment_bd$inference_model$mcmc <- experiment_yule$inference_model$mcmc
+  experiment_bd$errors_filename <- experiment_yule$errors_filename
+    
+  experiments <- list(experiment_yule, experiment_bd)
+  check_experiments(experiments)
+  
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    experiments = experiments
+  )
+}
+```
+
+Note that we select the model with the heighest evidence from a set of
+just one model (JC69, strict, Yule).
+
+Run this setup:
+
+```{r}
+if (rappdirs::app_dir()$os != "win" && 
+    is_beast2_installed() &&
+    is_beast2_ns_pkg_installed()
+) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output(add_best = TRUE)
+}
+```
+
+Here we show the errors as a table:
+
+```{r}
+knitr::kable(utils::head(errors))
+```
+
+Here we plot the error:
+
+```{r fig.width=7, fig.height=7}
+pir_plot(errors)
+```
+
+
+## 3. Do inference with the generative and model with most evidence
+
+Again, there are multiple ways to select for which inference model(s)
+to use. Next to the known generative model (JC69 and strict clock),
+here we use the inference model that has the highest evidence (also
+called 'marginal likelihood'). 
+
+Here we measure the baseline error, from the generative model,
+and the error that BEAST2 makes
+when the inference model is the one with most evidence:
+
+type       | run_if         | measure evidence | inference model
+-----------|----------------|------------------|----------------
+generative | always         |FALSE             |Yule       
+candidate  | best_candidate |TRUE              |Birth-Death
+
+```{r}
+experiment_yule <- create_test_gen_experiment(
+  inference_model = create_test_inference_model(
+    tree_prior = create_yule_tree_prior()  
+  ) 
+)
+if (rappdirs::app_dir()$os != "win") {
+  experiment_bd <- create_test_cand_experiment(
+    inference_model = create_test_inference_model(
+      tree_prior = create_bd_tree_prior()  
+    ) 
+  )
+  experiments <- list(experiment_yule, experiment_bd)
+  check_experiments(experiments)
+  
+} else {
+  experiments <- list(experiment_yule)
+  check_experiments(experiments)
+}
+
+pir_params <- create_pir_params(
+  alignment_params = create_test_alignment_params(),
+  experiments = experiments
+)
+```
+
+Note that we select the model with the heighest evidence from a set of
+just one model (JC69, strict, Yule).
+
+Run this setup:
+
+```{r}
+if (rappdirs::app_dir()$os != "win" && 
+    is_beast2_installed() &&
+    is_beast2_ns_pkg_installed()
+) {
+  errors <- pir_run(
+    phylogeny = true_phylogeny,
+    pir_params = pir_params
+  )
+} else {
+  errors <- create_test_pir_run_output(add_best = TRUE)
+}
+```
+
+Here we show the errors as a table:
+
+```{r}
+knitr::kable(utils::head(errors))
 ```
 
 Here we plot the error:

@@ -1,9 +1,34 @@
-#' @title Substitute branching times keeping the topology
-#' @description Given a tree topology and a set of branching times,
-#' it combines them together. They have to be compatible.
+#' Substitute branching times keeping the topology
+#'
+#' Set the branching times (in time units before the present)
+#' of a phylogeny, while preserving its topology.
 #' @inheritParams default_params_doc
-#' @return a tree
-#' @author Giovanni Laudanno, David Bapst
+#' @return a phylogeny of class \link[ape]{phylo}
+#' @author Giovanni Laudanno, David Bapst, Richèl J.C. Bilderbeek
+#' @examples
+#'   library(testthat)
+#'
+#'   # Branching times as 3 (crown age) and 2 (branch of A and B) time units ago
+#'   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+#'   expect_equal(c(3, 2), as.numeric(ape::branching.times(phylogeny)))
+#'   expect_equal(
+#'     2,
+#'     ape::dist.nodes(phylogeny)[1, ape::getMRCA(phylogeny, c("A", "B"))]
+#'   )
+#'
+#'   # Create a new phylogeny with the same topology, but with
+#'   # branching times at 5 (crown age) and 4 (branch of A and B) time units ago
+#'   new_phylogeny <- combine_brts_and_topology(
+#'     brts = c(5, 4),
+#'     tree = phylogeny
+#'   )
+#'   expect_equal(c(5, 4), as.numeric(ape::branching.times(new_phylogeny)))
+#'   expect_equal(
+#'     4,
+#'     ape::dist.nodes(new_phylogeny)[
+#'       1, ape::getMRCA(new_phylogeny, c("A", "B"))
+#'     ]
+#'   )
 #' @export
 combine_brts_and_topology <- function(
   brts,
@@ -12,10 +37,7 @@ combine_brts_and_topology <- function(
   if (length(brts) != ape::Nnode(tree)) {
     stop("brts must be same length as number of nodes on input tree")
   }
-  # if(!is.null(tree$edge.lengths)){
-  #   message("Warning: input tree has $edge.lengths present, these
-  #           will be replaced")}
-  tree$edge.length <- NULL # nolint
+  tree$edge.length <- NULL # nolint oldskool naming
 
   #add zero ages for tips
   all_ages <- c(rep(0, ape::Ntip(tree)), brts)

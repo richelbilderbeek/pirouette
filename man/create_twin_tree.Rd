@@ -4,14 +4,38 @@
 \alias{create_twin_tree}
 \title{Create a twin tree}
 \usage{
-create_twin_tree(phylogeny)
+create_twin_tree(phylogeny, twinning_params = create_twinning_params())
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{twinning_params}{can be \code{NA} if no twinning is desired,
+or can be the twinning parameters,
+as can be created by \link{create_twinning_params}}
 }
 \description{
-Create a twin tree
+It sets the seed with value \code{twinning_params$rng_seed_twin_tree},
+then generates a tree by
+calling \code{twinning_paramssim_twin_tree_function} on the
+given tree.
+}
+\examples{
+phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+twin_phylogeny <- create_twin_tree(phylogeny)
+
+library(testthat)
+# Twin is a phylogeny
+expect_true(is_phylo(twin_phylogeny))
+
+# Twin tree has the same number of taxa as the original tree
+expect_equal(ape::Ntip(phylogeny), ape::Ntip(twin_phylogeny))
+
+# Twin tree has the same crown age as the original tree
+expect_equal(
+  max(ape::branching.times(phylogeny)),
+  max(ape::branching.times(twin_phylogeny))
+)
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

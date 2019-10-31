@@ -2,27 +2,96 @@
 % Please edit documentation in R/pir_run.R
 \name{pir_run}
 \alias{pir_run}
-\title{Meaure the error BEAST2 makes from a known phylogeny}
+\title{Measure the error BEAST2 makes from a known phylogeny.}
 \usage{
-pir_run(phylogeny, alignment_params, inference_params)
+pir_run(phylogeny, pir_params = create_pir_params(alignment_params =
+  create_alignment_params(mutation_rate = create_standard_mutation_rate),
+  twinning_params = create_twinning_params()))
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{alignment_params}{parameters to simulate an alignment,
-as can be created by \link{create_alignment_params}}
-
-\item{inference_params}{parameters for the Bayesian inference,
-as can be created by \link{create_inference_params}.
-The Bayesian inference is handled by the \link[babette]{babette}
-R package, that calls the phylogenetic tool \code{BEAST2}.}
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
 }
 \value{
-a data frame with errors
+a data frame with errors, with as many rows as model selection
+  parameter sets.
 }
 \description{
-Meaure the error BEAST2 makes from a known phylogeny
+From a phylogeny of (un)known speciation model,
+an alignment is created using a known site model and clock model,
+as given by \code{alignment_params}.
+}
+\examples{
+  library(testthat)
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  # Select all experiments with 'run_if' is 'always'
+  experiment <- create_test_gen_experiment()
+  experiments <- list(experiment)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments
+  )
+
+  errors <- NA
+  if (
+    rappdirs::app_dir()$os != "win" &&
+    is_on_ci() &&
+    is_beast2_installed()
+  ) {
+    errors <- pir_run(
+      phylogeny = phylogeny,
+      pir_params = pir_params
+    )
+  } else {
+    errors <- create_test_pir_run_output()
+  }
+
+  # Return value
+  expect_true("tree" \%in\% names(errors))
+  expect_true(is.factor(errors$tree))
+  expect_true("true" \%in\% errors$tree)
+
+  expect_true("inference_model" \%in\% names(errors))
+  expect_true(is.factor(errors$inference_model))
+  expect_true("generative" \%in\% errors$inference_model)
+
+  expect_true("inference_model_weight" \%in\% names(errors))
+  expect_true(!is.factor(errors$inference_model_weight))
+
+  expect_true("site_model" \%in\% names(errors))
+  expect_true(is.factor(errors$site_model))
+  expect_true("JC69" \%in\% errors$site_model)
+
+  expect_true("clock_model" \%in\% names(errors))
+  expect_true(is.factor(errors$clock_model))
+
+  expect_true("tree_prior" \%in\% names(errors))
+  expect_true(is.factor(errors$tree_prior))
+  expect_true("birth_death" \%in\% errors$tree_prior ||
+    "yule" \%in\% errors$tree_prior
+  )
+
+  expect_true("error_1" \%in\% names(errors))
+  expect_true(!is.factor(errors$error_1))
+
+  # Errors more than zero
+  col_first_error <- which(colnames(errors) == "error_1")
+  col_last_error <- ncol(errors)
+  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  n_errors <- col_last_error - col_first_error + 1
+  expect_true(n_errors < 11) # due to burn-in
+}
+\seealso{
+Use \link{pir_plot} to display the output of \link{pir_run} as a
+  figure.
+  Use \link{create_test_pir_run_output} to create a test output
+  of \link{pir_run}
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek, Giovanni Laudanno
 }

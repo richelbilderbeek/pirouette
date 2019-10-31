@@ -2,35 +2,96 @@
 % Please edit documentation in R/create_alignment_params.R
 \name{create_alignment_params}
 \alias{create_alignment_params}
-\title{Create the parameters for the alignment simulation}
+\title{Create the parameters for the alignment simulation.}
 \usage{
-create_alignment_params(root_sequence, mutation_rate, rng_seed = 0)
+
+  create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
+  sim_true_alignment_function = pirouette::get_default_sim_true_alignment_function(),
+  mutation_rate = pirouette::create_standard_mutation_rate,
+  site_model = beautier::create_jc69_site_model(),
+  clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
+  fasta_filename = tempfile(pattern = "alignment_", tmpdir =
+  rappdirs::user_cache_dir(), fileext = ".fasta"))
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of only adenine}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{site_model}{a nucleotide substitution model,
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
+
+\item{clock_model}{a clock model,
+as created by \link[beautier]{create_clock_model}}
 
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}
+
+\item{fasta_filename}{name of a FASTA file}
 }
 \value{
 a list of alignment parameters
 }
 \description{
-Create the parameters for the alignment simulation
+These parameters are used in the \link{create_pir_params} function
 }
 \examples{
+library(testthat)
+
+# DNA sequence at the root
 n_base_pairs <- 4
+root_sequence <- create_blocked_dna(length = n_base_pairs)
+expect_equal("acgt", root_sequence)
+
+# Only specify root sequence and mutation rate, use defaults
 alignment_params <- create_alignment_params(
-   root_sequence = create_blocked_dna(length = n_base_pairs),
-   mutation_rate = 0.1
- )
- testit::assert("root_sequence" \%in\% names(alignment_params))
- testit::assert("mutation_rate" \%in\% names(alignment_params))
- testit::assert("rng_seed" \%in\% names(alignment_params))
+  root_sequence = root_sequence,
+  mutation_rate = 0.1
+)
+
+expect_true("root_sequence" \%in\% names(alignment_params))
+expect_true("mutation_rate" \%in\% names(alignment_params))
+
+# Use defaults explicitly
+alignment_params <- create_alignment_params(
+  root_sequence = root_sequence,
+  mutation_rate = 0.1,
+  site_model = create_jc69_site_model(),
+  clock_model = create_strict_clock_model(),
+  rng_seed = 0
+)
+
+expect_true("site_model" \%in\% names(alignment_params))
+expect_true("clock_model" \%in\% names(alignment_params))
+expect_true("rng_seed" \%in\% names(alignment_params))
+
+# Create a pirouette parameter set
+pir_params <- create_test_pir_params(alignment_params = alignment_params)
+
+# Run pirouette
+if (is_on_travis() && is_beast2_installed()) {
+  pir_out <- pir_run(
+    phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+    pir_params = pir_params
+  )
+  pir_plot(pir_out)
+}
 }
 \author{
-Richel J.C. Bilderbeek
+Richèl J.C. Bilderbeek
 }
