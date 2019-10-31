@@ -27,8 +27,14 @@ the Tidyverse to get that functionality.
 library(pryr)
 ```
 
+## The problems
 
-## The problem: create a twin tree
+ 1. Create a twin tree
+ 2. Create a true alignment
+ 3. Create a twin alignment
+
+
+## 1. create a twin tree
 
 We start from a simple true tree:
 
@@ -142,8 +148,9 @@ ape::plot.phylo(twin_tree)
 Using partial function evaluation you can now plug in any function to create
 a twin tree.
 
+## 2. create a true alignment
 
-## The problem: create a twin alignment
+## 3. create a twin alignment
 
 To create a twin alignment, a function with more arguments is needed,
 because we need a twin tree and a true alignent.

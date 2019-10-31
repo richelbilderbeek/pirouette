@@ -1,13 +1,15 @@
 test_that("this adapater function is a sim_twin_alignment function", {
 
+  skip("WIP")
   check_sim_twin_alignment_function(
-    create_twin_alignment_with_standard_site_model
+    sim_twin_alignment_with_same_n_mutation
   )
 })
 
 test_that("can simulate an alignmnet", {
 
-  alignment <- create_twin_alignment_with_standard_site_model(
+  skip("WIP")
+  alignment <- sim_twin_alignment_with_same_n_mutation(
     twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
     root_sequence = "aaaa",
     mutation_rate = 0.1

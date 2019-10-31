@@ -25,13 +25,14 @@
 #' )
 #' expect_silent(check_alignment(alignment))
 #' @export
-create_twin_alignment_with_standard_site_model <- function(
+sim_twin_alignment_with_same_n_mutation <- function(
   twin_phylogeny,
-  true_alignment = "irrelevant",
-  root_sequence = "acgt",
-  mutation_rate = 0.1,
+  true_alignment,
+  root_sequence,
+  mutation_rate,
   site_model = beautier::create_jc69_site_model()
 ) {
+  stop("NOT YET")
   alignment <- create_alignment_with_standard_site_model_raw(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
