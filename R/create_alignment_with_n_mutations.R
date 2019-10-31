@@ -82,7 +82,6 @@ create_alignment_with_n_mutations <- function(
     alignment_dnabin <- create_alignment(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
-      n_mutations = NA,
       verbose = verbose
     )
     # if (beautier::is_site_model(alignment_params$site_model)) {

@@ -4,8 +4,7 @@
 \alias{create_alignment}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-create_alignment(phylogeny, alignment_params, n_mutations = NA,
-  verbose = FALSE)
+create_alignment(phylogeny, alignment_params, verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -13,11 +12,11 @@ create_alignment(phylogeny, alignment_params, n_mutations = NA,
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 
+\item{verbose}{if TRUE, show more output}
+
 \item{n_mutations}{the number of different base pairs between
 root sequence and the resulting alignment. Set to \link{NA} if
 any number of mutations is fine.}
-
-\item{verbose}{if TRUE, show more output}
 }
 \value{
 an alignment of type \code{DNAbin}
