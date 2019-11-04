@@ -70,13 +70,13 @@ create_alignment <- function(
   } else if (alignment_params$site_model == "linked_node_sub") {
     alignment <- sim_true_alignment_with_linked_node_sub_site_model(
       true_phylogeny = phylogeny,
-      alignment_params = alignment_params
+      root_sequence = alignment_params$root_sequence
     )
   } else {
     testit::assert(alignment_params$site_model == "unlinked_node_sub")
     alignment <- sim_true_alignment_with_unlinked_node_sub_site_model(
       true_phylogeny = phylogeny,
-      alignment_params = alignment_params
+      root_sequence = alignment_params$root_sequence
     )
   }
   pirouette::check_alignment(alignment)

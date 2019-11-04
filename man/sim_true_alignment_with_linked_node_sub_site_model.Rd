@@ -6,7 +6,7 @@
 \title{Create an alignment with the \code{linked_node_sub} site model}
 \usage{
 sim_true_alignment_with_linked_node_sub_site_model(true_phylogeny,
-  alignment_params)
+  root_sequence, site_model = "linked_node_sub")
 }
 \value{
 an alignment of type \code{DNAbin}

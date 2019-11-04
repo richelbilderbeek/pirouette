@@ -8,16 +8,17 @@
 #' @export
 sim_true_alignment_with_unlinked_node_sub_site_model <- function(
   true_phylogeny,
-  alignment_params
+  root_sequence,
+  site_model = "unlinked_node_sub"
 ) {
   beautier::check_phylogeny(true_phylogeny)
-  pirouette::check_alignment_params(alignment_params)
+  pirouette::check_root_sequence(root_sequence)
   pirouette::check_reconstructed_phylogeny(true_phylogeny)
-  testit::assert(alignment_params$site_model == "unlinked_node_sub")
+  testit::assert(site_model == "unlinked_node_sub")
   alignment_phydat <- nodeSub::sim_dual_independent(
     true_phylogeny,
-    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-    l = nchar(alignment_params$root_sequence)
+    rootseq = strsplit(root_sequence, split = "")[[1]],
+    l = nchar(root_sequence)
   )$alignment
 
   testthat::expect_equal(class(alignment_phydat), "phyDat")
