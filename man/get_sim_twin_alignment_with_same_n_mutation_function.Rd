@@ -23,11 +23,13 @@ and \code{true_alignment}.
 \examples{
 library(testthat)
 
+if (1 == 2) {
 expect_silent(
   check_sim_twin_alignment_function(
     get_sim_twin_alignment_with_same_n_mutation_function
   )
 )
+}
 }
 \seealso{
 Use \link{get_sim_twin_alignment_with_standard_site_model_function} to

@@ -17,11 +17,13 @@
 #' @examples
 #' library(testthat)
 #'
+#' if (1 == 2) {
 #' expect_silent(
 #'   check_sim_twin_alignment_function(
 #'     get_sim_twin_alignment_with_same_n_mutation_function
 #'   )
 #' )
+#' }
 #' @export
 get_sim_twin_alignment_with_same_n_mutation_function <- function() {
   sim_twin_alignment_with_same_n_mutation
