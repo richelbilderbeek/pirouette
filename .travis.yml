@@ -35,6 +35,7 @@ r_github_packages:
   - ropensci/babette@develop
   - richelbilderbeek/mcbette@develop
   - richelbilderbeek/nLTT
+  - rsetienne/DDD
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
   - thijsjanzen/nodeSub
