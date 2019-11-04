@@ -529,12 +529,12 @@ Some standard functions:\cr
     mutations compared to the root sequence as the true alignment has
   \item Use \link{get_sim_twin_alignment_with_linked_node_sub_site_model}
     to get a function
-    (\link{create_alignment_with_linked_node_sub_site_model})
+    (\link{sim_twin_alignment_with_linked_node_sub_site_model})
     that simulates a twin alignment with the linked node substitution
     model.
   \item Use \link{get_sim_twin_alignment_with_unlinked_node_sub_site_model}
     to get a function
-    (\link{create_alignment_with_unlinked_node_sub_site_model})
+    (\link{sim_twin_alignment_with_unlinked_node_sub_site_model})
     that simulates a twin alignment with the unlinked node substitution
     model.
 }}

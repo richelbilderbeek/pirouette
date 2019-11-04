@@ -46,7 +46,7 @@ expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 Use \link{create_alignment_file} to save the simulated alignment
   directly to a file
 
-Use \link{create_alignment_with_n_mutations} to
+Use \link{sim_alignment_with_n_mutations} to
 simulate an alignmnet with a certain number of mutations
 }
 \author{

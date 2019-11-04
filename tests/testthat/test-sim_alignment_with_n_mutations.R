@@ -3,7 +3,7 @@ test_that("minimal use", {
   # Beware: the 'n_mutations = 9' is due to the RNG always ending up
   # at 9 mutations.
   expect_silent(
-    create_alignment_with_n_mutations(
+    sim_alignment_with_n_mutations(
       phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
       alignment_params = create_test_alignment_params(),
       n_mutations = 9
@@ -17,7 +17,7 @@ test_that("input is checked", {
   n_mutations <- 9
 
   expect_error(
-    create_alignment_with_n_mutations(
+    sim_alignment_with_n_mutations(
       phylogeny = "nonsense",
       alignment_params = alignment_params,
       n_mutations = n_mutations
@@ -25,7 +25,7 @@ test_that("input is checked", {
     "phylogeny.*phylogeny"
   )
   expect_error(
-    create_alignment_with_n_mutations(
+    sim_alignment_with_n_mutations(
       phylogeny = phylogeny,
       alignment_params = "nonsense",
       n_mutations = n_mutations
@@ -33,7 +33,7 @@ test_that("input is checked", {
     "alignment_params.*alignment_params"
   )
   expect_error(
-    create_alignment_with_n_mutations(
+    sim_alignment_with_n_mutations(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       n_mutations = "nonsense"
@@ -41,7 +41,7 @@ test_that("input is checked", {
     "beautier::is_one_int.n_mutations. is not TRUE"
   )
   expect_error(
-    create_alignment_with_n_mutations(
+    sim_alignment_with_n_mutations(
       phylogeny = phylogeny,
       alignment_params = alignment_params,
       n_mutations = 1e123,
@@ -58,7 +58,7 @@ test_that("use linked_node_sub", {
   )
   # Beware: the 'n_mutations = 2' is due to the RNG always ending up
   # at 2 mutations.
-  alignment <- create_alignment_with_n_mutations(
+  alignment <- sim_alignment_with_n_mutations(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     n_mutations = 2,
@@ -75,7 +75,7 @@ test_that("use unlinked_node_sub", {
   )
   # Beware: the 'n_mutations = 9' is due to the RNG always ending up
   # at 9 mutations.
-  alignment <- create_alignment_with_n_mutations(
+  alignment <- sim_alignment_with_n_mutations(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
     n_mutations = 9

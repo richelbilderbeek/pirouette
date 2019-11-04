@@ -2,7 +2,7 @@ test_that("minimal use", {
 
   expect_silent(
     sim_true_alignment(
-      phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
+      true_phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
       alignment_params = create_alignment_params()
     )
   )
@@ -14,13 +14,13 @@ test_that("inout is checked", {
 
   expect_error(
     sim_true_alignment(
-      phylogeny = "nonsense",
+      true_phylogeny = "nonsense",
       alignment_params = alignment_params
     )
   )
   expect_error(
     sim_true_alignment(
-      phylogeny = phylogeny,
+      true_phylogeny = phylogeny,
       alignment_params = "nonsense"
     )
   )
@@ -32,7 +32,7 @@ test_that("use linked_node_sub", {
     site_model = "linked_node_sub"
   )
   alignment <- sim_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params,
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
@@ -47,7 +47,7 @@ test_that("use unlinked_node_sub", {
     site_model = "unlinked_node_sub"
   )
   alignment <- sim_true_alignment(
-    phylogeny = phylogeny,
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params,
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))

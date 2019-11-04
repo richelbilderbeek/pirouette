@@ -4,8 +4,8 @@ test_that("number of nucleotides must match", {
     site_model = "unlinked_node_sub",
     root_sequence = "acgt"
   )
-  alignment <- create_alignment_with_unlinked_node_sub_site_model(
-    phylogeny = phylogeny,
+  alignment <- sim_true_alignment_with_unlinked_node_sub_site_model(
+    true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))

@@ -33,7 +33,7 @@
 #' @seealso Use \link{create_alignment} to create an alignment with
 #' any number of mutations
 #' @export
-create_alignment_with_n_mutations <- function(
+sim_alignment_with_n_mutations <- function(
   phylogeny,
   alignment_params,
   n_mutations,
