@@ -19,7 +19,9 @@ has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item to do
+  \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
+  to get a function (\link{sim_true_alignment_with_standard_site_model})
+  the use a standard site model.
 }}
 }
 \description{

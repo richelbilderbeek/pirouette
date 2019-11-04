@@ -17,8 +17,9 @@ check_sim_true_alignment_function <- function(sim_true_alignment_function) {
         true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"))
     }, condition = function(c) {
       stop(
-        "'sim_true_alignment_function' must be a function ",
-        "with one argument called 'true_phylogeny'"
+        "Error when using 'sim_true_alignment_function' on an example ",
+        "phylogeny. \n",
+        "Error message: ", c$message
       )
     }
   )

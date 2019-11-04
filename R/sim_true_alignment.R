@@ -26,17 +26,17 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 sim_true_alignment <- function(
-  phylogeny,
+  true_phylogeny,
   alignment_params = create_alignment_params(),
   verbose = FALSE
 ) {
-  beautier::check_phylogeny(phylogeny)
+  beautier::check_phylogeny(true_phylogeny)
   pirouette::check_alignment_params(alignment_params)
-  pirouette::check_reconstructed_phylogeny(phylogeny)
+  pirouette::check_reconstructed_phylogeny(true_phylogeny)
   testit::assert(beautier::is_one_bool(verbose))
 
   set.seed(alignment_params$rng_seed)
-  alignment <- alignment_params$sim_true_alignment_function(phylogeny)
+  alignment <- alignment_params$sim_true_alignment_function(true_phylogeny)
   check_alignment(alignment)
   alignment
 }

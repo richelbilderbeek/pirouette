@@ -261,6 +261,26 @@ true_alignment <- pirouette::sim_true_alignment(
 ape::image.DNAbin(true_alignment)
 ```
 
+Instead of doing the partial function evaluation yourself, `pirouette`
+supplies this function as `get_sim_true_alignment_with_standard_site_model_function`:
+
+```{r}
+alignment_params <- create_alignment_params(
+  sim_true_alignment_function = 
+    get_sim_true_alignment_with_standard_site_model_function(
+    root_sequence = "aaaaaaaa", 
+    mutation_rate = 0.5,                     
+    site_model = beautier::create_hky_site_model()
+  )
+)
+true_alignment <- pirouette::sim_true_alignment(
+  phylogeny = true_tree,
+  alignment_params = alignment_params
+)
+ape::image.DNAbin(true_alignment)
+```
+
+
 Using partial function evaluation you can now plug in any function to create
 a true alignment.
 
