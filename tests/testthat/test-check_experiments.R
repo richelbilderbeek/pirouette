@@ -15,6 +15,8 @@ test_that("each element in the list must be a proper experiment", {
 
 test_that("must have same MCMC chain length", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiment_1 <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
       tree_prior = beautier::create_bd_tree_prior()
