@@ -23,7 +23,7 @@ create_sim_yule_twin_tree_function <- function(
   method = "random_tree",
   n_replicates = 1e4
 ) {
-  functional::Curry(
+  pryr::partial(
     twin_to_yule_tree,
     seed = seed,
     method = method,

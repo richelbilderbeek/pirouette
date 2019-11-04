@@ -29,7 +29,6 @@ Imports:
     beastier (>= 2.0.25),
     DDD,
     dplyr,
-    functional,
     geiger,
     magrittr,
     mauricer,
@@ -38,6 +37,7 @@ Imports:
     phangorn,
     phytools,
     plyr,
+    pryr,
     rappdirs,
     Rmpfr,
     stringr,
@@ -54,7 +54,6 @@ Suggests:
     lintr,
     nLTT,
     PBD,
-    pryr,
     rmarkdown,
     testthat (>= 2.1.0)
 SystemRequirements: BEAST2 (http://www.beast2.org/)

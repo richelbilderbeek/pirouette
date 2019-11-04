@@ -8,22 +8,25 @@ vignette: >
 ---
 
 ```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+# knitr::opts_chunk$set(
+#   collapse = TRUE,
+#   comment = "#>"
+# )
+# Include this library ahead of time, as it gives
+# messages upon lazy loading
+library(geiger)
 ```
 
 This vignette describes partial function evaluation used in `pirouette`.
 
-```{r}
+```{r, message = FALSE}
 library(pirouette)
 ```
 
 We'll use `pryr` (from
 the Tidyverse to get that functionality.
 
-```{r}
+```{r, message = FALSE}
 library(pryr)
 ```
 
