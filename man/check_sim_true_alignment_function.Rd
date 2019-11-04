@@ -7,6 +7,21 @@ true phylogeny) is valid.}
 \usage{
 check_sim_true_alignment_function(sim_true_alignment_function)
 }
+\arguments{
+\item{sim_true_alignment_function}{function to simulate a
+true alignment with.
+This function must have one argument called \code{true_phylogeny} (which
+will hold the true phylogeny). The
+return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_true_alignment_function} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item to do
+}}
+}
 \description{
 Will \link{stop} if not
 }

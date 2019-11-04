@@ -484,6 +484,20 @@ models. This weight will be between 0.0 (there is no evidence for
 this model) to 1.0 (all evidence indicates this is the best model).
 A weight of NA denotes that the weight is not measured}
 
+\item{sim_true_alignment_function}{function to simulate a
+true alignment with.
+This function must have one argument called \code{true_phylogeny} (which
+will hold the true phylogeny). The
+return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_true_alignment_function} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item to do
+}}
+
 \item{sim_twin_alignment_function}{function to simulate a
 twin alignment with.
 This function must have two arguments called \code{twin_phylogeny} (which

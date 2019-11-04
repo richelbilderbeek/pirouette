@@ -251,6 +251,19 @@
 #' }
 #' @param sim_pars something
 #' @param sim_phylo something
+#' @param sim_true_alignment_function function to simulate a
+#' true alignment with.
+#' This function must have one argument called \code{true_phylogeny} (which
+#' will hold the true phylogeny). The
+#' return type must be \link[ape]{DNAbin}.
+#'
+#' Use \link{check_sim_true_alignment_function} to verify if the function
+#' has the right signature and output.
+#'
+#' Some standard functions:\cr
+#' \itemize{
+#'   \item to do
+#' }
 #' @param sim_twin_alignment_function function to simulate a
 #' twin alignment with.
 #' This function must have two arguments called \code{twin_phylogeny} (which

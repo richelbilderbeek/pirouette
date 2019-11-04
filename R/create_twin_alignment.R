@@ -8,6 +8,8 @@
 #' it will take long to get a twin alignment with exactly the same
 #' number of mutations.
 #' @inheritParams default_params_doc
+#' @param newskool set to TRUE for the newschool functions. Will
+#' be removed after a while.
 #' @return an alignment of class DNAbin that has as much
 #'   mutations accumulated from crown to the tips as the
 #'   original, 'true' alignment

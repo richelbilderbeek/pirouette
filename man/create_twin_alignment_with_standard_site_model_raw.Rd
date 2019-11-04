@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_alignment.R
 \name{create_twin_alignment_with_standard_site_model_raw}
 \alias{create_twin_alignment_with_standard_site_model_raw}
-\title{Create an alignment with a standard site model using a raw interface}
+\title{Adapter function to create an alignment with a standard site model}
 \usage{
 create_twin_alignment_with_standard_site_model_raw(twin_phylogeny,
   true_alignment, root_sequence, mutation_rate, site_model)
@@ -38,5 +38,5 @@ which can be:
 an alignment of type \code{DNAbin}
 }
 \description{
-Create an alignment with a standard site model using a raw interface
+Adapter function to create an alignment with a standard site model
 }

@@ -20,6 +20,9 @@ or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 
 \item{verbose}{if TRUE, show more output}
+
+\item{newskool}{set to TRUE for the newschool functions. Will
+be removed after a while.}
 }
 \value{
 an alignment of class DNAbin that has as much

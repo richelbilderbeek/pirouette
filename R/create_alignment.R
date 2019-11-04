@@ -4,9 +4,6 @@
 #' the true (see \link{create_true_alignment})
 #' and twin alignment (see \link{create_twin_alignment}).
 #' @inheritParams default_params_doc
-#' @param n_mutations the number of different base pairs between
-#' root sequence and the resulting alignment. Set to \link{NA} if
-#' any number of mutations is fine.
 #' @return an alignment of type \code{DNAbin}
 #' @seealso Use \link{create_alignment_file} to save the simulated alignment
 #'   directly to a file
@@ -112,7 +109,7 @@ create_alignment_with_standard_site_model <- function(
 }
 
 
-#' Create an alignment with a standard site model using a raw interface
+#' Adapter function to create an alignment with a standard site model
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @export
@@ -124,7 +121,7 @@ create_twin_alignment_with_standard_site_model_raw <- function(
   site_model
 ) {
   create_alignment_with_standard_site_model_raw(
-    phylogeny = phylogeny,
+    phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model

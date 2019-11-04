@@ -13,10 +13,6 @@ create_alignment(phylogeny, alignment_params, verbose = FALSE)
 as can be created by \link{create_alignment_params}}
 
 \item{verbose}{if TRUE, show more output}
-
-\item{n_mutations}{the number of different base pairs between
-root sequence and the resulting alignment. Set to \link{NA} if
-any number of mutations is fine.}
 }
 \value{
 an alignment of type \code{DNAbin}
