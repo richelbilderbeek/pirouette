@@ -24,7 +24,7 @@ create_sim_bd_twin_tree_function <- function(
   n_replicates = 1e4
 ) {
   pryr::partial(
-    twin_to_bd_tree,
+    sim_bd_twin_tree,
     seed = seed,
     method = method,
     n_replicates = n_replicates

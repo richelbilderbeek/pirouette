@@ -1,5 +1,4 @@
-#' Create an BD twin tree from a phylogeny
-#' and save it as a file
+#' Simulate a Birth-Death (BD) twin tree from the true phylogeny
 #' @inheritParams default_params_doc
 #' @return a twin BD tree of class \link[ape]{phylo},
 #'   obtained from the corresponding phylogeny.
@@ -9,7 +8,7 @@
 #'
 #' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #' twinning_params <- create_twinning_params()
-#' bd_tree <- twin_to_bd_tree(phylogeny)
+#' bd_tree <- sim_bd_twin_tree(phylogeny)
 #'
 #' expect_equal(class(bd_tree), "phylo")
 #'
@@ -27,7 +26,7 @@
 #'   max(ape::branching.times(phylogeny))
 #' )
 #' @export
-twin_to_bd_tree <- function(
+sim_bd_twin_tree <- function(
   true_phylogeny,
   seed = 0,
   method = "random_tree",

@@ -94,15 +94,20 @@ Here is an example that creates a twin tree by simulation
 a random coalescent tree with the same number of tips:
 
 ```{r}
+# Define my function
+my_function = function(true_phylogeny) {
+  ape::rcoal(n = ape::Ntip(true_phylogeny))
+}
+# Put my function in the twinning_params
 twinning_params <- create_twinning_params(
-  sim_twin_tree_function = function(true_phylogeny) {
-    ape::rcoal(n = ape::Ntip(true_phylogeny))
-  }
+  sim_twin_tree_function = my_function
 )
+# Create a twin tree using my function
 twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
+# Show the twin tree created by my function
 ape::plot.phylo(twin_tree)
 ```
 
@@ -111,11 +116,11 @@ be a function that takes *one* argument, which is the true phylogeny. What
 if we want a function that indeed has one argument for the true phylogeny,
 but also some additional ones?
 
-An example is `twin_to_bd_tree`, which uses a seed, 
+An example is `sim_bd_twin_tree`, which uses a seed, 
 a method and a number of replicates:
 
 ```{r}
-head(twin_to_bd_tree)
+head(sim_bd_twin_tree)
 ```
 
 We cannot simply plug it in:
@@ -123,7 +128,7 @@ We cannot simply plug it in:
 ```{r}
 tryCatch(
   create_twinning_params(
-    sim_twin_tree_function = twin_to_bd_tree
+    sim_twin_tree_function = sim_bd_twin_tree
   ),
   error = function(e) {
     cat(e$message)
@@ -135,18 +140,23 @@ Instead, we'll need partial function evaluation, which will create a function wi
 ellipsis (`...`) argument that will fill in the values you specified: 
 
 ```{r}
-sim_twin_tree_function <- pryr::partial(twin_to_bd_tree, seed = 314, method = "random_tree", n_replicates = 1)
-head(sim_twin_tree_function)
-```
-
-```{r}
+# Create my partially evaluated function
+sim_twin_tree_function <- pryr::partial(
+  sim_bd_twin_tree, 
+  seed = 314, 
+  method = "random_tree", 
+  n_replicates = 1
+)
+# Create twinning_params with my function 
 twinning_params <- create_twinning_params(
   sim_twin_tree_function = sim_twin_tree_function
 )
+# Create a twin tree using my function
 twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
+# Show the twin tree
 ape::plot.phylo(twin_tree)
 ```
 
