@@ -61,7 +61,7 @@ test_that("use linked_node_sub", {
   alignment <- sim_alignment_with_n_mutations(
     phylogeny = phylogeny,
     alignment_params = alignment_params,
-    n_mutations = 2,
+    n_mutations = 12,
     verbose  = TRUE
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
