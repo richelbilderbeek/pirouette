@@ -304,6 +304,9 @@ Or to use the unlinked node substitution model, use
 alignment_params <- create_alignment_params(
   sim_true_alignment_function = 
     get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
+    branch_mutation_rate = 1.0,
+    node_mutation_rate = 2.0,
+    node_time = 0.1,
     root_sequence = "aaaaaaaa"
   )
 )

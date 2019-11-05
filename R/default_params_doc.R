@@ -67,6 +67,10 @@
 #'   Use \link[beastier]{get_default_beast2_bin_path} for the default
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
+#' @param branch_mutation_rate mutation rate along the branch.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
+#' @param branch_subst_matrix substitution matrix along the branches.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
 #' @param brts numeric vector of (all postive) branching times,
 #'   in time units before the present. Assuming no stem, the heighest
 #'   value equals the crown age.
@@ -185,6 +189,12 @@
 #' @param n_taxa number of tree tips
 #' @param n_replicates number of replicas to evaluate in order to create the
 #'   twin tree
+#' @param node_mutation_rate mutation rate on the node.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
+#' @param node_subst_matrix substitution matrix on the nodes.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
+#' @param node_time amount of time spent at the nodes.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
 #'  present in the simulated tree
@@ -408,6 +418,8 @@ default_params_doc <- function(
   beast2_output_trees_filenames,
   beast2_path,
   beast2_rng_seed,
+  branch_mutation_rate,
+  branch_subst_matrix,
   brts,
   burn_in_fraction,
   chain_length,
@@ -453,6 +465,9 @@ default_params_doc <- function(
   n_mutations,
   n_taxa,
   n_replicates,
+  node_mutation_rate,
+  node_subst_matrix,
+  node_time,
   nu,
   nu_events,
   parameter_filename,

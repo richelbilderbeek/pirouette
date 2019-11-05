@@ -11,28 +11,29 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_options_inference, beast2_options_est_evidence,
   beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
-  beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
-  clock_models, clock_model_name, consensus, crown_age,
-  do_measure_evidence, epsilon, error_function, error_measure_params,
-  errors, errors_filename, est_evidence_mcmc, evidence_epsilon,
-  evidence_filename, exclude_model, experiment, experiments,
-  fasta_filename, filename, folder_name, ideal_method, inference_model,
-  inference_conditions, init_speciation_rate, init_extinction_rate, lambda,
-  log_evidence, marg_lik_filename, marg_liks, max_evidence_epsilon,
-  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, method, model_selection,
-  model_type, mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa,
-  n_replicates, nu, nu_events, parameter_filename, parameters_filename,
-  phylo, phylogeny, pir_params, pir_out, posterior_trees, precision,
-  project_folder_name, result, rng_seed, rng_seed_twin_alignment,
-  rng_seed_twin_tree, root_sequence, run_experiment, run_experiments,
-  run_if, sample_interval, seed, sequence_length, sim_alignment_function,
-  sim_pars, sim_phylo, sim_twin_tree_function, site_model, site_models,
-  site_model_name, sub_chain_length, sum_lamu, t_0, tree, tree_filename,
-  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
-  true_alignment, true_phylogeny, true_result, twin_alignment,
-  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
-  twin_model, twin_result, twin_tree_filename, twinning_params, type,
-  verbose, weight)
+  beast2_rng_seed, branch_mutation_rate, branch_subst_matrix, brts,
+  burn_in_fraction, chain_length, clock_model, clock_models,
+  clock_model_name, consensus, crown_age, do_measure_evidence, epsilon,
+  error_function, error_measure_params, errors, errors_filename,
+  est_evidence_mcmc, evidence_epsilon, evidence_filename, exclude_model,
+  experiment, experiments, fasta_filename, filename, folder_name,
+  ideal_method, inference_model, inference_conditions,
+  init_speciation_rate, init_extinction_rate, lambda, log_evidence,
+  marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
+  mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
+  mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa, n_replicates,
+  node_mutation_rate, node_subst_matrix, node_time, nu, nu_events,
+  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
+  pir_out, posterior_trees, precision, project_folder_name, result,
+  rng_seed, rng_seed_twin_alignment, rng_seed_twin_tree, root_sequence,
+  run_experiment, run_experiments, run_if, sample_interval, seed,
+  sequence_length, sim_alignment_function, sim_pars, sim_phylo,
+  sim_twin_tree_function, site_model, site_models, site_model_name,
+  sub_chain_length, sum_lamu, t_0, tree, tree_filename, tree_model,
+  tree_prior, tree_priors, tree_prior_name, tree_type, true_alignment,
+  true_phylogeny, true_result, twin_alignment, twin_alignment_filename,
+  twin_evidence_filename, twin_phylogeny, twin_model, twin_result,
+  twin_tree_filename, twinning_params, type, verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -119,6 +120,12 @@ Use \link[beastier]{get_default_beast2_bin_path} for the default
 BEAST2 binary file path.}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
+
+\item{branch_mutation_rate}{mutation rate along the branch.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
+\item{branch_subst_matrix}{substitution matrix along the branches.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 
 \item{brts}{numeric vector of (all postive) branching times,
 in time units before the present. Assuming no stem, the heighest
@@ -284,6 +291,15 @@ Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
+
+\item{node_mutation_rate}{mutation rate on the node.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
+\item{node_subst_matrix}{substitution matrix on the nodes.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
+\item{node_time}{amount of time spent at the nodes.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
 
