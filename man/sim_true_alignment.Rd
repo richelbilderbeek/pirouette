@@ -26,14 +26,14 @@ library(testthat)
 
 # Create the phylogeny to simulate the alignment on
 n_taxa <- 5
-phylogeny <- ape::rcoal(n_taxa)
+true_phylogeny <- ape::rcoal(n_taxa)
 
 # Use default settings to create the alignment
 alignment_params <- create_alignment_params()
 
 # Simulate the alignment
 alignment <- sim_true_alignment(
-   phylogeny = phylogeny,
+   true_phylogeny = true_phylogeny,
    alignment_params = alignment_params,
  )
 
