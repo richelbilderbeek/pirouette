@@ -415,10 +415,11 @@ ape::plot.phylo(twin_phylogeny, main = "Twin phylogeny")
 As a true alignment, we'll use something simple:
 
 ```{r}
+root_sequence <- "acgt"
 x <- list()
-x[[1]] <- rep("c", 4)
-x[[2]] <- rep("g", 4)
-x[[3]] <- rep("t", 4)
+x[[1]] <- rep("c", nchar(root_sequence))
+x[[2]] <- rep("g", nchar(root_sequence))
+x[[3]] <- rep("t", nchar(root_sequence))
 names(x) <- c("A", "B", "C")
 true_alignment <- ape::as.DNAbin(x)
 ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
