@@ -403,8 +403,13 @@ a true alignment.
 
 ## 3. create a twin alignment
 
-To create a twin alignment, we first need a twin tree and a true alignent to 
-work on.
+To create a twin alignment, we need 
+ * a twin tree
+ * a true alignent
+ * a root sequence
+
+Note that some of these three elements may be ignored, but
+is some cases you will need all three.
 
 As the twin tree, we'll use this:
 
@@ -412,10 +417,16 @@ As the twin tree, we'll use this:
 twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 ape::plot.phylo(twin_phylogeny, main = "Twin phylogeny")
 ```
-As a true alignment, we'll use something simple:
+
+The root sequence is short and simple:
 
 ```{r}
-root_sequence <- "acgt"
+root_sequence <- "aaccggtt"
+```
+
+As a true alignment, we'll use something equally simple:
+
+```{r}
 x <- list()
 x[[1]] <- rep("c", nchar(root_sequence))
 x[[2]] <- rep("g", nchar(root_sequence))
@@ -425,6 +436,12 @@ true_alignment <- ape::as.DNAbin(x)
 ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 testit::assert(get_alignment_n_taxa(true_alignment) == 3)
 ```
+
+I will show multiple ways to create a twin alignment here:
+
+ * 3.1. Copy the true alignment
+ * 3.2. Simulate an alignment based on the twin tree
+ * 3.3. Simulate an alignment based on the twin tree, true alignment and root sequence
 
 Creating a twin alignment:
 
@@ -453,7 +470,11 @@ ape::image.DNAbin(twin_alignment)
 Now we'll create our function we'll plug in:
 
 ```{r}
-create_rnd_alignment <- function(twin_phylogeny, true_alignment) {
+create_rnd_alignment <- function(
+  twin_phylogeny, 
+  true_alignment,
+  root_sequence = "irrelvant"
+) {
   n_taxa <- ape::Ntip(twin_phylogeny)
   n_nucleotides <- pirouette::get_alignment_sequence_length(true_alignment)
   x <- list()
