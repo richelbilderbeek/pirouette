@@ -18,3 +18,11 @@ Use \link{check_root_sequence} to check if a root sequence is valid.}
 Create a function to simulate a true alignment with an unlinked
 node substitution site model
 }
+\examples{
+f <- get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
+  root_sequence = "acgt"
+)
+check_sim_true_alignment_function(f)
+phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+true_alignment <- f(true_phylogeny = phylogeny)
+}

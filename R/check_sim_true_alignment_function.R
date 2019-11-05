@@ -15,17 +15,19 @@ check_sim_true_alignment_function <- function(sim_true_alignment_function) {
   tryCatch({
       out <- sim_true_alignment_function(
         true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"))
-    }, condition = function(c) {
+    }, error = function(e) {
       stop(
         "Error when using 'sim_true_alignment_function' on an example ",
         "phylogeny. \n",
-        "Error message: ", c$message
+        "Error message: ", e$message
       )
     }
   )
   if (class(out) != "DNAbin") {
     stop(
-      "'sim_true_alignment_function' must be a function that returns an ape::DNAbin"
+      "'sim_true_alignment_function' must be a function that returns",
+      " an ape::DNAbin. \n",
+      "Actual class returned: ", class(out)
     )
   }
 

@@ -1,5 +1,5 @@
 test_that("example", {
-  f <- get_sim_true_alignment_with_linked_node_sub_site_model_function(
+  f <- get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
     root_sequence = "acgt"
   )
   check_sim_true_alignment_function(f)
@@ -10,7 +10,7 @@ test_that("example", {
 test_that("is valid function", {
   expect_silent(
     check_sim_true_alignment_function(
-      get_sim_true_alignment_with_linked_node_sub_site_model_function(
+      get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
         root_sequence = "acgt"
       )
     )
@@ -20,7 +20,7 @@ test_that("is valid function", {
 test_that("usage", {
   alignment_params <- create_alignment_params(
     sim_true_alignment_function =
-      get_sim_true_alignment_with_linked_node_sub_site_model_function(
+      get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
       root_sequence = "aaaaaaaa"
     )
   )

@@ -170,14 +170,14 @@ true_alignment <- sim_true_alignment(true_phylogeny)
 ape::image.DNAbin(true_alignment)
 ```
 
-The `create_true_alignment`, however, creates the true alignment in the way specified
+The `sim_true_alignment`, however, creates the true alignment in the way specified
 in its other function argument: the `alignment_params`.
 
 ```{r}
 alignment_params <- create_alignment_params()
 ```
 
-Calling `create_true_alignment` results in the same true alignment:
+Calling `sim_true_alignment` results in the same true alignment:
 
 ```{r}
 true_alignment <- sim_true_alignment(
@@ -280,8 +280,45 @@ true_alignment <- sim_true_alignment(
 ape::image.DNAbin(true_alignment)
 ```
 
+Or to use the linked node substitution model, use
+`get_sim_true_alignment_with_linked_node_sub_site_model_function`:
+
+```{r}
+alignment_params <- create_alignment_params(
+  sim_true_alignment_function = 
+    get_sim_true_alignment_with_linked_node_sub_site_model_function(
+    root_sequence = "aaaaaaaa"
+  )
+)
+true_alignment <- sim_true_alignment(
+  true_phylogeny = true_phylogeny,
+  alignment_params = alignment_params
+)
+ape::image.DNAbin(true_alignment)
+```
+
+Or to use the unlinked node substitution model, use
+`get_sim_true_alignment_with_unlinked_node_sub_site_model_function`:
+
+```{r}
+alignment_params <- create_alignment_params(
+  sim_true_alignment_function = 
+    get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
+    root_sequence = "aaaaaaaa"
+  )
+)
+true_alignment <- sim_true_alignment(
+  true_phylogeny = true_phylogeny,
+  alignment_params = alignment_params
+)
+ape::image.DNAbin(true_alignment)
+```
+
+
 Using partial function evaluation you can now plug in any function to create
 a true alignment.
+
+
 
 ## 3. create a twin alignment
 
