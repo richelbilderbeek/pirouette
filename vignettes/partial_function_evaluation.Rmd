@@ -80,7 +80,7 @@ the `twinning_params$sim_twin_tree_function`:
 twinning_params <- create_twinning_params(
   sim_twin_tree_function = create_sim_bd_twin_tree_function()
 )
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
