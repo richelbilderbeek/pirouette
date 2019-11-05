@@ -160,8 +160,68 @@ twin_tree <- pirouette::create_twin_tree(
 ape::plot.phylo(twin_tree)
 ```
 
+There is a helper function called `create_sim_bd_twin_tree_function`
+that does the same partial function evaluation for you:
+
+```{r}
+# Create twinning_params with my function 
+twinning_params <- create_twinning_params(
+  sim_twin_tree_function = create_sim_bd_twin_tree_function(
+    seed = 314,
+    method = "random_tree",
+    n_replicates = 1
+  )
+)
+# Create a twin tree using my function
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_phylogeny,
+  twinning_params = twinning_params
+)
+# Show the twin tree
+ape::plot.phylo(twin_tree)
+```
+
+Now using a Yule model:
+
+```{r}
+# Create twinning_params with my function 
+twinning_params <- create_twinning_params(
+  sim_twin_tree_function = create_sim_yule_twin_tree_function(
+    seed = 314,
+    method = "random_tree",
+    n_replicates = 1
+  )
+)
+# Create a twin tree using my function
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_phylogeny,
+  twinning_params = twinning_params
+)
+# Show the twin tree
+ape::plot.phylo(twin_tree)
+```
+
+Now using a copy:
+
+Now using a copy function:
+
+```{r}
+# Create twinning_params
+twinning_params <- create_twinning_params(
+  sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+)
+# Create a twin tree using my function
+twin_tree <- pirouette::create_twin_tree(
+  phylogeny = true_phylogeny,
+  twinning_params = twinning_params
+)
+# Show the twin tree
+ape::plot.phylo(twin_tree)
+```
+
+
 Using partial function evaluation you can now plug in any function to create
-a twin tree.
+a twin tree!
 
 ## 2. create a true alignment
 
