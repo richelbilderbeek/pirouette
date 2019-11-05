@@ -11,7 +11,8 @@ sim_true_alignment_with_unlinked_node_sub_site_model(true_phylogeny,
   base_frequencies = NULL, root_sequence, node_time = 0.001)
 }
 \arguments{
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{branch_subst_matrix}{substitution matrix along the branches.
 See, among others, \link[nodeSub]{sim_dual_independent} for more details}

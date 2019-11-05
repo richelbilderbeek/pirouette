@@ -11,7 +11,8 @@ sim_true_alignment_with_linked_node_sub_site_model(true_phylogeny,
   node_time = 0.001)
 }
 \arguments{
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{subst_matrix}{nucleotide substitution matrix}
 

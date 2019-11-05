@@ -361,7 +361,8 @@
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
 #' @param true_alignment a DNA alignment, of class \link[ape]{DNAbin}
-#' @param true_phylogeny a phylogeny of class \link[ape]{phylo}
+#' @param true_phylogeny the true phylogeny; the actual evolutionary
+#' history of the species, of class \link[ape]{phylo}
 #' @param true_result result obtained from using the true tree
 #' @param twin_alignment a DNA alignment, of class \link[ape]{DNAbin}
 #' @param twin_alignment_filename name of the FASTA file the twin
@@ -494,6 +495,8 @@ default_params_doc <- function(
   sim_alignment_function,
   sim_pars,
   sim_phylo,
+  sim_true_alignment_function,
+  sim_twin_alignment_function,
   sim_twin_tree_function,
   site_model,
   site_models,

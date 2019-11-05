@@ -28,6 +28,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   rng_seed, rng_seed_twin_alignment, rng_seed_twin_tree, root_sequence,
   run_experiment, run_experiments, run_if, sample_interval, seed,
   sequence_length, sim_alignment_function, sim_pars, sim_phylo,
+  sim_true_alignment_function, sim_twin_alignment_function,
   sim_twin_tree_function, site_model, site_models, site_model_name,
   sub_chain_length, subst_matrix, sum_lamu, t_0, tree, tree_filename,
   tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
@@ -393,6 +394,61 @@ Some standard functions:\cr
 
 \item{sim_phylo}{something}
 
+\item{sim_true_alignment_function}{function to simulate a
+true alignment with.
+This function must have one argument called \code{true_phylogeny} (which
+will hold the true phylogeny). The
+return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_true_alignment_function} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
+  to get a function (\link{sim_true_alignment_with_standard_site_model})
+  the use a standard site model.
+}}
+
+\item{sim_twin_alignment_function}{function to simulate a
+twin alignment with.
+This function must have two arguments called \code{twin_phylogeny} (which
+will hold the twin phylogeny) and \code{true_alignment} (which will
+hold the alignment simulated from the true phylogeny). The
+return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_twin_alignment_function} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_default_sim_twin_alignment_function} to use a
+    default function
+  \item Use \link{get_copy_true_alignment_function}
+    to get a function
+    (\link{copy_true_alignment})
+    that copies a true to alignment to create a twin alignment
+  \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
+    to get a function
+    (\link{create_twin_alignment_with_standard_site_model})
+    that simulates a twin alignment using a standard site model
+  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
+    to get a function
+    (\link{sim_twin_alignment_with_same_n_mutation})
+    that simulates -using a standard model- a twin alignment with as much
+    mutations compared to the root sequence as the true alignment has
+  \item Use \link{get_sim_twin_alignment_with_linked_node_sub_site_model}
+    to get a function
+    (\link{sim_twin_alignment_with_linked_node_sub_site_model})
+    that simulates a twin alignment with the linked node substitution
+    model.
+  \item Use \link{get_sim_twin_alignment_with_unlinked_node_sub_site_model}
+    to get a function
+    (\link{sim_twin_alignment_with_unlinked_node_sub_site_model})
+    that simulates a twin alignment with the unlinked node substitution
+    model.
+}}
+
 \item{sim_twin_tree_function}{function to simulate a twin tree with.
 This function must have one argument called \code{phylogeny}
 of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
@@ -456,7 +512,8 @@ phylogeny, and \code{twin} for its twin tree}
 
 \item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{true_result}{result obtained from using the true tree}
 
@@ -502,61 +559,6 @@ See \link{get_model_selections} for a list.}
 models. This weight will be between 0.0 (there is no evidence for
 this model) to 1.0 (all evidence indicates this is the best model).
 A weight of NA denotes that the weight is not measured}
-
-\item{sim_true_alignment_function}{function to simulate a
-true alignment with.
-This function must have one argument called \code{true_phylogeny} (which
-will hold the true phylogeny). The
-return type must be \link[ape]{DNAbin}.
-
-Use \link{check_sim_true_alignment_function} to verify if the function
-has the right signature and output.
-
-Some standard functions:\cr
-\itemize{
-  \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
-  to get a function (\link{sim_true_alignment_with_standard_site_model})
-  the use a standard site model.
-}}
-
-\item{sim_twin_alignment_function}{function to simulate a
-twin alignment with.
-This function must have two arguments called \code{twin_phylogeny} (which
-will hold the twin phylogeny) and \code{true_alignment} (which will
-hold the alignment simulated from the true phylogeny). The
-return type must be \link[ape]{DNAbin}.
-
-Use \link{check_sim_twin_alignment_function} to verify if the function
-has the right signature and output.
-
-Some standard functions:\cr
-\itemize{
-  \item Use \link{get_default_sim_twin_alignment_function} to use a
-    default function
-  \item Use \link{get_copy_true_alignment_function}
-    to get a function
-    (\link{copy_true_alignment})
-    that copies a true to alignment to create a twin alignment
-  \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
-    to get a function
-    (\link{create_twin_alignment_with_standard_site_model})
-    that simulates a twin alignment using a standard site model
-  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
-    to get a function
-    (\link{sim_twin_alignment_with_same_n_mutation})
-    that simulates -using a standard model- a twin alignment with as much
-    mutations compared to the root sequence as the true alignment has
-  \item Use \link{get_sim_twin_alignment_with_linked_node_sub_site_model}
-    to get a function
-    (\link{sim_twin_alignment_with_linked_node_sub_site_model})
-    that simulates a twin alignment with the linked node substitution
-    model.
-  \item Use \link{get_sim_twin_alignment_with_unlinked_node_sub_site_model}
-    to get a function
-    (\link{sim_twin_alignment_with_unlinked_node_sub_site_model})
-    that simulates a twin alignment with the unlinked node substitution
-    model.
-}}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

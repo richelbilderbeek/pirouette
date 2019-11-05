@@ -9,7 +9,8 @@ sim_true_alignment_with_standard_site_model(true_phylogeny,
   site_model = beautier::create_jc69_site_model())
 }
 \arguments{
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter

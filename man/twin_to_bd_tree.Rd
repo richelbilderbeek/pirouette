@@ -9,7 +9,8 @@ twin_to_bd_tree(true_phylogeny, seed = 0, method = "random_tree",
   n_replicates = 10000)
 }
 \arguments{
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{seed}{a random number generator seed}
 
