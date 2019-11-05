@@ -29,11 +29,12 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   run_experiment, run_experiments, run_if, sample_interval, seed,
   sequence_length, sim_alignment_function, sim_pars, sim_phylo,
   sim_twin_tree_function, site_model, site_models, site_model_name,
-  sub_chain_length, sum_lamu, t_0, tree, tree_filename, tree_model,
-  tree_prior, tree_priors, tree_prior_name, tree_type, true_alignment,
-  true_phylogeny, true_result, twin_alignment, twin_alignment_filename,
-  twin_evidence_filename, twin_phylogeny, twin_model, twin_result,
-  twin_tree_filename, twinning_params, type, verbose, weight)
+  sub_chain_length, subst_matrix, sum_lamu, t_0, tree, tree_filename,
+  tree_model, tree_prior, tree_priors, tree_prior_name, tree_type,
+  true_alignment, true_phylogeny, true_result, twin_alignment,
+  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
+  twin_model, twin_result, twin_tree_filename, twinning_params, type,
+  verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -429,6 +430,8 @@ as created by \link[beautier]{create_site_model}}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
+
+\item{subst_matrix}{nucleotide substitution matrix}
 
 \item{sum_lamu}{is the sum lambda + mu}
 

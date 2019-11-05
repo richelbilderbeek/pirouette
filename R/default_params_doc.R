@@ -345,6 +345,7 @@
 #' @param site_models a list of one or more site models,
 #'   as created by \link[beautier]{create_site_model}
 #' @param site_model_name name of a site model
+#' @param subst_matrix nucleotide substitution matrix
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
 #' @param sum_lamu is the sum lambda + mu
@@ -498,6 +499,7 @@ default_params_doc <- function(
   site_models,
   site_model_name,
   sub_chain_length,
+  subst_matrix,
   sum_lamu,
   t_0,
   tree,

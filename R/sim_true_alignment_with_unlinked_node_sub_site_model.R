@@ -30,7 +30,8 @@ sim_true_alignment_with_unlinked_node_sub_site_model <- function(
     rate2 = node_mutation_rate,
     bf = base_frequencies,
     rootseq = strsplit(root_sequence, split = "")[[1]],
-    l = nchar(root_sequence)
+    l = nchar(root_sequence),
+    node_time = node_time
   )$alignment
 
   testthat::expect_equal(class(alignment_phydat), "phyDat")

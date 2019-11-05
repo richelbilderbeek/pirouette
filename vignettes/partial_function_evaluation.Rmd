@@ -208,19 +208,24 @@ Here is an example that creates a true alignment by simulating
 a random alignment with the same number of taxa:
 
 ```{r}
-alignment_params <- create_alignment_params(
-  sim_true_alignment_function = function(true_phylogeny) {
-    sequences <- list()
-    for (i in seq_len(ape::Ntip(true_phylogeny))) {
-      sequences[[i]] <- rep(sample(c("a", "c", "g", "t"), size = 1), 1000)
-    }
-    ape::as.DNAbin(sequences)
+# My function
+my_function <- function(true_phylogeny) {
+  sequences <- list()
+  for (i in seq_len(ape::Ntip(true_phylogeny))) {
+    sequences[[i]] <- rep(sample(c("a", "c", "g", "t"), size = 1), 1000)
   }
+  ape::as.DNAbin(sequences)
+}
+# Putting my function in the alignment_params
+alignment_params <- create_alignment_params(
+  sim_true_alignment_function = my_function
 )
+# Simulate the true alignment using my function
 true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
+# Show the true alignment
 ape::image.DNAbin(true_alignment)
 ```
 
@@ -287,7 +292,10 @@ Or to use the linked node substitution model, use
 alignment_params <- create_alignment_params(
   sim_true_alignment_function = 
     get_sim_true_alignment_with_linked_node_sub_site_model_function(
-    root_sequence = "aaaaaaaa"
+    subst_matrix = NULL,
+    branch_mutation_rate = 0.1,
+    node_mutation_rate = 0.2,
+    root_sequence = "cccccccc"
   )
 )
 true_alignment <- sim_true_alignment(
