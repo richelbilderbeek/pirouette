@@ -1,5 +1,7 @@
-#' Create a function that can simulate the twin tree from the true tree,
-#' using the BD speciation model
+#' Create a partially evaluated function to to \link{sim_bd_twin_tree}.
+#'
+#' The function \link{sim_bd_twin_tree} simulates a twin tree
+#' using the Birth-Death (BD) speciation model.
 #' @inheritParams default_params_doc
 #' @return a function
 #' @seealso
