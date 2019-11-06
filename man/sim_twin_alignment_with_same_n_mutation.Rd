@@ -5,8 +5,8 @@
 \title{Simulate a twin alignment using a standard site model}
 \usage{
 sim_twin_alignment_with_same_n_mutation(twin_phylogeny, true_alignment,
-  root_sequence, mutation_rate,
-  site_model = beautier::create_jc69_site_model())
+  root_sequence, mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model(), verbose = FALSE)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -34,6 +34,8 @@ which can be:
     \code{unlinked_node_sub}: an unlinked node-substitution model
   }
 }}
+
+\item{verbose}{if TRUE, show more output}
 }
 \description{
 This is an adapter function

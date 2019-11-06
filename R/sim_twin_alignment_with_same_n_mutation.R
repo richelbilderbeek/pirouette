@@ -31,17 +31,20 @@ sim_twin_alignment_with_same_n_mutation <- function(
   twin_phylogeny,
   true_alignment,
   root_sequence,
-  mutation_rate,
-  site_model = beautier::create_jc69_site_model()
+  mutation_rate = 1.0,
+  site_model = beautier::create_jc69_site_model(),
+  verbose = FALSE
 ) {
   alignment <- sim_alignment_with_n_mutations(
     phylogeny = twin_phylogeny,
-    alignment_params = create_alignment_params(
-      root_sequence = root_sequence,
-      mutation_rate = mutation_rate,
-      site_model = site_model
+    root_sequence = root_sequence,
+    n_mutations = count_n_mutations(
+      alignment = true_alignment,
+      root_sequence = root_sequence
     ),
-    n_mutations = count_n_mutations(alignment = true_alignment, root_sequence = root_sequence)
+    mutation_rate = mutation_rate,
+    site_model = site_model,
+    verbose = verbose
   )
   check_alignment(alignment)
   alignment

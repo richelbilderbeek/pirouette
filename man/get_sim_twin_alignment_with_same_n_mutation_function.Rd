@@ -8,7 +8,29 @@ twin phylogeny and a true alignment, of which the twin
 alignment has an equal amount of mutations from the root sequence
 as the true alignment has}
 \usage{
-get_sim_twin_alignment_with_same_n_mutation_function()
+get_sim_twin_alignment_with_same_n_mutation_function(mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model(), verbose = FALSE)
+}
+\arguments{
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{site_model}{a nucleotide substitution model,
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 the function \link{sim_twin_alignment_with_same_n_mutation}

@@ -31,11 +31,14 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   beautier::check_phylogeny(twin_phylogeny)
 
-  true_alignment <- get_default_sim_true_alignment_function()(twin_phylogeny)
-  pirouette::check_alignment(true_alignment)
-
   root_sequence <- "acgt"
   pirouette::check_root_sequence(root_sequence)
+
+  true_alignment <- get_test_alignment(
+    n_taxa = ape::Ntip(twin_phylogeny),
+    sequence_length = nchar(root_sequence)
+  )
+  pirouette::check_alignment(true_alignment)
 
   # function signature
   out <- NA
@@ -45,10 +48,10 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
         true_alignment = true_alignment,
         root_sequence = root_sequence
       )
-    }, condition = function(c) {
+    }, error = function(e) {
       stop(
         "'sim_twin_alignment_function' failed to run cleanly on test input. \n",
-        "Condition: ", c$message
+        "Error: ", e$message
       )
     }
   )

@@ -27,10 +27,14 @@
 #' }
 #' @export
 get_sim_twin_alignment_with_same_n_mutation_function <- function(
-  mutation_rate = 1.0
+  mutation_rate = 1.0,
+  site_model = beautier::create_jc69_site_model(),
+  verbose = FALSE
 ) {
   pryr::partial(
     sim_twin_alignment_with_same_n_mutation,
-    mutation_rate = mutation_rate
+    mutation_rate = mutation_rate,
+    site_model = site_model,
+    verbose = verbose
   )
 }

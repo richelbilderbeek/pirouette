@@ -35,20 +35,23 @@
 #' @export
 sim_alignment_with_n_mutations <- function(
   phylogeny,
-  alignment_params,
+  root_sequence,
   n_mutations,
+  mutation_rate = 1.0,
+  site_model = beautier::create_jc69_site_model(),
   verbose = FALSE
 ) {
   beautier::check_phylogeny(phylogeny)
-  pirouette::check_alignment_params(alignment_params)
   pirouette::check_reconstructed_phylogeny(phylogeny)
+  pirouette::check_root_sequence(root_sequence)
+  pirouette::check_mutation_rate(mutation_rate)
   testit::assert(beautier::is_one_int(n_mutations))
   testit::assert(n_mutations >= 0)
   testit::assert(beautier::is_one_bool(verbose))
 
   # Higher-level checks
   n_taxa <- ape::Ntip(phylogeny)
-  n_nucleotides <- nchar(alignment_params$root_sequence)
+  n_nucleotides <- nchar(root_sequence)
   max_n_mutations <- n_taxa * n_nucleotides
   if (!beautier::is_one_na(n_mutations) && n_mutations > max_n_mutations) {
     stop(
@@ -60,29 +63,20 @@ sim_alignment_with_n_mutations <- function(
       "Requested number of mutations: ", n_mutations
     )
   }
-  # If mutation_rate is function, apply it to the phylogeny
-  if (is.function(alignment_params$mutation_rate)) {
-    mutation_function <- alignment_params$mutation_rate
-    alignment_params$mutation_rate <- mutation_function(phylogeny)
-  }
-  if (n_mutations > 0) {
-    testit::assert(alignment_params$mutation_rate > 0.0)
-  }
-
   n_tries <- 1
 
   while (1) {
-    # create_alignment sets the seed (for now)
-    alignment <- create_alignment(
+    alignment <- create_alignment_with_standard_site_model_raw(
       phylogeny = phylogeny,
-      alignment_params = alignment_params,
-      verbose = verbose
+      root_sequence = root_sequence,
+      mutation_rate = mutation_rate,
+      site_model = site_model
     )
     pirouette::check_alignment(alignment)
 
     actual_n_mutations <- count_n_mutations(
       alignment = alignment,
-      root_sequence = alignment_params$root_sequence
+      root_sequence = root_sequence
     )
 
     if (verbose == TRUE) {
@@ -98,15 +92,12 @@ sim_alignment_with_n_mutations <- function(
     if (actual_n_mutations == n_mutations) break
 
     n_tries <- n_tries + 1
-
-    # Change the RNG seed that is set by 'create_alignment' (for now)
-    alignment_params$rng_seed <- alignment_params$rng_seed + 1
   }
 
   pirouette::check_alignment(alignment)
   testit::assert(
     get_alignment_sequence_length(alignment) ==
-    nchar(alignment_params$root_sequence)
+    nchar(root_sequence)
   )
   testit::assert(
     get_alignment_n_taxa(alignment) ==

@@ -4,18 +4,38 @@
 \alias{sim_alignment_with_n_mutations}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-sim_alignment_with_n_mutations(phylogeny, alignment_params, n_mutations,
+sim_alignment_with_n_mutations(phylogeny, root_sequence, n_mutations,
+  mutation_rate = 1, site_model = beautier::create_jc69_site_model(),
   verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{alignment_params}{parameters to simulate an alignment,
-as can be created by \link{create_alignment_params}}
+\item{root_sequence}{the DNA sequence at the root of the phylogeny.
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{n_mutations}{the number of different base pairs between
 root sequence and the resulting alignment. Set to \link{NA} if
 any number of mutations is fine.}
+
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{site_model}{a nucleotide substitution model,
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
 
 \item{verbose}{if TRUE, show more output}
 }
