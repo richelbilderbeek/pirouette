@@ -6,7 +6,7 @@
 \usage{
 sim_alignment_with_n_mutations(phylogeny, root_sequence, n_mutations,
   mutation_rate = 1, site_model = beautier::create_jc69_site_model(),
-  verbose = FALSE)
+  max_n_tries = 100, verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -36,6 +36,11 @@ which can be:
     \code{unlinked_node_sub}: an unlinked node-substitution model
   }
 }}
+
+\item{max_n_tries}{number of attempts to simulate a DNA alignment
+with the desired number of mutations. If this number of attempts is
+reached, the funcion will show a \link{warning} and return
+the last DNA alignment simulated.}
 
 \item{verbose}{if TRUE, show more output}
 }

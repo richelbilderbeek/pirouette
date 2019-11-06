@@ -7,6 +7,10 @@
 #' @param n_mutations the number of different base pairs between
 #' root sequence and the resulting alignment. Set to \link{NA} if
 #' any number of mutations is fine.
+#' @param max_n_tries number of attempts to simulate a DNA alignment
+#' with the desired number of mutations. If this number of attempts is
+#' reached, the funcion will show a \link{warning} and return
+#' the last DNA alignment simulated.
 #' @return an alignment of type \code{DNAbin}
 #' @seealso Use \link{create_alignment_file} to save the simulated alignment
 #'   directly to a file
@@ -39,6 +43,7 @@ sim_alignment_with_n_mutations <- function(
   n_mutations,
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model(),
+  max_n_tries = 100,
   verbose = FALSE
 ) {
   beautier::check_phylogeny(phylogeny)
@@ -64,7 +69,6 @@ sim_alignment_with_n_mutations <- function(
     )
   }
   n_tries <- 1
-  max_n_tries <- 100
 
   while (n_tries < max_n_tries) {
     alignment <- create_alignment_with_standard_site_model_raw(
