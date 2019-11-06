@@ -2,7 +2,7 @@
 #'
 #' The function is used to create both
 #' the true (see \link{create_true_alignment})
-#' and twin alignment (see \link{create_twin_alignment}).
+#' and twin alignment (see \link{sim_twin_alignment}).
 #' @inheritParams default_params_doc
 #' @param n_mutations the number of different base pairs between
 #' root sequence and the resulting alignment. Set to \link{NA} if

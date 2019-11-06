@@ -1,5 +1,3 @@
-context("test-create_twin_alignment")
-
 test_that("use, twin has more info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
@@ -13,7 +11,7 @@ test_that("use, twin has more info", {
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params()
-  twin_alignment <- create_twin_alignment(
+  twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
@@ -42,7 +40,7 @@ test_that("use, twin has less info", {
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params()
-  twin_alignment <- create_twin_alignment(
+  twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
@@ -71,7 +69,7 @@ test_that("abuse", {
   twinning_params <- create_twinning_params()
   # Works, just to verify
   expect_silent(
-    create_twin_alignment(
+    sim_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = true_alignment,
       alignment_params = alignment_params,
@@ -81,7 +79,7 @@ test_that("abuse", {
 
   # Errors
   expect_error(
-    create_twin_alignment(
+    sim_twin_alignment(
       twin_phylogeny = "nonsense",
       true_alignment = true_alignment,
       alignment_params = alignment_params,
@@ -91,7 +89,7 @@ test_that("abuse", {
   )
 
   expect_error(
-    create_twin_alignment(
+    sim_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = "nonsense",
       alignment_params = alignment_params,
@@ -114,7 +112,7 @@ test_that("works for simple trees", {
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  twin_alignment <- create_twin_alignment(
+  twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
@@ -154,7 +152,7 @@ test_that("works in poor conditions as well", {
     alignment = true_alignment, root_sequence = root_sequence
   )
   twinning_params <- create_twinning_params()
-  twin_alignment <- create_twin_alignment(
+  twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
@@ -181,7 +179,7 @@ test_that("use, verbose", {
     alignment_params = alignment_params
   )
   expect_output(
-    create_twin_alignment(
+    sim_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = true_alignment,
       alignment_params = alignment_params,

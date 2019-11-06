@@ -25,7 +25,7 @@ an alignment of type \code{DNAbin}
 \description{
 The function is used to create both
 the true (see \link{create_true_alignment})
-and twin alignment (see \link{create_twin_alignment}).
+and twin alignment (see \link{sim_twin_alignment}).
 }
 \examples{
 library(testthat)

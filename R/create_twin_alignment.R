@@ -30,7 +30,7 @@
 #'   alignment = true_alignment, root_sequence = root_sequence
 #' )
 #'
-#' twin_alignment <- create_twin_alignment(
+#' twin_alignment <- sim_twin_alignment(
 #'   twin_phylogeny = twin_phylogeny,
 #'   true_alignment = true_alignment,
 #'   alignment_params = alignment_params,
@@ -44,7 +44,7 @@
 #' expect_equal(n_mutations_true, n_mutations_twin)
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-create_twin_alignment <- function(
+sim_twin_alignment <- function(
   twin_phylogeny,
   true_alignment,
   alignment_params, # To be obsoleted

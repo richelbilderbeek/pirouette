@@ -28,7 +28,7 @@ Some standard functions:\cr
     that copies a true to alignment to create a twin alignment
   \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
     to get a function
-    (\link{create_twin_alignment_with_standard_site_model})
+    (\link{sim_twin_alignment_with_standard_site_model})
     that simulates a twin alignment using a standard site model
   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
     to get a function

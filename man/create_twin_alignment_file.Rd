@@ -23,7 +23,7 @@ as can be created by \link{create_twinning_params}}
 nothing
 }
 \description{
-The simulation is performed by \link{create_twin_alignment}.
+The simulation is performed by \link{sim_twin_alignment}.
 }
 \examples{
 library(testthat)
@@ -63,7 +63,7 @@ alignment <- create_twin_alignment_file(
 expect_true(file.exists(twinning_params$twin_alignment_filename))
 }
 \seealso{
-Use \link{create_twin_alignment} to only simulate
+Use \link{sim_twin_alignment} to only simulate
   the twin alignment, without saving the alignment to file
 }
 \author{

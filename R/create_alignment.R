@@ -2,7 +2,7 @@
 #'
 #' The function is used to create both
 #' the true (see \link{create_true_alignment})
-#' and twin alignment (see \link{create_twin_alignment}).
+#' and twin alignment (see \link{sim_twin_alignment}).
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @seealso Use \link{create_alignment_file} to save the simulated alignment
@@ -113,7 +113,7 @@ create_alignment_with_standard_site_model <- function(
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @export
-create_twin_alignment_with_standard_site_model_raw <- function(
+sim_twin_alignment_with_standard_site_model_raw <- function(
   twin_phylogeny,
   true_alignment,
   root_sequence,

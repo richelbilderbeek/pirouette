@@ -9,7 +9,7 @@ site model}
 get_sim_twin_alignment_with_standard_site_model_function()
 }
 \value{
-the function \link{create_twin_alignment_with_standard_site_model}
+the function \link{sim_twin_alignment_with_standard_site_model}
 }
 \description{
 Get a function to simulate a twin alignment which uses a standard
@@ -38,4 +38,6 @@ Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
 get a function that simulates a twin alignment using a standard
 site model, that has the number number of mutations (comparing
 to the root sequence) as the true alignment has.
+Use \link{sim_twin_alignment} to use this function to
+create a twin alignment.
 }

@@ -1,7 +1,7 @@
 #' Get a function to simulate a twin alignment which uses a standard
 #' site model
 #' @inheritParams default_params_doc
-#' @return the function \link{create_twin_alignment_with_standard_site_model}
+#' @return the function \link{sim_twin_alignment_with_standard_site_model}
 #' @examples
 #' library(testthat)
 #'
@@ -24,7 +24,9 @@
 #' get a function that simulates a twin alignment using a standard
 #' site model, that has the number number of mutations (comparing
 #' to the root sequence) as the true alignment has.
+#' Use \link{sim_twin_alignment} to use this function to
+#' create a twin alignment.
 #' @export
 get_sim_twin_alignment_with_standard_site_model_function <- function() {
-  create_twin_alignment_with_standard_site_model
+  sim_twin_alignment_with_standard_site_model
 }

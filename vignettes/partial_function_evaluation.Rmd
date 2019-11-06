@@ -433,8 +433,8 @@ x[[2]] <- rep("g", nchar(root_sequence))
 x[[3]] <- rep("t", nchar(root_sequence))
 names(x) <- c("A", "B", "C")
 true_alignment <- ape::as.DNAbin(x)
-ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 testit::assert(get_alignment_n_taxa(true_alignment) == 3)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 I will show multiple ways to create a twin alignment here:
@@ -443,14 +443,35 @@ I will show multiple ways to create a twin alignment here:
  * 3.2. Simulate an alignment based on the twin tree
  * 3.3. Simulate an alignment based on the twin tree, true alignment and root sequence
 
-Creating a twin alignment:
+## 3.1. Copy the true alignment
+
+The function we'll use has three parameters and ignores two:
 
 ```{r}
-twin_alignment <- create_twin_alignment(
+my_function <- function(
+  twin_phylogeny = "irrelevant",
+  true_alignment,
+  root_sequence = "irrelevant"
+) {
+  true_alignment
+}
+```
+
+Put this function in the `twinning_params`:
+
+```{r}
+twinning_params <- create_twinning_params(
+  sim_twin_alignment_function = my_function  
+)
+```
+
+```{r}
+twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),
-  twinning_params = create_twinning_params()
+  twinning_params = twinning_params,
+  newskool = TRUE
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment")
 ```
@@ -458,7 +479,7 @@ ape::image.DNAbin(twin_alignment, main = "Twin alignment")
 Creating a twin alignment from this:
 
 ```{r}
-twin_alignment <- create_twin_alignment(
+twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),
@@ -488,7 +509,7 @@ create_rnd_alignment <- function(
 Plugging it in:
 
 ```{r}
-twin_alignment <- create_twin_alignment(
+twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),
@@ -504,7 +525,7 @@ ape::image.DNAbin(twin_alignment)
 Now we want to plug in:
 
 ```{r}
-head(create_twin_alignment_with_standard_site_model)
+head(sim_twin_alignment_with_standard_site_model)
 ```
 
 Here comes partial function evaluation to the rescue:
@@ -512,7 +533,7 @@ Here comes partial function evaluation to the rescue:
 ```{r}
 root_sequence <- create_blocked_dna(get_alignment_sequence_length(true_alignment))  
 sim_twin_align_function <- pryr::partial(
-  create_twin_alignment_with_standard_site_model,
+  sim_twin_alignment_with_standard_site_model,
   root_sequence = root_sequence,
   mutation_rate = 0.1
 )
@@ -525,7 +546,7 @@ check_sim_twin_alignment_function(sim_twin_align_function)
 Plugging it in:
 
 ```{r}
-twin_alignment <- create_twin_alignment(
+twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),

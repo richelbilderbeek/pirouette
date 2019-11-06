@@ -1,9 +1,9 @@
 #' Simulates a twin DNA alignment and saves it to a FASTA file.
 #'
-#' The simulation is performed by \link{create_twin_alignment}.
+#' The simulation is performed by \link{sim_twin_alignment}.
 #' @inheritParams default_params_doc
 #' @return nothing
-#' @seealso Use \link{create_twin_alignment} to only simulate
+#' @seealso Use \link{sim_twin_alignment} to only simulate
 #'   the twin alignment, without saving the alignment to file
 #' @author Richèl J.C. Bilderbeek
 #' @examples
@@ -62,7 +62,7 @@ create_twin_alignment_file <- function(
   )
 
   # Simulate
-  twin_alignment <- create_twin_alignment(
+  twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
