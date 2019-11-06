@@ -64,8 +64,9 @@ sim_alignment_with_n_mutations <- function(
     )
   }
   n_tries <- 1
+  max_n_tries <- 100
 
-  while (1) {
+  while (n_tries < max_n_tries) {
     alignment <- create_alignment_with_standard_site_model_raw(
       phylogeny = phylogeny,
       root_sequence = root_sequence,
@@ -92,6 +93,13 @@ sim_alignment_with_n_mutations <- function(
     if (actual_n_mutations == n_mutations) break
 
     n_tries <- n_tries + 1
+
+    if (n_tries == max_n_tries) {
+      warning(
+        "'sim_alignment_with_n_mutations' tried ", n_tries, " times, ",
+        "without simulating an alignment with ", n_mutations, " mutations"
+      )
+    }
   }
 
   pirouette::check_alignment(alignment)
