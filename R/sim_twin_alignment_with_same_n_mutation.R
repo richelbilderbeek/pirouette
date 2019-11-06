@@ -35,7 +35,7 @@ sim_twin_alignment_with_same_n_mutation <- function(
   site_model = beautier::create_jc69_site_model(),
   verbose = FALSE
 ) {
-  alignment <- sim_alignment_with_n_mutations(
+  twin_alignment <- sim_alignment_with_n_mutations(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     n_mutations = count_n_mutations(
@@ -46,6 +46,14 @@ sim_twin_alignment_with_same_n_mutation <- function(
     site_model = site_model,
     verbose = verbose
   )
-  check_alignment(alignment)
-  alignment
+  check_alignment(twin_alignment)
+  testthat::expect_equal(
+    get_alignment_n_taxa(twin_alignment),
+    get_alignment_n_taxa(true_alignment)
+  )
+  testthat::expect_equal(
+    get_alignment_sequence_length(twin_alignment),
+    get_alignment_sequence_length(true_alignment)
+  )
+  twin_alignment
 }

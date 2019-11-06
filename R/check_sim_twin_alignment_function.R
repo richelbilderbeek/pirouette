@@ -64,4 +64,12 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
       )
     }
   )
+  testthat::expect_equal(
+    get_alignment_n_taxa(out),
+    get_alignment_n_taxa(true_alignment)
+  )
+  testthat::expect_equal(
+    get_alignment_sequence_length(out),
+    get_alignment_sequence_length(true_alignment)
+  )
 }

@@ -5,7 +5,7 @@ test_that("minimal use", {
   expect_silent(
     sim_alignment_with_n_mutations(
       phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
-      alignment_params = create_test_alignment_params(),
+      root_sequence = "acgt",
       n_mutations = 9
     )
   )
@@ -19,7 +19,7 @@ test_that("input is checked", {
   expect_error(
     sim_alignment_with_n_mutations(
       phylogeny = "nonsense",
-      alignment_params = alignment_params,
+      root_sequence = "acgt",
       n_mutations = n_mutations
     ),
     "phylogeny.*phylogeny"
@@ -27,15 +27,15 @@ test_that("input is checked", {
   expect_error(
     sim_alignment_with_n_mutations(
       phylogeny = phylogeny,
-      alignment_params = "nonsense",
+      root_sequence = "nonsense",
       n_mutations = n_mutations
     ),
-    "alignment_params.*alignment_params"
+    "root_sequence.*DNA"
   )
   expect_error(
     sim_alignment_with_n_mutations(
       phylogeny = phylogeny,
-      alignment_params = alignment_params,
+      root_sequence = "acgt",
       n_mutations = "nonsense"
     ),
     "beautier::is_one_int.n_mutations. is not TRUE"
@@ -43,7 +43,7 @@ test_that("input is checked", {
   expect_error(
     sim_alignment_with_n_mutations(
       phylogeny = phylogeny,
-      alignment_params = alignment_params,
+      root_sequence = "acgt",
       n_mutations = 1e123,
       verbose = TRUE
     ),
@@ -60,7 +60,7 @@ test_that("use linked_node_sub", {
   # at 2 mutations.
   alignment <- sim_alignment_with_n_mutations(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
+    root_sequence = "acgt",
     n_mutations = 12,
     verbose  = TRUE
   )
@@ -77,7 +77,7 @@ test_that("use unlinked_node_sub", {
   # at 9 mutations.
   alignment <- sim_alignment_with_n_mutations(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
+    root_sequence = "acgt",
     n_mutations = 9
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
