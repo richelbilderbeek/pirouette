@@ -5,8 +5,8 @@
 \title{Simulate a twin alignment using a standard site model}
 \usage{
 sim_twin_alignment_with_standard_site_model(twin_phylogeny,
-  true_alignment = "irrelevant", root_sequence = "acgt",
-  mutation_rate = 0.1, site_model = beautier::create_jc69_site_model())
+  true_alignment = "irrelevant", root_sequence, mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model())
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

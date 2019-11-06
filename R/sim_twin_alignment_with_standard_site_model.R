@@ -30,7 +30,7 @@
 sim_twin_alignment_with_standard_site_model <- function(
   twin_phylogeny,
   true_alignment = "irrelevant",
-  root_sequence = "acgt",
+  root_sequence,
   mutation_rate = 0.1,
   site_model = beautier::create_jc69_site_model()
 ) {

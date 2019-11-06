@@ -7,7 +7,7 @@
 create_twinning_params(rng_seed_twin_tree = 0,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
   rng_seed_twin_alignment = 0,
-  sim_twin_alignment_function = get_default_sim_twin_alignment_function(),
+  sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(),
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =
   "alignment_twin_", fileext = ".fasta"),
@@ -48,8 +48,6 @@ has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_default_sim_twin_alignment_function} to use a
-    default function
   \item Use \link{get_copy_true_alignment_function}
     to get a function
     (\link{copy_true_alignment})
@@ -63,16 +61,6 @@ Some standard functions:\cr
     (\link{sim_twin_alignment_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
-  \item Use \link{get_sim_twin_alignment_with_linked_node_sub_site_model}
-    to get a function
-    (\link{sim_twin_alignment_with_linked_node_sub_site_model})
-    that simulates a twin alignment with the linked node substitution
-    model.
-  \item Use \link{get_sim_twin_alignment_with_unlinked_node_sub_site_model}
-    to get a function
-    (\link{sim_twin_alignment_with_unlinked_node_sub_site_model})
-    that simulates a twin alignment with the unlinked node substitution
-    model.
 }}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin

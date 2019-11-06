@@ -11,9 +11,10 @@
 #' @inheritParams default_params_doc
 #' @return the function \link{sim_twin_alignment_with_same_n_mutation}
 #' @seealso
-#' Use \link{get_sim_twin_alignment_with_standard_site_model_function} to
-#' get a function that simulates a twin alignment ignoring the number
-#' of mutations in the true alignment
+#' See \link{check_sim_twin_alignment_function} to the the other
+#' functions to simulate a twin alignment.
+#' Use \link{sim_twin_alignment} to use this function to
+#' create a twin alignment.
 #' @examples
 #' library(testthat)
 #'

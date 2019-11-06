@@ -6,10 +6,32 @@
 \title{Get a function to simulate a twin alignment which uses a standard
 site model}
 \usage{
-get_sim_twin_alignment_with_standard_site_model_function()
+
+  get_sim_twin_alignment_with_standard_site_model_function(mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model())
+}
+\arguments{
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{site_model}{a nucleotide substitution model,
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
 }
 \value{
-the function \link{sim_twin_alignment_with_standard_site_model}
+a partially evaluated function of
+\link{sim_twin_alignment_with_standard_site_model}
 }
 \description{
 Get a function to simulate a twin alignment which uses a standard
@@ -34,10 +56,8 @@ alignment <- f(
 expect_silent(check_alignment(alignment))
 }
 \seealso{
-Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
-get a function that simulates a twin alignment using a standard
-site model, that has the number number of mutations (comparing
-to the root sequence) as the true alignment has.
+See \link{check_sim_twin_alignment_function} to the the other
+functions to simulate a twin alignment.
 Use \link{sim_twin_alignment} to use this function to
 create a twin alignment.
 }

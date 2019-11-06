@@ -1,7 +1,8 @@
 #' Get a function to simulate a twin alignment which uses a standard
 #' site model
 #' @inheritParams default_params_doc
-#' @return the function \link{sim_twin_alignment_with_standard_site_model}
+#' @return a partially evaluated function of
+#' \link{sim_twin_alignment_with_standard_site_model}
 #' @examples
 #' library(testthat)
 #'
@@ -20,13 +21,18 @@
 #' )
 #' expect_silent(check_alignment(alignment))
 #' @seealso
-#' Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
-#' get a function that simulates a twin alignment using a standard
-#' site model, that has the number number of mutations (comparing
-#' to the root sequence) as the true alignment has.
+#' See \link{check_sim_twin_alignment_function} to the the other
+#' functions to simulate a twin alignment.
 #' Use \link{sim_twin_alignment} to use this function to
 #' create a twin alignment.
 #' @export
-get_sim_twin_alignment_with_standard_site_model_function <- function() {
-  sim_twin_alignment_with_standard_site_model
+get_sim_twin_alignment_with_standard_site_model_function <- function(
+  mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model()
+) {
+  pryr::partial(
+    sim_twin_alignment_with_standard_site_model,
+    mutation_rate = mutation_rate,
+    site_model = site_model
+  )
 }

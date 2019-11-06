@@ -34,12 +34,16 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   true_alignment <- get_default_sim_true_alignment_function()(twin_phylogeny)
   pirouette::check_alignment(true_alignment)
 
+  root_sequence <- "acgt"
+  pirouette::check_root_sequence(root_sequence)
+
   # function signature
   out <- NA
   tryCatch({
-    out <- sim_twin_alignment_function(
-      twin_phylogeny = twin_phylogeny,
-      true_alignment = true_alignment
+      out <- sim_twin_alignment_function(
+        twin_phylogeny = twin_phylogeny,
+        true_alignment = true_alignment,
+        root_sequence = root_sequence
       )
     }, condition = function(c) {
       stop(

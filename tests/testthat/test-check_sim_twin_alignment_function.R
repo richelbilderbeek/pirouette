@@ -2,7 +2,7 @@ test_that("use", {
 
   expect_silent(
     check_sim_twin_alignment_function(
-      get_default_sim_twin_alignment_function()
+      get_sim_twin_alignment_with_standard_site_model_function()
     )
   )
 })
@@ -20,13 +20,13 @@ test_that("abuse", {
     check_sim_twin_alignment_function(
       sim_twin_alignment_function = function(twin_phylogeny) { }
     ),
-    "unused argument .*true_alignment"
+    "unused arguments .*true_alignment.*root_sequence"
   )
   expect_error(
     check_sim_twin_alignment_function(
       sim_twin_alignment_function = function(true_alignment) { }
     ),
-    "unused argument .*twin_phylogeny"
+    "unused arguments .*twin_phylogeny.*root_sequence"
   )
   expect_error(
     check_sim_twin_alignment_function(
@@ -41,7 +41,9 @@ test_that("abuse", {
   expect_error(
     check_sim_twin_alignment_function(
       sim_twin_alignment_function = function(
-        twin_phylogeny = "irrelevant", true_alignment = "irrelevant"
+        twin_phylogeny = "irrelevant",
+        true_alignment = "irrelevant",
+        root_sequence = "irrelevant"
       ) { "not a phylo" }
     ),
     "'sim_twin_alignment_function' must be a function that returns an ape::DNAbin"

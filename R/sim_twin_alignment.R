@@ -58,7 +58,8 @@ sim_twin_alignment <- function(
     return(
       twinning_params$sim_twin_alignment_function(
         twin_phylogeny = twin_phylogeny,
-        true_alignment = true_alignment
+        true_alignment = true_alignment,
+        root_sequence = alignment_params$root_sequence
       )
     )
   }
