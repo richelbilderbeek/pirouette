@@ -546,8 +546,6 @@ head(sim_twin_align_function)
 check_sim_twin_alignment_function(sim_twin_align_function)
 ```
 
-
-
 Plugging it in:
 
 ```{r}
