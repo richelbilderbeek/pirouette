@@ -173,6 +173,14 @@ create_alignment_with_standard_site_model_raw <- function(
 
   alignment <- ape::as.DNAbin(alignment_phydat)
   check_alignment(alignment)
+  testit::assert(
+    get_alignment_sequence_length(alignment) ==
+    nchar(root_sequence)
+  )
+  testit::assert(
+    get_alignment_n_taxa(alignment) ==
+    ape::Ntip(phylogeny)
+  )
   alignment
 
 }

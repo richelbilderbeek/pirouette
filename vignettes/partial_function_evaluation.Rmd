@@ -554,7 +554,9 @@ Plugging it in:
 twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(),
+  alignment_params = create_test_alignment_params(
+    root_sequence = root_sequence
+  ),
   twinning_params = create_twinning_params(
     sim_twin_alignment_function = sim_twin_align_function
   ),

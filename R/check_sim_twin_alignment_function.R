@@ -13,18 +13,6 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   if (!is.function(sim_twin_alignment_function)) {
     stop("'sim_twin_alignment_function' must be a function")
   }
-  # check if sim_twin_alignment_function is indeed a function with 2 parameters
-  arguments <- utils::capture.output(
-    utils::str(args(sim_twin_alignment_function))
-  )
-  # n_args <- stringr::str_count(string = arguments, pattern = ",") + 1
-  # if (n_args != 2) {
-  #   stop(
-  #     "'sim_twin_alignment_function' must be a function with two arguments. \n",
-  #     "Actual value: ", n_args, "\n",
-  #     "arguments: '", arguments, "'"
-  #   )
-  # }
 
   # sim_twin_alignment_function must return a DNAbin
   # Use a simple testing twin phylogeny and true alignment

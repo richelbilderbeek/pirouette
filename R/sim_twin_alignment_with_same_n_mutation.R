@@ -35,6 +35,15 @@ sim_twin_alignment_with_same_n_mutation <- function(
   site_model = beautier::create_jc69_site_model(),
   verbose = FALSE
 ) {
+  testthat::expect_equal(
+    ape::Ntip(twin_phylogeny),
+    get_alignment_n_taxa(true_alignment)
+  )
+  testthat::expect_equal(
+    nchar(root_sequence),
+    get_alignment_sequence_length(true_alignment)
+  )
+
   twin_alignment <- sim_alignment_with_n_mutations(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
