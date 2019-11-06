@@ -427,13 +427,10 @@ root_sequence <- "aaccggtt"
 As a true alignment, we'll use something equally simple:
 
 ```{r}
-x <- list()
-x[[1]] <- rep("c", nchar(root_sequence))
-x[[2]] <- rep("g", nchar(root_sequence))
-x[[3]] <- rep("t", nchar(root_sequence))
-names(x) <- c("A", "B", "C")
-true_alignment <- ape::as.DNAbin(x)
-testit::assert(get_alignment_n_taxa(true_alignment) == 3)
+true_alignment <- get_test_alignment(
+  n_taxa = ape::Ntip(true_phylogeny),
+  sequence_length = nchar(root_sequence)
+)
 ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 

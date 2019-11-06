@@ -26,6 +26,11 @@
 #' )
 #' }
 #' @export
-get_sim_twin_alignment_with_same_n_mutation_function <- function() {
-  sim_twin_alignment_with_same_n_mutation
+get_sim_twin_alignment_with_same_n_mutation_function <- function(
+  mutation_rate = 1.0
+) {
+  pryr::partial(
+    sim_twin_alignment_with_same_n_mutation,
+    mutation_rate = mutation_rate
+  )
 }
