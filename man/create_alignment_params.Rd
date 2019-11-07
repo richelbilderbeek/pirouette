@@ -10,8 +10,7 @@
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
-  fasta_filename = tempfile(pattern = "alignment_", tmpdir =
-  rappdirs::user_cache_dir(), fileext = ".fasta"))
+  fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.

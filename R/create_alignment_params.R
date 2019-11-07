@@ -56,11 +56,7 @@ create_alignment_params <- function(
   site_model = beautier::create_jc69_site_model(), # to be obsoleted
   clock_model = beautier::create_strict_clock_model(), # to be obsoleted
   rng_seed = 0,
-  fasta_filename = tempfile(
-    pattern = "alignment_",
-    tmpdir = rappdirs::user_cache_dir(),
-    fileext = ".fasta"
-  )
+  fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
   alignment_params <- list(
     root_sequence = root_sequence,
@@ -92,7 +88,7 @@ create_test_alignment_params <- function(
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,
-  fasta_filename = tempfile(pattern = "alignment_", fileext = ".fasta")
+  fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
   pirouette::create_alignment_params(
     root_sequence = root_sequence,
