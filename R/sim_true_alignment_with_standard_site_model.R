@@ -1,10 +1,4 @@
-#' Simulate a twin alignment using a standard site model
-#'
-#' This is an adapter function
-#' (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
-#' with the purpose of passing \link{check_sim_twin_alignment_function},
-#' by being a function with the function arguments \code{twin_phylogeny}
-#' and \code{true_alignment}.
+#' Adapter function to simulate a twin alignment using a standard site model
 #' @inheritParams default_params_doc
 #' @examples
 #' library(testthat)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/sim_true_alignment_with_standard_site_model.R
 \name{sim_true_alignment_with_standard_site_model}
 \alias{sim_true_alignment_with_standard_site_model}
-\title{Simulate a twin alignment using a standard site model}
+\title{Adapter function to simulate a twin alignment using a standard site model}
 \usage{
 sim_true_alignment_with_standard_site_model(true_phylogeny, root_sequence,
   mutation_rate = 1, site_model = beautier::create_jc69_site_model())
@@ -34,11 +34,7 @@ which can be:
 }}
 }
 \description{
-This is an adapter function
-(see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
-with the purpose of passing \link{check_sim_twin_alignment_function},
-by being a function with the function arguments \code{twin_phylogeny}
-and \code{true_alignment}.
+Adapter function to simulate a twin alignment using a standard site model
 }
 \examples{
 library(testthat)

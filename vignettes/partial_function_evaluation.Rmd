@@ -44,47 +44,73 @@ true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 ape::plot.phylo(true_phylogeny, main = "True phylogeny")
 ```
 
-We want to create a twin tree from it. There is a function that does
-so:
+To create a twin tree, I will describe:
+
+ * 1.1 Create a twin tree using the defaults
+ * 1.2 Create a twin tree using a built-in BD model
+ * 1.3 Create a twin tree using a custom function
+ * 1.4 Create a twin tree using a custom function with more arguments
+ * 1.5 Create a twin tree using a built-in function with more arguments that uses the Yule speciation model
+ * 1.6 Create a twin tree using a built-in function to copy a tree
+
+### 1.1 Create a twin tree using the defaults
+
+To create a twin tree from the true tree using the
+default settings is easily done by calling `create_twin_tree`:
 
 ```{r}
-twin_tree <- pirouette::create_twin_tree(true_phylogeny)
+twin_tree <- create_twin_tree(true_phylogeny)
 ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
-The `create_twin_tree`, however, creates the twin tree in the way specified
-in its other function argument: the `twinning_params`.
+The `create_twin_tree` function creates the twin tree in the way specified
+in its other function argument: the `twinning_params`:
 
 ```{r}
 twinning_params <- create_twinning_params()
 ```
 
-Calling `create_twin_tree` results in the same twin tree:
+Calling `create_twin_tree` results in the same twin tree (yes, 
+go ahead and check!):
 
 ```{r}
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, default 'create_twin_tree'")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
-How to specify *how* the twin tree is created? Use 
-the `twinning_params$sim_twin_tree_function`:
+## 1.2 Create a twin tree using a built-in BD model
+
+How to specify *how* the twin tree is created? Set the value 
+for the `twinning_params$sim_twin_tree_function`!
+
+I'll demonstrate using the `create_sim_bd_twin_tree_function`
+which produces a function that simulates a twin tree using a Birth-Death
+speciation model:
 
 ```{r}
 twinning_params <- create_twinning_params(
   sim_twin_tree_function = create_sim_bd_twin_tree_function()
 )
+```
+
+Proceed as usual here to simulate the twin tree:
+
+```{r}
 twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, custom 'create_twin_tree'")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
-Due to this architecture, `twinning_params$sim_twin_tree_function` must
-be a function that takes *one* argument, which is the true phylogeny.
+### 1.3 Create a twin tree using a custom function
+
+`twinning_params$sim_twin_tree_function` must
+be a function that takes *one* argument, which
+must be the true phylogeny.
 
 Here is an example that creates a twin tree by simulation 
 a random coalescent tree with the same number of tips:
@@ -99,21 +125,22 @@ twinning_params <- create_twinning_params(
   sim_twin_tree_function = my_function
 )
 # Create a twin tree using my function
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
 # Show the twin tree created by my function
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, 'create_twin_tree' with my function")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
+
+### 1.4 Create a twin tree using a built-in function with more arguments
 
 So, `twinning_params$sim_twin_tree_function` must
 be a function that takes *one* argument, which is the true phylogeny. What
 if we want a function that indeed has one argument for the true phylogeny,
 but also some additional ones?
 
-An example is `sim_bd_twin_tree`, which uses a seed, 
-a method and a number of replicates:
+An example is `sim_bd_twin_tree`, which uses a method and a number of replicates:
 
 ```{r}
 head(sim_bd_twin_tree)
@@ -139,7 +166,6 @@ ellipsis (`...`) argument that will fill in the values you specified:
 # Create my partially evaluated function
 sim_twin_tree_function <- pryr::partial(
   sim_bd_twin_tree, 
-  seed = 314, 
   method = "random_tree", 
   n_replicates = 1
 )
@@ -148,12 +174,12 @@ twinning_params <- create_twinning_params(
   sim_twin_tree_function = sim_twin_tree_function
 )
 # Create a twin tree using my function
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
 # Show the twin tree
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, 'create_twin_tree' with partially evaluated function")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
 There is a helper function called `create_sim_bd_twin_tree_function`
@@ -163,19 +189,20 @@ that does the same partial function evaluation for you:
 # Create twinning_params with my function 
 twinning_params <- create_twinning_params(
   sim_twin_tree_function = create_sim_bd_twin_tree_function(
-    seed = 314,
     method = "random_tree",
     n_replicates = 1
   )
 )
 # Create a twin tree using my function
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
 # Show the twin tree
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, 'create_twin_tree' with prefab partially evaluated BD function")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
+
+### 1.5 Create a twin tree using a built-in function with more arguments that uses the Yule speciation model
 
 Now using a Yule model:
 
@@ -183,19 +210,20 @@ Now using a Yule model:
 # Create twinning_params with my function 
 twinning_params <- create_twinning_params(
   sim_twin_tree_function = create_sim_yule_twin_tree_function(
-    seed = 314,
     method = "random_tree",
     n_replicates = 1
   )
 )
 # Create a twin tree using my function
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
 # Show the twin tree
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, 'create_twin_tree' with prefab partially evaluated Yule function")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
+
+### 1.6 Create a twin tree using a built-in function to copy a tree
 
 Now using a copy function:
 
@@ -205,12 +233,12 @@ twinning_params <- create_twinning_params(
   sim_twin_tree_function = create_copy_twin_tree_from_true_function()
 )
 # Create a twin tree using my function
-twin_tree <- pirouette::create_twin_tree(
+twin_tree <- create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
 # Show the twin tree
-ape::plot.phylo(twin_tree, main = "Twin phylogeny, 'create_twin_tree' with prefab partially evaluated copy function")
+ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
 
@@ -223,32 +251,27 @@ We start from a simple true tree:
 
 ```{r}
 true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-ape::plot.phylo(true_phylogeny)
+ape::plot.phylo(true_phylogeny, main = "True phylogeny")
+```
+
+Also, we'll specify a root sequence:
+
+```{r}
+root_sequence <- create_blocked_dna(length = 16)
 ```
 
 We want to create a true alignment from it. There is a function that does
 so:
 
 ```{r}
-true_alignment <- sim_true_alignment(true_phylogeny)
-ape::image.DNAbin(true_alignment)
-```
-
-The `sim_true_alignment`, however, creates the true alignment in the way specified
-in its other function argument: the `alignment_params`.
-
-```{r}
-alignment_params <- create_alignment_params()
-```
-
-Calling `sim_true_alignment` results in the same true alignment:
-
-```{r}
+alignment_params <- create_alignment_params(
+  root_sequence = root_sequence  
+)
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 How to specify *how* the true alignment is created? Use 
@@ -256,13 +279,14 @@ the `alignment_params$sim_true_alignment_function`:
 
 ```{r}
 alignment_params <- create_alignment_params(
-  sim_true_alignment_function = sim_true_alignment_with_standard_site_model
+  sim_true_alignment_function = sim_true_alignment_with_standard_site_model,
+  root_sequence = root_sequence  
 )
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Due to this architecture, `alignment_params$sim_true_alignment_function` must
@@ -273,24 +297,31 @@ a random alignment with the same number of taxa:
 
 ```{r}
 # My function
-my_function <- function(true_phylogeny) {
+my_function <- function(
+  true_phylogeny,
+  root_sequence
+) {
   sequences <- list()
   for (i in seq_len(ape::Ntip(true_phylogeny))) {
-    sequences[[i]] <- rep(sample(c("a", "c", "g", "t"), size = 1), 1000)
+    sequences[[i]] <- rep(
+      sample(c("a", "c", "g", "t"), size = 1), 
+      nchar(root_sequence)
+    )
   }
   ape::as.DNAbin(sequences)
 }
 # Putting my function in the alignment_params
 alignment_params <- create_alignment_params(
-  sim_true_alignment_function = my_function
+  sim_true_alignment_function = my_function,
+  root_sequence = root_sequence  
 )
 # Simulate the true alignment using my function
-true_alignment <- pirouette::sim_true_alignment(
+true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
 # Show the true alignment
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 So, `alignment_params$sim_true_alignment_function` must
@@ -312,7 +343,6 @@ ellipsis (`...`) argument that will fill in the values you specified:
 ```{r}
 sim_true_alignment_function <- pryr::partial(
   sim_true_alignment_with_standard_site_model, 
-  root_sequence = "aaaaaaaa", 
   mutation_rate = 0.5,                     
   site_model = beautier::create_hky_site_model()
 )
@@ -321,13 +351,14 @@ head(sim_true_alignment_function)
 
 ```{r}
 alignment_params <- create_alignment_params(
-  sim_true_alignment_function = sim_true_alignment_function
+  sim_true_alignment_function = sim_true_alignment_function,
+  root_sequence = root_sequence  
 )
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Instead of doing the partial function evaluation yourself, `pirouette`
@@ -337,16 +368,16 @@ supplies this function as `get_sim_true_alignment_with_standard_site_model_funct
 alignment_params <- create_alignment_params(
   sim_true_alignment_function = 
     get_sim_true_alignment_with_standard_site_model_function(
-    root_sequence = "aaaaaaaa", 
     mutation_rate = 0.5,                     
     site_model = beautier::create_hky_site_model()
-  )
+  ),
+  root_sequence = root_sequence
 )
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Or to use the linked node substitution model, use
@@ -356,17 +387,16 @@ Or to use the linked node substitution model, use
 alignment_params <- create_alignment_params(
   sim_true_alignment_function = 
     get_sim_true_alignment_with_linked_node_sub_site_model_function(
-    subst_matrix = NULL,
     branch_mutation_rate = 0.1,
-    node_mutation_rate = 0.2,
-    root_sequence = "cccccccc"
-  )
+    node_mutation_rate = 0.2
+  ),
+  root_sequence = root_sequence
 )
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Or to use the unlinked node substitution model, use
@@ -378,15 +408,15 @@ alignment_params <- create_alignment_params(
     get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
     branch_mutation_rate = 1.0,
     node_mutation_rate = 2.0,
-    node_time = 0.1,
-    root_sequence = "aaaaaaaa"
-  )
+    node_time = 0.1
+  ),
+  root_sequence = root_sequence  
 )
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-ape::image.DNAbin(true_alignment)
+ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 
@@ -415,7 +445,7 @@ ape::plot.phylo(twin_phylogeny, main = "Twin phylogeny")
 The root sequence is short and simple:
 
 ```{r}
-root_sequence <- "aaccggtt"
+root_sequence <- create_blocked_dna(length = 20)
 ```
 
 As a true alignment, we'll use something equally simple:
@@ -499,7 +529,7 @@ twin_alignment <- sim_twin_alignment(
   ),
   newskool = TRUE
 )
-ape::image.DNAbin(twin_alignment)
+ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
 Or use `get_sim_twin_alignment_with_standard_site_model_function` to do the 
@@ -518,7 +548,7 @@ twin_alignment <- sim_twin_alignment(
   ),
   newskool = TRUE
 )
-ape::image.DNAbin(twin_alignment)
+ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
 ## 3.3. Simulate an alignment based on the twin tree, true alignment and root sequence
@@ -554,7 +584,7 @@ twin_alignment <- sim_twin_alignment(
   ),
   newskool = TRUE
 )
-ape::image.DNAbin(twin_alignment)
+ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
 Or use `get_sim_twin_alignment_with_standard_site_model_function` to do the 
@@ -573,5 +603,5 @@ twin_alignment <- sim_twin_alignment(
   ),
   newskool = TRUE
 )
-ape::image.DNAbin(twin_alignment)
+ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
