@@ -19,13 +19,11 @@
 #' )
 #' @export
 get_sim_true_alignment_with_standard_site_model_function <- function(
-  root_sequence,
-  mutation_rate,
+  mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model()
 ) {
   pryr::partial(
     sim_true_alignment_with_standard_site_model,
-    root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model
   )

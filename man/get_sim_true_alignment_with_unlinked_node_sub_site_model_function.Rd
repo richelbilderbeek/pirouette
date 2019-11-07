@@ -7,16 +7,11 @@
 node substitution site model}
 \usage{
 
-  get_sim_true_alignment_with_unlinked_node_sub_site_model_function(root_sequence,
-  branch_subst_matrix = NULL, node_subst_matrix = 1,
-  branch_mutation_rate = 1, node_mutation_rate = 1,
-  base_frequencies = NULL, node_time = 0.001)
+  get_sim_true_alignment_with_unlinked_node_sub_site_model_function(branch_subst_matrix = NULL,
+  node_subst_matrix = 1, branch_mutation_rate = 1,
+  node_mutation_rate = 1, base_frequencies = NULL, node_time = 0.001)
 }
 \arguments{
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter
-Use \link{check_root_sequence} to check if a root sequence is valid.}
-
 \item{branch_subst_matrix}{substitution matrix along the branches.
 See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 

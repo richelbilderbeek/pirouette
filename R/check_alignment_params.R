@@ -16,8 +16,6 @@ check_alignment_params <- function(
   alignment_params
 ) {
   pirouette::check_alignment_params_names(alignment_params)
-
-
   pirouette::check_root_sequence(alignment_params$root_sequence)
   pirouette::check_mutation_rate(alignment_params$mutation_rate)
 

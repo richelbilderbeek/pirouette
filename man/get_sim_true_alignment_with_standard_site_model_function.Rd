@@ -6,14 +6,11 @@
 \title{Get a function to simulate the true alignment with,
 that uses a standard site model.}
 \usage{
-get_sim_true_alignment_with_standard_site_model_function(root_sequence,
-  mutation_rate, site_model = beautier::create_jc69_site_model())
+
+  get_sim_true_alignment_with_standard_site_model_function(mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model())
 }
 \arguments{
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter
-Use \link{check_root_sequence} to check if a root sequence is valid.}
-
 \item{mutation_rate}{the mutation rate per base pair per time unit.
 Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 

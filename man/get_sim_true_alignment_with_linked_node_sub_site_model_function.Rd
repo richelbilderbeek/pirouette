@@ -9,7 +9,7 @@ node substitution site model}
 
   get_sim_true_alignment_with_linked_node_sub_site_model_function(subst_matrix = NULL,
   branch_mutation_rate = 1, node_mutation_rate = 1,
-  base_frequencies = NULL, root_sequence, node_time = 0.001)
+  base_frequencies = NULL, node_time = 0.001)
 }
 \arguments{
 \item{subst_matrix}{nucleotide substitution matrix}
@@ -23,10 +23,6 @@ See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 \item{base_frequencies}{the four base frequencies (a, c, g, t) to be
 specified to create the rate matrix (i.e. Q matrix)
 used to simulate alignments}
-
-\item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter
-Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{node_time}{amount of time spent at the nodes.
 See, among others, \link[nodeSub]{sim_dual_independent} for more details}

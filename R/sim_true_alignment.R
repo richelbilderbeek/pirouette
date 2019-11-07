@@ -45,7 +45,10 @@ sim_true_alignment <- function(
   testit::assert(beautier::is_one_bool(verbose))
 
   set.seed(alignment_params$rng_seed)
-  alignment <- alignment_params$sim_true_alignment_function(true_phylogeny)
+  alignment <- alignment_params$sim_true_alignment_function(
+    true_phylogeny = true_phylogeny,
+    root_sequence = alignment_params$root_sequence
+  )
   check_alignment(alignment)
   alignment
 }

@@ -4,9 +4,8 @@
 \alias{sim_true_alignment_with_standard_site_model}
 \title{Simulate a twin alignment using a standard site model}
 \usage{
-sim_true_alignment_with_standard_site_model(true_phylogeny,
-  root_sequence = "acgt", mutation_rate = 0.1,
-  site_model = beautier::create_jc69_site_model())
+sim_true_alignment_with_standard_site_model(true_phylogeny, root_sequence,
+  mutation_rate = 1, site_model = beautier::create_jc69_site_model())
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary

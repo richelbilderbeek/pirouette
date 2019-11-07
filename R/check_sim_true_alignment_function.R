@@ -14,7 +14,9 @@ check_sim_true_alignment_function <- function(sim_true_alignment_function) {
   out <- NA
   tryCatch({
       out <- sim_true_alignment_function(
-        true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"))
+        true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+        root_sequence = "acgt"
+      )
     }, error = function(e) {
       stop(
         "Error when using 'sim_true_alignment_function' on an example ",

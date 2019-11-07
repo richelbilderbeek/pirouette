@@ -254,9 +254,10 @@
 #' @param sim_phylo something
 #' @param sim_true_alignment_function function to simulate a
 #' true alignment with.
-#' This function must have one argument called \code{true_phylogeny} (which
-#' will hold the true phylogeny). The
-#' return type must be \link[ape]{DNAbin}.
+#' This function must have two arguments,
+#' called \code{true_phylogeny} (which will hold the true phylogeny)
+#' and \code{root_sequence} (which holds the DNA root sequence).
+#' The return type must be \link[ape]{DNAbin}.
 #'
 #' Use \link{check_sim_true_alignment_function} to verify if the function
 #' has the right signature and output.
@@ -266,6 +267,14 @@
 #'   \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
 #'   to get a function (\link{sim_true_alignment_with_standard_site_model})
 #'   the use a standard site model.
+#'   \item Use
+#'   \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+#'   to get a function (\link{sim_true_alignment_with_linked_node_sub_site_model})
+#'   the use a linked node substitution site model.
+#'   \item Use
+#'   \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
+#'   to get a function (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
+#'   the use an unlinked node substitution site model.
 #' }
 #' @param sim_twin_alignment_function function to simulate a
 #' twin alignment with.

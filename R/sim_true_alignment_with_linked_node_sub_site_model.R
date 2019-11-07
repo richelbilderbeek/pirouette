@@ -11,11 +11,11 @@
 #' @export
 sim_true_alignment_with_linked_node_sub_site_model <- function(
   true_phylogeny,
+  root_sequence,
   subst_matrix = NULL,
   branch_mutation_rate = 1.0,
   node_mutation_rate = 1.0,
   base_frequencies = NULL,
-  root_sequence,
   node_time = 0.001
 ) {
   beautier::check_phylogeny(true_phylogeny)

@@ -11,7 +11,6 @@
 #' @export
 get_sim_true_alignment_with_unlinked_node_sub_site_model_function <-
   function(
-  root_sequence,
   branch_subst_matrix = NULL,
   node_subst_matrix = 1.0,
   branch_mutation_rate = 1.0,
@@ -26,7 +25,6 @@ get_sim_true_alignment_with_unlinked_node_sub_site_model_function <-
     branch_mutation_rate = branch_mutation_rate,
     node_mutation_rate = node_mutation_rate,
     base_frequencies = base_frequencies,
-    root_sequence = root_sequence,
     node_time = node_time
   )
 }
