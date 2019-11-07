@@ -34,21 +34,6 @@ check_alignment_params <- function(
       "Actual value: ", alignment_params$site_model
     )
   }
-
-  if (!beautier::is_clock_model(alignment_params$clock_model)) {
-    stop(
-      "'clock_model' must be a clock model. \n",
-      "Tip: use 'create_strict_clock_model'. \n",
-      "Actual value: ", alignment_params$clock_model
-    )
-  }
-  if (alignment_params$clock_model$name != "strict") {
-    stop(
-      "Unsupported 'clock_model'. \n",
-      "Tip: use 'create_strict_clock_model'. \n",
-      "Actual clock model name: ", alignment_params$clock_model$name
-    )
-  }
 }
 
 #' Checks if the list elements' names match that
@@ -68,7 +53,6 @@ check_alignment_params_names <- function(
     "mutation_rate", # to be obsoleted
     "rng_seed",
     "site_model", # to be obsoleted
-    "clock_model", # to be obsoleted
     "fasta_filename"
   )
   for (arg_name in argument_names) {

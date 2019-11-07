@@ -8,8 +8,7 @@
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
   sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
   mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
+  site_model = beautier::create_jc69_site_model(), rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
@@ -59,9 +58,6 @@ which can be:
     \code{unlinked_node_sub}: an unlinked node-substitution model
   }
 }}
-
-\item{clock_model}{a clock model,
-as created by \link[beautier]{create_clock_model}}
 
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}

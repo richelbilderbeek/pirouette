@@ -46,7 +46,7 @@ alignment <- sim_true_alignment(
    alignment_params = alignment_params,
  )
 
-expect_equal(class(alignment), "DNAbin")
+expect_silent(check_alignment(alignment))
 expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }

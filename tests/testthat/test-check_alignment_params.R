@@ -42,12 +42,6 @@ test_that("all list elements must be present", {
     "'site_model' must be an element of an 'alignment_params'"
   )
 
-  alignment_params <- good_alignment_params
-  alignment_params$clock_model <- NULL
-  expect_error(
-    check_alignment_params(alignment_params),
-    "'clock_model' must be an element of an 'alignment_params'"
-  )
 })
 
 test_that("all list elements must have the right data type", {
@@ -117,23 +111,6 @@ test_that("all list elements must have the right data type", {
       )
     ),
     "'site_model' must be a site model"
-  )
-
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        clock_model = "nonsense"
-      )
-    ),
-    "'clock_model' must be a clock model"
-  )
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        clock_model = create_rln_clock_model()
-      )
-    ),
-    "Unsupported 'clock_model'"
   )
 })
 

@@ -54,7 +54,6 @@ create_alignment_params <- function(
     pirouette::sim_true_alignment_with_standard_site_model,
   mutation_rate = pirouette::create_standard_mutation_rate, # to be obsoleted
   site_model = beautier::create_jc69_site_model(), # to be obsoleted
-  clock_model = beautier::create_strict_clock_model(), # to be obsoleted
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
@@ -63,7 +62,6 @@ create_alignment_params <- function(
     sim_true_alignment_function = sim_true_alignment_function,
     mutation_rate = mutation_rate, # to be obsoleted
     site_model = site_model, # to be obsoleted
-    clock_model = clock_model, # to be obsoleted
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )
@@ -86,7 +84,6 @@ create_test_alignment_params <- function(
   root_sequence = "acgt",
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
@@ -94,7 +91,6 @@ create_test_alignment_params <- function(
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model,
-    clock_model = clock_model,
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )
