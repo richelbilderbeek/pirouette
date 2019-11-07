@@ -57,8 +57,8 @@ Here we go, the true phylogeny of the world:
 ```{r fig.width=7, fig.height=7}
 set.seed(42)
 phylogeny <- becosys::bd_sim(
-  bd_params = becosys::create_bd_params(spec_rate = 1.0,  ext_rate = 0.1),
-  crown_age = 2.0,
+  bd_params = becosys::create_bd_params(spec_rate = 0.25,  ext_rate = 0.025),
+  crown_age = 0.5,
   conditioned_on = "non_extinction"
 )$reconstructed_tree
 ape::plot.phylo(main = "The True Phylogeny", phylogeny)
@@ -88,8 +88,7 @@ as an RNG seed:
 
 ```{r}
 alignment_params = pirouette::create_alignment_params(
-  site_model = beautier::create_jc69_site_model(),
-  mutation_rate = 0.3,
+  mutation_rate = 0.2,
   root_sequence = "aaaaaaaaccccccccggggggggtttttttt", 
   rng_seed = 314
 )
@@ -167,7 +166,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
 knitr::kable(df)
 ```
 
-Or in a violin plot:
+Or in a plot:
 
 ```{r fig.width=7, fig.height=7}
 pirouette::pir_plot(df)

@@ -40,17 +40,6 @@ check_error_measure_params <- function(
     stop("'error_function' must be a function")
   }
 
-  # check if error_function is indeed a function with at least 2 parameters
-  arguments <- utils::capture.output(
-    utils::str(args(error_measure_params$error_function))
-  )
-  n_commas <- stringr::str_count(string = arguments, pattern = ",")
-  if (!(n_commas > 0)) {
-    stop(
-      "'error_function' must be a function with at least two arguments"
-    )
-  }
-
   # check if error_function is indeed a function that has a lowest
   # value for identical trees
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
