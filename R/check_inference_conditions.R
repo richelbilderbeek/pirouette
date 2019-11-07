@@ -28,7 +28,7 @@ check_inference_conditions <- function(
       )
     }
   }
-  if (!inference_conditions$model_type %in% c("generative", "candidate")) {
+  if (!inference_conditions$model_type %in% get_model_types()) {
     stop("'model_type' must be either \"generative\" or \"candidate\"")
   }
   if (!inference_conditions$run_if %in% c("always", "best_candidate")) {
