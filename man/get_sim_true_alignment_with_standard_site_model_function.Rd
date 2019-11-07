@@ -37,15 +37,15 @@ that uses a standard site model.
 library(testthat)
 
 f <- get_sim_true_alignment_with_standard_site_model_function(
-  root_sequence = "acgt",
   mutation_rate = 0.1
 )
 check_sim_true_alignment_function(f)
 
 alignment_params <- create_test_alignment_params(
-  sim_true_alignment_function = f
+  sim_true_alignment_function = f,
+  root_sequence = "acgt",
 )
-true_alignment <- pirouette::sim_true_alignment(
+true_alignment <- sim_true_alignment(
   true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
   alignment_params = alignment_params
 )
