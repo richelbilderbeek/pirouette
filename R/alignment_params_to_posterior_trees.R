@@ -6,24 +6,24 @@
 #'   as a \link[ape]{multiphylo}
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   if (is_on_travis() && is_beast2_installed()) {
+#' if (is_on_travis() && is_beast2_installed()) {
 #'
-#'     alignment_params <- create_test_alignment_params()
-#'     create_alignment_file(
-#'       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
-#'       alignment_params = alignment_params
-#'     )
+#'   alignment_params <- create_test_alignment_params()
+#'   create_alignment_file(
+#'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+#'     alignment_params = alignment_params
+#'   )
 #'
-#'     expect_true(file.exists(alignment_params$fasta_filename))
+#'   expect_true(file.exists(alignment_params$fasta_filename))
 #'
-#'     trees <- alignment_params_to_posterior_trees(
-#'       alignment_params = alignment_params,
-#'       experiment = create_test_experiment()
-#'     )
-#'     expect_equal("multiPhylo", class(trees))
-#'  }
+#'   trees <- alignment_params_to_posterior_trees(
+#'     alignment_params = alignment_params,
+#'     experiment = create_test_experiment()
+#'   )
+#'   expect_equal("multiPhylo", class(trees))
+#' }
 #' @noRd
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
@@ -101,18 +101,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   testit::assert(!beautier::is_nested_sampling_mcmc(mcmc))
   if (mcmc$treelog$log_every != -1) {
     expected_n_trees <- 1 + (mcmc$chain_length / mcmc$treelog$log_every)
-    if (length(trees) != expected_n_trees) {
-      stop(
-        "Mismatch between number of trees and expected number of trees. \n",
-        "Number of trees (read from .trees file): ", length(trees), " \n",
-        "Expected number of trees: ", expected_n_trees, " \n",
-        ".trees filename: ",
-          experiment$inference_model$mcmc$treelog$filename, " \n",
-        "MCMC chain length: ", mcmc$chain_length, " \n",
-        "MCMC treelog$log_every: ", mcmc$treelog$log_every, " \n",
-        "Maybe .trees file of older experiment is used?"
-      )
-    }
+    testit::assert(length(trees) == expected_n_trees)
   }
 
   trees

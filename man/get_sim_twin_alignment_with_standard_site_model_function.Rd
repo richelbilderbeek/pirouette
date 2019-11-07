@@ -40,7 +40,9 @@ site model
 \examples{
 library(testthat)
 
-f <- get_sim_twin_alignment_with_standard_site_model_function()
+f <- get_sim_twin_alignment_with_standard_site_model_function(
+  mutation_rate = 0.1
+)
 # This adapter function must be a sim_twin_alignment function
 expect_silent(
   check_sim_twin_alignment_function(f)
@@ -50,8 +52,7 @@ expect_silent(
 
 alignment <- f(
   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
-  root_sequence = "aaaa",
-  mutation_rate = 0.1
+  root_sequence = "aaaa"
 )
 expect_silent(check_alignment(alignment))
 }
