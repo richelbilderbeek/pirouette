@@ -40,14 +40,4 @@ test_that("must create file", {
     root_sequence = alignment_params$root_sequence
   )
   expect_equal(n_mutations_true, n_mutations_twin)
-
-  # Test the verbosity
-  expect_output(
-    create_twin_alignment_file(
-      twin_phylogeny = twin_phylogeny,
-      alignment_params = alignment_params,
-      twinning_params =  twinning_params,
-      verbose = TRUE
-    )
-  )
 })
