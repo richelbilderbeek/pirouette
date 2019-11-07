@@ -72,8 +72,8 @@ create_true_alignment <- function(
     }
   )
 
-  create_alignment(
-    phylogeny = true_phylogeny,
+  sim_true_alignment(
+    true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
 }

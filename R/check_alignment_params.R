@@ -22,18 +22,6 @@ check_alignment_params <- function(
   if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
   }
-  if (
-    !beautier::is_site_model(alignment_params$site_model)
-    && alignment_params$site_model != "linked_node_sub"
-    && alignment_params$site_model != "unlinked_node_sub"
-  ) {
-    stop(
-      "'site_model' must be a site model, or 'linked_node_sub' ",
-      "or 'unlinked_node_sub'. \n",
-      "Tip: use 'create_site_model' to create a site model. \n",
-      "Actual value: ", alignment_params$site_model
-    )
-  }
 }
 
 #' Checks if the list elements' names match that
@@ -52,7 +40,6 @@ check_alignment_params_names <- function(
     "sim_true_alignment_function",
     "mutation_rate", # to be obsoleted
     "rng_seed",
-    "site_model", # to be obsoleted
     "fasta_filename"
   )
   for (arg_name in argument_names) {

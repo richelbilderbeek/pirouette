@@ -1,5 +1,6 @@
 test_that("minimal use", {
 
+  skip("Obsoleted")
   expect_silent(
     create_alignment(
       phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
@@ -9,6 +10,7 @@ test_that("minimal use", {
 })
 
 test_that("inout is checked", {
+  skip("Obsoleted")
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params()
 

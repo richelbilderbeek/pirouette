@@ -18,8 +18,8 @@
 #' alignment_params <- pirouette::create_alignment_params()
 #'
 #' # Simulate the alignment
-#' alignment <- create_alignment(
-#'    phylogeny = phylogeny,
+#' alignment <- sim_true_alignment(
+#'    true_phylogeny = phylogeny,
 #'    alignment_params = alignment_params,
 #'  )
 #'
@@ -30,7 +30,7 @@
 #' @seealso Use \link{sim_alignment_with_n_mutations} to
 #' simulate an alignmnet with a certain number of mutations
 #' @export
-create_alignment <- function(
+create_alignment_obsolete <- function(
   phylogeny,
   alignment_params,
   verbose = FALSE

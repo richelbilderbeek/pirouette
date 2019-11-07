@@ -29,12 +29,14 @@
 get_sim_twin_alignment_with_same_n_mutation_function <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model(),
+  max_n_tries = 100,
   verbose = FALSE
 ) {
   pryr::partial(
     sim_twin_alignment_with_same_n_mutation,
     mutation_rate = mutation_rate,
     site_model = site_model,
+    max_n_tries = max_n_tries,
     verbose = verbose
   )
 }

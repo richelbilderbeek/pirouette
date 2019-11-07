@@ -33,6 +33,7 @@ sim_twin_alignment_with_same_n_mutation <- function(
   root_sequence,
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model(),
+  max_n_tries = 100,
   verbose = FALSE
 ) {
   testthat::expect_equal(
@@ -53,6 +54,7 @@ sim_twin_alignment_with_same_n_mutation <- function(
     ),
     mutation_rate = mutation_rate,
     site_model = site_model,
+    max_n_tries = max_n_tries,
     verbose = verbose
   )
   check_alignment(twin_alignment)

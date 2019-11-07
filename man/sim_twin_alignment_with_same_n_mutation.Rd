@@ -6,7 +6,8 @@
 \usage{
 sim_twin_alignment_with_same_n_mutation(twin_phylogeny, true_alignment,
   root_sequence, mutation_rate = 1,
-  site_model = beautier::create_jc69_site_model(), verbose = FALSE)
+  site_model = beautier::create_jc69_site_model(), max_n_tries = 100,
+  verbose = FALSE)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

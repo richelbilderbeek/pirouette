@@ -8,8 +8,7 @@
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
   sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
   mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(), rng_seed = 0,
-  fasta_filename = pirouette::get_temp_fasta_filename())
+  rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
@@ -43,21 +42,6 @@ Some standard functions:\cr
 
 \item{mutation_rate}{the mutation rate per base pair per time unit.
 Use \link{check_mutation_rate} to check if a mutation rate is valid.}
-
-\item{site_model}{a nucleotide substitution model,
-which can be:
-\itemize{
-  \item{
-    A standard nucloetide substitution model,
-    as created by \link[beautier]{create_site_model}
-  }
-  \item{
-    \code{linked_node_sub}: a linked node-substitution model
-  }
-  \item{
-    \code{unlinked_node_sub}: an unlinked node-substitution model
-  }
-}}
 
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}

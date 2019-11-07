@@ -9,7 +9,8 @@ alignment has an equal amount of mutations from the root sequence
 as the true alignment has}
 \usage{
 get_sim_twin_alignment_with_same_n_mutation_function(mutation_rate = 1,
-  site_model = beautier::create_jc69_site_model(), verbose = FALSE)
+  site_model = beautier::create_jc69_site_model(), max_n_tries = 100,
+  verbose = FALSE)
 }
 \arguments{
 \item{mutation_rate}{the mutation rate per base pair per time unit.

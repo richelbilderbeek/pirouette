@@ -489,8 +489,7 @@ twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),
-  twinning_params = twinning_params,
-  newskool = TRUE
+  twinning_params = twinning_params
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment")
 ```
@@ -524,8 +523,7 @@ twin_alignment <- sim_twin_alignment(
   alignment_params = create_test_alignment_params(),
   twinning_params = create_twinning_params(
     sim_twin_alignment_function = sim_twin_align_function
-  ),
-  newskool = TRUE
+  )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
@@ -543,8 +541,7 @@ twin_alignment <- sim_twin_alignment(
     sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(
       mutation_rate = 0.1
     )
-  ),
-  newskool = TRUE
+  )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
@@ -579,8 +576,7 @@ twin_alignment <- sim_twin_alignment(
   ),
   twinning_params = create_twinning_params(
     sim_twin_alignment_function = sim_twin_align_function
-  ),
-  newskool = TRUE
+  )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
@@ -598,8 +594,7 @@ twin_alignment <- sim_twin_alignment(
     sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(
       mutation_rate = 0.1
     )
-  ),
-  newskool = TRUE
+  )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```

@@ -8,8 +8,7 @@
   create_test_alignment_params(sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
   root_sequence = "acgt",
   mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(), rng_seed = 0,
-  fasta_filename = pirouette::get_temp_fasta_filename())
+  rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
 \item{sim_true_alignment_function}{function to simulate a
@@ -43,21 +42,6 @@ Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit.
 Use \link{check_mutation_rate} to check if a mutation rate is valid.}
-
-\item{site_model}{a nucleotide substitution model,
-which can be:
-\itemize{
-  \item{
-    A standard nucloetide substitution model,
-    as created by \link[beautier]{create_site_model}
-  }
-  \item{
-    \code{linked_node_sub}: a linked node-substitution model
-  }
-  \item{
-    \code{unlinked_node_sub}: an unlinked node-substitution model
-  }
-}}
 
 \item{rng_seed}{a random number generator seed}
 

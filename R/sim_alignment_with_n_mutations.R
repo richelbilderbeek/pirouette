@@ -25,8 +25,8 @@
 #' alignment_params <- pirouette::create_alignment_params()
 #'
 #' # Simulate the alignment
-#' alignment <- create_alignment(
-#'    phylogeny = phylogeny,
+#' alignment <- sim_true_alignment(
+#'    true_phylogeny = phylogeny,
 #'    alignment_params = alignment_params,
 #'  )
 #'

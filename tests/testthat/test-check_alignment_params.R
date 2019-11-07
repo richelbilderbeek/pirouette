@@ -36,10 +36,10 @@ test_that("all list elements must be present", {
   )
 
   alignment_params <- good_alignment_params
-  alignment_params$site_model <- NULL
+  alignment_params$sim_true_alignment_function <- NULL
   expect_error(
     check_alignment_params(alignment_params),
-    "'site_model' must be an element of an 'alignment_params'"
+    "'sim_true_alignment_function' must be an element of an 'alignment_params'"
   )
 
 })
@@ -58,59 +58,6 @@ test_that("all list elements must have the right data type", {
       )
     ),
     "'rng_seed' must be a number"
-  )
-
-  # site_model
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_jc69_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_hky_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_tn93_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_gtr_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = "linked_node_sub"
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = "unlinked_node_sub"
-      )
-    )
-  )
-
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = "nonsense"
-      )
-    ),
-    "'site_model' must be a site model"
   )
 })
 

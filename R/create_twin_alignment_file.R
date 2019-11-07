@@ -67,15 +67,8 @@ create_twin_alignment_file <- function(
     true_alignment = true_alignment,
     alignment_params = alignment_params,
     twinning_params = twinning_params,
-    verbose = verbose,
-    newskool = FALSE
+    verbose = verbose
   )
-
-  n_mutations_twin <- count_n_mutations(
-    alignment = twin_alignment,
-    root_sequence = alignment_params$root_sequence
-  )
-  testit::assert(n_mutations_true == n_mutations_twin)
 
   # Save
   twin_alignment_filename <- twinning_params$twin_alignment_filename

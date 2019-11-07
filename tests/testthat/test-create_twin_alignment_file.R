@@ -1,7 +1,11 @@
 test_that("must create file", {
   alignment_params <- create_test_alignment_params(
-    root_sequence = "agcta")
-  twinning_params <- create_twinning_params()
+    root_sequence = "agcta"
+  )
+  twinning_params <- create_twinning_params(
+    sim_twin_alignment_function =
+      get_sim_twin_alignment_with_same_n_mutation_function()
+  )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(
     phylogeny = true_phylogeny,
