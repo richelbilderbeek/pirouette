@@ -423,8 +423,6 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 Using partial function evaluation you can now plug in any function to create
 a true alignment.
 
-
-
 ## 3. create a twin alignment
 
 To create a twin alignment, we need 
