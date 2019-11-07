@@ -46,8 +46,7 @@
 create_twin_alignment_file <- function(
   twin_phylogeny,
   alignment_params,
-  twinning_params,
-  verbose = FALSE
+  twinning_params
 ) {
   pirouette::check_twin_phylogeny(twin_phylogeny)
   pirouette::check_alignment_params(alignment_params)
@@ -56,18 +55,12 @@ create_twin_alignment_file <- function(
   true_alignment_filename <- alignment_params$fasta_filename
   true_alignment <- ape::read.FASTA(true_alignment_filename)
 
-  n_mutations_true <- count_n_mutations(
-    alignment = true_alignment,
-    root_sequence = alignment_params$root_sequence
-  )
-
   # Simulate
   twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
-    twinning_params = twinning_params,
-    verbose = verbose
+    twinning_params = twinning_params
   )
 
   # Save
@@ -77,9 +70,6 @@ create_twin_alignment_file <- function(
     twin_alignment_filename),
     showWarnings = FALSE, recursive = TRUE
   )
-  if (isTRUE(verbose)) {
-    print(paste0("Saving twin alignment to '", twin_alignment_filename, "'"))
-  }
 
   phangorn::write.phyDat(
     twin_alignment,
