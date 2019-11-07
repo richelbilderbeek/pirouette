@@ -1,5 +1,6 @@
 #' Adapter function to simulte the twin alignment
 #' using the \code{linked_node_sub} site model
+#' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @seealso
 #' Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
