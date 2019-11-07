@@ -52,8 +52,8 @@ expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }
 \seealso{
-Use \link{sim_true_alignment_file} to save the simulated alignment
-  directly to a file
+Use \link{create_true_alignment_file} to save
+the simulated alignment directly to a file
 }
 \author{
 Richèl J.C. Bilderbeek

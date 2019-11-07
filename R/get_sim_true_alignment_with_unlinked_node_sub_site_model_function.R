@@ -1,13 +1,21 @@
-#' Create a function to simulate a true alignment with an unlinked
-#' node substitution site model
+#' Get a partially evaluated function
+#' to simulate a true alignment with an unlinked node substitution site model.
 #' @inheritParams default_params_doc
+#' @return
+#' A partially evaluated function of
+#' \link{sim_true_alignment_with_unlinked_node_sub_site_model}
+#' @seealso
+#' Use \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+#' to get a partially evaluated function
+#' to simulate a true alignment with a linked node substitution site model.
 #' @examples
-#' f <- get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
-#'   root_sequence = "acgt"
-#' )
+#' f <- get_sim_true_alignment_with_unlinked_node_sub_site_model_function()
 #' check_sim_true_alignment_function(f)
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-#' true_alignment <- f(true_phylogeny = phylogeny)
+#' true_alignment <- f(
+#'   true_phylogeny = phylogeny,
+#'   root_sequence = "acgt"
+#' )
 #' @export
 get_sim_true_alignment_with_unlinked_node_sub_site_model_function <-
   function(

@@ -3,8 +3,8 @@
 %   R/get_sim_true_alignment_with_unlinked_node_sub_site_model_function.R
 \name{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
 \alias{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
-\title{Create a function to simulate a true alignment with an unlinked
-node substitution site model}
+\title{Get a partially evaluated function
+to simulate a true alignment with an unlinked node substitution site model.}
 \usage{
 
   get_sim_true_alignment_with_unlinked_node_sub_site_model_function(branch_subst_matrix = NULL,
@@ -31,15 +31,25 @@ used to simulate alignments}
 \item{node_time}{amount of time spent at the nodes.
 See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 }
+\value{
+A partially evaluated function of
+\link{sim_true_alignment_with_unlinked_node_sub_site_model}
+}
 \description{
-Create a function to simulate a true alignment with an unlinked
-node substitution site model
+Get a partially evaluated function
+to simulate a true alignment with an unlinked node substitution site model.
 }
 \examples{
-f <- get_sim_true_alignment_with_unlinked_node_sub_site_model_function(
-  root_sequence = "acgt"
-)
+f <- get_sim_true_alignment_with_unlinked_node_sub_site_model_function()
 check_sim_true_alignment_function(f)
 phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-true_alignment <- f(true_phylogeny = phylogeny)
+true_alignment <- f(
+  true_phylogeny = phylogeny,
+  root_sequence = "acgt"
+)
+}
+\seealso{
+Use \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+to get a partially evaluated function
+to simulate a true alignment with a linked node substitution site model.
 }
