@@ -125,8 +125,7 @@ test_that("works for simple trees", {
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
-    twinning_params =  twinning_params,
-    verbose = FALSE
+    twinning_params =  twinning_params
   )
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,

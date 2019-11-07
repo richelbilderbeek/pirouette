@@ -13,7 +13,7 @@ test_that("basic", {
     true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
-  expect_equal(check_alignment(alignment))
+  expect_silent(check_alignment(alignment))
   expect_equal(
     get_alignment_n_taxa(alignment),
     n_taxa
