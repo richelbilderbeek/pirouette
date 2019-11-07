@@ -34,13 +34,23 @@ test_that("wrong parameter names", {
 
 test_that("wrong parameter values", {
 
+  model_types <- get_model_types()
+  mts <- rep(NA, length(model_types))
+  for (l in seq_along(model_types)) {
+    mts[l] <- paste("'", model_types[l], "'", sep = "")
+  }
+  model_type_error_message <-
+    paste0(
+      "'model_type' must be among the following: ",
+      paste(mts, collapse = ", "), "."
+    )
   expect_error(
     check_inference_conditions(
       create_inference_conditions(
         model_type = "nonsense"
       )
     ),
-    "'model_type' must be either \"generative\" or \"candidate\""
+    model_type_error_message
   )
   expect_error(
     check_inference_conditions(

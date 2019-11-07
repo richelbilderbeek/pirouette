@@ -58,3 +58,18 @@ get_twin_methods <- function() {
     "max_likelihood"
   )
 }
+
+#' Get the names of the model types
+#' @inheritParams default_params_doc
+#' @return the model types
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' expect_true("candidate" %in% get_model_types())
+#' expect_true("generative" %in% get_model_types())
+#' expect_false("Jensen Ackles" %in% get_model_types())
+#' @export
+get_model_types <- function() {
+  c("generative", "candidate")
+}
