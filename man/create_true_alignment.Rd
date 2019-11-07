@@ -47,21 +47,6 @@ alignment <- create_true_alignment(
 expect_silent(check_alignment(alignment))
 expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), n_base_pairs)
-
-# Use all different site models
-for (site_model in create_site_models()) {
-  alignment_params <- create_alignment_params(
-    root_sequence = root_sequence,
-    mutation_rate = 0.1,
-    site_model = site_model
-  )
-  expect_silent(
-    create_true_alignment(
-      true_phylogeny = phylogeny,
-      alignment_params = alignment_params
-    )
-  )
-}
 }
 \seealso{
 Use \link{create_alignment_file} to save the created alignment

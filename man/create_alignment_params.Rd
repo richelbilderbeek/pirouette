@@ -75,13 +75,9 @@ expect_true("mutation_rate" \%in\% names(alignment_params))
 alignment_params <- create_alignment_params(
   root_sequence = root_sequence,
   mutation_rate = 0.1,
-  site_model = create_jc69_site_model(),
-  clock_model = create_strict_clock_model(),
   rng_seed = 0
 )
 
-expect_true("site_model" \%in\% names(alignment_params))
-expect_true("clock_model" \%in\% names(alignment_params))
 expect_true("rng_seed" \%in\% names(alignment_params))
 
 # Create a pirouette parameter set
