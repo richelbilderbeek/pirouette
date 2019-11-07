@@ -50,7 +50,8 @@
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
-  sim_true_alignment_function = pirouette::get_default_sim_true_alignment_function(),
+  sim_true_alignment_function =
+    pirouette::sim_true_alignment_with_standard_site_model,
   mutation_rate = pirouette::create_standard_mutation_rate, # to be obsoleted
   site_model = beautier::create_jc69_site_model(), # to be obsoleted
   clock_model = beautier::create_strict_clock_model(), # to be obsoleted
@@ -85,7 +86,7 @@ create_alignment_params <- function(
 #' @export
 create_test_alignment_params <- function(
   sim_true_alignment_function =
-    pirouette::get_default_sim_true_alignment_function(),
+    pirouette::sim_true_alignment_with_standard_site_model,
   root_sequence = "acgt",
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),

@@ -262,7 +262,7 @@ the `alignment_params$sim_true_alignment_function`:
 
 ```{r}
 alignment_params <- create_alignment_params(
-  sim_true_alignment_function = get_default_sim_true_alignment_function()
+  sim_true_alignment_function = sim_true_alignment_with_standard_site_model
 )
 true_alignment <- sim_true_alignment(
   true_phylogeny = true_phylogeny,

@@ -5,7 +5,7 @@
 \title{Create testing parameters for the alignment simulation.}
 \usage{
 
-  create_test_alignment_params(sim_true_alignment_function = pirouette::get_default_sim_true_alignment_function(),
+  create_test_alignment_params(sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
   root_sequence = "acgt",
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),

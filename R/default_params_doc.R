@@ -250,15 +250,6 @@
 #'   makes a measurement
 #' @param sequence_length the length of each DNA sequence in an alignment
 #' @param seed a random number generator seed
-#' @param sim_alignment_function function to simulate an alignment with.
-#' This function must have one argument called \code{phylogeny}
-#' of type \link[ape]{phylo} and has a return type of type \link[ape]{DNAbin}.
-#'
-#' Some standard functions:\cr
-#' \itemize{
-#'   \item Use \link{get_default_sim_alignment_function} to use a
-#'     default function
-#' }
 #' @param sim_pars something
 #' @param sim_phylo something
 #' @param sim_true_alignment_function function to simulate a
@@ -301,6 +292,12 @@
 #'     (\link{sim_twin_alignment_with_same_n_mutation})
 #'     that simulates -using a standard model- a twin alignment with as much
 #'     mutations compared to the root sequence as the true alignment has
+#'   \item Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+#'     that simulates a twin alignment using a linked node substitution
+#'     model
+#'   \item Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+#'     that simulates a twin alignment using an unlinked node substitution
+#'     model
 #' }
 #' @param sim_twin_tree_function function to simulate a twin tree with.
 #' This function must have one argument called \code{phylogeny}
@@ -480,7 +477,6 @@ default_params_doc <- function(
   sample_interval,
   seed,
   sequence_length,
-  sim_alignment_function,
   sim_pars,
   sim_phylo,
   sim_true_alignment_function,

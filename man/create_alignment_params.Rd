@@ -6,7 +6,7 @@
 \usage{
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
-  sim_true_alignment_function = pirouette::get_default_sim_true_alignment_function(),
+  sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
   mutation_rate = pirouette::create_standard_mutation_rate,
   site_model = beautier::create_jc69_site_model(),
   clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
