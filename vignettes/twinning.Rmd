@@ -112,7 +112,7 @@ if (rappdirs::app_dir()$os != "win" &&
     is_beast2_installed() && 
     is_beast2_ns_pkg_installed()
 ) {
-  df <- pirouette::pir_run(
+  df <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   ) 

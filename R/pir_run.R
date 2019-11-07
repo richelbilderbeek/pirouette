@@ -134,20 +134,6 @@ pir_run <- function(
       twin_phylogeny = twin_tree,
       pir_params = pir_params
     )
-
-    # Twin alignment must have as much mutations as the true alignment
-    n_mutations_true <- count_n_mutations(
-      alignment = ape::read.FASTA(pir_params$alignment_params$fasta_filename),
-      root_sequence = pir_params$alignment_params$root_sequence
-    )
-    n_mutations_twin <- count_n_mutations(
-      alignment = ape::read.FASTA(
-        pir_params$twinning_params$twin_alignment_filename
-      ),
-      root_sequence = pir_params$alignment_params$root_sequence
-    )
-    testit::assert(n_mutations_true == n_mutations_twin)
-
     pir_out <- rbind(pir_out, pir_out_twin)
   }
   pir_out
