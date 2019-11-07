@@ -57,12 +57,6 @@ twin_alignment <- sim_twin_alignment(
   alignment_params = alignment_params,
   twinning_params = create_twinning_params()
 )
-n_mutations_twin <- count_n_mutations(
-  alignment = twin_alignment, root_sequence = root_sequence
-)
-
-library(testthat)
-expect_equal(n_mutations_true, n_mutations_twin)
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
