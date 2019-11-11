@@ -37,8 +37,8 @@ check_pir_out <- function(
   testit::assert(is.factor(pir_out$tree_prior))
   testit::assert(!is.factor(pir_out$error_1))
 
-  if (!all(pir_out$tree %in% c("true", "twin"))) {
-    stop("Invalid 'tree' value")
+  for (i in seq_along(pir_out$tree)) {
+    pirouette::check_tree_type(pir_out$tree[i])
   }
 
   if (!all(pir_out$inference_model %in% c("generative", "candidate"))) {

@@ -28,7 +28,7 @@ check_inference_conditions <- function(
       )
     }
   }
-  check_model_type(inference_conditions$model_type)
+  pirouette::check_model_type(inference_conditions$model_type)
   if (!inference_conditions$run_if %in% c("always", "best_candidate")) {
     stop("'run_if' must be either \"always\" or \"best_candidate\"")
   }

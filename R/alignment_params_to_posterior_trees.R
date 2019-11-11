@@ -75,7 +75,9 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     !beautier::is_one_na(experiment$inference_model$mcmc$tracelog$filename)
   )
   # Well, if you'd really want to, this is how:
-  # if (beautier::is_one_na(experiment$inference_model$mcmc$tracelog$filename)) {
+  # if (beautier::is_one_na(
+  #  experiment$inference_model$mcmc$tracelog$filename
+  # )) {
   #   experiment$inference_model$mcmc$tracelog$filename <- paste0(
   #       beautier::get_alignment_id(
   #       alignment_params$fasta_filename

@@ -73,3 +73,18 @@ get_twin_methods <- function() {
 get_model_types <- function() {
   c("generative", "candidate")
 }
+
+#' Get the names of the tree types
+#' @inheritParams default_params_doc
+#' @return the tree types
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' expect_true("true" %in% get_tree_types())
+#' expect_true("twin" %in% get_tree_types())
+#' expect_false("Jensen Ackles" %in% get_tree_types())
+#' @export
+get_tree_types <- function() {
+  c("true", "twin")
+}
