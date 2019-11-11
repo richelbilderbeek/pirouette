@@ -38,7 +38,7 @@ check_pir_out <- function(
   testit::assert(!is.factor(pir_out$error_1))
 
   for (i in seq_along(pir_out$tree)) {
-    check_tree_type(pir_out$tree[i])
+    pirouette::check_tree_type(pir_out$tree[i])
   }
 
   if (!all(pir_out$inference_model %in% c("generative", "candidate"))) {

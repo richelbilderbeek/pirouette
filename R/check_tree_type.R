@@ -15,7 +15,7 @@
 check_tree_type <- function(
   tree_type
 ) {
-  tree_types <- get_tree_types()
+  tree_types <- pirouette::get_tree_types()
   out <- rep(NA, length(tree_types))
   for (l in seq_along(tree_types)) {
     out[l] <- paste("'", tree_types[l], "'", sep = "")

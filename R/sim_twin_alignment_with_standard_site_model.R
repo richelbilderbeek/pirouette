@@ -34,12 +34,12 @@ sim_twin_alignment_with_standard_site_model <- function(
   mutation_rate = 0.1,
   site_model = beautier::create_jc69_site_model()
 ) {
-  alignment <- create_alignment_with_standard_site_model_raw(
+  alignment <- pirouette::create_alignment_with_standard_site_model_raw(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model
   )
-  check_alignment(alignment)
+  pirouette::check_alignment(alignment)
   alignment
 }

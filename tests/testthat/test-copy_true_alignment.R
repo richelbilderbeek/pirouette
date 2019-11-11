@@ -1,5 +1,7 @@
 test_that("use", {
 
-  twin_alignment <- copy_true_alignment(get_test_alignment())
-  expect_silent(check_alignment(twin_alignment))
+  twin_alignment <- pirouette::copy_true_alignment(
+    pirouette::get_test_alignment()
+  )
+  testthat::expect_silent(pirouette::check_alignment(twin_alignment))
 })

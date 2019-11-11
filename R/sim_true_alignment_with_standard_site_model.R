@@ -30,6 +30,6 @@ sim_true_alignment_with_standard_site_model <- function(
     mutation_rate = mutation_rate,
     site_model = site_model
   )
-  check_alignment(alignment)
+  pirouette::check_alignment(alignment)
   alignment
 }

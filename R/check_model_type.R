@@ -15,7 +15,7 @@
 check_model_type <- function(
   model_type
 ) {
-  model_types <- get_model_types()
+  model_types <- pirouette::get_model_types()
   out <- rep(NA, length(model_types))
   for (l in seq_along(model_types)) {
     out[l] <- paste("'", model_types[l], "'", sep = "")
