@@ -47,7 +47,7 @@ sim_true_alignment_with_linked_node_sub_site_model <- function(
   testit::assert(class(alignment_phydat) == "phyDat")
 
   alignment <- ape::as.DNAbin(alignment_phydat)
-  check_alignment(alignment)
+  pirouette::check_alignment(alignment)
   alignment
 
 }

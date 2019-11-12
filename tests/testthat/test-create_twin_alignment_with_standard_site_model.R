@@ -12,6 +12,6 @@ test_that("can simulate an alignmnet", {
     root_sequence = "aaaa",
     mutation_rate = 0.1
   )
-  expect_silent(check_alignment(alignment))
+  testthat::expect_silent(pirouette::check_alignment(alignment))
 })
 

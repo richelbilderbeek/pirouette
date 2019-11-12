@@ -1,7 +1,7 @@
 test_that("use", {
-  expect_silent(check_alignment(ape::as.DNAbin("")))
-  expect_error(check_alignment(""))
-  expect_error(check_alignment(NULL))
-  expect_error(check_alignment(NA))
-  expect_error(check_alignment(Inf))
+  testthat::expect_silent(pirouette::check_alignment(ape::as.DNAbin("")))
+  testthat::expect_error(pirouette::check_alignment(""))
+  testthat::expect_error(pirouette::check_alignment(NULL))
+  testthat::expect_error(pirouette::check_alignment(NA))
+  testthat::expect_error(pirouette::check_alignment(Inf))
 })

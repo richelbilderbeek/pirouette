@@ -45,10 +45,10 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   )
   # function return type
   tryCatch(
-    check_alignment(out),
+    pirouette::check_alignment(out),
     condition = function(c) {
       stop(
-        "'sim_twin_alignment_function' must be a function that returns an ape::DNAbin"
+        "'sim_twin_alignment_function' must be a function that returns an ape::DNAbin" # nolint indeed a long string
       )
     }
   )

@@ -38,17 +38,17 @@ sim_twin_alignment_with_same_n_mutation <- function(
 ) {
   testthat::expect_equal(
     ape::Ntip(twin_phylogeny),
-    get_alignment_n_taxa(true_alignment)
+    pirouette::get_alignment_n_taxa(true_alignment)
   )
   testthat::expect_equal(
     nchar(root_sequence),
-    get_alignment_sequence_length(true_alignment)
+    pirouette::get_alignment_sequence_length(true_alignment)
   )
 
-  twin_alignment <- sim_alignment_with_n_mutations(
+  twin_alignment <- pirouette::sim_alignment_with_n_mutations(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
-    n_mutations = count_n_mutations(
+    n_mutations = pirouette::count_n_mutations(
       alignment = true_alignment,
       root_sequence = root_sequence
     ),
@@ -57,14 +57,14 @@ sim_twin_alignment_with_same_n_mutation <- function(
     max_n_tries = max_n_tries,
     verbose = verbose
   )
-  check_alignment(twin_alignment)
+  pirouette::check_alignment(twin_alignment)
   testthat::expect_equal(
-    get_alignment_n_taxa(twin_alignment),
-    get_alignment_n_taxa(true_alignment)
+    pirouette::get_alignment_n_taxa(twin_alignment),
+    pirouette::get_alignment_n_taxa(true_alignment)
   )
   testthat::expect_equal(
-    get_alignment_sequence_length(twin_alignment),
-    get_alignment_sequence_length(true_alignment)
+    pirouette::get_alignment_sequence_length(twin_alignment),
+    pirouette::get_alignment_sequence_length(true_alignment)
   )
   twin_alignment
 }

@@ -48,6 +48,6 @@ sim_true_alignment <- function(
     true_phylogeny = true_phylogeny,
     root_sequence = alignment_params$root_sequence
   )
-  check_alignment(alignment)
+  pirouette::check_alignment(alignment)
   alignment
 }

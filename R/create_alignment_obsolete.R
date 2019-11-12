@@ -41,7 +41,6 @@ create_alignment_obsolete <- function(
   testit::assert(beautier::is_one_bool(verbose))
   n_taxa <- ape::Ntip(phylogeny)
   n_nucleotides <- nchar(alignment_params$root_sequence)
-  max_n_mutations <- n_taxa * n_nucleotides
 
   # If mutation_rate is function, apply it to the phylogeny
   if (is.function(alignment_params$mutation_rate)) {
@@ -57,7 +56,7 @@ create_alignment_obsolete <- function(
   alignment <- NA
   if (beautier::is_site_model(alignment_params$site_model)) {
     # Standard site models
-    alignment <-  create_alignment_with_standard_site_model_raw(
+    alignment <- pirouette::create_alignment_with_standard_site_model_raw(
       phylogeny = phylogeny,
       root_sequence = alignment_params$root_sequence,
       mutation_rate = alignment_params$mutation_rate,
@@ -165,22 +164,22 @@ create_alignment_with_standard_site_model_raw <- function(
   if (class(alignment_phydat) != "phyDat") {
     stop(
       "'class(alignment_phydat)' not equal to 'phyDat'. \n",
-      "Actual 'class(alignment_phydat)': ", class(alignment_phydat)," \n",
-      "Actual 'alignment_phydat': ", alignment_phydat," \n"
+      "Actual 'class(alignment_phydat)': ", class(alignment_phydat), " \n",
+      "Actual 'alignment_phydat': ", alignment_phydat, " \n"
     )
   }
   testit::assert(class(alignment_phydat) == "phyDat")
 
   alignment <- ape::as.DNAbin(alignment_phydat)
-  check_alignment(alignment)
+  pirouette::check_alignment(alignment)
   testit::assert(
-    get_alignment_sequence_length(alignment) ==
+    pirouette::get_alignment_sequence_length(alignment) ==
     nchar(root_sequence)
   )
   testit::assert(
-    get_alignment_n_taxa(alignment) ==
+    pirouette::get_alignment_n_taxa(alignment) ==
     ape::Ntip(phylogeny)
   )
-  alignment
 
+  alignment
 }
