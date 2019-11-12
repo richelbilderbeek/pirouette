@@ -218,7 +218,6 @@ test_that("most_evidence, one candidate", {
 
 test_that("generative with twin", {
 
-  skip("Not now")
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
 
@@ -266,21 +265,6 @@ test_that("generative with twin", {
   expect_true(is.factor(errors$tree))
   expect_true("true" %in% errors$tree)
   expect_true("twin" %in% errors$tree)
-
-  # True and twin alignment have an equal amount of mutations
-  true_alignment_filename <- pir_params$alignment_params$fasta_filename
-  twin_alignment_filename <- pir_params$twinning_params$twin_alignment_filename
-  true_alignment <- ape::read.FASTA(true_alignment_filename)
-  twin_alignment <- ape::read.FASTA(twin_alignment_filename)
-  n_mutations_true <- count_n_mutations(
-    alignment = true_alignment,
-    root_sequence = pir_params$alignment_params$root_sequence
-  )
-  n_mutations_twin <- count_n_mutations(
-    alignment = twin_alignment,
-    root_sequence = pir_params$alignment_params$root_sequence
-  )
-  expect_equal(n_mutations_true, n_mutations_twin)
 
   expect_silent(
     pir_to_pics(phylogeny = phylogeny,
