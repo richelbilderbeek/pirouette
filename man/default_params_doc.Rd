@@ -19,15 +19,15 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   experiment, experiments, fasta_filename, filename, folder_name,
   ideal_method, inference_model, inference_conditions,
   init_speciation_rate, init_extinction_rate, lambda, log_evidence,
-  marg_lik_filename, marg_liks, max_evidence_epsilon, mbd_l_matrix,
-  mbd_mutation_rate, mbd_tree, mcmc, method, model_selection, model_type,
-  mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa, n_replicates,
-  node_mutation_rate, node_subst_matrix, node_time, nu, nu_events,
-  parameter_filename, parameters_filename, phylo, phylogeny, pir_params,
-  pir_out, posterior_trees, precision, project_folder_name, result,
-  rng_seed, rng_seed_twin_alignment, rng_seed_twin_tree, root_sequence,
-  run_experiment, run_experiments, run_if, sample_interval, seed,
-  sequence_length, sim_pars, sim_phylo, sim_true_alignment_function,
+  marg_lik_filename, marg_liks, max_evidence_epsilon, max_n_tries,
+  mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, method, model_selection,
+  model_type, mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa,
+  n_replicates, node_mutation_rate, node_subst_matrix, node_time, nu,
+  nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
+  pir_params, pir_out, posterior_trees, precision, project_folder_name,
+  result, rng_seed, rng_seed_twin_alignment, rng_seed_twin_tree,
+  root_sequence, run_experiment, run_experiments, run_if, sample_interval,
+  seed, sequence_length, sim_pars, sim_phylo, sim_true_alignment_function,
   sim_twin_alignment_function, sim_twin_tree_function, site_model,
   site_models, site_model_name, sub_chain_length, subst_matrix, sum_lamu,
   t_0, tree, tree_filename, tree_model, tree_prior, tree_priors,
@@ -242,6 +242,8 @@ A test data frame can be created by \link{create_test_marg_liks}}
 
 \item{max_evidence_epsilon}{set the maximum acceptable threshold for the
 parameter \code{evidence_epsilon}}
+
+\item{max_n_tries}{maximum number of tries before giving up}
 
 \item{mbd_l_matrix}{the L matrix of an MBD tree}
 

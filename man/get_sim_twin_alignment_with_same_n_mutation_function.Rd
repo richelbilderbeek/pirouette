@@ -31,6 +31,8 @@ which can be:
   }
 }}
 
+\item{max_n_tries}{maximum number of tries before giving up}
+
 \item{verbose}{if TRUE, show more output}
 }
 \value{
