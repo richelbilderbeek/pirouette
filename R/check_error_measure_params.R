@@ -35,22 +35,8 @@ check_error_measure_params <- function(
     stop("'burn_in_fraction' must be between 0.0 and 1.0")
   }
 
-  # check if error_function is indeed a function
-  if (!is.function(error_measure_params$error_function)) {
-    stop("'error_function' must be a function")
-  }
-
-  # check if error_function is indeed a function that has a lowest
-  # value for identical trees
-  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  trees <- c(tree)
-  test_errors <- error_measure_params$error_function(
-    tree = tree,
-    trees = trees
+  pirouette::check_error_function(
+    error_measure_params$error_function
   )
-  if (!all(test_errors == 0.0)) {
-    stop(
-      "'error_function' must be a function that is zero for identical trees"
-    )
-  }
+
 }
