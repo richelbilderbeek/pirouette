@@ -218,6 +218,7 @@ test_that("most_evidence, one candidate", {
 
 test_that("generative with twin", {
 
+  skip("Not now")
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
 

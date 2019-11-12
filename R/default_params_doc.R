@@ -153,6 +153,7 @@
 #'   A test data frame can be created by \link{create_test_marg_liks}
 #' @param max_evidence_epsilon set the maximum acceptable threshold for the
 #'   parameter \code{evidence_epsilon}
+#' @param max_n_tries maximum number of tries before giving up
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param mbd_l_matrix the L matrix of an MBD tree
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
@@ -447,6 +448,7 @@ default_params_doc <- function(
   marg_lik_filename,
   marg_liks,
   max_evidence_epsilon,
+  max_n_tries,
   mbd_l_matrix,
   mbd_mutation_rate,
   mbd_tree,
