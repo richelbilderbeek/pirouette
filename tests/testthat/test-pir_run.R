@@ -83,8 +83,6 @@ test_that("generative", {
 
 test_that("nodeSub: true and twin alignments must differ", {
 
-  skip("expose #339")
-
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
 
