@@ -9,10 +9,11 @@ test_that("can simulate an alignmnet", {
 
   true_alignment <- pirouette::get_test_alignment(sequence_length = 5)
 
-  alignment <- pirouette::sim_twin_alignment_with_same_n_mutation(
+  alignment <- sim_twin_alignment_with_same_n_mutation(
     twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
     true_alignment = true_alignment,
-    root_sequence = "aacgt"
+    root_sequence = "aacgt",
+    max_n_tries = 1
   )
 
   testthat::expect_silent(pirouette::check_alignment(alignment))

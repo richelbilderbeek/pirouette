@@ -12,7 +12,9 @@ test_that("use, twin has more info", {
   )
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function()
+      get_sim_twin_alignment_with_same_n_mutation_function(
+        max_n_tries = 1
+      )
   )
   twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
@@ -44,7 +46,9 @@ test_that("use, twin has less info", {
   )
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function()
+      get_sim_twin_alignment_with_same_n_mutation_function(
+        max_n_tries = 1
+      )
   )
   twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
@@ -110,7 +114,9 @@ test_that("works for simple trees", {
     root_sequence = "acgt")
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function()
+      get_sim_twin_alignment_with_same_n_mutation_function(
+        max_n_tries = 1
+      )
   )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(
@@ -162,7 +168,7 @@ test_that("works in poor conditions as well", {
     sim_twin_alignment_function =
       get_sim_twin_alignment_with_same_n_mutation_function(
         mutation_rate = mutation_rate,
-        max_n_tries = 1000
+        max_n_tries = 1
       )
   )
   twin_alignment <- sim_twin_alignment(

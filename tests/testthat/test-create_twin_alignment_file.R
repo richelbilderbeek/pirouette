@@ -4,7 +4,9 @@ test_that("must create file", {
   )
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function()
+      get_sim_twin_alignment_with_same_n_mutation_function(
+        max_n_tries = 1
+      )
   )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(

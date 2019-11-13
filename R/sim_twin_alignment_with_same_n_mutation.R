@@ -33,7 +33,7 @@ sim_twin_alignment_with_same_n_mutation <- function(
   root_sequence,
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model(),
-  max_n_tries = 100,
+  max_n_tries = 1000,
   verbose = FALSE
 ) {
   beautier::check_phylogeny(twin_phylogeny)
