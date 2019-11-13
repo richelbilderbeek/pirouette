@@ -2,7 +2,7 @@ test_that("use, twin has more info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-  root_sequence <- create_blocked_dna(1000)
+  root_sequence <- create_blocked_dna(8)
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
@@ -13,7 +13,7 @@ test_that("use, twin has more info", {
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
       get_sim_twin_alignment_with_same_n_mutation_function(
-        max_n_tries = 1
+        max_n_tries = 1000
       )
   )
   twin_alignment <- sim_twin_alignment(
@@ -36,7 +36,7 @@ test_that("use, twin has less info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
-  root_sequence <- create_blocked_dna(1000)
+  root_sequence <- create_blocked_dna(8)
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
@@ -115,7 +115,7 @@ test_that("works for simple trees", {
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
       get_sim_twin_alignment_with_same_n_mutation_function(
-        max_n_tries = 1
+        max_n_tries = 100
       )
   )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
