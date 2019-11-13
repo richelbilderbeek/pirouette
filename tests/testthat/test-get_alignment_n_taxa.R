@@ -108,5 +108,3 @@ test_that("use three unlabelled taxa", {
   alignment <- get_test_alignment(n_taxa = 6)
   expect_equal(6, get_alignment_n_taxa(alignment))
 })
-
-

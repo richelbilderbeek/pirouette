@@ -164,10 +164,7 @@ test_that("abuse", {
     ),
     "'method' not in the supported methods"
   )
-
 })
-
-
 
 test_that("use", {
 

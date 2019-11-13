@@ -25,7 +25,10 @@ test_that("errors are stored correctly", {
 
   expect_true(
     length(
-      list.files(dirname(experiment$errors_filename), pattern = basename(experiment$errors_filename))
+      list.files(
+        dirname(experiment$errors_filename),
+        pattern = basename(experiment$errors_filename)
+      )
     ) == 0
   )
 

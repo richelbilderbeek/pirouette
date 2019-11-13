@@ -11,5 +11,4 @@
 get_alignment_n_taxa <- function(alignment, verbose = FALSE) {
   pirouette::check_alignment(alignment)
   nrow(as.matrix(alignment))
-  # length(labels(alignment))
 }

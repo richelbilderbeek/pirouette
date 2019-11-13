@@ -122,7 +122,9 @@ test_that("nodeSub: true and twin alignments must differ", {
 
   # These alignments should differ
   true_alignment <- readLines(pir_params$alignment_params$fasta_filename)
-  twin_alignment <- readLines(pir_params$twinning_params$twin_alignment_filename)
+  twin_alignment <- readLines(
+    pir_params$twinning_params$twin_alignment_filename
+  )
   expect_false(all(true_alignment == twin_alignment))
 })
 

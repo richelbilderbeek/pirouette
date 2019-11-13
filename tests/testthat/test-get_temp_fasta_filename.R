@@ -4,7 +4,7 @@ test_that("use", {
       stringr::str_match(
         string = get_temp_fasta_filename(),
         "alignment_.*\\.fasta"
-      )[1,1]
+      )[1, 1]
     )
   )
 })

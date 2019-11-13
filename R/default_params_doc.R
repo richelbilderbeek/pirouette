@@ -270,11 +270,13 @@
 #'   the use a standard site model.
 #'   \item Use
 #'   \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
-#'   to get a function (\link{sim_true_alignment_with_linked_node_sub_site_model})
+#'   to get a function
+#'   (\link{sim_true_alignment_with_linked_node_sub_site_model})
 #'   the use a linked node substitution site model.
 #'   \item Use
 #'   \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
-#'   to get a function (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
+#'   to get a function
+#'   (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
 #'   the use an unlinked node substitution site model.
 #' }
 #' @param sim_twin_alignment_function function to simulate a

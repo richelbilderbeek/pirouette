@@ -14,4 +14,3 @@ test_that("can simulate an alignment", {
   )
   testthat::expect_silent(check_alignment(alignment))
 })
-

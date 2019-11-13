@@ -4,7 +4,7 @@ test_that("use", {
       stringr::str_match(
         string = get_temp_errors_filename(),
         "errors_.*\\.csv"
-      )[1,1]
+      )[1, 1]
     )
   )
 })

@@ -14,4 +14,3 @@ test_that("can simulate an alignmnet", {
   )
   testthat::expect_silent(pirouette::check_alignment(alignment))
 })
-

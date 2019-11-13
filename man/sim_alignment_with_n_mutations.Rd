@@ -73,8 +73,8 @@ expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }
 \seealso{
-Use \link{create_true_alignment_file} to save the simulated alignment
-  directly to a file
+Use \link{create_true_alignment_file}
+to save the simulated alignment directly to a file.
 
 Use \link{sim_true_alignment_with_std_site_model}
 simulate the true alignment with a standard site model.
