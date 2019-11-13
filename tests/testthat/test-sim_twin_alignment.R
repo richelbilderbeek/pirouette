@@ -140,7 +140,7 @@ test_that("works for simple trees", {
 
 test_that("works in poor conditions as well", {
 
-  skip("Does not work well anymore?")
+  skip("Issue 356, Issue #356")
   true_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:1, B:1):1, C:2):1, D:3):1, E:4):1, F:5):1, G:6):1, H:7):1, I:8):1, J:9):1, K:10):90, L:100);" # nolint indeed long
   )
@@ -148,10 +148,8 @@ test_that("works in poor conditions as well", {
     text = "(((((((((((A:90, B:90):1, C:91):1, D:92):1, E:93):1, F:94):1, G:95):1, H:96):1, I:97):1, J:98):1, K:99):1, L:100);" # nolint indeed long
   )
   root_sequence <- create_blocked_dna(1000)
-  mutation_rate <- 0.001
   alignment_params <- create_test_alignment_params(
-    root_sequence = root_sequence,
-    mutation_rate = mutation_rate
+    root_sequence = root_sequence
   )
   true_alignment <- create_true_alignment(
     true_phylogeny = true_phylogeny,
