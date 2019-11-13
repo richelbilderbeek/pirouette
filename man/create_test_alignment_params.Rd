@@ -5,7 +5,7 @@
 \title{Create testing parameters for the alignment simulation.}
 \usage{
 
-  create_test_alignment_params(sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
+  create_test_alignment_params(sim_true_alignment_function = pirouette::sim_true_alignment_with_std_site_model,
   root_sequence = "acgt", rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename())
 }
@@ -23,7 +23,7 @@ has the right signature and output.
 Some standard functions:\cr
 \itemize{
   \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
-  to get a function (\link{sim_true_alignment_with_standard_site_model})
+  to get a function (\link{sim_true_alignment_with_std_site_model})
   the use a standard site model.
   \item Use
   \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}

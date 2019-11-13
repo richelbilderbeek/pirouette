@@ -33,8 +33,8 @@ sim_twin_alignment_with_standard_site_model <- function(
   mutation_rate = 0.1, # TODO: make 1.0
   site_model = beautier::create_jc69_site_model()
 ) {
-  alignment <- sim_true_alignment_with_standard_site_model(
-    true_phylogeny = twin_phylogeny,
+  alignment <- sim_alignment_with_std_site_model(
+    phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model

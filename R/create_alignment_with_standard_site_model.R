@@ -6,7 +6,7 @@ create_alignment_with_standard_site_model <- function(
   phylogeny,
   alignment_params
 ) {
-  pirouette::create_alignment_with_standard_site_model_raw(
+  pirouette::sim_alignment_with_std_site_model(
     phylogeny = phylogeny,
     root_sequence = alignment_params$root_sequence,
     mutation_rate = alignment_params$mutation_rate,

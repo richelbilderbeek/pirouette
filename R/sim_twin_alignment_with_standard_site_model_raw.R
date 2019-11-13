@@ -9,7 +9,7 @@ sim_twin_alignment_with_standard_site_model_raw <- function(
   mutation_rate,
   site_model
 ) {
-  create_alignment_with_standard_site_model_raw(
+  sim_alignment_with_std_site_model(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,

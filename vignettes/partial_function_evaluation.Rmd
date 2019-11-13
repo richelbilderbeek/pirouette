@@ -279,7 +279,7 @@ the `alignment_params$sim_true_alignment_function`:
 
 ```{r}
 alignment_params <- create_alignment_params(
-  sim_true_alignment_function = sim_true_alignment_with_standard_site_model,
+  sim_true_alignment_function = sim_true_alignment_with_std_site_model,
   root_sequence = root_sequence  
 )
 true_alignment <- sim_true_alignment(
@@ -329,11 +329,11 @@ be a function that takes *one* argument, which is the true phylogeny. What
 if we want a function that indeed has one argument for the true phylogeny,
 but also some additional ones?
 
-An example is `sim_true_alignment_with_standard_site_model`, which uses a 
+An example is `sim_true_alignment_with_std_site_model`, which uses a 
 root sequence of `acgt`, a mutation rate of 0.1 and a JC69 site model:
 
 ```{r}
-head(sim_true_alignment_with_standard_site_model)
+head(sim_true_alignment_with_std_site_model)
 ```
 
 To change the default arguments, we'll need partial function evaluation, 
@@ -342,7 +342,7 @@ ellipsis (`...`) argument that will fill in the values you specified:
 
 ```{r}
 sim_true_alignment_function <- pryr::partial(
-  sim_true_alignment_with_standard_site_model, 
+  sim_true_alignment_with_std_site_model, 
   mutation_rate = 0.5,                     
   site_model = beautier::create_hky_site_model()
 )
@@ -488,7 +488,9 @@ twinning_params <- create_twinning_params(
 twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(),
+  alignment_params = create_test_alignment_params(
+    root_sequence = root_sequence  
+  ),
   twinning_params = twinning_params
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment")

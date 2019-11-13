@@ -56,7 +56,7 @@ create_alignment <- function(
   alignment <- NA
   if (beautier::is_site_model(alignment_params$site_model)) {
     # Standard site models
-    alignment <- pirouette::create_alignment_with_standard_site_model_raw(
+    alignment <- pirouette::sim_alignment_with_std_site_model(
       phylogeny = phylogeny,
       root_sequence = alignment_params$root_sequence,
       mutation_rate = alignment_params$mutation_rate,
