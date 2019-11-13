@@ -1,5 +1,7 @@
 test_that("use", {
-  f <- get_sim_twin_alignment_with_same_n_mutation_function()
+  f <- get_sim_twin_alignment_with_same_n_mutation_function(
+    max_n_tries = 1
+  )
   check_sim_twin_alignment_function(f)
 
   true_alignment <- get_test_alignment()
@@ -12,5 +14,5 @@ test_that("use", {
     true_alignment = true_alignment,
     root_sequence = root_sequence
   )
-  expect_silent(pirouette::check_alignment(alignment))
+  expect_silent(check_alignment(alignment))
 })

@@ -36,6 +36,11 @@ sim_twin_alignment_with_same_n_mutation <- function(
   max_n_tries = 100,
   verbose = FALSE
 ) {
+  beautier::check_phylogeny(twin_phylogeny)
+  pirouette::check_alignment(true_alignment)
+  pirouette::check_root_sequence(root_sequence)
+  pirouette::check_mutation_rate(mutation_rate)
+  beautier::check_site_model(site_model)
   testthat::expect_equal(
     ape::Ntip(twin_phylogeny),
     pirouette::get_alignment_n_taxa(true_alignment)

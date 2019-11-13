@@ -32,6 +32,8 @@ get_sim_twin_alignment_with_same_n_mutation_function <- function(
   max_n_tries = 100,
   verbose = FALSE
 ) {
+  pirouette::check_mutation_rate(mutation_rate)
+  beautier::check_site_model(site_model)
   pryr::partial(
     sim_twin_alignment_with_same_n_mutation,
     mutation_rate = mutation_rate,
