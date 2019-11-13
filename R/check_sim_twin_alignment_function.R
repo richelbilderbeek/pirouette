@@ -31,10 +31,12 @@ check_sim_twin_alignment_function <- function(sim_twin_alignment_function) {
   # function signature
   out <- NA
   tryCatch({
-      out <- sim_twin_alignment_function(
-        twin_phylogeny = twin_phylogeny,
-        true_alignment = true_alignment,
-        root_sequence = root_sequence
+      suppressWarnings(
+        out <- sim_twin_alignment_function(
+          twin_phylogeny = twin_phylogeny,
+          true_alignment = true_alignment,
+          root_sequence = root_sequence
+        )
       )
     }, error = function(e) {
       stop(
