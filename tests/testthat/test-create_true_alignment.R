@@ -5,8 +5,7 @@ test_that("basic", {
   sequence_length <- 10
   root_sequence <- create_mono_nuc_dna(length = sequence_length)
   alignment_params <- create_alignment_params(
-    root_sequence = root_sequence,
-    mutation_rate = 1
+    root_sequence = root_sequence
   )
 
   alignment <- create_true_alignment(
@@ -28,8 +27,7 @@ test_that("create_true_alignment: abuse", {
 
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   alignment_params <- create_alignment_params(
-    root_sequence = create_mono_nuc_dna(length = 4),
-    mutation_rate = 1
+    root_sequence = create_mono_nuc_dna(length = 4)
   )
 
   expect_error(

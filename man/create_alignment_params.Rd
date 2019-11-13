@@ -7,7 +7,6 @@
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
   sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
-  mutation_rate = pirouette::create_standard_mutation_rate,
   rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
@@ -40,9 +39,6 @@ Some standard functions:\cr
   the use an unlinked node substitution site model.
 }}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit.
-Use \link{check_mutation_rate} to check if a mutation rate is valid.}
-
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}
 
@@ -64,17 +60,14 @@ expect_equal("acgt", root_sequence)
 
 # Only specify root sequence and mutation rate, use defaults
 alignment_params <- create_alignment_params(
-  root_sequence = root_sequence,
-  mutation_rate = 0.1
+  root_sequence = root_sequence
 )
 
 expect_true("root_sequence" \%in\% names(alignment_params))
-expect_true("mutation_rate" \%in\% names(alignment_params))
 
 # Use defaults explicitly
 alignment_params <- create_alignment_params(
   root_sequence = root_sequence,
-  mutation_rate = 0.1,
   rng_seed = 0
 )
 

@@ -88,10 +88,10 @@ as an RNG seed:
 
 ```{r}
 alignment_params = pirouette::create_alignment_params(
-  mutation_rate = 0.2,
-  root_sequence = "aaaaaaaaccccccccggggggggtttttttt", 
+  root_sequence = create_blocked_dna(length = 20), 
   rng_seed = 314
 )
+print(alignment_params$root_sequence)
 ```
 
 From here, we can already predict the DNA alignment `pirouette` will generate:

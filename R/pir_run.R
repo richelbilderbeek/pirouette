@@ -79,9 +79,7 @@
 pir_run <- function(
   phylogeny,
   pir_params = create_pir_params(
-    alignment_params = create_alignment_params(
-      mutation_rate = create_standard_mutation_rate
-    ),
+    alignment_params = create_alignment_params(),
     twinning_params = create_twinning_params()
   )
 ) {

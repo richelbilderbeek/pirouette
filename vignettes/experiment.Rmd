@@ -83,8 +83,8 @@ ape::plot.phylo(phylogenies[[3]])
 Now, per phylogeny, we estimate the error BEAST2 makes:
 
 ```{r}
-alignment_params <- pirouette::create_alignment_params(
-  root_sequence = "aaaaccccggggtttt",
+alignment_params <- create_alignment_params(
+  root_sequence = create_blocked_dna(length = 20), 
   mutation_rate = create_standard_mutation_rate
 )
 experiment <- create_experiment(

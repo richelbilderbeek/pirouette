@@ -73,8 +73,9 @@ sim_alignment_with_n_mutations <- function(
   n_tries <- 1
 
   while (n_tries < max_n_tries) {
-    alignment <- create_alignment_with_standard_site_model_raw(
-      phylogeny = phylogeny,
+
+    alignment <- sim_true_alignment_with_standard_site_model(
+      true_phylogeny = phylogeny,
       root_sequence = root_sequence,
       mutation_rate = mutation_rate,
       site_model = site_model

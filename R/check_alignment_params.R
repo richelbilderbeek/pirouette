@@ -17,7 +17,6 @@ check_alignment_params <- function(
 ) {
   pirouette::check_alignment_params_names(alignment_params)
   pirouette::check_root_sequence(alignment_params$root_sequence)
-  pirouette::check_mutation_rate(alignment_params$mutation_rate)
 
   if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
@@ -38,7 +37,6 @@ check_alignment_params_names <- function(
   argument_names <- c(
     "root_sequence",
     "sim_true_alignment_function",
-    "mutation_rate", # to be obsoleted
     "rng_seed",
     "fasta_filename"
   )

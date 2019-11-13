@@ -6,9 +6,8 @@
 \usage{
 
   create_test_alignment_params(sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
-  root_sequence = "acgt",
-  mutation_rate = pirouette::create_standard_mutation_rate,
-  rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
+  root_sequence = "acgt", rng_seed = 0,
+  fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
 \item{sim_true_alignment_function}{function to simulate a
@@ -39,9 +38,6 @@ Some standard functions:\cr
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter
 Use \link{check_root_sequence} to check if a root sequence is valid.}
-
-\item{mutation_rate}{the mutation rate per base pair per time unit.
-Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 
 \item{rng_seed}{a random number generator seed}
 

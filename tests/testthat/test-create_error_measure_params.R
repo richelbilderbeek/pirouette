@@ -13,7 +13,6 @@ test_that("errors are stored correctly", {
 
   alignment_params <- pirouette::create_alignment_params(
     root_sequence = pirouette::create_blocked_dna(length = 100),
-    mutation_rate = create_standard_mutation_rate,
     rng_seed = 1
   )
   experiment <- create_test_gen_experiment()

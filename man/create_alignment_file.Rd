@@ -29,8 +29,7 @@ root_sequence <- create_blocked_dna(length = n_base_pairs)
 
 # How to simulate (and where to save) the alignment
 alignment_params <- create_alignment_params(
-  root_sequence = root_sequence,
-  mutation_rate = 0.1
+  root_sequence = root_sequence
 )
 
 # Create a phylogeny to simulate the DNA sequences on

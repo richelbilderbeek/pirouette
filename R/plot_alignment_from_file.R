@@ -2,10 +2,7 @@
 #'
 #' @inheritParams default_params_doc
 #' @param title the plot title
-#' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence,
-#'   mutation_rate = 0.1
-#' )
+#' alignment_params <- create_test_alignment_params()
 #' alignment <- create_alignment_file(
 #'   phylogeny = ape::rcoal(4),
 #'   alignment_params = alignment_params

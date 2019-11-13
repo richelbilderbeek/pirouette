@@ -4,18 +4,18 @@
 \alias{sim_twin_alignment_with_standard_site_model}
 \title{Simulate a twin alignment using a standard site model}
 \usage{
-sim_twin_alignment_with_standard_site_model(twin_phylogeny,
-  true_alignment = "irrelevant", root_sequence, mutation_rate = 0.1,
+sim_twin_alignment_with_standard_site_model(twin_phylogeny, root_sequence,
+  true_alignment = "irrelevant", mutation_rate = 0.1,
   site_model = beautier::create_jc69_site_model())
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
-\item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
-
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter
 Use \link{check_root_sequence} to check if a root sequence is valid.}
+
+\item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit.
 Use \link{check_mutation_rate} to check if a mutation rate is valid.}
@@ -53,7 +53,6 @@ expect_silent(
 )
 
 # Simulate a twin DNA alignment
-
 alignment <- sim_twin_alignment_with_standard_site_model(
   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
   root_sequence = "aaaa",

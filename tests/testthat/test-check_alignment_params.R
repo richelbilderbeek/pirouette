@@ -20,15 +20,6 @@ test_that("all list elements must be present", {
   )
 
   alignment_params <- good_alignment_params
-  alignment_params$mutation_rate <- NULL
-  expect_error(
-    check_alignment_params(
-      alignment_params
-    ),
-    "'mutation_rate' must be an element of an 'alignment_params'"
-  )
-
-  alignment_params <- good_alignment_params
   alignment_params$rng_seed <- NULL
   expect_error(
     check_alignment_params(alignment_params),
@@ -53,7 +44,6 @@ test_that("all list elements must have the right data type", {
     check_alignment_params(
       create_alignment_params(
         root_sequence = "acgt",
-        mutation_rate = 0.1,
         rng_seed = "nonsense"
       )
     ),

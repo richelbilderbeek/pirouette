@@ -38,19 +38,11 @@ number of mutations.
 true_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
 twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 root_sequence <- create_blocked_dna(1000)
-alignment_params <- create_test_alignment_params(
-  root_sequence = root_sequence,
-  rng_seed = 314,
-  mutation_rate = 0.001
-)
+alignment_params <- create_test_alignment_params()
 true_alignment <- create_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
-n_mutations_true <- count_n_mutations(
-  alignment = true_alignment, root_sequence = root_sequence
-)
-
 twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,

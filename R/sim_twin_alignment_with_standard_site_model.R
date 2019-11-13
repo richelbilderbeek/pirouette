@@ -17,7 +17,6 @@
 #' )
 #'
 #' # Simulate a twin DNA alignment
-#'
 #' alignment <- sim_twin_alignment_with_standard_site_model(
 #'   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
 #'   root_sequence = "aaaa",
@@ -29,13 +28,13 @@
 #' @export
 sim_twin_alignment_with_standard_site_model <- function(
   twin_phylogeny,
-  true_alignment = "irrelevant",
   root_sequence,
-  mutation_rate = 0.1,
+  true_alignment = "irrelevant",
+  mutation_rate = 0.1, # TODO: make 1.0
   site_model = beautier::create_jc69_site_model()
 ) {
-  alignment <- pirouette::create_alignment_with_standard_site_model_raw(
-    phylogeny = twin_phylogeny,
+  alignment <- sim_true_alignment_with_standard_site_model(
+    true_phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model
