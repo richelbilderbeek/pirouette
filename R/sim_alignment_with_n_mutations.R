@@ -70,7 +70,9 @@ sim_alignment_with_n_mutations <- function(
       "Requested number of mutations: ", n_mutations
     )
   }
-  n_tries <- 1
+  n_tries <- 0
+
+  alignment <- NA
 
   while (n_tries < max_n_tries) {
 
