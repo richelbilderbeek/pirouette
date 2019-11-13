@@ -62,7 +62,7 @@ create_alignment <- function(
       mutation_rate = alignment_params$mutation_rate,
       site_model = alignment_params$site_model
     )
-    # alignment <- create_alignment_with_standard_site_model(
+    # alignment <- create_alignment_with_std_site_model(
     #   phylogeny = phylogeny,
     #   alignment_params = alignment_params
     # )

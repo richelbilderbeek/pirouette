@@ -7,7 +7,7 @@
 create_twinning_params(rng_seed_twin_tree = 0,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
   rng_seed_twin_alignment = 0,
-  sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(),
+  sim_twin_alignment_function = get_sim_twin_alignment_with_std_site_model_function(),
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =
   "alignment_twin_", fileext = ".fasta"),
@@ -52,9 +52,9 @@ Some standard functions:\cr
     to get a function
     (\link{copy_true_alignment})
     that copies a true to alignment to create a twin alignment
-  \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
+  \item Use \link{get_sim_twin_alignment_with_std_site_model_function}
     to get a function
-    (\link{sim_twin_alignment_with_standard_site_model})
+    (\link{sim_twin_alignment_with_std_site_model})
     that simulates a twin alignment using a standard site model
   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
     to get a function

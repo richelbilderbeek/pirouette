@@ -78,7 +78,7 @@ Use \link{create_alignment_file} to save the simulated alignment
 
 Use \link{sim_true_alignment_with_std_site_model}
 simulate the true alignment with a standard site model.
-Use \link{sim_twin_alignment_with_standard_site_model}
+Use \link{sim_twin_alignment_with_std_site_model}
 simulate the twin alignment with a standard site model.
 }
 \author{

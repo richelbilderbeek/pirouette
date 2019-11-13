@@ -12,13 +12,13 @@
 #' # This adapter function must be a sim_twin_alignment function
 #' expect_silent(
 #'   check_sim_twin_alignment_function(
-#'     sim_twin_alignment_with_standard_site_model
+#'     sim_twin_alignment_with_std_site_model
 #'   )
 #' )
 #'
 #' # Simulate a twin DNA alignment
 #'
-#' alignment <- sim_twin_alignment_with_standard_site_model(
+#' alignment <- sim_twin_alignment_with_std_site_model(
 #'   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
 #'   root_sequence = "aaaa",
 #'   mutation_rate = 0.1

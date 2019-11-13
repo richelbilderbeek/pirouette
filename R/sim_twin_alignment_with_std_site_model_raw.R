@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @export
-sim_twin_alignment_with_standard_site_model_raw <- function(
+sim_twin_alignment_with_std_site_model_raw <- function(
   twin_phylogeny,
   true_alignment,
   root_sequence,

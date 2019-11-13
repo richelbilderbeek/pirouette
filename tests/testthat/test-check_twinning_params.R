@@ -206,7 +206,7 @@ test_that("add sim_twin_alignment_function", {
   expect_silent(
     check_twinning_params(
       create_twinning_params(
-        sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function()
+        sim_twin_alignment_function = get_sim_twin_alignment_with_std_site_model_function()
       )
     )
   )

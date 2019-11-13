@@ -2,7 +2,7 @@
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @export
-create_alignment_with_standard_site_model <- function(
+create_alignment_with_std_site_model <- function(
   phylogeny,
   alignment_params
 ) {

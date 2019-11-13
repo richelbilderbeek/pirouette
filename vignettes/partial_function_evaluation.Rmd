@@ -502,14 +502,14 @@ ape::image.DNAbin(twin_alignment, main = "Twin alignment")
 Now we want to plug in:
 
 ```{r}
-head(sim_twin_alignment_with_standard_site_model)
+head(sim_twin_alignment_with_std_site_model)
 ```
 
 Here comes partial function evaluation to the rescue:
 
 ```{r}
 sim_twin_align_function <- pryr::partial(
-  sim_twin_alignment_with_standard_site_model,
+  sim_twin_alignment_with_std_site_model,
   mutation_rate = 0.1
 )
 head(sim_twin_align_function)
@@ -530,7 +530,7 @@ twin_alignment <- sim_twin_alignment(
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
-Or use `get_sim_twin_alignment_with_standard_site_model_function` to do the 
+Or use `get_sim_twin_alignment_with_std_site_model_function` to do the 
 partial function evaluation for you:
 
 
@@ -540,7 +540,7 @@ twin_alignment <- sim_twin_alignment(
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),
   twinning_params = create_twinning_params(
-    sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(
+    sim_twin_alignment_function = get_sim_twin_alignment_with_std_site_model_function(
       mutation_rate = 0.1
     )
   )
@@ -583,7 +583,7 @@ twin_alignment <- sim_twin_alignment(
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
-Or use `get_sim_twin_alignment_with_standard_site_model_function` to do the 
+Or use `get_sim_twin_alignment_with_std_site_model_function` to do the 
 partial function evaluation for you:
 
 
@@ -593,7 +593,7 @@ twin_alignment <- sim_twin_alignment(
   true_alignment = true_alignment,
   alignment_params = create_test_alignment_params(),
   twinning_params = create_twinning_params(
-    sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(
+    sim_twin_alignment_function = get_sim_twin_alignment_with_std_site_model_function(
       mutation_rate = 0.1
     )
   )

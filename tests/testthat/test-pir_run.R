@@ -105,7 +105,7 @@ test_that("nodeSub: true and twin alignments must differ", {
   # currently it uses the same models as the true alignment
   twinning_params <- create_twinning_params(
     sim_twin_alignment_function =
-      get_sim_twin_alignment_with_standard_site_model_function()
+      get_sim_twin_alignment_with_std_site_model_function()
   )
   check_twinning_params(twinning_params)
 
