@@ -4,7 +4,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' f <- get_sim_true_alignment_with_standard_site_model_function(
+#' f <- get_sim_true_alignment_with_std_site_model_function(
 #'   mutation_rate = 0.1
 #' )
 #' check_sim_true_alignment_function(f)
@@ -18,7 +18,7 @@
 #'   alignment_params = alignment_params
 #' )
 #' @export
-get_sim_true_alignment_with_standard_site_model_function <- function(
+get_sim_true_alignment_with_std_site_model_function <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model()
 ) {

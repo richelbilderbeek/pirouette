@@ -67,14 +67,14 @@ test_that("low mutation rate must have less mutations", {
   alignment_params_low <- create_alignment_params(
     root_sequence = root_sequence,
     sim_true_alignment_function =
-      get_sim_true_alignment_with_standard_site_model_function(
+      get_sim_true_alignment_with_std_site_model_function(
         mutation_rate = 0.01
       )
   )
   alignment_params_high <- create_alignment_params(
     root_sequence = root_sequence,
     sim_true_alignment_function =
-      get_sim_true_alignment_with_standard_site_model_function(
+      get_sim_true_alignment_with_std_site_model_function(
         mutation_rate = 0.1
       )
   )

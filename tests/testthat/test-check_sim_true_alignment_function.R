@@ -2,7 +2,7 @@ test_that("use on adapter functions", {
 
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_function(
-      sim_true_alignment_with_standard_site_model
+      sim_true_alignment_with_std_site_model
     )
   )
 
@@ -23,7 +23,7 @@ test_that("use on adapter functions", {
 test_that("use on get_x_functions", {
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_function(
-      pirouette::get_sim_true_alignment_with_standard_site_model_function()
+      pirouette::get_sim_true_alignment_with_std_site_model_function()
     )
   )
 
