@@ -14,7 +14,7 @@
 #'
 #' # Simulate and save the true alignment
 #' alignment_params <- create_test_alignment_params()
-#' create_alignment_file(
+#' create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )

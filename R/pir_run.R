@@ -95,7 +95,7 @@ pir_run <- function(
     }
   }
 
-  # Initialize the pir_params, as some defaults are handy,
+  # Initialize the pir_params, as some BEAUti defaults are handy,
   # but really need to be filled with all information at hand
   pir_params <- init_pir_params(pir_params)
 
@@ -127,7 +127,6 @@ pir_run <- function(
     ape::write.tree(phy = twin_tree, file = twin_tree_filename)
     beautier::check_file_exists(twin_tree_filename, "twin_tree_filename")
 
-    # pir_run for the twin
     pir_out_twin <- pirouette::pir_run_twin_tree(
       twin_phylogeny = twin_tree,
       pir_params = pir_params

@@ -5,7 +5,7 @@
 #' and twin alignment (see \link{sim_twin_alignment}).
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the simulated alignment
+#' @seealso Use \link{create_true_alignment_file} to save the simulated alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)

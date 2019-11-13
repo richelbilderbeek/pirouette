@@ -5,7 +5,7 @@
 #' evolutionary history.
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the created alignment
+#' @seealso Use \link{create_true_alignment_file} to save the created alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)

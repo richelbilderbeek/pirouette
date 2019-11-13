@@ -38,7 +38,7 @@ root_sequence <- create_blocked_dna(length = n_base_pairs)
 alignment_params <- create_alignment_params(
   root_sequence = root_sequence
 )
-create_alignment_file(
+create_true_alignment_file(
   phylogeny = phylogeny,
   alignment_params = alignment_params
 )

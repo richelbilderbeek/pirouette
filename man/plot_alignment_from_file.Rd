@@ -11,7 +11,7 @@ plot_alignment_from_file(fasta_filename, title = "")
 
 \item{title}{the plot title
 alignment_params <- create_test_alignment_params()
-alignment <- create_alignment_file(
+alignment <- create_true_alignment_file(
   phylogeny = ape::rcoal(4),
   alignment_params = alignment_params
 )

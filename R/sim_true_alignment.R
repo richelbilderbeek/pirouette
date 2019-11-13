@@ -2,7 +2,7 @@
 #'
 #' @inheritParams default_params_doc
 #' @return an alignment of type \link[ape]{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save
+#' @seealso Use \link{create_true_alignment_file} to save
 #' the simulated alignment directly to a file
 #' @examples
 #' library(testthat)

@@ -13,7 +13,7 @@
 #' # For a developer that needs to, the 'pir_params' must be initialized
 #' pir_params <- init_pir_params(pir_params)
 #'
-#' create_alignment_file(
+#' create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = pir_params$alignment_params,
 #'   verbose = FALSE

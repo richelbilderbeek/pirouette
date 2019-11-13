@@ -48,7 +48,7 @@ expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), n_base_pairs)
 }
 \seealso{
-Use \link{create_alignment_file} to save the created alignment
+Use \link{create_true_alignment_file} to save the created alignment
   directly to a file
 }
 \author{

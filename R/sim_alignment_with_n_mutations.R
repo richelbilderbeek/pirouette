@@ -12,7 +12,7 @@
 #' reached, the funcion will show a \link{warning} and return
 #' the last DNA alignment simulated.
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the simulated alignment
+#' @seealso Use \link{create_true_alignment_file} to save the simulated alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)
