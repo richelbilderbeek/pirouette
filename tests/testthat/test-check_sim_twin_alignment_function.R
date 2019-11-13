@@ -13,14 +13,13 @@ test_that("use", {
   )
 
   set.seed(42)
-  expect_warning(
+  expect_silent(
     check_sim_twin_alignment_function(
       get_sim_twin_alignment_with_same_n_mutation_function(
         max_n_tries = 1,
         mutation_rate = 0.5
       )
-    ),
-    "'sim_alignment_with_n_mutations' tried 1 times, without simulating"
+    )
   )
 })
 
