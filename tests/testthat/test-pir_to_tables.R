@@ -11,7 +11,7 @@ test_that("use, no twinning", {
 
   # Also add a best_candidate experiment
   pir_params$experiments[[2]] <- create_test_cand_experiment(
-    inference_model = create_inference_model(
+    inference_model = create_test_inference_model(
       site_model = create_hky_site_model()
     )
   )
