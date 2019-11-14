@@ -8,11 +8,9 @@ create_twinning_params(rng_seed_twin_tree = 0,
   sim_twin_tree_fun = create_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
   sim_twin_alignment_fun = get_sim_twin_alignment_with_std_site_model_fun(),
-  twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
-  ".newick"), twin_alignment_filename = tempfile(pattern =
-  "alignment_twin_", fileext = ".fasta"),
-  twin_evidence_filename = tempfile(pattern = "evidence_twin_", fileext =
-  ".csv"))
+  twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
+  twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
+  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename()))
 }
 \arguments{
 \item{rng_seed_twin_tree}{the random number generator seed as used in the

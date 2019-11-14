@@ -8,8 +8,7 @@
   create_test_pir_params(alignment_params = create_test_alignment_params(),
   twinning_params = NA, experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE)
+  evidence_filename = get_temp_evidence_filename(), verbose = FALSE)
 }
 \arguments{
 \item{alignment_params}{parameters to simulate an alignment,
