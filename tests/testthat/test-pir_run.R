@@ -304,7 +304,7 @@ test_that("most_evidence, with twinning", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   beast2_options <- create_beast2_options(
     input_filename = beastier::create_temp_input_filename(),
-    output_state_filename = beastier::create_temp_output_state_filename(),
+    output_state_filename = beastier::create_temp_state_filename(),
     rng_seed = 314
   )
   errors_filename <- tempfile(pattern = "errors_", fileext = ".csv")
