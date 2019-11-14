@@ -15,7 +15,7 @@ get_pir_params_filenames <- function(pir_params) {
   pirouette::check_pir_params(pir_params)
 
   # Initialize so the tracelog and treelog filenames are filled in
-  pir_params <- init_pir_params(pir_params)
+  pir_params <- pirouette::init_pir_params(pir_params)
 
   # If there is at least one experiment that has its evidence/marginal
   # likelihood measured, willl there be a file wih evidences

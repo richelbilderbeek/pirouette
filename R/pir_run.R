@@ -97,7 +97,7 @@ pir_run <- function(
 
   # Initialize the pir_params, as some BEAUti defaults are handy,
   # but really need to be filled with all information at hand
-  pir_params <- init_pir_params(pir_params)
+  pir_params <- pirouette::init_pir_params(pir_params)
 
   # Run for the true tree
   pir_out <- pir_run_true_tree(
