@@ -27,10 +27,10 @@ test_that("all list elements must be present", {
   )
 
   alignment_params <- good_alignment_params
-  alignment_params$sim_true_alignment_function <- NULL
+  alignment_params$sim_true_alignment_fun <- NULL
   expect_error(
     check_alignment_params(alignment_params),
-    "'sim_true_alignment_function' must be an element of an 'alignment_params'"
+    "'sim_true_alignment_fun' must be an element of an 'alignment_params'"
   )
 
 })
@@ -51,12 +51,12 @@ test_that("all list elements must have the right data type", {
   )
 })
 
-test_that("adding sim_true_alignment_function", {
+test_that("adding sim_true_alignment_fun", {
 
   expect_silent(
     check_alignment_params(
       create_alignment_params(
-        sim_true_alignment_function =
+        sim_true_alignment_fun =
           sim_true_alignment_with_std_site_model
       )
     )

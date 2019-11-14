@@ -1,6 +1,6 @@
 test_that("this adapater function is a sim_true_alignment function", {
 
-  pirouette::check_sim_true_alignment_function(
+  pirouette::check_sim_true_alignment_fun(
     sim_true_alignment_with_std_site_model
   )
 })

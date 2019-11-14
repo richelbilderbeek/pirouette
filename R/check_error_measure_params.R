@@ -17,7 +17,7 @@ check_error_measure_params <- function(
 ) {
   argument_names <- c(
     "burn_in_fraction",
-    "error_function"
+    "error_fun"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(error_measure_params)) {
@@ -35,8 +35,8 @@ check_error_measure_params <- function(
     stop("'burn_in_fraction' must be between 0.0 and 1.0")
   }
 
-  pirouette::check_error_function(
-    error_measure_params$error_function
+  pirouette::check_error_fun(
+    error_measure_params$error_fun
   )
 
 }

@@ -43,6 +43,6 @@ Use \link{sim_true_alignment_with_unlinked_node_sub_site_model}
 to simulate the true alignment with an unlinked node substitution model.
 Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
 to simulate the twin alignment with an linked node substitution model.
-Use \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+Use \link{get_sim_true_alignment_with_linked_node_sub_site_model_fun}
 to get a partially evaluated unary function.
 }

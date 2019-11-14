@@ -56,7 +56,7 @@ expect_equal(
 }
 \seealso{
 Use \link{sim_bd_twin_tree} to simulate a Birth-Death twin tree.
-Use \link{create_sim_yule_twin_tree_function} to get a partially
+Use \link{create_sim_yule_twin_tree_fun} to get a partially
 evaluated function to use in the \code{twinning_params} (as
 created by \link{create_twinning_params})
 }

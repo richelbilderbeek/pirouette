@@ -14,7 +14,7 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_rng_seed, branch_mutation_rate, branch_subst_matrix, brts,
   burn_in_fraction, chain_length, clock_model, clock_models,
   clock_model_name, consensus, crown_age, do_measure_evidence, epsilon,
-  error_function, error_measure_params, errors, errors_filename,
+  error_fun, error_measure_params, errors, errors_filename,
   est_evidence_mcmc, evidence_epsilon, evidence_filename, exclude_model,
   experiment, experiments, fasta_filename, filename, folder_name,
   ideal_method, inference_model, inference_conditions,
@@ -27,14 +27,14 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   pir_params, pir_out, posterior_trees, precision, project_folder_name,
   result, rng_seed, rng_seed_twin_alignment, rng_seed_twin_tree,
   root_sequence, run_experiment, run_experiments, run_if, sample_interval,
-  seed, sequence_length, sim_pars, sim_phylo, sim_true_alignment_function,
-  sim_twin_alignment_function, sim_twin_tree_function, site_model,
-  site_models, site_model_name, sub_chain_length, subst_matrix, sum_lamu,
-  t_0, tree, tree_filename, tree_model, tree_prior, tree_priors,
-  tree_prior_name, tree_type, true_alignment, true_phylogeny, true_result,
-  twin_alignment, twin_alignment_filename, twin_evidence_filename,
-  twin_phylogeny, twin_model, twin_result, twin_tree_filename,
-  twinning_params, type, verbose, weight)
+  seed, sequence_length, sim_pars, sim_phylo, sim_true_alignment_fun,
+  sim_twin_alignment_fun, sim_twin_tree_fun, site_model, site_models,
+  site_model_name, sub_chain_length, subst_matrix, sum_lamu, t_0, tree,
+  tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
+  tree_type, true_alignment, true_phylogeny, true_result, twin_alignment,
+  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
+  twin_model, twin_result, twin_tree_filename, twinning_params, type,
+  verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -161,7 +161,7 @@ evidence (also known as marginal likelihood).
 Smaller values result in more precise estimations, that take
 longer to compute}
 
-\item{error_function}{function that determines the error between
+\item{error_fun}{function that determines the error between
 a given phylogeny and a the trees in a Bayesian posterior.
 The function must have two arguments:
 \itemize{
@@ -172,9 +172,9 @@ The function must return as many errors as there are posterior
 trees given. The error must be lowest between identical trees.
 Example functions are:
 \itemize{
-  \item \link{get_gamma_error_function}: use the absolute difference
+  \item \link{get_gamma_error_fun}: use the absolute difference
     in gamma statistic
-  \item \link{get_nltt_error_function}: use the nLTT statistic
+  \item \link{get_nltt_error_fun}: use the nLTT statistic
 }}
 
 \item{error_measure_params}{parameter set to specify how the
@@ -385,54 +385,54 @@ makes a measurement}
 
 \item{sim_phylo}{something}
 
-\item{sim_true_alignment_function}{function to simulate a
+\item{sim_true_alignment_fun}{function to simulate a
 true alignment with.
 This function must have two arguments,
 called \code{true_phylogeny} (which will hold the true phylogeny)
 and \code{root_sequence} (which holds the DNA root sequence).
 The return type must be \link[ape]{DNAbin}.
 
-Use \link{check_sim_true_alignment_function} to verify if the function
+Use \link{check_sim_true_alignment_fun} to verify if the function
 has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_sim_true_alignment_with_std_site_model_function}
+  \item Use \link{get_sim_true_alignment_with_std_site_model_fun}
   to get a function (\link{sim_true_alignment_with_std_site_model})
   the use a standard site model.
   \item Use
-  \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+  \link{get_sim_true_alignment_with_linked_node_sub_site_model_fun}
   to get a function
   (\link{sim_true_alignment_with_linked_node_sub_site_model})
   the use a linked node substitution site model.
   \item Use
-  \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
+  \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_fun}
   to get a function
   (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
   the use an unlinked node substitution site model.
 }}
 
-\item{sim_twin_alignment_function}{function to simulate a
+\item{sim_twin_alignment_fun}{function to simulate a
 twin alignment with.
 This function must have two arguments called \code{twin_phylogeny} (which
 will hold the twin phylogeny) and \code{true_alignment} (which will
 hold the alignment simulated from the true phylogeny). The
 return type must be \link[ape]{DNAbin}.
 
-Use \link{check_sim_twin_alignment_function} to verify if the function
+Use \link{check_sim_twin_alignment_fun} to verify if the function
 has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_copy_true_alignment_function}
+  \item Use \link{get_copy_true_alignment_fun}
     to get a function
     (\link{copy_true_alignment})
     that copies a true to alignment to create a twin alignment
-  \item Use \link{get_sim_twin_alignment_with_std_site_model_function}
+  \item Use \link{get_sim_twin_alignment_with_std_site_model_fun}
     to get a function
     (\link{sim_twin_alignment_with_std_site_model})
     that simulates a twin alignment using a standard site model
-  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
+  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_fun}
     to get a function
     (\link{sim_twin_alignment_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
@@ -445,18 +445,18 @@ Some standard functions:\cr
     model
 }}
 
-\item{sim_twin_tree_function}{function to simulate a twin tree with.
+\item{sim_twin_tree_fun}{function to simulate a twin tree with.
 This function must have one argument called \code{phylogeny}
 of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
 as well.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{create_sim_yule_twin_tree_function} to use a
+  \item Use \link{create_sim_yule_twin_tree_fun} to use a
     Yule (aka Pure Birth) process
-  \item Use \link{create_copy_twin_tree_from_true_function} to for a function
+  \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
     that copies the true tree
-  \item Use \link{create_sim_bd_twin_tree_function} to use a
+  \item Use \link{create_sim_bd_twin_tree_fun} to use a
     Birth-Death process
 }}
 

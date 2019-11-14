@@ -9,18 +9,18 @@
 #'  # Default
 #'  error_measure_params <- create_error_measure_params()
 #'  expect_true("burn_in_fraction" %in% names(error_measure_params))
-#'  expect_true("error_function" %in% names(error_measure_params))
+#'  expect_true("error_fun" %in% names(error_measure_params))
 #'
 #'  # Use the nLTT statistic with a burn-in of 10%
 #'  error_measure_params <- create_error_measure_params(
 #'    burn_in_fraction = 0.1,
-#'    error_function = get_nltt_error_function()
+#'    error_fun = get_nltt_error_fun()
 #'  )
 #'
 #'  # Use the gamma statistic with a burn-in of 20%
 #'  error_measure_params <- create_error_measure_params(
 #'    burn_in_fraction = 0.2,
-#'    error_function = get_gamma_error_function()
+#'    error_fun = get_gamma_error_fun()
 #'  )
 #'
 #'  pir_params <- create_pir_params(
@@ -42,11 +42,11 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 create_error_measure_params <- function(
   burn_in_fraction = 0.1,
-  error_function = get_nltt_error_function()
+  error_fun = get_nltt_error_fun()
 ) {
   error_measure_params <- list(
     burn_in_fraction = burn_in_fraction,
-    error_function = error_function
+    error_fun = error_fun
   )
   pirouette::check_error_measure_params(error_measure_params)
   error_measure_params

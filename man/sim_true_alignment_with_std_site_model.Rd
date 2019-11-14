@@ -41,7 +41,7 @@ library(testthat)
 
 # This adapter function must be a sim_true_alignment function
 expect_silent(
-  check_sim_true_alignment_function(
+  check_sim_true_alignment_fun(
     sim_true_alignment_with_std_site_model
   )
 )

@@ -76,7 +76,7 @@ phylo_to_errors <- function(
   }
 
   # Measure error by comparing true tree with BEAST2 posterior trees
-  all_errors <- error_measure_params$error_function(phylogeny, trees)
+  all_errors <- error_measure_params$error_fun(phylogeny, trees)
 
   # Then remove the burn-in
   tracerer::remove_burn_in(

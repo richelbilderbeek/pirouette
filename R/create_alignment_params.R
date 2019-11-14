@@ -43,14 +43,14 @@
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
-  sim_true_alignment_function =
+  sim_true_alignment_fun =
     pirouette::sim_true_alignment_with_std_site_model,
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
   alignment_params <- list(
     root_sequence = root_sequence,
-    sim_true_alignment_function = sim_true_alignment_function,
+    sim_true_alignment_fun = sim_true_alignment_fun,
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )
@@ -68,7 +68,7 @@ create_alignment_params <- function(
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_alignment_params <- function(
-  sim_true_alignment_function =
+  sim_true_alignment_fun =
     pirouette::sim_true_alignment_with_std_site_model,
   root_sequence = "acgt",
   rng_seed = 0,

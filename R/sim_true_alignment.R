@@ -15,8 +15,8 @@
 #'
 #' # Use default settings to create the alignment
 #' alignment_params <- create_alignment_params(
-#'   sim_true_alignment_function =
-#'     get_sim_true_alignment_with_std_site_model_function(
+#'   sim_true_alignment_fun =
+#'     get_sim_true_alignment_with_std_site_model_fun(
 #'       mutation_rate = 1.0
 #'   ),
 #'   root_sequence = root_sequence
@@ -44,7 +44,7 @@ sim_true_alignment <- function(
   testit::assert(beautier::is_one_bool(verbose))
 
   set.seed(alignment_params$rng_seed)
-  alignment <- alignment_params$sim_true_alignment_function(
+  alignment <- alignment_params$sim_true_alignment_fun(
     true_phylogeny = true_phylogeny,
     root_sequence = alignment_params$root_sequence
   )

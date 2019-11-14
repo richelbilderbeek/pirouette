@@ -31,10 +31,10 @@
 #' @export
 create_twinning_params <- function(
   rng_seed_twin_tree = 0,
-  sim_twin_tree_function = create_sim_bd_twin_tree_function(),
+  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
-  sim_twin_alignment_function =
-    get_sim_twin_alignment_with_std_site_model_function(),
+  sim_twin_alignment_fun =
+    get_sim_twin_alignment_with_std_site_model_fun(),
   twin_tree_filename = tempfile(
     pattern = "tree_twin_", fileext = ".newick"
   ),
@@ -47,9 +47,9 @@ create_twinning_params <- function(
 ) {
   twinning_params <- list(
     rng_seed_twin_tree = rng_seed_twin_tree,
-    sim_twin_tree_function = sim_twin_tree_function,
+    sim_twin_tree_fun = sim_twin_tree_fun,
     rng_seed_twin_alignment = rng_seed_twin_alignment,
-    sim_twin_alignment_function = sim_twin_alignment_function,
+    sim_twin_alignment_fun = sim_twin_alignment_fun,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename,
     twin_evidence_filename = twin_evidence_filename

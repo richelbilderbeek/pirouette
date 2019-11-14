@@ -22,12 +22,12 @@ test_that("use", {
   )
 
   error_measure_params <- good_error_measure_params
-  error_measure_params$error_function <- NULL
+  error_measure_params$error_fun <- NULL
   expect_error(
     check_error_measure_params(
       error_measure_params
     ),
-    "'error_function' must be an element of an 'error_measure_params'"
+    "'error_fun' must be an element of an 'error_measure_params'"
   )
 
   # Wrong parameter values
@@ -47,13 +47,13 @@ test_that("use", {
     ),
     "'burn_in_fraction' must be between 0.0 and 1.0"
   )
-  # Checked in detail by 'check_error_function'
+  # Checked in detail by 'check_error_fun'
   expect_error(
     check_error_measure_params(
       create_error_measure_params(
-        error_function = "nonsense"
+        error_fun = "nonsense"
       )
     ),
-    "'error_function' must be a function"
+    "'error_fun' must be a function"
   )
 })

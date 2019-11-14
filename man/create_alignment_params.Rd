@@ -6,7 +6,7 @@
 \usage{
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
-  sim_true_alignment_function = pirouette::sim_true_alignment_with_std_site_model,
+  sim_true_alignment_fun = pirouette::sim_true_alignment_with_std_site_model,
   rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
@@ -14,28 +14,28 @@
 By default, this will consist out of an equal amount of each letter
 Use \link{check_root_sequence} to check if a root sequence is valid.}
 
-\item{sim_true_alignment_function}{function to simulate a
+\item{sim_true_alignment_fun}{function to simulate a
 true alignment with.
 This function must have two arguments,
 called \code{true_phylogeny} (which will hold the true phylogeny)
 and \code{root_sequence} (which holds the DNA root sequence).
 The return type must be \link[ape]{DNAbin}.
 
-Use \link{check_sim_true_alignment_function} to verify if the function
+Use \link{check_sim_true_alignment_fun} to verify if the function
 has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_sim_true_alignment_with_std_site_model_function}
+  \item Use \link{get_sim_true_alignment_with_std_site_model_fun}
   to get a function (\link{sim_true_alignment_with_std_site_model})
   the use a standard site model.
   \item Use
-  \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+  \link{get_sim_true_alignment_with_linked_node_sub_site_model_fun}
   to get a function
   (\link{sim_true_alignment_with_linked_node_sub_site_model})
   the use a linked node substitution site model.
   \item Use
-  \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
+  \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_fun}
   to get a function
   (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
   the use an unlinked node substitution site model.

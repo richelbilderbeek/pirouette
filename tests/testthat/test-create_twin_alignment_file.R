@@ -3,8 +3,8 @@ test_that("must create file", {
     root_sequence = "agcta"
   )
   twinning_params <- create_twinning_params(
-    sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 1000
       )
   )

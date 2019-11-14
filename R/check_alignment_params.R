@@ -36,7 +36,7 @@ check_alignment_params_names <- function(
 ) {
   argument_names <- c(
     "root_sequence",
-    "sim_true_alignment_function",
+    "sim_true_alignment_fun",
     "rng_seed",
     "fasta_filename"
   )

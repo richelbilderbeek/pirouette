@@ -1,6 +1,6 @@
 test_that("this adapater function is a sim_twin_alignment function", {
 
-  pirouette::check_sim_twin_alignment_function(
+  pirouette::check_sim_twin_alignment_fun(
     sim_twin_alignment_with_same_n_mutation
   )
 })

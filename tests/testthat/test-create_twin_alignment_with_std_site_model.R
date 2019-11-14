@@ -1,6 +1,6 @@
 test_that("this adapater function is a sim_twin_alignment function", {
 
-  check_sim_twin_alignment_function(
+  check_sim_twin_alignment_fun(
     sim_twin_alignment_with_std_site_model
   )
 })

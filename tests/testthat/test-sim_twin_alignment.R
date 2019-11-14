@@ -11,8 +11,8 @@ test_that("use, twin has more info", {
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params(
-    sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 1000
       )
   )
@@ -45,8 +45,8 @@ test_that("use, twin has less info", {
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params(
-    sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 1
       )
   )
@@ -113,8 +113,8 @@ test_that("works for simple trees", {
   alignment_params <- create_test_alignment_params(
     root_sequence = "acgt")
   twinning_params <- create_twinning_params(
-    sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 100
       )
   )
@@ -165,8 +165,8 @@ test_that("works in poor conditions as well", {
     alignment = true_alignment, root_sequence = root_sequence
   )
   twinning_params <- create_twinning_params(
-    sim_twin_alignment_function =
-      get_sim_twin_alignment_with_same_n_mutation_function(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
         mutation_rate = mutation_rate,
         max_n_tries = 1
       )

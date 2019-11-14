@@ -57,7 +57,7 @@ test_that("abuse", {
   )
   expect_error(
     create_error_measure_params(
-      error_function = "nonsense"
+      error_fun = "nonsense"
     )
   )
 })

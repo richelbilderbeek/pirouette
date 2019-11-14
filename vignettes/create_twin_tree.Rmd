@@ -37,7 +37,7 @@ The BD twinning parameters:
 bd_twin <- create_twin_tree(
   phylogeny = phylogeny,
   twinning_params = create_twinning_params(
-    sim_twin_tree_function = create_sim_bd_twin_tree_function()
+    sim_twin_tree_fun = create_sim_bd_twin_tree_fun()
   )
 )
 ```
@@ -48,7 +48,7 @@ The Yule twinning parameters:
 yule_twin <- create_twin_tree(
   phylogeny = phylogeny,
   twinning_params = create_twinning_params(
-    sim_twin_tree_function = create_sim_yule_twin_tree_function()
+    sim_twin_tree_fun = create_sim_yule_twin_tree_fun()
   )
 )
 ```
@@ -59,7 +59,7 @@ The copy twinning parameters:
 copy_twin <- create_twin_tree(
   phylogeny = phylogeny,
   twinning_params = create_twinning_params(
-    sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+    sim_twin_tree_fun = create_copy_twin_tree_from_true_fun()
   )
 )
 ```

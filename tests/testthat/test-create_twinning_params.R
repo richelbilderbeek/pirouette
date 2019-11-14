@@ -9,11 +9,11 @@ test_that("Twin tree should be BD by default, #161", {
 
   # Create using default function
   set.seed(42)
-  twin_tree <- twinning_params$sim_twin_tree_function(tree)
+  twin_tree <- twinning_params$sim_twin_tree_fun(tree)
 
   # Create using BD function
   set.seed(42)
-  bd_twin_tree <- create_sim_bd_twin_tree_function()(tree)
+  bd_twin_tree <- create_sim_bd_twin_tree_fun()(tree)
 
   expect_equal(
     ape::branching.times(twin_tree),

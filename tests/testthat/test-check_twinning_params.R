@@ -35,12 +35,12 @@ test_that("element names", {
   )
 
   twinning_params <- good_twinning_params
-  twinning_params$sim_twin_tree_function <- NULL
+  twinning_params$sim_twin_tree_fun <- NULL
   expect_error(
     check_twinning_params(
       twinning_params
     ),
-    "'sim_twin_tree_function' must be an element of an 'twinning_params'"
+    "'sim_twin_tree_fun' must be an element of an 'twinning_params'"
   )
 
   twinning_params <- good_twinning_params
@@ -181,33 +181,33 @@ test_that("element values", {
 })
 
 
-test_that("add sim_twin_tree_function", {
+test_that("add sim_twin_tree_fun", {
 
   expect_silent(
     create_twinning_params(
-      sim_twin_tree_function = create_sim_yule_twin_tree_function()
+      sim_twin_tree_fun = create_sim_yule_twin_tree_fun()
     )
   )
   expect_silent(
     create_twinning_params(
-      sim_twin_tree_function = create_sim_bd_twin_tree_function()
+      sim_twin_tree_fun = create_sim_bd_twin_tree_fun()
     )
   )
   expect_silent(
     create_twinning_params(
-      sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+      sim_twin_tree_fun = create_copy_twin_tree_from_true_fun()
     )
   )
 
 })
 
-test_that("add sim_twin_alignment_function", {
+test_that("add sim_twin_alignment_fun", {
 
   expect_silent(
     check_twinning_params(
       create_twinning_params(
-        sim_twin_alignment_function =
-          get_sim_twin_alignment_with_std_site_model_function()
+        sim_twin_alignment_fun =
+          get_sim_twin_alignment_with_std_site_model_fun()
       )
     )
   )

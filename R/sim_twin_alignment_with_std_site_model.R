@@ -2,7 +2,7 @@
 #'
 #' This is an adapter function
 #' (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
-#' with the purpose of passing \link{check_sim_twin_alignment_function},
+#' with the purpose of passing \link{check_sim_twin_alignment_fun},
 #' by being a function with the function arguments \code{twin_phylogeny}
 #' and \code{true_alignment}
 #' @inheritParams default_params_doc
@@ -11,7 +11,7 @@
 #'
 #' # This adapter function must be a sim_twin_alignment function
 #' expect_silent(
-#'   check_sim_twin_alignment_function(
+#'   check_sim_twin_alignment_fun(
 #'     sim_twin_alignment_with_std_site_model
 #'   )
 #' )

@@ -6,7 +6,7 @@
 between the given phylogeny and the Bayesian posterior trees is measured.}
 \usage{
 create_error_measure_params(burn_in_fraction = 0.1,
-  error_function = get_nltt_error_function())
+  error_fun = get_nltt_error_fun())
 }
 \arguments{
 \item{burn_in_fraction}{the fraction of the posterior trees (starting
@@ -14,7 +14,7 @@ from the ones generated first)
 that will be discarded,
 must be a value from 0.0 (keep all), to 1.0 (discard all).}
 
-\item{error_function}{function that determines the error between
+\item{error_fun}{function that determines the error between
 a given phylogeny and a the trees in a Bayesian posterior.
 The function must have two arguments:
 \itemize{
@@ -25,9 +25,9 @@ The function must return as many errors as there are posterior
 trees given. The error must be lowest between identical trees.
 Example functions are:
 \itemize{
-  \item \link{get_gamma_error_function}: use the absolute difference
+  \item \link{get_gamma_error_fun}: use the absolute difference
     in gamma statistic
-  \item \link{get_nltt_error_function}: use the nLTT statistic
+  \item \link{get_nltt_error_fun}: use the nLTT statistic
 }}
 }
 \value{
@@ -43,18 +43,18 @@ between the given phylogeny and the Bayesian posterior trees is measured.
  # Default
  error_measure_params <- create_error_measure_params()
  expect_true("burn_in_fraction" \%in\% names(error_measure_params))
- expect_true("error_function" \%in\% names(error_measure_params))
+ expect_true("error_fun" \%in\% names(error_measure_params))
 
  # Use the nLTT statistic with a burn-in of 10\%
  error_measure_params <- create_error_measure_params(
    burn_in_fraction = 0.1,
-   error_function = get_nltt_error_function()
+   error_fun = get_nltt_error_fun()
  )
 
  # Use the gamma statistic with a burn-in of 20\%
  error_measure_params <- create_error_measure_params(
    burn_in_fraction = 0.2,
-   error_function = get_gamma_error_function()
+   error_fun = get_gamma_error_fun()
  )
 
  pir_params <- create_pir_params(
