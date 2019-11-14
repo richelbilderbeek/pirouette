@@ -86,6 +86,10 @@ pir_run <- function(
   # Check the inputs
   beautier::check_phylogeny(phylogeny)
   pirouette::check_pir_params(pir_params)
+  testit::assert(beastier::is_beast2_installed())
+  if (has_candidate_experiments(pir_params)) {
+    testit::assert(mauricer::is_beast2_ns_pkg_installed())
+  }
 
   # Higher-level checks
   for (experiment in pir_params$experiments) {
