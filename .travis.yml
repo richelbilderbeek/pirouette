@@ -59,9 +59,10 @@ before_script:
   - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
 
 script:
-  - travis_wait 60 R CMD build .
+  - echo "Installing packages only"
+  #- travis_wait 60 R CMD build .
   # Check
-  - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then travis_wait 60 R CMD check *tar.gz; fi
+  #- if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then travis_wait 60 R CMD check *tar.gz; fi
 
 after_success:
   # Codecov
