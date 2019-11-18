@@ -13,7 +13,6 @@ test_that("errors are stored correctly", {
 
   alignment_params <- pirouette::create_alignment_params(
     root_sequence = pirouette::create_blocked_dna(length = 100),
-    mutation_rate = create_standard_mutation_rate,
     rng_seed = 1
   )
   experiment <- create_test_gen_experiment()
@@ -26,7 +25,10 @@ test_that("errors are stored correctly", {
 
   expect_true(
     length(
-      list.files(dirname(experiment$errors_filename), pattern = basename(experiment$errors_filename))
+      list.files(
+        dirname(experiment$errors_filename),
+        pattern = basename(experiment$errors_filename)
+      )
     ) == 0
   )
 
@@ -55,7 +57,7 @@ test_that("abuse", {
   )
   expect_error(
     create_error_measure_params(
-      error_function = "nonsense"
+      error_fun = "nonsense"
     )
   )
 })

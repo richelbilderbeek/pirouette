@@ -80,7 +80,8 @@ test_that("same beast2_options_filenames and error fileanames in candidates", {
   cand_experiment_2$inference_model$site_model <-
     beautier::create_gtr_site_model()
   # Must have same MCMC
-  cand_experiment_1$inference_model$mcmc <- cand_experiment_2$inference_model$mcmc
+  cand_experiment_1$inference_model$mcmc <-
+    cand_experiment_2$inference_model$mcmc
   gen_experiment$inference_model$mcmc <- cand_experiment_2$inference_model$mcmc
 
   expect_silent(

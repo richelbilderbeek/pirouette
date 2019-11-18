@@ -83,16 +83,15 @@ test_that("generative", {
 
 test_that("nodeSub: true and twin alignments must differ", {
 
-  skip("expose #339")
-
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
 
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-  alignment_params <- create_test_alignment_params()
-  alignment_params$site_model <- "linked_node_sub"
-  alignment_params$root_sequence
+  alignment_params <- create_test_alignment_params(
+    sim_true_alignment_fun =
+      get_sim_true_alignment_with_linked_node_sub_site_model_fun()
+  )
   check_alignment_params(alignment_params)
 
   experiment <- create_test_gen_experiment()
@@ -103,7 +102,8 @@ test_that("nodeSub: true and twin alignments must differ", {
   # This is wrong: the twin alignment must follow a JC69 site model,
   # currently it uses the same models as the true alignment
   twinning_params <- create_twinning_params(
-    twin_model = "copy_true"
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_std_site_model_fun()
   )
   check_twinning_params(twinning_params)
 
@@ -122,7 +122,9 @@ test_that("nodeSub: true and twin alignments must differ", {
 
   # These alignments should differ
   true_alignment <- readLines(pir_params$alignment_params$fasta_filename)
-  twin_alignment <- readLines(pir_params$twinning_params$twin_alignment_filename)
+  twin_alignment <- readLines(
+    pir_params$twinning_params$twin_alignment_filename
+  )
   expect_false(all(true_alignment == twin_alignment))
 })
 
@@ -264,21 +266,6 @@ test_that("generative with twin", {
   expect_true("true" %in% errors$tree)
   expect_true("twin" %in% errors$tree)
 
-  # True and twin alignment have an equal amount of mutations
-  true_alignment_filename <- pir_params$alignment_params$fasta_filename
-  twin_alignment_filename <- pir_params$twinning_params$twin_alignment_filename
-  true_alignment <- ape::read.FASTA(true_alignment_filename)
-  twin_alignment <- ape::read.FASTA(twin_alignment_filename)
-  n_mutations_true <- count_n_mutations(
-    alignment = true_alignment,
-    root_sequence = pir_params$alignment_params$root_sequence
-  )
-  n_mutations_twin <- count_n_mutations(
-    alignment = twin_alignment,
-    root_sequence = pir_params$alignment_params$root_sequence
-  )
-  expect_equal(n_mutations_true, n_mutations_twin)
-
   expect_silent(
     pir_to_pics(phylogeny = phylogeny,
       pir_params = pir_params,
@@ -317,7 +304,7 @@ test_that("most_evidence, with twinning", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   beast2_options <- create_beast2_options(
     input_filename = beastier::create_temp_input_filename(),
-    output_state_filename = beastier::create_temp_output_state_filename(),
+    output_state_filename = beastier::create_temp_state_filename(),
     rng_seed = 314
   )
   errors_filename <- tempfile(pattern = "errors_", fileext = ".csv")

@@ -5,7 +5,7 @@
 #' evolutionary history.
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the created alignment
+#' @seealso Use \link{create_true_alignment_file} to save the created alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)
@@ -16,8 +16,7 @@
 #'
 #' # How to simulate the alignment
 #' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence,
-#'   mutation_rate = 0.1
+#'   root_sequence = root_sequence
 #' )
 #'
 #' # Create a phylogeny to simulate the DNA sequences on
@@ -30,24 +29,9 @@
 #'    alignment_params = alignment_params
 #'  )
 #'
-#' expect_equal(class(alignment), "DNAbin")
+#' expect_silent(check_alignment(alignment))
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), n_base_pairs)
-#'
-#' # Use all different site models
-#' for (site_model in create_site_models()) {
-#'   alignment_params <- create_alignment_params(
-#'     root_sequence = root_sequence,
-#'     mutation_rate = 0.1,
-#'     site_model = site_model
-#'   )
-#'   expect_silent(
-#'     create_true_alignment(
-#'       true_phylogeny = phylogeny,
-#'       alignment_params = alignment_params
-#'     )
-#'   )
-#' }
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_true_alignment <- function(
@@ -72,8 +56,13 @@ create_true_alignment <- function(
     }
   )
 
+<<<<<<< HEAD
   create_alignment(
     phylogeny = true_phylogeny,
+=======
+  sim_true_alignment(
+    true_phylogeny = true_phylogeny,
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
     alignment_params = alignment_params
   )
 }

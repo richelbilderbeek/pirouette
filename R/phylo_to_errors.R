@@ -19,7 +19,7 @@
 #' alignment_params <- create_test_alignment_params()
 #'
 #' # Create the alignment
-#' create_alignment_file(
+#' create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
@@ -76,7 +76,7 @@ phylo_to_errors <- function(
   }
 
   # Measure error by comparing true tree with BEAST2 posterior trees
-  all_errors <- error_measure_params$error_function(phylogeny, trees)
+  all_errors <- error_measure_params$error_fun(phylogeny, trees)
 
   # Then remove the burn-in
   tracerer::remove_burn_in(

@@ -38,7 +38,7 @@ pir_to_tables <- function(
 ) {
 
   # Fill in the BEAUti shorthands
-  pir_params <- init_pir_params(pir_params)
+  pir_params <- pirouette::init_pir_params(pir_params)
 
   # Create a folder for the files if needed,
   # no warning if it is already present

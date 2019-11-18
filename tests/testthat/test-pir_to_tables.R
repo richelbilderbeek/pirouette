@@ -10,15 +10,9 @@ test_that("use, no twinning", {
   pir_params <- create_test_pir_params()
 
   # Also add a best_candidate experiment
-  pir_params$experiments[[2]] <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = create_inference_model(
-      site_model = create_gtr_site_model(),
-      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+  pir_params$experiments[[2]] <- create_test_cand_experiment(
+    inference_model = create_test_inference_model(
+      site_model = create_hky_site_model()
     )
   )
 
@@ -106,15 +100,9 @@ test_that("use, twinning", {
 
   if (rappdirs::app_dir()$os != "win") {
     # Also add a best_candidate experiment
-    pir_params$experiments[[2]] <- create_experiment(
-      inference_conditions = create_inference_conditions(
-        model_type = "candidate",
-        run_if = "best_candidate",
-        do_measure_evidence = TRUE
-      ),
-      inference_model = create_inference_model(
-        site_model = create_gtr_site_model(),
-        mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
+    pir_params$experiments[[2]] <- create_test_cand_experiment(
+      inference_model = create_test_inference_model(
+        site_model = create_hky_site_model()
       )
     )
   }

@@ -54,6 +54,7 @@ test_that("input is checked", {
 test_that("use linked_node_sub", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_test_alignment_params(
+<<<<<<< HEAD
     site_model = "linked_node_sub"
   )
   # Beware: the 'n_mutations = 2' is due to the RNG always ending up
@@ -62,6 +63,17 @@ test_that("use linked_node_sub", {
     phylogeny = phylogeny,
     root_sequence = "acgt",
     n_mutations = 12,
+=======
+    sim_true_alignment_fun =
+      get_sim_true_alignment_with_linked_node_sub_site_model_fun()
+  )
+  # 'n_mutations' is set to the first number of generated mutations
+  set.seed(42)
+  alignment <- sim_alignment_with_n_mutations(
+    phylogeny = phylogeny,
+    root_sequence = "acgt",
+    n_mutations = 11,
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
     verbose  = TRUE
   )
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
@@ -71,7 +83,12 @@ test_that("use linked_node_sub", {
 test_that("use unlinked_node_sub", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_test_alignment_params(
+<<<<<<< HEAD
     site_model = "unlinked_node_sub"
+=======
+    sim_true_alignment_fun =
+      get_sim_true_alignment_with_unlinked_node_sub_site_model_fun()
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   )
   # Beware: the 'n_mutations = 9' is due to the RNG always ending up
   # at 9 mutations.
@@ -83,4 +100,7 @@ test_that("use unlinked_node_sub", {
   expect_equal(nrow(alignment), ape::Ntip(phylogeny))
   expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa

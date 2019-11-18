@@ -15,24 +15,17 @@
 #'
 #' # Only specify root sequence and mutation rate, use defaults
 #' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence,
-#'   mutation_rate = 0.1
+#'   root_sequence = root_sequence
 #' )
 #'
 #' expect_true("root_sequence" %in% names(alignment_params))
-#' expect_true("mutation_rate" %in% names(alignment_params))
 #'
 #' # Use defaults explicitly
 #' alignment_params <- create_alignment_params(
 #'   root_sequence = root_sequence,
-#'   mutation_rate = 0.1,
-#'   site_model = create_jc69_site_model(),
-#'   clock_model = create_strict_clock_model(),
 #'   rng_seed = 0
 #' )
 #'
-#' expect_true("site_model" %in% names(alignment_params))
-#' expect_true("clock_model" %in% names(alignment_params))
 #' expect_true("rng_seed" %in% names(alignment_params))
 #'
 #' # Create a pirouette parameter set
@@ -50,20 +43,22 @@
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
+<<<<<<< HEAD
   sim_true_alignment_function =
     pirouette::sim_true_alignment_with_standard_site_model,
   mutation_rate = pirouette::create_standard_mutation_rate, # to be obsoleted
   site_model = beautier::create_jc69_site_model(), # to be obsoleted
   clock_model = beautier::create_strict_clock_model(), # to be obsoleted
+=======
+  sim_true_alignment_fun =
+    pirouette::sim_true_alignment_with_std_site_model,
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
   alignment_params <- list(
     root_sequence = root_sequence,
-    sim_true_alignment_function = sim_true_alignment_function,
-    mutation_rate = mutation_rate, # to be obsoleted
-    site_model = site_model, # to be obsoleted
-    clock_model = clock_model, # to be obsoleted
+    sim_true_alignment_fun = sim_true_alignment_fun,
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )
@@ -81,20 +76,19 @@ create_alignment_params <- function(
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_alignment_params <- function(
+<<<<<<< HEAD
   sim_true_alignment_function =
     pirouette::sim_true_alignment_with_standard_site_model,
+=======
+  sim_true_alignment_fun =
+    pirouette::sim_true_alignment_with_std_site_model,
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   root_sequence = "acgt",
-  mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(),
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
   pirouette::create_alignment_params(
     root_sequence = root_sequence,
-    mutation_rate = mutation_rate,
-    site_model = site_model,
-    clock_model = clock_model,
     rng_seed = rng_seed,
     fasta_filename = fasta_filename
   )

@@ -5,7 +5,7 @@
 \title{Simulates a twin DNA alignment and saves it to a FASTA file.}
 \usage{
 create_twin_alignment_file(twin_phylogeny, alignment_params,
-  twinning_params, verbose = FALSE)
+  twinning_params)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -16,8 +16,6 @@ as can be created by \link{create_alignment_params}}
 \item{twinning_params}{can be \code{NA} if no twinning is desired,
 or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
-
-\item{verbose}{if TRUE, show more output}
 }
 \value{
 nothing
@@ -38,10 +36,9 @@ root_sequence <- create_blocked_dna(length = n_base_pairs)
 
 # Simulate and save the true alignment
 alignment_params <- create_alignment_params(
-  root_sequence = root_sequence,
-  mutation_rate = 0.1
+  root_sequence = root_sequence
 )
-create_alignment_file(
+create_true_alignment_file(
   phylogeny = phylogeny,
   alignment_params = alignment_params
 )

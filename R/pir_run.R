@@ -79,15 +79,17 @@
 pir_run <- function(
   phylogeny,
   pir_params = create_pir_params(
-    alignment_params = create_alignment_params(
-      mutation_rate = create_standard_mutation_rate
-    ),
+    alignment_params = create_alignment_params(),
     twinning_params = create_twinning_params()
   )
 ) {
   # Check the inputs
   beautier::check_phylogeny(phylogeny)
   pirouette::check_pir_params(pir_params)
+  testit::assert(beastier::is_beast2_installed())
+  if (pirouette::has_candidate_experiments(pir_params)) {
+    testit::assert(mauricer::is_beast2_ns_pkg_installed())
+  }
 
   # Higher-level checks
   for (experiment in pir_params$experiments) {
@@ -97,9 +99,9 @@ pir_run <- function(
     }
   }
 
-  # Initialize the pir_params, as some defaults are handy,
+  # Initialize the pir_params, as some BEAUti defaults are handy,
   # but really need to be filled with all information at hand
-  pir_params <- init_pir_params(pir_params)
+  pir_params <- pirouette::init_pir_params(pir_params)
 
   # Run for the true tree
   pir_out <- pir_run_true_tree(
@@ -129,25 +131,10 @@ pir_run <- function(
     ape::write.tree(phy = twin_tree, file = twin_tree_filename)
     beautier::check_file_exists(twin_tree_filename, "twin_tree_filename")
 
-    # pir_run for the twin
     pir_out_twin <- pirouette::pir_run_twin_tree(
       twin_phylogeny = twin_tree,
       pir_params = pir_params
     )
-
-    # Twin alignment must have as much mutations as the true alignment
-    n_mutations_true <- count_n_mutations(
-      alignment = ape::read.FASTA(pir_params$alignment_params$fasta_filename),
-      root_sequence = pir_params$alignment_params$root_sequence
-    )
-    n_mutations_twin <- count_n_mutations(
-      alignment = ape::read.FASTA(
-        pir_params$twinning_params$twin_alignment_filename
-      ),
-      root_sequence = pir_params$alignment_params$root_sequence
-    )
-    testit::assert(n_mutations_true == n_mutations_twin)
-
     pir_out <- rbind(pir_out, pir_out_twin)
   }
   pir_out

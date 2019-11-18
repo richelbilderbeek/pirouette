@@ -2,7 +2,7 @@
 #'
 #' It sets the seed with value \code{twinning_params$rng_seed_twin_tree},
 #' then generates a tree by
-#' calling \code{twinning_paramssim_twin_tree_function} on the
+#' calling \code{twinning_paramssim_twin_tree_fun} on the
 #' given tree.
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
@@ -31,7 +31,7 @@ create_twin_tree <- function(
   pirouette::check_twinning_params(twinning_params)
 
   set.seed(twinning_params$rng_seed_twin_tree)
-  twin_tree <- twinning_params$sim_twin_tree_function(phylogeny)
+  twin_tree <- twinning_params$sim_twin_tree_fun(phylogeny)
 
   testit::assert(beautier::is_phylo(twin_tree))
 

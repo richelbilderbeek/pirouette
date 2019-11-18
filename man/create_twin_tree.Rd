@@ -16,7 +16,7 @@ as can be created by \link{create_twinning_params}}
 \description{
 It sets the seed with value \code{twinning_params$rng_seed_twin_tree},
 then generates a tree by
-calling \code{twinning_paramssim_twin_tree_function} on the
+calling \code{twinning_paramssim_twin_tree_fun} on the
 given tree.
 }
 \examples{

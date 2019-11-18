@@ -11,7 +11,11 @@
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
 #'   alignment_params <- create_test_alignment_params()
+<<<<<<< HEAD
 #'   create_alignment_file(
+=======
+#'   create_true_alignment_file(
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'     alignment_params = alignment_params
 #'   )

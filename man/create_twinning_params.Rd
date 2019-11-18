@@ -5,49 +5,57 @@
 \title{Create the parameters for the twinning simulation}
 \usage{
 create_twinning_params(rng_seed_twin_tree = 0,
-  sim_twin_tree_function = create_sim_bd_twin_tree_function(),
+  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
+<<<<<<< HEAD
   sim_twin_alignment_function = get_sim_twin_alignment_with_standard_site_model_function(),
   twin_tree_filename = tempfile(pattern = "tree_twin_", fileext =
   ".newick"), twin_alignment_filename = tempfile(pattern =
   "alignment_twin_", fileext = ".fasta"),
   twin_evidence_filename = tempfile(pattern = "evidence_twin_", fileext =
   ".csv"))
+=======
+  sim_twin_alignment_fun = get_sim_twin_alignment_with_std_site_model_fun(),
+  twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
+  twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
+  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename()))
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \arguments{
 \item{rng_seed_twin_tree}{the random number generator seed as used in the
 simulation of a twin tree}
 
-\item{sim_twin_tree_function}{function to simulate a twin tree with.
+\item{sim_twin_tree_fun}{function to simulate a twin tree with.
 This function must have one argument called \code{phylogeny}
 of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
 as well.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{create_sim_yule_twin_tree_function} to use a
+  \item Use \link{create_sim_yule_twin_tree_fun} to use a
     Yule (aka Pure Birth) process
-  \item Use \link{create_copy_twin_tree_from_true_function} to for a function
+  \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
     that copies the true tree
-  \item Use \link{create_sim_bd_twin_tree_function} to use a
+  \item Use \link{create_sim_bd_twin_tree_fun} to use a
     Birth-Death process
 }}
 
 \item{rng_seed_twin_alignment}{the random number generator seed
 as used in the simulation of a twin alignment}
 
-\item{sim_twin_alignment_function}{function to simulate a
+\item{sim_twin_alignment_fun}{function to simulate a
 twin alignment with.
 This function must have two arguments called \code{twin_phylogeny} (which
 will hold the twin phylogeny) and \code{true_alignment} (which will
 hold the alignment simulated from the true phylogeny). The
 return type must be \link[ape]{DNAbin}.
 
-Use \link{check_sim_twin_alignment_function} to verify if the function
+Use \link{check_sim_twin_alignment_fun} to verify if the function
 has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
+<<<<<<< HEAD
   \item Use \link{get_copy_true_alignment_function}
     to get a function
     (\link{copy_true_alignment})
@@ -57,6 +65,17 @@ Some standard functions:\cr
     (\link{sim_twin_alignment_with_standard_site_model})
     that simulates a twin alignment using a standard site model
   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
+=======
+  \item Use \link{get_copy_true_alignment_fun}
+    to get a function
+    (\link{copy_true_alignment})
+    that copies a true to alignment to create a twin alignment
+  \item Use \link{get_sim_twin_alignment_with_std_site_model_fun}
+    to get a function
+    (\link{sim_twin_alignment_with_std_site_model})
+    that simulates a twin alignment using a standard site model
+  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_fun}
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
     to get a function
     (\link{sim_twin_alignment_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much

@@ -94,7 +94,7 @@
 #'   evidence (also known as marginal likelihood).
 #'   Smaller values result in more precise estimations, that take
 #'   longer to compute
-#' @param error_function function that determines the error between
+#' @param error_fun function that determines the error between
 #'   a given phylogeny and a the trees in a Bayesian posterior.
 #'   The function must have two arguments:
 #'   \itemize{
@@ -105,9 +105,9 @@
 #'   trees given. The error must be lowest between identical trees.
 #'   Example functions are:
 #'   \itemize{
-#'     \item \link{get_gamma_error_function}: use the absolute difference
+#'     \item \link{get_gamma_error_fun}: use the absolute difference
 #'       in gamma statistic
-#'     \item \link{get_nltt_error_function}: use the nLTT statistic
+#'     \item \link{get_nltt_error_fun}: use the nLTT statistic
 #'   }
 #' @param error_measure_params parameter set to specify how the
 #'   error between the given phylogeny and the Bayesian
@@ -153,6 +153,7 @@
 #'   A test data frame can be created by \link{create_test_marg_liks}
 #' @param max_evidence_epsilon set the maximum acceptable threshold for the
 #'   parameter \code{evidence_epsilon}
+#' @param max_n_tries maximum number of tries before giving up
 #' @param mcmc MCMC options, as created by \link[beautier]{create_mcmc}
 #' @param mbd_l_matrix the L matrix of an MBD tree
 #' @param mbd_mutation_rate the mutation rate when creating an alignment
@@ -252,18 +253,27 @@
 #' @param seed a random number generator seed
 #' @param sim_pars something
 #' @param sim_phylo something
+<<<<<<< HEAD
 #' @param sim_true_alignment_function function to simulate a
+=======
+#' @param sim_true_alignment_fun function to simulate a
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' true alignment with.
 #' This function must have two arguments,
 #' called \code{true_phylogeny} (which will hold the true phylogeny)
 #' and \code{root_sequence} (which holds the DNA root sequence).
 #' The return type must be \link[ape]{DNAbin}.
 #'
+<<<<<<< HEAD
 #' Use \link{check_sim_true_alignment_function} to verify if the function
+=======
+#' Use \link{check_sim_true_alignment_fun} to verify if the function
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' has the right signature and output.
 #'
 #' Some standard functions:\cr
 #' \itemize{
+<<<<<<< HEAD
 #'   \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
 #'   to get a function (\link{sim_true_alignment_with_standard_site_model})
 #'   the use a standard site model.
@@ -277,17 +287,35 @@
 #'   the use an unlinked node substitution site model.
 #' }
 #' @param sim_twin_alignment_function function to simulate a
+=======
+#'   \item Use \link{get_sim_true_alignment_with_std_site_model_fun}
+#'   to get a function (\link{sim_true_alignment_with_std_site_model})
+#'   the use a standard site model.
+#'   \item Use
+#'   \link{get_sim_true_alignment_with_linked_node_sub_site_model_fun}
+#'   to get a function
+#'   (\link{sim_true_alignment_with_linked_node_sub_site_model})
+#'   the use a linked node substitution site model.
+#'   \item Use
+#'   \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_fun}
+#'   to get a function
+#'   (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
+#'   the use an unlinked node substitution site model.
+#' }
+#' @param sim_twin_alignment_fun function to simulate a
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' twin alignment with.
 #' This function must have two arguments called \code{twin_phylogeny} (which
 #' will hold the twin phylogeny) and \code{true_alignment} (which will
 #' hold the alignment simulated from the true phylogeny). The
 #' return type must be \link[ape]{DNAbin}.
 #'
-#' Use \link{check_sim_twin_alignment_function} to verify if the function
+#' Use \link{check_sim_twin_alignment_fun} to verify if the function
 #' has the right signature and output.
 #'
 #' Some standard functions:\cr
 #' \itemize{
+<<<<<<< HEAD
 #'   \item Use \link{get_copy_true_alignment_function}
 #'     to get a function
 #'     (\link{copy_true_alignment})
@@ -297,6 +325,17 @@
 #'     (\link{sim_twin_alignment_with_standard_site_model})
 #'     that simulates a twin alignment using a standard site model
 #'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
+=======
+#'   \item Use \link{get_copy_true_alignment_fun}
+#'     to get a function
+#'     (\link{copy_true_alignment})
+#'     that copies a true to alignment to create a twin alignment
+#'   \item Use \link{get_sim_twin_alignment_with_std_site_model_fun}
+#'     to get a function
+#'     (\link{sim_twin_alignment_with_std_site_model})
+#'     that simulates a twin alignment using a standard site model
+#'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_fun}
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #'     to get a function
 #'     (\link{sim_twin_alignment_with_same_n_mutation})
 #'     that simulates -using a standard model- a twin alignment with as much
@@ -308,18 +347,18 @@
 #'     that simulates a twin alignment using an unlinked node substitution
 #'     model
 #' }
-#' @param sim_twin_tree_function function to simulate a twin tree with.
+#' @param sim_twin_tree_fun function to simulate a twin tree with.
 #' This function must have one argument called \code{phylogeny}
 #' of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
 #' as well.
 #'
 #' Some standard functions:\cr
 #' \itemize{
-#'   \item Use \link{create_sim_yule_twin_tree_function} to use a
+#'   \item Use \link{create_sim_yule_twin_tree_fun} to use a
 #'     Yule (aka Pure Birth) process
-#'   \item Use \link{create_copy_twin_tree_from_true_function} to for a function
+#'   \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
 #'     that copies the true tree
-#'   \item Use \link{create_sim_bd_twin_tree_function} to use a
+#'   \item Use \link{create_sim_bd_twin_tree_fun} to use a
 #'     Birth-Death process
 #' }
 #' @param site_model a nucleotide substitution model,
@@ -425,7 +464,7 @@ default_params_doc <- function(
   crown_age,
   do_measure_evidence,
   epsilon,
-  error_function,
+  error_fun,
   error_measure_params,
   errors,
   errors_filename,
@@ -447,6 +486,7 @@ default_params_doc <- function(
   marg_lik_filename,
   marg_liks,
   max_evidence_epsilon,
+  max_n_tries,
   mbd_l_matrix,
   mbd_mutation_rate,
   mbd_tree,
@@ -488,9 +528,15 @@ default_params_doc <- function(
   sequence_length,
   sim_pars,
   sim_phylo,
+<<<<<<< HEAD
   sim_true_alignment_function,
   sim_twin_alignment_function,
   sim_twin_tree_function,
+=======
+  sim_true_alignment_fun,
+  sim_twin_alignment_fun,
+  sim_twin_tree_fun,
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   site_model,
   site_models,
   site_model_name,

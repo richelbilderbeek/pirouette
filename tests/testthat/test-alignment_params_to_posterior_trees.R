@@ -6,7 +6,7 @@ test_that("returns a multiPhylo", {
   if (!beastier::is_beast2_installed()) return()
 
   alignment_params <- create_test_alignment_params()
-  create_alignment_file(
+  create_true_alignment_file(
     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
     alignment_params = alignment_params
   )

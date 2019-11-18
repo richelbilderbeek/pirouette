@@ -5,7 +5,11 @@
 \title{Creates a twin alignment.}
 \usage{
 sim_twin_alignment(twin_phylogeny, true_alignment, alignment_params,
+<<<<<<< HEAD
   twinning_params, verbose = FALSE, newskool = FALSE)
+=======
+  twinning_params)
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -18,11 +22,14 @@ as can be created by \link{create_alignment_params}}
 \item{twinning_params}{can be \code{NA} if no twinning is desired,
 or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
+<<<<<<< HEAD
 
 \item{verbose}{if TRUE, show more output}
 
 \item{newskool}{set to TRUE for the newschool functions. Will
 be removed after a while.}
+=======
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \value{
 an alignment of class DNAbin that has as much
@@ -43,31 +50,41 @@ number of mutations.
 true_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
 twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 root_sequence <- create_blocked_dna(1000)
+<<<<<<< HEAD
 alignment_params <- create_test_alignment_params(
   root_sequence = root_sequence,
   rng_seed = 314,
   mutation_rate = 0.001
 )
+=======
+alignment_params <- create_test_alignment_params()
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 true_alignment <- create_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
+<<<<<<< HEAD
 n_mutations_true <- count_n_mutations(
   alignment = true_alignment, root_sequence = root_sequence
 )
 
+=======
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 twin_alignment <- sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = alignment_params,
   twinning_params = create_twinning_params()
 )
+<<<<<<< HEAD
 n_mutations_twin <- count_n_mutations(
   alignment = twin_alignment, root_sequence = root_sequence
 )
 
 library(testthat)
 expect_equal(n_mutations_true, n_mutations_twin)
+=======
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

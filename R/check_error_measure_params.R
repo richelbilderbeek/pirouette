@@ -17,7 +17,7 @@ check_error_measure_params <- function(
 ) {
   argument_names <- c(
     "burn_in_fraction",
-    "error_function"
+    "error_fun"
   )
   for (arg_name in argument_names) {
     if (!arg_name %in% names(error_measure_params)) {
@@ -35,33 +35,8 @@ check_error_measure_params <- function(
     stop("'burn_in_fraction' must be between 0.0 and 1.0")
   }
 
-  # check if error_function is indeed a function
-  if (!is.function(error_measure_params$error_function)) {
-    stop("'error_function' must be a function")
-  }
-
-  # check if error_function is indeed a function with at least 2 parameters
-  arguments <- utils::capture.output(
-    utils::str(args(error_measure_params$error_function))
+  pirouette::check_error_fun(
+    error_measure_params$error_fun
   )
-  n_commas <- stringr::str_count(string = arguments, pattern = ",")
-  if (!(n_commas > 0)) {
-    stop(
-      "'error_function' must be a function with at least two arguments"
-    )
-  }
 
-  # check if error_function is indeed a function that has a lowest
-  # value for identical trees
-  tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  trees <- c(tree)
-  test_errors <- error_measure_params$error_function(
-    tree = tree,
-    trees = trees
-  )
-  if (!all(test_errors == 0.0)) {
-    stop(
-      "'error_function' must be a function that is zero for identical trees"
-    )
-  }
 }

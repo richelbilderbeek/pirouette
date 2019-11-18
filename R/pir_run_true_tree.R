@@ -37,7 +37,11 @@ pir_run_true_tree <- function(
   pirouette::check_init_pir_params(pir_params)
 
   # Simulate the true alignment and save it to file
+<<<<<<< HEAD
   pirouette::create_alignment_file(
+=======
+  pirouette::create_true_alignment_file(
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
     phylogeny = true_phylogeny,
     alignment_params = pir_params$alignment_params,
     verbose = pir_params$verbose

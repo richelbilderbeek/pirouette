@@ -20,15 +20,6 @@ test_that("all list elements must be present", {
   )
 
   alignment_params <- good_alignment_params
-  alignment_params$mutation_rate <- NULL
-  expect_error(
-    check_alignment_params(
-      alignment_params
-    ),
-    "'mutation_rate' must be an element of an 'alignment_params'"
-  )
-
-  alignment_params <- good_alignment_params
   alignment_params$rng_seed <- NULL
   expect_error(
     check_alignment_params(alignment_params),
@@ -36,18 +27,12 @@ test_that("all list elements must be present", {
   )
 
   alignment_params <- good_alignment_params
-  alignment_params$site_model <- NULL
+  alignment_params$sim_true_alignment_fun <- NULL
   expect_error(
     check_alignment_params(alignment_params),
-    "'site_model' must be an element of an 'alignment_params'"
+    "'sim_true_alignment_fun' must be an element of an 'alignment_params'"
   )
 
-  alignment_params <- good_alignment_params
-  alignment_params$clock_model <- NULL
-  expect_error(
-    check_alignment_params(alignment_params),
-    "'clock_model' must be an element of an 'alignment_params'"
-  )
 })
 
 test_that("all list elements must have the right data type", {
@@ -59,91 +44,25 @@ test_that("all list elements must have the right data type", {
     check_alignment_params(
       create_alignment_params(
         root_sequence = "acgt",
-        mutation_rate = 0.1,
         rng_seed = "nonsense"
       )
     ),
     "'rng_seed' must be a number"
   )
-
-  # site_model
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_jc69_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_hky_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_tn93_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = beautier::create_gtr_site_model()
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = "linked_node_sub"
-      )
-    )
-  )
-  expect_silent(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = "unlinked_node_sub"
-      )
-    )
-  )
-
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        site_model = "nonsense"
-      )
-    ),
-    "'site_model' must be a site model"
-  )
-
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        clock_model = "nonsense"
-      )
-    ),
-    "'clock_model' must be a clock model"
-  )
-  expect_error(
-    check_alignment_params(
-      create_alignment_params(
-        clock_model = create_rln_clock_model()
-      )
-    ),
-    "Unsupported 'clock_model'"
-  )
 })
 
-test_that("adding sim_true_alignment_function", {
+test_that("adding sim_true_alignment_fun", {
 
   expect_silent(
     check_alignment_params(
       create_alignment_params(
+<<<<<<< HEAD
         sim_true_alignment_function =
           sim_true_alignment_with_standard_site_model
+=======
+        sim_true_alignment_fun =
+          sim_true_alignment_with_std_site_model
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
       )
     )
   )

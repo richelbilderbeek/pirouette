@@ -25,8 +25,7 @@ grDevices::dev.off()
 
 pir_params <- create_pir_params(
   alignment_params = create_alignment_params(
-    root_sequence = pirouette::create_blocked_dna(length = 40),
-    mutation_rate = 0.5 * 1.0 / 3.0
+    root_sequence = pirouette::create_blocked_dna(length = 40)
   ),
   twinning_params = create_twinning_params()
 )

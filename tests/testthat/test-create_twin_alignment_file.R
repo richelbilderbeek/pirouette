@@ -1,21 +1,26 @@
 test_that("must create file", {
   alignment_params <- create_test_alignment_params(
-    root_sequence = "agcta")
-  twinning_params <- create_twinning_params()
+    root_sequence = "agcta"
+  )
+  twinning_params <- create_twinning_params(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
+        max_n_tries = 1000
+      )
+  )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(
     phylogeny = true_phylogeny,
     twinning_params = twinning_params
   )
-  create_alignment_file(
+  create_true_alignment_file(
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   create_twin_alignment_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,
-    twinning_params =  twinning_params,
-    verbose = FALSE
+    twinning_params =  twinning_params
   )
   expect_true(file.exists(alignment_params$fasta_filename))
   expect_s3_class(
@@ -37,14 +42,4 @@ test_that("must create file", {
     root_sequence = alignment_params$root_sequence
   )
   expect_equal(n_mutations_true, n_mutations_twin)
-
-  # Test the verbosity
-  expect_output(
-    create_twin_alignment_file(
-      twin_phylogeny = twin_phylogeny,
-      alignment_params = alignment_params,
-      twinning_params =  twinning_params,
-      verbose = TRUE
-    )
-  )
 })

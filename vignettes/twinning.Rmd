@@ -50,7 +50,6 @@ twinning_params <- pirouette::create_twinning_params()
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
   root_sequence = pirouette::create_blocked_dna(length = 100),
-  mutation_rate = create_standard_mutation_rate,
   rng_seed = 314
 )
 ```
@@ -112,7 +111,7 @@ if (rappdirs::app_dir()$os != "win" &&
     is_beast2_installed() && 
     is_beast2_ns_pkg_installed()
 ) {
-  df <- pirouette::pir_run(
+  df <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   ) 

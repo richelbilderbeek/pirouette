@@ -13,11 +13,8 @@
 #' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # Simulate and save the true alignment
-#' alignment_params <- create_alignment_params(
-#'   root_sequence = create_blocked_dna(length = 4),
-#'   mutation_rate = 0.1
-#' )
-#' create_alignment_file(
+#' alignment_params <- create_test_alignment_params()
+#' create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )

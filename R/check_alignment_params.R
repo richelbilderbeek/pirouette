@@ -17,37 +17,9 @@ check_alignment_params <- function(
 ) {
   pirouette::check_alignment_params_names(alignment_params)
   pirouette::check_root_sequence(alignment_params$root_sequence)
-  pirouette::check_mutation_rate(alignment_params$mutation_rate)
 
   if (!beautier::is_one_int(alignment_params$rng_seed)) {
     stop("'rng_seed' must be a number")
-  }
-  if (
-    !beautier::is_site_model(alignment_params$site_model)
-    && alignment_params$site_model != "linked_node_sub"
-    && alignment_params$site_model != "unlinked_node_sub"
-  ) {
-    stop(
-      "'site_model' must be a site model, or 'linked_node_sub' ",
-      "or 'unlinked_node_sub'. \n",
-      "Tip: use 'create_site_model' to create a site model. \n",
-      "Actual value: ", alignment_params$site_model
-    )
-  }
-
-  if (!beautier::is_clock_model(alignment_params$clock_model)) {
-    stop(
-      "'clock_model' must be a clock model. \n",
-      "Tip: use 'create_strict_clock_model'. \n",
-      "Actual value: ", alignment_params$clock_model
-    )
-  }
-  if (alignment_params$clock_model$name != "strict") {
-    stop(
-      "Unsupported 'clock_model'. \n",
-      "Tip: use 'create_strict_clock_model'. \n",
-      "Actual clock model name: ", alignment_params$clock_model$name
-    )
   }
 }
 
@@ -64,11 +36,8 @@ check_alignment_params_names <- function(
 ) {
   argument_names <- c(
     "root_sequence",
-    "sim_true_alignment_function",
-    "mutation_rate", # to be obsoleted
+    "sim_true_alignment_fun",
     "rng_seed",
-    "site_model", # to be obsoleted
-    "clock_model", # to be obsoleted
     "fasta_filename"
   )
   for (arg_name in argument_names) {

@@ -2,7 +2,7 @@ test_that("use, twin has more info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-  root_sequence <- create_blocked_dna(1000)
+  root_sequence <- create_blocked_dna(8)
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
@@ -10,7 +10,16 @@ test_that("use, twin has more info", {
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+<<<<<<< HEAD:tests/testthat/test-sim_twin_alignment.R
   twinning_params <- create_twinning_params()
+=======
+  twinning_params <- create_twinning_params(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
+        max_n_tries = 1000
+      )
+  )
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa:tests/testthat/test-create_twin_alignment.R
   twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
@@ -31,7 +40,7 @@ test_that("use, twin has less info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
-  root_sequence <- create_blocked_dna(1000)
+  root_sequence <- create_blocked_dna(8)
   alignment_params <- create_test_alignment_params(
     root_sequence = root_sequence
   )
@@ -39,7 +48,16 @@ test_that("use, twin has less info", {
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+<<<<<<< HEAD:tests/testthat/test-sim_twin_alignment.R
   twinning_params <- create_twinning_params()
+=======
+  twinning_params <- create_twinning_params(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
+        max_n_tries = 1
+      )
+  )
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa:tests/testthat/test-create_twin_alignment.R
   twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
@@ -85,7 +103,7 @@ test_that("abuse", {
       alignment_params = alignment_params,
       twinning_params = twinning_params
     ),
-    "'twin_phylogeny' must be a valid phylogeny"
+    "phylogeny.*must be a valid phylogeny"
   )
 
   expect_error(
@@ -95,14 +113,19 @@ test_that("abuse", {
       alignment_params = alignment_params,
       twinning_params = twinning_params
     ),
-    "'true_alignmnent' must be a of class 'DNAbin'"
+    "alignment.*must be of class.*DNAbin"
   )
 })
 
 test_that("works for simple trees", {
   alignment_params <- create_test_alignment_params(
     root_sequence = "acgt")
-  twinning_params <- create_twinning_params()
+  twinning_params <- create_twinning_params(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
+        max_n_tries = 100
+      )
+  )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twin_phylogeny <- create_twin_tree(
     phylogeny = true_phylogeny,
@@ -116,8 +139,7 @@ test_that("works for simple trees", {
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
-    twinning_params =  twinning_params,
-    verbose = FALSE
+    twinning_params =  twinning_params
   )
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment,
@@ -132,6 +154,7 @@ test_that("works for simple trees", {
 
 test_that("works in poor conditions as well", {
 
+  skip("Issue 356, Issue #356")
   true_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:1, B:1):1, C:2):1, D:3):1, E:4):1, F:5):1, G:6):1, H:7):1, I:8):1, J:9):1, K:10):90, L:100);" # nolint indeed long
   )
@@ -140,9 +163,7 @@ test_that("works in poor conditions as well", {
   )
   root_sequence <- create_blocked_dna(1000)
   alignment_params <- create_test_alignment_params(
-    root_sequence = root_sequence,
-    rng_seed = 314,
-    mutation_rate = 0.001
+    root_sequence = root_sequence
   )
   true_alignment <- create_true_alignment(
     true_phylogeny = true_phylogeny,
@@ -151,19 +172,29 @@ test_that("works in poor conditions as well", {
   n_mutations_true <- count_n_mutations(
     alignment = true_alignment, root_sequence = root_sequence
   )
+<<<<<<< HEAD:tests/testthat/test-sim_twin_alignment.R
   twinning_params <- create_twinning_params()
+=======
+  twinning_params <- create_twinning_params(
+    sim_twin_alignment_fun =
+      get_sim_twin_alignment_with_same_n_mutation_fun(
+        mutation_rate = mutation_rate,
+        max_n_tries = 1
+      )
+  )
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa:tests/testthat/test-create_twin_alignment.R
   twin_alignment <- sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
-    twinning_params = twinning_params,
-    verbose = FALSE
+    twinning_params = twinning_params
   )
   n_mutations_twin <- count_n_mutations(
     alignment = twin_alignment, root_sequence = root_sequence
   )
   expect_equal(n_mutations_true, n_mutations_twin)
 })
+<<<<<<< HEAD:tests/testthat/test-sim_twin_alignment.R
 
 test_that("use, verbose", {
 
@@ -188,3 +219,5 @@ test_that("use, verbose", {
     )
   )
 })
+=======
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa:tests/testthat/test-create_twin_alignment.R

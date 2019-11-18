@@ -3,86 +3,31 @@ test_that("basic", {
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   testit::assert(length(phylogeny$tip.label) == n_taxa)
   sequence_length <- 10
+  root_sequence <- create_mono_nuc_dna(length = sequence_length)
   alignment_params <- create_alignment_params(
-    root_sequence = create_mono_nuc_dna(length = sequence_length),
-    mutation_rate = 1
+    root_sequence = root_sequence
   )
 
   alignment <- create_true_alignment(
     true_phylogeny = phylogeny,
     alignment_params = alignment_params
   )
-  expect_equal(class(alignment), "DNAbin")
-  expect_equal(nrow(alignment), n_taxa)
-  expect_equal(ncol(alignment), sequence_length)
-})
-
-test_that("create_true_alignment: HKY", {
-  n_taxa <- 3
-  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  testit::assert(length(phylogeny$tip.label) == n_taxa)
-  sequence_length <- 10
-  alignment_params <- create_alignment_params(
-    root_sequence = create_mono_nuc_dna(length = sequence_length),
-    mutation_rate = 1,
-    site_model = beautier::create_hky_site_model()
+  expect_silent(check_alignment(alignment))
+  expect_equal(
+    get_alignment_n_taxa(alignment),
+    n_taxa
   )
-
-  alignment <- create_true_alignment(
-    true_phylogeny = phylogeny,
-    alignment_params = alignment_params
+  expect_equal(
+    get_alignment_sequence_length(alignment),
+    sequence_length
   )
-  expect_true(class(alignment) == "DNAbin")
-  expect_true(nrow(alignment) == n_taxa)
-  expect_true(ncol(alignment) == sequence_length)
-})
-
-test_that("create_true_alignment: TN93", {
-  n_taxa <- 3
-  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  testit::assert(length(phylogeny$tip.label) == n_taxa)
-  sequence_length <- 10
-  alignment_params <- create_alignment_params(
-    root_sequence = create_mono_nuc_dna(length = sequence_length),
-    mutation_rate = 1,
-    site_model = beautier::create_tn93_site_model()
-  )
-
-  alignment <- create_true_alignment(
-    true_phylogeny = phylogeny,
-    alignment_params = alignment_params
-  )
-  expect_true(class(alignment) == "DNAbin")
-  expect_true(nrow(alignment) == n_taxa)
-  expect_true(ncol(alignment) == sequence_length)
-})
-
-test_that("create_true_alignment: GTR", {
-  n_taxa <- 3
-  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  testit::assert(length(phylogeny$tip.label) == n_taxa)
-  sequence_length <- 10
-  alignment_params <- create_alignment_params(
-    root_sequence = create_mono_nuc_dna(length = sequence_length),
-    mutation_rate = 1,
-    site_model = beautier::create_gtr_site_model()
-  )
-
-  alignment <- create_true_alignment(
-    true_phylogeny = phylogeny,
-    alignment_params = alignment_params
-  )
-  expect_true(class(alignment) == "DNAbin")
-  expect_true(nrow(alignment) == n_taxa)
-  expect_true(ncol(alignment) == sequence_length)
 })
 
 test_that("create_true_alignment: abuse", {
 
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   alignment_params <- create_alignment_params(
-    root_sequence = create_mono_nuc_dna(length = 4),
-    mutation_rate = 1
+    root_sequence = create_mono_nuc_dna(length = 4)
   )
 
   expect_error(
@@ -121,13 +66,17 @@ test_that("low mutation rate must have less mutations", {
   root_sequence <- create_mono_nuc_dna(length = sequence_length)
   alignment_params_low <- create_alignment_params(
     root_sequence = root_sequence,
-    mutation_rate = 0.01,
-    rng_seed = 314
+    sim_true_alignment_fun =
+      get_sim_true_alignment_with_std_site_model_fun(
+        mutation_rate = 0.01
+      )
   )
   alignment_params_high <- create_alignment_params(
     root_sequence = root_sequence,
-    mutation_rate = 0.1,
-    rng_seed = 314
+    sim_true_alignment_fun =
+      get_sim_true_alignment_with_std_site_model_fun(
+        mutation_rate = 0.1
+      )
   )
   alignment_low <- create_true_alignment(
     true_phylogeny = phylogeny,

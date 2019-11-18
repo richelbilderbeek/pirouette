@@ -4,9 +4,9 @@
 check_twinning_params_names <- function(twinning_params) { # nolint indeed long function name, which is fine for an internal function
   argument_names <- c(
     "rng_seed_twin_tree",
-    "sim_twin_tree_function",
+    "sim_twin_tree_fun",
     "rng_seed_twin_alignment",
-    "sim_twin_alignment_function",
+    "sim_twin_alignment_fun",
     "twin_tree_filename",
     "twin_alignment_filename",
     "twin_evidence_filename"

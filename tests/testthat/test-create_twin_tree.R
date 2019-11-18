@@ -191,7 +191,7 @@ test_that("node distances should remain in the same order, brute-force", {
 test_that("Yule", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_sim_yule_twin_tree_function()
+    sim_twin_tree_fun = create_sim_yule_twin_tree_fun()
   )
   create_twin_tree(
     phylogeny = tree,
@@ -202,7 +202,7 @@ test_that("Yule", {
 test_that("Birth-Death", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_sim_bd_twin_tree_function()
+    sim_twin_tree_fun = create_sim_bd_twin_tree_fun()
   )
   create_twin_tree(
     phylogeny = tree,
@@ -214,7 +214,7 @@ test_that("Birth-Death", {
 test_that("Copy", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_function = create_copy_twin_tree_from_true_function()
+    sim_twin_tree_fun = create_copy_twin_tree_from_true_fun()
   )
   twin_tree <- create_twin_tree(
     phylogeny = tree,

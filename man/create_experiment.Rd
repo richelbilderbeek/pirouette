@@ -9,7 +9,7 @@ create_experiment(inference_conditions = create_inference_conditions(),
   beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
   beastier::create_temp_input_filename(), output_state_filename =
-  beastier::create_temp_output_state_filename()),
+  beastier::create_temp_state_filename()),
   est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon =
   1e-12), beast2_bin_path = beastier::get_default_beast2_bin_path(),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))

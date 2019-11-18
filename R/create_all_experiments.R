@@ -41,7 +41,7 @@ create_all_experiments <- function(
   # or at least the filenames should be the same
   beast2_options <- beastier::create_beast2_options(
     input_filename = beastier::create_temp_input_filename(),
-    output_state_filename = beastier::create_temp_output_state_filename()
+    output_state_filename = beastier::create_temp_state_filename()
   )
   errors_filename <- tempfile(
     pattern = "errors_", fileext = ".csv"

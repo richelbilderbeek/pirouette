@@ -6,7 +6,12 @@
 \usage{
 sim_twin_alignment_with_same_n_mutation(twin_phylogeny, true_alignment,
   root_sequence, mutation_rate = 1,
+<<<<<<< HEAD
   site_model = beautier::create_jc69_site_model(), verbose = FALSE)
+=======
+  site_model = beautier::create_jc69_site_model(), max_n_tries = 1000,
+  verbose = FALSE)
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
@@ -35,12 +40,21 @@ which can be:
   }
 }}
 
+<<<<<<< HEAD
+=======
+\item{max_n_tries}{maximum number of tries before giving up}
+
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 \item{verbose}{if TRUE, show more output}
 }
 \description{
 This is an adapter function
 (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
+<<<<<<< HEAD
 with the purpose of passing \link{check_sim_twin_alignment_function},
+=======
+with the purpose of passing \link{check_sim_twin_alignment_fun},
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 by being a function with the function arguments \code{twin_phylogeny}
 and \code{true_alignment}.
 }
@@ -49,14 +63,23 @@ library(testthat)
 
 # This adapter function must be a sim_twin_alignment function
 expect_silent(
+<<<<<<< HEAD
   check_sim_twin_alignment_function(
     sim_twin_alignment_with_standard_site_model
+=======
+  check_sim_twin_alignment_fun(
+    sim_twin_alignment_with_std_site_model
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   )
 )
 
 # Simulate a twin DNA alignment
 
+<<<<<<< HEAD
 alignment <- sim_twin_alignment_with_standard_site_model(
+=======
+alignment <- sim_twin_alignment_with_std_site_model(
+>>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
   root_sequence = "aaaa",
   mutation_rate = 0.1
