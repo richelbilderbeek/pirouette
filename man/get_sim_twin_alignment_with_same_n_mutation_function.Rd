@@ -3,14 +3,59 @@
 %   R/get_sim_twin_alignment_with_same_n_mutation_function.R
 \name{get_sim_twin_alignment_with_same_n_mutation_function}
 \alias{get_sim_twin_alignment_with_same_n_mutation_function}
-\title{Get a function to simulate a twin alignment from a
+\title{Simulate a twin alignment from a
 twin phylogeny and a true alignment, of which the twin
-alignment}
+alignment has an equal amount of mutations from the root sequence
+as the true alignment has}
 \usage{
-get_sim_twin_alignment_with_same_n_mutation_function()
+get_sim_twin_alignment_with_same_n_mutation_function(mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model(), verbose = FALSE)
+}
+\arguments{
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{site_model}{a nucleotide substitution model,
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{linked_node_sub}: a linked node-substitution model
+  }
+  \item{
+    \code{unlinked_node_sub}: an unlinked node-substitution model
+  }
+}}
+
+\item{verbose}{if TRUE, show more output}
+}
+\value{
+the function \link{sim_twin_alignment_with_same_n_mutation}
 }
 \description{
-Get a function to simulate a twin alignment from a
-twin phylogeny and a true alignment, of which the twin
-alignment
+This is an adapter function
+(see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
+with the purpose of passing \link{check_sim_twin_alignment_function},
+by being a function with the function arguments \code{twin_phylogeny}
+and \code{true_alignment}.
+}
+\examples{
+library(testthat)
+
+if (1 == 2) {
+expect_silent(
+  check_sim_twin_alignment_function(
+    get_sim_twin_alignment_with_same_n_mutation_function
+  )
+)
+}
+}
+\seealso{
+See \link{check_sim_twin_alignment_function} to the the other
+functions to simulate a twin alignment.
+Use \link{sim_twin_alignment} to use this function to
+create a twin alignment.
 }

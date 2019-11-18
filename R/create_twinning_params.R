@@ -33,7 +33,8 @@ create_twinning_params <- function(
   rng_seed_twin_tree = 0,
   sim_twin_tree_function = create_sim_bd_twin_tree_function(),
   rng_seed_twin_alignment = 0,
-  sim_twin_alignment_function = get_default_sim_twin_alignment_function(),
+  sim_twin_alignment_function =
+    get_sim_twin_alignment_with_standard_site_model_function(),
   twin_tree_filename = tempfile(
     pattern = "tree_twin_", fileext = ".newick"
   ),

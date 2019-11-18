@@ -6,5 +6,5 @@ test_that("use", {
     mutation_rate = 0.1,
     site_model = beautier::create_jc69_site_model()
   )
-  expect_silent(check_alignment(alignment))
+  testthat::expect_silent(pirouette::check_alignment(alignment))
 })

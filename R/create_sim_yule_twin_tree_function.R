@@ -1,10 +1,12 @@
-#' Create a function that can simulate the twin tree from the true tree,
-#' using the Yule speciation model
+#' Create a partially evaluated function to to \link{sim_yule_twin_tree}.
+#'
+#' The function \link{sim_yule_twin_tree} simulates a twin tree
+#' using the Yule speciation model.
 #' @inheritParams default_params_doc
 #' @return a function
 #' @seealso
-#' Use \link{create_sim_bd_twin_tree_function} to get a function to
-#' produce a Birth-Death tree.
+#' Use \link{create_sim_bd_twin_tree_function} to get a partially
+#' evaluated function to produce a Birth-Death tree.
 #' Use \link{create_copy_twin_tree_from_true_function} to get a
 #' function to simply copy the tree
 #' @examples
@@ -23,8 +25,8 @@ create_sim_yule_twin_tree_function <- function(
   method = "random_tree",
   n_replicates = 1e4
 ) {
-  functional::Curry(
-    twin_to_yule_tree,
+  pryr::partial(
+    sim_yule_twin_tree,
     seed = seed,
     method = method,
     n_replicates = n_replicates

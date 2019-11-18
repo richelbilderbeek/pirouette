@@ -1,53 +1,9 @@
-#' Simulate an alignment from the true phylogeny
-#'
-#' @inheritParams default_params_doc
-#' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the simulated alignment
-#'   directly to a file
-#' @examples
-#' library(testthat)
-#'
-#' # Create the phylogeny to simulate the alignment on
-#' n_taxa <- 5
-#' phylogeny <- ape::rcoal(n_taxa)
-#'
-#' # Use default settings to create the alignment
-#' alignment_params <- pirouette::create_alignment_params()
-#'
-#' # Simulate the alignment
-#' alignment <- create_alignment(
-#'    phylogeny = phylogeny,
-#'    alignment_params = alignment_params,
-#'  )
-#'
-#' expect_equal(class(alignment), "DNAbin")
-#' expect_equal(nrow(alignment), n_taxa)
-#' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
-#' @author Richèl J.C. Bilderbeek
-#' @export
-create_alignment_newskool <- function(
-  phylogeny,
-  alignment_params = create_alignment_params(),
-  verbose = FALSE
-) {
-  beautier::check_phylogeny(phylogeny)
-  pirouette::check_alignment_params(alignment_params)
-  pirouette::check_reconstructed_phylogeny(phylogeny)
-  testit::assert(beautier::is_one_bool(verbose))
-
-  set.seed(alignment_params$rng_seed)
-  alignment_params$sim_alignment_function(phylogeny)
-}
-
 #' Converts a phylogeny to a random DNA alignment
 #'
 #' The function is used to create both
 #' the true (see \link{create_true_alignment})
-#' and twin alignment (see \link{create_twin_alignment}).
+#' and twin alignment (see \link{sim_twin_alignment}).
 #' @inheritParams default_params_doc
-#' @param n_mutations the number of different base pairs between
-#' root sequence and the resulting alignment. Set to \link{NA} if
-#' any number of mutations is fine.
 #' @return an alignment of type \code{DNAbin}
 #' @seealso Use \link{create_alignment_file} to save the simulated alignment
 #'   directly to a file
@@ -71,38 +27,20 @@ create_alignment_newskool <- function(
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
+#' @seealso Use \link{sim_alignment_with_n_mutations} to
+#' simulate an alignmnet with a certain number of mutations
 #' @export
 create_alignment <- function(
   phylogeny,
   alignment_params,
-  n_mutations = NA,
   verbose = FALSE
 ) {
   beautier::check_phylogeny(phylogeny)
   pirouette::check_alignment_params(alignment_params)
   pirouette::check_reconstructed_phylogeny(phylogeny)
-  testit::assert(
-    beautier::is_one_int(n_mutations) ||
-    beautier::is_one_na(n_mutations)
-  )
-  testit::assert(
-    beautier::is_one_na(n_mutations) ||
-    n_mutations >= 0
-  )
   testit::assert(beautier::is_one_bool(verbose))
   n_taxa <- ape::Ntip(phylogeny)
   n_nucleotides <- nchar(alignment_params$root_sequence)
-  max_n_mutations <- n_taxa * n_nucleotides
-  if (!beautier::is_one_na(n_mutations) && n_mutations > max_n_mutations) {
-    stop(
-      "Cannot have more mutations than the total number of nucleotides in the ",
-      "alignment. \n",
-      "Number of taxa: ", n_taxa, "\n",
-      "Number of nucleotides per taxon: ", n_nucleotides, "\n",
-      "Maximum number of mutations: ", max_n_mutations, "\n",
-      "Requested number of mutations: ", n_mutations
-    )
-  }
 
   # If mutation_rate is function, apply it to the phylogeny
   if (is.function(alignment_params$mutation_rate)) {
@@ -110,77 +48,47 @@ create_alignment <- function(
     alignment_params$mutation_rate <- mutation_function(phylogeny)
   }
   testit::assert(alignment_params$mutation_rate >= 0.0)
-  if (!beautier::is_one_na(n_mutations) && n_mutations > 0) {
-    testit::assert(alignment_params$mutation_rate > 0.0)
-  }
-
-  if (!beautier::is_one_int(n_mutations) && !beautier::is_one_na(n_mutations)) {
-    stop(
-      "n_mutations must be integer or NA"
-    )
-  }
 
   # Only need to set the seed once
   set.seed(alignment_params$rng_seed)
 
-  n_tries <- 1
-
-  while (1) {
-    alignment_dnabin <- NA
-    if (beautier::is_site_model(alignment_params$site_model)) {
-      # Standard site models
-      alignment_dnabin <- create_alignment_with_standard_site_model(
-        phylogeny = phylogeny,
-        alignment_params = alignment_params
-      )
-    } else if (alignment_params$site_model == "linked_node_sub") {
-      alignment_dnabin <- create_alignment_with_linked_node_sub_site_model(
-        phylogeny = phylogeny,
-        alignment_params = alignment_params
-      )
-    } else {
-      testit::assert(alignment_params$site_model == "unlinked_node_sub")
-      alignment_dnabin <- create_alignment_with_unlinked_node_sub_site_model(
-        phylogeny = phylogeny,
-        alignment_params = alignment_params
-      )
-    }
-
-    testit::assert(class(alignment_dnabin) == "DNAbin")
-
-    sim_mutations <- count_n_mutations(
-      alignment = alignment_dnabin,
+  # Do it
+  alignment <- NA
+  if (beautier::is_site_model(alignment_params$site_model)) {
+    # Standard site models
+    alignment <- pirouette::create_alignment_with_standard_site_model_raw(
+      phylogeny = phylogeny,
+      root_sequence = alignment_params$root_sequence,
+      mutation_rate = alignment_params$mutation_rate,
+      site_model = alignment_params$site_model
+    )
+    # alignment <- create_alignment_with_standard_site_model(
+    #   phylogeny = phylogeny,
+    #   alignment_params = alignment_params
+    # )
+  } else if (alignment_params$site_model == "linked_node_sub") {
+    alignment <- sim_true_alignment_with_linked_node_sub_site_model(
+      true_phylogeny = phylogeny,
       root_sequence = alignment_params$root_sequence
     )
-
-    if (beautier::is_one_na(n_mutations)) break
-
-    testit::assert(
-      get_alignment_sequence_length(alignment_dnabin) ==
-      nchar(alignment_params$root_sequence)
+  } else {
+    testit::assert(alignment_params$site_model == "unlinked_node_sub")
+    alignment <- sim_true_alignment_with_unlinked_node_sub_site_model(
+      true_phylogeny = phylogeny,
+      root_sequence = alignment_params$root_sequence
     )
-
-    if (verbose == TRUE) {
-      print(
-        paste0(
-          "Mutations needed: ", n_mutations,
-          ", got: ", sim_mutations,
-          ", number of tries: ", n_tries
-        )
-      )
-    }
-
-    if (sim_mutations == n_mutations) break
-
-    n_tries <- n_tries + 1
   }
+  pirouette::check_alignment(alignment)
 
-  testit::assert(nrow(alignment_dnabin) == length(phylogeny$tip.label))
   testit::assert(
-    ncol(alignment_dnabin) == nchar(alignment_params$root_sequence)
+    get_alignment_sequence_length(alignment) ==
+    nchar(alignment_params$root_sequence)
   )
-
-  alignment_dnabin
+  testit::assert(
+    get_alignment_n_taxa(alignment) ==
+    ape::Ntip(phylogeny)
+  )
+  alignment
 }
 
 #' Create an alignment with a standard site model
@@ -197,29 +105,14 @@ create_alignment_with_standard_site_model <- function(
     mutation_rate = alignment_params$mutation_rate,
     site_model = alignment_params$site_model
   )
-  # alignment_phydat <- phangorn::simSeq(
-  #   phylogeny,
-  #   l = nchar(alignment_params$root_sequence),
-  #   rate = alignment_params$mutation_rate,
-  #   rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-  #   Q = create_rate_matrix(
-  #     site_model = alignment_params$site_model,
-  #     base_frequencies = calc_base_freq(alignment_params$root_sequence)
-  #   )
-  # )
-  # testthat::expect_equal(class(alignment_phydat), "phyDat")
-  # testit::assert(class(alignment_phydat) == "phyDat")
-  #
-  # alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
-  # alignment_dnabin
 }
 
 
-#' Create an alignment with a standard site model using a raw interface
+#' Adapter function to create an alignment with a standard site model
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @export
-create_twin_alignment_with_standard_site_model_raw <- function(
+sim_twin_alignment_with_standard_site_model_raw <- function(
   twin_phylogeny,
   true_alignment,
   root_sequence,
@@ -227,7 +120,7 @@ create_twin_alignment_with_standard_site_model_raw <- function(
   site_model
 ) {
   create_alignment_with_standard_site_model_raw(
-    phylogeny = phylogeny,
+    phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,
     site_model = site_model
@@ -271,63 +164,22 @@ create_alignment_with_standard_site_model_raw <- function(
   if (class(alignment_phydat) != "phyDat") {
     stop(
       "'class(alignment_phydat)' not equal to 'phyDat'. \n",
-      "Actual 'class(alignment_phydat)': ", class(alignment_phydat)," \n",
-      "Actual 'alignment_phydat': ", alignment_phydat," \n"
+      "Actual 'class(alignment_phydat)': ", class(alignment_phydat), " \n",
+      "Actual 'alignment_phydat': ", alignment_phydat, " \n"
     )
   }
   testit::assert(class(alignment_phydat) == "phyDat")
 
-  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
-  check_alignment(alignment_dnabin)
-  alignment_dnabin
+  alignment <- ape::as.DNAbin(alignment_phydat)
+  pirouette::check_alignment(alignment)
+  testit::assert(
+    pirouette::get_alignment_sequence_length(alignment) ==
+    nchar(root_sequence)
+  )
+  testit::assert(
+    pirouette::get_alignment_n_taxa(alignment) ==
+    ape::Ntip(phylogeny)
+  )
 
-}
-
-#' Create an alignment with the \code{linked_node_sub} site model
-#' @return an alignment of type \code{DNAbin}
-#' @noRd
-create_alignment_with_linked_node_sub_site_model <- function(
-  phylogeny,
-  alignment_params
-) {
-  beautier::check_phylogeny(phylogeny)
-  pirouette::check_alignment_params(alignment_params)
-  pirouette::check_reconstructed_phylogeny(phylogeny)
-  testit::assert(alignment_params$site_model == "linked_node_sub")
-  alignment_phydat <- nodeSub::sim_dual_linked(
-    phylogeny,
-    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-    l = nchar(alignment_params$root_sequence)
-  )$alignment
-
-  testthat::expect_equal(class(alignment_phydat), "phyDat")
-  testit::assert(class(alignment_phydat) == "phyDat")
-
-  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
-  alignment_dnabin
-
-}
-
-#' Create an alignment with the \code{unlinked_node_sub} site model
-#' @return an alignment of type \code{DNAbin}
-#' @noRd
-create_alignment_with_unlinked_node_sub_site_model <- function(
-  phylogeny,
-  alignment_params
-) {
-  beautier::check_phylogeny(phylogeny)
-  pirouette::check_alignment_params(alignment_params)
-  pirouette::check_reconstructed_phylogeny(phylogeny)
-  testit::assert(alignment_params$site_model == "unlinked_node_sub")
-  alignment_phydat <- nodeSub::sim_dual_independent(
-    phylogeny,
-    rootseq = strsplit(alignment_params$root_sequence, split = "")[[1]],
-    l = nchar(alignment_params$root_sequence)
-  )$alignment
-
-  testthat::expect_equal(class(alignment_phydat), "phyDat")
-  testit::assert(class(alignment_phydat) == "phyDat")
-
-  alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
-  alignment_dnabin
+  alignment
 }

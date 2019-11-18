@@ -1,10 +1,11 @@
 test_that("use", {
-  f <- get_sim_twin_alignment_with_standard_site_model_function(
-    root_sequence = "acgt",
-    mutation_rate = 0.1
-  )
+  f <- get_sim_twin_alignment_with_standard_site_model_function()
   check_sim_twin_alignment_function(f)
 
-  alignment <- f(twin_phylogeny = ape::rcoal(3), true_alignment = "irrelevant")
-  expect_silent(check_alignment(alignment))
+  alignment <- f(
+    twin_phylogeny = ape::rcoal(3),
+    true_alignment = "irrelevant",
+    root_sequence = "acgt"
+  )
+  testthat::expect_silent(pirouette::check_alignment(alignment))
 })

@@ -2,8 +2,7 @@
 % Please edit documentation in R/create_sim_yule_twin_tree_function.R
 \name{create_sim_yule_twin_tree_function}
 \alias{create_sim_yule_twin_tree_function}
-\title{Create a function that can simulate the twin tree from the true tree,
-using the Yule speciation model}
+\title{Create a partially evaluated function to to \link{sim_yule_twin_tree}.}
 \usage{
 create_sim_yule_twin_tree_function(seed = 0, method = "random_tree",
   n_replicates = 10000)
@@ -27,8 +26,8 @@ twin tree}
 a function
 }
 \description{
-Create a function that can simulate the twin tree from the true tree,
-using the Yule speciation model
+The function \link{sim_yule_twin_tree} simulates a twin tree
+using the Yule speciation model.
 }
 \examples{
 library(testthat)
@@ -41,8 +40,8 @@ expect_true(
 )
 }
 \seealso{
-Use \link{create_sim_bd_twin_tree_function} to get a function to
-produce a Birth-Death tree.
+Use \link{create_sim_bd_twin_tree_function} to get a partially
+evaluated function to produce a Birth-Death tree.
 Use \link{create_copy_twin_tree_from_true_function} to get a
 function to simply copy the tree
 }

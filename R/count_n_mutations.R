@@ -44,7 +44,8 @@ count_n_mutations <- function(
 
 
   sequences <- pirouette::get_alignment_sequences(
-    alignment = alignment, verbose = verbose
+    alignment = alignment,
+    verbose = FALSE
   )
 
   n_mutations <- 0

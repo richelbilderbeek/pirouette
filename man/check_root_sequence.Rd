@@ -6,6 +6,11 @@
 \usage{
 check_root_sequence(root_sequence)
 }
+\arguments{
+\item{root_sequence}{the DNA sequence at the root of the phylogeny.
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
+}
 \description{
 Will \link{stop} if not
 }

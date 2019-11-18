@@ -49,6 +49,7 @@ test_that("use, 1 candidate", {
 
 test_that("use, 1 candidate, CBS tree prior that should give error", {
 
+  if (!beastier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 

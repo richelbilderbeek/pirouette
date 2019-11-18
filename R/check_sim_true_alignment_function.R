@@ -10,30 +10,26 @@ check_sim_true_alignment_function <- function(sim_true_alignment_function) {
   if (!is.function(sim_true_alignment_function)) {
     stop("'sim_true_alignment_function' must be a function")
   }
-  # check if sim_true_alignment_function is indeed a function with 1 parameter
-  arguments <- utils::capture.output(
-    utils::str(args(sim_true_alignment_function))
-  )
-  if (stringr::str_count(string = arguments, pattern = ",") > 0) {
-    stop(
-      "'sim_true_alignment_function' must be a function with one argument"
-    )
-  }
   # sim_true_alignment_function must return a DNAbin
   out <- NA
   tryCatch({
       out <- sim_true_alignment_function(
-        true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"))
-    }, condition = function(c) {
+        true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+        root_sequence = "acgt"
+      )
+    }, error = function(e) {
       stop(
-        "'sim_true_alignment_function' must be a function ",
-        "with one argument called 'true_phylogeny'"
+        "Error when using 'sim_true_alignment_function' on an example ",
+        "phylogeny. \n",
+        "Error message: ", e$message
       )
     }
   )
   if (class(out) != "DNAbin") {
     stop(
-      "'sim_true_alignment_function' must be a function that returns an ape::DNAbin"
+      "'sim_true_alignment_function' must be a function that returns",
+      " an ape::DNAbin. \n",
+      "Actual class returned: ", class(out)
     )
   }
 

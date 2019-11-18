@@ -20,14 +20,25 @@ has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_default_sim_twin_alignment_function} to use a
-    default function
-  \item Use \link{get_sim_twin_alignment_with_standard_site_model} to
-    use a function that creates a twin alignment using a standard site
-    model
-  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
-    use a function that ensure that the twin alignment has as much
+  \item Use \link{get_copy_true_alignment_function}
+    to get a function
+    (\link{copy_true_alignment})
+    that copies a true to alignment to create a twin alignment
+  \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
+    to get a function
+    (\link{sim_twin_alignment_with_standard_site_model})
+    that simulates a twin alignment using a standard site model
+  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
+    to get a function
+    (\link{sim_twin_alignment_with_same_n_mutation})
+    that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
+  \item Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+    that simulates a twin alignment using a linked node substitution
+    model
+  \item Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+    that simulates a twin alignment using an unlinked node substitution
+    model
 }}
 }
 \description{

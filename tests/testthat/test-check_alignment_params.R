@@ -142,7 +142,8 @@ test_that("adding sim_true_alignment_function", {
   expect_silent(
     check_alignment_params(
       create_alignment_params(
-        sim_true_alignment_function = get_default_sim_true_alignment_function()
+        sim_true_alignment_function =
+          sim_true_alignment_with_standard_site_model
       )
     )
   )

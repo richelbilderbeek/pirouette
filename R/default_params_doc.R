@@ -67,6 +67,10 @@
 #'   Use \link[beastier]{get_default_beast2_bin_path} for the default
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
+#' @param branch_mutation_rate mutation rate along the branch.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
+#' @param branch_subst_matrix substitution matrix along the branches.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
 #' @param brts numeric vector of (all postive) branching times,
 #'   in time units before the present. Assuming no stem, the heighest
 #'   value equals the crown age.
@@ -185,6 +189,12 @@
 #' @param n_taxa number of tree tips
 #' @param n_replicates number of replicas to evaluate in order to create the
 #'   twin tree
+#' @param node_mutation_rate mutation rate on the node.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
+#' @param node_subst_matrix substitution matrix on the nodes.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
+#' @param node_time amount of time spent at the nodes.
+#' See, among others, \link[nodeSub]{sim_dual_independent} for more details
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
 #'  present in the simulated tree
@@ -240,17 +250,32 @@
 #'   makes a measurement
 #' @param sequence_length the length of each DNA sequence in an alignment
 #' @param seed a random number generator seed
-#' @param sim_alignment_function function to simulate an alignment with.
-#' This function must have one argument called \code{phylogeny}
-#' of type \link[ape]{phylo} and has a return type of type \link[ape]{DNAbin}.
+#' @param sim_pars something
+#' @param sim_phylo something
+#' @param sim_true_alignment_function function to simulate a
+#' true alignment with.
+#' This function must have two arguments,
+#' called \code{true_phylogeny} (which will hold the true phylogeny)
+#' and \code{root_sequence} (which holds the DNA root sequence).
+#' The return type must be \link[ape]{DNAbin}.
+#'
+#' Use \link{check_sim_true_alignment_function} to verify if the function
+#' has the right signature and output.
 #'
 #' Some standard functions:\cr
 #' \itemize{
-#'   \item Use \link{get_default_sim_alignment_function} to use a
-#'     default function
+#'   \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
+#'   to get a function (\link{sim_true_alignment_with_standard_site_model})
+#'   the use a standard site model.
+#'   \item Use
+#'   \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
+#'   to get a function (\link{sim_true_alignment_with_linked_node_sub_site_model})
+#'   the use a linked node substitution site model.
+#'   \item Use
+#'   \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
+#'   to get a function (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
+#'   the use an unlinked node substitution site model.
 #' }
-#' @param sim_pars something
-#' @param sim_phylo something
 #' @param sim_twin_alignment_function function to simulate a
 #' twin alignment with.
 #' This function must have two arguments called \code{twin_phylogeny} (which
@@ -263,14 +288,25 @@
 #'
 #' Some standard functions:\cr
 #' \itemize{
-#'   \item Use \link{get_default_sim_twin_alignment_function} to use a
-#'     default function
-#'   \item Use \link{get_sim_twin_alignment_with_standard_site_model} to
-#'     use a function that creates a twin alignment using a standard site
-#'     model
-#'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function} to
-#'     use a function that ensure that the twin alignment has as much
+#'   \item Use \link{get_copy_true_alignment_function}
+#'     to get a function
+#'     (\link{copy_true_alignment})
+#'     that copies a true to alignment to create a twin alignment
+#'   \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
+#'     to get a function
+#'     (\link{sim_twin_alignment_with_standard_site_model})
+#'     that simulates a twin alignment using a standard site model
+#'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
+#'     to get a function
+#'     (\link{sim_twin_alignment_with_same_n_mutation})
+#'     that simulates -using a standard model- a twin alignment with as much
 #'     mutations compared to the root sequence as the true alignment has
+#'   \item Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+#'     that simulates a twin alignment using a linked node substitution
+#'     model
+#'   \item Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+#'     that simulates a twin alignment using an unlinked node substitution
+#'     model
 #' }
 #' @param sim_twin_tree_function function to simulate a twin tree with.
 #' This function must have one argument called \code{phylogeny}
@@ -303,6 +339,7 @@
 #' @param site_models a list of one or more site models,
 #'   as created by \link[beautier]{create_site_model}
 #' @param site_model_name name of a site model
+#' @param subst_matrix nucleotide substitution matrix
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
 #' @param sum_lamu is the sum lambda + mu
@@ -318,7 +355,8 @@
 #'   phylogeny, and \code{twin} for its twin tree
 #' @param tree_filename name of the phylogeny file
 #' @param true_alignment a DNA alignment, of class \link[ape]{DNAbin}
-#' @param true_phylogeny a phylogeny of class \link[ape]{phylo}
+#' @param true_phylogeny the true phylogeny; the actual evolutionary
+#' history of the species, of class \link[ape]{phylo}
 #' @param true_result result obtained from using the true tree
 #' @param twin_alignment a DNA alignment, of class \link[ape]{DNAbin}
 #' @param twin_alignment_filename name of the FASTA file the twin
@@ -376,6 +414,8 @@ default_params_doc <- function(
   beast2_output_trees_filenames,
   beast2_path,
   beast2_rng_seed,
+  branch_mutation_rate,
+  branch_subst_matrix,
   brts,
   burn_in_fraction,
   chain_length,
@@ -421,6 +461,9 @@ default_params_doc <- function(
   n_mutations,
   n_taxa,
   n_replicates,
+  node_mutation_rate,
+  node_subst_matrix,
+  node_time,
   nu,
   nu_events,
   parameter_filename,
@@ -443,14 +486,16 @@ default_params_doc <- function(
   sample_interval,
   seed,
   sequence_length,
-  sim_alignment_function,
   sim_pars,
   sim_phylo,
+  sim_true_alignment_function,
+  sim_twin_alignment_function,
   sim_twin_tree_function,
   site_model,
   site_models,
   site_model_name,
   sub_chain_length,
+  subst_matrix,
   sum_lamu,
   t_0,
   tree,

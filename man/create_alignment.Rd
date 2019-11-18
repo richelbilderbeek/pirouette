@@ -4,18 +4,13 @@
 \alias{create_alignment}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-create_alignment(phylogeny, alignment_params, n_mutations = NA,
-  verbose = FALSE)
+create_alignment(phylogeny, alignment_params, verbose = FALSE)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
-
-\item{n_mutations}{the number of different base pairs between
-root sequence and the resulting alignment. Set to \link{NA} if
-any number of mutations is fine.}
 
 \item{verbose}{if TRUE, show more output}
 }
@@ -25,7 +20,7 @@ an alignment of type \code{DNAbin}
 \description{
 The function is used to create both
 the true (see \link{create_true_alignment})
-and twin alignment (see \link{create_twin_alignment}).
+and twin alignment (see \link{sim_twin_alignment}).
 }
 \examples{
 library(testthat)
@@ -50,6 +45,9 @@ expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 \seealso{
 Use \link{create_alignment_file} to save the simulated alignment
   directly to a file
+
+Use \link{sim_alignment_with_n_mutations} to
+simulate an alignmnet with a certain number of mutations
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

@@ -26,11 +26,7 @@ create_test_cand_experiment <- function(
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_test_ns_mcmc(),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
-  errors_filename = tempfile(
-    pattern = "errors_",
-    tmpdir = rappdirs::user_cache_dir(),
-    fileext = ".csv"
-  )
+  errors_filename = get_temp_errors_filename()
 ) {
   create_experiment(
     inference_conditions = inference_conditions,
