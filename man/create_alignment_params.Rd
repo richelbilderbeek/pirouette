@@ -6,56 +6,20 @@
 \usage{
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
-<<<<<<< HEAD
-  sim_true_alignment_function = pirouette::sim_true_alignment_with_standard_site_model,
-  mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
-  fasta_filename = pirouette::get_temp_fasta_filename())
-=======
   sim_true_alignment_fun = pirouette::sim_true_alignment_with_std_site_model,
   rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
 By default, this will consist out of an equal amount of each letter
 Use \link{check_root_sequence} to check if a root sequence is valid.}
 
-<<<<<<< HEAD
-\item{sim_true_alignment_function}{function to simulate a
-=======
 \item{sim_true_alignment_fun}{function to simulate a
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 true alignment with.
 This function must have two arguments,
 called \code{true_phylogeny} (which will hold the true phylogeny)
 and \code{root_sequence} (which holds the DNA root sequence).
 The return type must be \link[ape]{DNAbin}.
-<<<<<<< HEAD
-
-Use \link{check_sim_true_alignment_function} to verify if the function
-has the right signature and output.
-
-Some standard functions:\cr
-\itemize{
-  \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
-  to get a function (\link{sim_true_alignment_with_standard_site_model})
-  the use a standard site model.
-  \item Use
-  \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
-  to get a function (\link{sim_true_alignment_with_linked_node_sub_site_model})
-  the use a linked node substitution site model.
-  \item Use
-  \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
-  to get a function (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
-  the use an unlinked node substitution site model.
-}}
-
-\item{mutation_rate}{the mutation rate per base pair per time unit.
-Use \link{check_mutation_rate} to check if a mutation rate is valid.}
-=======
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 
 Use \link{check_sim_true_alignment_fun} to verify if the function
 has the right signature and output.
@@ -93,34 +57,35 @@ library(testthat)
 
 # DNA sequence at the root
 n_base_pairs <- 4
-root_sequence <- create_blocked_dna(length = n_base_pairs)
-expect_equal("acgt", root_sequence)
+root_sequence <- pirouette::create_blocked_dna(length = n_base_pairs)
+testthat::expect_equal("acgt", root_sequence)
 
 # Only specify root sequence and mutation rate, use defaults
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   root_sequence = root_sequence
 )
 
-expect_true("root_sequence" \%in\% names(alignment_params))
+testthat::expect_true("root_sequence" \%in\% names(alignment_params))
 
 # Use defaults explicitly
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   root_sequence = root_sequence,
   rng_seed = 0
 )
 
-expect_true("rng_seed" \%in\% names(alignment_params))
+testthat::expect_true("rng_seed" \%in\% names(alignment_params))
 
 # Create a pirouette parameter set
-pir_params <- create_test_pir_params(alignment_params = alignment_params)
+pir_params <-
+ create_test_pir_params(alignment_params = alignment_params)
 
 # Run pirouette
 if (is_on_travis() && is_beast2_installed()) {
-  pir_out <- pir_run(
+  pir_out <- pirouette::pir_run(
     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
     pir_params = pir_params
   )
-  pir_plot(pir_out)
+  pirouette::pir_plot(pir_out)
 }
 }
 \author{

@@ -5,7 +5,8 @@
 \title{Simulate the true alignment from the true phylogeny}
 \usage{
 sim_true_alignment(true_phylogeny,
-  alignment_params = create_alignment_params(), verbose = FALSE)
+  alignment_params = pirouette::create_alignment_params(),
+  verbose = FALSE)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary
@@ -32,30 +33,21 @@ true_phylogeny <- ape::rcoal(n_taxa)
 root_sequence <- "aaaacgt"
 
 # Use default settings to create the alignment
-alignment_params <- create_alignment_params(
-<<<<<<< HEAD
-  sim_true_alignment_function =
-    get_sim_true_alignment_with_standard_site_model_function(
-=======
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun =
     get_sim_true_alignment_with_std_site_model_fun(
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
       mutation_rate = 1.0
   ),
   root_sequence = root_sequence
 )
 
 # Simulate the alignment
-alignment <- sim_true_alignment(
+alignment <- pirouette::sim_true_alignment(
    true_phylogeny = true_phylogeny,
    alignment_params = alignment_params,
  )
 
-<<<<<<< HEAD
-expect_equal(class(alignment), "DNAbin")
-=======
 expect_silent(check_alignment(alignment))
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }

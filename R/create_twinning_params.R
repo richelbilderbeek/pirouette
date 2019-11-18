@@ -6,23 +6,23 @@
 #' @inheritParams default_params_doc
 #' @return a twinning parameter set
 #' @examples
-#' twinning_params <- create_twinning_params()
+#' twinning_params <- pirouette::create_twinning_params()
 #'
 #' library(testthat)
-#' expect_true("rng_seed_twin_tree" %in% names(twinning_params))
-#' expect_true("rng_seed_twin_alignment" %in% names(twinning_params))
-#' expect_true("twin_tree_filename" %in% names(twinning_params))
-#' expect_silent(check_twinning_params(twinning_params))
+#' testthat::expect_true("rng_seed_twin_tree" %in% names(twinning_params))
+#' testthat::expect_true("rng_seed_twin_alignment" %in% names(twinning_params))
+#' testthat::expect_true("twin_tree_filename" %in% names(twinning_params))
+#' testthat::expect_silent(check_twinning_params(twinning_params))
 #'
-#' pir_params <- create_test_pir_params(
+#' pir_params <- pirouette::create_test_pir_params(
 #'   twinning_params = twinning_params
 #' )
-#' expect_silent(check_pir_params(pir_params))
+#' testthat::expect_silent(check_pir_params(pir_params))
 #'
 #' if (is_on_ci() &&
 #'   rappdirs::app_dir()$os == "unix" &&
 #'   is_beast2_installed()) {
-#'   pir_out <- pir_run(
+#'   pir_out <- pirouette::pir_run(
 #'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'     pir_params = pir_params
 #'   )
@@ -31,27 +31,16 @@
 #' @export
 create_twinning_params <- function(
   rng_seed_twin_tree = 0,
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(),
+  sim_twin_tree_fun = pirouette::create_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
-<<<<<<< HEAD
-  sim_twin_alignment_function =
-    get_sim_twin_alignment_with_standard_site_model_function(),
-  twin_tree_filename = tempfile(
-    pattern = "tree_twin_", fileext = ".newick"
-  ),
-  twin_alignment_filename = tempfile(
-    pattern = "alignment_twin_", fileext = ".fasta"
-  ),
-  twin_evidence_filename =  tempfile(
-    pattern = "evidence_twin_", fileext = ".csv"
-  )
-=======
   sim_twin_alignment_fun =
-    get_sim_twin_alignment_with_std_site_model_fun(),
-  twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
-  twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
-  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename())
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
+    pirouette::get_sim_twin_alignment_with_std_site_model_fun(),
+  twin_tree_filename =
+    pirouette::to_twin_filename(pirouette::get_temp_tree_filename()),
+  twin_alignment_filename =
+    pirouette::to_twin_filename(pirouette::get_temp_fasta_filename()),
+  twin_evidence_filename =
+    pirouette::to_twin_filename(pirouette::get_temp_evidence_filename())
 ) {
   twinning_params <- list(
     rng_seed_twin_tree = rng_seed_twin_tree,

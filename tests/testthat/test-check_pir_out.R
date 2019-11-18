@@ -5,25 +5,26 @@ test_that("simulated data", {
   if (!beastier::is_beast2_installed()) return()
 
   experiments <- list(
-    create_test_gen_experiment(),
-    create_test_cand_experiment()
+    pirouette::create_test_gen_experiment(),
+    pirouette::create_test_cand_experiment()
   )
-  experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+  experiments[[1]]$inference_model$site_model <-
+    beautier::create_gtr_site_model()
   testit::assert(
     experiments[[1]]$inference_model$mcmc$chain_length ==
     experiments[[2]]$inference_model$mcmc$chain_length
   )
 
-  check_experiments(experiments)
+  pirouette::check_experiments(experiments)
 
-  pir_out <- pir_run(
+  pir_out <- pirouette::pir_run(
     phylogeny =  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-    pir_params = create_test_pir_params(
-      twinning_params = create_twinning_params(),
+    pir_params = pirouette::create_test_pir_params(
+      twinning_params = pirouette::create_twinning_params(),
       experiments = experiments
     )
   )
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
 })
 
 

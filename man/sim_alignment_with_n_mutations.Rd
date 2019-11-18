@@ -63,32 +63,16 @@ phylogeny <- ape::rcoal(n_taxa)
 alignment_params <- pirouette::create_alignment_params()
 
 # Simulate the alignment
-<<<<<<< HEAD
-alignment <- create_alignment(
-   phylogeny = phylogeny,
-   alignment_params = alignment_params,
- )
-
-expect_equal(class(alignment), "DNAbin")
-=======
-alignment <- sim_true_alignment(
+alignment <- pirouette::sim_true_alignment(
    true_phylogeny = phylogeny,
    alignment_params = alignment_params,
  )
 
 expect_silent(check_alignment(alignment))
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }
 \seealso{
-<<<<<<< HEAD
-Use \link{create_alignment_file} to save the simulated alignment
-  directly to a file
-
-Use \link{create_alignment} to create an alignment with
-any number of mutations
-=======
 Use \link{create_true_alignment_file}
 to save the simulated alignment directly to a file.
 
@@ -96,7 +80,6 @@ Use \link{sim_true_alignment_with_std_site_model}
 simulate the true alignment with a standard site model.
 Use \link{sim_twin_alignment_with_std_site_model}
 simulate the twin alignment with a standard site model.
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

@@ -10,49 +10,42 @@
 #'
 #' # DNA sequence at the root
 #' n_base_pairs <- 4
-#' root_sequence <- create_blocked_dna(length = n_base_pairs)
-#' expect_equal("acgt", root_sequence)
+#' root_sequence <- pirouette::create_blocked_dna(length = n_base_pairs)
+#' testthat::expect_equal("acgt", root_sequence)
 #'
 #' # Only specify root sequence and mutation rate, use defaults
-#' alignment_params <- create_alignment_params(
+#' alignment_params <- pirouette::create_alignment_params(
 #'   root_sequence = root_sequence
 #' )
 #'
-#' expect_true("root_sequence" %in% names(alignment_params))
+#' testthat::expect_true("root_sequence" %in% names(alignment_params))
 #'
 #' # Use defaults explicitly
-#' alignment_params <- create_alignment_params(
+#' alignment_params <- pirouette::create_alignment_params(
 #'   root_sequence = root_sequence,
 #'   rng_seed = 0
 #' )
 #'
-#' expect_true("rng_seed" %in% names(alignment_params))
+#' testthat::expect_true("rng_seed" %in% names(alignment_params))
 #'
 #' # Create a pirouette parameter set
-#' pir_params <- create_test_pir_params(alignment_params = alignment_params)
+#' pir_params <-
+#'  create_test_pir_params(alignment_params = alignment_params)
 #'
 #' # Run pirouette
 #' if (is_on_travis() && is_beast2_installed()) {
-#'   pir_out <- pir_run(
+#'   pir_out <- pirouette::pir_run(
 #'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'     pir_params = pir_params
 #'   )
-#'   pir_plot(pir_out)
+#'   pirouette::pir_plot(pir_out)
 #' }
 #' @export
 #' @author Richèl J.C. Bilderbeek
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
-<<<<<<< HEAD
-  sim_true_alignment_function =
-    pirouette::sim_true_alignment_with_standard_site_model,
-  mutation_rate = pirouette::create_standard_mutation_rate, # to be obsoleted
-  site_model = beautier::create_jc69_site_model(), # to be obsoleted
-  clock_model = beautier::create_strict_clock_model(), # to be obsoleted
-=======
   sim_true_alignment_fun =
     pirouette::sim_true_alignment_with_std_site_model,
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
@@ -71,18 +64,13 @@ create_alignment_params <- function(
 #' @return a list of alignment parameters
 #' library(testthat)
 #'
-#' alignment_params <- create_test_alignment_params()
-#' expect_silent(check_alignment_params(alignment_params))
+#' alignment_params <- pirouette::create_test_alignment_params()
+#' testthat::expect_silent(pirouette::check_alignment_params(alignment_params))
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_alignment_params <- function(
-<<<<<<< HEAD
-  sim_true_alignment_function =
-    pirouette::sim_true_alignment_with_standard_site_model,
-=======
   sim_true_alignment_fun =
     pirouette::sim_true_alignment_with_std_site_model,
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   root_sequence = "acgt",
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()

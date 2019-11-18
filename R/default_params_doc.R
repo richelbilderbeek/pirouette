@@ -253,41 +253,18 @@
 #' @param seed a random number generator seed
 #' @param sim_pars something
 #' @param sim_phylo something
-<<<<<<< HEAD
-#' @param sim_true_alignment_function function to simulate a
-=======
 #' @param sim_true_alignment_fun function to simulate a
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' true alignment with.
 #' This function must have two arguments,
 #' called \code{true_phylogeny} (which will hold the true phylogeny)
 #' and \code{root_sequence} (which holds the DNA root sequence).
 #' The return type must be \link[ape]{DNAbin}.
 #'
-<<<<<<< HEAD
-#' Use \link{check_sim_true_alignment_function} to verify if the function
-=======
 #' Use \link{check_sim_true_alignment_fun} to verify if the function
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' has the right signature and output.
 #'
 #' Some standard functions:\cr
 #' \itemize{
-<<<<<<< HEAD
-#'   \item Use \link{get_sim_true_alignment_with_standard_site_model_function}
-#'   to get a function (\link{sim_true_alignment_with_standard_site_model})
-#'   the use a standard site model.
-#'   \item Use
-#'   \link{get_sim_true_alignment_with_linked_node_sub_site_model_function}
-#'   to get a function (\link{sim_true_alignment_with_linked_node_sub_site_model})
-#'   the use a linked node substitution site model.
-#'   \item Use
-#'   \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_function}
-#'   to get a function (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
-#'   the use an unlinked node substitution site model.
-#' }
-#' @param sim_twin_alignment_function function to simulate a
-=======
 #'   \item Use \link{get_sim_true_alignment_with_std_site_model_fun}
 #'   to get a function (\link{sim_true_alignment_with_std_site_model})
 #'   the use a standard site model.
@@ -303,7 +280,6 @@
 #'   the use an unlinked node substitution site model.
 #' }
 #' @param sim_twin_alignment_fun function to simulate a
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' twin alignment with.
 #' This function must have two arguments called \code{twin_phylogeny} (which
 #' will hold the twin phylogeny) and \code{true_alignment} (which will
@@ -315,17 +291,6 @@
 #'
 #' Some standard functions:\cr
 #' \itemize{
-<<<<<<< HEAD
-#'   \item Use \link{get_copy_true_alignment_function}
-#'     to get a function
-#'     (\link{copy_true_alignment})
-#'     that copies a true to alignment to create a twin alignment
-#'   \item Use \link{get_sim_twin_alignment_with_standard_site_model_function}
-#'     to get a function
-#'     (\link{sim_twin_alignment_with_standard_site_model})
-#'     that simulates a twin alignment using a standard site model
-#'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_function}
-=======
 #'   \item Use \link{get_copy_true_alignment_fun}
 #'     to get a function
 #'     (\link{copy_true_alignment})
@@ -335,7 +300,6 @@
 #'     (\link{sim_twin_alignment_with_std_site_model})
 #'     that simulates a twin alignment using a standard site model
 #'   \item Use \link{get_sim_twin_alignment_with_same_n_mutation_fun}
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #'     to get a function
 #'     (\link{sim_twin_alignment_with_same_n_mutation})
 #'     that simulates -using a standard model- a twin alignment with as much
@@ -528,15 +492,9 @@ default_params_doc <- function(
   sequence_length,
   sim_pars,
   sim_phylo,
-<<<<<<< HEAD
-  sim_true_alignment_function,
-  sim_twin_alignment_function,
-  sim_twin_tree_function,
-=======
   sim_true_alignment_fun,
   sim_twin_alignment_fun,
   sim_twin_tree_fun,
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
   site_model,
   site_models,
   site_model_name,

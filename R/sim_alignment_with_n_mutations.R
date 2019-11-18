@@ -12,13 +12,8 @@
 #' reached, the funcion will show a \link{warning} and return
 #' the last DNA alignment simulated.
 #' @return an alignment of type \code{DNAbin}
-<<<<<<< HEAD
-#' @seealso Use \link{create_alignment_file} to save the simulated alignment
-#'   directly to a file
-=======
 #' @seealso Use \link{create_true_alignment_file}
 #' to save the simulated alignment directly to a file.
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' @examples
 #' library(testthat)
 #'
@@ -30,20 +25,7 @@
 #' alignment_params <- pirouette::create_alignment_params()
 #'
 #' # Simulate the alignment
-<<<<<<< HEAD
-#' alignment <- create_alignment(
-#'    phylogeny = phylogeny,
-#'    alignment_params = alignment_params,
-#'  )
-#'
-#' expect_equal(class(alignment), "DNAbin")
-#' expect_equal(nrow(alignment), n_taxa)
-#' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
-#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
-#' @seealso Use \link{create_alignment} to create an alignment with
-#' any number of mutations
-=======
-#' alignment <- sim_true_alignment(
+#' alignment <- pirouette::sim_true_alignment(
 #'    true_phylogeny = phylogeny,
 #'    alignment_params = alignment_params,
 #'  )
@@ -56,7 +38,6 @@
 #' simulate the true alignment with a standard site model.
 #' Use \link{sim_twin_alignment_with_std_site_model}
 #' simulate the twin alignment with a standard site model.
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' @export
 sim_alignment_with_n_mutations <- function(
   phylogeny,
@@ -89,13 +70,6 @@ sim_alignment_with_n_mutations <- function(
       "Requested number of mutations: ", n_mutations
     )
   }
-<<<<<<< HEAD
-  n_tries <- 1
-
-  while (n_tries < max_n_tries) {
-    alignment <- create_alignment_with_standard_site_model_raw(
-      phylogeny = phylogeny,
-=======
   n_tries <- 0
 
   alignment <- NA
@@ -104,14 +78,13 @@ sim_alignment_with_n_mutations <- function(
 
     alignment <- pirouette::sim_true_alignment_with_std_site_model(
       true_phylogeny = phylogeny,
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
       root_sequence = root_sequence,
       mutation_rate = mutation_rate,
       site_model = site_model
     )
     pirouette::check_alignment(alignment)
 
-    actual_n_mutations <- count_n_mutations(
+    actual_n_mutations <- pirouette::count_n_mutations(
       alignment = alignment,
       root_sequence = root_sequence
     )
@@ -140,12 +113,12 @@ sim_alignment_with_n_mutations <- function(
 
   pirouette::check_alignment(alignment)
   testit::assert(
-    get_alignment_sequence_length(alignment) ==
-    nchar(root_sequence)
+    pirouette::get_alignment_sequence_length(alignment) ==
+      nchar(root_sequence)
   )
   testit::assert(
-    get_alignment_n_taxa(alignment) ==
-    ape::Ntip(phylogeny)
+    pirouette::get_alignment_n_taxa(alignment) ==
+      ape::Ntip(phylogeny)
   )
   alignment
 }

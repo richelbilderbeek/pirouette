@@ -5,15 +5,9 @@
 #' @inheritParams default_params_doc
 #' @return a function
 #' @seealso
-<<<<<<< HEAD:R/create_sim_yule_twin_tree_function.R
-#' Use \link{create_sim_bd_twin_tree_function} to get a partially
-#' evaluated function to produce a Birth-Death tree.
-#' Use \link{create_copy_twin_tree_from_true_function} to get a
-=======
 #' Use \link{create_sim_bd_twin_tree_fun} to get a partially
 #' evaluated function to produce a Birth-Death tree.
 #' Use \link{create_copy_twin_tree_from_true_fun} to get a
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa:R/create_sim_yule_twin_tree_fun.R
 #' function to simply copy the tree
 #' @examples
 #' library(testthat)

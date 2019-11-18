@@ -27,11 +27,7 @@
 #' )
 #' @seealso
 #' Use \link{sim_yule_twin_tree} to simulate a Yule twin tree
-<<<<<<< HEAD
-#' Use \link{create_sim_bd_twin_tree_function} to get a partially
-=======
 #' Use \link{create_sim_bd_twin_tree_fun} to get a partially
->>>>>>> b31a67ccf7a115ac420237774dfccbe724a0a7fa
 #' evaluated function to use in the \code{twinning_params} (as
 #' created by \link{create_twinning_params})
 #' @export
@@ -99,7 +95,7 @@ sim_bd_twin_tree <- function(
   testit::assert(beautier::is_one_double(mu_bd))
 
   # generate bd branching times from the inferred parameters
-  bd_brts0 <- create_twin_branching_times(
+  bd_brts0 <- pirouette::create_twin_branching_times(
     phylogeny = phylogeny,
     seed = seed,
     lambda = lambda_bd,
@@ -108,7 +104,7 @@ sim_bd_twin_tree <- function(
     method = method
   )
 
-  combine_brts_and_topology(
+  pirouette::combine_brts_and_topology(
     brts = bd_brts0,
     tree = phylogeny
   )
