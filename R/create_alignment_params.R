@@ -65,12 +65,13 @@ create_alignment_params <- function(
 #' library(testthat)
 #'
 #' alignment_params <- pirouette::create_test_alignment_params()
-#' testthat::expect_silent(pirouette::check_alignment_params(alignment_params))
+#' testthat::expect_silent(
+#'  pirouette::check_alignment_params(alignment_params)
+#' )
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_alignment_params <- function(
-  sim_true_alignment_fun =
-    pirouette::sim_true_alignment_with_std_site_model,
+  sim_true_alignment_fun = sim_true_alignment_with_std_site_model,
   root_sequence = "acgt",
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()

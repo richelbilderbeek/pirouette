@@ -3,7 +3,7 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
-#' @seealso Use \link{check_sim_twin_alignment_function} to check a function to
+#' @seealso Use \link{check_sim_twin_alignment_fun} to check a function to
 #' generate a twin alignment
 #' @export
 check_sim_true_alignment_function <- function(sim_true_alignment_function) {

@@ -34,13 +34,13 @@ create_twinning_params <- function(
   sim_twin_tree_fun = pirouette::create_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
   sim_twin_alignment_fun =
-    pirouette::get_sim_twin_alignment_with_std_site_model_fun(),
+    get_sim_twin_alignment_with_std_site_model_fun(),
   twin_tree_filename =
-    pirouette::to_twin_filename(pirouette::get_temp_tree_filename()),
+    to_twin_filename(get_temp_tree_filename()),
   twin_alignment_filename =
-    pirouette::to_twin_filename(pirouette::get_temp_fasta_filename()),
+    to_twin_filename(get_temp_fasta_filename()),
   twin_evidence_filename =
-    pirouette::to_twin_filename(pirouette::get_temp_evidence_filename())
+    to_twin_filename(get_temp_evidence_filename())
 ) {
   twinning_params <- list(
     rng_seed_twin_tree = rng_seed_twin_tree,
