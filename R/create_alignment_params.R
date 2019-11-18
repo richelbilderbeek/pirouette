@@ -10,27 +10,26 @@
 #'
 #' # DNA sequence at the root
 #' n_base_pairs <- 4
-#' root_sequence <- pirouette::create_blocked_dna(length = n_base_pairs)
-#' testthat::expect_equal("acgt", root_sequence)
+#' root_sequence <- create_blocked_dna(length = n_base_pairs)
+#' expect_equal("acgt", root_sequence)
 #'
 #' # Only specify root sequence and mutation rate, use defaults
-#' alignment_params <- pirouette::create_alignment_params(
+#' alignment_params <- create_alignment_params(
 #'   root_sequence = root_sequence
 #' )
 #'
-#' testthat::expect_true("root_sequence" %in% names(alignment_params))
+#' expect_true("root_sequence" %in% names(alignment_params))
 #'
 #' # Use defaults explicitly
-#' alignment_params <- pirouette::create_alignment_params(
+#' alignment_params <- create_alignment_params(
 #'   root_sequence = root_sequence,
 #'   rng_seed = 0
 #' )
 #'
-#' testthat::expect_true("rng_seed" %in% names(alignment_params))
+#' expect_true("rng_seed" %in% names(alignment_params))
 #'
 #' # Create a pirouette parameter set
-#' pir_params <-
-#'  create_test_pir_params(alignment_params = alignment_params)
+#' pir_params <- create_test_pir_params(alignment_params = alignment_params)
 #'
 #' # Run pirouette
 #' if (is_on_travis() && is_beast2_installed()) {
@@ -64,14 +63,13 @@ create_alignment_params <- function(
 #' @return a list of alignment parameters
 #' library(testthat)
 #'
-#' alignment_params <- pirouette::create_test_alignment_params()
-#' testthat::expect_silent(
-#'  pirouette::check_alignment_params(alignment_params)
-#' )
+#' alignment_params <- create_test_alignment_params()
+#' expect_silent(check_alignment_params(alignment_params))
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_alignment_params <- function(
-  sim_true_alignment_fun = sim_true_alignment_with_std_site_model,
+  sim_true_alignment_fun =
+    pirouette::sim_true_alignment_with_std_site_model,
   root_sequence = "acgt",
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()

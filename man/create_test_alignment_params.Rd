@@ -49,8 +49,8 @@ Use \link{check_root_sequence} to check if a root sequence is valid.}
 a list of alignment parameters
 library(testthat)
 
-alignment_params <- pirouette::create_test_alignment_params()
-testthat::expect_silent(pirouette::check_alignment_params(alignment_params))
+alignment_params <- create_test_alignment_params()
+expect_silent(check_alignment_params(alignment_params))
 }
 \description{
 Create testing parameters for the alignment simulation.
