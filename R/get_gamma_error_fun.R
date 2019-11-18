@@ -3,7 +3,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' error_function <- get_gamma_error_function()
+#' error_fun <- get_gamma_error_fun()
 #'
 #' phylogeny <- ape::read.tree(text = "((A:1.5, B:1.5):1.5, C:3.0);")
 #'
@@ -11,15 +11,15 @@
 #' tree_2 <- ape::read.tree(text = "((A:2.0, B:2.0):1.0, C:3.0);")
 #' trees <- c(tree_1, tree_2)
 #'
-#' lowest_error <- error_function(phylogeny, c(phylogeny))
-#' error_1 <- error_function(phylogeny, c(tree_1))
-#' error_2 <- error_function(phylogeny, c(tree_2))
+#' lowest_error <- error_fun(phylogeny, c(phylogeny))
+#' error_1 <- error_fun(phylogeny, c(tree_1))
+#' error_2 <- error_fun(phylogeny, c(tree_2))
 #' expect_true(lowest_error < error_1)
 #' expect_true(lowest_error < error_2)
-#' expect_equal(2, length(error_function(phylogeny, trees)))
+#' expect_equal(2, length(error_fun(phylogeny, trees)))
 #' @export
-get_gamma_error_function <- function() {
-  gamma_error_function <- function(tree, trees) {
+get_gamma_error_fun <- function() {
+  gamma_error_fun <- function(tree, trees) {
     errors <- rep(NA, length(trees))
     given_gamma <- phytools::gammatest(
       phytools::ltt(tree, plot = FALSE, gamma = FALSE)

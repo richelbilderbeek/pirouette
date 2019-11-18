@@ -14,8 +14,7 @@
 #'
 #' # How to simulate (and where to save) the alignment
 #' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence,
-#'   mutation_rate = 0.1
+#'   root_sequence = root_sequence
 #' )
 #'
 #' # Create a phylogeny to simulate the DNA sequences on
@@ -26,7 +25,7 @@
 #' expect_false(file.exists(alignment_params$fasta_filename))
 #'
 #' # Simulate and save the alignment
-#' alignment <- create_alignment_file(
+#' alignment <- create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
@@ -34,7 +33,7 @@
 #' expect_true(file.exists(alignment_params$fasta_filename))
 #' @author Richèl J.C. Bilderbeek
 #' @export
-create_alignment_file <- function(
+create_true_alignment_file <- function(
   phylogeny,
   alignment_params,
   verbose = FALSE

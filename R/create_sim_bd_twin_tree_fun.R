@@ -5,14 +5,14 @@
 #' @inheritParams default_params_doc
 #' @return a function
 #' @seealso
-#' Use \link{create_sim_yule_twin_tree_function} to get a function to
+#' Use \link{create_sim_yule_twin_tree_fun} to get a function to
 #' produce a Yule tree.
-#' Use \link{create_copy_twin_tree_from_true_function} to get a
+#' Use \link{create_copy_twin_tree_from_true_fun} to get a
 #' function to simply copy the tree
 #' @examples
 #' library(testthat)
 #'
-#' f <- create_sim_bd_twin_tree_function()
+#' f <- create_sim_bd_twin_tree_fun()
 #' phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' phylo_out <- f(phylo_in)
 #' expect_true(
@@ -20,7 +20,7 @@
 #' )
 #' @author Richèl J.C. Bilderbeek
 #' @export
-create_sim_bd_twin_tree_function <- function(
+create_sim_bd_twin_tree_fun <- function(
   seed = 0,
   method = "random_tree",
   n_replicates = 1e4
