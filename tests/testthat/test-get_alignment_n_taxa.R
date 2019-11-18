@@ -3,7 +3,7 @@ test_that("1 taxon, 2 nucleotides", {
   fasta_filename <- tempfile()
   writeLines(text = c(">A", "cc"), con = fasta_filename)
   alignment <- ape::read.FASTA(fasta_filename)
-  testthat::expect_equal(1, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(1, get_alignment_n_taxa(alignment))
 })
 
 test_that("2 taxa, 3 nucleotides", {
@@ -14,7 +14,7 @@ test_that("2 taxa, 3 nucleotides", {
     con = fasta_filename
   )
   alignment <- ape::read.FASTA(fasta_filename)
-  testthat::expect_equal(2, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(2, get_alignment_n_taxa(alignment))
 })
 
 
@@ -23,7 +23,7 @@ test_that("use, single taxon", {
     x = list(species_1 = strsplit("aagg", split = "")[[1]])
   )
   ape::image.DNAbin(alignment)
-  testthat::expect_equal(1, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(1, get_alignment_n_taxa(alignment))
 })
 
 test_that("use, two taxa", {
@@ -33,7 +33,7 @@ test_that("use, two taxa", {
     )
   )
   ape::image.DNAbin(alignment, show.bases = TRUE)
-  testthat::expect_equal(2, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(2, get_alignment_n_taxa(alignment))
 })
 
 test_that("use, two taxa with 9 nucleotides", {
@@ -43,7 +43,7 @@ test_that("use, two taxa with 9 nucleotides", {
     )
   )
   ape::image.DNAbin(alignment)
-  testthat::expect_equal(2, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(2, get_alignment_n_taxa(alignment))
 })
 
 test_that("use, two taxa with 9 nucleotides, no mutation", {
@@ -54,7 +54,7 @@ test_that("use, two taxa with 9 nucleotides, no mutation", {
     )
   )
   ape::image.DNAbin(alignment)
-  testthat::expect_equal(2, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(2, get_alignment_n_taxa(alignment))
 })
 
 test_that("use, two taxa with 9 nucleotides, from FASTA", {
@@ -65,7 +65,7 @@ test_that("use, two taxa with 9 nucleotides, from FASTA", {
   )
   alignment <- ape::read.FASTA(fasta_filename)
   ape::image.DNAbin(alignment)
-  testthat::expect_equal(2, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(2, get_alignment_n_taxa(alignment))
 })
 
 test_that("use, three taxa", {
@@ -77,7 +77,7 @@ test_that("use, three taxa", {
     )
   )
   ape::image.DNAbin(alignment)
-  testthat::expect_equal(3, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(3, get_alignment_n_taxa(alignment))
 })
 
 test_that("use, three taxa, bug", {
@@ -88,21 +88,23 @@ test_that("use, three taxa, bug", {
       species_3 = strsplit("aacta", split = "")[[1]]
     )
   )
-  testthat::expect_equal(3, pirouette::get_alignment_n_taxa(alignment))
+  expect_equal(3, get_alignment_n_taxa(alignment))
 })
 
 test_that("abuse", {
 
-  testthat::expect_error(
-    pirouette::get_alignment_n_taxa(
+  expect_error(
+    get_alignment_n_taxa(
       alignment = "nonsense"
     ),
     "'alignment' must be of class 'ape::DNAbin'"
   )
 })
 
+
+
 test_that("use three unlabelled taxa", {
 
-  alignment <- pirouette::get_test_alignment(n_taxa = 6)
-  testthat::expect_equal(6, pirouette::get_alignment_n_taxa(alignment))
+  alignment <- get_test_alignment(n_taxa = 6)
+  expect_equal(6, get_alignment_n_taxa(alignment))
 })

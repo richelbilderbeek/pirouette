@@ -63,7 +63,7 @@ phylogeny <- ape::rcoal(n_taxa)
 alignment_params <- pirouette::create_alignment_params()
 
 # Simulate the alignment
-alignment <- pirouette::sim_true_alignment(
+alignment <- sim_true_alignment(
    true_phylogeny = phylogeny,
    alignment_params = alignment_params,
  )

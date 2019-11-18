@@ -5,13 +5,13 @@
 \title{Create a valid testing \link{pirouette} candidate experiment.}
 \usage{
 
-  create_test_cand_experiment(inference_conditions = create_inference_conditions(model_type
+  create_test_cand_experiment(inference_conditions = pirouette::create_inference_conditions(model_type
   = "candidate", run_if = "best_candidate", do_measure_evidence = TRUE),
   inference_model = beautier::create_test_inference_model(),
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_test_ns_mcmc(),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
-  errors_filename = pirouette::get_temp_errors_filename())
+  errors_filename = get_temp_errors_filename())
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model
@@ -46,14 +46,14 @@ Create a valid testing \link{pirouette} candidate experiment.
 library(testthat)
 
 if (rappdirs::app_dir()$os != "win") {
-  experiment <- pirouette::create_test_cand_experiment()
+  experiment <- create_test_cand_experiment()
 
-  testthat::expect_true("inference_conditions" \%in\% names(experiment))
-  testthat::expect_true("inference_model" \%in\% names(experiment))
-  testthat::expect_true("beast2_options" \%in\% names(experiment))
-  testthat::expect_true("est_evidence_mcmc" \%in\% names(experiment))
-  testthat::expect_true("beast2_bin_path" \%in\% names(experiment))
-  testthat::expect_silent(check_experiment(experiment))
+  expect_true("inference_conditions" \%in\% names(experiment))
+  expect_true("inference_model" \%in\% names(experiment))
+  expect_true("beast2_options" \%in\% names(experiment))
+  expect_true("est_evidence_mcmc" \%in\% names(experiment))
+  expect_true("beast2_bin_path" \%in\% names(experiment))
+  expect_silent(check_experiment(experiment))
 }
 }
 \author{

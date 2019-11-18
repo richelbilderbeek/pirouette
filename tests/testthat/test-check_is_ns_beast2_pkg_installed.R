@@ -13,11 +13,11 @@ test_that("use", {
   testit::assert(!mauricer::is_beast2_ns_pkg_installed())
 
   # Must give error
-  testthat::expect_error(check_is_ns_beast2_pkg_installed())
+  expect_error(check_is_ns_beast2_pkg_installed())
 
   # Install
   mauricer::install_beast2_pkg("NS")
 
   # Must be silent
-  testthat::expect_silent(check_is_ns_beast2_pkg_installed())
+  expect_silent(check_is_ns_beast2_pkg_installed())
 })

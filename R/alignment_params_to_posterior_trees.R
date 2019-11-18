@@ -10,21 +10,21 @@
 #'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
-#'   alignment_params <- pirouette::create_test_alignment_params()
-#'   pirouette::create_true_alignment_file(
+#'   alignment_params <- create_test_alignment_params()
+#'   create_true_alignment_file(
 #'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
 #'     alignment_params = alignment_params
 #'   )
 #'
-#'   testthat::expect_true(file.exists(alignment_params$fasta_filename))
+#'   expect_true(file.exists(alignment_params$fasta_filename))
 #'
-#'   trees <- pirouette::alignment_params_to_posterior_trees(
+#'   trees <- alignment_params_to_posterior_trees(
 #'     alignment_params = alignment_params,
 #'     experiment = create_test_experiment()
 #'   )
-#'   testthat::expect_equal("multiPhylo", class(trees))
+#'   expect_equal("multiPhylo", class(trees))
 #' }
-#' @export
+#' @noRd
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   alignment_params,
   experiment,

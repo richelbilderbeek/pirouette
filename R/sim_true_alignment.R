@@ -14,7 +14,7 @@
 #' root_sequence <- "aaaacgt"
 #'
 #' # Use default settings to create the alignment
-#' alignment_params <- pirouette::create_alignment_params(
+#' alignment_params <- create_alignment_params(
 #'   sim_true_alignment_fun =
 #'     get_sim_true_alignment_with_std_site_model_fun(
 #'       mutation_rate = 1.0
@@ -23,7 +23,7 @@
 #' )
 #'
 #' # Simulate the alignment
-#' alignment <- pirouette::sim_true_alignment(
+#' alignment <- sim_true_alignment(
 #'    true_phylogeny = true_phylogeny,
 #'    alignment_params = alignment_params,
 #'  )
@@ -35,7 +35,7 @@
 #' @export
 sim_true_alignment <- function(
   true_phylogeny,
-  alignment_params = pirouette::create_alignment_params(),
+  alignment_params = create_alignment_params(),
   verbose = FALSE
 ) {
   beautier::check_phylogeny(true_phylogeny)
@@ -44,7 +44,6 @@ sim_true_alignment <- function(
   testit::assert(beautier::is_one_bool(verbose))
 
   set.seed(alignment_params$rng_seed)
-
   alignment <- alignment_params$sim_true_alignment_fun(
     true_phylogeny = true_phylogeny,
     root_sequence = alignment_params$root_sequence

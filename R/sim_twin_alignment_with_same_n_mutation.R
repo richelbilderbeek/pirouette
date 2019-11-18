@@ -10,20 +10,20 @@
 #' library(testthat)
 #'
 #' # This adapter function must be a sim_twin_alignment function
-#' testthat::expect_silent(
-#'   pirouette::check_sim_twin_alignment_fun(
-#'     pirouette::sim_twin_alignment_with_std_site_model
+#' expect_silent(
+#'   check_sim_twin_alignment_fun(
+#'     sim_twin_alignment_with_std_site_model
 #'   )
 #' )
 #'
 #' # Simulate a twin DNA alignment
 #'
-#' alignment <- pirouette::sim_twin_alignment_with_std_site_model(
+#' alignment <- sim_twin_alignment_with_std_site_model(
 #'   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
 #'   root_sequence = "aaaa",
 #'   mutation_rate = 0.1
 #' )
-#' testthat::expect_silent(pirouette::check_alignment(alignment))
+#' expect_silent(check_alignment(alignment))
 #' @seealso Use \link{sim_twin_alignment} to use this function to
 #' create a twin alignment
 #' @export

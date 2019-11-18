@@ -40,4 +40,5 @@ sim_true_alignment_with_unlinked_node_sub_site_model <- function(
 
   alignment <- ape::as.DNAbin(alignment_phydat)
   alignment
+
 }

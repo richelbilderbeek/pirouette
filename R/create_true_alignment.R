@@ -12,10 +12,10 @@
 #'
 #' # Create the ancestor's DNA sequence
 #' n_base_pairs <- 4
-#' root_sequence <- pirouette::create_blocked_dna(length = n_base_pairs)
+#' root_sequence <- create_blocked_dna(length = n_base_pairs)
 #'
 #' # How to simulate the alignment
-#' alignment_params <- pirouette::create_alignment_params(
+#' alignment_params <- create_alignment_params(
 #'   root_sequence = root_sequence
 #' )
 #'
@@ -24,14 +24,14 @@
 #' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # Simulate the alignment
-#' alignment <- pirouette::create_true_alignment(
+#' alignment <- create_true_alignment(
 #'    true_phylogeny = phylogeny,
 #'    alignment_params = alignment_params
 #'  )
 #'
-#' testthat::expect_silent(pirouette::check_alignment(alignment))
-#' testthat::expect_equal(nrow(alignment), n_taxa)
-#' testthat::expect_equal(ncol(alignment), n_base_pairs)
+#' expect_silent(check_alignment(alignment))
+#' expect_equal(nrow(alignment), n_taxa)
+#' expect_equal(ncol(alignment), n_base_pairs)
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_true_alignment <- function(
@@ -56,7 +56,7 @@ create_true_alignment <- function(
     }
   )
 
-  pirouette::sim_true_alignment(
+  sim_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )

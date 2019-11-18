@@ -80,11 +80,11 @@ pir_params <- create_test_pir_params(alignment_params = alignment_params)
 
 # Run pirouette
 if (is_on_travis() && is_beast2_installed()) {
-  pir_out <- pirouette::pir_run(
+  pir_out <- pir_run(
     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
     pir_params = pir_params
   )
-  pirouette::pir_plot(pir_out)
+  pir_plot(pir_out)
 }
 }
 \author{
