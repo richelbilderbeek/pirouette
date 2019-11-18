@@ -29,9 +29,9 @@ test_that("simulated data", {
 
 
 test_that("minimal use", {
-  expect_silent(
-    check_pir_out(
-      pir_out = create_test_pir_run_output(
+  testthat::expect_silent(
+    pirouette::check_pir_out(
+      pir_out = pirouette::create_test_pir_run_output(
         add_best = TRUE,
         add_twin = TRUE
       )
@@ -40,75 +40,75 @@ test_that("minimal use", {
 })
 
 test_that("abuse", {
-  good_pir_out <- create_test_pir_run_output(
+  good_pir_out <- pirouette::create_test_pir_run_output(
     add_best = TRUE,
     add_twin = TRUE
   )
-  expect_silent(check_pir_out(good_pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(good_pir_out))
 
   # Remove an element
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$tree <- NULL
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # tree
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$tree <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # inference_model
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$inference_model <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # inference_model_weight
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$inference_model_weight <- -123.456
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # inference_model_weight
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$inference_model_weight <- 123.456
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # inference_model_weight
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$inference_model_weight <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # site_model
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$site_model <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # clock_model
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$clock_model <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # tree_prior
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$tree_prior <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # error_1
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$error_1 <- -123.456
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 
   # error_1
   pir_out <- good_pir_out
-  expect_silent(check_pir_out(pir_out))
+  testthat::expect_silent(pirouette::check_pir_out(pir_out))
   pir_out$error_1[2] <- "nonsense"
-  expect_error(check_pir_out(pir_out))
+  testthat::expect_error(pirouette::check_pir_out(pir_out))
 })
