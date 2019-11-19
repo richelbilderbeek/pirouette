@@ -2,31 +2,31 @@ test_that("use, twin has more info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-  root_sequence <- create_blocked_dna(8)
-  alignment_params <- create_test_alignment_params(
+  root_sequence <- pirouette::create_blocked_dna(8)
+  alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = root_sequence
   )
-  true_alignment <- create_true_alignment(
+  true_alignment <- pirouette::create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  twinning_params <- create_twinning_params(
+  twinning_params <- pirouette::create_twinning_params(
     sim_twin_alignment_fun =
-      get_sim_twin_alignment_with_same_n_mutation_fun(
+      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 1000
       )
   )
-  twin_alignment <- sim_twin_alignment(
+  twin_alignment <- pirouette::sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
     twinning_params = twinning_params
   )
-  expect_equal(
-    count_n_mutations(
+  testthat::expect_equal(
+    pirouette::count_n_mutations(
       alignment = true_alignment, root_sequence = root_sequence
     ),
-    count_n_mutations(
+    pirouette::count_n_mutations(
       alignment = twin_alignment, root_sequence = root_sequence
     )
   )
