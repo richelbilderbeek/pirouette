@@ -43,6 +43,16 @@ test_that("abuse", {
     ),
     "'sim_twin_tree_fun' must be a function that returns an ape::phylo"
   )
+  skip("Issue 345, Issue #345")
+  expect_error(
+    check_sim_twin_tree_fun(
+      sim_twin_tree_fun = function(true_phylogeny) {
+        # STUB: modify the taxon labels, e.g. adding a character to each
+        true_phylogeny
+      }
+    ),
+    "'sim_twin_tree_fun' must return a tree with the same taxon labels"
+  )
 
   skip("Issue 346, Issue #346")
   expect_error(
