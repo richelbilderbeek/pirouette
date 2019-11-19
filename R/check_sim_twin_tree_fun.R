@@ -32,7 +32,6 @@ check_sim_twin_tree_fun <- function(sim_twin_tree_fun) {
     }
   )
 
-
   # sim_twin_tree_fun must return a phylo
   if (!beautier::is_phylo(out)) {
     stop(

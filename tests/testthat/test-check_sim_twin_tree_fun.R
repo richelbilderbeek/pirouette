@@ -43,4 +43,15 @@ test_that("abuse", {
     ),
     "'sim_twin_tree_fun' must be a function that returns an ape::phylo"
   )
+
+  skip("Issue 348, Issue #348")
+  expect_error(
+    check_sim_twin_tree_fun(
+      sim_twin_tree_fun = function(true_phylogeny = "irrelevant") {
+        ape::read.tree(text = "(1, 2);") # A non-ultrametric tree
+      }
+    ),
+    "'sim_twin_tree_fun' must return an ultrametric tree"
+  )
+
 })
