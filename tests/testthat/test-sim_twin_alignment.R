@@ -38,13 +38,15 @@ test_that("use, twin has less info", {
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
   root_sequence <- create_blocked_dna(8)
   alignment_params <- create_test_alignment_params(
-    root_sequence = root_sequence
+    root_sequence = root_sequence,
+    rng_seed = 314
   )
   true_alignment <- create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   twinning_params <- create_twinning_params(
+    rng_seed_twin_alignment = 314,
     sim_twin_alignment_fun =
       get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 1000
