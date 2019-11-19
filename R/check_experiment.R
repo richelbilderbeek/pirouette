@@ -40,7 +40,7 @@ check_experiment <- function(
     }
   }
   tryCatch(
-    check_inference_conditions(experiment$inference_conditions),
+    pirouette::check_inference_conditions(experiment$inference_conditions),
     error = function(e) {
       stop(
         "'inference_conditions' must be a valid inference_conditions\n",
