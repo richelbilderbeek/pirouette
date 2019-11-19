@@ -36,8 +36,8 @@ test_that("use, twin has less info", {
 
   true_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
-  root_sequence <- create_blocked_dna(8)
-  alignment_params <- create_test_alignment_params(
+  root_sequence <- pirouette::create_blocked_dna(8)
+  alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = root_sequence,
     rng_seed = 314
   )
@@ -47,10 +47,10 @@ test_that("use, twin has less info", {
   )
   # Ideally, the seeds are chosen in such a way that the number of tries
   # equals one. This will be hard to achieve on different platforms
-  twinning_params <- create_twinning_params(
+  twinning_params <- pirouette::create_twinning_params(
     rng_seed_twin_alignment = 314,
     sim_twin_alignment_fun =
-      get_sim_twin_alignment_with_same_n_mutation_fun(
+      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 1000
       )
   )
