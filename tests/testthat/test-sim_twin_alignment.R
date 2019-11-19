@@ -45,6 +45,8 @@ test_that("use, twin has less info", {
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+  # Ideally, the seeds are chosen in such a way that the number of tries
+  # equals one. This will be hard to achieve on different platforms
   twinning_params <- create_twinning_params(
     rng_seed_twin_alignment = 314,
     sim_twin_alignment_fun =
