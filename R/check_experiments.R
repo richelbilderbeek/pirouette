@@ -39,7 +39,7 @@ check_experiments <- function(
   }
   for (i in seq_along(experiments)) {
     tryCatch(
-      check_experiment(experiments[[i]]), # nolint pirouette function
+      pirouette::check_experiment(experiments[[i]]),
       error = function(e) {
         stop(
           "'experiments[[", i, "]] invalid.\n",
@@ -54,11 +54,11 @@ check_experiments <- function(
 
   testit::assert(length(experiments) >= 2)
 
-  check_experiments_candidates_have_same_beast2_files(experiments) # nolint pirouette function
-  check_experiments_candidates_have_same_mcmcs(experiments) # nolint pirouette function
+  pirouette::check_candidates_save_to_same_files(experiments)
+  pirouette::check_experiments_candidates_have_same_mcmcs(experiments)
 
   model_types <- rep("", length(experiments))
-  for (i in 1:length(experiments)) {
+  for (i in seq_along(experiments)) {
     model_types[i] <- experiments[[i]]$inference_conditions$model_type
   }
   if (sum(model_types == "generative") > 1) {
@@ -72,5 +72,5 @@ check_experiments <- function(
   if (exp_types[1] != "generative" && ("generative" %in% exp_types)) {
     stop("If multiple experiments, generative is either first or absent")
   }
-  check_experiments_all_inference_models_are_unique(experiments) # nolint pirouette function
+  pirouette::check_experiments_all_inference_models_are_unique(experiments)
 }

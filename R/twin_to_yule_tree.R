@@ -7,10 +7,7 @@
 #'
 #' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #' twinning_params <- create_twinning_params()
-#' yule_tree <- twin_to_yule_tree(
-#'   phylogeny = phylogeny,
-#'   twinning_params = twinning_params
-#' )
+#' yule_tree <- sim_yule_twin_tree(phylogeny)
 #'
 #' expect_equal(class(yule_tree), "phylo")
 #'
@@ -27,19 +24,22 @@
 #'   max(ape::branching.times(yule_tree)),
 #'   max(ape::branching.times(phylogeny))
 #' )
+#' @seealso
+#' Use \link{sim_bd_twin_tree} to simulate a Birth-Death twin tree.
+#' Use \link{create_sim_yule_twin_tree_fun} to get a partially
+#' evaluated function to use in the \code{twinning_params} (as
+#' created by \link{create_twinning_params})
 #' @export
-twin_to_yule_tree <- function(
-  phylogeny,
-  twinning_params
+sim_yule_twin_tree <- function(
+  true_phylogeny,
+  seed = 0,
+  method = "random_tree",
+  n_replicates = 1e4
 ) {
-  check_twinning_params(twinning_params) # nolint pirouette function
-  seed <- twinning_params$rng_seed_twin_tree
-  method <- twinning_params$method
-  n_replicates <- twinning_params$n_replicates
-
+  phylogeny <- true_phylogeny
   age <- beautier::get_crown_age(phylogeny)
   phylo_brts <- sort(
-    convert_tree2brts(phylogeny), # nolint pirouette function
+    pirouette::convert_tree2brts(phylogeny),
     decreasing = TRUE
   )
   n_tips <- ape::Ntip(phylogeny)

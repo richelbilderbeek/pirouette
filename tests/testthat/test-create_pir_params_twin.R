@@ -26,6 +26,9 @@ test_that("two candidates", {
   )
   experiments[[1]]$beast2_options <- experiments[[2]]$beast2_options
   experiments[[1]]$errors_filename <- experiments[[2]]$errors_filename
+  experiments[[1]]$inference_model$mcmc <- experiments[[2]]$inference_model$mcmc
+  experiments[[1]]$errors_filename <- experiments[[2]]$errors_filename
+
   # Experiments must have different inference models
   experiments[[1]]$inference_model$site_model <-
     beautier::create_tn93_site_model()
@@ -52,9 +55,11 @@ test_that("one generative, two candidates", {
     beautier::create_tn93_site_model()
   experiments[[3]]$inference_model$site_model <-
     beautier::create_gtr_site_model()
-  # Candidates must share same BEAST2 options
+  # Candidates must share same BEAST2 options and MCMC
   experiments[[2]]$beast2_options <- experiments[[3]]$beast2_options
   experiments[[2]]$errors_filename <- experiments[[3]]$errors_filename
+  experiments[[1]]$inference_model$mcmc <- experiments[[3]]$inference_model$mcmc
+  experiments[[2]]$inference_model$mcmc <- experiments[[3]]$inference_model$mcmc
 
   pir_params <- create_test_pir_params(
     experiments = experiments,

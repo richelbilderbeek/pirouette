@@ -31,10 +31,11 @@ convert_tree2brts <- function(tree, precision = 8) {
 #'
 #' expect_true("yule" %in% get_twin_models())
 #' expect_true("birth_death" %in% get_twin_models())
+#' expect_true("copy_true" %in% get_twin_models())
 #' expect_false("nonsense" %in% get_twin_models())
 #' @export
 get_twin_models <- function() {
-  c("birth_death", "yule")
+  c("birth_death", "yule", "copy_true")
 }
 
 #' @title Twin methods
@@ -56,4 +57,34 @@ get_twin_methods <- function() {
     "max_clade_cred",
     "max_likelihood"
   )
+}
+
+#' Get the names of the model types
+#' @inheritParams default_params_doc
+#' @return the model types
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' expect_true("candidate" %in% get_model_types())
+#' expect_true("generative" %in% get_model_types())
+#' expect_false("Jensen Ackles" %in% get_model_types())
+#' @export
+get_model_types <- function() {
+  c("generative", "candidate")
+}
+
+#' Get the names of the tree types
+#' @inheritParams default_params_doc
+#' @return the tree types
+#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @examples
+#' library(testthat)
+#'
+#' expect_true("true" %in% get_tree_types())
+#' expect_true("twin" %in% get_tree_types())
+#' expect_false("Jensen Ackles" %in% get_tree_types())
+#' @export
+get_tree_types <- function() {
+  c("true", "twin")
 }

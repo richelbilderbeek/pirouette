@@ -10,7 +10,8 @@ count_n_mutations(alignment, root_sequence, verbose = FALSE)
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{verbose}{if TRUE, show more output}
 }

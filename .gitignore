@@ -49,3 +49,4 @@ input_evidence.xml
 output_evidence.xml.state
 example_
 inst/extdata/alignment_evidence.fas
+*.fas

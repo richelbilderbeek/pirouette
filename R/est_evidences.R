@@ -56,7 +56,7 @@ est_evidences <- function(
   # Instead, some temporary files that BEAST2 uses in a nested sampling
   # run should be created and deleted afterwards.
   #
-  evidence_fasta_filename <- to_evidence_filename(fasta_filename) # nolint pirouette function
+  evidence_fasta_filename <- pirouette::to_evidence_filename(fasta_filename)
   # Create the subsubsubfolder for target, do not warn if it already exists
   dir.create(
     dirname(evidence_fasta_filename),
@@ -73,7 +73,7 @@ est_evidences <- function(
     )
   }
 
-  check_experiments(experiments) # nolint pirouette function
+  pirouette::check_experiments(experiments)
 
   # Collect inference models and BEAST2 optionses
   inference_models <- list()
@@ -92,12 +92,6 @@ est_evidences <- function(
       beast2_optionses[[i]]$input_filename <- to_evidence_filename(
         beast2_optionses[[i]]$input_filename
       )
-      beast2_optionses[[i]]$output_log_filename <- to_evidence_filename(
-        beast2_optionses[[i]]$output_log_filename
-      )
-      beast2_optionses[[i]]$output_trees_filenames <- to_evidence_filename(
-        beast2_optionses[[i]]$output_trees_filenames
-      )
       beast2_optionses[[i]]$output_state_filename <- to_evidence_filename(
         beast2_optionses[[i]]$output_state_filename
       )
@@ -114,7 +108,7 @@ est_evidences <- function(
   testit::assert(length(inference_models) > 0)
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)
-  check_is_ns_beast2_pkg_installed() # nolint long function name indeed
+  pirouette::check_is_ns_beast2_pkg_installed()
 
   if (verbose) {
     for (i in seq_along(beast2_optionses)) {
@@ -122,8 +116,6 @@ est_evidences <- function(
         paste(
           i,
           beast2_optionses[[i]]$input_filename,
-          beast2_optionses[[i]]$output_log_filename,
-          beast2_optionses[[i]]$output_trees_filenames,
           beast2_optionses[[i]]$output_state_filename
         )
       )
@@ -156,16 +148,6 @@ est_evidences <- function(
 
   # Delete files
   for (beast2_options in beast2_optionses) {
-    if (file.exists(beast2_options$output_log_filename)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_log_filename, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_log_filename)
-    }
     if (file.exists(beast2_options$output_state_filename)) {
       if (isTRUE(verbose)) {
         print(
@@ -175,16 +157,6 @@ est_evidences <- function(
         )
       }
       file.remove(beast2_options$output_state_filename)
-    }
-    if (file.exists(beast2_options$output_trees_filenames)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_trees_filenames, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_trees_filenames)
     }
   }
   sum_marg_liks <- sum(marg_liks$weight)

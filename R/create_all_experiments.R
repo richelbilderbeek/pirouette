@@ -28,9 +28,9 @@ create_all_experiments <- function(
   mcmc = beautier::create_mcmc(store_every = 1000),
   exclude_model = NA
 ) {
-  beautier::check_site_models(site_models) # nolint pirouette function
-  beautier::check_clock_models(clock_models) # nolint pirouette function
-  beautier::check_tree_priors(tree_priors) # nolint pirouette function
+  beautier::check_site_models(site_models)
+  beautier::check_clock_models(clock_models)
+  beautier::check_tree_priors(tree_priors)
   if (!all(is.na(exclude_model))) {
     beautier::check_inference_model(exclude_model)
   }
@@ -40,18 +40,8 @@ create_all_experiments <- function(
   # All experiments use the same BEAST2 options,
   # or at least the filenames should be the same
   beast2_options <- beastier::create_beast2_options(
-    input_filename = tempfile(
-      pattern = "beast2_", fileext = ".xml"
-    ),
-    output_log_filename = tempfile(
-      pattern = "beast2_", fileext = ".log"
-    ),
-    output_trees_filenames = tempfile(
-      pattern = "beast2_", fileext = "trees"
-    ),
-    output_state_filename = tempfile(
-      pattern = "beast2_", fileext = ".state.xml"
-    )
+    input_filename = beastier::create_temp_input_filename(),
+    output_state_filename = beastier::create_temp_state_filename()
   )
   errors_filename <- tempfile(
     pattern = "errors_", fileext = ".csv"
@@ -61,8 +51,8 @@ create_all_experiments <- function(
   for (site_model in site_models) {
     for (clock_model in clock_models) {
       for (tree_prior in tree_priors) {
-        new_experiment <- create_experiment(
-          inference_conditions = create_inference_conditions(
+        new_experiment <- pirouette::create_experiment(
+          inference_conditions = pirouette::create_inference_conditions(
             model_type = "candidate",
             run_if = "best_candidate",
             do_measure_evidence = TRUE
@@ -96,7 +86,7 @@ create_all_experiments <- function(
   names(all_experiments) <- seq_along(all_experiments)
   all_experiments[sapply(all_experiments, is.null)] <- NULL
 
-  check_experiments(all_experiments) # nolint pirouette function
+  pirouette::check_experiments(all_experiments)
 
   all_experiments
 }

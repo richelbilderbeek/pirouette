@@ -57,7 +57,7 @@ create_cand_experiment <- function(
     epsilon = 1e-12
   )
 ) {
-  create_experiment(
+  pirouette::create_experiment(
     inference_conditions = inference_conditions,
     inference_model = inference_model,
     beast2_options = beast2_options,

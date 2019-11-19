@@ -5,6 +5,8 @@
 #'   is a list of experiments
 #' @author Richèl J.C. Bilderbeek
 #' @examples
+#' library(testthat)
+#'
 #' evidences <- create_test_marg_liks(
 #'   site_models = list(create_jc69_site_model()),
 #'   clock_models = list(create_strict_clock_model()),
@@ -17,6 +19,7 @@
 #'   experiment_bd <- create_test_cand_experiment()
 #'   experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
 #'   experiment_yule$beast2_options <- experiment_bd$beast2_options
+#'   experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
 #'   experiment_yule$errors_filename <- experiment_bd$errors_filename
 #'   experiments <- list(experiment_yule, experiment_bd)
 #'
@@ -27,7 +30,6 @@
 #'     marg_liks = evidences
 #'   )
 #'
-#'   library(testthat)
 #'   expect_equal(1, length(selected))
 #'   expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 #' }
@@ -37,10 +39,10 @@ select_experiments <- function(
   marg_liks = NULL,
   verbose = FALSE
 ) {
-  check_experiments(experiments) # nolint pirouette function
+  pirouette::check_experiments(experiments)
 
   # Keep only the candidate marginal likelihoods
-  candidate_marg_liks <- select_candidate_evidences( # nolint pirouette function
+  candidate_marg_liks <- pirouette::select_candidate_evidences(
     experiments,
     marg_liks
   )

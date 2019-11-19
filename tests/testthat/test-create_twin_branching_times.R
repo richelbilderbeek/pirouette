@@ -164,5 +164,28 @@ test_that("abuse", {
     ),
     "'method' not in the supported methods"
   )
+})
 
+test_that("use", {
+
+  skip("Cannot create branching times for a Yule tree, #342")
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+
+  yule_branching_times <- create_twin_branching_times(
+    seed = 314,
+    lambda = 0.0,
+    mu = 1.0,
+    phylogeny = phylogeny,
+    n_replicates = 1,
+    method = "random_tree"
+  )
+  bd_branching_times <- create_twin_branching_times(
+    seed = 314,
+    lambda = 0.1,
+    mu = 1.0,
+    phylogeny = phylogeny,
+    n_replicates = 1,
+    method = "random_tree"
+  )
+  expect_equal(yule_branching_times, bd_branching_times)
 })

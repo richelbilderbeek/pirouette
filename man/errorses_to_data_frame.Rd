@@ -21,20 +21,16 @@ A test data frame can be created by \link{create_test_marg_liks}}
 Convert the collect of errors to a data frame
 }
 \examples{
-
 library(testthat)
 
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-pir_params <- create_pir_params(
-  alignment_params = create_test_alignment_params(),
-  twinning_params = create_twinning_params(),
-  experiments = list(create_test_experiment()),
-  error_measure_params = create_error_measure_params(),
-  evidence_filename = tempfile(fileext = ".csv"),
-  verbose = FALSE
-)
+pir_params <- create_test_pir_params()
 
-create_alignment_file(
+# A normal user should not need to call 'phylo_to_errors' directly.
+# For a developer that needs to, the 'pir_params' must be initialized
+pir_params <- init_pir_params(pir_params)
+
+create_true_alignment_file(
   phylogeny = phylogeny,
   alignment_params = pir_params$alignment_params,
   verbose = FALSE

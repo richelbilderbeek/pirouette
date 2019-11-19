@@ -25,8 +25,7 @@ grDevices::dev.off()
 
 pir_params <- create_pir_params(
   alignment_params = create_alignment_params(
-    root_sequence = pirouette::create_blocked_dna(length = 40),
-    mutation_rate = 0.5 * 1.0 / 3.0
+    root_sequence = pirouette::create_blocked_dna(length = 40)
   ),
   twinning_params = create_twinning_params()
 )
@@ -36,8 +35,8 @@ pir_params <- create_pir_params(
 ################################################################################
 pir_params$alignment_params$fasta_filename <- file.path(root_folder, "alignment.fasta")
 pir_params$experiments[[1]]$beast2_options$input_filename <- file.path(root_folder, "beast2_input.xml")
-pir_params$experiments[[1]]$beast2_options$output_log_filename <- file.path(root_folder, "beast2_output.log")
-pir_params$experiments[[1]]$beast2_options$output_trees_filenames <- file.path(root_folder, "beast2_output.trees")
+pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename <- file.path(root_folder, "beast2_output.log")
+pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename <- file.path(root_folder, "beast2_output.trees")
 pir_params$experiments[[1]]$beast2_options$output_state_filename <- file.path(root_folder, "beast2_output.xml.state")
 pir_params$experiments[[1]]$errors_filename <- file.path(root_folder, "error.csv")
 ################################################################################
@@ -92,7 +91,9 @@ grDevices::dev.off()
 
 grDevices::png(filename = file.path(root_folder, "densitree.png"), width = 1000, height = 800)
 babette::plot_densitree(
-  phylos = tracerer::parse_beast_trees(pir_params$experiments[[1]]$beast2_options$output_trees_filenames),
+  phylos = tracerer::parse_beast_trees(
+    pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+  ),
   alpha = 0.01,
   consensus = LETTERS[6:1],
   cex = 6.0,
@@ -103,7 +104,11 @@ grDevices::dev.off()
 
 grDevices::png(filename = file.path(root_folder, "densitree_twin.png"), width = 1000, height = 800)
 babette::plot_densitree(
-  phylos = tracerer::parse_beast_trees(to_twin_filename(pir_params$experiments[[1]]$beast2_options$output_trees_filenames)),
+  phylos = tracerer::parse_beast_trees(
+    to_twin_filename(
+      pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+    )
+  ),
   alpha = 0.01,
   consensus = LETTERS[6:1],
   cex = 6.0,

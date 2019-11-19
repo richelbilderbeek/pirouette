@@ -28,9 +28,7 @@ check_inference_conditions <- function(
       )
     }
   }
-  if (!inference_conditions$model_type %in% c("generative", "candidate")) {
-    stop("'model_type' must be either \"generative\" or \"candidate\"")
-  }
+  pirouette::check_model_type(inference_conditions$model_type)
   if (!inference_conditions$run_if %in% c("always", "best_candidate")) {
     stop("'run_if' must be either \"always\" or \"best_candidate\"")
   }
@@ -42,13 +40,13 @@ check_inference_conditions <- function(
     stop(
       "'run_if' == 'best_candidate' and 'do_measure_evidence' == FALSE ",
       "is a configuration that makes no sense"
-    ) # nolint
+    )
   }
   if (inference_conditions$run_if == "always" &&
       inference_conditions$model_type == "candidate") {
     stop(
       "'run_if' == 'always' and 'model_type' == 'candidate' ",
       "is a configuration that makes no sense"
-    ) # nolint
+    )
   }
 }

@@ -73,7 +73,7 @@ pir_plot <- function(pir_out) {
     factor(df_long$model_setting, levels = unique(df_long$model_setting))
   df_long$inference_model <-
     factor(df_long$inference_model, levels = unique(df_long$inference_model))
-  rownames(df_long) <- mapply(1:nrow(df_long), FUN = toString)
+  rownames(df_long) <- mapply(seq_len(nrow(df_long)), FUN = toString)
 
   ##### Theme #####
   label_size <- 13

@@ -9,20 +9,19 @@
 #'
 #' # Create a true phylogeny to simulate the DNA sequences on
 #' n_taxa <- 5
-#' set.seed(1); phylogeny <- ape::rcoal(n_taxa)
+#' set.seed(1)
+#' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # Simulate and save the true alignment
-#' alignment_params <- create_alignment_params(
-#'   root_sequence = create_blocked_dna(length = 4),
-#'   mutation_rate = 0.1
-#' )
-#' create_alignment_file(
+#' alignment_params <- create_test_alignment_params()
+#' create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
 #'
 #' # Create a twin phylogeny to simulate the DNA sequences on
-#' set.seed(2); twin_phylogeny <- ape::rcoal(n_taxa)
+#' set.seed(2)
+#' twin_phylogeny <- ape::rcoal(n_taxa)
 #' twinning_params <- create_twinning_params()
 #'
 #' # Simulate and save the twin alignment
@@ -36,6 +35,7 @@
 #' pir_params <- create_test_pir_params()
 #' pir_params$alignment_params <- alignment_params
 #' pir_params$twinning_params <- twinning_params
+#' pir_params <- init_pir_params(pir_params)
 #'
 #' pir_run_twin_tree(
 #'   twin_phylogeny = twin_phylogeny,
@@ -84,11 +84,24 @@ pir_run_twin_tree <- function(
   for (i in seq_along(experiments)) {
     experiment <- experiments[[i]]
 
-    experiment$beast2_options$input_filename <- to_twin_filename(experiment$beast2_options$input_filename) # nolint indeed too long ...
-    experiment$beast2_options$output_log_filename <- to_twin_filename(experiment$beast2_options$output_log_filename) # nolint indeed too long ...
-    experiment$beast2_options$output_trees_filenames <- to_twin_filename(experiment$beast2_options$output_trees_filenames) # nolint indeed too long ...
-    experiment$beast2_options$output_state_filename <- to_twin_filename(experiment$beast2_options$output_state_filename) # nolint indeed too long ...
-    experiment$errors_filename <- to_twin_filename(experiment$errors_filename) # nolint pirouette function
+    experiment$beast2_options$input_filename <- pirouette::to_twin_filename(
+      experiment$beast2_options$input_filename
+    )
+    experiment$inference_model$mcmc$tracelog$filename <-
+      pirouette::to_twin_filename(
+        experiment$inference_model$mcmc$tracelog$filename
+    )
+    experiment$inference_model$mcmc$treelog$filename <-
+      pirouette::to_twin_filename(
+      experiment$inference_model$mcmc$treelog$filename
+    )
+    experiment$beast2_options$output_state_filename <-
+      pirouette::to_twin_filename(
+      experiment$beast2_options$output_state_filename
+    )
+    experiment$errors_filename <- pirouette::to_twin_filename(
+      experiment$errors_filename
+    )
 
     # Dirty hack: use a modified alignment_params for informing
     # 'phylo_to_errors' about the filename of the alignment
@@ -97,7 +110,8 @@ pir_run_twin_tree <- function(
     # and 'twin_phylo_to_errors' that probably call a same
     # function 'phylo_to_errors_impl' in the back
     alignment_params <- pir_params$alignment_params
-    alignment_params$fasta_filename <- pir_params$twinning_params$twin_alignment_filename # nolint sorry Demeter
+    alignment_params$fasta_filename <-
+      pir_params$twinning_params$twin_alignment_filename # sorry Demeter
 
     errorses[[i]] <- phylo_to_errors(
       phylogeny = twin_phylogeny,
@@ -108,7 +122,7 @@ pir_run_twin_tree <- function(
     )
 
     # Save errors to file
-    errors_filename <- experiment$errors_filename # nolint pirouette function
+    errors_filename <- experiment$errors_filename
     if (isTRUE(pir_params$verbose)) {
       print(
         paste0(

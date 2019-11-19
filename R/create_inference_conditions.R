@@ -55,7 +55,7 @@
 #'    pir_plot(pir_out)
 #'  }
 #' @export
-create_inference_conditions <- create_inf_conds <- function(
+create_inference_conditions <- function(
   model_type = "generative",
   run_if = "always",
   do_measure_evidence = FALSE
@@ -68,6 +68,6 @@ create_inference_conditions <- create_inf_conds <- function(
     run_if = run_if,
     do_measure_evidence = do_measure_evidence
   )
-  check_inference_conditions(inference_conditions = inference_conditions) # nolint pirouette function
+  pirouette::check_inference_conditions(inference_conditions)
   inference_conditions
 }

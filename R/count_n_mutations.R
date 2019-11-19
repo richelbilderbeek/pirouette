@@ -22,11 +22,8 @@ count_n_mutations <- function(
   root_sequence,
   verbose = FALSE
 ) {
-
-  if (class(alignment) != "DNAbin") {
-    stop("'alignment' must be of class 'ape::DNAbin'")
-  }
-  if (get_alignment_sequence_length(alignment) # nolint pirouette function
+  pirouette::check_alignment(alignment)
+  if (pirouette::get_alignment_sequence_length(alignment)
     != nchar(root_sequence)
   ) {
     stop(
@@ -37,7 +34,7 @@ count_n_mutations <- function(
         get_alignment_sequence_length(alignment)
     )
   }
-  if (!is_dna_seq(root_sequence)) { # nolint pirouette function
+  if (!pirouette::is_dna_seq(root_sequence)) {
     stop(
       "'root_sequence' must be one character vector ",
       "of lowercase nucleotides. \n",
@@ -46,7 +43,10 @@ count_n_mutations <- function(
   }
 
 
-  sequences <- get_alignment_sequences(alignment, verbose = verbose) # nolint pirouette function
+  sequences <- pirouette::get_alignment_sequences(
+    alignment = alignment,
+    verbose = FALSE
+  )
 
   n_mutations <- 0
   for (i in seq_along(sequences)) {

@@ -118,6 +118,9 @@ pir_to_pics <- function(
 ) {
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 
+  # Fill in the BEAUti shorthand notations
+  pir_params <- pirouette::init_pir_params(pir_params)
+
   filenames <- NULL
 
   # Trees
@@ -152,8 +155,8 @@ pir_to_pics <- function(
   # Posteriors
   first_experiment <- utils::head(pir_params$experiments, n = 1)[[1]]
   last_experiment <- utils::tail(pir_params$experiments, n = 1)[[1]]
-  check_experiment(first_experiment) # nolint pirouette function
-  check_experiment(last_experiment) # nolint pirouette function
+  pirouette::check_experiment(first_experiment)
+  pirouette::check_experiment(last_experiment)
 
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
@@ -164,7 +167,7 @@ pir_to_pics <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        first_experiment$beast2_options$output_trees_filenames
+        first_experiment$inference_model$mcmc$treelog$filename
       ),
       alpha = 0.01,
       consensus = consensus,
@@ -184,7 +187,7 @@ pir_to_pics <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        last_experiment$beast2_options$output_trees_filenames
+        last_experiment$inference_model$mcmc$treelog$filename
       ),
       alpha = 0.01,
       consensus = consensus,
@@ -262,7 +265,7 @@ pir_to_pics <- function(
   }
 
   if (!beautier::is_one_na(pir_params$twinning_params)) {
-    twin_filenames <- pir_to_pics_twin( # nolint pirouette function
+    twin_filenames <- pir_to_pics_twin(
       pir_params = pir_params,
       consensus = consensus,
       folder = folder
@@ -322,8 +325,8 @@ pir_to_pics_twin <- function(
   # Posteriors
   first_experiment <- utils::head(pir_params$experiments, n = 1)[[1]]
   last_experiment <- utils::tail(pir_params$experiments, n = 1)[[1]]
-  check_experiment(first_experiment) # nolint pirouette function
-  check_experiment(last_experiment) # nolint pirouette function
+  pirouette::check_experiment(first_experiment)
+  pirouette::check_experiment(last_experiment)
 
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
@@ -335,7 +338,7 @@ pir_to_pics_twin <- function(
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
         to_twin_filename(
-          first_experiment$beast2_options$output_trees_filenames
+          first_experiment$inference_model$mcmc$treelog$filename
         )
       ),
       alpha = 0.01,
@@ -357,7 +360,7 @@ pir_to_pics_twin <- function(
   babette::plot_densitree(
     phylos = tracerer::parse_beast_trees(
       to_twin_filename(
-        last_experiment$beast2_options$output_trees_filenames
+        last_experiment$inference_model$mcmc$treelog$filename
       )
     ),
     alpha = 0.01,

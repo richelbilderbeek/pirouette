@@ -5,7 +5,7 @@
 #' evolutionary history.
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_alignment_file} to save the created alignment
+#' @seealso Use \link{create_true_alignment_file} to save the created alignment
 #'   directly to a file
 #' @examples
 #' library(testthat)
@@ -16,8 +16,7 @@
 #'
 #' # How to simulate the alignment
 #' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence,
-#'   mutation_rate = 0.1
+#'   root_sequence = root_sequence
 #' )
 #'
 #' # Create a phylogeny to simulate the DNA sequences on
@@ -30,24 +29,9 @@
 #'    alignment_params = alignment_params
 #'  )
 #'
-#' expect_equal(class(alignment), "DNAbin")
+#' expect_silent(check_alignment(alignment))
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), n_base_pairs)
-#'
-#' # Use all different site models
-#' for (site_model in create_site_models()) {
-#'   alignment_params <- create_alignment_params(
-#'     root_sequence = root_sequence,
-#'     mutation_rate = 0.1,
-#'     site_model = site_model
-#'   )
-#'   expect_silent(
-#'     create_true_alignment(
-#'       true_phylogeny = phylogeny,
-#'       alignment_params = alignment_params
-#'     )
-#'   )
-#' }
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_true_alignment <- function(
@@ -60,9 +44,9 @@ create_true_alignment <- function(
       "Actual value: ", true_phylogeny
     )
   }
-  check_reconstructed_phylogeny(true_phylogeny) # nolint pirouette function
+  pirouette::check_reconstructed_phylogeny(true_phylogeny)
   tryCatch(
-    check_alignment_params(alignment_params), # nolint pirouette function
+    pirouette::check_alignment_params(alignment_params),
     error = function(e) {
       msg <- paste0(
         "'alignment_params' must be a set of alignment parameters. ",
@@ -72,12 +56,8 @@ create_true_alignment <- function(
     }
   )
 
-  create_alignment_impl(
-    phylogeny = true_phylogeny,
-    root_sequence = alignment_params$root_sequence,
-    rng_seed = alignment_params$rng_seed,
-    mutation_rate = alignment_params$mutation_rate,
-    site_model = alignment_params$site_model,
-    n_mutations = NA
+  sim_true_alignment(
+    true_phylogeny = true_phylogeny,
+    alignment_params = alignment_params
   )
 }
