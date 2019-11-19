@@ -70,16 +70,16 @@ test_that("abuse", {
 
   true_phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
-  root_sequence <- create_blocked_dna(1000)
-  alignment_params <- create_test_alignment_params()
-  true_alignment <- create_true_alignment(
+  root_sequence <- pirouette::create_blocked_dna(1000)
+  alignment_params <- pirouette::create_test_alignment_params()
+  true_alignment <- pirouette::create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  twinning_params <- create_twinning_params()
+  twinning_params <- pirouette::create_twinning_params()
   # Works, just to verify
-  expect_silent(
-    sim_twin_alignment(
+  testthat::expect_silent(
+    pirouette::sim_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = true_alignment,
       alignment_params = alignment_params,
@@ -88,8 +88,8 @@ test_that("abuse", {
   )
 
   # Errors
-  expect_error(
-    sim_twin_alignment(
+  testthat::expect_error(
+    pirouette::sim_twin_alignment(
       twin_phylogeny = "nonsense",
       true_alignment = true_alignment,
       alignment_params = alignment_params,
@@ -98,8 +98,8 @@ test_that("abuse", {
     "phylogeny.*must be a valid phylogeny"
   )
 
-  expect_error(
-    sim_twin_alignment(
+  testthat::expect_error(
+    pirouette::sim_twin_alignment(
       twin_phylogeny = twin_phylogeny,
       true_alignment = "nonsense",
       alignment_params = alignment_params,
@@ -110,38 +110,39 @@ test_that("abuse", {
 })
 
 test_that("works for simple trees", {
-  alignment_params <- create_test_alignment_params(
+
+  alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = "acgt")
-  twinning_params <- create_twinning_params(
+  twinning_params <- pirouette::create_twinning_params(
     sim_twin_alignment_fun =
-      get_sim_twin_alignment_with_same_n_mutation_fun(
+      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
         max_n_tries = 100
       )
   )
   true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  twin_phylogeny <- create_twin_tree(
+  twin_phylogeny <- pirouette::create_twin_tree(
     phylogeny = true_phylogeny,
     twinning_params = twinning_params
   )
-  true_alignment <- create_true_alignment(
+  true_alignment <- pirouette::create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  twin_alignment <- sim_twin_alignment(
+  twin_alignment <- pirouette::sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
     twinning_params =  twinning_params
   )
-  n_mutations_true <- count_n_mutations(
+  n_mutations_true <- pirouette::count_n_mutations(
     alignment = true_alignment,
     root_sequence = alignment_params$root_sequence
   )
-  n_mutations_twin <- count_n_mutations(
+  n_mutations_twin <- pirouette::count_n_mutations(
     alignment = twin_alignment,
     root_sequence = alignment_params$root_sequence
   )
-  expect_equal(n_mutations_true, n_mutations_twin)
+  testthat::expect_equal(n_mutations_true, n_mutations_twin)
 })
 
 test_that("works in poor conditions as well", {
@@ -153,32 +154,32 @@ test_that("works in poor conditions as well", {
   twin_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:90, B:90):1, C:91):1, D:92):1, E:93):1, F:94):1, G:95):1, H:96):1, I:97):1, J:98):1, K:99):1, L:100);" # nolint indeed long
   )
-  root_sequence <- create_blocked_dna(1000)
-  alignment_params <- create_test_alignment_params(
+  root_sequence <- pirouette::create_blocked_dna(1000)
+  alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = root_sequence
   )
-  true_alignment <- create_true_alignment(
+  true_alignment <- pirouette::create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
-  n_mutations_true <- count_n_mutations(
+  n_mutations_true <- pirouette::count_n_mutations(
     alignment = true_alignment, root_sequence = root_sequence
   )
-  twinning_params <- create_twinning_params(
+  twinning_params <- pirouette::create_twinning_params(
     sim_twin_alignment_fun =
-      get_sim_twin_alignment_with_same_n_mutation_fun(
+      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
         mutation_rate = mutation_rate,
         max_n_tries = 1
       )
   )
-  twin_alignment <- sim_twin_alignment(
+  twin_alignment <- pirouette::sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,
     twinning_params = twinning_params
   )
-  n_mutations_twin <- count_n_mutations(
+  n_mutations_twin <- pirouette::count_n_mutations(
     alignment = twin_alignment, root_sequence = root_sequence
   )
-  expect_equal(n_mutations_true, n_mutations_twin)
+  testthat::expect_equal(n_mutations_true, n_mutations_twin)
 })
