@@ -55,7 +55,7 @@ create_twin_alignment_file <- function(
   true_alignment <- ape::read.FASTA(true_alignment_filename)
 
   # Simulate
-  twin_alignment <- sim_twin_alignment(
+  twin_alignment <- pirouette::sim_twin_alignment(
     twin_phylogeny = twin_phylogeny,
     true_alignment = true_alignment,
     alignment_params = alignment_params,

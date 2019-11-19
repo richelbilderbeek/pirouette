@@ -28,7 +28,7 @@ get_pir_params_filenames <- function(pir_params) {
   }
 
   filenames <- c(
-    get_experiments_filenames(pir_params$experiments),
+    pirouette::get_experiments_filenames(pir_params$experiments),
     pir_params$alignment_params$fasta_filename,
     pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename,
     pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
@@ -40,7 +40,7 @@ get_pir_params_filenames <- function(pir_params) {
   if (!beautier::is_one_na(pir_params$twinning_params)) {
     filenames <- c(
       pirouette::to_twin_filenames(
-        get_experiments_filenames(pir_params$experiments)
+        pirouette::get_experiments_filenames(pir_params$experiments)
       ),
       filenames,
       pir_params$twinning_params$twin_tree_filename,

@@ -35,7 +35,7 @@
 #' @export
 sim_true_alignment <- function(
   true_phylogeny,
-  alignment_params = create_alignment_params(),
+  alignment_params = pirouette::create_alignment_params(),
   verbose = FALSE
 ) {
   beautier::check_phylogeny(true_phylogeny)

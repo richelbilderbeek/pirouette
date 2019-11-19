@@ -13,7 +13,7 @@ get_alignment_sequences <- function(
   alignment,
   verbose = FALSE
 ) {
-  check_alignment(alignment)
+  pirouette::check_alignment(alignment)
   if (is.matrix(alignment)) {
     if (verbose) print("alignment is a matrix")
     # We know from

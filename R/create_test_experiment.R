@@ -23,7 +23,7 @@ create_test_experiment <- function(
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
   errors_filename = get_temp_errors_filename()
 ) {
-  create_experiment(
+  pirouette::create_experiment(
     inference_conditions = inference_conditions,
     inference_model = inference_model,
     beast2_options = beast2_options,

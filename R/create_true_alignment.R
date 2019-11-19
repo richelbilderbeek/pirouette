@@ -56,7 +56,7 @@ create_true_alignment <- function(
     }
   )
 
-  sim_true_alignment(
+  pirouette::sim_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )

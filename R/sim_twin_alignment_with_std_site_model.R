@@ -33,7 +33,7 @@ sim_twin_alignment_with_std_site_model <- function(
   mutation_rate = 0.1, # TODO: make 1.0
   site_model = beautier::create_jc69_site_model()
 ) {
-  alignment <- sim_alignment_with_std_site_model(
+  alignment <- pirouette::sim_alignment_with_std_site_model(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,

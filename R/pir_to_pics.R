@@ -337,7 +337,7 @@ pir_to_pics_twin <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        to_twin_filename(
+        pirouette::to_twin_filename(
           first_experiment$inference_model$mcmc$treelog$filename
         )
       ),
@@ -359,7 +359,7 @@ pir_to_pics_twin <- function(
   )
   babette::plot_densitree(
     phylos = tracerer::parse_beast_trees(
-      to_twin_filename(
+      pirouette::to_twin_filename(
         last_experiment$inference_model$mcmc$treelog$filename
       )
     ),
@@ -376,12 +376,12 @@ pir_to_pics_twin <- function(
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     beautier::check_file_exists(
-      to_twin_filename(first_experiment$errors_filename)
+      pirouette::to_twin_filename(first_experiment$errors_filename)
     )
 
     df_errors_twin_gen <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(first_experiment$errors_filename)
+        pirouette::to_twin_filename(first_experiment$errors_filename)
       )$x
     )
 
@@ -398,7 +398,7 @@ pir_to_pics_twin <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_twin_best <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(last_experiment$errors_filename)
+        pirouette::to_twin_filename(last_experiment$errors_filename)
       )$x
     )
 
@@ -416,7 +416,7 @@ pir_to_pics_twin <- function(
   if (first_experiment$inference_conditions$model_type == "generative") {
     df_errors_twin_gen <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(first_experiment$errors_filename)
+        pirouette::to_twin_filename(first_experiment$errors_filename)
       )$x
     )
 
@@ -435,7 +435,7 @@ pir_to_pics_twin <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_twin_best <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(last_experiment$errors_filename)
+        pirouette::to_twin_filename(last_experiment$errors_filename)
       )$x
     )
 

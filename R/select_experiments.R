@@ -54,11 +54,11 @@ select_experiments <- function(
       selected_experiments[[index]] <- experiment
       index <- index + 1
     } else if (experiment$inference_conditions$run_if == "best_candidate" &&
-        is_best_candidate(
-          experiment = experiment,
-          marg_liks = candidate_marg_liks
-        )
-      ) {
+               pirouette::is_best_candidate(
+                 experiment = experiment,
+                 marg_liks = candidate_marg_liks
+               )
+    ) {
       selected_experiments[[index]] <- experiment
       index <- index + 1
     }

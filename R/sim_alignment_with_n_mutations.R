@@ -84,7 +84,7 @@ sim_alignment_with_n_mutations <- function(
     )
     pirouette::check_alignment(alignment)
 
-    actual_n_mutations <- count_n_mutations(
+    actual_n_mutations <- pirouette::count_n_mutations(
       alignment = alignment,
       root_sequence = root_sequence
     )
@@ -113,11 +113,11 @@ sim_alignment_with_n_mutations <- function(
 
   pirouette::check_alignment(alignment)
   testit::assert(
-    get_alignment_sequence_length(alignment) ==
+    pirouette::get_alignment_sequence_length(alignment) ==
     nchar(root_sequence)
   )
   testit::assert(
-    get_alignment_n_taxa(alignment) ==
+    pirouette::get_alignment_n_taxa(alignment) ==
     ape::Ntip(phylogeny)
   )
   alignment

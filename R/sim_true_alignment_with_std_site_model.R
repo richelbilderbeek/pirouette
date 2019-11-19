@@ -24,7 +24,7 @@ sim_true_alignment_with_std_site_model <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model()
 ) {
-  alignment <- sim_alignment_with_std_site_model(
+  alignment <- pirouette::sim_alignment_with_std_site_model(
     phylogeny = true_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,

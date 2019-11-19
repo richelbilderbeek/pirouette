@@ -78,7 +78,7 @@ sim_yule_twin_tree <- function(
     method = method
   )
 
-  combine_brts_and_topology(
+  pirouette::combine_brts_and_topology(
     brts = yule_brts0,
     tree = phylogeny
   )
