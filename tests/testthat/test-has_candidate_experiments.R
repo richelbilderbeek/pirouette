@@ -9,6 +9,9 @@ test_that("minimal use", {
 })
 
 test_that("one candidate model", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
   pir_params <- create_test_pir_params(
     experiments = list(create_test_cand_experiment())
   )
