@@ -22,7 +22,7 @@ check_sim_twin_alignment_fun <- function(sim_twin_alignment_fun) {
   root_sequence <- "aaaa"
   pirouette::check_root_sequence(root_sequence)
 
-  true_alignment <- get_test_alignment(
+  true_alignment <- pirouette::get_test_alignment(
     n_taxa = ape::Ntip(twin_phylogeny),
     sequence_length = nchar(root_sequence)
   )
@@ -55,11 +55,11 @@ check_sim_twin_alignment_fun <- function(sim_twin_alignment_fun) {
     }
   )
   testthat::expect_equal(
-    get_alignment_n_taxa(out),
-    get_alignment_n_taxa(true_alignment)
+    pirouette::get_alignment_n_taxa(out),
+    pirouette::get_alignment_n_taxa(true_alignment)
   )
   testthat::expect_equal(
-    get_alignment_sequence_length(out),
-    get_alignment_sequence_length(true_alignment)
+    pirouette::get_alignment_sequence_length(out),
+    pirouette::get_alignment_sequence_length(true_alignment)
   )
 }

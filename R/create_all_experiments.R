@@ -51,8 +51,8 @@ create_all_experiments <- function(
   for (site_model in site_models) {
     for (clock_model in clock_models) {
       for (tree_prior in tree_priors) {
-        new_experiment <- create_experiment(
-          inference_conditions = create_inference_conditions(
+        new_experiment <- pirouette::create_experiment(
+          inference_conditions = pirouette::create_inference_conditions(
             model_type = "candidate",
             run_if = "best_candidate",
             do_measure_evidence = TRUE
