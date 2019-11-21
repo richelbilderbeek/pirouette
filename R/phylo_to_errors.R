@@ -70,10 +70,8 @@ phylo_to_errors <- function(
   # Check the number of trees
   mcmc <- experiment$inference_model$mcmc
   testit::assert(!beautier::is_nested_sampling_mcmc(mcmc))
-  if (mcmc$store_every != -1) {
-    expected_n_trees <- 1 + (mcmc$chain_length / mcmc$store_every)
-    testit::assert(length(trees) == expected_n_trees)
-  }
+  expected_n_trees <- 1 + (mcmc$chain_length / mcmc$treelog$log_every)
+  testit::assert(length(trees) == expected_n_trees)
 
   # Measure error by comparing true tree with BEAST2 posterior trees
   all_errors <- error_measure_params$error_fun(phylogeny, trees)
