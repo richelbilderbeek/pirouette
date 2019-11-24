@@ -180,7 +180,7 @@ test_that("works in poor conditions as well", {
     sim_twin_alignment_fun =
       pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
         mutation_rate = mutation_rate,
-        max_n_tries = 1e4
+        max_n_tries = 1e3
       )
   )
   twin_alignment <- pirouette::sim_twin_alignment(
