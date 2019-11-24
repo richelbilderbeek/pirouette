@@ -151,7 +151,7 @@ test_that("works for simple trees", {
 
 test_that("works in poor conditions as well", {
 
-  skip("Issue 356, Issue #356")
+  mutation_rate <- 0.5
   true_phylogeny  <- ape::read.tree(
     text = "(((((((((((A:1, B:1):1, C:2):1, D:3):1, E:4):1, F:5):1, G:6):1, H:7):1, I:8):1, J:9):1, K:10):90, L:100);" # nolint indeed long
   )
@@ -160,20 +160,27 @@ test_that("works in poor conditions as well", {
   )
   root_sequence <- pirouette::create_blocked_dna(1000)
   alignment_params <- pirouette::create_test_alignment_params(
-    root_sequence = root_sequence
+    root_sequence = root_sequence,
+    sim_true_alignment_fun =
+      pirouette::sim_true_alignment_with_std_site_model(
+        true_phylogeny = true_phylogeny,
+        root_sequence = root_sequence,
+        mutation_rate = mutation_rate
+      )
   )
   true_alignment <- pirouette::create_true_alignment(
     true_phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
   n_mutations_true <- pirouette::count_n_mutations(
-    alignment = true_alignment, root_sequence = root_sequence
+    alignment = true_alignment,
+    root_sequence = root_sequence
   )
   twinning_params <- pirouette::create_twinning_params(
     sim_twin_alignment_fun =
       pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
         mutation_rate = mutation_rate,
-        max_n_tries = 1
+        max_n_tries = 1e4
       )
   )
   twin_alignment <- pirouette::sim_twin_alignment(
@@ -186,4 +193,5 @@ test_that("works in poor conditions as well", {
     alignment = twin_alignment, root_sequence = root_sequence
   )
   testthat::expect_equal(n_mutations_true, n_mutations_twin)
+
 })
