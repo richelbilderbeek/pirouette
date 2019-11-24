@@ -169,6 +169,7 @@ test_that("abuse", {
 test_that("use", {
 
   skip("Cannot create branching times for a Yule tree, #342")
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
   yule_branching_times <- create_twin_branching_times(

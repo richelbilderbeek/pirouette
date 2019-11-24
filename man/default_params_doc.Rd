@@ -401,14 +401,14 @@ Some standard functions:\cr
   to get a function (\link{sim_true_alignment_with_std_site_model})
   the use a standard site model.
   \item Use
-  \link{get_sim_true_alignment_with_linked_node_sub_site_model_fun}
+  \link{get_sim_true_alignment_with_lns_site_model_fun}
   to get a function
-  (\link{sim_true_alignment_with_linked_node_sub_site_model})
+  (\link{sim_true_alignment_with_lns_site_model})
   the use a linked node substitution site model.
   \item Use
-  \link{get_sim_true_alignment_with_unlinked_node_sub_site_model_fun}
+  \link{get_sim_true_alignment_with_uns_site_model_fun}
   to get a function
-  (\link{sim_true_alignment_with_unlinked_node_sub_site_model})
+  (\link{sim_true_alignment_with_uns_site_model})
   the use an unlinked node substitution site model.
 }}
 
@@ -437,10 +437,10 @@ Some standard functions:\cr
     (\link{sim_twin_alignment_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
-  \item Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+  \item Use \link{sim_twin_alignment_with_lns_site_model}
     that simulates a twin alignment using a linked node substitution
     model
-  \item Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+  \item Use \link{sim_twin_alignment_with_uns_site_model}
     that simulates a twin alignment using an unlinked node substitution
     model
 }}
@@ -468,10 +468,10 @@ which can be:
     as created by \link[beautier]{create_site_model}
   }
   \item{
-    \code{linked_node_sub}: a linked node-substitution model
+    \code{lns}: a linked node-substitution model
   }
   \item{
-    \code{unlinked_node_sub}: an unlinked node-substitution model
+    \code{uns}: an unlinked node-substitution model
   }
 }}
 
