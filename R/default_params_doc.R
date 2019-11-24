@@ -322,7 +322,7 @@
 #'     Yule (aka Pure Birth) process
 #'   \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
 #'     that copies the true tree
-#'   \item Use \link{create_sim_bd_twin_tree_fun} to use a
+#'   \item Use \link{get_sim_bd_twin_tree_fun} to use a
 #'     Birth-Death process
 #' }
 #' @param site_model a nucleotide substitution model,

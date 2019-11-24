@@ -27,7 +27,7 @@
 #' )
 #' @seealso
 #' Use \link{sim_yule_twin_tree} to simulate a Yule twin tree
-#' Use \link{create_sim_bd_twin_tree_fun} to get a partially
+#' Use \link{get_sim_bd_twin_tree_fun} to get a partially
 #' evaluated function to use in the \code{twinning_params} (as
 #' created by \link{create_twinning_params})
 #' @export

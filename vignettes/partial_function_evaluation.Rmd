@@ -86,13 +86,13 @@ ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 How to specify *how* the twin tree is created? Set the value 
 for the `twinning_params$sim_twin_tree_fun`!
 
-I'll demonstrate using the `create_sim_bd_twin_tree_fun`
+I'll demonstrate using the `get_sim_bd_twin_tree_fun`
 which produces a function that simulates a twin tree using a Birth-Death
 speciation model:
 
 ```{r}
 twinning_params <- create_twinning_params(
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun()
+  sim_twin_tree_fun = get_sim_bd_twin_tree_fun()
 )
 ```
 
@@ -182,13 +182,13 @@ twin_tree <- create_twin_tree(
 ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
-There is a helper function called `create_sim_bd_twin_tree_fun`
+There is a helper function called `get_sim_bd_twin_tree_fun`
 that does the same partial function evaluation for you:
 
 ```{r}
 # Create twinning_params with my function 
 twinning_params <- create_twinning_params(
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(
+  sim_twin_tree_fun = get_sim_bd_twin_tree_fun(
     method = "random_tree",
     n_replicates = 1
   )

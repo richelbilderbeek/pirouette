@@ -192,7 +192,7 @@ test_that("add sim_twin_tree_fun", {
   )
   expect_silent(
     create_twinning_params(
-      sim_twin_tree_fun = create_sim_bd_twin_tree_fun()
+      sim_twin_tree_fun = get_sim_bd_twin_tree_fun()
     )
   )
   expect_silent(

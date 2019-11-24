@@ -2,7 +2,7 @@ test_that("use", {
 
   testthat::expect_silent(
     pirouette::check_sim_twin_tree_fun(
-      pirouette::create_sim_bd_twin_tree_fun()
+      pirouette::get_sim_bd_twin_tree_fun()
     )
   )
 })
