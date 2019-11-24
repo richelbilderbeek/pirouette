@@ -21,13 +21,11 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_sim_yule_twin_tree_fun <- function(
-  seed = 0,
   method = "random_tree",
   n_replicates = 1e4
 ) {
   pryr::partial(
     sim_yule_twin_tree,
-    seed = seed,
     method = method,
     n_replicates = n_replicates
   )

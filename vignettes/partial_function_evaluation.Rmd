@@ -118,7 +118,9 @@ a random coalescent tree with the same number of tips:
 ```{r}
 # Define my function
 my_fun = function(true_phylogeny) {
-  ape::rcoal(n = ape::Ntip(true_phylogeny))
+  new_phylo <- ape::rcoal(n = ape::Ntip(true_phylogeny))
+  new_phylo$tip.label <- true_phylogeny$tip.label
+  new_phylo
 }
 # Put my function in the twinning_params
 twinning_params <- pirouette::create_twinning_params(
