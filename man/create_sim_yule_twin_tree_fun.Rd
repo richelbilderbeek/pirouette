@@ -40,7 +40,7 @@ expect_true(
 )
 }
 \seealso{
-Use \link{create_sim_bd_twin_tree_fun} to get a partially
+Use \link{get_sim_bd_twin_tree_fun} to get a partially
 evaluated function to produce a Birth-Death tree.
 Use \link{create_copy_twin_tree_from_true_fun} to get a
 function to simply copy the tree

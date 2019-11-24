@@ -28,7 +28,7 @@ expect_equal(
 \seealso{
 Use \link{create_sim_yule_twin_tree_fun} to get a function to
 produce a Yule tree.
-Use \link{create_sim_bd_twin_tree_fun} to get a function to
+Use \link{get_sim_bd_twin_tree_fun} to get a function to
 produce a Birth-Death tree.
 }
 \author{
