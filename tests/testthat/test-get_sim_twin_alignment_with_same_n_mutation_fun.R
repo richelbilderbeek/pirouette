@@ -1,12 +1,12 @@
 test_that("use", {
-  f <- get_sim_twin_alignment_with_same_n_mutation_fun(
+  f <- pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
     max_n_tries = 1
   )
-  check_sim_twin_alignment_fun(f)
+  pirouette::check_sim_twin_alignment_fun(f)
 
-  true_alignment <- get_test_alignment()
-  root_sequence <- create_blocked_dna(
-    get_alignment_sequence_length(true_alignment)
+  true_alignment <- pirouette::get_test_alignment()
+  root_sequence <- pirouette::create_blocked_dna(
+    pirouette::get_alignment_sequence_length(true_alignment)
   )
 
   alignment <- NA
@@ -20,5 +20,5 @@ test_that("use", {
       root_sequence = root_sequence
     )
   })
-  expect_silent(check_alignment(alignment))
+  testthat::expect_silent(pirouette::check_alignment(alignment))
 })
