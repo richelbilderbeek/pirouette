@@ -38,5 +38,11 @@ check_sim_twin_tree_fun <- function(sim_twin_tree_fun) {
       "'sim_twin_tree_fun' must be a function that returns an ape::phylo"
     )
   }
+  # sim_twin_tree_fun must return an ultrametric tree
+  if (!ape::is.ultrametric(out)) {
+    stop(
+      "'sim_twin_tree_fun' must return an ultrametric tree"
+    )
+  }
 
 }
