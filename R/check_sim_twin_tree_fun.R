@@ -44,5 +44,14 @@ check_sim_twin_tree_fun <- function(sim_twin_tree_fun) {
       "'sim_twin_tree_fun' must return an ultrametric tree"
     )
   }
-
+  # sim_twin_tree_fun must return a tree with the same number of taxa
+  test_true_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  if (
+    ape::Ntip(test_true_phylogeny) !=
+    ape::Ntip(sim_twin_tree_fun(test_true_phylogeny))
+  ) {
+    stop(
+      "'sim_twin_tree_fun' must return a tree with the same number of taxa"
+    )
+  }
 }

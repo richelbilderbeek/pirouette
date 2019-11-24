@@ -54,12 +54,10 @@ test_that("abuse", {
     "'sim_twin_tree_fun' must return a tree with the same taxon labels"
   )
 
-  skip("Issue 346, Issue #346")
   testthat::expect_error(
     pirouette::check_sim_twin_tree_fun(
       sim_twin_tree_fun = function(true_phylogeny) {
-        # STUB: add one taxon to the true phylogeny
-        true_phylogeny
+        phytools::bind.tip(tree = true_phylogeny, tip.label = "t_new")
       }
     ),
     "'sim_twin_tree_fun' must return a tree with the same number of taxa"
@@ -67,7 +65,9 @@ test_that("abuse", {
 
   testthat::expect_error(
     pirouette::check_sim_twin_tree_fun(
-      sim_twin_tree_fun = function(true_phylogeny = "irrelevant") {
+      sim_twin_tree_fun = function(
+        true_phylogeny = "irrelevant"
+      ) {
         ape::rtree(10) # A non-ultrametric tree
       }
     ),
