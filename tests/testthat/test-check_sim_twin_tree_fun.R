@@ -43,12 +43,15 @@ test_that("abuse", {
     ),
     "'sim_twin_tree_fun' must be a function that returns an ape::phylo"
   )
-  skip("Issue 345, Issue #345")
+
+  true_phylogeny <-
+    DDD:::dd_sim(pars = c(0.4, 0.1, Inf), age = 3, ddmodel = 1)$tes
   testthat::expect_error(
     pirouette::check_sim_twin_tree_fun(
       sim_twin_tree_fun = function(true_phylogeny) {
-        # STUB: modify the taxon labels, e.g. adding a character to each
-        true_phylogeny
+        true_phylogeny2 <- true_phylogeny
+        true_phylogeny2$tip.label <- paste0(true_phylogeny$tip.label, "h")
+        true_phylogeny2
       }
     ),
     "'sim_twin_tree_fun' must return a tree with the same taxon labels"
