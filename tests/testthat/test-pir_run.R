@@ -189,7 +189,7 @@ test_that("most_evidence, one candidate", {
       run_if = "best_candidate",
       do_measure_evidence = TRUE
     ),
-    inference_model = pirouette::create_inference_model(
+    inference_model = beautier::create_inference_model(
       tree_prior = beautier::create_yule_tree_prior(),
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     ),
