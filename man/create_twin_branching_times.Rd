@@ -5,12 +5,9 @@
 \title{Generate twin branching times given estimated lambda and mu and the original
   tree}
 \usage{
-create_twin_branching_times(seed, lambda, mu, phylogeny, n_replicates,
-  method)
+create_twin_branching_times(lambda, mu, phylogeny, n_replicates, method)
 }
 \arguments{
-\item{seed}{a random number generator seed}
-
 \item{lambda}{per-lineage speciation rate}
 
 \item{mu}{per-species extinction rate}
@@ -40,7 +37,6 @@ Generate twin branching times given estimated lambda and mu and the original
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
 branching_times <- create_twin_branching_times(
-  seed = 314,
   lambda = 0.1,
   mu = 1.0,
   phylogeny = phylogeny,

@@ -4,14 +4,12 @@
 \alias{sim_yule_twin_tree}
 \title{Create a twin tree from a phylogeny using a Yule process}
 \usage{
-sim_yule_twin_tree(true_phylogeny, seed = 0, method = "random_tree",
+sim_yule_twin_tree(true_phylogeny, method = "random_tree",
   n_replicates = 10000)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary
 history of the species, of class \link[ape]{phylo}}
-
-\item{seed}{a random number generator seed}
 
 \item{method}{determines how to create the twin tree
 \itemize{

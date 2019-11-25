@@ -21,7 +21,7 @@ check_twinning_params <- function(
   pirouette::check_twinning_params_names(twinning_params)
 
   pirouette::check_sim_twin_tree_fun(
-    twinning_params$sim_twin_tree_fun
+    sim_twin_tree_fun = twinning_params$sim_twin_tree_fun
   )
   pirouette::check_sim_twin_alignment_fun(
     twinning_params$sim_twin_alignment_fun

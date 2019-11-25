@@ -32,7 +32,6 @@
 #' @export
 sim_yule_twin_tree <- function(
   true_phylogeny,
-  seed = 0,
   method = "random_tree",
   n_replicates = 1e4
 ) {
@@ -69,9 +68,8 @@ sim_yule_twin_tree <- function(
   testit::assert(beautier::is_one_double(lambda_yule))
 
   # generate bd branching times from the inferred parameters
-  yule_brts0 <- create_twin_branching_times(
+  yule_brts0 <- pirouette::create_twin_branching_times(
     phylogeny = phylogeny,
-    seed = seed,
     lambda = lambda_yule,
     mu = mu_yule,
     n_replicates = n_replicates,

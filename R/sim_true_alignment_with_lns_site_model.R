@@ -1,15 +1,15 @@
-#' Create an alignment with the \code{linked_node_sub} site model
+#' Create an alignment with the \code{lns} site model
 #' @return an alignment of type \code{DNAbin}
 #' @inheritParams default_params_doc
 #' @seealso
-#' Use \link{sim_true_alignment_with_unlinked_node_sub_site_model}
+#' Use \link{sim_true_alignment_with_uns_site_model}
 #' to simulate the true alignment with an unlinked node substitution model.
-#' Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+#' Use \link{sim_twin_alignment_with_lns_site_model}
 #' to simulate the twin alignment with an linked node substitution model.
-#' Use \link{get_sim_true_alignment_with_linked_node_sub_site_model_fun}
+#' Use \link{get_sim_true_alignment_with_lns_site_model_fun}
 #' to get a partially evaluated unary function.
 #' @export
-sim_true_alignment_with_linked_node_sub_site_model <- function(
+sim_true_alignment_with_lns_site_model <- function(
   true_phylogeny,
   root_sequence,
   subst_matrix = NULL,

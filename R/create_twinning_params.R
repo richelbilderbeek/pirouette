@@ -31,7 +31,7 @@
 #' @export
 create_twinning_params <- function(
   rng_seed_twin_tree = 0,
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(),
+  sim_twin_tree_fun = get_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
   sim_twin_alignment_fun =
     get_sim_twin_alignment_with_std_site_model_fun(),

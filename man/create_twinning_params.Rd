@@ -5,7 +5,7 @@
 \title{Create the parameters for the twinning simulation}
 \usage{
 create_twinning_params(rng_seed_twin_tree = 0,
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(),
+  sim_twin_tree_fun = get_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
   sim_twin_alignment_fun = get_sim_twin_alignment_with_std_site_model_fun(),
   twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
@@ -27,7 +27,7 @@ Some standard functions:\cr
     Yule (aka Pure Birth) process
   \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
     that copies the true tree
-  \item Use \link{create_sim_bd_twin_tree_fun} to use a
+  \item Use \link{get_sim_bd_twin_tree_fun} to use a
     Birth-Death process
 }}
 
@@ -59,10 +59,10 @@ Some standard functions:\cr
     (\link{sim_twin_alignment_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
-  \item Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+  \item Use \link{sim_twin_alignment_with_lns_site_model}
     that simulates a twin alignment using a linked node substitution
     model
-  \item Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+  \item Use \link{sim_twin_alignment_with_uns_site_model}
     that simulates a twin alignment using an unlinked node substitution
     model
 }}

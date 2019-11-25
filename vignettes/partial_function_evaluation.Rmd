@@ -59,7 +59,7 @@ To create a twin tree from the true tree using the
 default settings is easily done by calling `create_twin_tree`:
 
 ```{r}
-twin_tree <- create_twin_tree(true_phylogeny)
+twin_tree <- pirouette::create_twin_tree(true_phylogeny)
 ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
@@ -67,14 +67,14 @@ The `create_twin_tree` function creates the twin tree in the way specified
 in its other function argument: the `twinning_params`:
 
 ```{r}
-twinning_params <- create_twinning_params()
+twinning_params <- pirouette::create_twinning_params()
 ```
 
 Calling `create_twin_tree` results in the same twin tree (yes, 
 go ahead and check!):
 
 ```{r}
-twin_tree <- create_twin_tree(
+twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
@@ -86,20 +86,20 @@ ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 How to specify *how* the twin tree is created? Set the value 
 for the `twinning_params$sim_twin_tree_fun`!
 
-I'll demonstrate using the `create_sim_bd_twin_tree_fun`
+I'll demonstrate using the `get_sim_bd_twin_tree_fun`
 which produces a function that simulates a twin tree using a Birth-Death
 speciation model:
 
 ```{r}
-twinning_params <- create_twinning_params(
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun()
+twinning_params <- pirouette::create_twinning_params(
+  sim_twin_tree_fun = pirouette::get_sim_bd_twin_tree_fun()
 )
 ```
 
 Proceed as usual here to simulate the twin tree:
 
 ```{r}
-twin_tree <- create_twin_tree(
+twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
@@ -118,14 +118,16 @@ a random coalescent tree with the same number of tips:
 ```{r}
 # Define my function
 my_fun = function(true_phylogeny) {
-  ape::rcoal(n = ape::Ntip(true_phylogeny))
+  new_phylo <- ape::rcoal(n = ape::Ntip(true_phylogeny))
+  new_phylo$tip.label <- true_phylogeny$tip.label
+  new_phylo
 }
 # Put my function in the twinning_params
-twinning_params <- create_twinning_params(
+twinning_params <- pirouette::create_twinning_params(
   sim_twin_tree_fun = my_fun
 )
 # Create a twin tree using my function
-twin_tree <- create_twin_tree(
+twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
@@ -150,7 +152,7 @@ We cannot simply plug it in:
 
 ```{r}
 tryCatch(
-  create_twinning_params(
+  pirouette::create_twinning_params(
     sim_twin_tree_fun = sim_bd_twin_tree
   ),
   error = function(e) {
@@ -170,11 +172,11 @@ sim_twin_tree_fun <- pryr::partial(
   n_replicates = 1
 )
 # Create twinning_params with my function 
-twinning_params <- create_twinning_params(
+twinning_params <- pirouette::create_twinning_params(
   sim_twin_tree_fun = sim_twin_tree_fun
 )
 # Create a twin tree using my function
-twin_tree <- create_twin_tree(
+twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
@@ -182,19 +184,19 @@ twin_tree <- create_twin_tree(
 ape::plot.phylo(twin_tree, main = "Twin phylogeny")
 ```
 
-There is a helper function called `create_sim_bd_twin_tree_fun`
+There is a helper function called `get_sim_bd_twin_tree_fun`
 that does the same partial function evaluation for you:
 
 ```{r}
 # Create twinning_params with my function 
-twinning_params <- create_twinning_params(
-  sim_twin_tree_fun = create_sim_bd_twin_tree_fun(
+twinning_params <- pirouette::create_twinning_params(
+  sim_twin_tree_fun = pirouette::get_sim_bd_twin_tree_fun(
     method = "random_tree",
     n_replicates = 1
   )
 )
 # Create a twin tree using my function
-twin_tree <- create_twin_tree(
+twin_tree <- pirouette::create_twin_tree(
   phylogeny = true_phylogeny,
   twinning_params = twinning_params
 )
@@ -208,8 +210,8 @@ Now using a Yule model:
 
 ```{r}
 # Create twinning_params with my function 
-twinning_params <- create_twinning_params(
-  sim_twin_tree_fun = create_sim_yule_twin_tree_fun(
+twinning_params <- pirouette::create_twinning_params(
+  sim_twin_tree_fun = pirouette::create_sim_yule_twin_tree_fun(
     method = "random_tree",
     n_replicates = 1
   )
@@ -229,8 +231,8 @@ Now using a copy function:
 
 ```{r}
 # Create twinning_params
-twinning_params <- create_twinning_params(
-  sim_twin_tree_fun = create_copy_twin_tree_from_true_fun()
+twinning_params <- pirouette::create_twinning_params(
+  sim_twin_tree_fun = pirouette::create_copy_twin_tree_from_true_fun()
 )
 # Create a twin tree using my function
 twin_tree <- create_twin_tree(
@@ -257,17 +259,17 @@ ape::plot.phylo(true_phylogeny, main = "True phylogeny")
 Also, we'll specify a root sequence:
 
 ```{r}
-root_sequence <- create_blocked_dna(length = 16)
+root_sequence <- pirouette::create_blocked_dna(length = 16)
 ```
 
 We want to create a true alignment from it. There is a function that does
 so:
 
 ```{r}
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   root_sequence = root_sequence  
 )
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -278,11 +280,11 @@ How to specify *how* the true alignment is created? Use
 the `alignment_params$sim_true_alignment_fun`:
 
 ```{r}
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun = sim_true_alignment_with_std_site_model,
   root_sequence = root_sequence  
 )
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -311,12 +313,12 @@ my_fun <- function(
   ape::as.DNAbin(sequences)
 }
 # Putting my function in the alignment_params
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun = my_fun,
   root_sequence = root_sequence  
 )
 # Simulate the true alignment using my function
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -350,11 +352,11 @@ head(sim_true_alignment_fun)
 ```
 
 ```{r}
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun = sim_true_alignment_fun,
   root_sequence = root_sequence  
 )
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -365,15 +367,15 @@ Instead of doing the partial function evaluation yourself, `pirouette`
 supplies this function as `get_sim_true_alignment_with_std_site_model_fun`:
 
 ```{r}
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun = 
-    get_sim_true_alignment_with_std_site_model_fun(
+    pirouette::get_sim_true_alignment_with_std_site_model_fun(
     mutation_rate = 0.5,                     
     site_model = beautier::create_hky_site_model()
   ),
   root_sequence = root_sequence
 )
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -381,18 +383,18 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Or to use the linked node substitution model, use
-`get_sim_true_alignment_with_linked_node_sub_site_model_fun`:
+`get_sim_true_alignment_with_lns_site_model_fun`:
 
 ```{r}
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun = 
-    get_sim_true_alignment_with_linked_node_sub_site_model_fun(
+    pirouette::get_sim_true_alignment_with_lns_site_model_fun(
     branch_mutation_rate = 0.1,
     node_mutation_rate = 0.2
   ),
   root_sequence = root_sequence
 )
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -400,19 +402,19 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Or to use the unlinked node substitution model, use
-`get_sim_true_alignment_with_unlinked_node_sub_site_model_fun`:
+`get_sim_true_alignment_with_uns_site_model_fun`:
 
 ```{r}
-alignment_params <- create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   sim_true_alignment_fun = 
-    get_sim_true_alignment_with_unlinked_node_sub_site_model_fun(
-    branch_mutation_rate = 1.0,
-    node_mutation_rate = 2.0,
-    node_time = 0.1
-  ),
+    pirouette::get_sim_true_alignment_with_uns_site_model_fun(
+      branch_mutation_rate = 1.0,
+      node_mutation_rate = 2.0,
+      node_time = 0.1
+    ),
   root_sequence = root_sequence  
 )
-true_alignment <- sim_true_alignment(
+true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
   alignment_params = alignment_params
 )
@@ -443,13 +445,13 @@ ape::plot.phylo(twin_phylogeny, main = "Twin phylogeny")
 The root sequence is short and simple:
 
 ```{r}
-root_sequence <- create_blocked_dna(length = 20)
+root_sequence <- pirouette::create_blocked_dna(length = 20)
 ```
 
 As a true alignment, we'll use something equally simple:
 
 ```{r}
-true_alignment <- get_test_alignment(
+true_alignment <- pirouette::get_test_alignment(
   n_taxa = ape::Ntip(true_phylogeny),
   sequence_length = nchar(root_sequence)
 )
@@ -479,16 +481,16 @@ my_fun <- function(
 Put this function in the `twinning_params`:
 
 ```{r}
-twinning_params <- create_twinning_params(
+twinning_params <- pirouette::create_twinning_params(
   sim_twin_alignment_fun = my_fun  
 )
 ```
 
 ```{r}
-twin_alignment <- sim_twin_alignment(
+twin_alignment <- pirouette::sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(
+  alignment_params = pirouette::create_test_alignment_params(
     root_sequence = root_sequence  
   ),
   twinning_params = twinning_params
@@ -513,17 +515,17 @@ sim_twin_align_fun <- pryr::partial(
   mutation_rate = 0.1
 )
 head(sim_twin_align_fun)
-check_sim_twin_alignment_fun(sim_twin_align_fun)
+pirouette::check_sim_twin_alignment_fun(sim_twin_align_fun)
 ```
 
 Plugging it in:
 
 ```{r}
-twin_alignment <- sim_twin_alignment(
+twin_alignment <- pirouette::sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(),
-  twinning_params = create_twinning_params(
+  alignment_params = pirouette::create_test_alignment_params(),
+  twinning_params = pirouette::create_twinning_params(
     sim_twin_alignment_fun = sim_twin_align_fun
   )
 )
@@ -535,14 +537,15 @@ partial function evaluation for you:
 
 
 ```{r}
-twin_alignment <- sim_twin_alignment(
+twin_alignment <- pirouette::sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(),
-  twinning_params = create_twinning_params(
-    sim_twin_alignment_fun = get_sim_twin_alignment_with_std_site_model_fun(
-      mutation_rate = 0.1
-    )
+  alignment_params = pirouette::create_test_alignment_params(),
+  twinning_params = pirouette::create_twinning_params(
+    sim_twin_alignment_fun =
+      pirouette::get_sim_twin_alignment_with_std_site_model_fun(
+        mutation_rate = 0.1
+      )
   )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
@@ -564,19 +567,19 @@ sim_twin_align_fun <- pryr::partial(
   mutation_rate = 0.5
 )
 head(sim_twin_align_fun)
-check_sim_twin_alignment_fun(sim_twin_align_fun)
+pirouette::check_sim_twin_alignment_fun(sim_twin_align_fun)
 ```
 
 Plugging it in:
 
 ```{r}
-twin_alignment <- sim_twin_alignment(
+twin_alignment <- pirouette::sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(
+  alignment_params = pirouette::create_test_alignment_params(
     root_sequence = root_sequence
   ),
-  twinning_params = create_twinning_params(
+  twinning_params = pirouette::create_twinning_params(
     sim_twin_alignment_fun = sim_twin_align_fun
   )
 )
@@ -588,14 +591,15 @@ partial function evaluation for you:
 
 
 ```{r}
-twin_alignment <- sim_twin_alignment(
+twin_alignment <- pirouette::sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
-  alignment_params = create_test_alignment_params(),
-  twinning_params = create_twinning_params(
-    sim_twin_alignment_fun = get_sim_twin_alignment_with_std_site_model_fun(
-      mutation_rate = 0.1
-    )
+  alignment_params = pirouette::create_test_alignment_params(),
+  twinning_params = pirouette::create_twinning_params(
+    sim_twin_alignment_fun =
+      pirouette::get_sim_twin_alignment_with_std_site_model_fun(
+        mutation_rate = 0.1
+      )
   )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)

@@ -26,10 +26,10 @@ which can be:
     as created by \link[beautier]{create_site_model}
   }
   \item{
-    \code{linked_node_sub}: a linked node-substitution model
+    \code{lns}: a linked node-substitution model
   }
   \item{
-    \code{unlinked_node_sub}: an unlinked node-substitution model
+    \code{uns}: an unlinked node-substitution model
   }
 }}
 }

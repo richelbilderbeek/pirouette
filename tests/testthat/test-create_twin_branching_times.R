@@ -4,24 +4,27 @@ test_that("use", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-  branching_times <- create_twin_branching_times(
-    seed = 314,
+  set.seed(314)
+  branching_times <- pirouette::create_twin_branching_times(
     lambda = 0.1,
     mu = 1.0,
     phylogeny = phylogeny,
     n_replicates = 1,
     method = "random_tree"
   )
-  expect_equal(length(ape::branching.times(phylogeny)), length(branching_times))
+  testthat::expect_equal(
+    length(ape::branching.times(phylogeny)), length(branching_times)
+  )
+
 })
 
 test_that("all methods must be OK", {
 
   methods <- c("random_tree", "max_clade_cred", "max_likelihood")
   for (method in methods) {
-    expect_silent(
-      create_twin_branching_times(
-        seed = 314,
+    set.seed(314)
+    testthat::expect_silent(
+      pirouette::create_twin_branching_times(
         lambda = 0.1,
         mu = 1.0,
         phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
@@ -30,13 +33,14 @@ test_that("all methods must be OK", {
       )
     )
   }
+
 })
 
 test_that("abuse", {
 
-  expect_silent(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_silent(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = 1.0,
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -45,33 +49,9 @@ test_that("abuse", {
     )
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = "nonsense",
-      lambda = 0.1,
-      mu = 1.0,
-      phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
-      n_replicates = 1,
-      method = "random_tree"
-    ),
-    "'seed' must be one numerical value"
-  )
-
-  expect_error(
-    create_twin_branching_times(
-      seed = c(1, 2), # nonsense
-      lambda = 0.1,
-      mu = 1.0,
-      phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
-      n_replicates = 1,
-      method = "random_tree"
-    ),
-    "'seed' must be one numerical value"
-  )
-
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = "nonsense",
       mu = 1.0,
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -81,9 +61,9 @@ test_that("abuse", {
     "'lambda' must be one numerical value"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = c(1, 2),
       mu = 1.0,
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -93,9 +73,9 @@ test_that("abuse", {
     "'lambda' must be one numerical value"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = "nonsense",
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -105,9 +85,9 @@ test_that("abuse", {
     "'mu' must be one numerical value"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = c(1, 2),
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -117,9 +97,9 @@ test_that("abuse", {
     "'mu' must be one numerical value"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = 1.0,
       phylogeny = "nonsense",
@@ -129,9 +109,9 @@ test_that("abuse", {
     "phylogeny' must be a valid phylogeny"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = 1.0,
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -141,9 +121,9 @@ test_that("abuse", {
     "'n_replicates' must be one numerical value"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = 1.0,
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -153,9 +133,9 @@ test_that("abuse", {
     "'n_replicates' must be one numerical value"
   )
 
-  expect_error(
-    create_twin_branching_times(
-      seed = 314,
+  set.seed(314)
+  testthat::expect_error(
+    pirouette::create_twin_branching_times(
       lambda = 0.1,
       mu = 1.0,
       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
@@ -164,28 +144,30 @@ test_that("abuse", {
     ),
     "'method' not in the supported methods"
   )
+
 })
 
 test_that("use", {
 
   skip("Cannot create branching times for a Yule tree, #342")
+  # TODO: Issue #342: This test makes no sense.
+
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-  yule_branching_times <- create_twin_branching_times(
-    seed = 314,
+  yule_branching_times <- pirouette::create_twin_branching_times(
     lambda = 0.0,
     mu = 1.0,
     phylogeny = phylogeny,
     n_replicates = 1,
     method = "random_tree"
   )
-  bd_branching_times <- create_twin_branching_times(
-    seed = 314,
+  bd_branching_times <- pirouette::create_twin_branching_times(
     lambda = 0.1,
     mu = 1.0,
     phylogeny = phylogeny,
     n_replicates = 1,
     method = "random_tree"
   )
-  expect_equal(yule_branching_times, bd_branching_times)
+  testthat::expect_equal(yule_branching_times, bd_branching_times)
+
 })

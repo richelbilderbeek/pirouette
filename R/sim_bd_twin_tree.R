@@ -27,13 +27,12 @@
 #' )
 #' @seealso
 #' Use \link{sim_yule_twin_tree} to simulate a Yule twin tree
-#' Use \link{create_sim_bd_twin_tree_fun} to get a partially
+#' Use \link{get_sim_bd_twin_tree_fun} to get a partially
 #' evaluated function to use in the \code{twinning_params} (as
 #' created by \link{create_twinning_params})
 #' @export
 sim_bd_twin_tree <- function(
   true_phylogeny,
-  seed = 0,
   method = "random_tree",
   n_replicates = 1e4
 ) {
@@ -95,9 +94,9 @@ sim_bd_twin_tree <- function(
   testit::assert(beautier::is_one_double(mu_bd))
 
   # generate bd branching times from the inferred parameters
+  # TODO: issue #353: remove seed from "create_twin_branching_times" too?
   bd_brts0 <- pirouette::create_twin_branching_times(
     phylogeny = phylogeny,
-    seed = seed,
     lambda = lambda_bd,
     mu = mu_bd,
     n_replicates = n_replicates,

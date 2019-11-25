@@ -4,12 +4,10 @@
 \alias{create_sim_yule_twin_tree_fun}
 \title{Create a partially evaluated function to to \link{sim_yule_twin_tree}.}
 \usage{
-create_sim_yule_twin_tree_fun(seed = 0, method = "random_tree",
+create_sim_yule_twin_tree_fun(method = "random_tree",
   n_replicates = 10000)
 }
 \arguments{
-\item{seed}{a random number generator seed}
-
 \item{method}{determines how to create the twin tree
 \itemize{
     \item 'random_tree' just produces a random tree;
@@ -40,7 +38,7 @@ expect_true(
 )
 }
 \seealso{
-Use \link{create_sim_bd_twin_tree_fun} to get a partially
+Use \link{get_sim_bd_twin_tree_fun} to get a partially
 evaluated function to produce a Birth-Death tree.
 Use \link{create_copy_twin_tree_from_true_fun} to get a
 function to simply copy the tree

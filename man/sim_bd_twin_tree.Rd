@@ -4,14 +4,12 @@
 \alias{sim_bd_twin_tree}
 \title{Simulate a Birth-Death (BD) twin tree from the true phylogeny}
 \usage{
-sim_bd_twin_tree(true_phylogeny, seed = 0, method = "random_tree",
+sim_bd_twin_tree(true_phylogeny, method = "random_tree",
   n_replicates = 10000)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary
 history of the species, of class \link[ape]{phylo}}
-
-\item{seed}{a random number generator seed}
 
 \item{method}{determines how to create the twin tree
 \itemize{
@@ -57,7 +55,7 @@ expect_equal(
 }
 \seealso{
 Use \link{sim_yule_twin_tree} to simulate a Yule twin tree
-Use \link{create_sim_bd_twin_tree_fun} to get a partially
+Use \link{get_sim_bd_twin_tree_fun} to get a partially
 evaluated function to use in the \code{twinning_params} (as
 created by \link{create_twinning_params})
 }

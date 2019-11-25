@@ -1,14 +1,14 @@
 #' Adapter function to simulte the twin alignment
-#' using the \code{linked_node_sub} site model
+#' using the \code{lns} site model
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @seealso
-#' Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+#' Use \link{sim_twin_alignment_with_uns_site_model}
 #' to simulate using an unlinked node substitution model.
-#' Use \link{sim_true_alignment_with_linked_node_sub_site_model}
+#' Use \link{sim_true_alignment_with_lns_site_model}
 #' to simulate a true alignment.
 #' @export
-sim_twin_alignment_with_linked_node_sub_site_model <- function(
+sim_twin_alignment_with_lns_site_model <- function(
   twin_phylogeny,
   true_alignment = "irrelevant",
   root_sequence,

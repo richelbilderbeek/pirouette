@@ -33,10 +33,10 @@ Some standard functions:\cr
     (\link{sim_twin_alignment_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
-  \item Use \link{sim_twin_alignment_with_linked_node_sub_site_model}
+  \item Use \link{sim_twin_alignment_with_lns_site_model}
     that simulates a twin alignment using a linked node substitution
     model
-  \item Use \link{sim_twin_alignment_with_unlinked_node_sub_site_model}
+  \item Use \link{sim_twin_alignment_with_uns_site_model}
     that simulates a twin alignment using an unlinked node substitution
     model
 }}

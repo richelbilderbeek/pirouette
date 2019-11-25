@@ -13,7 +13,7 @@ test_that("Twin tree should be BD by default, #161", {
 
   # Create using BD function
   set.seed(42)
-  bd_twin_tree <- create_sim_bd_twin_tree_fun()(tree)
+  bd_twin_tree <- get_sim_bd_twin_tree_fun()(tree)
 
   expect_equal(
     ape::branching.times(twin_tree),

@@ -5,7 +5,7 @@
 #' @inheritParams default_params_doc
 #' @return a function
 #' @seealso
-#' Use \link{create_sim_bd_twin_tree_fun} to get a partially
+#' Use \link{get_sim_bd_twin_tree_fun} to get a partially
 #' evaluated function to produce a Birth-Death tree.
 #' Use \link{create_copy_twin_tree_from_true_fun} to get a
 #' function to simply copy the tree
@@ -21,13 +21,11 @@
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_sim_yule_twin_tree_fun <- function(
-  seed = 0,
   method = "random_tree",
   n_replicates = 1e4
 ) {
   pryr::partial(
     sim_yule_twin_tree,
-    seed = seed,
     method = method,
     n_replicates = n_replicates
   )
