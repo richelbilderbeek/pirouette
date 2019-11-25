@@ -20,7 +20,7 @@ test_that("generative", {
 
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-  experiment <- create_test_gen_experiment()
+  experiment <- pirouette::create_test_gen_experiment()
   experiments <- list(experiment)
 
   # Create and bundle the parameters
@@ -95,7 +95,7 @@ test_that("nodeSub: true and twin alignments must differ", {
   )
   pirouette::check_alignment_params(alignment_params)
 
-  experiment <- create_test_gen_experiment()
+  experiment <- pirouette::create_test_gen_experiment()
   pirouette::check_experiment(experiment)
 
   experiments <- list(experiment)
@@ -116,7 +116,7 @@ test_that("nodeSub: true and twin alignments must differ", {
   )
 
   # Run pirouette
-  errors <- pir_run(
+  errors <- pirouette::pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
@@ -325,7 +325,7 @@ test_that("most_evidence, with twinning", {
     ),
     beast2_options = beast2_options,
     errors_filename = errors_filename,
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0)
+    est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 100.0)
   )
   experiment_bd <- pirouette::create_experiment(
     inference_conditions = pirouette::create_inference_conditions(
@@ -365,6 +365,7 @@ test_that("most_evidence, with twinning", {
   testthat::expect_true("candidate" %in% errors$inference_model)
 
   testthat::expect_true(all(errors$inference_model_weight > 0.0))
+
 })
 
 test_that("Abuse", {
