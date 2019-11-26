@@ -50,7 +50,7 @@ test_that("abuse", {
     pirouette::check_sim_twin_tree_fun(
       sim_twin_tree_fun = function(true_phylogeny) {
         true_phylogeny2 <- true_phylogeny
-        true_phylogeny2$tip.label <- paste0(true_phylogeny$tip.label, "h")
+        true_phylogeny2$tip.label <- paste0(true_phylogeny$tip.label, "h") # nolint ape uses dots in variabele names
         true_phylogeny2
       }
     ),

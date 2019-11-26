@@ -35,7 +35,9 @@ test_that("use, gen and cand", {
   filenames <- pirouette::get_experiments_filenames(experiments)
   for (experiment in experiments) {
     expect_true(experiment$beast2_options$input_filename %in% filenames)
-    expect_true(experiment$inference_model$mcmc$tracelog$filename %in% filenames)
+    expect_true(
+      experiment$inference_model$mcmc$tracelog$filename %in% filenames
+    )
     expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames)
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)

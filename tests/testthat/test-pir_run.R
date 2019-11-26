@@ -82,6 +82,31 @@ test_that("generative", {
 
 })
 
+test_that("short run with unusual logging intervals", {
+
+  if (!beastier::is_on_travis()) return()
+  if (!beastier::is_beast2_installed()) return()
+  skip("#364")
+  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
+
+  experiment <- pirouette::create_test_gen_experiment()
+  experiments <- list(experiment)
+
+  # Create and bundle the parameters
+  pir_params <- pirouette::create_pir_params(
+    alignment_params = pirouette::create_test_alignment_params(),
+    experiments = experiments
+  )
+
+  # Run pirouette
+  expect_silent(
+    pir_run(
+      phylogeny = phylogeny,
+      pir_params = pir_params
+    )
+  )
+})
+
 test_that("nodeSub: true and twin alignments must differ", {
 
   if (!beastier::is_on_travis()) return()
