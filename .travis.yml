@@ -19,15 +19,14 @@ matrix:
     os: linux
   - r: devel
     os: linux
-  #- r: release
-  #  os: osx
+  - r: release
+    os: osx
 
 
 r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  - MangoTheCat/goodpractice
   - ropensci/beautier
   - ropensci/tracerer
   - ropensci/beastier
