@@ -55,9 +55,27 @@ test_that("abuse", {
       burn_in_fraction = "nonsense"
     )
   )
+  skip("Issue 371, Issue $371")
+  # Use 'error_funs' instead of 'error_fun', to allow for more error functions
   expect_error(
     create_error_measure_params(
-      error_fun = "nonsense"
+      error_funs = "nonsense"
+    )
+  )
+})
+
+test_that("allow to add more errors", {
+
+  skip("Issue 371, Issue $371")
+  # Use 'error_funs' instead of 'error_fun', to allow for more error functions
+  expect_silent(
+    create_error_measure_params(
+      error_funs = get_nltt_error_fun()
+    )
+  )
+  expect_silent(
+    create_error_measure_params(
+      error_funs = list(get_nltt_error_fun(), get_nltt_error_fun())
     )
   )
 })
