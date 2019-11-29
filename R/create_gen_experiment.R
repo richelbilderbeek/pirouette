@@ -48,7 +48,7 @@ create_gen_experiment <- function(
     mcmc = beautier::create_mcmc(store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options(),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 1e-12),
+  est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
 ) {
   pirouette::create_experiment(

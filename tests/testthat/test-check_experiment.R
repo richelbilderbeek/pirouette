@@ -58,7 +58,7 @@ test_that("wrong parameter values", {
     check_experiment(
       create_experiment(
         inference_model = create_inference_model(
-          mcmc = create_nested_sampling_mcmc()
+          mcmc = create_ns_mcmc()
         )
       )
     ),

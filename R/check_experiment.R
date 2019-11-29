@@ -82,7 +82,7 @@ check_experiment <- function(
   if (!beautier::is_nested_sampling_mcmc(experiment$est_evidence_mcmc)) {
     stop(
       "'est_evidence_mcmc' must be a Nested Sampling MCMC.\n",
-      "Tip: use 'beautier::create_nested_sampling_mcmc'\n",
+      "Tip: use 'beautier::create_ns_mcmc'\n",
       "Value: ", experiment$est_evidence_mcmc
     )
   }

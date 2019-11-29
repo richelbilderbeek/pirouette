@@ -219,7 +219,7 @@ test_that("most_evidence, one candidate", {
       mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
     ),
     beast2_options = beastier::create_beast2_options(rng_seed = 314),
-    est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 100.0)
+    est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule)
 
@@ -350,7 +350,7 @@ test_that("most_evidence, with twinning", {
     ),
     beast2_options = beast2_options,
     errors_filename = errors_filename,
-    est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 100.0)
+    est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 100.0)
   )
   experiment_bd <- pirouette::create_experiment(
     inference_conditions = pirouette::create_inference_conditions(
@@ -364,7 +364,7 @@ test_that("most_evidence, with twinning", {
     ),
     beast2_options = beast2_options,
     errors_filename = errors_filename,
-    est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 100.0)
+    est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 100.0)
   )
   experiments <- list(experiment_yule, experiment_bd)
   pirouette::check_experiments(experiments)

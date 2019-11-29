@@ -32,7 +32,7 @@
 #'   the evidence (aka marginal likelihood),
 #'   as can be created by \link[beastier]{create_beast2_options}.
 #'   The MCMC must be a Nested Sampling MCMC,
-#'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
+#'   as can be created by \link[beautier]{create_ns_mcmc}.
 #' @param beast2_output_log_filename name of the log file created by BEAST2,
 #'   containing the parameter estimates in time.
 #'   By default, this file is put a temporary folder with a random filename,
@@ -120,7 +120,7 @@
 #' @param est_evidence_mcmc MCMC used in the estimation of
 #'   the evidence (aka marginal likelihood).
 #'   The MCMC must be a Nested Sampling MCMC,
-#'   as can be created by \link[beautier]{create_nested_sampling_mcmc}.
+#'   as can be created by \link[beautier]{create_ns_mcmc}.
 #' @param evidence_epsilon relative error in estimating the
 #'   evidence (aka marginal likelihood).
 #' @param evidence_filename filename to store the estimated
