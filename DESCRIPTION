@@ -39,6 +39,7 @@ Imports:
     plyr,
     pryr,
     rappdirs,
+    remotes,
     Rmpfr,
     stringr,
     TESS,
