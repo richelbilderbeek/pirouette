@@ -9,9 +9,8 @@
   inference_model = beautier::create_inference_model(mcmc =
   beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon =
-  1e-12), errors_filename = tempfile(pattern = "errors_", fileext =
-  ".csv"))
+  est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
+  errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model
@@ -27,7 +26,7 @@ as can be created by \link[beastier]{create_beast2_options}}
 \item{est_evidence_mcmc}{MCMC used in the estimation of
 the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
-as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+as can be created by \link[beautier]{create_ns_mcmc}.}
 
 \item{errors_filename}{baseline name for errors filenames}
 }

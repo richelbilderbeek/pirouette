@@ -10,8 +10,8 @@ create_experiment(inference_conditions = create_inference_conditions(),
   beast2_options = beastier::create_beast2_options(input_filename =
   beastier::create_temp_input_filename(), output_state_filename =
   beastier::create_temp_state_filename()),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon =
-  1e-12), beast2_bin_path = beastier::get_default_beast2_bin_path(),
+  est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
+  beast2_bin_path = beastier::get_default_beast2_bin_path(),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
 }
 \arguments{
@@ -28,7 +28,7 @@ as can be created by \link[beastier]{create_beast2_options}}
 \item{est_evidence_mcmc}{MCMC used in the estimation of
 the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
-as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+as can be created by \link[beautier]{create_ns_mcmc}.}
 
 \item{beast2_bin_path}{path to BEAST2 binary file. The use of the
 binary BEAST2 file is required for estimation of the evidence (aka

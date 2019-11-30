@@ -228,7 +228,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
       tree_prior = create_yule_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+    est_evidence_mcmc = create_ns_mcmc(epsilon = 100.0),
     beast2_options = beast2_options,
     errors_filename = errors_filename
   )
@@ -242,7 +242,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
       tree_prior = create_bd_tree_prior(),
       mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
     ),
-    est_evidence_mcmc = create_nested_sampling_mcmc(epsilon = 100.0),
+    est_evidence_mcmc = create_ns_mcmc(epsilon = 100.0),
     beast2_options = beast2_options,
     errors_filename = errors_filename
   )

@@ -26,7 +26,7 @@ as can be created by \link[beastier]{create_beast2_options}}
 \item{est_evidence_mcmc}{MCMC used in the estimation of
 the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
-as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+as can be created by \link[beautier]{create_ns_mcmc}.}
 
 \item{beast2_bin_path}{path to BEAST2 binary file. The use of the
 binary BEAST2 file is required for estimation of the evidence (aka
