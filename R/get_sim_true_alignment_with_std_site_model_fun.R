@@ -4,7 +4,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' f <- get_sim_true_alignment_with_std_site_model_fun(
+#' f <- get_sim_true_alignment_with_std_nsm_fun(
 #'   mutation_rate = 0.1
 #' )
 #' check_sim_true_alignment_fun(f)
@@ -18,12 +18,12 @@
 #'   alignment_params = alignment_params
 #' )
 #' @export
-get_sim_true_alignment_with_std_site_model_fun <- function(
+get_sim_true_alignment_with_std_nsm_fun <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model()
 ) {
   pryr::partial(
-    sim_true_alignment_with_std_site_model,
+    sim_true_alignment_with_std_nsm,
     mutation_rate = mutation_rate,
     site_model = site_model
   )

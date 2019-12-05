@@ -162,7 +162,7 @@ test_that("works in poor conditions as well", {
   alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = root_sequence,
     sim_true_alignment_fun =
-      pirouette::sim_true_alignment_with_std_site_model(
+      pirouette::sim_true_alignment_with_std_nsm(
         true_phylogeny = true_phylogeny,
         root_sequence = root_sequence,
         mutation_rate = mutation_rate

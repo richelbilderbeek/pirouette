@@ -1,6 +1,6 @@
 test_that("is valid function", {
   check_sim_true_alignment_fun(
-    get_sim_true_alignment_with_std_site_model_fun(
+    get_sim_true_alignment_with_std_nsm_fun(
       mutation_rate = 0.1
     )
   )
@@ -9,7 +9,7 @@ test_that("is valid function", {
 test_that("usage", {
   alignment_params <- create_alignment_params(
     sim_true_alignment_fun =
-      get_sim_true_alignment_with_std_site_model_fun(
+      get_sim_true_alignment_with_std_nsm_fun(
       mutation_rate = 0.5,
       site_model = beautier::create_hky_site_model()
     ),

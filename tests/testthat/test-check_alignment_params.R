@@ -57,7 +57,7 @@ test_that("adding sim_true_alignment_fun", {
     check_alignment_params(
       create_alignment_params(
         sim_true_alignment_fun =
-          sim_true_alignment_with_std_site_model
+          sim_true_alignment_with_std_nsm
       )
     )
   )

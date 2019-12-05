@@ -20,18 +20,18 @@ has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_sim_true_alignment_with_std_site_model_fun}
-  to get a function (\link{sim_true_alignment_with_std_site_model})
+  \item Use \link{get_sim_true_alignment_with_std_nsm_fun}
+  to get a function (\link{sim_true_alignment_with_std_nsm})
   the use a standard site model.
   \item Use
-  \link{get_sim_true_alignment_with_lns_site_model_fun}
+  \link{get_sim_true_alignment_with_lns_nsm_fun}
   to get a function
-  (\link{sim_true_alignment_with_lns_site_model})
+  (\link{sim_true_alignment_with_lns_nsm})
   the use a linked node substitution site model.
   \item Use
-  \link{get_sim_true_alignment_with_uns_site_model_fun}
+  \link{get_sim_true_alignment_with_uns_nsm_fun}
   to get a function
-  (\link{sim_true_alignment_with_uns_site_model})
+  (\link{sim_true_alignment_with_uns_nsm})
   the use an unlinked node substitution site model.
 }}
 }

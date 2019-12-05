@@ -12,12 +12,12 @@
 #' # This adapter function must be a sim_twin_alignment function
 #' expect_silent(
 #'   check_sim_twin_alignment_fun(
-#'     sim_twin_alignment_with_std_site_model
+#'     sim_twin_alignment_with_std_nsm
 #'   )
 #' )
 #'
 #' # Simulate a twin DNA alignment
-#' alignment <- sim_twin_alignment_with_std_site_model(
+#' alignment <- sim_twin_alignment_with_std_nsm(
 #'   twin_phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
 #'   root_sequence = "aaaa",
 #'   mutation_rate = 0.1
@@ -26,14 +26,14 @@
 #' @seealso Use \link{sim_twin_alignment} to use this function to
 #' create a twin alignment
 #' @export
-sim_twin_alignment_with_std_site_model <- function(
+sim_twin_alignment_with_std_nsm <- function(
   twin_phylogeny,
   root_sequence,
   true_alignment = "irrelevant",
   mutation_rate = 0.1, # TODO: make 1.0
   site_model = beautier::create_jc69_site_model()
 ) {
-  alignment <- pirouette::sim_alignment_with_std_site_model(
+  alignment <- pirouette::sim_alignment_with_std_nsm(
     phylogeny = twin_phylogeny,
     root_sequence = root_sequence,
     mutation_rate = mutation_rate,

@@ -8,7 +8,7 @@ test_that("use", {
 
   expect_silent(
     check_sim_twin_alignment_fun(
-      get_sim_twin_alignment_with_std_site_model_fun()
+      get_sim_twin_alignment_with_std_nsm_fun()
     )
   )
 

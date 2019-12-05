@@ -2,19 +2,19 @@ test_that("use on adapter functions", {
 
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_fun(
-      sim_true_alignment_with_std_site_model
+      sim_true_alignment_with_std_nsm
     )
   )
 
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_fun(
-      sim_true_alignment_with_lns_site_model
+      sim_true_alignment_with_lns_nsm
     )
   )
 
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_fun(
-      sim_true_alignment_with_uns_site_model
+      sim_true_alignment_with_uns_nsm
     )
   )
 
@@ -23,19 +23,19 @@ test_that("use on adapter functions", {
 test_that("use on get_x_funs", {
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_fun(
-      pirouette::get_sim_true_alignment_with_std_site_model_fun()
+      pirouette::get_sim_true_alignment_with_std_nsm_fun()
     )
   )
 
   testthat::expect_silent(
     check_sim_true_alignment_fun(
-      get_sim_true_alignment_with_lns_site_model_fun()
+      get_sim_true_alignment_with_lns_nsm_fun()
     )
   )
 
   testthat::expect_silent(
     pirouette::check_sim_true_alignment_fun(
-      pirouette::get_sim_true_alignment_with_uns_site_model_fun()
+      pirouette::get_sim_true_alignment_with_uns_nsm_fun()
     )
   )
 })

@@ -1,6 +1,6 @@
 test_that("use", {
 
-  alignment <- sim_alignment_with_std_site_model(
+  alignment <- sim_alignment_with_std_nsm(
     phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
     root_sequence = "aaaa",
     mutation_rate = 0.1,

@@ -116,7 +116,7 @@ test_that("nodeSub: true and twin alignments must differ", {
 
   alignment_params <- pirouette::create_test_alignment_params(
     sim_true_alignment_fun =
-      pirouette::get_sim_true_alignment_with_lns_site_model_fun()
+      pirouette::get_sim_true_alignment_with_lns_nsm_fun()
   )
   pirouette::check_alignment_params(alignment_params)
 
@@ -129,7 +129,7 @@ test_that("nodeSub: true and twin alignments must differ", {
   # currently it uses the same models as the true alignment
   twinning_params <- pirouette::create_twinning_params(
     sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_std_site_model_fun()
+      pirouette::get_sim_twin_alignment_with_std_nsm_fun()
   )
   pirouette::check_twinning_params(twinning_params)
 

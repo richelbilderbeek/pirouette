@@ -1,5 +1,5 @@
 test_that("use", {
-  f <- get_sim_twin_alignment_with_std_site_model_fun()
+  f <- get_sim_twin_alignment_with_std_nsm_fun()
   check_sim_twin_alignment_fun(f)
 
   alignment <- f(

@@ -3,13 +3,13 @@
 #' @inheritParams default_params_doc
 #' @return
 #' A partially evaluated function of
-#' \link{sim_true_alignment_with_uns_site_model}
+#' \link{sim_true_alignment_with_uns_nsm}
 #' @seealso
-#' Use \link{get_sim_true_alignment_with_lns_site_model_fun}
+#' Use \link{get_sim_true_alignment_with_lns_nsm_fun}
 #' to get a partially evaluated function
 #' to simulate a true alignment with a linked node substitution site model.
 #' @examples
-#' f <- get_sim_true_alignment_with_uns_site_model_fun()
+#' f <- get_sim_true_alignment_with_uns_nsm_fun()
 #' check_sim_true_alignment_fun(f)
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' true_alignment <- f(
@@ -17,7 +17,7 @@
 #'   root_sequence = "acgt"
 #' )
 #' @export
-get_sim_true_alignment_with_uns_site_model_fun <-
+get_sim_true_alignment_with_uns_nsm_fun <-
   function(
   branch_subst_matrix = NULL,
   node_subst_matrix = 1.0,
@@ -27,7 +27,7 @@ get_sim_true_alignment_with_uns_site_model_fun <-
   node_time = 0.001
 ) {
   pryr::partial(
-    sim_true_alignment_with_uns_site_model,
+    sim_true_alignment_with_uns_nsm,
     branch_subst_matrix = branch_subst_matrix,
     node_subst_matrix = node_subst_matrix,
     branch_mutation_rate = branch_mutation_rate,

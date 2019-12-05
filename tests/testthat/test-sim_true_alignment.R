@@ -32,7 +32,7 @@ test_that("use linked_node_sub (lns)", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- pirouette::create_alignment_params(
     sim_true_alignment_fun =
-      pirouette::get_sim_true_alignment_with_lns_site_model_fun(),
+      pirouette::get_sim_true_alignment_with_lns_nsm_fun(),
     root_sequence <- "aaccggtt"
   )
   alignment <- pirouette::sim_true_alignment(
@@ -42,7 +42,7 @@ test_that("use linked_node_sub (lns)", {
   testthat::expect_equal(nrow(alignment), ape::Ntip(phylogeny))
   testthat::expect_equal(ncol(alignment), nchar(root_sequence))
   # More detailed test are in
-  # test-sim_true_alignment_with_lns_site_model.R
+  # test-sim_true_alignment_with_lns_nsm.R
 })
 
 test_that("use unlinked_node_sub (uns)", {
@@ -51,7 +51,7 @@ test_that("use unlinked_node_sub (uns)", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- pirouette::create_alignment_params(
     sim_true_alignment_fun =
-      pirouette::get_sim_true_alignment_with_uns_site_model_fun(),
+      pirouette::get_sim_true_alignment_with_uns_nsm_fun(),
     root_sequence = root_sequence
   )
   alignment <- pirouette::sim_true_alignment(
@@ -61,5 +61,5 @@ test_that("use unlinked_node_sub (uns)", {
   testthat::expect_equal(nrow(alignment), ape::Ntip(phylogeny))
   testthat::expect_equal(ncol(alignment), nchar(root_sequence))
   # More detailed test are in
-  # test-sim_true_alignment_with_uns_site_model.R
+  # test-sim_true_alignment_with_uns_nsm.R
 })

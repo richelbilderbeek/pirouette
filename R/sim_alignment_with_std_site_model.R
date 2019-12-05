@@ -4,7 +4,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' alignment <- sim_alignment_with_std_site_model(
+#' alignment <- sim_alignment_with_std_nsm(
 #'   phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),
 #'   root_sequence = "aaaa",
 #'   mutation_rate = 0.1,
@@ -12,7 +12,7 @@
 #' )
 #' expect_silent(check_alignment(alignment))
 #' @export
-sim_alignment_with_std_site_model <- function(
+sim_alignment_with_std_nsm <- function(
   phylogeny,
   root_sequence,
   mutation_rate,

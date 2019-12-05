@@ -44,7 +44,7 @@
 create_alignment_params <- function(
   root_sequence = pirouette::create_blocked_dna(1000),
   sim_true_alignment_fun =
-    pirouette::sim_true_alignment_with_std_site_model,
+    pirouette::sim_true_alignment_with_std_nsm,
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()
 ) {
@@ -69,7 +69,7 @@ create_alignment_params <- function(
 #' @export
 create_test_alignment_params <- function(
   sim_true_alignment_fun =
-    pirouette::sim_true_alignment_with_std_site_model,
+    pirouette::sim_true_alignment_with_std_nsm,
   root_sequence = "acgt",
   rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename()

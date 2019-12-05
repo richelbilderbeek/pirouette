@@ -3,12 +3,12 @@
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @seealso
-#' Use \link{sim_twin_alignment_with_uns_site_model}
+#' Use \link{sim_twin_alignment_with_uns_nsm}
 #' to simulate using an unlinked node substitution model.
-#' Use \link{sim_true_alignment_with_lns_site_model}
+#' Use \link{sim_true_alignment_with_lns_nsm}
 #' to simulate a true alignment.
 #' @export
-sim_twin_alignment_with_lns_site_model <- function(
+sim_twin_alignment_with_lns_nsm <- function(
   twin_phylogeny,
   true_alignment = "irrelevant",
   root_sequence,
