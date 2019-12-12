@@ -18,7 +18,7 @@ test_that("use", {
   # For developers only, using functions used by developers only
   pir_params <- init_pir_params(pir_params)
 
-  create_true_alignment_file(
+  create_tral_file(
     phylogeny = phylogeny,
     alignment_params = pir_params$alignment_params,
     verbose = FALSE
@@ -78,7 +78,7 @@ test_that("abuse", {
   # For developers only, using functions used by developers only
   pir_params <- init_pir_params(pir_params)
 
-  create_true_alignment_file(
+  create_tral_file(
     phylogeny = phylogeny,
     alignment_params = pir_params$alignment_params,
     verbose = FALSE

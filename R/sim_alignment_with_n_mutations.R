@@ -12,7 +12,7 @@
 #' reached, the funcion will show a \link{warning} and return
 #' the last DNA alignment simulated.
 #' @return an alignment of type \code{DNAbin}
-#' @seealso Use \link{create_true_alignment_file}
+#' @seealso Use \link{create_tral_file}
 #' to save the simulated alignment directly to a file.
 #' @examples
 #' library(testthat)
@@ -34,9 +34,9 @@
 #' expect_equal(nrow(alignment), n_taxa)
 #' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
-#' @seealso Use \link{sim_true_alignment_with_std_nsm}
+#' @seealso Use \link{sim_tral_with_std_nsm}
 #' simulate the true alignment with a standard site model.
-#' Use \link{sim_twin_alignment_with_std_nsm}
+#' Use \link{sim_twal_with_std_nsm}
 #' simulate the twin alignment with a standard site model.
 #' @export
 sim_alignment_with_n_mutations <- function(
@@ -76,7 +76,7 @@ sim_alignment_with_n_mutations <- function(
 
   while (n_tries < max_n_tries) {
 
-    alignment <- pirouette::sim_true_alignment_with_std_nsm(
+    alignment <- pirouette::sim_tral_with_std_nsm(
       true_phylogeny = phylogeny,
       root_sequence = root_sequence,
       mutation_rate = mutation_rate,

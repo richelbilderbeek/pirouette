@@ -66,15 +66,15 @@ test_that("low mutation rate must have less mutations", {
   root_sequence <- create_mono_nuc_dna(length = sequence_length)
   alignment_params_low <- create_alignment_params(
     root_sequence = root_sequence,
-    sim_true_alignment_fun =
-      get_sim_true_alignment_with_std_nsm_fun(
+    sim_tral_fun =
+      get_sim_tral_with_std_nsm_fun(
         mutation_rate = 0.01
       )
   )
   alignment_params_high <- create_alignment_params(
     root_sequence = root_sequence,
-    sim_true_alignment_fun =
-      get_sim_true_alignment_with_std_nsm_fun(
+    sim_tral_fun =
+      get_sim_tral_with_std_nsm_fun(
         mutation_rate = 0.1
       )
   )

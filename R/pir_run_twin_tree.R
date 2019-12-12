@@ -14,7 +14,7 @@
 #'
 #' # Simulate and save the true alignment
 #' alignment_params <- create_test_alignment_params()
-#' create_true_alignment_file(
+#' create_tral_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
@@ -25,7 +25,7 @@
 #' twinning_params <- create_twinning_params()
 #'
 #' # Simulate and save the twin alignment
-#' alignment <- create_twin_alignment_file(
+#' alignment <- create_twal_file(
 #'   twin_phylogeny = twin_phylogeny,
 #'   alignment_params = alignment_params,
 #'   twinning_params = twinning_params
@@ -47,7 +47,7 @@ pir_run_twin_tree <- function(
   pir_params = create_test_pir_params()
 ) {
   # Simulate the twin alignment and save it to file
-  create_twin_alignment_file(
+  create_twal_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = pir_params$alignment_params,
     twinning_params = pir_params$twinning_params

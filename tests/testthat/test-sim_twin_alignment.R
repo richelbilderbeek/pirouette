@@ -11,8 +11,8 @@ test_that("use, twin has more info", {
     alignment_params = alignment_params
   )
   twinning_params <- pirouette::create_twinning_params(
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_same_n_mutation_fun(
         max_n_tries = 1000
       )
   )
@@ -49,8 +49,8 @@ test_that("use, twin has less info", {
   # equals one. This will be hard to achieve on different platforms
   twinning_params <- pirouette::create_twinning_params(
     rng_seed_twin_alignment = 314,
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_same_n_mutation_fun(
         max_n_tries = 1000
       )
   )
@@ -118,8 +118,8 @@ test_that("works for simple trees", {
   alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = "acgt")
   twinning_params <- pirouette::create_twinning_params(
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_same_n_mutation_fun(
         max_n_tries = 100
       )
   )
@@ -161,8 +161,8 @@ test_that("works in poor conditions as well", {
   root_sequence <- pirouette::create_blocked_dna(1000)
   alignment_params <- pirouette::create_test_alignment_params(
     root_sequence = root_sequence,
-    sim_true_alignment_fun =
-      pirouette::sim_true_alignment_with_std_nsm(
+    sim_tral_fun =
+      pirouette::sim_tral_with_std_nsm(
         true_phylogeny = true_phylogeny,
         root_sequence = root_sequence,
         mutation_rate = mutation_rate
@@ -177,8 +177,8 @@ test_that("works in poor conditions as well", {
     root_sequence = root_sequence
   )
   twinning_params <- pirouette::create_twinning_params(
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_same_n_mutation_fun(
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_same_n_mutation_fun(
         mutation_rate = mutation_rate,
         max_n_tries = 1e3
       )

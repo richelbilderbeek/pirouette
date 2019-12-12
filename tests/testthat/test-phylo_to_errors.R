@@ -12,7 +12,7 @@ test_that("use", {
   pir_params <- init_pir_params(create_test_pir_params())
 
   # Create the alignment
-  create_true_alignment_file(
+  create_tral_file(
     phylogeny = phylogeny,
     alignment_params = pir_params$alignment_params
   )

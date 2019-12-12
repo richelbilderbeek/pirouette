@@ -8,19 +8,19 @@ test_that("use", {
 
 })
 
-test_that("sim_true_alignment_fun", {
+test_that("sim_tral_fun", {
 
   testthat::expect_silent(
     pirouette::create_alignment_params(
-      sim_true_alignment_fun =
-        pirouette::get_sim_true_alignment_with_lns_nsm_fun()
+      sim_tral_fun =
+        pirouette::get_sim_tral_with_lns_nsm_fun()
     )
   )
 
   testthat::expect_silent(
     pirouette::create_alignment_params(
-      sim_true_alignment_fun =
-        pirouette::get_sim_true_alignment_with_std_nsm_fun()
+      sim_tral_fun =
+        pirouette::get_sim_tral_with_std_nsm_fun()
     )
   )
 

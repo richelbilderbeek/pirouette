@@ -6,7 +6,7 @@ check_twinning_params_names <- function(twinning_params) { # nolint indeed long 
     "rng_seed_twin_tree",
     "sim_twin_tree_fun",
     "rng_seed_twin_alignment",
-    "sim_twin_alignment_fun",
+    "sim_twal_fun",
     "twin_tree_filename",
     "twin_alignment_filename",
     "twin_evidence_filename"

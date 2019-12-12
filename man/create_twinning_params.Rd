@@ -7,7 +7,7 @@
 create_twinning_params(rng_seed_twin_tree = 0,
   sim_twin_tree_fun = get_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
-  sim_twin_alignment_fun = get_sim_twin_alignment_with_std_nsm_fun(),
+  sim_twal_fun = get_sim_twal_with_std_nsm_fun(),
   twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
   twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
   twin_evidence_filename = to_twin_filename(get_temp_evidence_filename()))
@@ -34,35 +34,35 @@ Some standard functions:\cr
 \item{rng_seed_twin_alignment}{the random number generator seed
 as used in the simulation of a twin alignment}
 
-\item{sim_twin_alignment_fun}{function to simulate a
+\item{sim_twal_fun}{function to simulate a
 twin alignment with.
 This function must have two arguments called \code{twin_phylogeny} (which
 will hold the twin phylogeny) and \code{true_alignment} (which will
 hold the alignment simulated from the true phylogeny). The
 return type must be \link[ape]{DNAbin}.
 
-Use \link{check_sim_twin_alignment_fun} to verify if the function
+Use \link{check_sim_twal_fun} to verify if the function
 has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_copy_true_alignment_fun}
+  \item Use \link{get_copy_tral_fun}
     to get a function
     (\link{copy_true_alignment})
     that copies a true to alignment to create a twin alignment
-  \item Use \link{get_sim_twin_alignment_with_std_nsm_fun}
+  \item Use \link{get_sim_twal_with_std_nsm_fun}
     to get a function
-    (\link{sim_twin_alignment_with_std_nsm})
+    (\link{sim_twal_with_std_nsm})
     that simulates a twin alignment using a standard site model
-  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_fun}
+  \item Use \link{get_sim_twal_with_same_n_mutation_fun}
     to get a function
-    (\link{sim_twin_alignment_with_same_n_mutation})
+    (\link{sim_twal_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
-  \item Use \link{sim_twin_alignment_with_lns_nsm}
+  \item Use \link{sim_twal_with_lns_nsm}
     that simulates a twin alignment using a linked node substitution
     model
-  \item Use \link{sim_twin_alignment_with_uns_nsm}
+  \item Use \link{sim_twal_with_uns_nsm}
     that simulates a twin alignment using an unlinked node substitution
     model
 }}

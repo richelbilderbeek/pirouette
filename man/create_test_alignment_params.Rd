@@ -5,35 +5,35 @@
 \title{Create testing parameters for the alignment simulation.}
 \usage{
 
-  create_test_alignment_params(sim_true_alignment_fun = pirouette::sim_true_alignment_with_std_nsm,
+  create_test_alignment_params(sim_tral_fun = pirouette::sim_tral_with_std_nsm,
   root_sequence = "acgt", rng_seed = 0,
   fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
-\item{sim_true_alignment_fun}{function to simulate a
+\item{sim_tral_fun}{function to simulate a
 true alignment with.
 This function must have two arguments,
 called \code{true_phylogeny} (which will hold the true phylogeny)
 and \code{root_sequence} (which holds the DNA root sequence).
 The return type must be \link[ape]{DNAbin}.
 
-Use \link{check_sim_true_alignment_fun} to verify if the function
+Use \link{check_sim_tral_fun} to verify if the function
 has the right signature and output.
 
 Some standard functions:\cr
 \itemize{
-  \item Use \link{get_sim_true_alignment_with_std_nsm_fun}
-  to get a function (\link{sim_true_alignment_with_std_nsm})
+  \item Use \link{get_sim_tral_with_std_nsm_fun}
+  to get a function (\link{sim_tral_with_std_nsm})
   the use a standard site model.
   \item Use
-  \link{get_sim_true_alignment_with_lns_nsm_fun}
+  \link{get_sim_tral_with_lns_nsm_fun}
   to get a function
-  (\link{sim_true_alignment_with_lns_nsm})
+  (\link{sim_tral_with_lns_nsm})
   the use a linked node substitution site model.
   \item Use
-  \link{get_sim_true_alignment_with_uns_nsm_fun}
+  \link{get_sim_tral_with_uns_nsm_fun}
   to get a function
-  (\link{sim_true_alignment_with_uns_nsm})
+  (\link{sim_tral_with_uns_nsm})
   the use an unlinked node substitution site model.
 }}
 

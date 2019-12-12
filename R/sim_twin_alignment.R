@@ -41,7 +41,7 @@ sim_twin_alignment <- function(
 
   set.seed(twinning_params$rng_seed_twin_alignment)
   return(
-    twinning_params$sim_twin_alignment_fun(
+    twinning_params$sim_twal_fun(
       twin_phylogeny = twin_phylogeny,
       true_alignment = true_alignment,
       root_sequence = alignment_params$root_sequence

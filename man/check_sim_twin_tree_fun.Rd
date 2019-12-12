@@ -26,6 +26,6 @@ Some standard functions:\cr
 Will \link{stop} if not
 }
 \seealso{
-Use \link{check_sim_twin_alignment_fun} to check a function to
+Use \link{check_sim_twal_fun} to check a function to
 generate a twin alignment.
 }

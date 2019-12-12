@@ -47,7 +47,7 @@ phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 alignment_params <- create_test_alignment_params()
 
 # Create the alignment
-create_true_alignment_file(
+create_tral_file(
   phylogeny = phylogeny,
   alignment_params = alignment_params
 )

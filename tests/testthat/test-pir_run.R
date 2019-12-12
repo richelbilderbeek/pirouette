@@ -115,8 +115,8 @@ test_that("nodeSub: true and twin alignments must differ", {
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
   alignment_params <- pirouette::create_test_alignment_params(
-    sim_true_alignment_fun =
-      pirouette::get_sim_true_alignment_with_lns_nsm_fun()
+    sim_tral_fun =
+      pirouette::get_sim_tral_with_lns_nsm_fun()
   )
   pirouette::check_alignment_params(alignment_params)
 
@@ -128,8 +128,8 @@ test_that("nodeSub: true and twin alignments must differ", {
   # This is wrong: the twin alignment must follow a JC69 site model,
   # currently it uses the same models as the true alignment
   twinning_params <- pirouette::create_twinning_params(
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_std_nsm_fun()
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_std_nsm_fun()
   )
   pirouette::check_twinning_params(twinning_params)
 

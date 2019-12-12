@@ -277,11 +277,11 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 How to specify *how* the true alignment is created? Use 
-the `alignment_params$sim_true_alignment_fun`:
+the `alignment_params$sim_tral_fun`:
 
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
-  sim_true_alignment_fun = sim_true_alignment_with_std_nsm,
+  sim_tral_fun = sim_tral_with_std_nsm,
   root_sequence = root_sequence  
 )
 true_alignment <- pirouette::sim_true_alignment(
@@ -291,7 +291,7 @@ true_alignment <- pirouette::sim_true_alignment(
 ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
-Due to this architecture, `alignment_params$sim_true_alignment_fun` must
+Due to this architecture, `alignment_params$sim_tral_fun` must
 be a function that takes *one* argument, which is the true phylogeny.
 
 Here is an example that creates a true alignment by simulating 
@@ -314,7 +314,7 @@ my_fun <- function(
 }
 # Putting my function in the alignment_params
 alignment_params <- pirouette::create_alignment_params(
-  sim_true_alignment_fun = my_fun,
+  sim_tral_fun = my_fun,
   root_sequence = root_sequence  
 )
 # Simulate the true alignment using my function
@@ -326,16 +326,16 @@ true_alignment <- pirouette::sim_true_alignment(
 ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
-So, `alignment_params$sim_true_alignment_fun` must
+So, `alignment_params$sim_tral_fun` must
 be a function that takes *one* argument, which is the true phylogeny. What
 if we want a function that indeed has one argument for the true phylogeny,
 but also some additional ones?
 
-An example is `sim_true_alignment_with_std_nsm`, which uses a 
+An example is `sim_tral_with_std_nsm`, which uses a 
 root sequence of `acgt`, a mutation rate of 0.1 and a JC69 site model:
 
 ```{r}
-head(sim_true_alignment_with_std_nsm)
+head(sim_tral_with_std_nsm)
 ```
 
 To change the default arguments, we'll need partial function evaluation, 
@@ -343,17 +343,17 @@ which will create a function with one a
 ellipsis (`...`) argument that will fill in the values you specified: 
 
 ```{r}
-sim_true_alignment_fun <- pryr::partial(
-  sim_true_alignment_with_std_nsm, 
+sim_tral_fun <- pryr::partial(
+  sim_tral_with_std_nsm, 
   mutation_rate = 0.5,                     
   site_model = beautier::create_hky_site_model()
 )
-head(sim_true_alignment_fun)
+head(sim_tral_fun)
 ```
 
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
-  sim_true_alignment_fun = sim_true_alignment_fun,
+  sim_tral_fun = sim_tral_fun,
   root_sequence = root_sequence  
 )
 true_alignment <- pirouette::sim_true_alignment(
@@ -364,12 +364,12 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Instead of doing the partial function evaluation yourself, `pirouette`
-supplies this function as `get_sim_true_alignment_with_std_nsm_fun`:
+supplies this function as `get_sim_tral_with_std_nsm_fun`:
 
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
-  sim_true_alignment_fun = 
-    pirouette::get_sim_true_alignment_with_std_nsm_fun(
+  sim_tral_fun = 
+    pirouette::get_sim_tral_with_std_nsm_fun(
     mutation_rate = 0.5,                     
     site_model = beautier::create_hky_site_model()
   ),
@@ -383,12 +383,12 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Or to use the linked node substitution model, use
-`get_sim_true_alignment_with_lns_nsm_fun`:
+`get_sim_tral_with_lns_nsm_fun`:
 
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
-  sim_true_alignment_fun = 
-    pirouette::get_sim_true_alignment_with_lns_nsm_fun(
+  sim_tral_fun = 
+    pirouette::get_sim_tral_with_lns_nsm_fun(
     branch_mutation_rate = 0.1,
     node_mutation_rate = 0.2
   ),
@@ -402,12 +402,12 @@ ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
 ```
 
 Or to use the unlinked node substitution model, use
-`get_sim_true_alignment_with_uns_nsm_fun`:
+`get_sim_tral_with_uns_nsm_fun`:
 
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
-  sim_true_alignment_fun = 
-    pirouette::get_sim_true_alignment_with_uns_nsm_fun(
+  sim_tral_fun = 
+    pirouette::get_sim_tral_with_uns_nsm_fun(
       branch_mutation_rate = 1.0,
       node_mutation_rate = 2.0,
       node_time = 0.1
@@ -482,7 +482,7 @@ Put this function in the `twinning_params`:
 
 ```{r}
 twinning_params <- pirouette::create_twinning_params(
-  sim_twin_alignment_fun = my_fun  
+  sim_twal_fun = my_fun  
 )
 ```
 
@@ -504,18 +504,18 @@ ape::image.DNAbin(twin_alignment, main = "Twin alignment")
 Now we want to plug in:
 
 ```{r}
-head(sim_twin_alignment_with_std_nsm)
+head(sim_twal_with_std_nsm)
 ```
 
 Here comes partial function evaluation to the rescue:
 
 ```{r}
 sim_twin_align_fun <- pryr::partial(
-  sim_twin_alignment_with_std_nsm,
+  sim_twal_with_std_nsm,
   mutation_rate = 0.1
 )
 head(sim_twin_align_fun)
-pirouette::check_sim_twin_alignment_fun(sim_twin_align_fun)
+pirouette::check_sim_twal_fun(sim_twin_align_fun)
 ```
 
 Plugging it in:
@@ -526,13 +526,13 @@ twin_alignment <- pirouette::sim_twin_alignment(
   true_alignment = true_alignment,
   alignment_params = pirouette::create_test_alignment_params(),
   twinning_params = pirouette::create_twinning_params(
-    sim_twin_alignment_fun = sim_twin_align_fun
+    sim_twal_fun = sim_twin_align_fun
   )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
-Or use `get_sim_twin_alignment_with_std_nsm_fun` to do the 
+Or use `get_sim_twal_with_std_nsm_fun` to do the 
 partial function evaluation for you:
 
 
@@ -542,8 +542,8 @@ twin_alignment <- pirouette::sim_twin_alignment(
   true_alignment = true_alignment,
   alignment_params = pirouette::create_test_alignment_params(),
   twinning_params = pirouette::create_twinning_params(
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_std_nsm_fun(
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_std_nsm_fun(
         mutation_rate = 0.1
       )
   )
@@ -556,18 +556,18 @@ ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 Now we want to plug in:
 
 ```{r}
-head(sim_twin_alignment_with_same_n_mutation)
+head(sim_twal_with_same_n_mutation)
 ```
 
 Here comes partial function evaluation to the rescue:
 
 ```{r}
 sim_twin_align_fun <- pryr::partial(
-  sim_twin_alignment_with_same_n_mutation,
+  sim_twal_with_same_n_mutation,
   mutation_rate = 0.5
 )
 head(sim_twin_align_fun)
-pirouette::check_sim_twin_alignment_fun(sim_twin_align_fun)
+pirouette::check_sim_twal_fun(sim_twin_align_fun)
 ```
 
 Plugging it in:
@@ -580,13 +580,13 @@ twin_alignment <- pirouette::sim_twin_alignment(
     root_sequence = root_sequence
   ),
   twinning_params = pirouette::create_twinning_params(
-    sim_twin_alignment_fun = sim_twin_align_fun
+    sim_twal_fun = sim_twin_align_fun
   )
 )
 ape::image.DNAbin(twin_alignment, main = "Twin alignment", legend = FALSE)
 ```
 
-Or use `get_sim_twin_alignment_with_std_nsm_fun` to do the 
+Or use `get_sim_twal_with_std_nsm_fun` to do the 
 partial function evaluation for you:
 
 
@@ -596,8 +596,8 @@ twin_alignment <- pirouette::sim_twin_alignment(
   true_alignment = true_alignment,
   alignment_params = pirouette::create_test_alignment_params(),
   twinning_params = pirouette::create_twinning_params(
-    sim_twin_alignment_fun =
-      pirouette::get_sim_twin_alignment_with_std_nsm_fun(
+    sim_twal_fun =
+      pirouette::get_sim_twal_with_std_nsm_fun(
         mutation_rate = 0.1
       )
   )

@@ -33,8 +33,8 @@ create_twinning_params <- function(
   rng_seed_twin_tree = 0,
   sim_twin_tree_fun = get_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
-  sim_twin_alignment_fun =
-    get_sim_twin_alignment_with_std_nsm_fun(),
+  sim_twal_fun =
+    get_sim_twal_with_std_nsm_fun(),
   twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
   twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
   twin_evidence_filename = to_twin_filename(get_temp_evidence_filename())
@@ -43,7 +43,7 @@ create_twinning_params <- function(
     rng_seed_twin_tree = rng_seed_twin_tree,
     sim_twin_tree_fun = sim_twin_tree_fun,
     rng_seed_twin_alignment = rng_seed_twin_alignment,
-    sim_twin_alignment_fun = sim_twin_alignment_fun,
+    sim_twal_fun = sim_twal_fun,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename,
     twin_evidence_filename = twin_evidence_filename

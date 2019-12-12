@@ -34,8 +34,8 @@ root_sequence <- "aaaacgt"
 
 # Use default settings to create the alignment
 alignment_params <- create_alignment_params(
-  sim_true_alignment_fun =
-    get_sim_true_alignment_with_std_nsm_fun(
+  sim_tral_fun =
+    get_sim_tral_with_std_nsm_fun(
       mutation_rate = 1.0
   ),
   root_sequence = root_sequence
@@ -52,7 +52,7 @@ expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
 }
 \seealso{
-Use \link{create_true_alignment_file} to save
+Use \link{create_tral_file} to save
 the simulated alignment directly to a file
 }
 \author{
