@@ -92,12 +92,6 @@ est_evidences <- function(
       beast2_optionses[[i]]$input_filename <- to_evidence_filename(
         beast2_optionses[[i]]$input_filename
       )
-      beast2_optionses[[i]]$output_log_filename <- to_evidence_filename(
-        beast2_optionses[[i]]$output_log_filename
-      )
-      beast2_optionses[[i]]$output_trees_filenames <- to_evidence_filename(
-        beast2_optionses[[i]]$output_trees_filenames
-      )
       beast2_optionses[[i]]$output_state_filename <- to_evidence_filename(
         beast2_optionses[[i]]$output_state_filename
       )
@@ -122,8 +116,6 @@ est_evidences <- function(
         paste(
           i,
           beast2_optionses[[i]]$input_filename,
-          beast2_optionses[[i]]$output_log_filename,
-          beast2_optionses[[i]]$output_trees_filenames,
           beast2_optionses[[i]]$output_state_filename
         )
       )
@@ -156,16 +148,6 @@ est_evidences <- function(
 
   # Delete files
   for (beast2_options in beast2_optionses) {
-    if (file.exists(beast2_options$output_log_filename)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_log_filename, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_log_filename)
-    }
     if (file.exists(beast2_options$output_state_filename)) {
       if (isTRUE(verbose)) {
         print(
@@ -175,16 +157,6 @@ est_evidences <- function(
         )
       }
       file.remove(beast2_options$output_state_filename)
-    }
-    if (file.exists(beast2_options$output_trees_filenames)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_trees_filenames, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_trees_filenames)
     }
   }
   sum_marg_liks <- sum(marg_liks$weight)

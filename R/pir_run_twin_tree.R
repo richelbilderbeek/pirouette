@@ -9,20 +9,19 @@
 #'
 #' # Create a true phylogeny to simulate the DNA sequences on
 #' n_taxa <- 5
-#' set.seed(1); phylogeny <- ape::rcoal(n_taxa)
+#' set.seed(1)
+#' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # Simulate and save the true alignment
-#' alignment_params <- create_alignment_params(
-#'   root_sequence = create_blocked_dna(length = 4),
-#'   mutation_rate = 0.1
-#' )
-#' create_alignment_file(
+#' alignment_params <- create_test_alignment_params()
+#' create_true_alignment_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
 #'
 #' # Create a twin phylogeny to simulate the DNA sequences on
-#' set.seed(2); twin_phylogeny <- ape::rcoal(n_taxa)
+#' set.seed(2)
+#' twin_phylogeny <- ape::rcoal(n_taxa)
 #' twinning_params <- create_twinning_params()
 #'
 #' # Simulate and save the twin alignment
@@ -36,6 +35,7 @@
 #' pir_params <- create_test_pir_params()
 #' pir_params$alignment_params <- alignment_params
 #' pir_params$twinning_params <- twinning_params
+#' pir_params <- init_pir_params(pir_params)
 #'
 #' pir_run_twin_tree(
 #'   twin_phylogeny = twin_phylogeny,
@@ -87,13 +87,13 @@ pir_run_twin_tree <- function(
     experiment$beast2_options$input_filename <- pirouette::to_twin_filename(
       experiment$beast2_options$input_filename
     )
-    experiment$beast2_options$output_log_filename <-
+    experiment$inference_model$mcmc$tracelog$filename <-
       pirouette::to_twin_filename(
-        experiment$beast2_options$output_log_filename
+        experiment$inference_model$mcmc$tracelog$filename
     )
-    experiment$beast2_options$output_trees_filenames <-
+    experiment$inference_model$mcmc$treelog$filename <-
       pirouette::to_twin_filename(
-      experiment$beast2_options$output_trees_filenames
+      experiment$inference_model$mcmc$treelog$filename
     )
     experiment$beast2_options$output_state_filename <-
       pirouette::to_twin_filename(

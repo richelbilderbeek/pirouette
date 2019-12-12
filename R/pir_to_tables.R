@@ -5,17 +5,41 @@
 #' @return the names of all files created
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' pir_params <- create_test_pir_params()
-#' pir_run_true_tree(
+#' library(testthat)
+#'
+#' pir_params <- pirouette::init_pir_params(create_test_pir_params())
+#'
+#' # Run only the true tree part
+#' pirouette::pir_run_true_tree(
 #'   true_phylogeny = ape::rcoal(4),
 #'   pir_params = pir_params
 #' )
-#' file.exists(pir_to_tables(pir_params = pir_params))
+#'
+#' # Alignment
+#' testthat::expect_true(
+#'   file.exists(pir_params$alignment_params$fasta_filename)
+#' )
+#' # Parameter estimates
+#' testthat::expect_true(
+#'   file.exists(
+#'     pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename
+#'   )
+#' )
+#' # Posterior trees
+#' testthat::expect_true(
+#'   file.exists(
+#'     pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
+#'   )
+#' )
 #' @export
 pir_to_tables <- function(
   pir_params,
   folder = tempdir()
 ) {
+
+  # Fill in the BEAUti shorthands
+  pir_params <- pirouette::init_pir_params(pir_params)
+
   # Create a folder for the files if needed,
   # no warning if it is already present
   dir.create(folder, showWarnings = FALSE, recursive = TRUE)
@@ -126,7 +150,7 @@ pir_to_tables <- function(
     #######################
     esses_gen <- tracerer::calc_esses(
       traces = tracerer::parse_beast_log(
-        first_experiment$beast2_options$output_log_filename
+        first_experiment$inference_model$mcmc$tracelog$filename
       ),
       sample_interval = first_experiment$inference_model$mcmc$store_every
     )
@@ -152,7 +176,7 @@ pir_to_tables <- function(
     if (!beautier::is_one_na(pir_params$twinning_params)) {
       esses_twin_gen <- tracerer::calc_esses(
         traces = tracerer::parse_beast_log(to_twin_filename(
-          first_experiment$beast2_options$output_log_filename)
+          first_experiment$inference_model$mcmc$tracelog$filename)
         ),
         sample_interval = first_experiment$inference_model$mcmc$store_every
       )
@@ -180,7 +204,7 @@ pir_to_tables <- function(
     #######################
     esses_best <- tracerer::calc_esses(
       traces = tracerer::parse_beast_log(
-        last_experiment$beast2_options$output_log_filename
+        last_experiment$inference_model$mcmc$tracelog$filename
       ),
       sample_interval = last_experiment$inference_model$mcmc$store_every
     )
@@ -207,7 +231,7 @@ pir_to_tables <- function(
     if (!beautier::is_one_na(pir_params$twinning_params)) {
       esses_twin_best <- tracerer::calc_esses(
         traces = tracerer::parse_beast_log(to_twin_filename(
-          last_experiment$beast2_options$output_log_filename)
+          last_experiment$inference_model$mcmc$tracelog$filename)
         ),
         sample_interval = last_experiment$inference_model$mcmc$store_every
       )

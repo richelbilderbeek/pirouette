@@ -118,6 +118,9 @@ pir_to_pics <- function(
 ) {
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 
+  # Fill in the BEAUti shorthand notations
+  pir_params <- pirouette::init_pir_params(pir_params)
+
   filenames <- NULL
 
   # Trees
@@ -164,7 +167,7 @@ pir_to_pics <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        first_experiment$beast2_options$output_trees_filenames
+        first_experiment$inference_model$mcmc$treelog$filename
       ),
       alpha = 0.01,
       consensus = consensus,
@@ -184,7 +187,7 @@ pir_to_pics <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        last_experiment$beast2_options$output_trees_filenames
+        last_experiment$inference_model$mcmc$treelog$filename
       ),
       alpha = 0.01,
       consensus = consensus,
@@ -334,8 +337,8 @@ pir_to_pics_twin <- function(
     )
     babette::plot_densitree(
       phylos = tracerer::parse_beast_trees(
-        to_twin_filename(
-          first_experiment$beast2_options$output_trees_filenames
+        pirouette::to_twin_filename(
+          first_experiment$inference_model$mcmc$treelog$filename
         )
       ),
       alpha = 0.01,
@@ -356,8 +359,8 @@ pir_to_pics_twin <- function(
   )
   babette::plot_densitree(
     phylos = tracerer::parse_beast_trees(
-      to_twin_filename(
-        last_experiment$beast2_options$output_trees_filenames
+      pirouette::to_twin_filename(
+        last_experiment$inference_model$mcmc$treelog$filename
       )
     ),
     alpha = 0.01,
@@ -373,12 +376,12 @@ pir_to_pics_twin <- function(
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
     beautier::check_file_exists(
-      to_twin_filename(first_experiment$errors_filename)
+      pirouette::to_twin_filename(first_experiment$errors_filename)
     )
 
     df_errors_twin_gen <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(first_experiment$errors_filename)
+        pirouette::to_twin_filename(first_experiment$errors_filename)
       )$x
     )
 
@@ -395,7 +398,7 @@ pir_to_pics_twin <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_twin_best <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(last_experiment$errors_filename)
+        pirouette::to_twin_filename(last_experiment$errors_filename)
       )$x
     )
 
@@ -413,7 +416,7 @@ pir_to_pics_twin <- function(
   if (first_experiment$inference_conditions$model_type == "generative") {
     df_errors_twin_gen <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(first_experiment$errors_filename)
+        pirouette::to_twin_filename(first_experiment$errors_filename)
       )$x
     )
 
@@ -432,7 +435,7 @@ pir_to_pics_twin <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
     df_errors_twin_best <- data.frame(
       error = utils::read.csv(
-        to_twin_filename(last_experiment$errors_filename)
+        pirouette::to_twin_filename(last_experiment$errors_filename)
       )$x
     )
 

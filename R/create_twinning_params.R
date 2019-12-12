@@ -1,5 +1,5 @@
-#' @title Create the parameters for the twinning simulation
-#' @description Create the parameters for the twinning simulation.
+#' Create the parameters for the twinning simulation
+#'
 #' The site model and clock models will be used and
 #' their combination will be called the generative model
 #' of the twinning.
@@ -31,26 +31,19 @@
 #' @export
 create_twinning_params <- function(
   rng_seed_twin_tree = 0,
+  sim_twin_tree_fun = get_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
-  twin_model = "birth_death",
-  method = "random_tree",
-  n_replicates = 1e4,
-  twin_tree_filename = tempfile(
-    pattern = "tree_twin_", fileext = ".newick"
-  ),
-  twin_alignment_filename = tempfile(
-    pattern = "alignment_twin_", fileext = ".fasta"
-  ),
-  twin_evidence_filename =  tempfile(
-    pattern = "evidence_twin_", fileext = ".csv"
-  )
+  sim_twin_alignment_fun =
+    get_sim_twin_alignment_with_std_nsm_fun(),
+  twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
+  twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
+  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename())
 ) {
   twinning_params <- list(
     rng_seed_twin_tree = rng_seed_twin_tree,
+    sim_twin_tree_fun = sim_twin_tree_fun,
     rng_seed_twin_alignment = rng_seed_twin_alignment,
-    twin_model = twin_model,
-    method = method,
-    n_replicates = n_replicates,
+    sim_twin_alignment_fun = sim_twin_alignment_fun,
     twin_tree_filename = twin_tree_filename,
     twin_alignment_filename = twin_alignment_filename,
     twin_evidence_filename = twin_evidence_filename

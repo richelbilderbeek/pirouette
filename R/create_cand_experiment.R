@@ -52,12 +52,12 @@ create_cand_experiment <- function(
     mcmc = beautier::create_mcmc(store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options(),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(
+  est_evidence_mcmc = beautier::create_ns_mcmc(
     store_every = 1000,
     epsilon = 1e-12
   )
 ) {
-  create_experiment(
+  pirouette::create_experiment(
     inference_conditions = inference_conditions,
     inference_model = inference_model,
     beast2_options = beast2_options,

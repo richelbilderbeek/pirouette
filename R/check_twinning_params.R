@@ -17,8 +17,15 @@
 check_twinning_params <- function(
   twinning_params
 ) {
-  # Check that the structure has all the list elements
-  pirouette::check_twinning_params_list_elements(twinning_params)
+  # Check that the structure has all the list elements with the right names
+  pirouette::check_twinning_params_names(twinning_params)
+
+  pirouette::check_sim_twin_tree_fun(
+    sim_twin_tree_fun = twinning_params$sim_twin_tree_fun
+  )
+  pirouette::check_sim_twin_alignment_fun(
+    twinning_params$sim_twin_alignment_fun
+  )
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {
     stop("'rng_seed_twin_tree' must be a whole number")
@@ -26,30 +33,6 @@ check_twinning_params <- function(
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_alignment)) {
     stop("'rng_seed_twin_alignment' must be a whole number")
   }
-  if (!is.character(twinning_params$twin_model)) {
-    stop("'twin_model' must be a character vector")
-  }
-  if (!(twinning_params$twin_model %in% get_twin_models())) {
-    stop(
-      "'twin_model' is not implemented. \n",
-      "Possible values: '",
-        paste0(get_twin_models(), collapse = ", "), "'. \n",
-      "Actual value: '", twinning_params$twin_model, "'"
-    )
-  }
-  if (!is.character(twinning_params$method)) {
-    stop("'method' must be a character vector")
-  }
-  if (!(twinning_params$method %in% get_twin_methods())) {
-    stop("This 'method' is not implemented")
-  }
-  if (!beautier::is_one_int(twinning_params$n_replicates)) {
-    stop("'n_replicates' must be a whole number")
-  }
-  if (twinning_params$n_replicates < 0) {
-    stop("'n_replicates' must be a finite positive integer number")
-  }
-
   if (!assertive::is_a_string(twinning_params$twin_tree_filename)) {
     stop("'twin_tree_filename' must be a character vector")
   }

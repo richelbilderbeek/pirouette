@@ -40,8 +40,7 @@ for (i in seq(1, n_repeats)) {
   # Do a pirouette run and select the best
   pir_params <- create_pir_params(
     alignment_params = create_alignment_params(
-      root_sequence = create_blocked_dna(sequence_length),
-      mutation_rate = create_standard_mutation_rate
+      root_sequence = create_blocked_dna(sequence_length)
     ),
     experiments = list(
       create_experiment(

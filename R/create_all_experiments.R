@@ -40,18 +40,8 @@ create_all_experiments <- function(
   # All experiments use the same BEAST2 options,
   # or at least the filenames should be the same
   beast2_options <- beastier::create_beast2_options(
-    input_filename = tempfile(
-      pattern = "beast2_", fileext = ".xml"
-    ),
-    output_log_filename = tempfile(
-      pattern = "beast2_", fileext = ".log"
-    ),
-    output_trees_filenames = tempfile(
-      pattern = "beast2_", fileext = "trees"
-    ),
-    output_state_filename = tempfile(
-      pattern = "beast2_", fileext = ".state.xml"
-    )
+    input_filename = beastier::create_temp_input_filename(),
+    output_state_filename = beastier::create_temp_state_filename()
   )
   errors_filename <- tempfile(
     pattern = "errors_", fileext = ".csv"
@@ -61,8 +51,8 @@ create_all_experiments <- function(
   for (site_model in site_models) {
     for (clock_model in clock_models) {
       for (tree_prior in tree_priors) {
-        new_experiment <- create_experiment(
-          inference_conditions = create_inference_conditions(
+        new_experiment <- pirouette::create_experiment(
+          inference_conditions = pirouette::create_inference_conditions(
             model_type = "candidate",
             run_if = "best_candidate",
             do_measure_evidence = TRUE

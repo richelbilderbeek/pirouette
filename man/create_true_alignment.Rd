@@ -7,7 +7,8 @@
 create_true_alignment(true_phylogeny, alignment_params)
 }
 \arguments{
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
@@ -29,8 +30,7 @@ root_sequence <- create_blocked_dna(length = n_base_pairs)
 
 # How to simulate the alignment
 alignment_params <- create_alignment_params(
-  root_sequence = root_sequence,
-  mutation_rate = 0.1
+  root_sequence = root_sequence
 )
 
 # Create a phylogeny to simulate the DNA sequences on
@@ -43,27 +43,12 @@ alignment <- create_true_alignment(
    alignment_params = alignment_params
  )
 
-expect_equal(class(alignment), "DNAbin")
+expect_silent(check_alignment(alignment))
 expect_equal(nrow(alignment), n_taxa)
 expect_equal(ncol(alignment), n_base_pairs)
-
-# Use all different site models
-for (site_model in create_site_models()) {
-  alignment_params <- create_alignment_params(
-    root_sequence = root_sequence,
-    mutation_rate = 0.1,
-    site_model = site_model
-  )
-  expect_silent(
-    create_true_alignment(
-      true_phylogeny = phylogeny,
-      alignment_params = alignment_params
-    )
-  )
-}
 }
 \seealso{
-Use \link{create_alignment_file} to save the created alignment
+Use \link{create_true_alignment_file} to save the created alignment
   directly to a file
 }
 \author{

@@ -22,12 +22,12 @@ test_that("use", {
   )
 
   error_measure_params <- good_error_measure_params
-  error_measure_params$error_function <- NULL
+  error_measure_params$error_fun <- NULL
   expect_error(
     check_error_measure_params(
       error_measure_params
     ),
-    "'error_function' must be an element of an 'error_measure_params'"
+    "'error_fun' must be an element of an 'error_measure_params'"
   )
 
   # Wrong parameter values
@@ -47,53 +47,13 @@ test_that("use", {
     ),
     "'burn_in_fraction' must be between 0.0 and 1.0"
   )
-
+  # Checked in detail by 'check_error_fun'
   expect_error(
     check_error_measure_params(
       create_error_measure_params(
-        error_function = "nonsense"
+        error_fun = "nonsense"
       )
     ),
-    "'error_function' must be a function"
-  )
-  expect_error(
-    check_error_measure_params(
-      create_error_measure_params(
-        error_function = function(a) {
-          a
-        }
-      )
-    ),
-    "'error_function' must be a function with at least two arguments"
-  )
-  expect_error(
-    check_error_measure_params(
-      create_error_measure_params(
-        error_function = function(tree, trees) {
-          1.0 - nLTT::nltts_diff(tree = tree, trees = trees)
-        }
-      )
-    ),
-    "'error_function' must be a function that is lowest for identical trees"
-  )
-
-  # Wrong parameter values
-  expect_error(
-    check_error_measure_params(
-      create_error_measure_params(
-        error_function = "nonsense"
-      )
-    ),
-    "'error_function' must be a function"
-  )
-  expect_error(
-    check_error_measure_params(
-      create_error_measure_params(
-        error_function = function(only_one_param) {
-          only_one_param
-        }
-      )
-    ),
-    "'error_function' must be a function with at least two arguments"
+    "'error_fun' must be a function"
   )
 })

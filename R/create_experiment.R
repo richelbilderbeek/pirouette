@@ -23,14 +23,10 @@ create_experiment <- function(
     mcmc = beautier::create_mcmc(store_every = 1000)
   ),
   beast2_options = beastier::create_beast2_options(
-    input_filename = tempfile(pattern = "beast2_", fileext = ".xml"),
-    output_log_filename = tempfile(pattern = "beast2_", fileext = ".log"),
-    output_trees_filenames = tempfile(pattern = "beast2_", fileext = ".trees"),
-    output_state_filename = tempfile(
-      pattern = "beast2_", fileext = ".state.xml"
-    )
+    input_filename = beastier::create_temp_input_filename(),
+    output_state_filename = beastier::create_temp_state_filename()
   ),
-  est_evidence_mcmc = beautier::create_nested_sampling_mcmc(epsilon = 1e-12),
+  est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
   errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
 ) {

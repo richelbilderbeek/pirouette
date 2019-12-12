@@ -27,16 +27,12 @@ r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  - MangoTheCat/goodpractice
-  - ropensci/beautier
-  - ropensci/tracerer
-  - ropensci/beastier
-  - ropensci/mauricer
   - ropensci/babette
   - richelbilderbeek/mcbette
-  - richelbilderbeek/nLTT
+  - rsetienne/DDD
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
+  - thijsjanzen/nodeSub
 
 before_install:
   - echo $TRAVIS_R_VERSION_STRING

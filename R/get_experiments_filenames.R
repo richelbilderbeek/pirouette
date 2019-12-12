@@ -9,7 +9,7 @@
 get_experiments_filenames <- function(experiments) {
   pirouette::check_experiments(experiments)
   n_filenames_per_experiment <- length(
-    get_experiment_filenames(experiments[[1]])
+    pirouette::get_experiment_filenames(experiments[[1]])
   )
 
   filenames <- rep(NA, n_filenames_per_experiment * length(experiments))

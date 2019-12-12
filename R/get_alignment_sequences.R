@@ -13,9 +13,7 @@ get_alignment_sequences <- function(
   alignment,
   verbose = FALSE
 ) {
-  if (class(alignment) != "DNAbin") {
-    stop("'alignment' must be of class 'ape::DNAbin'")
-  }
+  pirouette::check_alignment(alignment)
   if (is.matrix(alignment)) {
     if (verbose) print("alignment is a matrix")
     # We know from
@@ -30,10 +28,12 @@ get_alignment_sequences <- function(
   }
   if (is.list(alignment)) {
     if (verbose) print("alignment is a list")
+    n_taxa <- length(labels(alignment))
+    testit::assert(n_taxa > 0)
     # Nah, 'byrow' really must be TRUE here
     alignment_sequences <- matrix(
       unname(unlist(as.character(alignment))),
-      nrow = length(labels(alignment)),
+      nrow = n_taxa,
       ncol = length(as.character(alignment)[[1]]),
       byrow = TRUE
     )

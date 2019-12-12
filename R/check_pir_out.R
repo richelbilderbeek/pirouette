@@ -17,18 +17,8 @@
 check_pir_out <- function(
   pir_out
 ) {
-  argument_names <- c(
-    "tree", "inference_model", "inference_model_weight", "site_model",
-    "clock_model", "tree_prior", "error_1"
-  )
-  for (arg_name in argument_names) {
-    if (!arg_name %in% names(pir_out)) {
-      stop(
-        "'", arg_name, "' must be an element of an 'pir_out'.\n",
-        "Tip: use 'create_pir_out'"
-      )
-    }
-  }
+  pirouette::check_pir_out_names(pir_out)
+
   testit::assert(is.factor(pir_out$tree))
   testit::assert(is.factor(pir_out$inference_model))
   testit::assert(is.factor(pir_out$site_model))
@@ -37,8 +27,8 @@ check_pir_out <- function(
   testit::assert(is.factor(pir_out$tree_prior))
   testit::assert(!is.factor(pir_out$error_1))
 
-  if (!all(pir_out$tree %in% c("true", "twin"))) {
-    stop("Invalid 'tree' value")
+  for (i in seq_along(pir_out$tree)) {
+    pirouette::check_tree_type(pir_out$tree[i])
   }
 
   if (!all(pir_out$inference_model %in% c("generative", "candidate"))) {
@@ -70,4 +60,31 @@ check_pir_out <- function(
 
   # Errors more than zero
   pirouette::check_pir_out_errors_above_zero(pir_out)
+}
+
+
+
+#' Checks if the \code{pir_out} has elements with
+#' the names needed.
+#'
+#' Will \link{stop} if not.
+#' @inheritParams default_params_doc
+#' @return nothing. Will \link{stop} if not
+#' @author Richèl J.C. Bilderbeek
+#' @export
+check_pir_out_names <- function(
+  pir_out
+) {
+  argument_names <- c(
+    "tree", "inference_model", "inference_model_weight", "site_model",
+    "clock_model", "tree_prior", "error_1"
+  )
+  for (arg_name in argument_names) {
+    if (!arg_name %in% names(pir_out)) {
+      stop(
+        "'", arg_name, "' must be an element of an 'pir_out'.\n",
+        "Tip: use 'create_pir_out'"
+      )
+    }
+  }
 }

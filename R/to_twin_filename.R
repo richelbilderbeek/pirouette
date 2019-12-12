@@ -13,6 +13,13 @@
 to_twin_filename <- function(
   filename
 ) {
+  if (beautier::is_one_na(filename)) {
+    stop(
+      "'filename' must be one string. \n",
+      "Actual value: '", filename, "'. ",
+      "Maybe forgot to initialize the 'pir_params'?"
+    )
+  }
   if (!assertive::is_a_string(filename)) {
     stop(
       "'filename' must be one string. \n",

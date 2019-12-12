@@ -7,25 +7,21 @@ test_that("use", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-  # 'phylo_to_errors' expects an alignment file to be present
-  alignment_params <- create_test_alignment_params()
+  # User will never call 'phylo_to_errors'.
+  # A developer, however, needs to initialize the pir_params
+  pir_params <- init_pir_params(create_test_pir_params())
 
   # Create the alignment
-  create_alignment_file(
+  create_true_alignment_file(
     phylogeny = phylogeny,
-    alignment_params = alignment_params
+    alignment_params = pir_params$alignment_params
   )
-  beautier::check_file_exists(alignment_params$fasta_filename)
+  beautier::check_file_exists(pir_params$alignment_params$fasta_filename)
 
-  experiment <- create_experiment(
-    inference_model = create_inference_model(
-      mcmc = create_mcmc(chain_length = 2000, store_every = 1000)
-    )
-  )
   nltts <- phylo_to_errors(
     phylogeny = phylogeny,
-    experiment = experiment,
-    alignment_params = alignment_params
+    experiment = pir_params$experiments[[1]],
+    alignment_params = pir_params$alignment_params
   )
 
   expect_true(length(nltts) > 0)

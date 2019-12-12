@@ -6,22 +6,40 @@
 \usage{
 
   create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
-  mutation_rate = pirouette::create_standard_mutation_rate,
-  site_model = beautier::create_jc69_site_model(),
-  clock_model = beautier::create_strict_clock_model(), rng_seed = 0,
-  fasta_filename = tempfile(pattern = "alignment_", fileext = ".fasta"))
+  sim_true_alignment_fun = pirouette::sim_true_alignment_with_std_nsm,
+  rng_seed = 0, fasta_filename = pirouette::get_temp_fasta_filename())
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{sim_true_alignment_fun}{function to simulate a
+true alignment with.
+This function must have two arguments,
+called \code{true_phylogeny} (which will hold the true phylogeny)
+and \code{root_sequence} (which holds the DNA root sequence).
+The return type must be \link[ape]{DNAbin}.
 
-\item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
+Use \link{check_sim_true_alignment_fun} to verify if the function
+has the right signature and output.
 
-\item{clock_model}{a clock model,
-as created by \link[beautier]{create_clock_model}}
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_sim_true_alignment_with_std_nsm_fun}
+  to get a function (\link{sim_true_alignment_with_std_nsm})
+  the use a standard site model.
+  \item Use
+  \link{get_sim_true_alignment_with_lns_nsm_fun}
+  to get a function
+  (\link{sim_true_alignment_with_lns_nsm})
+  the use a linked node substitution site model.
+  \item Use
+  \link{get_sim_true_alignment_with_uns_nsm_fun}
+  to get a function
+  (\link{sim_true_alignment_with_uns_nsm})
+  the use an unlinked node substitution site model.
+}}
 
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}
@@ -44,24 +62,17 @@ expect_equal("acgt", root_sequence)
 
 # Only specify root sequence and mutation rate, use defaults
 alignment_params <- create_alignment_params(
-  root_sequence = root_sequence,
-  mutation_rate = 0.1
+  root_sequence = root_sequence
 )
 
 expect_true("root_sequence" \%in\% names(alignment_params))
-expect_true("mutation_rate" \%in\% names(alignment_params))
 
 # Use defaults explicitly
 alignment_params <- create_alignment_params(
   root_sequence = root_sequence,
-  mutation_rate = 0.1,
-  site_model = create_jc69_site_model(),
-  clock_model = create_strict_clock_model(),
   rng_seed = 0
 )
 
-expect_true("site_model" \%in\% names(alignment_params))
-expect_true("clock_model" \%in\% names(alignment_params))
 expect_true("rng_seed" \%in\% names(alignment_params))
 
 # Create a pirouette parameter set

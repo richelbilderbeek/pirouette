@@ -54,7 +54,7 @@ check_experiments <- function(
 
   testit::assert(length(experiments) >= 2)
 
-  pirouette::check_experiments_candidates_have_same_beast2_files(experiments)
+  pirouette::check_candidates_save_to_same_files(experiments)
   pirouette::check_experiments_candidates_have_same_mcmcs(experiments)
 
   model_types <- rep("", length(experiments))

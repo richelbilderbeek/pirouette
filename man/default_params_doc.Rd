@@ -11,27 +11,30 @@ default_params_doc(alignment, alignment_params, alignment_rng_seed,
   beast2_options_inference, beast2_options_est_evidence,
   beast2_output_log_filename, beast2_output_state_filename,
   beast2_output_trees_filename, beast2_output_trees_filenames, beast2_path,
-  beast2_rng_seed, brts, burn_in_fraction, chain_length, clock_model,
-  clock_models, clock_model_name, consensus, crown_age,
-  do_measure_evidence, epsilon, error_function, error_measure_params,
-  errors, errors_filename, est_evidence_mcmc, evidence_epsilon,
-  evidence_filename, exclude_model, experiment, experiments,
-  fasta_filename, filename, folder_name, ideal_method, inference_model,
-  inference_conditions, init_speciation_rate, init_extinction_rate, lambda,
-  log_evidence, marg_lik_filename, marg_liks, max_evidence_epsilon,
+  beast2_rng_seed, branch_mutation_rate, branch_subst_matrix, brts,
+  burn_in_fraction, chain_length, clock_model, clock_models,
+  clock_model_name, consensus, crown_age, do_measure_evidence, epsilon,
+  error_fun, error_measure_params, errors, errors_filename,
+  est_evidence_mcmc, evidence_epsilon, evidence_filename, exclude_model,
+  experiment, experiments, fasta_filename, filename, folder_name,
+  ideal_method, inference_model, inference_conditions,
+  init_speciation_rate, init_extinction_rate, lambda, log_evidence,
+  marg_lik_filename, marg_liks, max_evidence_epsilon, max_n_tries,
   mbd_l_matrix, mbd_mutation_rate, mbd_tree, mcmc, method, model_selection,
   model_type, mrca_prior, mu, mutation_rate, n_0, n_mutations, n_taxa,
-  n_replicates, nu, nu_events, parameter_filename, parameters_filename,
-  phylo, phylogeny, pir_params, pir_out, posterior_trees, precision,
-  project_folder_name, result, rng_seed, rng_seed_twin_alignment,
-  rng_seed_twin_tree, root_sequence, run_experiment, run_experiments,
-  run_if, sample_interval, seed, sequence_length, sim_pars, sim_phylo,
-  site_model, site_models, site_model_name, sub_chain_length, sum_lamu,
-  t_0, tree, tree_filename, tree_model, tree_prior, tree_priors,
-  tree_prior_name, tree_type, true_alignment, true_phylogeny, true_result,
-  twin_alignment, twin_alignment_filename, twin_evidence_filename,
-  twin_phylogeny, twin_model, twin_result, twin_tree_filename,
-  twinning_params, type, verbose, weight)
+  n_replicates, node_mutation_rate, node_subst_matrix, node_time, nu,
+  nu_events, parameter_filename, parameters_filename, phylo, phylogeny,
+  pir_params, pir_out, posterior_trees, precision, project_folder_name,
+  result, rng_seed, rng_seed_twin_alignment, rng_seed_twin_tree,
+  root_sequence, run_experiment, run_experiments, run_if, sample_interval,
+  seed, sequence_length, sim_pars, sim_phylo, sim_true_alignment_fun,
+  sim_twin_alignment_fun, sim_twin_tree_fun, site_model, site_models,
+  site_model_name, sub_chain_length, subst_matrix, sum_lamu, t_0, tree,
+  tree_filename, tree_model, tree_prior, tree_priors, tree_prior_name,
+  tree_type, true_alignment, true_phylogeny, true_result, twin_alignment,
+  twin_alignment_filename, twin_evidence_filename, twin_phylogeny,
+  twin_model, twin_result, twin_tree_filename, twinning_params, type,
+  verbose, weight)
 }
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
@@ -77,7 +80,7 @@ as can be created by \link[beautier]{create_mcmc}.}
 the evidence (aka marginal likelihood),
 as can be created by \link[beastier]{create_beast2_options}.
 The MCMC must be a Nested Sampling MCMC,
-as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+as can be created by \link[beautier]{create_ns_mcmc}.}
 
 \item{beast2_output_log_filename}{name of the log file created by BEAST2,
 containing the parameter estimates in time.
@@ -119,6 +122,12 @@ BEAST2 binary file path.}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
+\item{branch_mutation_rate}{mutation rate along the branch.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
+\item{branch_subst_matrix}{substitution matrix along the branches.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
 \item{brts}{numeric vector of (all postive) branching times,
 in time units before the present. Assuming no stem, the heighest
 value equals the crown age.}
@@ -152,7 +161,7 @@ evidence (also known as marginal likelihood).
 Smaller values result in more precise estimations, that take
 longer to compute}
 
-\item{error_function}{function that determines the error between
+\item{error_fun}{function that determines the error between
 a given phylogeny and a the trees in a Bayesian posterior.
 The function must have two arguments:
 \itemize{
@@ -163,9 +172,9 @@ The function must return as many errors as there are posterior
 trees given. The error must be lowest between identical trees.
 Example functions are:
 \itemize{
-  \item \link{get_gamma_error_function}: use the absolute difference
+  \item \link{get_gamma_error_fun}: use the absolute difference
     in gamma statistic
-  \item \link{get_nltt_error_function}: use the nLTT statistic
+  \item \link{get_nltt_error_fun}: use the nLTT statistic
 }}
 
 \item{error_measure_params}{parameter set to specify how the
@@ -182,7 +191,7 @@ Use NA if these are not measured (yet)}
 \item{est_evidence_mcmc}{MCMC used in the estimation of
 the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
-as can be created by \link[beautier]{create_nested_sampling_mcmc}.}
+as can be created by \link[beautier]{create_ns_mcmc}.}
 
 \item{evidence_epsilon}{relative error in estimating the
 evidence (aka marginal likelihood).}
@@ -234,6 +243,8 @@ A test data frame can be created by \link{create_test_marg_liks}}
 \item{max_evidence_epsilon}{set the maximum acceptable threshold for the
 parameter \code{evidence_epsilon}}
 
+\item{max_n_tries}{maximum number of tries before giving up}
+
 \item{mbd_l_matrix}{the L matrix of an MBD tree}
 
 \item{mbd_mutation_rate}{the mutation rate when creating an alignment
@@ -272,7 +283,8 @@ as created by \link[beautier]{create_mrca_prior}}
 
 \item{mu}{per-species extinction rate}
 
-\item{mutation_rate}{the mutation rate per base pair per time unit}
+\item{mutation_rate}{the mutation rate per base pair per time unit.
+Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 
 \item{n_0}{number of starting species}
 
@@ -282,6 +294,15 @@ as created by \link[beautier]{create_mrca_prior}}
 
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
+
+\item{node_mutation_rate}{mutation rate on the node.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
+\item{node_subst_matrix}{substitution matrix on the nodes.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+
+\item{node_time}{amount of time spent at the nodes.
+See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
 
@@ -329,7 +350,8 @@ as used in the simulation of a twin alignment}
 simulation of a twin tree}
 
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.
-By default, this will consist out of an equal amount of each letter}
+By default, this will consist out of an equal amount of each letter
+Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{run_experiment}{one \link{pirouette} run experiment.
 A run experiment has these attributes:
@@ -363,8 +385,95 @@ makes a measurement}
 
 \item{sim_phylo}{something}
 
+\item{sim_true_alignment_fun}{function to simulate a
+true alignment with.
+This function must have two arguments,
+called \code{true_phylogeny} (which will hold the true phylogeny)
+and \code{root_sequence} (which holds the DNA root sequence).
+The return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_true_alignment_fun} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_sim_true_alignment_with_std_nsm_fun}
+  to get a function (\link{sim_true_alignment_with_std_nsm})
+  the use a standard site model.
+  \item Use
+  \link{get_sim_true_alignment_with_lns_nsm_fun}
+  to get a function
+  (\link{sim_true_alignment_with_lns_nsm})
+  the use a linked node substitution site model.
+  \item Use
+  \link{get_sim_true_alignment_with_uns_nsm_fun}
+  to get a function
+  (\link{sim_true_alignment_with_uns_nsm})
+  the use an unlinked node substitution site model.
+}}
+
+\item{sim_twin_alignment_fun}{function to simulate a
+twin alignment with.
+This function must have two arguments called \code{twin_phylogeny} (which
+will hold the twin phylogeny) and \code{true_alignment} (which will
+hold the alignment simulated from the true phylogeny). The
+return type must be \link[ape]{DNAbin}.
+
+Use \link{check_sim_twin_alignment_fun} to verify if the function
+has the right signature and output.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{get_copy_true_alignment_fun}
+    to get a function
+    (\link{copy_true_alignment})
+    that copies a true to alignment to create a twin alignment
+  \item Use \link{get_sim_twin_alignment_with_std_nsm_fun}
+    to get a function
+    (\link{sim_twin_alignment_with_std_nsm})
+    that simulates a twin alignment using a standard site model
+  \item Use \link{get_sim_twin_alignment_with_same_n_mutation_fun}
+    to get a function
+    (\link{sim_twin_alignment_with_same_n_mutation})
+    that simulates -using a standard model- a twin alignment with as much
+    mutations compared to the root sequence as the true alignment has
+  \item Use \link{sim_twin_alignment_with_lns_nsm}
+    that simulates a twin alignment using a linked node substitution
+    model
+  \item Use \link{sim_twin_alignment_with_uns_nsm}
+    that simulates a twin alignment using an unlinked node substitution
+    model
+}}
+
+\item{sim_twin_tree_fun}{function to simulate a twin tree with.
+This function must have one argument called \code{phylogeny}
+of type \link[ape]{phylo} and have a return type of type \link[ape]{phylo}
+as well.
+
+Some standard functions:\cr
+\itemize{
+  \item Use \link{create_sim_yule_twin_tree_fun} to use a
+    Yule (aka Pure Birth) process
+  \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
+    that copies the true tree
+  \item Use \link{get_sim_bd_twin_tree_fun} to use a
+    Birth-Death process
+}}
+
 \item{site_model}{a nucleotide substitution model,
-as created by \link[beautier]{create_site_model}}
+which can be:
+\itemize{
+  \item{
+    A standard nucloetide substitution model,
+    as created by \link[beautier]{create_site_model}
+  }
+  \item{
+    \code{lns}: a linked node-substitution model
+  }
+  \item{
+    \code{uns}: an unlinked node-substitution model
+  }
+}}
 
 \item{site_models}{a list of one or more site models,
 as created by \link[beautier]{create_site_model}}
@@ -373,6 +482,8 @@ as created by \link[beautier]{create_site_model}}
 
 \item{sub_chain_length}{length of the sub-chain used by the Nested Sampling
 algorithm to estimate the marginal likelihood}
+
+\item{subst_matrix}{nucleotide substitution matrix}
 
 \item{sum_lamu}{is the sum lambda + mu}
 
@@ -397,7 +508,8 @@ phylogeny, and \code{twin} for its twin tree}
 
 \item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 
-\item{true_phylogeny}{a phylogeny of class \link[ape]{phylo}}
+\item{true_phylogeny}{the true phylogeny; the actual evolutionary
+history of the species, of class \link[ape]{phylo}}
 
 \item{true_result}{result obtained from using the true tree}
 

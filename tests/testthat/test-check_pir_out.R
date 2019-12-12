@@ -3,11 +3,19 @@ context("test-check_pir_out")
 test_that("simulated data", {
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+
   experiments <- list(
     create_test_gen_experiment(),
     create_test_cand_experiment()
   )
   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+  testit::assert(
+    experiments[[1]]$inference_model$mcmc$chain_length ==
+    experiments[[2]]$inference_model$mcmc$chain_length
+  )
+
+  check_experiments(experiments)
+
   pir_out <- pir_run(
     phylogeny =  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);"),
     pir_params = create_test_pir_params(
