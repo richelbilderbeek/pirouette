@@ -35,52 +35,46 @@ create_all_experiments <- function(
     beautier::check_inference_model(exclude_model)
   }
 
-  all_experiments <- list()
-
   # All experiments use the same BEAST2 options,
   # or at least the filenames should be the same
   beast2_options <- beastier::create_beast2_options(
     input_filename = beastier::create_temp_input_filename(),
     output_state_filename = beastier::create_temp_state_filename()
   )
-  errors_filename <- tempfile(
-    pattern = "errors_", fileext = ".csv"
-  )
+  errors_filename <- get_temp_errors_filename()
 
   i <- 1
-  for (site_model in site_models) {
-    for (clock_model in clock_models) {
-      for (tree_prior in tree_priors) {
-        new_experiment <- pirouette::create_experiment(
-          inference_conditions = pirouette::create_inference_conditions(
-            model_type = "candidate",
-            run_if = "best_candidate",
-            do_measure_evidence = TRUE
-          ),
-          inference_model = beautier::create_inference_model(
-            site_model = site_model,
-            clock_model = clock_model,
-            tree_prior = tree_prior,
-            mcmc = mcmc
-          ),
-          beast2_options = beast2_options,
-          errors_filename = errors_filename
-        )
-        new_model <- new_experiment$inference_model
-        if (all(is.na(exclude_model))) {
-          all_experiments[[i]] <- new_experiment
-          i <- i + 1
-        } else if (
-          !(
-            identical(new_model$site_model, exclude_model$site_model) &&
-            identical(new_model$clock_model, exclude_model$clock_model) &&
-            identical(new_model$tree_prior, exclude_model$tree_prior)
-          )
-        ) {
-          all_experiments[[i]] <- new_experiment
-          i <- i + 1
-        }
-      }
+  inference_models <- combine_models(
+    site_models = site_models,
+    clock_models = clock_models,
+    tree_priors = tree_priors
+  )
+  all_experiments <- list()
+  for (inference_model in inference_models) {
+    inference_model$mcmc <- mcmc
+    new_experiment <- pirouette::create_experiment(
+      inference_conditions = pirouette::create_inference_conditions(
+        model_type = "candidate",
+        run_if = "best_candidate",
+        do_measure_evidence = TRUE
+      ),
+      inference_model = inference_model,
+      beast2_options = beast2_options,
+      errors_filename = errors_filename
+    )
+    new_model <- new_experiment$inference_model
+    if (all(is.na(exclude_model))) {
+      all_experiments[[i]] <- new_experiment
+      i <- i + 1
+    } else if (
+      !(
+        identical(new_model$site_model, exclude_model$site_model) &&
+        identical(new_model$clock_model, exclude_model$clock_model) &&
+        identical(new_model$tree_prior, exclude_model$tree_prior)
+      )
+    ) {
+      all_experiments[[i]] <- new_experiment
+      i <- i + 1
     }
   }
   names(all_experiments) <- seq_along(all_experiments)
