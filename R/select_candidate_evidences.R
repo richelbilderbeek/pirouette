@@ -33,13 +33,18 @@ select_candidate_evidences <- function(
   for (experiment in experiments) {
     if (experiment$inference_conditions$model_type == "generative") next () # nolint @lintr-bot likes a space between next and the braces?
     for (i in seq(1, nrow(marg_liks))) {
-      if (marg_liks$site_model_name[i] ==
-          experiment$inference_model$site_model$name &&
-        marg_liks$clock_model_name[i] ==
-          experiment$inference_model$clock_model$name &&
-        marg_liks$tree_prior_name[i] ==
-          experiment$inference_model$tree_prior$name
-      ) {
+      # Marginal Likelihood Site Model Name
+      marg_liks_names <- c(
+        marg_liks$site_model_name[i],
+        marg_liks$clock_model_name[i],
+        marg_liks$tree_prior_name[i]
+      )
+      experiment_names <- c(
+        experiment$inference_model$site_model$name,
+        experiment$inference_model$clock_model$name,
+        experiment$inference_model$tree_prior$name
+      )
+      if (all(identical(marg_liks_names, experiment_names))) {
         selected_row_indices <- c(selected_row_indices, i)
       }
     }
