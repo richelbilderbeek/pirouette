@@ -71,6 +71,17 @@
 #'   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
 #'   n_errors <- col_last_error - col_first_error + 1
 #'   expect_true(n_errors < 11) # due to burn-in
+#'
+#' @note
+#'   These abbeviations are commonly used throughout the package:
+#'   \itemize{
+#'     \item `nsm` Nucleotide Substitution Model
+#'     \item `tral`: TRue ALignment
+#'     \item `trtr`: TRue TRee
+#'     \item `twal`: TWin ALignment
+#'     \item `twtr`: TWin TRee
+#'   }
+#'
 #' @seealso
 #' These are packages associated with \link{pirouette}:
 #' \itemize{

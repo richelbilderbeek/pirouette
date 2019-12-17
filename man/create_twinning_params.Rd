@@ -4,13 +4,15 @@
 \alias{create_twinning_params}
 \title{Create the parameters for the twinning simulation}
 \usage{
-create_twinning_params(rng_seed_twin_tree = 0,
+create_twinning_params(
+  rng_seed_twin_tree = 0,
   sim_twin_tree_fun = get_sim_bd_twin_tree_fun(),
   rng_seed_twin_alignment = 0,
   sim_twal_fun = get_sim_twal_with_std_nsm_fun(),
   twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
   twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
-  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename()))
+  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename())
+)
 }
 \arguments{
 \item{rng_seed_twin_tree}{the random number generator seed as used in the
@@ -25,7 +27,7 @@ Some standard functions:\cr
 \itemize{
   \item Use \link{create_sim_yule_twin_tree_fun} to use a
     Yule (aka Pure Birth) process
-  \item Use \link{create_copy_twin_tree_from_true_fun} to for a function
+  \item Use \link{create_copy_twtr_from_true_fun} to for a function
     that copies the true tree
   \item Use \link{get_sim_bd_twin_tree_fun} to use a
     Birth-Death process

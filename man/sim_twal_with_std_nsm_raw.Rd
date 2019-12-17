@@ -4,8 +4,13 @@
 \alias{sim_twal_with_std_nsm_raw}
 \title{Adapter function to create an alignment with a standard site model}
 \usage{
-sim_twal_with_std_nsm_raw(twin_phylogeny, true_alignment, root_sequence,
-  mutation_rate, site_model)
+sim_twal_with_std_nsm_raw(
+  twin_phylogeny,
+  true_alignment,
+  root_sequence,
+  mutation_rate,
+  site_model
+)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

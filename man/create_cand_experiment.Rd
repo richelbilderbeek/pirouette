@@ -4,14 +4,14 @@
 \alias{create_cand_experiment}
 \title{Create a valid testing \link{pirouette} candidate experiment.}
 \usage{
-
-  create_cand_experiment(inference_conditions = create_inference_conditions(model_type
-  = "candidate", run_if = "best_candidate", do_measure_evidence = TRUE),
+create_cand_experiment(
+  inference_conditions = create_inference_conditions(model_type = "candidate", run_if =
+    "best_candidate", do_measure_evidence = TRUE),
   inference_model = beautier::create_inference_model(mcmc =
-  beautier::create_mcmc(store_every = 1000)),
+    beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(),
-  est_evidence_mcmc = beautier::create_ns_mcmc(store_every = 1000,
-  epsilon = 1e-12))
+  est_evidence_mcmc = beautier::create_ns_mcmc(store_every = 1000, epsilon = 1e-12)
+)
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model

@@ -4,8 +4,10 @@
 \alias{select_candidate_evidences}
 \title{Select the evidences for candidate experiments}
 \usage{
-select_candidate_evidences(experiments = list(create_test_experiment()),
-  marg_liks = create_test_marg_liks())
+select_candidate_evidences(
+  experiments = list(create_test_experiment()),
+  marg_liks = create_test_marg_liks()
+)
 }
 \arguments{
 \item{experiments}{a list of one or more \link{pirouette} experiments,

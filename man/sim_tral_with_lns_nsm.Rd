@@ -4,9 +4,15 @@
 \alias{sim_tral_with_lns_nsm}
 \title{Create an alignment with the \code{lns} site model}
 \usage{
-sim_tral_with_lns_nsm(true_phylogeny, root_sequence, subst_matrix = NULL,
-  branch_mutation_rate = 1, node_mutation_rate = 1,
-  base_frequencies = NULL, node_time = 0.001)
+sim_tral_with_lns_nsm(
+  true_phylogeny,
+  root_sequence,
+  subst_matrix = NULL,
+  branch_mutation_rate = 1,
+  node_mutation_rate = 1,
+  base_frequencies = NULL,
+  node_time = 0.001
+)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary

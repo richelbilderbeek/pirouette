@@ -5,9 +5,16 @@
 \title{Adapter function to simulte the twin alignment
 using the \code{lns} site model}
 \usage{
-sim_twal_with_lns_nsm(twin_phylogeny, true_alignment = "irrelevant",
-  root_sequence, subst_matrix = NULL, branch_mutation_rate = 1,
-  node_mutation_rate = 1, base_frequencies = NULL, node_time = 0.001)
+sim_twal_with_lns_nsm(
+  twin_phylogeny,
+  true_alignment = "irrelevant",
+  root_sequence,
+  subst_matrix = NULL,
+  branch_mutation_rate = 1,
+  node_mutation_rate = 1,
+  base_frequencies = NULL,
+  node_time = 0.001
+)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

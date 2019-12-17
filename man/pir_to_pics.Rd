@@ -4,8 +4,12 @@
 \alias{pir_to_pics}
 \title{Create all pictures created by the \link{pirouette} pipeline}
 \usage{
-pir_to_pics(phylogeny, pir_params,
-  consensus = rev(sort(phylogeny$tip.label)), folder = tempdir())
+pir_to_pics(
+  phylogeny,
+  pir_params,
+  consensus = rev(sort(phylogeny$tip.label)),
+  folder = tempdir()
+)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

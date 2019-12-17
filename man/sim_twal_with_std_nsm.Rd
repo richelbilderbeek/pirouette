@@ -4,9 +4,13 @@
 \alias{sim_twal_with_std_nsm}
 \title{Simulate a twin alignment using a standard site model}
 \usage{
-sim_twal_with_std_nsm(twin_phylogeny, root_sequence,
-  true_alignment = "irrelevant", mutation_rate = 0.1,
-  site_model = beautier::create_jc69_site_model())
+sim_twal_with_std_nsm(
+  twin_phylogeny,
+  root_sequence,
+  true_alignment = "irrelevant",
+  mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model()
+)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

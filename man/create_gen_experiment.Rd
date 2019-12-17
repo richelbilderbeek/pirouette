@@ -4,13 +4,14 @@
 \alias{create_gen_experiment}
 \title{Create a valid testing \link{pirouette} generative experiment.}
 \usage{
-
-  create_gen_experiment(inference_conditions = create_inference_conditions(),
+create_gen_experiment(
+  inference_conditions = create_inference_conditions(),
   inference_model = beautier::create_inference_model(mcmc =
-  beautier::create_mcmc(store_every = 1000)),
+    beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
-  errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
+  errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
+)
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model

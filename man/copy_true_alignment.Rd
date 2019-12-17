@@ -6,8 +6,11 @@
 a twin alignment by simply copying the
 true alignment}
 \usage{
-copy_true_alignment(true_alignment, twin_phylogeny = "irrelevant",
-  root_sequence = "irrelevant")
+copy_true_alignment(
+  true_alignment,
+  twin_phylogeny = "irrelevant",
+  root_sequence = "irrelevant"
+)
 }
 \arguments{
 \item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}

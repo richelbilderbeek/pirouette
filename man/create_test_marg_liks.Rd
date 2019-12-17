@@ -4,9 +4,11 @@
 \alias{create_test_marg_liks}
 \title{Create a testing marginal likelihoods data frame.}
 \usage{
-create_test_marg_liks(site_models = beautier::create_site_models(),
+create_test_marg_liks(
+  site_models = beautier::create_site_models(),
   clock_models = beautier::create_clock_models(),
-  tree_priors = beautier::create_tree_priors())
+  tree_priors = beautier::create_tree_priors()
+)
 }
 \arguments{
 \item{site_models}{a list of one or more site models,

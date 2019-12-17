@@ -4,9 +4,12 @@
 \alias{est_evidences}
 \title{Estimate the evidences}
 \usage{
-est_evidences(fasta_filename, experiments,
+est_evidences(
+  fasta_filename,
+  experiments,
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
-  verbose = FALSE)
+  verbose = FALSE
+)
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file}

@@ -5,9 +5,13 @@
 \title{Get a partially evaluated function
 to simulate a true alignment with a linked node substitution site model.}
 \usage{
-get_sim_tral_with_lns_nsm_fun(subst_matrix = NULL,
-  branch_mutation_rate = 1, node_mutation_rate = 1,
-  base_frequencies = NULL, node_time = 0.001)
+get_sim_tral_with_lns_nsm_fun(
+  subst_matrix = NULL,
+  branch_mutation_rate = 1,
+  node_mutation_rate = 1,
+  base_frequencies = NULL,
+  node_time = 0.001
+)
 }
 \arguments{
 \item{subst_matrix}{nucleotide substitution matrix}

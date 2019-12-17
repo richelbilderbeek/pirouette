@@ -4,8 +4,11 @@
 \alias{sim_yule_twin_tree}
 \title{Create a twin tree from a phylogeny using a Yule process}
 \usage{
-sim_yule_twin_tree(true_phylogeny, method = "random_tree",
-  n_replicates = 10000)
+sim_yule_twin_tree(
+  true_phylogeny,
+  method = "random_tree",
+  n_replicates = 10000
+)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary
