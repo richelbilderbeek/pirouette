@@ -29,7 +29,7 @@ check_pir_out <- function(
 
   pirouette::check_tree_types(pir_out$tree)
 
-  if (!all(pir_out$inference_model %in% get_model_type_names)) {
+  if (!all(pir_out$inference_model %in% get_model_type_names())) {
     stop("Invalid 'inference_model' value")
   }
 
