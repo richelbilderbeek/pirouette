@@ -28,8 +28,8 @@ Will \link{stop} if not.
 \examples{
 library(testthat)
 
-expect_silent(check_model_type(get_model_types()[1]))
-expect_silent(check_model_type(get_model_types()[2]))
+expect_silent(check_model_type(get_model_type_names()[1]))
+expect_silent(check_model_type(get_model_type_names()[2]))
 expect_error(check_model_type("nonsense"))
 expect_error(check_model_type(NA))
 expect_error(check_model_type(NULL))

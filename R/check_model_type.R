@@ -6,8 +6,8 @@
 #' @examples
 #' library(testthat)
 #'
-#' expect_silent(check_model_type(get_model_types()[1]))
-#' expect_silent(check_model_type(get_model_types()[2]))
+#' expect_silent(check_model_type(get_model_type_names()[1]))
+#' expect_silent(check_model_type(get_model_type_names()[2]))
 #' expect_error(check_model_type("nonsense"))
 #' expect_error(check_model_type(NA))
 #' expect_error(check_model_type(NULL))
@@ -15,7 +15,7 @@
 check_model_type <- function(
   model_type
 ) {
-  model_types <- pirouette::get_model_types()
+  model_types <- pirouette::get_model_type_names()
   out <- rep(NA, length(model_types))
   for (l in seq_along(model_types)) {
     out[l] <- paste("'", model_types[l], "'", sep = "")

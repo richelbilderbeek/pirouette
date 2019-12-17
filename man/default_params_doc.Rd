@@ -118,6 +118,7 @@ default_params_doc(
   tree_priors,
   tree_prior_name,
   tree_type,
+  tree_types,
   true_alignment,
   true_phylogeny,
   true_result,
@@ -603,6 +604,9 @@ as created by \link[beautier]{create_tree_prior}}
 
 \item{tree_type}{type of tree, can be \code{true} for the true
 phylogeny, and \code{twin} for its twin tree}
+
+\item{tree_types}{types of tree, a vector of \code{true} for a true
+phylogeny, and \code{twin} for a twin tree}
 
 \item{true_alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 

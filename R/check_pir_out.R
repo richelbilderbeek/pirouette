@@ -27,11 +27,9 @@ check_pir_out <- function(
   testit::assert(is.factor(pir_out$tree_prior))
   testit::assert(!is.factor(pir_out$error_1))
 
-  for (i in seq_along(pir_out$tree)) {
-    pirouette::check_tree_type(pir_out$tree[i])
-  }
+  pirouette::check_tree_types(pir_out$tree)
 
-  if (!all(pir_out$inference_model %in% c("generative", "candidate"))) {
+  if (!all(pir_out$inference_model %in% get_model_type_names)) {
     stop("Invalid 'inference_model' value")
   }
 

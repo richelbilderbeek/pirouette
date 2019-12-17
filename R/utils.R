@@ -63,11 +63,11 @@ get_twin_methods <- function() {
 #' @examples
 #' library(testthat)
 #'
-#' expect_true("candidate" %in% get_model_types())
-#' expect_true("generative" %in% get_model_types())
-#' expect_false("Jensen Ackles" %in% get_model_types())
+#' expect_true("candidate" %in% get_model_type_names())
+#' expect_true("generative" %in% get_model_type_names())
+#' expect_false("Jensen Ackles" %in% get_model_type_names())
 #' @export
-get_model_types <- function() {
+get_model_type_names <- function() {
   c("generative", "candidate")
 }
 

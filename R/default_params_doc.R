@@ -356,6 +356,8 @@
 #' @param tree_prior_name name of a tree prior
 #' @param tree_type type of tree, can be \code{true} for the true
 #'   phylogeny, and \code{twin} for its twin tree
+#' @param tree_types types of tree, a vector of \code{true} for a true
+#'   phylogeny, and \code{twin} for a twin tree
 #' @param tree_filename name of the phylogeny file
 #' @param true_alignment a DNA alignment, of class \link[ape]{DNAbin}
 #' @param true_phylogeny the true phylogeny; the actual evolutionary
@@ -508,6 +510,7 @@ default_params_doc <- function(
   tree_prior, tree_priors,
   tree_prior_name,
   tree_type,
+  tree_types,
   true_alignment,
   true_phylogeny,
   true_result,

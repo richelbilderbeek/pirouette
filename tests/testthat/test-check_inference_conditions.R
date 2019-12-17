@@ -34,7 +34,7 @@ test_that("wrong parameter names", {
 
 test_that("wrong parameter values", {
 
-  model_types <- get_model_types()
+  model_types <- get_model_type_names()
   mts <- rep(NA, length(model_types))
   for (l in seq_along(model_types)) {
     mts[l] <- paste("'", model_types[l], "'", sep = "")
