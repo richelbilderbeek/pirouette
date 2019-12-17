@@ -41,7 +41,7 @@ create_all_experiments <- function(
     input_filename = beastier::create_temp_input_filename(),
     output_state_filename = beastier::create_temp_state_filename()
   )
-  errors_filename <- get_temp_errors_filename()
+  errors_filename <- pirouette::get_temp_errors_filename()
 
   i <- 1
   inference_models <- combine_models(

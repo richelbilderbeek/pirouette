@@ -18,7 +18,7 @@ create_test_pir_run_output <- function(
 
   df <- data.frame(tree = c("true", "true", "twin", "twin"))
 
-  df$inference_model <- rep(get_model_type_names(), times = 2)
+  df$inference_model <- rep(pirouette::get_model_type_names(), times = 2)
   df$inference_model_weight <- c(0.5, 0.4, 0.6, 0.3)
   df$site_model <- beautier::get_site_model_names()[1:4]
   df$clock_model <- rep(beautier::get_clock_model_names()[1:2], 2)
