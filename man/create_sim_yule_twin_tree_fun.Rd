@@ -4,8 +4,7 @@
 \alias{create_sim_yule_twin_tree_fun}
 \title{Create a partially evaluated function to to \link{sim_yule_twin_tree}.}
 \usage{
-create_sim_yule_twin_tree_fun(method = "random_tree",
-  n_replicates = 10000)
+create_sim_yule_twin_tree_fun(method = "random_tree", n_replicates = 10000)
 }
 \arguments{
 \item{method}{determines how to create the twin tree

@@ -5,8 +5,7 @@
 \title{Create the same output of \link{pir_run}
 to be used for testing, but with more data}
 \usage{
-create_test_pir_run_output2(add_twin = FALSE, add_best = FALSE,
-  n_errors = 200)
+create_test_pir_run_output2(add_twin = FALSE, add_best = FALSE, n_errors = 200)
 }
 \arguments{
 \item{add_twin}{add rows for twin tree}

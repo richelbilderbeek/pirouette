@@ -4,8 +4,7 @@
 \alias{sim_alignment_with_std_nsm}
 \title{Create an alignment with a standard site model using a raw interface}
 \usage{
-sim_alignment_with_std_nsm(phylogeny, root_sequence, mutation_rate,
-  site_model)
+sim_alignment_with_std_nsm(phylogeny, root_sequence, mutation_rate, site_model)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

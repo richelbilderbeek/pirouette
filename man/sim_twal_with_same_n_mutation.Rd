@@ -4,10 +4,15 @@
 \alias{sim_twal_with_same_n_mutation}
 \title{Simulate a twin alignment using a standard site model}
 \usage{
-sim_twal_with_same_n_mutation(twin_phylogeny, true_alignment,
-  root_sequence, mutation_rate = 1,
-  site_model = beautier::create_jc69_site_model(), max_n_tries = 1000,
-  verbose = FALSE)
+sim_twal_with_same_n_mutation(
+  twin_phylogeny,
+  true_alignment,
+  root_sequence,
+  mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model(),
+  max_n_tries = 1000,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

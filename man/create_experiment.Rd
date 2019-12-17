@@ -4,15 +4,17 @@
 \alias{create_experiment}
 \title{Create a valid \link{pirouette} experiment.}
 \usage{
-create_experiment(inference_conditions = create_inference_conditions(),
+create_experiment(
+  inference_conditions = create_inference_conditions(),
   inference_model = beautier::create_inference_model(mcmc =
-  beautier::create_mcmc(store_every = 1000)),
+    beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(input_filename =
-  beastier::create_temp_input_filename(), output_state_filename =
-  beastier::create_temp_state_filename()),
+    beastier::create_temp_input_filename(), output_state_filename =
+    beastier::create_temp_state_filename()),
   est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
-  errors_filename = tempfile(pattern = "errors_", fileext = ".csv"))
+  errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
+)
 }
 \arguments{
 \item{inference_conditions}{conditions under which the inference model

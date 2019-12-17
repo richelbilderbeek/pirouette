@@ -4,8 +4,11 @@
 \alias{create_inference_conditions}
 \title{Create the inference conditions}
 \usage{
-create_inference_conditions(model_type = "generative",
-  run_if = "always", do_measure_evidence = FALSE)
+create_inference_conditions(
+  model_type = "generative",
+  run_if = "always",
+  do_measure_evidence = FALSE
+)
 }
 \arguments{
 \item{model_type}{type of inference model supplied for an experiment.

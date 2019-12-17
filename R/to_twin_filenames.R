@@ -1,6 +1,5 @@
 #' Convert multiple filenames to their twin equivalent
 #' @param filenames the paths to files, may be relative or absolute paths
-#' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)

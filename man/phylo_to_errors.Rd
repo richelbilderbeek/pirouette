@@ -4,9 +4,13 @@
 \alias{phylo_to_errors}
 \title{Measure the error BEAST2 makes from a true phylogeny.}
 \usage{
-phylo_to_errors(phylogeny, alignment_params, experiment,
+phylo_to_errors(
+  phylogeny,
+  alignment_params,
+  experiment,
   error_measure_params = create_error_measure_params(),
-  verbose = FALSE)
+  verbose = FALSE
+)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

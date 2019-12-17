@@ -60,7 +60,6 @@ get_twin_methods <- function() {
 }
 
 #' Get the names of the model types
-#' @inheritParams default_params_doc
 #' @return the model types
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @examples
@@ -75,7 +74,6 @@ get_model_types <- function() {
 }
 
 #' Get the names of the tree types
-#' @inheritParams default_params_doc
 #' @return the tree types
 #' @author Giovanni Laudanno, Richel J.C. Bilderbeek
 #' @examples

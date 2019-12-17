@@ -5,8 +5,10 @@
 \title{Create the parameters to specify how the error
 between the given phylogeny and the Bayesian posterior trees is measured.}
 \usage{
-create_error_measure_params(burn_in_fraction = 0.1,
-  error_fun = get_nltt_error_fun())
+create_error_measure_params(
+  burn_in_fraction = 0.1,
+  error_fun = get_nltt_error_fun()
+)
 }
 \arguments{
 \item{burn_in_fraction}{the fraction of the posterior trees (starting

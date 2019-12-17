@@ -4,10 +4,12 @@
 \alias{create_test_alignment_params}
 \title{Create testing parameters for the alignment simulation.}
 \usage{
-
-  create_test_alignment_params(sim_tral_fun = pirouette::sim_tral_with_std_nsm,
-  root_sequence = "acgt", rng_seed = 0,
-  fasta_filename = pirouette::get_temp_fasta_filename())
+create_test_alignment_params(
+  sim_tral_fun = pirouette::sim_tral_with_std_nsm,
+  root_sequence = "acgt",
+  rng_seed = 0,
+  fasta_filename = pirouette::get_temp_fasta_filename()
+)
 }
 \arguments{
 \item{sim_tral_fun}{function to simulate a

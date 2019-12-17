@@ -4,8 +4,11 @@
 \alias{select_experiments}
 \title{Select the experiments to do a Bayesian inference with.}
 \usage{
-select_experiments(experiments = list(create_test_experiment()),
-  marg_liks = NULL, verbose = FALSE)
+select_experiments(
+  experiments = list(create_test_experiment()),
+  marg_liks = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{experiments}{a list of one or more \link{pirouette} experiments,

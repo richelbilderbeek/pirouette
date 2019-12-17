@@ -4,8 +4,12 @@
 \alias{sim_tral_with_std_nsm}
 \title{Adapter function to simulate a twin alignment using a standard site model}
 \usage{
-sim_tral_with_std_nsm(true_phylogeny, root_sequence, mutation_rate = 1,
-  site_model = beautier::create_jc69_site_model())
+sim_tral_with_std_nsm(
+  true_phylogeny,
+  root_sequence,
+  mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model()
+)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary

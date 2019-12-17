@@ -4,9 +4,15 @@
 \alias{sim_alignment_with_n_mutations}
 \title{Converts a phylogeny to a random DNA alignment}
 \usage{
-sim_alignment_with_n_mutations(phylogeny, root_sequence, n_mutations,
-  mutation_rate = 1, site_model = beautier::create_jc69_site_model(),
-  max_n_tries = 100, verbose = FALSE)
+sim_alignment_with_n_mutations(
+  phylogeny,
+  root_sequence,
+  n_mutations,
+  mutation_rate = 1,
+  site_model = beautier::create_jc69_site_model(),
+  max_n_tries = 100,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}

@@ -5,9 +5,14 @@
 \title{Get a partially evaluated function
 to simulate a true alignment with an unlinked node substitution site model.}
 \usage{
-get_sim_tral_with_uns_nsm_fun(branch_subst_matrix = NULL,
-  node_subst_matrix = 1, branch_mutation_rate = 1,
-  node_mutation_rate = 1, base_frequencies = NULL, node_time = 0.001)
+get_sim_tral_with_uns_nsm_fun(
+  branch_subst_matrix = NULL,
+  node_subst_matrix = 1,
+  branch_mutation_rate = 1,
+  node_mutation_rate = 1,
+  base_frequencies = NULL,
+  node_time = 0.001
+)
 }
 \arguments{
 \item{branch_subst_matrix}{substitution matrix along the branches.

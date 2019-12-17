@@ -5,8 +5,10 @@
 \title{Get a function to simulate a twin alignment which uses a standard
 site model}
 \usage{
-get_sim_twal_with_std_nsm_fun(mutation_rate = 0.1,
-  site_model = beautier::create_jc69_site_model())
+get_sim_twal_with_std_nsm_fun(
+  mutation_rate = 0.1,
+  site_model = beautier::create_jc69_site_model()
+)
 }
 \arguments{
 \item{mutation_rate}{the mutation rate per base pair per time unit.

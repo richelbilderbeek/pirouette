@@ -4,9 +4,11 @@
 \alias{sim_true_alignment}
 \title{Simulate the true alignment from the true phylogeny}
 \usage{
-sim_true_alignment(true_phylogeny,
+sim_true_alignment(
+  true_phylogeny,
   alignment_params = pirouette::create_alignment_params(),
-  verbose = FALSE)
+  verbose = FALSE
+)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary

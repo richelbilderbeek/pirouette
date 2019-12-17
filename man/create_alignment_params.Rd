@@ -4,10 +4,12 @@
 \alias{create_alignment_params}
 \title{Create the parameters for the alignment simulation.}
 \usage{
-
-  create_alignment_params(root_sequence = pirouette::create_blocked_dna(1000),
-  sim_tral_fun = pirouette::sim_tral_with_std_nsm, rng_seed = 0,
-  fasta_filename = pirouette::get_temp_fasta_filename())
+create_alignment_params(
+  root_sequence = pirouette::create_blocked_dna(1000),
+  sim_tral_fun = pirouette::sim_tral_with_std_nsm,
+  rng_seed = 0,
+  fasta_filename = pirouette::get_temp_fasta_filename()
+)
 }
 \arguments{
 \item{root_sequence}{the DNA sequence at the root of the phylogeny.

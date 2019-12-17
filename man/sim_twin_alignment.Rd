@@ -4,8 +4,12 @@
 \alias{sim_twin_alignment}
 \title{Creates a twin alignment.}
 \usage{
-sim_twin_alignment(twin_phylogeny, true_alignment, alignment_params,
-  twinning_params)
+sim_twin_alignment(
+  twin_phylogeny,
+  true_alignment,
+  alignment_params,
+  twinning_params
+)
 }
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}

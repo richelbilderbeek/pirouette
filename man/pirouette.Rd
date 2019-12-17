@@ -3,7 +3,6 @@
 \docType{package}
 \name{pirouette}
 \alias{pirouette}
-\alias{pirouette-package}
 \title{pirouette: A package to estimate the error BEAST2
 makes in inferring a phylogeny.}
 \description{
@@ -13,6 +12,14 @@ speciation model, for example the Protracted Birth-Death
 or Multiple-Birth-Death models. 'pirouette' is presented in the article
 (in press) "pirouette: the error BEAST2 makes in inferring a phylogeny"
 authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
+}
+\note{
+These abbeviations are commonly used throughout the package:
+  \itemize{
+    \item `nsm` Nucleotide Substitution Model
+    \item `tral`: TRin ALignment
+    \item `twal`: TWin ALignment
+  }
 }
 \examples{
   library(testthat)
@@ -77,6 +84,7 @@ authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
   expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
   n_errors <- col_last_error - col_first_error + 1
   expect_true(n_errors < 11) # due to burn-in
+
 }
 \seealso{
 These are packages associated with \link{pirouette}:
