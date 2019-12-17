@@ -7,7 +7,7 @@
 #' @seealso
 #' Use \link{create_sim_yule_twin_tree_fun} to get a function to
 #' produce a Yule tree.
-#' Use \link{create_copy_twin_tree_from_true_fun} to get a
+#' Use \link{create_copy_twtr_from_true_fun} to get a
 #' function to simply copy the tree
 #' @examples
 #' library(testthat)

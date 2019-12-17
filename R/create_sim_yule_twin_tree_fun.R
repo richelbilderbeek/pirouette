@@ -7,7 +7,7 @@
 #' @seealso
 #' Use \link{get_sim_bd_twin_tree_fun} to get a partially
 #' evaluated function to produce a Birth-Death tree.
-#' Use \link{create_copy_twin_tree_from_true_fun} to get a
+#' Use \link{create_copy_twtr_from_true_fun} to get a
 #' function to simply copy the tree
 #' @examples
 #' library(testthat)

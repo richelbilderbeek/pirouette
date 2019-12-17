@@ -214,7 +214,7 @@ test_that("Birth-Death", {
 test_that("Copy", {
   tree <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
   twinning_params <- create_twinning_params(
-    sim_twin_tree_fun = create_copy_twin_tree_from_true_fun()
+    sim_twin_tree_fun = create_copy_twtr_from_true_fun()
   )
   twin_tree <- create_twin_tree(
     phylogeny = tree,

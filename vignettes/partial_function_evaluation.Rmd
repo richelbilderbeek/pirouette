@@ -232,7 +232,7 @@ Now using a copy function:
 ```{r}
 # Create twinning_params
 twinning_params <- pirouette::create_twinning_params(
-  sim_twin_tree_fun = pirouette::create_copy_twin_tree_from_true_fun()
+  sim_twin_tree_fun = pirouette::create_copy_twtr_from_true_fun()
 )
 # Create a twin tree using my function
 twin_tree <- create_twin_tree(

@@ -9,7 +9,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' f <- create_copy_twin_tree_from_true_fun()
+#' f <- create_copy_twtr_from_true_fun()
 #' phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' phylo_out <- f(phylo_in)
 #' expect_equal(
@@ -18,6 +18,6 @@
 #' )
 #' @author Richèl J.C. Bilderbeek
 #' @export
-create_copy_twin_tree_from_true_fun <- function() {
+create_copy_twtr_from_true_fun <- function() {
   function(true_phylogeny) true_phylogeny
 }

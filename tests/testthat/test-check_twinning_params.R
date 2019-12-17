@@ -197,7 +197,7 @@ test_that("add sim_twin_tree_fun", {
   )
   testthat::expect_silent(
     pirouette::create_twinning_params(
-      sim_twin_tree_fun = pirouette::create_copy_twin_tree_from_true_fun()
+      sim_twin_tree_fun = pirouette::create_copy_twtr_from_true_fun()
     )
   )
 
