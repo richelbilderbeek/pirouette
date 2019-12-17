@@ -1,6 +1,5 @@
 #' Get a function to 'simulate' a twin alignment by simply
 #' copying the true alignment.
-#' @inheritParams default_params_doc
 #' @return the function
 #' \link{copy_true_alignment}
 #' @examples

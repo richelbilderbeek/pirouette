@@ -23,7 +23,6 @@ convert_tree2brts <- function(tree, precision = 8) {
 
 #' @title Twin models
 #' @description Twin models
-#' @inheritParams default_params_doc
 #' @return the twin models
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
@@ -40,7 +39,6 @@ get_twin_models <- function() {
 
 #' @title Twin methods
 #' @description Twin methods
-#' @inheritParams default_params_doc
 #' @return the twin methods
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
