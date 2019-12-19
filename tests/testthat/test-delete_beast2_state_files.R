@@ -23,5 +23,5 @@ test_that("use", {
     )
   )
 
-  testit::assert(!file.exists(beast2_option$output_state_filename))
+  testit::assert(!file.exists(beast2_options$output_state_filename))
 })
