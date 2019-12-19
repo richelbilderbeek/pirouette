@@ -38,15 +38,12 @@ est_evidences <- function(
   evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
   verbose = FALSE
 ) {
-  if (!beastier::is_beast2_installed()) {
-    stop("BEAST2 not installed. Tip: use 'beastier::install_beast2()'")
-  }
-  if (!file.exists(fasta_filename)) {
-    stop(
-      "'fasta_filename' must be the name of an existing file. ",
-      "File '", fasta_filename, "' not found"
-    )
-  }
+  pirouette::check_beast2_installed()
+  beautier::check_file_exists(
+    fasta_filename,
+    filename_description = "fasta_filename"
+  )
+
   # Must use a different FASTA file name, else the evidence estimation
   # will overwrite normal inference files
   #
@@ -63,7 +60,10 @@ est_evidences <- function(
     recursive = TRUE, showWarnings = FALSE
   )
   file.copy(from = fasta_filename, to = evidence_fasta_filename)
-  beautier::check_file_exists(evidence_fasta_filename)
+  beautier::check_file_exists(
+    evidence_fasta_filename,
+    "evidence_fasta_filename"
+  )
   if (isTRUE(verbose)) {
     print(
       paste0(
@@ -147,18 +147,10 @@ est_evidences <- function(
   file.remove(evidence_fasta_filename)
 
   # Delete files
-  for (beast2_options in beast2_optionses) {
-    if (file.exists(beast2_options$output_state_filename)) {
-      if (isTRUE(verbose)) {
-        print(
-          paste0("Deleting file '",
-            beast2_options$output_state_filename, "'"
-          )
-        )
-      }
-      file.remove(beast2_options$output_state_filename)
-    }
-  }
+  delete_beast2_state_files(
+    beast2_optionses = beast2_optionses,
+    verbose = verbose
+  )
   sum_marg_liks <- sum(marg_liks$weight)
   tolerance <- 0.1
   if (abs(1.0 - sum_marg_liks) > tolerance) {
