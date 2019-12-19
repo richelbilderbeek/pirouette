@@ -7,6 +7,9 @@
 delete_beast2_state_files(beast2_optionses, verbose = FALSE)
 }
 \arguments{
+\item{beast2_optionses}{list of one or more BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}}
+
 \item{verbose}{if TRUE, show more output}
 }
 \description{

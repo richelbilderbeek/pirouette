@@ -16,6 +16,7 @@ default_params_doc(
   beast2_bin_path,
   beast2_input_filename,
   beast2_options,
+  beast2_optionses,
   beast2_options_inference,
   beast2_options_est_evidence,
   beast2_output_log_filename,
@@ -168,6 +169,9 @@ Specifying a \code{beast2_input_filename} allows
 to store that file in a more permanently stored location.}
 
 \item{beast2_options}{BEAST2 options,
+as can be created by \link[beastier]{create_beast2_options}}
+
+\item{beast2_optionses}{list of one or more BEAST2 options,
 as can be created by \link[beastier]{create_beast2_options}}
 
 \item{beast2_options_inference}{BEAST2 options,

@@ -24,6 +24,8 @@
 #'   to store that file in a more permanently stored location.
 #' @param beast2_options BEAST2 options,
 #'   as can be created by \link[beastier]{create_beast2_options}
+#' @param beast2_optionses list of one or more BEAST2 options,
+#'   as can be created by \link[beastier]{create_beast2_options}
 #' @param beast2_options_inference BEAST2 options,
 #'   as can be created by \link[beastier]{create_beast2_options}.
 #'   The MCMC must be a normal MCMC,
@@ -411,6 +413,7 @@ default_params_doc <- function(
   beast2_bin_path,
   beast2_input_filename,
   beast2_options,
+  beast2_optionses,
   beast2_options_inference,
   beast2_options_est_evidence,
   beast2_output_log_filename,
