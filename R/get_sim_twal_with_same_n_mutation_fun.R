@@ -1,7 +1,11 @@
-#' Simulate a twin alignment from a
-#' twin phylogeny and a true alignment, of which the twin
-#' alignment has an equal amount of mutations from the root sequence
-#' as the true alignment has
+#  Get a function to simulate a twin alignment with the same number
+#' of mutations as the true alignment has.
+#'
+#' The twin alignment is simulated from the twin tree.
+#' The number of mutations it will have is counted by comparing
+#' it to the root sequence.
+#' The twin alignment will have an equal amount of mutations
+#' as the true alignment.
 #'
 #' This is an adapter function
 #' (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),
@@ -21,12 +25,12 @@
 #' if (1 == 2) {
 #' expect_silent(
 #'   check_sim_twal_fun(
-#'     get_sim_twal_with_same_n_mutation_fun
+#'     get_sim_twal_with_same_n_muts_fun
 #'   )
 #' )
 #' }
 #' @export
-get_sim_twal_with_same_n_mutation_fun <- function(
+get_sim_twal_with_same_n_muts_fun <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model(),
   max_n_tries = 100,
