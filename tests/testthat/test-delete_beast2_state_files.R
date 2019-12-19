@@ -3,7 +3,7 @@ test_that("use", {
 
 
   # Will delete nothing, as file is absent
-  testit::assert(!file.exists(beast2_option$output_state_filename))
+  testit::assert(!file.exists(beast2_options$output_state_filename))
   delete_beast2_state_files(
     beast2_optionses = list(beast2_options)
   )
@@ -14,7 +14,7 @@ test_that("use", {
     beast2_options = beast2_options
   )
 
-  testit::assert(file.exists(beast2_option$output_state_filename))
+  testit::assert(file.exists(beast2_options$output_state_filename))
 
   suppressMessages(
     delete_beast2_state_files(
