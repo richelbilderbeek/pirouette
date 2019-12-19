@@ -43,8 +43,8 @@ select_experiments <- function(
 
   # Keep only the candidate marginal likelihoods
   candidate_marg_liks <- pirouette::select_candidate_evidences(
-    experiments,
-    marg_liks
+    experiments = experiments,
+    marg_liks = marg_liks
   )
 
   selected_experiments <- list()
