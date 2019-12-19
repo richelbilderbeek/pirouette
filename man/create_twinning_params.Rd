@@ -56,7 +56,7 @@ Some standard functions:\cr
     to get a function
     (\link{sim_twal_with_std_nsm})
     that simulates a twin alignment using a standard site model
-  \item Use \link{get_sim_twal_with_same_n_muts_fun}
+  \item Use \link{get_sim_twal_same_n_muts_fun}
     to get a function
     (\link{sim_twal_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much

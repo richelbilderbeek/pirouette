@@ -15,7 +15,7 @@ test_that("use", {
   set.seed(42)
   expect_silent(
     check_sim_twal_fun(
-      get_sim_twal_with_same_n_muts_fun(
+      get_sim_twal_same_n_muts_fun(
         max_n_tries = 1,
         mutation_rate = 0.5
       )

@@ -1,5 +1,5 @@
 test_that("use", {
-  f <- pirouette::get_sim_twal_with_same_n_muts_fun(
+  f <- pirouette::get_sim_twal_same_n_muts_fun(
     max_n_tries = 1
   )
   pirouette::check_sim_twal_fun(f)

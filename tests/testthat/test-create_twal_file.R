@@ -4,7 +4,7 @@ test_that("must create file", {
   )
   twinning_params <- create_twinning_params(
     sim_twal_fun =
-      get_sim_twal_with_same_n_muts_fun(
+      get_sim_twal_same_n_muts_fun(
         max_n_tries = 1000
       )
   )

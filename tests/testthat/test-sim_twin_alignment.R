@@ -12,7 +12,7 @@ test_that("use, twin has more info", {
   )
   twinning_params <- pirouette::create_twinning_params(
     sim_twal_fun =
-      pirouette::get_sim_twal_with_same_n_muts_fun(
+      pirouette::get_sim_twal_same_n_muts_fun(
         max_n_tries = 1000
       )
   )
@@ -50,7 +50,7 @@ test_that("use, twin has less info", {
   twinning_params <- pirouette::create_twinning_params(
     rng_seed_twin_alignment = 314,
     sim_twal_fun =
-      pirouette::get_sim_twal_with_same_n_muts_fun(
+      pirouette::get_sim_twal_same_n_muts_fun(
         max_n_tries = 1000
       )
   )
@@ -119,7 +119,7 @@ test_that("works for simple trees", {
     root_sequence = "acgt")
   twinning_params <- pirouette::create_twinning_params(
     sim_twal_fun =
-      pirouette::get_sim_twal_with_same_n_muts_fun(
+      pirouette::get_sim_twal_same_n_muts_fun(
         max_n_tries = 100
       )
   )
@@ -178,7 +178,7 @@ test_that("works in poor conditions as well", {
   )
   twinning_params <- pirouette::create_twinning_params(
     sim_twal_fun =
-      pirouette::get_sim_twal_with_same_n_muts_fun(
+      pirouette::get_sim_twal_same_n_muts_fun(
         mutation_rate = mutation_rate,
         max_n_tries = 1e3
       )

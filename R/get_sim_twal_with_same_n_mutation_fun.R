@@ -25,12 +25,12 @@
 #' if (1 == 2) {
 #' expect_silent(
 #'   check_sim_twal_fun(
-#'     get_sim_twal_with_same_n_muts_fun
+#'     get_sim_twal_same_n_muts_fun
 #'   )
 #' )
 #' }
 #' @export
-get_sim_twal_with_same_n_muts_fun <- function(
+get_sim_twal_same_n_muts_fun <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model(),
   max_n_tries = 100,
