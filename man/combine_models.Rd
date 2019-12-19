@@ -3,7 +3,7 @@
 \name{combine_models}
 \alias{combine_models}
 \title{Combine a combination of site models, clock models and tree priors
-into a collection of inference models}
+into a collection of inference models.}
 \usage{
 combine_models(
   site_models = beautier::create_site_models(),
@@ -11,7 +11,41 @@ combine_models(
   tree_priors = beautier::create_tree_priors()
 )
 }
+\arguments{
+\item{site_models}{a list of one or more site models,
+as created by \link[beautier]{create_site_model}}
+
+\item{clock_models}{a list of one or more clock models,
+as created by \link[beautier]{create_clock_model}}
+
+\item{tree_priors}{a list of one or more tree priors,
+as created by \link[beautier]{create_tree_prior}}
+}
 \description{
-Combine a combination of site models, clock models and tree priors
-into a collection of inference models
+If there are `x` site models, `y` clock models and `z` tree priors,
+this will result in `x * y * z` inference models.
+}
+\examples{
+library(testthat)
+
+site_models <- beautier::create_site_models()
+clock_models <- beautier::create_clock_models()
+tree_priors <- beautier::create_tree_priors()
+
+inference_models <- combine_models(
+  site_models = site_models,
+  clock_models = clock_models,
+  tree_priors = tree_priors
+)
+
+n_site_models <- length(site_models)
+n_clock_models <- length(clock_models)
+n_tree_priors <- length(tree_priors)
+
+n_inference_models <- length(inference_models)
+
+expect_equal(
+  n_inference_models,
+   n_site_models * n_clock_models * n_tree_priors
+)
 }
