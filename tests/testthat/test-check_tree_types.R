@@ -1,0 +1,11 @@
+test_that("use", {
+  expect_silent(check_tree_types(get_tree_types()))
+  expect_silent(check_tree_types(get_tree_types()[1]))
+  expect_silent(check_tree_types(get_tree_types()[2]))
+  expect_error(check_tree_types("nonsense"))
+  expect_error(check_tree_types(NA))
+  expect_error(check_tree_types(NULL))
+  expect_error(check_tree_types(c()))
+  expect_error(check_tree_types(c(get_tree_types(), "nonsense")))
+  expect_error(check_tree_types(c(get_tree_types(), NA)))
+})

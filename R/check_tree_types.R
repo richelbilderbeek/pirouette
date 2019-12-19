@@ -12,6 +12,9 @@
 #' expect_error(check_tree_types(NULL))
 #' @export
 check_tree_types <- function(tree_types) {
+  if (length(tree_types) == 0) {
+    stop("'tree_types' must have at least one element")
+  }
   for (i in seq_along(tree_types)) {
     pirouette::check_tree_type(tree_types[i])
   }
