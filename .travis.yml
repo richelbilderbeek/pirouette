@@ -62,7 +62,6 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 20 Rscript -e 'covr::codecov()'; fi
   # Lint
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then Rscript -e 'lintr::lint_package()'; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then Rscript -e 'lintr::lint_package()'; fi
   # Goodpractice, takes >30 mins on Mac
   #- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then Rscript -e 'goodpractice::gp()'; fi
 
