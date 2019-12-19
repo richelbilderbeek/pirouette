@@ -4,7 +4,11 @@
 \alias{get_sim_twal_same_n_muts_fun}
 \title{of mutations as the true alignment has.}
 \usage{
+<<<<<<< HEAD:man/get_sim_twal_same_n_muts_fun.Rd
 get_sim_twal_same_n_muts_fun(
+=======
+get_sim_twal_with_same_n_mutation_fun(
+>>>>>>> master:man/get_sim_twal_with_same_n_mutation_fun.Rd
   mutation_rate = 1,
   site_model = beautier::create_jc69_site_model(),
   max_n_tries = 100,

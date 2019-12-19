@@ -73,6 +73,12 @@ examples.
 
 ![](pics/errors.png)
 
+## Common abbreviations
+
+ * `nsm`: Nucleotide Substitution Model
+ * `tral`: TRin ALignment
+ * `twal`: TWin ALignment
+
 ## Interpretation
 
 ### Relevance of comparing error distributions
