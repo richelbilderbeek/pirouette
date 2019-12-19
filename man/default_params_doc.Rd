@@ -16,10 +16,7 @@ default_params_doc(
   beast2_bin_path,
   beast2_input_filename,
   beast2_options,
-<<<<<<< HEAD
   beast2_optionses,
-=======
->>>>>>> master
   beast2_options_inference,
   beast2_options_est_evidence,
   beast2_output_log_filename,
@@ -122,10 +119,7 @@ default_params_doc(
   tree_priors,
   tree_prior_name,
   tree_type,
-<<<<<<< HEAD
   tree_types,
-=======
->>>>>>> master
   true_alignment,
   true_phylogeny,
   true_result,

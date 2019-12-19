@@ -17,15 +17,10 @@ authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
 These abbeviations are commonly used throughout the package:
   \itemize{
     \item `nsm` Nucleotide Substitution Model
-<<<<<<< HEAD
     \item `tral`: TRue ALignment
     \item `trtr`: TRue TRee
     \item `twal`: TWin ALignment
     \item `twtr`: TWin TRee
-=======
-    \item `tral`: TRin ALignment
-    \item `twal`: TWin ALignment
->>>>>>> master
   }
 }
 \examples{
