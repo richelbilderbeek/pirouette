@@ -1,5 +1,3 @@
-context("test-est_evidences")
-
 test_that("use, 2 candidates", {
 
   if (!beastier::is_on_ci()) return()
@@ -137,7 +135,7 @@ test_that("abuse", {
       fasta_filename = "nonsense",
       experiments = experiments
     ),
-    "'fasta_filename' must be the name of an existing file"
+    "File 'fasta_filename' not found. Could not find file with path 'nonsense'"
   )
 
   # experiments
