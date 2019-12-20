@@ -34,7 +34,7 @@ ape::plot.phylo(phylogeny)
 The BD twinning parameters:
 
 ```{r}
-bd_twin <- create_twin_tree(
+bd_twin <- pirouette::create_twin_tree(
   phylogeny = phylogeny,
   twinning_params = create_twinning_params(
     sim_twin_tree_fun = get_sim_bd_twin_tree_fun()
