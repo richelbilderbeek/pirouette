@@ -148,6 +148,8 @@ Sure, just add an Issue. Or send an email.
 
 ## Package dependencies
 
+### `master` branches
+
 Package                                                |[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)                                                                       |[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
 -------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------
 [beautier](https://github.com/ropensci/beautier)       |[![Build Status](https://travis-ci.org/ropensci/beautier.svg?branch=master)](https://travis-ci.org/ropensci/beautier)               |[![codecov.io](https://codecov.io/github/ropensci/beautier/coverage.svg?branch=master)](https://codecov.io/github/ropensci/beautier/branch/master)
@@ -155,6 +157,16 @@ Package                                                |[![Travis CI logo](pics/
 [mauricer](https://github.com/ropensci/mauricer)       |[![Build Status](https://travis-ci.org/ropensci/mauricer.svg?branch=master)](https://travis-ci.org/ropensci/mauricer)               |[![codecov.io](https://codecov.io/github/ropensci/mauricer/coverage.svg?branch=master)](https://codecov.io/github/ropensci/mauricer/branch/master)
 [mcbette](https://github.com/richelbilderbeek/mcbette) |[![Build Status](https://travis-ci.org/richelbilderbeek/mcbette.svg?branch=master)](https://travis-ci.org/richelbilderbeek/mcbette) |[![codecov.io](https://codecov.io/github/richelbilderbeek/mcbette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/mcbette/branch/master)
 [tracerer](https://github.com/ropensci/tracerer)       |[![Build Status](https://travis-ci.org/ropensci/tracerer.svg?branch=master)](https://travis-ci.org/ropensci/tracerer)               |[![codecov.io](https://codecov.io/github/ropensci/tracerer/coverage.svg?branch=master)](https://codecov.io/github/ropensci/tracerer/branch/master)
+
+### `develop` branches
+
+Package                                                |[![Travis CI logo](pics/TravisCI.png)](https://travis-ci.org)                                                                       |[![Codecov logo](pics/Codecov.png)](https://www.codecov.io)
+-------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+[beautier](https://github.com/ropensci/beautier)       |[![Build Status](https://travis-ci.org/ropensci/beautier.svg?branch=develop)](https://travis-ci.org/ropensci/beautier)               |[![codecov.io](https://codecov.io/github/ropensci/beautier/coverage.svg?branch=develop)](https://codecov.io/github/ropensci/beautier/branch/develop)
+[beastier](https://github.com/ropensci/beastier)       |[![Build Status](https://travis-ci.org/ropensci/beastier.svg?branch=develop)](https://travis-ci.org/ropensci/beastier)               |[![codecov.io](https://codecov.io/github/ropensci/beastier/coverage.svg?branch=develop)](https://codecov.io/github/ropensci/beastier/branch/develop)
+[mauricer](https://github.com/ropensci/mauricer)       |[![Build Status](https://travis-ci.org/ropensci/mauricer.svg?branch=develop)](https://travis-ci.org/ropensci/mauricer)               |[![codecov.io](https://codecov.io/github/ropensci/mauricer/coverage.svg?branch=develop)](https://codecov.io/github/ropensci/mauricer/branch/develop)
+[mcbette](https://github.com/richelbilderbeek/mcbette) |[![Build Status](https://travis-ci.org/richelbilderbeek/mcbette.svg?branch=develop)](https://travis-ci.org/richelbilderbeek/mcbette) |[![codecov.io](https://codecov.io/github/richelbilderbeek/mcbette/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/mcbette/branch/develop)
+[tracerer](https://github.com/ropensci/tracerer)       |[![Build Status](https://travis-ci.org/ropensci/tracerer.svg?branch=develop)](https://travis-ci.org/ropensci/tracerer)               |[![codecov.io](https://codecov.io/github/ropensci/tracerer/coverage.svg?branch=develop)](https://codecov.io/github/ropensci/tracerer/branch/develop)
 
 ### Windows
 
