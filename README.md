@@ -8,6 +8,7 @@ giovanni|[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?b
 richel  |[![Build Status](https://travis-ci.org/richelbilderbeek/pirouette.svg?branch=richel)](https://travis-ci.org/richelbilderbeek/pirouette)  |[![Build status](https://ci.appveyor.com/api/projects/status/vr5jkcx975w1ggcn/branch/master?svg=true)](https://ci.appveyor.com/project/richelbilderbeek/pirouette/branch/richel)  |[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master)
 
 ![](pics/pirouette_logo.png)
+![](pics/errors.png)
 
 `pirouette` is an R package that estimates the error BEAST2 makes from a given 
 phylogeny. This phylogeny can be created using any (non-BEAST) speciation model,
