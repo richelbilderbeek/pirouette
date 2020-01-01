@@ -153,6 +153,6 @@ est_evidences <- function(
   )
   sum_marg_liks <- sum(marg_liks$weight)
   tolerance <- 0.1
-  testthat::expect_less_than(abs(1.0 - sum_marg_liks), tolerance)
+  testthat::expect_lt(abs(1.0 - sum_marg_liks), tolerance)
   marg_liks
 }
