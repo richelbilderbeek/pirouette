@@ -89,11 +89,15 @@ expect_true(n_errors < 11) # due to burn-in
 
 }
 \seealso{
-'pirouette' supplies multiple function
-
-These are overviews:
 \itemize{
-  \item \link{check_sim_tral_fun}
+  \item To simulate an alignment, use \link{sim_alignment_with_std_nsm}
+    or \link{sim_alignment_with_n_mutations}.
+  \item To simulate a true alignment, see \link{check_sim_tral_fun}
+    for an overview of functions.
+  \item To simulate a twin alignment, see \link{check_sim_twal_fun}
+    for an overview of functions.
+  \item To simulate a twin tree, see \link{check_sim_twin_tree_fun}
+    for an overview of functions.
 }
 
 
