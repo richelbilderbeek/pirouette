@@ -65,6 +65,10 @@ To install the BEAST2 `NS` package:
 mauricer::install_beast2_pkg("NS")
 ```
 
+## Documentation
+
+ * [Pre-print of the pirouette article](https://www.biorxiv.org/content/10.1101/2019.12.17.879098v1)
+
 ## [Examples](https://github.com/richelbilderbeek/pirouette_examples)
 
 See [https://github.com/richelbilderbeek/pirouette_examples](https://github.com/richelbilderbeek/pirouette_examples)
