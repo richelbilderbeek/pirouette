@@ -20,7 +20,7 @@
 #'
 #' expect_silent(check_alignment(alignment))
 #' @export
-sim_alignment_with_std_nsm_from_params <- function(
+sim_alignment_with_std_nsm_from_params <- function( # nolint indeed a long function name
   phylogeny,
   alignment_params
 ) {

@@ -83,6 +83,14 @@
 #'   }
 #'
 #' @seealso
+#' 'pirouette' supplies multiple function
+#'
+#' These are overviews:
+#' \itemize{
+#'   \item \link{check_sim_tral_fun}
+#' }
+#'
+#'
 #' These are packages associated with \link{pirouette}:
 #' \itemize{
 #'   \item{
