@@ -1,6 +1,8 @@
 #' Create an alignment with a standard site model
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
+#' @seealso use \link{sim_alignment_with_std_nsm} to simulate an alignment
+#' directlt from a mutation rate, root sequence and site model
 #' @examples
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' alignment_params <- create_alignment_params(
@@ -29,7 +31,7 @@ sim_alignment_with_std_nsm_from_params <- function(
     environment(alignment_params$sim_tral_fun)
   )
   pirouette::check_mutation_rate(mutation_rate)
-  pirouette::check_site_model(site_model)
+  beautier::check_site_model(site_model)
   pirouette::sim_alignment_with_std_nsm(
     phylogeny = phylogeny,
     root_sequence = alignment_params$root_sequence,

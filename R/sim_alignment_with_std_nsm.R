@@ -11,6 +11,9 @@
 #'   site_model = beautier::create_jc69_site_model()
 #' )
 #' expect_silent(check_alignment(alignment))
+#' @seealso use \link{sim_alignment_with_std_nsm_from_params}
+#' to simulate an alignment from an \code{alignment_params}, as created
+#' by \link{create_alignment_params}.
 #' @export
 sim_alignment_with_std_nsm <- function(
   phylogeny,

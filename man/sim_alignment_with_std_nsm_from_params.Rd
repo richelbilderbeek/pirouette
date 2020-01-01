@@ -33,3 +33,7 @@ alignment <- sim_alignment_with_std_nsm_from_params(
 
 expect_silent(check_alignment(alignment))
 }
+\seealso{
+use \link{sim_alignment_with_std_nsm} to simulate an alignment
+directlt from a mutation rate, root sequence and site model
+}

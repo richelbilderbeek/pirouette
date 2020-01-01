@@ -48,3 +48,8 @@ alignment <- sim_alignment_with_std_nsm(
 )
 expect_silent(check_alignment(alignment))
 }
+\seealso{
+use \link{sim_alignment_with_std_nsm_from_params}
+to simulate an alignment from an \code{alignment_params}, as created
+by \link{create_alignment_params}.
+}
