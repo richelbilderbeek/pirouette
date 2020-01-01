@@ -86,7 +86,6 @@ test_that("short run with unusual logging intervals", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
-  skip("#364")
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
   experiment <- pirouette::create_test_gen_experiment()
@@ -98,9 +97,15 @@ test_that("short run with unusual logging intervals", {
     experiments = experiments
   )
 
+  testit::assert(
+    3000 == pir_params$experiments[[1]]$inference_model$mcmc$chain_length
+  )
+  pir_params$experiments[[1]]$inference_model$mcmc$tracelog$log_every <- 300
+  pir_params$experiments[[1]]$inference_model$mcmc$treelog$log_every <- 500
+
   # Run pirouette
   expect_silent(
-    pir_run(
+    df <- pir_run(
       phylogeny = phylogeny,
       pir_params = pir_params
     )
