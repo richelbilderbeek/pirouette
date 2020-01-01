@@ -146,28 +146,3 @@ test_that("abuse", {
   )
 
 })
-
-test_that("use", {
-
-  skip("Cannot create branching times for a Yule tree, #342")
-  # TODO: Issue #342: This test makes no sense.
-
-  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-
-  yule_branching_times <- pirouette::create_twin_branching_times(
-    lambda = 0.0,
-    mu = 1.0,
-    phylogeny = phylogeny,
-    n_replicates = 1,
-    method = "random_tree"
-  )
-  bd_branching_times <- pirouette::create_twin_branching_times(
-    lambda = 0.1,
-    mu = 1.0,
-    phylogeny = phylogeny,
-    n_replicates = 1,
-    method = "random_tree"
-  )
-  testthat::expect_equal(yule_branching_times, bd_branching_times)
-
-})
