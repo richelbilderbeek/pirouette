@@ -18,7 +18,10 @@ check_mutation_rate <- function(mutation_rate) {
         mutation_rate <= 0.0 ||
         is.infinite(mutation_rate)
     ) {
-      stop("'mutation_rate' must be one non-zero and finite positive value")
+      stop(
+        "'mutation_rate' must be one non-zero and finite positive value. \n",
+        "Actual value: '", mutation_rate, "'"
+      )
     }
   }
 

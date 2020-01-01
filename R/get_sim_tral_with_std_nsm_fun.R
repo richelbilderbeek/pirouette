@@ -22,6 +22,7 @@ get_sim_tral_with_std_nsm_fun <- function(
   mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model()
 ) {
+  pirouette::check_mutation_rate(mutation_rate)
   pryr::partial(
     sim_tral_with_std_nsm,
     mutation_rate = mutation_rate,
