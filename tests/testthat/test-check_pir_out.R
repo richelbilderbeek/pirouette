@@ -39,6 +39,35 @@ test_that("minimal use", {
 })
 
 test_that("abuse", {
+  good_pir_out <- create_test_pir_run_output()
+  expect_silent(check_pir_out(good_pir_out))
+
+  # inference_model
+  pir_out <- good_pir_out
+  pir_out$inference_model <- "nonsense"
+  pir_out$inference_model <- as.factor(pir_out$inference_model)
+  expect_error(check_pir_out(pir_out), "inference_model")
+
+  # site_model
+  pir_out <- good_pir_out
+  pir_out$site_model <- "nonsense"
+  pir_out$site_model <- as.factor(pir_out$site_model)
+  expect_error(check_pir_out(pir_out), "site_model")
+
+  # clock_model
+  pir_out <- good_pir_out
+  pir_out$clock_model <- "nonsense"
+  pir_out$clock_model <- as.factor(pir_out$clock_model)
+  expect_error(check_pir_out(pir_out), "clock_model")
+
+  # tree_prior
+  pir_out <- good_pir_out
+  pir_out$tree_prior <- "nonsense"
+  pir_out$tree_prior <- as.factor(pir_out$tree_prior)
+  expect_error(check_pir_out(pir_out), "tree_prior")
+})
+
+test_that("abuse by removing elements", {
   good_pir_out <- create_test_pir_run_output(
     add_best = TRUE,
     add_twin = TRUE
