@@ -2,6 +2,26 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.1 (2020-01-01)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * Improved documentation
+ * Increased code coverage
+ * Removed dead code
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.6 (2019-10-13)
 
 ### NEW FEATURES
