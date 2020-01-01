@@ -6,7 +6,7 @@ test_that("use", {
       mutation_rate = 0.1
     )
   )
-  alignment <- create_alignment_with_std_nsm(
+  alignment <- create_alignment_with_std_nsm_from_params(
     phylogeny = phylogeny,
     alignment_params = alignment_params
   )
