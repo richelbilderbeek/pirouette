@@ -33,19 +33,7 @@ sim_tral_with_lns_nsm <- function(
   )
   testit::assert("alignment" %in% names(sim_result))
   alignment_phydat <- sim_result$alignment
-
-  if (class(alignment_phydat) != "phyDat") {
-    stop(
-      "Result of nodeSub::sim_dual_linked(...)$alignment",
-      " must be of class phyDat. ",
-      "Actual class: ", class(alignment_phydat), " \n",
-      "Actual value: ", alignment_phydat, " \n",
-      "Complete result of 'nodeSub::sim_dual_linked': ", sim_result, " \n"
-    )
-  }
   testthat::expect_equal(class(alignment_phydat), "phyDat")
-  testit::assert(class(alignment_phydat) == "phyDat")
-
   alignment <- ape::as.DNAbin(alignment_phydat)
   pirouette::check_alignment(alignment)
   alignment
