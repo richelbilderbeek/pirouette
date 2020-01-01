@@ -30,7 +30,7 @@ sim_twal_with_std_nsm <- function(
   twin_phylogeny,
   root_sequence,
   true_alignment = "irrelevant",
-  mutation_rate = 0.1, # TODO: make 1.0
+  mutation_rate = 1.0,
   site_model = beautier::create_jc69_site_model()
 ) {
   alignment <- pirouette::sim_alignment_with_std_nsm(

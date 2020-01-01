@@ -94,7 +94,6 @@ sim_bd_twin_tree <- function(
   testit::assert(beautier::is_one_double(mu_bd))
 
   # generate bd branching times from the inferred parameters
-  # TODO: issue #353: remove seed from "create_twin_branching_times" too?
   bd_brts0 <- pirouette::create_twin_branching_times(
     phylogeny = phylogeny,
     lambda = lambda_bd,
