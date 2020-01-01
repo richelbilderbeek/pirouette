@@ -15,67 +15,18 @@ for example the Protracted Birth-Death or Multiple-Birth-Death models.
 
 The heavy lifting is done by these packages:
 
- * [phangorn](https://github.com/KlausVigo/phangorn): to simulate an alignment from a phylogeny
  * [babette](https://github.com/ropensci/babette): to use an alignment to create a posterior
+ * [mcbette](https://github.com/richelbilderbeek/mcbette): model comparison
+ * [phangorn](https://github.com/KlausVigo/phangorn): to simulate an alignment from a phylogeny
 
 ## Installation
 
-`pirouette` can be installed
-
- * from script (easiest)
- * from R 
-
-### From script
-
-All the manual steps are put in the `install_pir_deps`
-script, which is located in the `scripts` folder.
-
-To call the script:
-
-```
-cd scripts
-./install_pir_deps
-```
-
-### From R
-
-Thanks to the `remotes` R package, this is easy:
-
-```{r}
-remotes::install_github("KlausVigo/phangorn")
-remotes::install_github("ropensci/beautier")
-remotes::install_github("ropensci/tracerer")
-remotes::install_github("ropensci/beastier")
-remotes::install_github("ropensci/mauricer")
-remotes::install_github("ropensci/babette")
-remotes::install_github("richelbilderbeek/mcbette")
-remotes::install_github("richelbilderbeek/pirouette")
-```
-
-To install BEAST2, see [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md)
-or use:
-
-```{r}
-beastier::install_beast2()
-```
-
-To install the BEAST2 `NS` package:
-
-```{r}
-mauricer::install_beast2_pkg("NS")
-```
+See [doc/install.md](doc/install.md).
 
 ## Documentation
 
+ * [Examples](https://github.com/richelbilderbeek/pirouette_examples)
  * [Pre-print of the pirouette article](https://www.biorxiv.org/content/10.1101/2019.12.17.879098v1)
-
-## [Examples](https://github.com/richelbilderbeek/pirouette_examples)
-
-See [https://github.com/richelbilderbeek/pirouette_examples](https://github.com/richelbilderbeek/pirouette_examples)
-for all [https://github.com/richelbilderbeek/pirouette](https://github.com/richelbilderbeek/pirouette)
-examples.
-
-![](pics/errors.png)
 
 ## Common abbreviations
 
