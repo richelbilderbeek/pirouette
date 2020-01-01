@@ -19,6 +19,8 @@ an alignment of type \code{DNAbin}
 Create an alignment with a standard site model
 }
 \examples{
+library(testthat)
+
 phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 alignment_params <- create_alignment_params(
   root_sequence = "aaaa",
