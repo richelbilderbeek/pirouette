@@ -153,13 +153,6 @@ est_evidences <- function(
   )
   sum_marg_liks <- sum(marg_liks$weight)
   tolerance <- 0.1
-  if (abs(1.0 - sum_marg_liks) > tolerance) {
-    stop(
-      "Sum of evidences (aka marginal likelihoods) deviates too much from ",
-        " one \n",
-      "Sum: ", sum_marg_liks, "\n",
-      "Tolerance: ", tolerance, "\n"
-    )
-  }
+  testthat::expect_less_than(abs(1.0 - sum_marg_liks), tolerance)
   marg_liks
 }
