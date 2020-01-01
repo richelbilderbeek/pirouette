@@ -23,38 +23,40 @@ Convert the collect of errors to a data frame
 \examples{
 library(testthat)
 
-phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-pir_params <- create_test_pir_params()
+if (beastier::is_beast2_installed()) {
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  pir_params <- create_test_pir_params()
 
-# A normal user should not need to call 'phylo_to_errors' directly.
-# For a developer that needs to, the 'pir_params' must be initialized
-pir_params <- init_pir_params(pir_params)
+  # A normal user should not need to call 'phylo_to_errors' directly.
+  # For a developer that needs to, the 'pir_params' must be initialized
+  pir_params <- init_pir_params(pir_params)
 
-create_tral_file(
-  phylogeny = phylogeny,
-  alignment_params = pir_params$alignment_params,
-  verbose = FALSE
-)
-
-errorses <- list()
-errorses[[1]] <- phylo_to_errors(
-  phylogeny = phylogeny,
-  alignment_params = pir_params$alignment_params,
-  error_measure_params = pir_params$error_measure_params,
-  experiment = pir_params$experiments[[1]],
-  verbose = pir_params$verbose
-)
-
-df <- errorses_to_data_frame(
-  errorses = errorses,
-  experiments = list(pir_params$experiments[[1]]),
-  marg_liks = create_test_marg_liks(
-    site_models = list(create_jc69_site_model()),
-    clock_models = list(create_strict_clock_model()),
-    tree_priors = list(create_yule_tree_prior())
+  create_tral_file(
+    phylogeny = phylogeny,
+    alignment_params = pir_params$alignment_params,
+    verbose = FALSE
   )
-)
-expect_true(is.data.frame(df))
+
+  errorses <- list()
+  errorses[[1]] <- phylo_to_errors(
+    phylogeny = phylogeny,
+    alignment_params = pir_params$alignment_params,
+    error_measure_params = pir_params$error_measure_params,
+    experiment = pir_params$experiments[[1]],
+    verbose = pir_params$verbose
+  )
+
+  df <- errorses_to_data_frame(
+    errorses = errorses,
+    experiments = list(pir_params$experiments[[1]]),
+    marg_liks = create_test_marg_liks(
+      site_models = list(create_jc69_site_model()),
+      clock_models = list(create_strict_clock_model()),
+      tree_priors = list(create_yule_tree_prior())
+    )
+  )
+  expect_true(is.data.frame(df))
+}
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
