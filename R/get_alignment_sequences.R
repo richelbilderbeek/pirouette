@@ -10,12 +10,10 @@
 #' )
 #' @export
 get_alignment_sequences <- function(
-  alignment,
-  verbose = FALSE
+  alignment
 ) {
   pirouette::check_alignment(alignment)
   if (is.matrix(alignment)) {
-    if (verbose) print("alignment is a matrix")
     # We know from
     # https://github.com/richelbilderbeek/pirouette/commit/a96ec3fef34c79e38bed292092c0370e5312c3f6 # nolint indeed long
     # that byrow must be FALSE
@@ -27,7 +25,6 @@ get_alignment_sequences <- function(
     )
   }
   if (is.list(alignment)) {
-    if (verbose) print("alignment is a list")
     n_taxa <- length(labels(alignment))
     testit::assert(n_taxa > 0)
     # Nah, 'byrow' really must be TRUE here
@@ -40,7 +37,6 @@ get_alignment_sequences <- function(
   }
 
   n_taxa <- nrow(alignment_sequences)
-  if (verbose) print(paste0("alignment has ", n_taxa, " taxa"))
 
   sequences <- rep(NA, n_taxa)
 
