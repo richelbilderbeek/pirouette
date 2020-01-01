@@ -35,14 +35,7 @@ sim_alignment_with_std_nsm <- function(
       base_frequencies = calc_base_freq(root_sequence)
     )
   )
-  if (class(alignment_phydat) != "phyDat") {
-    stop(
-      "'class(alignment_phydat)' not equal to 'phyDat'. \n",
-      "Actual 'class(alignment_phydat)': ", class(alignment_phydat), " \n",
-      "Actual 'alignment_phydat': ", alignment_phydat, " \n"
-    )
-  }
-  testit::assert(class(alignment_phydat) == "phyDat")
+  testthat::expect_equal(class(alignment_phydat), "phyDat")
 
   alignment <- ape::as.DNAbin(alignment_phydat)
   pirouette::check_alignment(alignment)
