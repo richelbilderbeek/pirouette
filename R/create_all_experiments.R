@@ -77,10 +77,6 @@ create_all_experiments <- function(
       i <- i + 1
     }
   }
-  names(all_experiments) <- seq_along(all_experiments)
-
-  # nolint TODO: do not use sapply, see https://travis-ci.org/richelbilderbeek/pirouette/jobs/631527770#L1163
-  # all_experiments[sapply(all_experiments, is.null)] <- NULL
 
   pirouette::check_experiments(all_experiments)
 
