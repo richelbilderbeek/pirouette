@@ -78,10 +78,8 @@ create_all_experiments <- function(
     }
   }
 
-  # All list elements must be an experiments, no NULLs in this list please
-  testit::assert(
-    all(isFALSE(vapply(all_experiments, FUN = is.null, FUN.VALUE = TRUE)))
-  )
+  # Remove list elements that are NULL
+  all_experiments <- plyr::compact(all_experiments)
 
   pirouette::check_experiments(all_experiments)
 

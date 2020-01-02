@@ -7,6 +7,12 @@ test_that("use", {
   if (!beastier::is_on_ci()) return()
 
   all_experiments <- create_all_experiments()
+
+  # no NULLs in this list please
+  expect_true(
+    all(vapply(all_experiments, FUN = is.null, FUN.VALUE = TRUE) == FALSE)
+  )
+
   for (i in seq_along(all_experiments)) {
     experiment <- all_experiments[[i]]
     expect_silent(check_experiment(experiment))
