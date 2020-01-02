@@ -27,10 +27,11 @@ test_that("it can exclude an experiment", {
       mcmc = create_mcmc(store_every = 1000)
     )
   )
-  expect_true(length(all_experiments) == (length(create_all_experiments()) - 1))
+  expect_equal(
+    length(all_experiments),
+    length(create_all_experiments()) - 1
+  )
 })
-
-
 
 test_that("should exclude one model, code from article", {
 
@@ -39,23 +40,23 @@ test_that("should exclude one model, code from article", {
   # This test takes too long
   if (!beastier::is_on_ci()) return()
 
-  generative_experiment <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "generative",
-      run_if = "always"
-    ),
-    inference_model = create_inference_model(
-      tree_prior = create_yule_tree_prior(),
-      clock_model = create_strict_clock_model(),
-      site_model = create_jc69_site_model()
+    generative_experiment <- create_experiment(
+      inference_conditions = create_inference_conditions(
+        model_type = "generative",
+        run_if = "always"
+      ),
+      inference_model = create_inference_model(
+        tree_prior = create_yule_tree_prior(),
+        clock_model = create_strict_clock_model(),
+        site_model = create_jc69_site_model()
+      )
     )
-  )
 
-  candidate_experiments <- create_all_experiments(
-    exclude_model = generative_experiment$inference_model
-  )
-  expect_equal(
-    length(candidate_experiments),
-    length(create_all_experiments()) - 1
-  )
+    candidate_experiments <- create_all_experiments(
+      exclude_model = generative_experiment$inference_model
+    )
+    expect_equal(
+      length(candidate_experiments),
+      length(create_all_experiments()) - 1
+    )
 })

@@ -78,6 +78,11 @@ create_all_experiments <- function(
     }
   }
 
+  # All list elements must be an experiments, no NULLs in this list please
+  testit::assert(
+    all(isFALSE(vapply(all_experiments, FUN = is.null, FUN.VALUE = TRUE)))
+  )
+
   pirouette::check_experiments(all_experiments)
 
   all_experiments
