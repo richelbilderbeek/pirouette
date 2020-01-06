@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.2 (2020-01-06)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * Process `goodpractice` feedback
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.6.1 (2020-01-01)
 
 ### NEW FEATURES
