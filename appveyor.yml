@@ -23,6 +23,7 @@ environment:
     R_REMOTES_STANDALONE: true
 
 build_script:
+  - travis-tool.sh install_r curl
   - travis-tool.sh install_github Giappo/mbd
   - travis-tool.sh install_github jimhester/covr
   - travis-tool.sh install_github jimhester/lintr
