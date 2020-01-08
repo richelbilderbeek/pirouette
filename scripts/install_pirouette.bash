@@ -31,7 +31,7 @@ module load ImageMagick
 
 Rscript -e 'devtools::install_bioc("ggtree")'
 Rscript -e 'devtools::install_github("KlausVigo/phangorn")'
-Rscript -e 'devtools::install_github("richelbilderbeek/nLTT")'
+Rscript -e 'devtools::install_github("thijsjanzen/nLTT")'
 Rscript -e 'devtools::install_github("ropensci/beautier")'
 Rscript -e 'devtools::install_github("ropensci/beastier")'
 Rscript -e 'devtools::install_github("ropensci/tracerer")'

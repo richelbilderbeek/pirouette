@@ -32,7 +32,7 @@ build_script:
   - travis-tool.sh install_github ropensci/mauricer
   - travis-tool.sh install_github ropensci/babette
   - travis-tool.sh install_github richelbilderbeek/mcbette
-  - travis-tool.sh install_github richelbilderbeek/nLTT
+  - travis-tool.sh install_github thijsjanzen/nLTT
   - travis-tool.sh install_github rsetienne/PBD/PBD
   - travis-tool.sh install_github richelbilderbeek/becosys
   - travis-tool.sh install_github thijsjanzen/nodeSub
