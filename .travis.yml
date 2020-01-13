@@ -27,7 +27,6 @@ r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  - ropensci/babette
   - richelbilderbeek/mcbette
   - rsetienne/DDD
   - rsetienne/PBD/PBD
