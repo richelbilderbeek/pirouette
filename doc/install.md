@@ -22,13 +22,7 @@ cd scripts
 Thanks to the `remotes` R package, this is easy:
 
 ```{r}
-remotes::install_github("KlausVigo/phangorn")
-remotes::install_github("ropensci/beautier")
-remotes::install_github("ropensci/tracerer")
-remotes::install_github("ropensci/beastier")
-remotes::install_github("ropensci/mauricer")
-remotes::install_github("ropensci/babette")
-remotes::install_github("richelbilderbeek/mcbette")
+remotes::install_github("richelbilderbeek/mcbette", dependencies = TRUE)
 remotes::install_github("richelbilderbeek/pirouette")
 ```
 
