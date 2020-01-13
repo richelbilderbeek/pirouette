@@ -21,17 +21,17 @@ VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Depends:
-    beautier (>= 2.3),
-    babette
+    beautier (== 2.3.2),
+    babette (== 2.1.1)
 Imports:
     ape,
     assertive,
-    beastier (>= 2.0.25),
+    beastier (== 2.1.1),
     DDD,
     dplyr,
     geiger,
     magrittr,
-    mauricer,
+    mauricer (== 2.0.5),
     mcbette (>= 1.7),
     nodeSub (>= 0.4.1),
     phangorn,
@@ -45,7 +45,7 @@ Imports:
     TESS,
     testit,
     tidyr,
-    tracerer,
+    tracerer (== 2.0.2),
     xtable
 Suggests:
     becosys,
