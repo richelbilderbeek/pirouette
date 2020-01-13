@@ -53,7 +53,7 @@ Suggests:
     ggplot2,
     knitr,
     lintr,
-    nLTT,
+    nLTT (== 1.4.3),
     PBD,
     rmarkdown,
     testthat (>= 2.1.0)
