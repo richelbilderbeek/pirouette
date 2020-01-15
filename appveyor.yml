@@ -20,21 +20,21 @@ environment:
   global:
     WARNINGS_ARE_ERRORS: 0
     USE_RTOOLS: true
-    R_REMOTES_STANDALONE: true
 
 build_script:
   - travis-tool.sh install_r curl
+  - travis-tool.sh install_github ropensci/babette
   - travis-tool.sh install_github Giappo/mbd
   - travis-tool.sh install_github jimhester/covr
   - travis-tool.sh install_github jimhester/lintr
-  - travis-tool.sh install_r babette
   - travis-tool.sh install_github richelbilderbeek/mcbette
   - travis-tool.sh install_github thijsjanzen/nLTT
   - travis-tool.sh install_github rsetienne/PBD/PBD
   - travis-tool.sh install_github richelbilderbeek/becosys
+  - travis-tool.sh install_r fansi
   - travis-tool.sh install_github thijsjanzen/nodeSub
   - travis-tool.sh install_deps
-  - R -e "library(beastier); beastier::install_beast2()"
+  - Rscript -e "beastier::install_beast2()"
 
 test_script:
   - travis-tool.sh run_tests
