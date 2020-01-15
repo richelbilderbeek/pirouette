@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.3 (unreleased)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * None
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * Use new `nodeSube` v0.5 (2020-01-13) default arguments
+
 ## `pirouette` 1.6.2 (2020-01-06)
 
 ### NEW FEATURES
