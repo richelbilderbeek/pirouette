@@ -1,7 +1,7 @@
 Package: pirouette
 Type: Package
 Title: Create a Bayesian Posterior From a Phylogeny
-Version: 1.6.2
+Version: 1.6.3
 Authors@R: c(
   person("Richèl J.C.", "Bilderbeek", email = "richel@richelbilderbeek.nl", role = c("aut", "cre"), comment = c(ORCID = "0000-0003-1107-7049")),
   person("Giovanni", "Laudanno", email = "glaudanno@gmail.com",   role = "aut"),
@@ -33,7 +33,7 @@ Imports:
     magrittr,
     mauricer (== 2.0.5),
     mcbette (>= 1.7),
-    nodeSub (>= 0.4.1),
+    nodeSub (>= 0.5),
     phangorn,
     phytools,
     plyr,
