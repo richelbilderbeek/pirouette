@@ -7,10 +7,10 @@
 sim_tral_with_lns_nsm(
   true_phylogeny,
   root_sequence,
-  subst_matrix = NULL,
+  subst_matrix = rep(1, 6),
   branch_mutation_rate = 1,
   node_mutation_rate = 1,
-  base_frequencies = NULL,
+  base_frequencies = rep(0.25, 4),
   node_time = 0.001
 )
 }

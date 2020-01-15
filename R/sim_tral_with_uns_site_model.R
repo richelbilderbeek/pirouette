@@ -13,11 +13,11 @@
 sim_tral_with_uns_nsm <- function(
   true_phylogeny,
   root_sequence,
-  branch_subst_matrix = NULL,
+  branch_subst_matrix = rep(1, 6),
   node_subst_matrix = 1.0,
   branch_mutation_rate = 1.0,
   node_mutation_rate = 1.0,
-  base_frequencies = NULL,
+  base_frequencies = rep(0.25, 4),
   node_time = 0.001
 ) {
   beautier::check_phylogeny(true_phylogeny)

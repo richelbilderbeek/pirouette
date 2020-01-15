@@ -8,11 +8,11 @@ with the \code{linked_node_sub} (lns) site model.}
 sim_tral_with_uns_nsm(
   true_phylogeny,
   root_sequence,
-  branch_subst_matrix = NULL,
+  branch_subst_matrix = rep(1, 6),
   node_subst_matrix = 1,
   branch_mutation_rate = 1,
   node_mutation_rate = 1,
-  base_frequencies = NULL,
+  base_frequencies = rep(0.25, 4),
   node_time = 0.001
 )
 }
