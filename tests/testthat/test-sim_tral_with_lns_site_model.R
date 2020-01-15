@@ -6,7 +6,6 @@ test_that("number of nucleotides must match", {
     true_phylogeny = phylogeny,
     root_sequence = root_sequence
   )
-  testthat::expect_equal(nrow(alignment), ape::Ntip(phylogeny))
-  testthat::expect_equal(ncol(alignment), nchar(root_sequence))
-
+  expect_equal(nrow(alignment), ape::Ntip(phylogeny))
+  expect_equal(ncol(alignment), nchar(root_sequence))
 })

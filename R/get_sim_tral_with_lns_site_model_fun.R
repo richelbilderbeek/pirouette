@@ -22,10 +22,10 @@
 #' @export
 get_sim_tral_with_lns_nsm_fun <-
   function(
-  subst_matrix = NULL,
+  subst_matrix = rep(1, 6),
   branch_mutation_rate = 1.0,
   node_mutation_rate = 1.0,
-  base_frequencies = NULL,
+  base_frequencies = rep(0.25, 4),
   node_time = 0.001
 ) {
   pryr::partial(

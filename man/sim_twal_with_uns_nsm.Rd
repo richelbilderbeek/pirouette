@@ -9,11 +9,11 @@ sim_twal_with_uns_nsm(
   twin_phylogeny,
   root_sequence,
   true_alignment = "irrelevant",
-  branch_subst_matrix = NULL,
+  branch_subst_matrix = rep(1, 6),
   node_subst_matrix = 1,
   branch_mutation_rate = 1,
   node_mutation_rate = 1,
-  base_frequencies = NULL,
+  base_frequencies = rep(0.25, 4),
   node_time = 0.001
 )
 }
