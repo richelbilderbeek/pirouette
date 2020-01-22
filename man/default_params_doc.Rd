@@ -83,8 +83,10 @@ default_params_doc(
   parameter_filename,
   parameters_filename,
   phylo,
+  phylogenies,
   phylogeny,
   pir_params,
+  pir_paramses,
   pir_out,
   posterior_trees,
   precision,
@@ -418,10 +420,16 @@ present in the simulated tree}
 
 \item{phylo}{a phylogeny of class \link[ape]{phylo}}
 
+\item{phylogenies}{a list of phylogenies,
+each phylogeny being of class \link[ape]{phylo}}
+
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
 
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
+
+\item{pir_paramses}{a list of \link[pirouette]{pirouette} parameters,
+each element created by \link{create_pir_params}.}
 
 \item{pir_out}{the output of \link{pir_run}}
 

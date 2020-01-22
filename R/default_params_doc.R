@@ -204,9 +204,13 @@
 #' @param parameter_filename full path to a 'parameters.csv' file
 #' @param parameters_filename full path to a 'parameters.csv' file
 #' @param phylo a phylogeny of class \link[ape]{phylo}
+#' @param phylogenies a list of phylogenies,
+#'   each phylogeny being of class \link[ape]{phylo}
 #' @param phylogeny a phylogeny of class \link[ape]{phylo}
 #' @param pir_params the parameters of \link[pirouette]{pirouette}.
 #'   They are created by \link{create_pir_params}.
+#' @param pir_paramses a list of \link[pirouette]{pirouette} parameters,
+#'   each element created by \link{create_pir_params}.
 #' @param pir_out the output of \link{pir_run}
 #' @param posterior_trees phylogenetic trees in a BEAST2 posterior,
 #'   of class \code{multiphylo}
@@ -478,8 +482,10 @@ default_params_doc <- function(
   parameter_filename,
   parameters_filename,
   phylo,
+  phylogenies,
   phylogeny,
   pir_params,
+  pir_paramses,
   pir_out,
   posterior_trees,
   precision,
