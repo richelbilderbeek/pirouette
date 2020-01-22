@@ -44,7 +44,11 @@ if (is_on_travis() && is_beast2_installed()) {
 }
 }
 \seealso{
-Use \link{pir_run} for a single \link{pirouette} run.
+\itemize{
+  \item Use \link{pir_run} for a single \link{pirouette} run.
+  \item Use \link{pir_plots} to plot the output of this function.
+  \item Use \link{check_pir_out} on each list element, to check its validity.
+}
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -1,11 +1,15 @@
-#' Plot the error 'BEAST2' makes from the known phylogeny
+#' Plot the error 'BEAST2' makes from a known phylogeny
 #' @param pir_out the output created by \code{\link{pir_run}}
-#' @return a ggplot2 plot
+#' @return a \link{ggplot2} plot
 #' @seealso
-#'   Use \link{create_test_pir_run_output} to create a test output
-#'   of \link{pir_run}.
-#'   Use \link{pir_plot_from_file} to plot the errors after have
-#'   being saved to a \code{.csv} file
+#' \itemize{
+#'   \item Use \link{create_test_pir_run_output} to create a test output
+#'     of \link{pir_run}.
+#'   \item Use \link{pir_plot_from_file} to plot the errors after have
+#'     being saved to a \code{.csv} file
+#'   \item Use \link{pir_plots} to plot the output of multiple runs,
+#'     for example, the output of \link{pir_runs}
+#' }
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #' pir_out <- create_test_pir_run_output(

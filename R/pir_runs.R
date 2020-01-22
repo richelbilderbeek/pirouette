@@ -26,7 +26,12 @@
 #'     expect_silent(check_pir_out(pir_out))
 #'   }
 #' }
-#' @seealso Use \link{pir_run} for a single \link{pirouette} run.
+#' @seealso
+#' \itemize{
+#'   \item Use \link{pir_run} for a single \link{pirouette} run.
+#'   \item Use \link{pir_plots} to plot the output of this function.
+#'   \item Use \link{check_pir_out} on each list element, to check its validity.
+#' }
 #' @author Richèl J.C. Bilderbeek
 #' @export
 pir_runs <- function(
