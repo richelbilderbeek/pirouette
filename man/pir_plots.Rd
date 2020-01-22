@@ -10,7 +10,7 @@ pir_plots(pir_outs)
 \item{pir_outs}{the output of \link{pir_runs}}
 }
 \value{
-a \link{ggplot2} plot
+a \code{ggplot2} plot
 }
 \description{
 Plot the output of \link{pir_runs}.

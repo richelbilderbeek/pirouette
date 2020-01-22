@@ -10,7 +10,7 @@ pir_plot(pir_out)
 \item{pir_out}{the output created by \code{\link{pir_run}}}
 }
 \value{
-a \link{ggplot2} plot
+a \code{ggplot2} plot
 }
 \description{
 Plot the error 'BEAST2' makes from a known phylogeny

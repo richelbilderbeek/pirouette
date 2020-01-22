@@ -1,6 +1,6 @@
 #' Plot the error 'BEAST2' makes from a known phylogeny
 #' @param pir_out the output created by \code{\link{pir_run}}
-#' @return a \link{ggplot2} plot
+#' @return a \code{ggplot2} plot
 #' @seealso
 #' \itemize{
 #'   \item Use \link{create_test_pir_run_output} to create a test output

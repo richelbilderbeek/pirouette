@@ -1,6 +1,6 @@
 #' Plot the output of \link{pir_runs}.
 #' @inheritParams default_params_doc
-#' @return a \link{ggplot2} plot
+#' @return a \code{ggplot2} plot
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' # Create fake pir_run output
