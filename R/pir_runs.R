@@ -6,6 +6,8 @@
 #' @inheritParams default_params_doc
 #' @return a list of \link{pir_run} outputs.
 #' @examples
+#' library(testthat)
+#'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
 #'   pir_paramses <- list()
