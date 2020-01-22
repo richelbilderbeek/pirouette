@@ -15,6 +15,18 @@ a \link{ggplot2} plot
 \description{
 Plot the output of \link{pir_runs}.
 }
+\examples{
+# Create fake pir_run output
+pir_outs <- list()
+pir_outs[[1]] <- create_test_pir_run_output(
+  add_twin = TRUE,
+  add_best = TRUE
+)
+pir_outs[[2]] <- pir_outs[[1]]
+
+# Plot the (fake) output
+expect_silent(pir_plots(pir_outs))
+}
 \author{
 Richèl J.C. Bilderbeek
 }
