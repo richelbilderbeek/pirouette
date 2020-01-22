@@ -17,6 +17,7 @@ a ggplot2 plot
 Plot the error BEAST2 make from the known phylogeny
 }
 \examples{
+if (1 == 2) { # Issue 377
 library(testthat)
 
 pir_out_filename <- tempfile(fileext = ".csv")
@@ -26,6 +27,7 @@ url <- paste0(
 )
 utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
 expect_silent(pir_plot_from_file(pir_out_filename))
+}
 }
 \seealso{
 Use \link{pir_plot} to directly plot the return value
