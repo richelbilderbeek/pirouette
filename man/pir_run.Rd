@@ -18,7 +18,7 @@ They are created by \link{create_pir_params}.}
 }
 \value{
 a data frame with errors, with as many rows as model selection
-parameter sets.
+parameter sets. The output can be checked using \link{check_pir_out}.
 }
 \description{
 From a phylogeny of (un)known speciation model,
@@ -29,15 +29,7 @@ as given by \code{alignment_params}.
 library(testthat)
 
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-
-# Select all experiments with 'run_if' is 'always'
-experiment <- create_test_gen_experiment()
-experiments <- list(experiment)
-
-pir_params <- create_pir_params(
-  alignment_params = create_test_alignment_params(),
-  experiments = experiments
-)
+pir_params <- create_test_pir_params()
 
 errors <- NA
 if (
@@ -89,10 +81,13 @@ n_errors <- col_last_error - col_first_error + 1
 expect_true(n_errors < 11) # due to burn-in
 }
 \seealso{
-Use \link{pir_plot} to display the output of \link{pir_run} as a
-figure.
-Use \link{create_test_pir_run_output} to create a test output
-of \link{pir_run}
+\itemize{
+  \item Use \link{pir_plot} to display the output of \link{pir_run} as a
+    figure.
+  \item Use \link{create_test_pir_run_output} to create a test output
+    of \link{pir_run}.
+  \item Use \link{pir_runs} to do multiple \link{pirouette} runs.
+}
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

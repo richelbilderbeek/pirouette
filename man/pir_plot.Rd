@@ -2,7 +2,7 @@
 % Please edit documentation in R/pir_plot.R
 \name{pir_plot}
 \alias{pir_plot}
-\title{Plot the error BEAST2 make from the known phylogeny}
+\title{Plot the error 'BEAST2' makes from the known phylogeny}
 \usage{
 pir_plot(pir_out)
 }
@@ -13,7 +13,7 @@ pir_plot(pir_out)
 a ggplot2 plot
 }
 \description{
-Plot the error BEAST2 make from the known phylogeny
+Plot the error 'BEAST2' makes from the known phylogeny
 }
 \examples{
 pir_out <- create_test_pir_run_output(

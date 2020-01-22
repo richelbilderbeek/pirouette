@@ -1,4 +1,4 @@
-#' Plot the error BEAST2 make from the known phylogeny
+#' Plot the error 'BEAST2' makes from the known phylogeny
 #' @param pir_out the output created by \code{\link{pir_run}}
 #' @return a ggplot2 plot
 #' @seealso

@@ -2,14 +2,25 @@
 #' to be used for testing
 #' @param add_twin add rows for twin tree
 #' @param add_best add rows for best inference model
+#' @return a data frame with errors, with as many rows as model selection
+#' parameter sets. The output can be checked using \link{check_pir_out}.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   pir_plot(
+#' expect_silent(
+#'   check_pir_out(
 #'     create_test_pir_run_output(
 #'       add_twin = TRUE,
 #'       add_best = TRUE
 #'     )
 #'   )
+#' )
+#'
+#' pir_plot(
+#'   create_test_pir_run_output(
+#'     add_twin = TRUE,
+#'     add_best = TRUE
+#'   )
+#' )
 #' @export
 create_test_pir_run_output <- function(
   add_twin = FALSE,

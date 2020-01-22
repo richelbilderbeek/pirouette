@@ -1,5 +1,10 @@
 #' Do multiple \link{pirouette} runs
+#'
+#' This is a simple convenience functions: supply as much phylogenies
+#' as \link{pirouette} parameter sets. For each phylogeny-parameters
+#' pair, \link{pir_run} is called.
 #' @inheritParams default_params_doc
+#' @return a list of \link{pir_run} outputs.
 #' @examples
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
@@ -20,6 +25,7 @@
 #'   }
 #' }
 #' @seealso Use \link{pir_run} for a single \link{pirouette} run.
+#' @author Richèl J.C. Bilderbeek
 #' @export
 pir_runs <- function(
   phylogenies,

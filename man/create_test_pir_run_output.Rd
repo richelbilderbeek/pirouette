@@ -12,17 +12,30 @@ create_test_pir_run_output(add_twin = FALSE, add_best = FALSE)
 
 \item{add_best}{add rows for best inference model}
 }
+\value{
+a data frame with errors, with as many rows as model selection
+parameter sets. The output can be checked using \link{check_pir_out}.
+}
 \description{
 Create the same output of \link{pir_run}
 to be used for testing
 }
 \examples{
-  pir_plot(
+expect_silent(
+  check_pir_out(
     create_test_pir_run_output(
       add_twin = TRUE,
       add_best = TRUE
     )
   )
+)
+
+pir_plot(
+  create_test_pir_run_output(
+    add_twin = TRUE,
+    add_best = TRUE
+  )
+)
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -20,68 +20,57 @@ test_that("generative", {
 
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-  experiment <- create_test_gen_experiment()
-  experiments <- list(experiment)
-
-  # Create and bundle the parameters
-  pir_params <- create_pir_params(
-    alignment_params = create_test_alignment_params(),
-    experiments = experiments
-  )
-
-  # Files not yet created
-  filenames <- get_pir_params_filenames(pir_params)
-  testit::assert(all(!file.exists(filenames)))
+  pir_params <- create_test_pir_params()
 
   # Run pirouette
-  errors <- pir_run(
+  pir_out <- pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 
   # Files created
-  testit::assert(all(file.exists(filenames)))
+  testit::assert(all(file.exists(get_pir_params_filenames(pir_params))))
 
   # Return value all at once
-  expect_silent(check_pir_out(errors))
+  expect_silent(check_pir_out(pir_out))
 
   # Return value
-  expect_true("tree" %in% names(errors))
-  expect_true(is.factor(errors$tree))
-  expect_true("true" %in% errors$tree)
+  expect_true("tree" %in% names(pir_out))
+  expect_true(is.factor(pir_out$tree))
+  expect_true("true" %in% pir_out$tree)
 
-  expect_true("inference_model" %in% names(errors))
-  expect_true(is.factor(errors$inference_model))
-  expect_true("generative" %in% errors$inference_model)
+  expect_true("inference_model" %in% names(pir_out))
+  expect_true(is.factor(pir_out$inference_model))
+  expect_true("generative" %in% pir_out$inference_model)
 
-  expect_true("inference_model_weight" %in% names(errors))
-  expect_true(is.na(errors$inference_model_weight))
-  expect_true(!is.factor(errors$inference_model_weight))
+  expect_true("inference_model_weight" %in% names(pir_out))
+  expect_true(is.na(pir_out$inference_model_weight))
+  expect_true(!is.factor(pir_out$inference_model_weight))
 
-  expect_true("site_model" %in% names(errors))
-  expect_true(is.factor(errors$site_model))
-  expect_true("JC69" %in% errors$site_model)
+  expect_true("site_model" %in% names(pir_out))
+  expect_true(is.factor(pir_out$site_model))
+  expect_true("JC69" %in% pir_out$site_model)
 
-  expect_true("clock_model" %in% names(errors))
-  expect_true(is.factor(errors$clock_model))
-  expect_true("strict" %in% errors$clock_model)
+  expect_true("clock_model" %in% names(pir_out))
+  expect_true(is.factor(pir_out$clock_model))
+  expect_true("strict" %in% pir_out$clock_model)
 
-  expect_true("tree_prior" %in% names(errors))
-  expect_true(is.factor(errors$tree_prior))
-  expect_true("yule" %in% errors$tree_prior)
+  expect_true("tree_prior" %in% names(pir_out))
+  expect_true(is.factor(pir_out$tree_prior))
+  expect_true("yule" %in% pir_out$tree_prior)
 
-  expect_true("error_1" %in% names(errors))
-  expect_true(!is.factor(errors$error_1))
+  expect_true("error_1" %in% names(pir_out))
+  expect_true(!is.factor(pir_out$error_1))
 
   # Errors more than zero
-  col_first_error <- which(colnames(errors) == "error_1")
-  col_last_error <- ncol(errors)
-  expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+  col_first_error <- which(colnames(pir_out) == "error_1")
+  col_last_error <- ncol(pir_out)
+  expect_true(all(pir_out[, col_first_error:col_last_error] > 0.0))
   n_errors <- col_last_error - col_first_error + 1
   expect_true(n_errors < 11) # due to burn-in
 
   # Redundant check
-  expect_silent(check_pir_out(errors))
+  expect_silent(check_pir_out(pir_out))
 })
 
 test_that("short run with unusual logging intervals", {

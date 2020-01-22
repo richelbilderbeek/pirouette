@@ -13,8 +13,13 @@ each phylogeny being of class \link[ape]{phylo}}
 \item{pir_paramses}{a list of \link[pirouette]{pirouette} parameters,
 each element created by \link{create_pir_params}.}
 }
+\value{
+a list of \link{pir_run} outputs.
+}
 \description{
-Do multiple \link{pirouette} runs
+This is a simple convenience functions: supply as much phylogenies
+as \link{pirouette} parameter sets. For each phylogeny-parameters
+pair, \link{pir_run} is called.
 }
 \examples{
 if (is_on_travis() && is_beast2_installed()) {
@@ -38,4 +43,7 @@ if (is_on_travis() && is_beast2_installed()) {
 }
 \seealso{
 Use \link{pir_run} for a single \link{pirouette} run.
+}
+\author{
+Richèl J.C. Bilderbeek
 }
