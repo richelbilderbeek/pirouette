@@ -212,6 +212,7 @@
 #' @param pir_paramses a list of \link[pirouette]{pirouette} parameters,
 #'   each element created by \link{create_pir_params}.
 #' @param pir_out the output of \link{pir_run}
+#' @param pir_outs the output of \link{pir_runs}
 #' @param posterior_trees phylogenetic trees in a BEAST2 posterior,
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
@@ -487,6 +488,7 @@ default_params_doc <- function(
   pir_params,
   pir_paramses,
   pir_out,
+  pir_outs,
   posterior_trees,
   precision,
   project_folder_name,

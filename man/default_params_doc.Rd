@@ -88,6 +88,7 @@ default_params_doc(
   pir_params,
   pir_paramses,
   pir_out,
+  pir_outs,
   posterior_trees,
   precision,
   project_folder_name,
@@ -432,6 +433,8 @@ They are created by \link{create_pir_params}.}
 each element created by \link{create_pir_params}.}
 
 \item{pir_out}{the output of \link{pir_run}}
+
+\item{pir_outs}{the output of \link{pir_runs}}
 
 \item{posterior_trees}{phylogenetic trees in a BEAST2 posterior,
 of class \code{multiphylo}}

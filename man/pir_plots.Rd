@@ -6,6 +6,15 @@
 \usage{
 pir_plots(pir_outs)
 }
+\arguments{
+\item{pir_outs}{the output of \link{pir_runs}}
+}
+\value{
+a \link{ggplot2} plot
+}
 \description{
 Plot the output of \link{pir_runs}.
+}
+\author{
+Richèl J.C. Bilderbeek
 }
