@@ -45,19 +45,6 @@ test_that("create_true_alignment: abuse", {
     ),
     "'alignment_params' must be a set of alignment parameters"
   )
-
-  set.seed(42)
-  p_with_extant <- ape::rtree(5)
-  testit::assert(geiger::is.extinct(p_with_extant))
-
-  expect_error(
-    create_true_alignment(
-      true_phylogeny = p_with_extant,
-      alignment_params = alignment_params
-    ),
-    "A reconstructed phylogeny must not contain extinct species"
-  )
-
 })
 
 test_that("low mutation rate must have less mutations", {
