@@ -16,6 +16,8 @@ a \code{ggplot2} plot
 Plot the output of \link{pir_runs}.
 }
 \examples{
+library(testthat)
+
 # Create fake pir_run output
 pir_outs <- list()
 pir_outs[[1]] <- create_test_pir_run_output(
