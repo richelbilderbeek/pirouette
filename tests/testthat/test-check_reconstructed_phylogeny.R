@@ -1,11 +1,11 @@
 test_that("use", {
 
   #
-  #     +-------------- C
-  # ----+
-  #     |    +--------- B
-  #     +----+
-  #          +--------- A
+  #     +-------------- C                                                       # nolint this is no code
+  # ----+                                                                       # nolint this is no code
+  #     |    +--------- B                                                       # nolint this is no code
+  #     +----+                                                                  # nolint this is no code
+  #          +--------- A                                                       # nolint this is no code
   #
   expect_silent(
     check_reconstructed_phylogeny(
@@ -14,11 +14,11 @@ test_that("use", {
   )
 
   #
-  #     +-------------- C
-  # ----+
-  #     |    +--------- B
-  #     +----+
-  #          +---- A
+  #     +-------------- C                                                       # nolint this is no code
+  # ----+                                                                       # nolint this is no code
+  #     |    +--------- B                                                       # nolint this is no code
+  #     +----+                                                                  # nolint this is no code
+  #          +---- A                                                            # nolint this is no code
   #
   expect_error(
     check_reconstructed_phylogeny(
