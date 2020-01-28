@@ -1,5 +1,7 @@
 test_that("use", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
   experiments[[2]] <- experiments[[1]]
@@ -8,6 +10,8 @@ test_that("use", {
 })
 
 test_that("first tracelog filename is NA", {
+
+  if (rappdirs::app_dir()$os == "win") return()
 
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
@@ -19,6 +23,8 @@ test_that("first tracelog filename is NA", {
 
 test_that("tracelog filenames differ", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
   experiments[[2]] <- experiments[[1]]
@@ -29,6 +35,8 @@ test_that("tracelog filenames differ", {
 
 test_that("first screenlog filename is NA", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
   experiments[[2]] <- experiments[[1]]
@@ -38,6 +46,8 @@ test_that("first screenlog filename is NA", {
 })
 
 test_that("screenlog filenames differ", {
+
+  if (rappdirs::app_dir()$os == "win") return()
 
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
@@ -50,6 +60,8 @@ test_that("screenlog filenames differ", {
 
 test_that("first treelog filename is NA", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
   experiments[[2]] <- experiments[[1]]
@@ -60,6 +72,8 @@ test_that("first treelog filename is NA", {
 
 test_that("treelog filenames differ", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
   experiments[[2]] <- experiments[[1]]
@@ -69,6 +83,8 @@ test_that("treelog filenames differ", {
 })
 
 test_that("treelog filenames differ", {
+
+  if (rappdirs::app_dir()$os == "win") return()
 
   experiments <- list()
   experiments[[1]] <- create_test_cand_experiment()
