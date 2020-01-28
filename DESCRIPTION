@@ -22,16 +22,16 @@ URL: https://github.com/richelbilderbeek/pirouette
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Depends:
     beautier (>= 2.3.2),
-    babette (== 2.1.1)
+    babette (>= 2.1.1)
 Imports:
     ape,
     assertive,
-    beastier (== 2.1.1),
+    beastier (>= 2.1.1),
     DDD,
     dplyr,
     geiger,
     magrittr,
-    mauricer (== 2.0.5),
+    mauricer (>= 2.0.5),
     mcbette (>= 1.7),
     nodeSub (>= 0.5),
     phangorn,
@@ -45,7 +45,7 @@ Imports:
     TESS,
     testit,
     tidyr,
-    tracerer (== 2.0.2),
+    tracerer (>= 2.0.2),
     xtable
 Suggests:
     becosys,
@@ -53,7 +53,7 @@ Suggests:
     ggplot2,
     knitr,
     lintr,
-    nLTT (== 1.4.3),
+    nLTT (>= 1.4.3),
     PBD,
     rmarkdown,
     testthat (>= 2.1.0)
