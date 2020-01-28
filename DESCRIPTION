@@ -57,4 +57,4 @@ Suggests:
     PBD,
     rmarkdown,
     testthat (>= 2.1.0)
-SystemRequirements: BEAST2 (http://www.beast2.org/)
+SystemRequirements: BEAST2 (https://www.beast2.org/)
