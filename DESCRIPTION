@@ -51,6 +51,7 @@ Suggests:
     becosys,
     devtools,
     ggplot2,
+    ggtree,
     knitr,
     lintr,
     nLTT (>= 1.4.3),

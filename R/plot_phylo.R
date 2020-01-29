@@ -9,25 +9,30 @@
 plot_phylo <- function(
   phylogeny
 ) {
-ggtree::ggtree(
-  phylogeny,
-  size = 1.05,
-  linetype = 7
-) +
-  ggtree::geom_tiplab(
-    size = 5.5,
-    hjust = - 0.4,
-    align = T,
-    linesize = 5,
-    color = "firebrick4"
-  ) +
-  ggtree::geom_treescale(
-    x = 0.5,
-    y = 5.5,
-    width = 2,
-    linesize = 1.05,
-    fontsize = 6,
-    offset = 0.15,
-    color = "firebrick4"
+  suppressWarnings(
+    x <- ggtree::ggtree(
+      phylogeny,
+      size = 1.05,
+      linetype = 7
+    ) +
+      ggtree::geom_tiplab(
+        size = 5.5,
+        fontface = "bold",
+        hjust = - 0.4,
+        vjust = 0.3,
+        align = T,
+        linesize = 5,
+        color = "firebrick4", offset = 0.01
+      ) +
+      ggtree::geom_treescale(
+        x = 0.5,
+        y = 5.5,
+        width = 2,
+        linesize = 1.05,
+        fontsize = 6,
+        offset = 0.15,
+        color = "firebrick4"
+      )
   )
+  x
 }
