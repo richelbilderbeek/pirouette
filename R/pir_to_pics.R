@@ -298,9 +298,7 @@ pir_to_pics_twin <- function(
     filename = filename,
     width = 1000, height = 800
   )
-  pirouette::plot_phylo(
-    ape::read.tree(pir_params$twinning_params$twin_tree_filename)
-  )
+  pirouette::plot_phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename))
   grDevices::dev.off()
   filenames <- filename
 
