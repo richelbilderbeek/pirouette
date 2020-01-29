@@ -32,7 +32,6 @@ r_github_packages:
   - rsetienne/PBD/PBD
   - richelbilderbeek/becosys
   - thijsjanzen/nodeSub
-  - GuangchuangYu/ggtree
 
 before_install:
   - echo $TRAVIS_R_VERSION_STRING
