@@ -10,7 +10,7 @@ Newest versions at top.
 
 ### MINOR IMPROVEMENTS
 
- * Use at-least versions of packages, instead of exact versions
+ * None
 
 ### BUG FIXES
 
