@@ -129,8 +129,8 @@ pir_to_pics <- function(
     filename = filename,
     width = 1000, height = 800
   )
-  ape::plot.phylo(phylogeny, cex = 1.2, edge.width = 1.2, label.offset = 0.25)
-  ape::add.scale.bar(x = 0.3, y = 1.38, lwd = 1.22)
+  ape::plot.phylo(phylogeny)
+  ape::add.scale.bar()
   grDevices::dev.off()
   filenames <- filename
 
@@ -299,10 +299,8 @@ pir_to_pics_twin <- function(
     filename = filename,
     width = 1000, height = 800
   )
-  ape::plot.phylo(
-    ape::read.tree(pir_params$twinning_params$twin_tree_filename),
-    cex = 1.2, edge.width = 1.2, label.offset = 0.25)
-  ape::add.scale.bar(x = 0.3, y = 1.38, lwd = 1.22)
+  ape::plot.phylo(ape::read.tree(pir_params$twinning_params$twin_tree_filename))
+  ape::add.scale.bar()
   grDevices::dev.off()
   filenames <- filename
 
@@ -448,7 +446,7 @@ pir_to_pics_twin <- function(
     ) + ggplot2::geom_violin() +
       ggplot2::xlab("") +
       ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-        ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
   filenames
