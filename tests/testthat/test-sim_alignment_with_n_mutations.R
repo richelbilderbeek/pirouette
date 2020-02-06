@@ -63,7 +63,7 @@ test_that("use linked_node_sub (lns)", {
     phylogeny = phylogeny,
     root_sequence = "acgt",
     n_mutations = 11,
-    verbose  = TRUE
+    verbose = FALSE
   )
   testthat::expect_equal(nrow(alignment), ape::Ntip(phylogeny))
   testthat::expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))

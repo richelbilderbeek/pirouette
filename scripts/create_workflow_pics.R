@@ -19,7 +19,7 @@ phylogeny  <- ape::read.tree(text = "(((A:8, B:8):1, C:9):1, ((D:8, E:8):1, F:9)
 ################################################################################
 grDevices::png(filename = file.path(root_folder, "phylogeny.png"), width = 800, height = 600)
 # ape::plot.phylo(phylogeny, cex = 2.0, edge.width = 2.0)
-ggtree::ggtree(phylogeny, size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = unit(c(1,1,1,1), "cm"))
+ggtree::ggtree(phylogeny, size = 2) + ggtree::geom_tiplab(size = 16) + ggplot2::theme(plot.margin = ggplot2::unit(c(1,1,1,1), "cm"))
 grDevices::dev.off()
 
 
