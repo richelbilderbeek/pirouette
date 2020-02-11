@@ -47,6 +47,7 @@ default_params_doc(
   exclude_model,
   experiment,
   experiments,
+  extinction_rate,
   fasta_filename,
   filename,
   folder_name,
@@ -315,6 +316,8 @@ as can be created by \link{create_experiment}}
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
 one has to be the first in the list.}
+
+\item{extinction_rate}{per-species extinction rate}
 
 \item{fasta_filename}{name of a FASTA file}
 
@@ -672,8 +675,6 @@ See \link{get_model_selections} for a list.}
 models. This weight will be between 0.0 (there is no evidence for
 this model) to 1.0 (all evidence indicates this is the best model).
 A weight of NA denotes that the weight is not measured}
-
-\item{extinction_rate}{per-species extinction rate}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

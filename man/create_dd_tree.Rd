@@ -7,7 +7,6 @@
 create_dd_tree(
   n_taxa = 6,
   crown_age = 10,
-  n_0 = 2,
   extinction_rate = 0.1,
   best_of_n_trees = 100
 )
@@ -17,8 +16,6 @@ create_dd_tree(
 
 \item{crown_age}{the fixed crown age of the posterior. Set to NA
 to let it be estimated}
-
-\item{n_0}{number of starting species}
 
 \item{extinction_rate}{per-species extinction rate}
 
