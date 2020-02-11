@@ -43,11 +43,12 @@ pir_runs <- function(
 
   pir_outs <- list()
 
-  for (i in seq_along(n_runs)) {
-    pir_outs[[i]] <- pir_run(
+  for (i in seq_len(n_runs)) {
+    pir_outs[[i]] <- pirouette::pir_run(
       phylogeny = phylogenies[[i]],
       pir_params = pir_paramses[[i]]
     )
   }
+  testit::assert(length(pir_outs) == n_runs)
   pir_outs
 }

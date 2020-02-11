@@ -11,11 +11,12 @@ test_that("minimal runs", {
   phylogenies[[1]] <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
   phylogenies[[2]] <- ape::read.tree(text = "((A:1, B:1):2, C:3);")
 
-  pir_outs <- pir_runs(
+  pir_outs <- pirouette::pir_runs(
     phylogenies = phylogenies,
     pir_paramses = pir_paramses
   )
+  testit::assert(length(pir_outs) == length(phylogenies))
   for (pir_out in pir_outs) {
-    expect_silent(check_pir_out(pir_out))
+    testthat::expect_silent(pirouette::check_pir_out(pir_out))
   }
 })
