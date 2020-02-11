@@ -73,9 +73,14 @@ create_bd_tree <- function(
   sim_tree
 }
 
-#' Create a diversity-dependent (DD) birth-death tree.
+#' Create an examplary diversity-dependent (DD) birth-death tree.
 #'
+#' This algorithm does so, by simulating \code{best_of_n_trees}
+#' trees, then pick the first tree that has a gamma statistic
+#' within the lowest 5 percent of all gammas.
 #' @inheritParams default_params_doc
+#' @param best_of_n_trees simulate this number of DD trees with
+#' the desired number of taxa,
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)
@@ -95,7 +100,8 @@ create_dd_tree <- function(
   n_taxa = 6,
   crown_age = 10,
   n_0 = 2,
-  mu = 0.1
+  mu = 0.1,
+  best_of_n_trees = 100
 ) {
   if (n_0 != 2) {
     stop("This works only for 2 starting species")
@@ -104,11 +110,10 @@ create_dd_tree <- function(
   lambda <- 3 * (diff + mu)
   kk <- n_taxa
 
-  n_trees <- 100
-  sim_trees <- vector("list", n_trees)
-  gammas <- rep(-1, n_trees)
+  sim_trees <- vector("list", best_of_n_trees)
+  gammas <- rep(-1, best_of_n_trees)
   i <- 1
-  while (i < n_trees) {
+  while (i < best_of_n_trees) {
 
     sim <- DDD::dd_sim(
       pars = c(lambda, mu, kk),
@@ -123,6 +128,7 @@ create_dd_tree <- function(
       i <- i + 1
     }
   }
+  # Pick the first tree that has a gamma within the lowest 5% of all gammas.
   tree_id <- which(
     abs(gammas - quantile(gammas, probs = c(0.05))) ==
       min(abs(gammas - quantile(gammas, probs = c(0.05))))

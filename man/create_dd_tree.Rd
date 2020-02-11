@@ -2,9 +2,15 @@
 % Please edit documentation in R/create_generative_trees.R
 \name{create_dd_tree}
 \alias{create_dd_tree}
-\title{Create a diversity-dependent (DD) birth-death tree.}
+\title{Create an examplary diversity-dependent (DD) birth-death tree.}
 \usage{
-create_dd_tree(n_taxa = 6, crown_age = 10, n_0 = 2, mu = 0.1)
+create_dd_tree(
+  n_taxa = 6,
+  crown_age = 10,
+  n_0 = 2,
+  mu = 0.1,
+  best_of_n_trees = 100
+)
 }
 \arguments{
 \item{n_taxa}{number of tree tips}
@@ -15,9 +21,14 @@ to let it be estimated}
 \item{n_0}{number of starting species}
 
 \item{mu}{per-species extinction rate}
+
+\item{best_of_n_trees}{simulate this number of DD trees with
+the desired number of taxa,}
 }
 \description{
-Create a diversity-dependent (DD) birth-death tree.
+This algorithm does so, by simulating \code{best_of_n_trees}
+trees, then pick the first tree that has a gamma statistic
+within the lowest 5 percent of all gammas.
 }
 \examples{
 library(testthat)
