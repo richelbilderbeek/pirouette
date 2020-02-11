@@ -129,7 +129,7 @@ create_dd_tree <- function(
     sim <- DDD::dd_sim(
       pars = c(lambda, mu, kk),
       age = crown_age,
-      ddmodel = 1
+      ddmodel = 1 # linear dependence in speciation rate with parameter K
     )
     if (ape::Ntip(sim$tes) == n_taxa) {
       sim_trees[[i]] <- sim$tes
@@ -140,10 +140,10 @@ create_dd_tree <- function(
     }
   }
   # Pick the first tree that has a gamma within the lowest 5% of all gammas.
+  # Why not the lowest?
   tree_id <- which(
     abs(gammas - stats::quantile(gammas, probs = c(0.05))) ==
       min(abs(gammas - stats::quantile(gammas, probs = c(0.05))))
   )
-  sim_tree <- sim_trees[[tree_id]]
-  sim_tree
+  sim_trees[[tree_id]]
 }
