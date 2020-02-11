@@ -1,19 +1,22 @@
-#' Create a Yule tree
+#' Create a Yule tree.
+#'
+#' A Yule model is also known as a pure-birth model;
+#' a birth-death model without extinction.
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   n_taxa <- 31
-#'   crown_age <- 41
+#' n_taxa <- 31
+#' crown_age <- 41
 #'
-#'   phylogeny <- create_yule_tree(
-#'     n_taxa = n_taxa,
-#'     crown_age = crown_age
-#'   )
+#' phylogeny <- create_yule_tree(
+#'   n_taxa = n_taxa,
+#'   crown_age = crown_age
+#' )
 #'
-#'   expect_equal(n_taxa, ape::Ntip(phylogeny))
-#'   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
+#' expect_equal(n_taxa, ape::Ntip(phylogeny))
+#' expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 #' @export
 create_yule_tree <- function(
   n_taxa = 6,
@@ -34,22 +37,22 @@ create_yule_tree <- function(
   sim_tree
 }
 
-#' Create a bd tree
+#' Create a (constant-rate) birth-death (BD) tree
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   n_taxa <- 31
-#'   crown_age <- 41
+#' n_taxa <- 31
+#' crown_age <- 41
 #'
-#'   phylogeny <- create_bd_tree(
-#'     n_taxa = n_taxa,
-#'     crown_age = crown_age
-#'   )
+#' phylogeny <- create_bd_tree(
+#'   n_taxa = n_taxa,
+#'   crown_age = crown_age
+#' )
 #'
-#'   expect_equal(n_taxa, ape::Ntip(phylogeny))
-#'   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
+#' expect_equal(n_taxa, ape::Ntip(phylogeny))
+#' expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 #' @export
 create_bd_tree <- function(
   n_taxa = 6,
@@ -70,22 +73,23 @@ create_bd_tree <- function(
   sim_tree
 }
 
-#' Create a dd tree
+#' Create a diversity-dependent (DD) birth-death tree.
+#'
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   n_taxa <- 31
-#'   crown_age <- 41
+#' n_taxa <- 31
+#' crown_age <- 41
 #'
-#'   phylogeny <- create_dd_tree(
-#'     n_taxa = n_taxa,
-#'     crown_age = crown_age
-#'   )
+#' phylogeny <- create_dd_tree(
+#'   n_taxa = n_taxa,
+#'   crown_age = crown_age
+#' )
 #'
-#'   expect_equal(n_taxa, ape::Ntip(phylogeny))
-#'   expect_equal(crown_age, beautier::get_crown_age(phylogeny))
+#' expect_equal(n_taxa, ape::Ntip(phylogeny))
+#' expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 #' @export
 create_dd_tree <- function(
   n_taxa = 6,

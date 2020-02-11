@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_generative_trees.R
 \name{create_yule_tree}
 \alias{create_yule_tree}
-\title{Create a Yule tree}
+\title{Create a Yule tree.}
 \usage{
 create_yule_tree(n_taxa = 6, crown_age = 10, n_0 = 2)
 }
@@ -15,21 +15,22 @@ to let it be estimated}
 \item{n_0}{number of starting species}
 }
 \description{
-Create a Yule tree
+A Yule model is also known as a pure-birth model;
+a birth-death model without extinction.
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  n_taxa <- 31
-  crown_age <- 41
+n_taxa <- 31
+crown_age <- 41
 
-  phylogeny <- create_yule_tree(
-    n_taxa = n_taxa,
-    crown_age = crown_age
-  )
+phylogeny <- create_yule_tree(
+  n_taxa = n_taxa,
+  crown_age = crown_age
+)
 
-  expect_equal(n_taxa, ape::Ntip(phylogeny))
-  expect_equal(crown_age, beautier::get_crown_age(phylogeny))
+expect_equal(n_taxa, ape::Ntip(phylogeny))
+expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

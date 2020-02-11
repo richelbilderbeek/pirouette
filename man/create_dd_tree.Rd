@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_generative_trees.R
 \name{create_dd_tree}
 \alias{create_dd_tree}
-\title{Create a dd tree}
+\title{Create a diversity-dependent (DD) birth-death tree.}
 \usage{
 create_dd_tree(n_taxa = 6, crown_age = 10, n_0 = 2, mu = 0.1)
 }
@@ -17,21 +17,21 @@ to let it be estimated}
 \item{mu}{per-species extinction rate}
 }
 \description{
-Create a dd tree
+Create a diversity-dependent (DD) birth-death tree.
 }
 \examples{
-  library(testthat)
+library(testthat)
 
-  n_taxa <- 31
-  crown_age <- 41
+n_taxa <- 31
+crown_age <- 41
 
-  phylogeny <- create_dd_tree(
-    n_taxa = n_taxa,
-    crown_age = crown_age
-  )
+phylogeny <- create_dd_tree(
+  n_taxa = n_taxa,
+  crown_age = crown_age
+)
 
-  expect_equal(n_taxa, ape::Ntip(phylogeny))
-  expect_equal(crown_age, beautier::get_crown_age(phylogeny))
+expect_equal(n_taxa, ape::Ntip(phylogeny))
+expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek
