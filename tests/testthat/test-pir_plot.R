@@ -4,7 +4,7 @@ test_that("use", {
 
   suppressPackageStartupMessages(library(ggplot2))
 
-  x <- utils::capture.output(
+  invisible(
     pirouette::pir_plot(
       pir_out = create_test_pir_run_output(
         add_twin = FALSE,
@@ -12,7 +12,6 @@ test_that("use", {
       )
     )
   )
-  rm(x)
 
   testthat::expect_silent(
     pirouette::pir_plot(
