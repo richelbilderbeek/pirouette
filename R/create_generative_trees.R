@@ -108,9 +108,11 @@ create_dd_tree <- function(
   extinction_rate = 0.1,
   best_of_n_trees = 100
 ) {
-  if (n_0 != 2) {
-    stop("This works only for 2 starting species")
-  }
+  testthat::expect_gte(n_taxa, 2)
+  testthat::expect_gt(crown_age, 0.0)
+  testthat::expect_equal(n_0, 2)
+  testthat::expect_gte(extinction_rate, 0.0)
+  testthat::expect_gte(best_of_n_trees, 1)
   # Pick parameters as such that the tree reaches carrying capacity
   # lambda: speciation rate
   # kk: carrying capacity
@@ -139,8 +141,8 @@ create_dd_tree <- function(
   }
   # Pick the first tree that has a gamma within the lowest 5% of all gammas.
   tree_id <- which(
-    abs(gammas - quantile(gammas, probs = c(0.05))) ==
-      min(abs(gammas - quantile(gammas, probs = c(0.05))))
+    abs(gammas - stats::quantile(gammas, probs = c(0.05))) ==
+      min(abs(gammas - stats::quantile(gammas, probs = c(0.05))))
   )
   sim_tree <- sim_trees[[tree_id]]
   sim_tree

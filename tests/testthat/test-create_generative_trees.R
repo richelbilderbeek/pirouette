@@ -16,10 +16,26 @@ test_that("birth_death", {
   expect_equal(max(ape::branching.times(tree)), crown_age)
 })
 
-test_that("diversity_dependent", {
+test_that("diversity_dependent, use", {
   n_taxa <- 10
   crown_age <- 15
   tree <- create_dd_tree(n_taxa = n_taxa, crown_age = crown_age)
   expect_equal(ape::Ntip(tree), n_taxa)
   expect_equal(max(ape::branching.times(tree)), crown_age)
+})
+
+test_that("diversity_dependent, use", {
+  expect_error(create_dd_tree(n_taxa = -123456, crown_age = 10))
+  expect_error(create_dd_tree(n_taxa = 10, crown_age = -123456))
+  expect_error(
+    create_dd_tree(n_taxa = 10, crown_age = 10, extinction_rate = -123.456)
+  )
+  expect_error(
+    create_dd_tree(n_taxa = 10, crown_age = 10, best_of_n_trees = -123.456)
+  )
+
+  skip("Cases that do not work")
+  expect_silent(create_dd_tree(n_taxa = 2, crown_age = 1))
+  expect_silent(create_dd_tree(n_taxa = 10, crown_age = 1, extinction_rate = 0.0))
+  expect_silent(create_dd_tree(n_taxa = 10, crown_age = 1, best_of_n_trees = 1))
 })

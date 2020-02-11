@@ -448,6 +448,7 @@ default_params_doc <- function(
   evidence_filename,
   exclude_model,
   experiment, experiments,
+  extinction_rate,
   fasta_filename,
   filename,
   folder_name,
