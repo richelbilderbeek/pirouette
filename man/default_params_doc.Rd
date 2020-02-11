@@ -672,6 +672,8 @@ See \link{get_model_selections} for a list.}
 models. This weight will be between 0.0 (there is no evidence for
 this model) to 1.0 (all evidence indicates this is the best model).
 A weight of NA denotes that the weight is not measured}
+
+\item{extinction_rate}{per-species extinction rate}
 }
 \description{
 This function does nothing. It is intended to inherit is parameters'

@@ -2,13 +2,13 @@
 % Please edit documentation in R/create_generative_trees.R
 \name{create_dd_tree}
 \alias{create_dd_tree}
-\title{Create an examplary diversity-dependent (DD) birth-death tree.}
+\title{Create an exemplary diversity-dependent (DD) birth-death tree.}
 \usage{
 create_dd_tree(
   n_taxa = 6,
   crown_age = 10,
   n_0 = 2,
-  mu = 0.1,
+  extinction_rate = 0.1,
   best_of_n_trees = 100
 )
 }
@@ -20,15 +20,21 @@ to let it be estimated}
 
 \item{n_0}{number of starting species}
 
-\item{mu}{per-species extinction rate}
+\item{extinction_rate}{per-species extinction rate}
 
 \item{best_of_n_trees}{simulate this number of DD trees with
 the desired number of taxa,}
 }
 \description{
+Or: create a DD tree with a strong DD effect.
+}
+\details{
 This algorithm does so, by simulating \code{best_of_n_trees}
 trees, then pick the first tree that has a gamma statistic
-within the lowest 5 percent of all gammas.
+within the lowest 5 percent of all gammas. Trees with such
+a low gamma, have the strongest DD effect, as these
+deviate strongest from the expected exponential growth
+that regular birth-death (BD) trees have.
 }
 \examples{
 library(testthat)

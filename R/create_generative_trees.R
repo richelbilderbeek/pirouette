@@ -73,11 +73,16 @@ create_bd_tree <- function(
   sim_tree
 }
 
-#' Create an examplary diversity-dependent (DD) birth-death tree.
+#' Create an exemplary diversity-dependent (DD) birth-death tree.
+#'
+#' Or: create a DD tree with a strong DD effect.
 #'
 #' This algorithm does so, by simulating \code{best_of_n_trees}
 #' trees, then pick the first tree that has a gamma statistic
-#' within the lowest 5 percent of all gammas.
+#' within the lowest 5 percent of all gammas. Trees with such
+#' a low gamma, have the strongest DD effect, as these
+#' deviate strongest from the expected exponential growth
+#' that regular birth-death (BD) trees have.
 #' @inheritParams default_params_doc
 #' @param best_of_n_trees simulate this number of DD trees with
 #' the desired number of taxa,
@@ -100,17 +105,21 @@ create_dd_tree <- function(
   n_taxa = 6,
   crown_age = 10,
   n_0 = 2,
-  mu = 0.1,
+  extinction_rate = 0.1,
   best_of_n_trees = 100
 ) {
   if (n_0 != 2) {
     stop("This works only for 2 starting species")
   }
+  # Pick parameters as such that the tree reaches carrying capacity
+  # lambda: speciation rate
+  # kk: carrying capacity
+  mu <- extinction_rate
   diff <- (log(n_taxa) - log(n_0)) / crown_age
   lambda <- 3 * (diff + mu)
   kk <- n_taxa
 
-  sim_trees <- vector("list", best_of_n_trees)
+  sim_trees <- list()
   gammas <- rep(-1, best_of_n_trees)
   i <- 1
   while (i < best_of_n_trees) {
