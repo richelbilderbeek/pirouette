@@ -47,6 +47,7 @@ default_params_doc(
   exclude_model,
   experiment,
   experiments,
+  extinction_rate,
   fasta_filename,
   filename,
   folder_name,
@@ -315,6 +316,8 @@ as can be created by \link{create_experiment}}
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
 one has to be the first in the list.}
+
+\item{extinction_rate}{per-species extinction rate}
 
 \item{fasta_filename}{name of a FASTA file}
 

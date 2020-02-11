@@ -130,7 +130,7 @@ pir_to_pics <- function(
     width = 1000, height = 800
   )
   ape::plot.phylo(phylogeny)
-  ape::add.scale.bar()
+  ape::add.scale.bar(x = 0.3, y = 1.35)
   grDevices::dev.off()
   filenames <- filename
 

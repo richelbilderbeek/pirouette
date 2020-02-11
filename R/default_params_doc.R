@@ -135,6 +135,7 @@
 #'   as can be created by \link{create_experiment}. If more than one experiment
 #'   is provided and a "generative" experiment is part of them, the "generative"
 #'   one has to be the first in the list.
+#' @param extinction_rate per-species extinction rate
 #' @param fasta_filename name of a FASTA file
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
@@ -447,6 +448,7 @@ default_params_doc <- function(
   evidence_filename,
   exclude_model,
   experiment, experiments,
+  extinction_rate,
   fasta_filename,
   filename,
   folder_name,

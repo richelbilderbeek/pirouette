@@ -39,3 +39,9 @@ To install the BEAST2 `NS` package:
 mauricer::install_beast2_pkg("NS")
 ```
 
+## Videos
+
+ * How to run an R script on Peregrine [download (.ogv)](http://richelbilderbeek.nl/peregrine_call_r_script.ogv) [YouTube](https://youtu.be/Xf8IZwR9T8U)
+ * How to install the pirouette R package on Peregrine [download (.ogv)](http://richelbilderbeek.nl/peregrine_install_pirouette.ogv) [YouTube](https://youtu.be/ZgAe_e7Vwy0)
+ * How to run a pirouette example on Peregrine [download (.ogv)](http://richelbilderbeek.nl/peregrine_run_pirouette_example.ogv) [YouTube](https://youtu.be/wnz6l_2e_-c)
+
