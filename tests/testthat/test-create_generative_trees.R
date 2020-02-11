@@ -36,6 +36,8 @@ test_that("diversity_dependent, use", {
 
   skip("Cases that do not work")
   expect_silent(create_dd_tree(n_taxa = 2, crown_age = 1))
-  expect_silent(create_dd_tree(n_taxa = 10, crown_age = 1, extinction_rate = 0.0))
+  expect_silent(
+    create_dd_tree(n_taxa = 10, crown_age = 1, extinction_rate = 0.0)
+  )
   expect_silent(create_dd_tree(n_taxa = 10, crown_age = 1, best_of_n_trees = 1))
 })
