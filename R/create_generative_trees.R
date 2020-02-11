@@ -104,10 +104,11 @@ create_bd_tree <- function(
 create_dd_tree <- function(
   n_taxa = 6,
   crown_age = 10,
-  n_0 = 2,
   extinction_rate = 0.1,
   best_of_n_trees = 100
 ) {
+  # n_0: initial number of species
+  n_0 <- 2
   testthat::expect_gte(n_taxa, 2)
   testthat::expect_gt(crown_age, 0.0)
   testthat::expect_equal(n_0, 2)
