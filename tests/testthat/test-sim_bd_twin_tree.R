@@ -1,6 +1,19 @@
+test_that("minimal use", {
+
+  expect_silent(
+    sim_bd_twin_tree(ape::read.tree(text = "((A:2, B:2):1, C:3);"))
+  )
+  expect_silent(
+    sim_bd_twin_tree(
+      ape::read.tree(text = "((A:2, B:2):1, C:3);"),
+      os = "win"
+    )
+  )
+})
+
 test_that("use", {
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-  twinning_params <- create_twinning_params()
+
   bd_tree <- sim_bd_twin_tree(phylogeny)
 
   expect_equal(class(bd_tree), "phylo")

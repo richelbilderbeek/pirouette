@@ -62,6 +62,7 @@ create_inference_conditions <- function(
   do_measure_evidence = FALSE,
   os = rappdirs::app_dir()$os
 ) {
+  beastier::check_os(os)
   if (os == "win" && do_measure_evidence == TRUE) {
     stop("This configuration cannot run on windows")
   }

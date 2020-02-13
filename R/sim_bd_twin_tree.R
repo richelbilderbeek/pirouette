@@ -34,8 +34,10 @@
 sim_bd_twin_tree <- function(
   true_phylogeny,
   method = "random_tree",
-  n_replicates = 1e4
+  n_replicates = 1e4,
+  os = rappdirs::app_dir()$os
 ) {
+  beastier::check_os(os)
   methods <- c("random_tree", "max_clade_cred", "max_likelihood")
   if (!method %in% methods) {
     stop(
@@ -58,7 +60,7 @@ sim_bd_twin_tree <- function(
   mu <- 0.1
   lambda <- mu + difference
 
-  if (rappdirs::app_dir()$os != "win") {
+  if (os != "win") {
     sink(tempfile())
     bd_pars <- DDD::bd_ML(
       brts = sort(phylo_brts, decreasing = TRUE),

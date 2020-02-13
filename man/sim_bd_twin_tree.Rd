@@ -4,7 +4,12 @@
 \alias{sim_bd_twin_tree}
 \title{Simulate a Birth-Death (BD) twin tree from the true phylogeny}
 \usage{
-sim_bd_twin_tree(true_phylogeny, method = "random_tree", n_replicates = 10000)
+sim_bd_twin_tree(
+  true_phylogeny,
+  method = "random_tree",
+  n_replicates = 10000,
+  os = rappdirs::app_dir()$os
+)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary
