@@ -2,6 +2,9 @@ test_that("use", {
 
   if (rappdirs::app_dir()$os == "win")  return()
 
+  # This test takes too long
+  if (!beastier::is_on_ci()) return()
+
   experiments <- create_all_bd_experiments()
 
   pirouette::check_experiments(experiments)
@@ -10,7 +13,7 @@ test_that("use", {
   tree_prior_names <- unlist(
     lapply(experiments, function(x) x$inference_model$tree_prior$name)
   )
-  expect_true(all(tree_priors %in% c("yule", "birth_death")))
+  expect_true(all(tree_prior_names %in% c("yule", "birth_death")))
 })
 
 test_that("abuse", {
