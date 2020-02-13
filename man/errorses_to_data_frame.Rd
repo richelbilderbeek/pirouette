@@ -12,7 +12,17 @@ errorses_to_data_frame(errorses, experiments, marg_liks)
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
-one has to be the first in the list.}
+one has to be the first in the list. See also:
+\itemize{
+  \item Use \link{create_all_experiments} to create experiments with
+    all combinations of tree model, clock model and tree priors
+  \item Use \link{create_all_bd_experiments} to create experiments
+    with all combinations of tree model, clock model and tree priors,
+    except for only using birth-death tree priors
+  \item Use \link{create_all_coal_experiments} to create all experiments
+    with all combinations of tree model, clock model and tree priors,
+    except for only coalescent tree priors
+}}
 
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}

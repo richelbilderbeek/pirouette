@@ -291,7 +291,7 @@ Use \link{create_error_measure_params} to create such
 a parameter set}
 
 \item{errors}{a numeric vector of (positive) Bayesian inference errors.
-Use NA if these are not measured (yet)}
+Use \link{NA} if these are not measured (yet)}
 
 \item{errors_filename}{baseline name for errors filenames}
 
@@ -315,7 +315,17 @@ as can be created by \link{create_experiment}}
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
-one has to be the first in the list.}
+one has to be the first in the list. See also:
+\itemize{
+  \item Use \link{create_all_experiments} to create experiments with
+    all combinations of tree model, clock model and tree priors
+  \item Use \link{create_all_bd_experiments} to create experiments
+    with all combinations of tree model, clock model and tree priors,
+    except for only using birth-death tree priors
+  \item Use \link{create_all_coal_experiments} to create all experiments
+    with all combinations of tree model, clock model and tree priors,
+    except for only coalescent tree priors
+}}
 
 \item{extinction_rate}{per-species extinction rate}
 
