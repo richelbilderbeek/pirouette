@@ -26,6 +26,10 @@ history of the species, of class \link[ape]{phylo}}
 
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
+
+\item{os}{name of the operating system, can be \code{mac}, \code{unix}
+or \code{win}. Use \link[beastier]{check_os} if the operating system
+is valid.}
 }
 \value{
 a twin BD tree of class \link[ape]{phylo},

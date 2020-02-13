@@ -81,6 +81,7 @@ default_params_doc(
   node_time,
   nu,
   nu_events,
+  os,
   parameter_filename,
   parameters_filename,
   phylo,
@@ -427,6 +428,10 @@ See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 
 \item{nu_events}{the number of nu-triggered events that have to be
 present in the simulated tree}
+
+\item{os}{name of the operating system, can be \code{mac}, \code{unix}
+or \code{win}. Use \link[beastier]{check_os} if the operating system
+is valid.}
 
 \item{parameter_filename}{full path to a 'parameters.csv' file}
 

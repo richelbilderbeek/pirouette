@@ -34,6 +34,10 @@ Possible values:
 \item{do_measure_evidence}{boolean to indicate if the
 evidence (aka marginal likelihood) of an experiment must be
 measured}
+
+\item{os}{name of the operating system, can be \code{mac}, \code{unix}
+or \code{win}. Use \link[beastier]{check_os} if the operating system
+is valid.}
 }
 \value{
 the inference conditions

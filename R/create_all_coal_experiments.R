@@ -26,7 +26,7 @@
 #'
 #' if (rappdirs::app_dir()$os != "win") {
 #'    # it does not work on Windows
-#'    experiments <- create_all_bd_experiments()
+#'    experiments <- create_all_coal_experiments()
 #'    check_experiments(experiments)
 #'
 #'    expect_true(length(experiments) >= 24)
@@ -70,4 +70,3 @@ create_all_coal_experiments <- function(
     exclude_model = exclude_model
   )
 }
-
