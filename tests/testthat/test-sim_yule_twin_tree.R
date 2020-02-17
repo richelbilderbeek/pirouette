@@ -1,12 +1,11 @@
 test_that("minimal use", {
 
   expect_silent(
-    sim_bd_twin_tree(ape::read.tree(text = "((A:2, B:2):1, C:3);"))
+    sim_yule_twin_tree(ape::read.tree(text = "((A:2, B:2):1, C:3);"))
   )
   expect_silent(
-    sim_bd_twin_tree(
-      ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-      os = "win"
+    sim_yule_twin_tree(
+      ape::read.tree(text = "((A:2, B:2):1, C:3);")
     )
   )
 })
@@ -14,7 +13,7 @@ test_that("minimal use", {
 test_that("use", {
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-  bd_tree <- sim_bd_twin_tree(phylogeny)
+  bd_tree <- sim_yule_twin_tree(phylogeny)
 
   expect_equal(class(bd_tree), "phylo")
 
@@ -35,7 +34,7 @@ test_that("use", {
 
 test_that("abuse", {
   expect_error(
-    sim_bd_twin_tree(
+    sim_yule_twin_tree(
       true_phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
       method = "nonsense"
     ),

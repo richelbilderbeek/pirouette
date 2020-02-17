@@ -81,6 +81,7 @@ default_params_doc(
   node_time,
   nu,
   nu_events,
+  os,
   parameter_filename,
   parameters_filename,
   phylo,
@@ -104,8 +105,7 @@ default_params_doc(
   sample_interval,
   seed,
   sequence_length,
-  sim_pars,
-  sim_phylo,
+  sim_phylo_fun,
   sim_tral_fun,
   sim_twal_fun,
   sim_twin_tree_fun,
@@ -291,7 +291,7 @@ Use \link{create_error_measure_params} to create such
 a parameter set}
 
 \item{errors}{a numeric vector of (positive) Bayesian inference errors.
-Use NA if these are not measured (yet)}
+Use \link{NA} if these are not measured (yet)}
 
 \item{errors_filename}{baseline name for errors filenames}
 
@@ -315,7 +315,17 @@ as can be created by \link{create_experiment}}
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
-one has to be the first in the list.}
+one has to be the first in the list. See also:
+\itemize{
+  \item Use \link{create_all_experiments} to create experiments with
+    all combinations of tree model, clock model and tree priors
+  \item Use \link{create_all_bd_experiments} to create experiments
+    with all combinations of tree model, clock model and tree priors,
+    except for only using birth-death tree priors
+  \item Use \link{create_all_coal_experiments} to create all experiments
+    with all combinations of tree model, clock model and tree priors,
+    except for only coalescent tree priors
+}}
 
 \item{extinction_rate}{per-species extinction rate}
 
@@ -418,6 +428,10 @@ See, among others, \link[nodeSub]{sim_dual_independent} for more details}
 \item{nu_events}{the number of nu-triggered events that have to be
 present in the simulated tree}
 
+\item{os}{name of the operating system, can be \code{mac}, \code{unix}
+or \code{win}. Use \link[beastier]{check_os} if the operating system
+is valid.}
+
 \item{parameter_filename}{full path to a 'parameters.csv' file}
 
 \item{parameters_filename}{full path to a 'parameters.csv' file}
@@ -498,9 +512,8 @@ makes a measurement}
 
 \item{sequence_length}{the length of each DNA sequence in an alignment}
 
-\item{sim_pars}{something}
-
-\item{sim_phylo}{something}
+\item{sim_phylo_fun}{function that, each time when called,
+simulates one random tree.}
 
 \item{sim_tral_fun}{function to simulate a
 true alignment with.

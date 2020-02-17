@@ -8,3 +8,4 @@
 ^CONTRIBUTING\.md$
 ^pull_upstream\.sh$
 ^CODE_OF_CONDUCT\.md$
+.github/

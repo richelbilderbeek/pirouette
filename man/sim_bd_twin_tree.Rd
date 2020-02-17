@@ -4,7 +4,12 @@
 \alias{sim_bd_twin_tree}
 \title{Simulate a Birth-Death (BD) twin tree from the true phylogeny}
 \usage{
-sim_bd_twin_tree(true_phylogeny, method = "random_tree", n_replicates = 10000)
+sim_bd_twin_tree(
+  true_phylogeny,
+  method = "random_tree",
+  n_replicates = 10000,
+  os = rappdirs::app_dir()$os
+)
 }
 \arguments{
 \item{true_phylogeny}{the true phylogeny; the actual evolutionary
@@ -21,6 +26,10 @@ history of the species, of class \link[ape]{phylo}}
 
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
+
+\item{os}{name of the operating system, can be \code{mac}, \code{unix}
+or \code{win}. Use \link[beastier]{check_os} if the operating system
+is valid.}
 }
 \value{
 a twin BD tree of class \link[ape]{phylo},

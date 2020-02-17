@@ -3,22 +3,33 @@
 #' These experiments are used in the \link{create_pir_params} function
 #' @inheritParams default_params_doc
 #' @return all \link{pirouette} experiments.
+#' @seealso
+#' \itemize{
+#'   \item Use \link{create_all_experiments} to create experiments with
+#'     all combinations of tree model, clock model and tree priors
+#'   \item Use \link{create_all_bd_experiments} to create experiments
+#'     with all combinations of tree model, clock model and tree priors,
+#'     except for only using birth-death tree priors
+#'   \item Use \link{create_all_coal_experiments} to create all experiments
+#'     with all combinations of tree model, clock model and tree priors,
+#'     except for only coalescent tree priors
+#' }
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#'   library(testthat)
+#' library(testthat)
 #'
-#'   if (rappdirs::app_dir()$os != "win") {
-#'      # it does not work on Windows
-#'      experiments <- create_all_experiments()
-#'      check_experiments(experiments)
+#' if (rappdirs::app_dir()$os != "win") {
+#'    # it does not work on Windows
+#'    experiments <- create_all_experiments()
+#'    check_experiments(experiments)
 #'
-#'      expect_true(length(experiments) >= 40)
+#'    expect_true(length(experiments) >= 40)
 #'
-#'      pir_params <- create_pir_params(
-#'        alignment_params = create_test_alignment_params(),
-#'        experiments = experiments
-#'      )
-#'   }
+#'    pir_params <- create_pir_params(
+#'      alignment_params = create_test_alignment_params(),
+#'      experiments = experiments
+#'    )
+#' }
 #'
 #' @export
 create_all_experiments <- function(
