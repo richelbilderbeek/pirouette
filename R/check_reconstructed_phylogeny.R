@@ -4,7 +4,9 @@
 #' @inheritParams default_params_doc
 #' @export
 check_reconstructed_phylogeny <- function(phylogeny) {
-  if (!is.null(geiger::is.extinct(phylogeny))) {
+  l_table <- DDD::phylo2L(phylogeny)
+  no_extinct <- all(l_table[, 4] == -1)
+  if (!no_extinct) {
     stop("A reconstructed phylogeny must not contain extinct species")
   }
 }

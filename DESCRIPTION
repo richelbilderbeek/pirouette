@@ -29,7 +29,6 @@ Imports:
     beastier (>= 2.1.1),
     DDD,
     dplyr,
-    geiger,
     magrittr,
     mauricer (>= 2.0.5),
     mcbette (>= 1.7),
