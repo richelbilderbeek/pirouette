@@ -1,8 +1,7 @@
 test_that("use on adapter functions", {
 
   expect_silent(check_sim_tral_fun(sim_tral_with_std_nsm))
-
-  suppressMessages(library(geiger))
+  suppressMessages(check_sim_tral_fun(sim_tral_with_lns_nsm))
   expect_silent(check_sim_tral_fun(sim_tral_with_lns_nsm))
   expect_silent(check_sim_tral_fun(sim_tral_with_uns_nsm))
 
