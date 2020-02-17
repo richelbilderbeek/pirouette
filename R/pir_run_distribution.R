@@ -7,6 +7,9 @@
 #' @inheritParams default_params_doc
 #' @return a list of \link{pir_run} outputs.
 #' @export
-pir_run_distribution <- function() {
+pir_run_distribution <- function(
+  sim_phylo_fun,
+  pir_paramses
+) {
 
 }

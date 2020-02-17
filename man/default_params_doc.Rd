@@ -105,8 +105,7 @@ default_params_doc(
   sample_interval,
   seed,
   sequence_length,
-  sim_pars,
-  sim_phylo,
+  sim_phylo_fun,
   sim_tral_fun,
   sim_twal_fun,
   sim_twin_tree_fun,
@@ -513,9 +512,8 @@ makes a measurement}
 
 \item{sequence_length}{the length of each DNA sequence in an alignment}
 
-\item{sim_pars}{something}
-
-\item{sim_phylo}{something}
+\item{sim_phylo_fun}{function that, each time when called,
+simulates one random tree.}
 
 \item{sim_tral_fun}{function to simulate a
 true alignment with.

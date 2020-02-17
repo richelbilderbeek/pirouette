@@ -2,10 +2,23 @@
 % Please edit documentation in R/pir_run_distribution.R
 \name{pir_run_distribution}
 \alias{pir_run_distribution}
-\title{Obtain the infernce}
+\title{Do multiple \link{pirouette} runs off a distribition of phylogenies}
 \usage{
-pir_run_distribution()
+pir_run_distribution(sim_phylo_fun, pir_paramses)
+}
+\arguments{
+\item{sim_phylo_fun}{function that, each time when called,
+simulates one random tree.}
+
+\item{pir_paramses}{a list of \link[pirouette]{pirouette} parameters,
+each element created by \link{create_pir_params}.}
+}
+\value{
+a list of \link{pir_run} outputs.
 }
 \description{
-Obtain the infernce
+This is a simple convenience functions: supply a phylogeny generator
+function and one or more  \link{pirouette} parameter sets.
+For each parameters pair, \link{pir_run} is called with a phylogeny
+drawn from the phylogeny generator function.
 }

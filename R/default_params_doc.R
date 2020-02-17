@@ -272,8 +272,8 @@
 #'   makes a measurement
 #' @param sequence_length the length of each DNA sequence in an alignment
 #' @param seed a random number generator seed
-#' @param sim_pars something
-#' @param sim_phylo something
+#' @param sim_phylo_fun function that, each time when called,
+#' simulates one random tree.
 #' @param sim_tral_fun function to simulate a
 #' true alignment with.
 #' This function must have two arguments,
@@ -519,8 +519,7 @@ default_params_doc <- function(
   sample_interval,
   seed,
   sequence_length,
-  sim_pars,
-  sim_phylo,
+  sim_phylo_fun,
   sim_tral_fun,
   sim_twal_fun,
   sim_twin_tree_fun,
