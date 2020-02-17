@@ -49,6 +49,7 @@ Imports:
 Suggests:
     becosys,
     devtools,
+    geiger,
     ggplot2,
     knitr,
     lintr,
