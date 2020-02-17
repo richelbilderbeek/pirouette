@@ -6,13 +6,11 @@ test_that("use", {
     )
   )
 
-  skip("Issue 378. Issue #378")
   expect_silent(
     check_sim_twin_tree_fun(
       get_sim_yule_twin_tree_fun()
     )
   )
-
 })
 
 
