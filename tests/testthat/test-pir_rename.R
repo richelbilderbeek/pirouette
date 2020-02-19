@@ -1,6 +1,8 @@
 test_that("filenames must change", {
 
-  pir_params <- create_test_pir_params()
+  pir_params <- create_test_pir_params(
+    twinning_params = create_twinning_params()
+  )
 
   flat_pir_params <- unlist(pir_params)
   filename_indices <- stringr::str_detect(

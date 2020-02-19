@@ -68,5 +68,15 @@ pir_rename <- function(
       pir_params$evidence_filename
     )
 
+  # Twinning parameters
+  if (!beautier::is_one_na(pir_params$twinning_params)) {
+    pir_params$twinning_params$twin_tree_filename <-
+      rename_fun(pir_params$twinning_params$twin_tree_filename)
+    pir_params$twinning_params$twin_alignment_filename <-
+      rename_fun(pir_params$twinning_params$twin_alignment_filename)
+    pir_params$twinning_params$twin_evidence_filename <-
+      rename_fun(pir_params$twinning_params$twin_evidence_filename)
+  }
+
   pir_params
 }
