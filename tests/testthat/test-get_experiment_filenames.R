@@ -9,7 +9,9 @@ test_that("use, gen", {
       string = names(flat_experiment),
       pattern = "filename"
     )
-    filenames_alt <- na.omit(as.character(unlist(flat_experiment[filename_indices])))
+    filenames_alt <- na.omit(
+      as.character(unlist(flat_experiment[filename_indices]))
+    )
     expect_equal(
       length(filenames_alt),
       length(filenames)

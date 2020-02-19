@@ -19,6 +19,9 @@ test_that("birth_death", {
 test_that("diversity_dependent, use", {
   n_taxa <- 10
   crown_age <- 15
+
+  # This seed is selected for the shortness of 'create_dd_tree'
+  set.seed(15)
   tree <- create_dd_tree(n_taxa = n_taxa, crown_age = crown_age)
   expect_equal(ape::Ntip(tree), n_taxa)
   expect_equal(max(ape::branching.times(tree)), crown_age)
