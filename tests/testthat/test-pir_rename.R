@@ -1,6 +1,4 @@
-test_that("use", {
-
-  skip("Now now")
+test_that("filenames must change", {
 
   pir_params <- create_test_pir_params()
 
@@ -10,17 +8,6 @@ test_that("use", {
     pattern = "filename"
   )
   filenames_before <- as.character(unlist(flat_pir_params[filename_indices]))
-
-  class(filenames_before)
-  length(filenames_before)
-  length(na.omit(filenames_before))
-
-  # At least on Linux, all temp files have such a structure, e.g.
-  # /home/richel/.cache/evidence_186c7280c16b.csv                               # nolint this is not commented code
-  indices <- stringr::str_detect(
-    string = na.omit(filenames_before),
-    pattern = "/.cache/"
-  )
   expect_true(
       all(
         stringr::str_detect(
@@ -41,49 +28,31 @@ test_that("use", {
     string = names(flat_pir_params),
     pattern = "filename"
   )
-  filenames_after <- flat_pir_params[filename_indices]
+  filenames_after <- as.character(unlist(flat_pir_params[filename_indices]))
   # Should be made to local, e.g.
   # evidence_186c7280c16b.csv                                                   # nolint this is not commented code
   expect_true(
-    stringr::str_detect(
-      string = na.omit(filenames_before),
-      pattern = "/.cache/"
+    all(
+      !stringr::str_detect(
+        string = na.omit(filenames_after),
+        pattern = "/.cache/"
+      )
     )
   )
 })
 
 test_that("use", {
 
-  skip("Now now")
-
   expect_silent(
     pir_rename(
       pir_params = create_test_pir_params(),
-      scheme = "local"
-    )
-  )
-  expect_silent(
-    pir_rename(
-      pir_params = create_test_pir_params(),
-      scheme = "tempdir"
-    )
-  )
-  expect_silent(
-    pir_rename(
-      pir_params = create_test_pir_params(),
-      scheme = "cache_dir"
-    )
-  )
-  expect_silent(
-    pir_rename(
-      pir_params = create_test_pir_params(),
-      scheme = "razzo"
+      rename_fun = get_remove_dir_fun()
     )
   )
   expect_error(
     pir_rename(
       pir_params = create_test_pir_params(),
-      scheme = "nonsense"
+      rename_fun = "nonsense"
     )
   )
 })
