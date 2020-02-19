@@ -4,7 +4,10 @@
 \alias{get_replace_dir_fun}
 \title{Get a function to replace the directory of a filename}
 \usage{
-get_replace_dir_fun()
+get_replace_dir_fun(new_dir_name = "")
+}
+\arguments{
+\item{new_dir_name}{the new directory name}
 }
 \description{
 Get a function to replace the directory of a filename
