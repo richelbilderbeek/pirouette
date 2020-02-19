@@ -1,6 +1,7 @@
 #' Check if the rename function is a valid filename rename function
 #'
 #' Will \link{stop} if not
+#' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_rename_fun <- function(rename_fun) {

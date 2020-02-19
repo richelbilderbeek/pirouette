@@ -8,11 +8,15 @@ test_that("filenames must change", {
     pattern = "filename"
   )
   filenames_before <- as.character(unlist(flat_pir_params[filename_indices]))
+
+  cache_pattern = "/.cache/"
+  if (rappdirs::app_dir()$os == "win") cache_pattern <- "Cache"
+
   expect_true(
       all(
         stringr::str_detect(
         string = na.omit(filenames_before),
-        pattern = "/.cache/"
+        pattern = cache_pattern
       )
     )
   )
@@ -35,7 +39,7 @@ test_that("filenames must change", {
     all(
       !stringr::str_detect(
         string = na.omit(filenames_after),
-        pattern = "/.cache/"
+        pattern = cache_pattern
       )
     )
   )

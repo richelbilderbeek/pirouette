@@ -4,6 +4,19 @@ test_that("use, no twinning, no evidence estimation", {
 
   filenames <- get_pir_params_filenames(pir_params)
 
+  # Alternative way
+  if (1 + 1 == 2) {
+    flat_pir_params <- unlist(pir_params)
+    filename_indices <- stringr::str_detect(
+      string = names(flat_pir_params),
+      pattern = "filename"
+    )
+    filenames_from_flat_list <- as.character(unlist(flat_pir_params[filename_indices]))
+
+    expect_true(all(filenames_from_flat_list %in% filenames))
+    expect_true(all(filenames %in% filenames_from_flat_list))
+  }
+
   expect_true(pir_params$alignment_params$fasta_filename %in% filenames)
 
   # Initialize so the tracelog and treelog filenames are filled in
