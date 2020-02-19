@@ -24,7 +24,7 @@
 #' @examples
 #' library(testthat)
 #'
-#' if (rappdirs::app_dir()$os != "win") {
+#' if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
 #'    # it does not work on Windows
 #'    experiments <- create_all_bd_experiments()
 #'    check_experiments(experiments)

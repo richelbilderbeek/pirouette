@@ -28,9 +28,6 @@ test_that("generative", {
     pir_params = pir_params
   )
 
-  # Files created
-  testit::assert(all(file.exists(get_pir_params_filenames(pir_params))))
-
   # Return value all at once
   expect_silent(check_pir_out(pir_out))
 

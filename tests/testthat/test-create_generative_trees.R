@@ -9,8 +9,9 @@ test_that("yule", {
 })
 
 test_that("birth_death", {
-  n_taxa <- 10
-  crown_age <- 15
+
+  n_taxa <- 3
+  crown_age <- 1
   tree <- create_bd_tree(n_taxa = n_taxa, crown_age = crown_age)
   expect_equal(ape::Ntip(tree), n_taxa)
   expect_equal(max(ape::branching.times(tree)), crown_age)
