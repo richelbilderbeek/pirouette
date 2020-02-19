@@ -25,5 +25,22 @@ check_init_pir_params <- function(pir_params) {
         "Tip: initialize the 'pir_params' with 'init_pir_pirams'"
       )
     }
+    mcmc <- experiment$est_evidence_mcmc
+    if (is.na(mcmc$tracelog$filename)) {
+      stop(
+        "pir_params$experiments[[", i, "]]$est_evidence_mcmc$tracelog$",
+        "filename is NA. \n",
+        "This should never happen to a normal user. \n",
+        "Tip: initialize the 'pir_params' with 'init_pir_pirams'"
+      )
+    }
+    if (mcmc$treelog$filename == "$(tree).trees") {
+      stop(
+        "pir_params$experiments[[", i, "]]$est_evidence_mcmc$treelog$",
+        "filename is '$(tree).trees'. \n",
+        "This should never happen to a normal user. \n",
+        "Tip: initialize the 'pir_params' with 'init_pir_pirams'"
+      )
+    }
   }
 }
