@@ -22,6 +22,10 @@ test_that("correct behaviour", {
     "/home/john/beast2_186c7404208c.xml.state"
   )
   expect_equal(
+    f("hello.txt"),
+    "/home/john/hello.txt"
+  )
+  expect_equal(
     f(NA),
     NA
   )
