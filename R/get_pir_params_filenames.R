@@ -67,6 +67,14 @@ get_pir_params_filenames <- function(
       pattern = "filename"
     )
     filenames <- as.character(unlist(flat_pir_params[filename_indices]))
+    if (!beautier::is_one_na(pir_params$twinning_params)) {
+      filenames <- c(
+        filenames,
+        pirouette::to_twin_filenames(
+          pirouette::get_experiments_filenames(pir_params$experiments)
+        )
+      )
+    }
   }
   unique(sort(filenames))
 }
