@@ -25,6 +25,7 @@
 #' expect_silent(check_alignment(alignment))
 #' @seealso Use \link{sim_twin_alignment} to use this function to
 #' create a twin alignment
+#' @author Richèl J.C. Bilderbeek
 #' @export
 sim_twal_with_std_nsm <- function(
   twin_phylogeny,

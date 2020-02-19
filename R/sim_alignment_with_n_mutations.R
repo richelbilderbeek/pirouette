@@ -38,6 +38,7 @@
 #' simulate the true alignment with a standard site model.
 #' Use \link{sim_twal_with_std_nsm}
 #' simulate the twin alignment with a standard site model.
+#' @author Richèl J.C. Bilderbeek
 #' @export
 sim_alignment_with_n_mutations <- function(
   phylogeny,

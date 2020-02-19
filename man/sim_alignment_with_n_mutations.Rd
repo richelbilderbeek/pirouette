@@ -89,4 +89,6 @@ simulate the twin alignment with a standard site model.
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
+
+Richèl J.C. Bilderbeek
 }

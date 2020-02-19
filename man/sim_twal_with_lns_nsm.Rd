@@ -53,3 +53,6 @@ to simulate using an unlinked node substitution model.
 Use \link{sim_tral_with_lns_nsm}
 to simulate a true alignment.
 }
+\author{
+Richèl J.C. Bilderbeek
+}

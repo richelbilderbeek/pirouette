@@ -14,6 +14,7 @@
 #' @seealso use \link{sim_alignment_with_std_nsm_from_params}
 #' to simulate an alignment from an \code{alignment_params}, as created
 #' by \link{create_alignment_params}.
+#' @author Richèl J.C. Bilderbeek
 #' @export
 sim_alignment_with_std_nsm <- function(
   phylogeny,

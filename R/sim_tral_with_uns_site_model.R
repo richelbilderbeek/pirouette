@@ -9,6 +9,7 @@
 #' to simulate the twin alignment with an unlinked node substitution model.
 #' Use \link{get_sim_tral_with_uns_nsm_fun}
 #' to get a partially evaluated unary function.
+#' @author Richèl J.C. Bilderbeek
 #' @export
 sim_tral_with_uns_nsm <- function(
   true_phylogeny,
