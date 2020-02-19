@@ -5,7 +5,7 @@
 #' @inheritParams default_params_doc
 #' @return a function
 #' @seealso
-#' Use \link{create_sim_bd_twin_tree_fun} to get a function to
+#' Use \link{get_sim_bd_twin_tree_fun} to get a function to
 #' produce a Birth-Death tree.
 #' Use \link{create_copy_twtr_from_true_fun} to get a
 #' function to simply copy the tree
