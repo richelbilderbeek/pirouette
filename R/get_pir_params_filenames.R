@@ -71,7 +71,7 @@ get_pir_params_filenames <- function(
     filenames <- as.character(unlist(filenames_as_list))
     # screenlog may be two quotes
     filenames <- stats::na.omit(filenames)
-    filenames <- filenames[ filenames != "" ]
+    filenames <- filenames[filenames != ""]
 
     testthat::expect_true(all(filenames != ""))
     if (!beautier::is_one_na(pir_params$twinning_params)) {
@@ -79,7 +79,7 @@ get_pir_params_filenames <- function(
         pir_params$experiments
       )
       twin_filenames <- stats::na.omit(twin_filenames)
-      twin_filenames <- twin_filenames[ twin_filenames != "" ]
+      twin_filenames <- twin_filenames[twin_filenames != ""]
       twin_filenames <- pirouette::to_twin_filenames(twin_filenames)
 
       filenames <- c(filenames, twin_filenames)

@@ -19,9 +19,6 @@ test_that("use", {
     pir_params = pir_params
   )
 
-  # Files exist
-  testit::assert(all(file.exists(filenames)))
-
   # Removing the files
   rm_pir_param_files(pir_params)
 
