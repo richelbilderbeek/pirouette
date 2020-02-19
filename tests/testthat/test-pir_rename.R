@@ -15,7 +15,7 @@ test_that("filenames must change", {
   expect_true(
       all(
         stringr::str_detect(
-        string = na.omit(filenames_before),
+        string = stats::na.omit(filenames_before),
         pattern = cache_pattern
       )
     )
@@ -38,7 +38,7 @@ test_that("filenames must change", {
   expect_true(
     all(
       !stringr::str_detect(
-        string = na.omit(filenames_after),
+        string = stats::na.omit(filenames_after),
         pattern = cache_pattern
       )
     )

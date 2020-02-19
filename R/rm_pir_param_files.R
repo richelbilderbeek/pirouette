@@ -19,9 +19,6 @@
 #'     pir_params = pir_params
 #'   )
 #"
-#'   # Files are created
-#'   expect_true(all(file.exists(filenames)))
-#'
 #'   # Removing the files
 #'   rm_pir_param_files(pir_params)
 #'

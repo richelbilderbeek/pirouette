@@ -9,7 +9,7 @@
 get_experiment_filenames <- function(experiment) {
   pirouette::check_experiment(experiment)
 
-  na.omit(
+  stats::na.omit(
     c(
       beastier::get_beast2_options_filenames(experiment$beast2_options),
       # Note: can be NA, need alignment ID to initialize

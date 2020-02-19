@@ -13,3 +13,7 @@ They are created by \link{create_pir_params}.}
 \description{
 A normal user should never need to call this function.
 }
+\seealso{
+Use \link{check_init_pir_params} to check
+  if a \code{pir_params} is initialized
+}

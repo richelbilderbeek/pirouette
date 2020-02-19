@@ -11,7 +11,7 @@ test_that("use, no twinning, no evidence estimation", {
       string = names(flat_pir_params),
       pattern = "filename"
     )
-    filenames_from_flat_list <- na.omit(
+    filenames_from_flat_list <- stats::na.omit(
       as.character(unlist(flat_pir_params[filename_indices]))
     )
 
