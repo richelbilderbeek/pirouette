@@ -1,5 +1,9 @@
 test_that("use", {
   expect_silent(check_rename_fun(get_remove_dir_fun()))
+  expect_silent(check_rename_fun(get_replace_dir_fun()))
+})
+
+test_that("abuse", {
 
   # Data type: one function
   expect_error(

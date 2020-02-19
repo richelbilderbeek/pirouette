@@ -19,7 +19,9 @@ one \link{NA} (when passed one \link{NA}).
 Example rename functions are:
 \itemize{
   \item \link{get_remove_dir_fun} function that removes the directory
-    paths from the filenames, turning these into local files
+    paths from the filenames, in effect turning these into local files
+  \item \link{get_replace_dir_fun} function that replaces the directory
+    paths from the filenames
 }}
 }
 \description{

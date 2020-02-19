@@ -53,6 +53,12 @@ test_that("use", {
       rename_fun = get_remove_dir_fun()
     )
   )
+  expect_silent(
+    pir_rename(
+      pir_params = create_test_pir_params(),
+      rename_fun = get_replace_dir_fun()
+    )
+  )
   expect_error(
     pir_rename(
       pir_params = create_test_pir_params(),
