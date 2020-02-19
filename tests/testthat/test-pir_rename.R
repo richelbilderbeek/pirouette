@@ -9,14 +9,24 @@ test_that("use", {
     string = names(flat_pir_params),
     pattern = "filename"
   )
-  filenames_before <- flat_pir_params[filename_indices]
+  filenames_before <- as.character(unlist(flat_pir_params[filename_indices]))
+
+  class(filenames_before)
+  length(filenames_before)
+  length(na.omit(filenames_before))
 
   # At least on Linux, all temp files have such a structure, e.g.
   # /home/richel/.cache/evidence_186c7280c16b.csv                               # nolint this is not commented code
+  indices <- stringr::str_detect(
+    string = na.omit(filenames_before),
+    pattern = "/.cache/"
+  )
   expect_true(
-    stringr::str_detect(
-      string = na.omit(filenames_before),
-      pattern = "/.cache/"
+      all(
+        stringr::str_detect(
+        string = na.omit(filenames_before),
+        pattern = "/.cache/"
+      )
     )
   )
 

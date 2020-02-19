@@ -1,5 +1,6 @@
 #' Rename the filenames in a \code{pir_params}
 #' using a rename function.
+#' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @export
 pir_rename <- function(
@@ -9,4 +10,63 @@ pir_rename <- function(
   pirouette::check_pir_params(pir_params)
   pirouette::check_rename_fun(rename_fun)
 
+  # alignment params
+  pir_params$alignment_params$fasta_filename <-
+    rename_fun(pir_params$alignment_params$fasta_filename)
+
+  # experiments
+  for (i in seq_along(pir_params$experiments)) {
+    # experiments' inference models
+    pir_params$experiments[[i]]$inference_model$mcmc$tracelog <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$inference_model$mcmc$tracelog
+      )
+    pir_params$experiments[[i]]$inference_model$mcmc$screenlog <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$inference_model$mcmc$screenlog
+      )
+    pir_params$experiments[[i]]$inference_model$mcmc$treelog <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$inference_model$mcmc$treelog
+      )
+    pir_params$experiments[[i]]$inference_model$tipdates_filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$inference_model$tipdates_filename
+      )
+    # experiments' BEAST2 options
+    pir_params$experiments[[i]]$beast2_options$input_filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$beast2_options$input_filename
+      )
+    pir_params$experiments[[i]]$beast2_options$output_state_filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$beast2_options$output_state_filename
+      )
+    # experiments estimate evidence MCMC
+    pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename
+      )
+    pir_params$experiments[[i]]$est_evidence_mcmc$screenlog$filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$est_evidence_mcmc$screenlog$filename
+      )
+    pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename
+      )
+    # experiments' error
+    pir_params$experiments[[i]]$errors_filename <-
+      pirouette::rename_fun(
+        pir_params$experiments[[i]]$errors_filename
+      )
+  }
+
+  # evidence filename
+  pir_params$evidence_filename <-
+    pirouette::rename_fun(
+      pir_params$evidence_filename
+    )
+
+  pir_params
 }
