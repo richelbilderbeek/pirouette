@@ -66,14 +66,23 @@ get_pir_params_filenames <- function(
       string = names(flat_pir_params),
       pattern = "filename"
     )
-    filenames <- as.character(unlist(flat_pir_params[filename_indices]))
+    # List has a nice legend
+    filenames_as_list <- flat_pir_params[filename_indices]
+    filenames <- as.character(unlist(filenames_as_list))
+    # screenlog may be two quotes
+    filenames <- stats::na.omit(filenames)
+    filenames <- filenames[ filenames != "" ]
+
+    testthat::expect_true(all(filenames != ""))
     if (!beautier::is_one_na(pir_params$twinning_params)) {
-      filenames <- c(
-        filenames,
-        pirouette::to_twin_filenames(
-          pirouette::get_experiments_filenames(pir_params$experiments)
-        )
+      twin_filenames <- pirouette::get_experiments_filenames(
+        pir_params$experiments
       )
+      twin_filenames <- stats::na.omit(twin_filenames)
+      twin_filenames <- twin_filenames[ twin_filenames != "" ]
+      twin_filenames <- pirouette::to_twin_filenames(twin_filenames)
+
+      filenames <- c(filenames, twin_filenames)
     }
   }
   unique(sort(filenames))
