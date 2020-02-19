@@ -9,16 +9,18 @@
 get_experiment_filenames <- function(experiment) {
   pirouette::check_experiment(experiment)
 
-  # Note: can be NA, need alignment ID to initialize
-  tracelog_filename <- experiment$inference_model$mcmc$tracelog$filename
-
-  # Note: can be '$(tree).trees', need alignment ID to initialize
-  treelog_filename <- experiment$inference_model$mcmc$treelog$filename
-
-  c(
-    beastier::get_beast2_options_filenames(experiment$beast2_options),
-    tracelog_filename,
-    treelog_filename,
-    experiment$errors_filename
+  na.omit(
+    c(
+      beastier::get_beast2_options_filenames(experiment$beast2_options),
+      # Note: can be NA, need alignment ID to initialize
+      experiment$inference_model$mcmc$tracelog$filename,
+      experiment$inference_model$mcmc$screenlog$filename,
+      # Note: can be '$(tree).trees', need alignment ID to initialize
+      experiment$inference_model$mcmc$treelog$filename,
+      experiment$est_evidence_mcmc$tracelog$filename,
+      experiment$est_evidence_mcmc$screenlog$filename,
+      experiment$est_evidence_mcmc$treelog$filename,
+      experiment$errors_filename
+    )
   )
 }

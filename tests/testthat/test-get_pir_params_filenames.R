@@ -4,14 +4,14 @@ test_that("use, no twinning, no evidence estimation", {
 
   filenames <- get_pir_params_filenames(pir_params)
 
-  # Alternative way
+  # Temporary alternative way
   if (1 + 1 == 2) {
     flat_pir_params <- unlist(pir_params)
     filename_indices <- stringr::str_detect(
       string = names(flat_pir_params),
       pattern = "filename"
     )
-    filenames_from_flat_list <- as.character(unlist(flat_pir_params[filename_indices]))
+    filenames_from_flat_list <- na.omit(as.character(unlist(flat_pir_params[filename_indices])))
 
     expect_true(all(filenames_from_flat_list %in% filenames))
     expect_true(all(filenames %in% filenames_from_flat_list))
@@ -38,8 +38,8 @@ test_that("use, no twinning, no evidence estimation", {
     # Nope, evidence is never estimated ...
     testit::assert(!experiment$inference_conditions$do_measure_evidence)
   }
-  # Evidence is never estimated, thus no evidence file
-  expect_false(pir_params$evidence_filename %in% filenames)
+  # Evidence is never estimated, but there is a filename in case it would
+  expect_true(pir_params$evidence_filename %in% filenames)
 })
 
 test_that("use, no twinning, evidence estimation", {

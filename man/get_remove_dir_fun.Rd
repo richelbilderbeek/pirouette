@@ -12,7 +12,7 @@ Or: get a function that returns the local version of a filename.
 Also, the function will return \link{NA} if the filename is \link{NA}
 }
 \seealso{
-see \link{rename_fun} for an overview of file renaming functions
+see \link{check_rename_fun} for an overview of file renaming functions
 }
 \author{
 Richèl J.C. Bilderbeek

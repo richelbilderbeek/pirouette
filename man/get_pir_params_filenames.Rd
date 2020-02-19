@@ -4,11 +4,14 @@
 \alias{get_pir_params_filenames}
 \title{Extract the filenames from a \code{pir_params}}
 \usage{
-get_pir_params_filenames(pir_params)
+get_pir_params_filenames(pir_params, method = "flat")
 }
 \arguments{
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
+
+\item{method}{temporary argument to specify how the filenames
+are obtained. Use either 'flat' or 'oldskool'}
 }
 \description{
 Extract the filenames from a \code{pir_params}
