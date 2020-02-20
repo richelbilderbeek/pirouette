@@ -41,7 +41,7 @@ get_pir_params_filenames <- function(
 #'   pir_params = pir_params
 #' )
 #' @export
-get_pir_params_filenames_oldskool <- function(
+get_pir_params_filenames_oldskool <- function( # nolint indeed a long function name
   pir_params
 ) {
   pirouette::check_pir_params(pir_params)
