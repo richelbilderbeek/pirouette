@@ -6,7 +6,7 @@ Newest versions at top.
 
 ### NEW FEATURES
 
- * None
+ * Added 'pir_rename' to rename all files created by a pirouette run
 
 ### MINOR IMPROVEMENTS
 
