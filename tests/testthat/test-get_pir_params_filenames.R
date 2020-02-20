@@ -4,21 +4,6 @@ test_that("use, no twinning, no evidence estimation", {
 
   filenames <- get_pir_params_filenames(pir_params)
 
-  # Temporary alternative way
-  if (1 + 1 == 2) {
-    flat_pir_params <- unlist(pir_params)
-    filename_indices <- stringr::str_detect(
-      string = names(flat_pir_params),
-      pattern = "filename"
-    )
-    filenames_from_flat_list <- stats::na.omit(
-      as.character(unlist(flat_pir_params[filename_indices]))
-    )
-
-    expect_true(all(filenames_from_flat_list %in% filenames))
-    expect_true(all(filenames %in% filenames_from_flat_list))
-  }
-
   expect_true(pir_params$alignment_params$fasta_filename %in% filenames)
 
   # Initialize so the tracelog and treelog filenames are filled in
@@ -41,8 +26,7 @@ test_that("use, no twinning, no evidence estimation", {
     testit::assert(!experiment$inference_conditions$do_measure_evidence)
   }
   # Evidence is never estimated, thus no filename
-  # But, well, it is a filename
-  expect_true(pir_params$evidence_filename %in% filenames)
+  expect_false(pir_params$evidence_filename %in% filenames)
 })
 
 test_that("use, no twinning, evidence estimation", {
@@ -111,9 +95,8 @@ test_that("use, twinning, no evidence estimation", {
   expect_true(pir_params$twinning_params$twin_alignment_filename %in% filenames)
 
   # Evidence is never estimated, thus no evidence files
-  # But, well, it is a filename
-  expect_true(pir_params$evidence_filename %in% filenames)
-  expect_true(pir_params$twinning_params$twin_evidence_filename %in% filenames)
+  expect_false(pir_params$evidence_filename %in% filenames)
+  expect_false(pir_params$twinning_params$twin_evidence_filename %in% filenames)
 })
 
 test_that("use, twinning, evidence estimation", {
@@ -154,4 +137,74 @@ test_that("use, twinning, evidence estimation", {
   expect_true(pir_params$twinning_params$twin_tree_filename %in% filenames)
   expect_true(pir_params$twinning_params$twin_alignment_filename %in% filenames)
   expect_true(pir_params$twinning_params$twin_evidence_filename %in% filenames)
+})
+
+
+test_that("flat versus oldskool, gen", {
+
+  pir_params <- create_test_pir_params()
+  flat_filenames <- get_pir_params_filenames(
+    pir_params, method = "flat"
+  )
+  oldskool_filenames <- get_pir_params_filenames(
+    pir_params, method = "oldskool"
+  )
+  expect_equivalent(flat_filenames, oldskool_filenames)
+})
+
+test_that("flat versus oldskool, gen + cand", {
+
+  pir_params <- create_test_pir_params(
+    experiments = list(
+      create_test_gen_experiment(),
+      create_test_cand_experiment(
+        inference_model = create_test_inference_model(
+          site_model = create_hky_site_model()
+        )
+      )
+    )
+  )
+  flat_filenames <- get_pir_params_filenames(
+    pir_params, method = "flat"
+  )
+  oldskool_filenames <- get_pir_params_filenames(
+    pir_params, method = "oldskool"
+  )
+  expect_equivalent(flat_filenames, oldskool_filenames)
+})
+
+test_that("flat versus oldskool, gen + twin", {
+
+  pir_params <- create_test_pir_params(
+    twinning_params = create_twinning_params()
+  )
+  flat_filenames <- get_pir_params_filenames(
+    pir_params, method = "flat"
+  )
+  oldskool_filenames <- get_pir_params_filenames(
+    pir_params, method = "oldskool"
+  )
+  expect_equivalent(flat_filenames, oldskool_filenames)
+})
+
+test_that("flat versus oldskool, gen + cand + twin", {
+
+  pir_params <- create_test_pir_params(
+    experiments = list(
+      create_test_gen_experiment(),
+      create_test_cand_experiment(
+        inference_model = create_test_inference_model(
+          site_model = create_hky_site_model()
+        )
+      )
+    ),
+    twinning_params = create_twinning_params()
+  )
+  flat_filenames <- get_pir_params_filenames(
+    pir_params, method = "flat"
+  )
+  oldskool_filenames <- get_pir_params_filenames(
+    pir_params, method = "oldskool"
+  )
+  expect_equivalent(flat_filenames, oldskool_filenames)
 })

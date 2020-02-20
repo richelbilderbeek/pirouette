@@ -7,6 +7,8 @@ test_that("minimal use", {
 
 test_that("correct behaviour", {
   f <- get_replace_dir_fun("~")
+  expect_equal(f(NA), NA)
+  expect_equal(f(""), "")
   expect_equal(
     f("/home/richel/.cache/beast2_186c7404208c.xml.state"),
     "~/beast2_186c7404208c.xml.state"
@@ -24,10 +26,6 @@ test_that("correct behaviour", {
   expect_equal(
     f("hello.txt"),
     "/home/john/hello.txt"
-  )
-  expect_equal(
-    f(NA),
-    NA
   )
   expect_error(f(c()))
 })
