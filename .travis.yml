@@ -61,8 +61,13 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "devel" ]; then travis_wait 20 Rscript -e 'covr::codecov()'; fi
   # Proselint
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then proselint *.md | egrep -v "typography\.symbols\.curly_quotes"; fi
+  # Report
+  - Rscript -e 'mcbette::mcbette_report()'
 
 after_failure:
+  # Report
+  - Rscript -e 'mcbette::mcbette_report()'
+  # Check files
   - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
   - cd ~; find . | egrep "beast"
   - cd ~; find . | egrep "\.log"
