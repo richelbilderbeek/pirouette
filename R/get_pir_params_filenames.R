@@ -45,7 +45,6 @@ get_pir_params_filenames_oldskool <- function(
   pir_params
 ) {
   pirouette::check_pir_params(pir_params)
-  testthat::expect_true(method %in% c("flat", "oldskool"))
 
   # Initialize so the tracelog and treelog filenames are filled in
   pir_params <- pirouette::init_pir_params(pir_params)
@@ -103,11 +102,9 @@ get_pir_params_filenames_oldskool <- function(
 #' )
 #' @export
 get_pir_params_filenames_flat <- function(
-  pir_params,
-  method = "flat"
+  pir_params
 ) {
   pirouette::check_pir_params(pir_params)
-  testthat::expect_true(method %in% c("flat", "oldskool"))
 
   # Initialize so the tracelog and treelog filenames are filled in
   pir_params <- pirouette::init_pir_params(pir_params)

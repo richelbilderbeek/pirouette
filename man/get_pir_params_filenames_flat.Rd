@@ -4,20 +4,11 @@
 \alias{get_pir_params_filenames_flat}
 \title{Extract the filenames from a \code{pir_params}}
 \usage{
-get_pir_params_filenames_flat(pir_params, method = "flat")
+get_pir_params_filenames_flat(pir_params)
 }
 \arguments{
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
-
-\item{method}{determines how to create the twin tree
-\itemize{
-    \item 'random_tree' just produces a random tree;
-    \item 'max_clade_cred' simulates \code{n_replicates} trees and
-      uses \link[phangorn]{maxCladeCred} to create a consensus tree;
-    \item 'max_likelihood' simulates \code{n_replicates} trees
-     and selects the most likely;
-  }}
 }
 \description{
 Extract the filenames from a \code{pir_params}
