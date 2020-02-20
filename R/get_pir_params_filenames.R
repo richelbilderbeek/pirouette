@@ -149,7 +149,7 @@ get_pir_params_filenames_flat <- function(
   # Remove evidence files
   if (!has_evidence_file) {
     # Normal evidence
-    filenames <- filenames[ filenames != pir_params$evidence_filename ]
+    filenames <- filenames[filenames != pir_params$evidence_filename]
     # Twin evidence
     if (!beautier::is_one_na(pir_params$twinning_params)) {
       filenames <- filenames[
