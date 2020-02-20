@@ -13,7 +13,7 @@ create_experiment(
     beastier::create_temp_state_filename()),
   est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
   beast2_bin_path = beastier::get_default_beast2_bin_path(),
-  errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
+  errors_filename = pirouette::get_temp_errors_filename()
 )
 }
 \arguments{

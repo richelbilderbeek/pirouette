@@ -7,7 +7,7 @@
 est_evidences(
   fasta_filename,
   experiments,
-  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
+  evidence_filename = get_temp_evidence_filename(),
   verbose = FALSE
 )
 }

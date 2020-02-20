@@ -10,7 +10,7 @@ create_gen_experiment(
     beautier::create_mcmc(store_every = 1000)),
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 1e-12),
-  errors_filename = tempfile(pattern = "errors_", fileext = ".csv")
+  errors_filename = pirouette::get_temp_errors_filename()
 )
 }
 \arguments{
