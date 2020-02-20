@@ -30,16 +30,9 @@ get_pir_params_filenames <- function(
 }
 
 #' Extract the filenames from a \code{pir_params}
+#' using the \code{oldskool} method.
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
-#' @examples
-#' pir_params <- create_pir_params(
-#'   alignment_params = create_test_alignment_params(),
-#'   experiments = list(create_test_experiment())
-#' )
-#' get_pir_params_filenames(
-#'   pir_params = pir_params
-#' )
 #' @export
 get_pir_params_filenames_oldskool <- function( # nolint indeed a long function name
   pir_params
@@ -90,16 +83,9 @@ get_pir_params_filenames_oldskool <- function( # nolint indeed a long function n
 }
 
 #' Extract the filenames from a \code{pir_params}
+#' using the \code{flat} method.
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
-#' @examples
-#' pir_params <- create_pir_params(
-#'   alignment_params = create_test_alignment_params(),
-#'   experiments = list(create_test_experiment())
-#' )
-#' get_pir_params_filenames(
-#'   pir_params = pir_params
-#' )
 #' @export
 get_pir_params_filenames_flat <- function(
   pir_params

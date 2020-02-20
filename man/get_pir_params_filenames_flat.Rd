@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_pir_params_filenames.R
 \name{get_pir_params_filenames_flat}
 \alias{get_pir_params_filenames_flat}
-\title{Extract the filenames from a \code{pir_params}}
+\title{Extract the filenames from a \code{pir_params}
+using the \code{flat} method.}
 \usage{
 get_pir_params_filenames_flat(pir_params)
 }
@@ -12,15 +13,7 @@ They are created by \link{create_pir_params}.}
 }
 \description{
 Extract the filenames from a \code{pir_params}
-}
-\examples{
-pir_params <- create_pir_params(
-  alignment_params = create_test_alignment_params(),
-  experiments = list(create_test_experiment())
-)
-get_pir_params_filenames(
-  pir_params = pir_params
-)
+using the \code{flat} method.
 }
 \author{
 Richèl J.C. Bilderbeek
