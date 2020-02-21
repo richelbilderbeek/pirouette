@@ -39,7 +39,6 @@ test_that("use", {
       ".trees"
     )
   )
-  skip("Issue 397. Issue #397")
   expect_equal(
     experiment$inference_model$mcmc$tracelog$filename,
     expected_tracelog_filename

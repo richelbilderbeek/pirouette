@@ -22,7 +22,7 @@ init_experiment <- function(
   experiment,
   alignment_params
 ) {
-
+  alignment_folder <- dirname(alignment_params$fasta_filename)
   ##############################################################################
   # The regular MCMC
   ##############################################################################
@@ -30,10 +30,12 @@ init_experiment <- function(
   # Here, do what BEAUti does...
   tracelog_filename <- experiment$inference_model$mcmc$tracelog$filename
   if (is.na(tracelog_filename)) {
-    experiment$inference_model$mcmc$tracelog$filename <-
-    paste0(
-      beautier::get_alignment_id(alignment_params$fasta_filename),
-      ".log"
+    experiment$inference_model$mcmc$tracelog$filename <- file.path(
+      alignment_folder,
+      paste0(
+        beautier::get_alignment_id(alignment_params$fasta_filename),
+        ".log"
+      )
     )
   }
 
@@ -48,7 +50,10 @@ init_experiment <- function(
       alignment_params$fasta_filename
     )
   )
-  experiment$inference_model$mcmc$treelog$filename <- new_treelog_filename
+  experiment$inference_model$mcmc$treelog$filename <- file.path(
+    alignment_folder,
+    new_treelog_filename
+  )
 
   ##############################################################################
   # The marginal likelihood MCMC
@@ -57,10 +62,12 @@ init_experiment <- function(
   # Here, do what BEAUti does...
   tracelog_filename <- experiment$est_evidence_mcmc$tracelog$filename
   if (is.na(tracelog_filename)) {
-    experiment$est_evidence_mcmc$tracelog$filename <-
-    paste0(
-      beautier::get_alignment_id(alignment_params$fasta_filename),
-      ".log"
+    experiment$est_evidence_mcmc$tracelog$filename <- file.path(
+      alignment_folder,
+      paste0(
+        beautier::get_alignment_id(alignment_params$fasta_filename),
+        ".log"
+      )
     )
   }
 
@@ -75,7 +82,10 @@ init_experiment <- function(
       alignment_params$fasta_filename
     )
   )
-  experiment$est_evidence_mcmc$treelog$filename <- new_treelog_filename
+  experiment$est_evidence_mcmc$treelog$filename <- file.path(
+    alignment_folder,
+    new_treelog_filename
+  )
 
   experiment
 }
