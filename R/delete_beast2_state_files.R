@@ -8,7 +8,7 @@ delete_beast2_state_files <- function(
   for (beast2_options in beast2_optionses) {
     if (file.exists(beast2_options$output_state_filename)) {
       if (isTRUE(verbose)) {
-        print(
+        message(
           paste0("Deleting file '",
             beast2_options$output_state_filename, "'"
           )
