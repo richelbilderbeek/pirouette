@@ -65,11 +65,9 @@ est_evidences <- function(
     "evidence_fasta_filename"
   )
   if (isTRUE(verbose)) {
-    print(
-      paste0(
-        "Copied FASTA file from '", fasta_filename,
-        "' to '", evidence_fasta_filename, "'"
-      )
+    message(
+      "Copied FASTA file from '", fasta_filename,
+      "' to '", evidence_fasta_filename, "'"
     )
   }
 
@@ -129,7 +127,7 @@ est_evidences <- function(
     verbose = verbose
   )
   if (verbose == TRUE) {
-    print(marg_liks)
+    message(marg_liks)
   }
 
   # Create a sub-sub-folder for the evidence file to be put in,
