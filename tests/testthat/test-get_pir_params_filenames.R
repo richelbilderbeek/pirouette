@@ -118,7 +118,7 @@ test_that("use, twinning, evidence estimation", {
     expect_true(
       experiment$inference_model$mcmc$tracelog$filename %in% filenames
     )
-    expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames) # HIERO
+    expect_true(experiment$inference_model$mcmc$treelog$filename %in% filenames)
     expect_true(experiment$beast2_options$output_state_filename %in% filenames)
     expect_true(experiment$errors_filename %in% filenames)
     # Twin
@@ -126,7 +126,7 @@ test_that("use, twinning, evidence estimation", {
       experiment$beast2_options$input_filename) %in% filenames)
     expect_true(to_twin_filename(
       experiment$inference_model$mcmc$tracelog$filename) %in% filenames)
-    expect_true(to_twin_filename(  # HIERO
+    expect_true(to_twin_filename(
       experiment$inference_model$mcmc$treelog$filename) %in% filenames)
     expect_true(to_twin_filename(
       experiment$beast2_options$output_state_filename) %in% filenames)
