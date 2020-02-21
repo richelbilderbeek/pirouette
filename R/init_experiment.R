@@ -50,6 +50,16 @@ init_experiment <- function(
       alignment_params$fasta_filename
     )
   )
+  if (dirname(new_treelog_filename) != ".") {
+    warning(
+      "treelog_filename had a path before '$(tree).trees'",
+      "Will replace this path from '",
+      dirname(new_treelog_filename),
+      "' to ",
+      alignment_folder,
+      "'"
+    )
+  }
   experiment$inference_model$mcmc$treelog$filename <- file.path(
     alignment_folder,
     basename(new_treelog_filename)
@@ -82,6 +92,17 @@ init_experiment <- function(
       alignment_params$fasta_filename
     )
   )
+  if (dirname(new_treelog_filename) != ".") {
+    warning(
+      "treelog_filename had a path before '$(tree).trees'",
+      "Will replace this path from '",
+      dirname(new_treelog_filename),
+      "' to ",
+      alignment_folder,
+      "'"
+    )
+  }
+
   experiment$est_evidence_mcmc$treelog$filename <- file.path(
     alignment_folder,
     basename(new_treelog_filename)
