@@ -17,31 +17,18 @@ pir_rename <- function(
   # experiments
   for (i in seq_along(pir_params$experiments)) {
     # experiments' inference models
-    pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename
+    pir_params$experiments[[i]]$inference_model <-
+      beautier::rename_inference_model_files(
+        pir_params$experiments[[i]]$inference_model,
+        rename_fun = rename_fun
       )
-    pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename
-      )
-    pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename
-      )
-    pir_params$experiments[[i]]$inference_model$tipdates_filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$inference_model$tipdates_filename
-      )
+
     # experiments' BEAST2 options
-    pir_params$experiments[[i]]$beast2_options$input_filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$beast2_options$input_filename
-      )
-    pir_params$experiments[[i]]$beast2_options$output_state_filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$beast2_options$output_state_filename
-      )
+    pir_params$experiments[[i]]$beast2_options <-
+      beastier::rename_beast2_options_filenames(
+        beast2_options = pir_params$experiments[[i]]$beast2_options,
+        rename_fun = rename_fun
+    )
     # experiments estimate evidence MCMC
     pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename <-
       rename_fun(
