@@ -16,3 +16,19 @@ as can be created by \link{create_alignment_params}}
 \description{
 A normal user should never need to call this function.
 }
+\details{
+It does the following:
+\itemize{
+  \item if an MCMC's treelog filename is \code{$(tree).trees},
+    replace it to \code{[alignment_folder]/[alignment_id].trees}.
+  \item if an MCMC's tracelog filename is \link{NA},
+    replace it to \code{[alignment_folder]/[alignment_id].log}
+}
+Both is done for the regular MCMC in \code{experiment$inference_model} and in
+\code{experiment$est_evidence_mcmc}.
+
+\code{[alignment_id]} is obtained by using
+\link{get_alignment_id} on the \code{alignment_params$fasta_filename}.
+\code{[alignment_folder]} is obtained by using \link{dirname}
+on \code{alignment_params$fasta_filename}
+}
