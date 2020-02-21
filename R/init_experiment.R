@@ -5,7 +5,7 @@
 #' It does the following:
 #' \itemize{
 #'   \item if an MCMC's treelog filename is \code{$(tree).trees},
-#'     replace it to \code{[alignment_folder]/[alignment_id].trees}.
+#'     replace it to by a full path using \link{complete_treelog_filename}
 #'   \item if an MCMC's tracelog filename is \link{NA},
 #'     replace it to \code{[alignment_folder]/[alignment_id].log}
 #' }
@@ -42,29 +42,11 @@ init_experiment <- function(
   # BEAUti offers the '$(tree)' shorthand notation.
   # Here, do what BEAUti does...
   treelog_filename <- experiment$inference_model$mcmc$treelog$filename
-
-  new_treelog_filename <- gsub(
-    x = treelog_filename,
-    pattern = "\\$\\(tree\\)",
-    replacement = beautier::get_alignment_id(
-      alignment_params$fasta_filename
-    )
+  new_treelog_filename <- pirouette::complete_treelog_filename(
+    treelog_filename = treelog_filename,
+    fasta_filename = alignment_params$fasta_filename
   )
-  if (dirname(new_treelog_filename) != ".") {
-    warning(
-      "treelog_filename had a path before '$(tree).trees'",
-      "Will replace this path from '",
-      dirname(new_treelog_filename),
-      "' to ",
-      alignment_folder,
-      "'"
-    )
-  }
-  experiment$inference_model$mcmc$treelog$filename <- file.path(
-    alignment_folder,
-    basename(new_treelog_filename)
-  )
-
+  experiment$inference_model$mcmc$treelog$filename <- new_treelog_filename
   ##############################################################################
   # The marginal likelihood MCMC
   ##############################################################################
@@ -84,29 +66,11 @@ init_experiment <- function(
   # BEAUti offers the '$(tree)' shorthand notation.
   # Here, do what BEAUti does...
   treelog_filename <- experiment$est_evidence_mcmc$treelog$filename
-
-  new_treelog_filename <- gsub(
-    x = treelog_filename,
-    pattern = "\\$\\(tree\\)",
-    replacement = beautier::get_alignment_id(
-      alignment_params$fasta_filename
-    )
+  new_treelog_filename <- pirouette::complete_treelog_filename(
+    treelog_filename = treelog_filename,
+    fasta_filename = alignment_params$fasta_filename
   )
-  if (dirname(new_treelog_filename) != ".") {
-    warning(
-      "treelog_filename had a path before '$(tree).trees'",
-      "Will replace this path from '",
-      dirname(new_treelog_filename),
-      "' to ",
-      alignment_folder,
-      "'"
-    )
-  }
-
-  experiment$est_evidence_mcmc$treelog$filename <- file.path(
-    alignment_folder,
-    basename(new_treelog_filename)
-  )
+  experiment$est_evidence_mcmc$treelog$filename <- new_treelog_filename
 
   experiment
 }

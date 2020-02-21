@@ -146,7 +146,8 @@
 #'       except for only coalescent tree priors
 #'   }
 #' @param extinction_rate per-species extinction rate
-#' @param fasta_filename name of a FASTA file
+#' @param fasta_filename name of a FASTA file.
+#'   Use \link{get_alignment_id} to get the ID of the alignment
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
 #' @param ideal_method method to generate the "ideal" tree
@@ -381,6 +382,10 @@
 #' @param sum_lamu is the sum lambda + mu
 #' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
+#' @param treelog_filename name of the MCMC's treelog file,
+#'   which is \code{$(tree).trees} by default.
+#'   Use \link{complete_treelog_filename} to obtain the complete path to
+#'   the MCMC's treelog file.
 #' @param tree_model model used to simulate the tree
 #' @param tree_prior a tree prior,
 #'   as created by \link[beautier]{create_tree_prior}
@@ -544,6 +549,7 @@ default_params_doc <- function(
   sum_lamu,
   t_0,
   tree,
+  treelog_filename,
   tree_filename,
   tree_model,
   tree_prior, tree_priors,

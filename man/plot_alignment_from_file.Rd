@@ -7,7 +7,8 @@
 plot_alignment_from_file(fasta_filename, title = "")
 }
 \arguments{
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 
 \item{title}{the plot title
 alignment_params <- create_test_alignment_params()

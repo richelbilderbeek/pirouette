@@ -12,7 +12,8 @@ est_evidences(
 )
 }
 \arguments{
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}. If more than one experiment

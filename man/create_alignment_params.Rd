@@ -46,7 +46,8 @@ Some standard functions:\cr
 \item{rng_seed}{the random number generator seed as used in the
 simulation of an alignment}
 
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 }
 \value{
 a list of alignment parameters

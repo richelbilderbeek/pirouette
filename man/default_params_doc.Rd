@@ -118,6 +118,7 @@ default_params_doc(
   sum_lamu,
   t_0,
   tree,
+  treelog_filename,
   tree_filename,
   tree_model,
   tree_prior,
@@ -330,7 +331,8 @@ one has to be the first in the list. See also:
 
 \item{extinction_rate}{per-species extinction rate}
 
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 
 \item{filename}{the file's name, without the path}
 
@@ -634,6 +636,11 @@ algorithm to estimate the marginal likelihood}
 \item{t_0}{starting time of a tree}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
+
+\item{treelog_filename}{name of the MCMC's treelog file,
+which is \code{$(tree).trees} by default.
+Use \link{complete_treelog_filename} to obtain the complete path to
+the MCMC's treelog file.}
 
 \item{tree_filename}{name of the phylogeny file}
 

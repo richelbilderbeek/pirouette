@@ -20,7 +20,7 @@ A normal user should never need to call this function.
 It does the following:
 \itemize{
   \item if an MCMC's treelog filename is \code{$(tree).trees},
-    replace it to \code{[alignment_folder]/[alignment_id].trees}.
+    replace it to by a full path using \link{complete_treelog_filename}
   \item if an MCMC's tracelog filename is \link{NA},
     replace it to \code{[alignment_folder]/[alignment_id].log}
 }
