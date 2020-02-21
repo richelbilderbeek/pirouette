@@ -30,18 +30,12 @@ pir_rename <- function(
         rename_fun = rename_fun
     )
     # experiments estimate evidence MCMC
-    pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename
-      )
-    pir_params$experiments[[i]]$est_evidence_mcmc$screenlog$filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$est_evidence_mcmc$screenlog$filename
-      )
-    pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename <-
-      rename_fun(
-        pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename
-      )
+    pir_params$experiments[[i]]$est_evidence_mcmc <-
+      beautier::rename_mcmc_filenames(
+          pir_params$experiments[[i]]$est_evidence_mcmc,
+          rename_fun = rename_fun
+        )
+
     # experiments' error
     pir_params$experiments[[i]]$errors_filename <-
       rename_fun(
