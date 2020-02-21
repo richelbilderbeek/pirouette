@@ -52,7 +52,7 @@ init_experiment <- function(
   )
   experiment$inference_model$mcmc$treelog$filename <- file.path(
     alignment_folder,
-    new_treelog_filename
+    basename(new_treelog_filename)
   )
 
   ##############################################################################
@@ -84,7 +84,7 @@ init_experiment <- function(
   )
   experiment$est_evidence_mcmc$treelog$filename <- file.path(
     alignment_folder,
-    new_treelog_filename
+    basename(new_treelog_filename)
   )
 
   experiment
