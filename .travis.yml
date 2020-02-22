@@ -24,11 +24,11 @@ matrix:
 
 
 r_github_packages:
+  - richelbilderbeek/beautier@develop
+  - richelbilderbeek/beastier@develop
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  - richelbilderbeek/beautier@develop
-  - richelbilderbeek/beastier@develop
   - richelbilderbeek/mcbette
   - rsetienne/DDD
   - rsetienne/PBD/PBD
