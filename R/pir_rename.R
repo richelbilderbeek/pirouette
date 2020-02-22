@@ -18,7 +18,7 @@ pir_rename <- function(
   for (i in seq_along(pir_params$experiments)) {
     # experiments' inference models
     pir_params$experiments[[i]]$inference_model <-
-      beautier::rename_inference_model_files(
+      beautier::rename_inference_model_filenames(
         pir_params$experiments[[i]]$inference_model,
         rename_fun = rename_fun
       )
