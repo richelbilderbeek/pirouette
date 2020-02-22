@@ -24,7 +24,7 @@ matrix:
 
 
 r_github_packages:
-  - richelbilderbeek/beautier@develop
+  - richelbilderbeek/beautier
   - richelbilderbeek/beastier@develop
   - Giappo/mbd
   - jimhester/covr
