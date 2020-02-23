@@ -26,6 +26,7 @@ matrix:
 r_github_packages:
   - richelbilderbeek/beautier
   - richelbilderbeek/beastier
+  - richelbilderbeek/babette
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
