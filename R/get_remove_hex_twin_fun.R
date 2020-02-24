@@ -16,7 +16,7 @@
 #' f <- get_remove_hex_twin_fun()
 #' expect_equal(
 #'   f("/home/john/beast2_186c7404208c_twin.xml.state"),
-#'   "/home/john/beast2.xml.state"
+#'   "/home/john/beast2_twin.xml.state"
 #' )
 #' expect_equal(
 #'   f("beast2_186c7404208c_twin.xml.state"),
