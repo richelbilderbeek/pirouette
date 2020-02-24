@@ -8,7 +8,7 @@ pir_rename <- function(
   rename_fun
 ) {
   pirouette::check_pir_params(pir_params)
-  pirouette::check_rename_fun(rename_fun)
+  beautier::check_rename_fun(rename_fun)
 
   # alignment params
   pir_params$alignment_params$fasta_filename <-
