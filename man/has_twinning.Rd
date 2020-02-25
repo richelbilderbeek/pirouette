@@ -2,7 +2,7 @@
 % Please edit documentation in R/has_twinning.R
 \name{has_twinning}
 \alias{has_twinning}
-\title{Determine if these \link{pir_params} use twinning}
+\title{Determine if these \code{pir_params} use twinning}
 \usage{
 has_twinning(pir_params)
 }
@@ -14,7 +14,7 @@ They are created by \link{create_pir_params}.}
 TRUE if the pir_params uses twinnning
 }
 \description{
-Determine if these \link{pir_params} use twinning
+Determine if these \code{pir_params} use twinning
 }
 \examples{
 library(testthat)

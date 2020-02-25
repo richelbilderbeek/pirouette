@@ -1,4 +1,4 @@
-#' Determine if these \link{pir_params} use twinning
+#' Determine if these \code{pir_params} use twinning
 #' @inheritParams default_params_doc
 #' @return TRUE if the pir_params uses twinnning
 #' @examples

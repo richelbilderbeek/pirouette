@@ -74,7 +74,7 @@ if (rappdirs::app_dir()$os != "win" &&
 }
 \seealso{
 Use \link{create_test_pir_params_setup} to create
-a test \link{pir_params} following a specific setup, such as
+a test \code{pir_params} following a specific setup, such as
 having a candidate experiemnt and/or use twinning.
 }
 \author{

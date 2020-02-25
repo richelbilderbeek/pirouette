@@ -101,9 +101,9 @@ if (rappdirs::app_dir()$os != "win" &&
 \itemize{
     \item Use \link{pir_run} to run the \link{pirouette} pipeline
     \item Use \link{create_test_pir_params} to create
-      a test \link{pir_params}
+      a test \code{pir_params}
     \item Use \link{create_test_pir_params_setup} to create
-      a test \link{pir_params} following a specific setup, such as
+      a test \code{pir_params} following a specific setup, such as
       having a candidate experiemnt and/or use twinning.
   }
 }
