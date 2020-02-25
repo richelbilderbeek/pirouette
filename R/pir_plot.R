@@ -35,6 +35,10 @@ pir_plot <- function(pir_out) {
   # Convert to long form
   df <- pir_out
   first_col_index <- which(names(df) == "error_1")
+  testthat::expect_equal(1, length(first_col_index))
+
+  testthat::expect_true("error_index" %in% names(df))
+  testthat::expect_true("error_value" %in% names(df))
   df_long <- tidyr::gather(
     df, "error_index", "error_value", first_col_index:ncol(df)
   )
@@ -183,8 +187,8 @@ pir_plot <- function(pir_out) {
 
   ##### More aesthetic settings for the plots #####
 
-  n_error <- length(unique(df_long$error_index))
-  bindwidth <- 0.1 / sqrt(n_error)
+  n_errors <- length(unique(df_long$error_index))
+  bindwidth <- 0.1 / sqrt(n_errors)
   alpha <- 0.5
 
   ##### Plot it (Single Plot) #####
