@@ -216,6 +216,7 @@ pir_to_pics <- function(
 
   # True, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
+    # HIERO
     df_errors_best <- data.frame(
       error = utils::read.csv(last_experiment$errors_filename)$x
     )
