@@ -42,6 +42,10 @@ test_script:
 on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip
+  - Rscript -e "mcbette::mcbette_report()"
+
+on_success:
+  - Rscript -e "mcbette::mcbette_report()"
 
 artifacts:
   - path: '*.Rcheck\**\*.log'
