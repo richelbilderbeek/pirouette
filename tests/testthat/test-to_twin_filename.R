@@ -30,6 +30,7 @@ test_that("convert file correctly from path with dots", {
 
 test_that("abuse", {
   expect_silent(to_twin_filename("OK"))
+
   expect_error(to_twin_filename(Inf), "'filename' must be one string")
   expect_error(to_twin_filename(NULL), "'filename' must be one string")
   expect_error(to_twin_filename(c()), "'filename' must be one string")
@@ -37,5 +38,9 @@ test_that("abuse", {
   expect_error(
     to_twin_filename(NA),
     "'filename' must be one string.*forgot to initialize the 'pir_params'?"
+  )
+  expect_error(
+    to_twin_filename(""),
+    "'filename' must be one string with at least one character"
   )
 })

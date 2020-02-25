@@ -19,6 +19,7 @@
 #' )
 #'
 #' expect_silent(check_alignment(alignment))
+#' @author Richèl J.C. Bilderbeek
 #' @export
 sim_alignment_with_std_nsm_from_params <- function( # nolint indeed a long function name
   phylogeny,

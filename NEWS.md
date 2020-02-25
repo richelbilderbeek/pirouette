@@ -6,7 +6,8 @@ Newest versions at top.
 
 ### NEW FEATURES
 
- * None
+ * Added 'pir_rename' to rename all files created by a pirouette run
+ * Depend on beautier v2.3.5 (for `rename_mcmc_filenames`)
 
 ### MINOR IMPROVEMENTS
 

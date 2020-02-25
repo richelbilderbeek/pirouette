@@ -30,3 +30,6 @@ if (is_on_travis()) {
   expect_silent(update_pirouette(upgrade = "always"))
 }
 }
+\author{
+Giovanni Laudanno, Richèl J.C. Bilderbeek
+}

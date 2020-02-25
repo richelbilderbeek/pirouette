@@ -20,5 +20,7 @@ get_experiments_filenames <- function(experiments) {
     to_index <- from_index + n_filenames_per_experiment - 1
     filenames[from_index:to_index] <- filenames_here
   }
+  filenames <- filenames[filenames != ""]
+  testthat::expect_true(length(filenames[filenames == ""]) == 0)
   filenames
 }

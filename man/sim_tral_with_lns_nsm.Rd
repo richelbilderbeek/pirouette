@@ -51,3 +51,6 @@ to simulate the twin alignment with an linked node substitution model.
 Use \link{get_sim_tral_with_lns_nsm_fun}
 to get a partially evaluated unary function.
 }
+\author{
+Richèl J.C. Bilderbeek
+}

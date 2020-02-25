@@ -94,6 +94,7 @@ default_params_doc(
   posterior_trees,
   precision,
   project_folder_name,
+  rename_fun,
   result,
   rng_seed,
   rng_seed_twin_alignment,
@@ -117,6 +118,7 @@ default_params_doc(
   sum_lamu,
   t_0,
   tree,
+  treelog_filename,
   tree_filename,
   tree_model,
   tree_prior,
@@ -317,6 +319,8 @@ as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
 one has to be the first in the list. See also:
 \itemize{
+  \item Use \link{check_experiments} to check the list of
+    experiments for validity
   \item Use \link{create_all_experiments} to create experiments with
     all combinations of tree model, clock model and tree priors
   \item Use \link{create_all_bd_experiments} to create experiments
@@ -325,11 +329,14 @@ one has to be the first in the list. See also:
   \item Use \link{create_all_coal_experiments} to create all experiments
     with all combinations of tree model, clock model and tree priors,
     except for only coalescent tree priors
+  \item Use \link{shorten_experiments} to shorten the run time
+    of the list of experiments
 }}
 
 \item{extinction_rate}{per-species extinction rate}
 
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 
 \item{filename}{the file's name, without the path}
 
@@ -459,6 +466,19 @@ of class \code{multiphylo}}
 \item{precision}{define the precision of the approximation.}
 
 \item{project_folder_name}{project folder name}
+
+\item{rename_fun}{a function to rename a filename,
+as can be checked by \link{check_rename_fun}. This function should
+have one argument, which will be a filename or \link{NA}. The
+function should \link{return} one filename (when passed one filename) or
+one \link{NA} (when passed one \link{NA}).
+Example rename functions are:
+\itemize{
+  \item \link{get_remove_dir_fun} function that removes the directory
+    paths from the filenames, in effect turning these into local files
+  \item \link{get_replace_dir_fun} function that replaces the directory
+    paths from the filenames
+}}
 
 \item{result}{results from measurements. These are:
 \itemize{
@@ -620,6 +640,11 @@ algorithm to estimate the marginal likelihood}
 \item{t_0}{starting time of a tree}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
+
+\item{treelog_filename}{name of the MCMC's treelog file,
+which is \code{$(tree).trees} by default.
+Use \link{complete_treelog_filename} to obtain the complete path to
+the MCMC's treelog file.}
 
 \item{tree_filename}{name of the phylogeny file}
 

@@ -49,7 +49,7 @@ create_tral_file <- function(
   # Make sure the (sub-sub-) folder exists for the file,
   # but do not warn if it already exists
   if (isTRUE(verbose)) {
-    print(paste0("Saving alignment to '", fasta_filename, "'"))
+    message("Saving alignment to '", fasta_filename, "'")
   }
   dir.create(
     path = dirname(fasta_filename),

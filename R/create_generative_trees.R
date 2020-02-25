@@ -90,8 +90,8 @@ create_bd_tree <- function(
 #' @examples
 #' library(testthat)
 #'
-#' n_taxa <- 31
-#' crown_age <- 41
+#' n_taxa <- 3
+#' crown_age <- 1
 #'
 #' phylogeny <- create_dd_tree(
 #'   n_taxa = n_taxa,

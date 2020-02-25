@@ -25,7 +25,7 @@ test_that("use, no twinning, no evidence estimation", {
     # Nope, evidence is never estimated ...
     testit::assert(!experiment$inference_conditions$do_measure_evidence)
   }
-  # Evidence is never estimated, thus no evidence file
+  # Evidence is never estimated, thus no filename
   expect_false(pir_params$evidence_filename %in% filenames)
 })
 

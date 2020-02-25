@@ -28,9 +28,6 @@ test_that("generative", {
     pir_params = pir_params
   )
 
-  # Files created
-  testit::assert(all(file.exists(get_pir_params_filenames(pir_params))))
-
   # Return value all at once
   expect_silent(check_pir_out(pir_out))
 
@@ -233,9 +230,6 @@ test_that("most_evidence, one candidate", {
     pir_params = pir_params
   )
 
-  # Files created
-  testit::assert(all(file.exists(filenames)))
-
   expect_true("candidate" %in% errors$inference_model)
   expect_true(file.exists(pir_params$evidence_filename))
   expect_true(all(errors$inference_model_weight > 0.0))
@@ -282,9 +276,6 @@ test_that("generative with twin", {
     pir_params = pir_params
   )
 
-  # Files created
-  testit::assert(all(file.exists(filenames)))
-
   # Return value
   expect_true("tree" %in% names(errors))
   expect_true(is.factor(errors$tree))
@@ -303,8 +294,7 @@ test_that("generative with twin", {
 test_that("most_evidence, with twinning", {
 
   if (!beastier::is_on_travis()) return()
-  if (!beastier::is_beast2_installed()) return()
-  if (!mauricer::is_beast2_ns_pkg_installed()) return()
+  if (!mcbette::can_run_mcbette()) return()
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
@@ -379,9 +369,6 @@ test_that("most_evidence, with twinning", {
     phylogeny = phylogeny,
     pir_params = pir_params
   )
-
-  # Files created
-  testit::assert(all(file.exists(filenames)))
 
   expect_true("candidate" %in% errors$inference_model)
 

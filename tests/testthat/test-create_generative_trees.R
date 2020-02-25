@@ -9,8 +9,9 @@ test_that("yule", {
 })
 
 test_that("birth_death", {
-  n_taxa <- 10
-  crown_age <- 15
+
+  n_taxa <- 3
+  crown_age <- 1
   tree <- create_bd_tree(n_taxa = n_taxa, crown_age = crown_age)
   expect_equal(ape::Ntip(tree), n_taxa)
   expect_equal(max(ape::branching.times(tree)), crown_age)
@@ -19,6 +20,9 @@ test_that("birth_death", {
 test_that("diversity_dependent, use", {
   n_taxa <- 10
   crown_age <- 15
+
+  # This seed is selected for the shortness of 'create_dd_tree'
+  set.seed(15)
   tree <- create_dd_tree(n_taxa = n_taxa, crown_age = crown_age)
   expect_equal(ape::Ntip(tree), n_taxa)
   expect_equal(max(ape::branching.times(tree)), crown_age)
@@ -34,6 +38,7 @@ test_that("diversity_dependent, use", {
     create_dd_tree(n_taxa = 10, crown_age = 10, best_of_n_trees = -123.456)
   )
 
+  skip("Issue 383. Issue #383")
   skip("Cases that do not work")
   expect_silent(create_dd_tree(n_taxa = 2, crown_age = 1))
   expect_silent(

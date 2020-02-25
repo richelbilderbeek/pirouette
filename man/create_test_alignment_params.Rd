@@ -45,7 +45,8 @@ Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{rng_seed}{a random number generator seed}
 
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 }
 \value{
 a list of alignment parameters

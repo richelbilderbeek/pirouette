@@ -39,3 +39,6 @@ expect_silent(check_alignment(alignment))
 use \link{sim_alignment_with_std_nsm} to simulate an alignment
 directlt from a mutation rate, root sequence and site model
 }
+\author{
+Richèl J.C. Bilderbeek
+}

@@ -26,6 +26,12 @@ to_twin_filename <- function(
       "Actual value: ", filename
     )
   }
+  if (filename == "") {
+    stop(
+      "'filename' must be one string with at least one character",
+      "Actual value: ", filename
+    )
+  }
   testit::assert(assertive::is_a_string(filename))
   # Get the basename with extension
   base_filename <- basename(filename)

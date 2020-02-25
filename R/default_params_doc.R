@@ -136,6 +136,8 @@
 #'   is provided and a "generative" experiment is part of them, the "generative"
 #'   one has to be the first in the list. See also:
 #'   \itemize{
+#'     \item Use \link{check_experiments} to check the list of
+#'       experiments for validity
 #'     \item Use \link{create_all_experiments} to create experiments with
 #'       all combinations of tree model, clock model and tree priors
 #'     \item Use \link{create_all_bd_experiments} to create experiments
@@ -144,9 +146,12 @@
 #'     \item Use \link{create_all_coal_experiments} to create all experiments
 #'       with all combinations of tree model, clock model and tree priors,
 #'       except for only coalescent tree priors
+#'     \item Use \link{shorten_experiments} to shorten the run time
+#'       of the list of experiments
 #'   }
 #' @param extinction_rate per-species extinction rate
-#' @param fasta_filename name of a FASTA file
+#' @param fasta_filename name of a FASTA file.
+#'   Use \link{get_alignment_id} to get the ID of the alignment
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
 #' @param ideal_method method to generate the "ideal" tree
@@ -231,6 +236,18 @@
 #'   of class \code{multiphylo}
 #' @param precision define the precision of the approximation.
 #' @param project_folder_name project folder name
+#' @param rename_fun a function to rename a filename,
+#' as can be checked by \link{check_rename_fun}. This function should
+#' have one argument, which will be a filename or \link{NA}. The
+#' function should \link{return} one filename (when passed one filename) or
+#' one \link{NA} (when passed one \link{NA}).
+#' Example rename functions are:
+#' \itemize{
+#'   \item \link{get_remove_dir_fun} function that removes the directory
+#'     paths from the filenames, in effect turning these into local files
+#'   \item \link{get_replace_dir_fun} function that replaces the directory
+#'     paths from the filenames
+#' }
 #' @param result results from measurements. These are:
 #'   \itemize{
 #'     \item log_evidence the natural logarithm of the evidence (aka marginal
@@ -369,6 +386,10 @@
 #' @param sum_lamu is the sum lambda + mu
 #' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
+#' @param treelog_filename name of the MCMC's treelog file,
+#'   which is \code{$(tree).trees} by default.
+#'   Use \link{complete_treelog_filename} to obtain the complete path to
+#'   the MCMC's treelog file.
 #' @param tree_model model used to simulate the tree
 #' @param tree_prior a tree prior,
 #'   as created by \link[beautier]{create_tree_prior}
@@ -508,6 +529,7 @@ default_params_doc <- function(
   posterior_trees,
   precision,
   project_folder_name,
+  rename_fun,
   result,
   rng_seed,
   rng_seed_twin_alignment,
@@ -531,6 +553,7 @@ default_params_doc <- function(
   sum_lamu,
   t_0,
   tree,
+  treelog_filename,
   tree_filename,
   tree_model,
   tree_prior, tree_priors,

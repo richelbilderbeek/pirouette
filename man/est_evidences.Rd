@@ -7,18 +7,21 @@
 est_evidences(
   fasta_filename,
   experiments,
-  evidence_filename = tempfile(pattern = "evidence_", fileext = ".csv"),
+  evidence_filename = get_temp_evidence_filename(),
   verbose = FALSE
 )
 }
 \arguments{
-\item{fasta_filename}{name of a FASTA file}
+\item{fasta_filename}{name of a FASTA file.
+Use \link{get_alignment_id} to get the ID of the alignment}
 
 \item{experiments}{a list of one or more \link{pirouette} experiments,
 as can be created by \link{create_experiment}. If more than one experiment
 is provided and a "generative" experiment is part of them, the "generative"
 one has to be the first in the list. See also:
 \itemize{
+  \item Use \link{check_experiments} to check the list of
+    experiments for validity
   \item Use \link{create_all_experiments} to create experiments with
     all combinations of tree model, clock model and tree priors
   \item Use \link{create_all_bd_experiments} to create experiments
@@ -27,6 +30,8 @@ one has to be the first in the list. See also:
   \item Use \link{create_all_coal_experiments} to create all experiments
     with all combinations of tree model, clock model and tree priors,
     except for only coalescent tree priors
+  \item Use \link{shorten_experiments} to shorten the run time
+    of the list of experiments
 }}
 
 \item{evidence_filename}{filename to store the estimated

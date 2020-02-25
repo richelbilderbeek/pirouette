@@ -58,3 +58,6 @@ alignment <- sim_tral_with_std_nsm(
 )
 expect_silent(check_alignment(alignment))
 }
+\author{
+Richèl J.C. Bilderbeek
+}

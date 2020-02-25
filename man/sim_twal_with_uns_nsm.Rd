@@ -58,3 +58,6 @@ to simulate the true alignment with a linked node substitution model.
 Use \link{sim_tral_with_uns_nsm}
 to simulate the twin alignment with an unlinked node substitution model.
 }
+\author{
+Richèl J.C. Bilderbeek
+}

@@ -21,12 +21,12 @@ VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Depends:
-    beautier (>= 2.3.2),
+    beautier (>= 2.3.5),
     babette (>= 2.1.1)
 Imports:
     ape,
     assertive,
-    beastier (>= 2.1.1),
+    beastier (>= 2.1.3),
     DDD,
     dplyr,
     magrittr,
