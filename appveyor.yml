@@ -10,7 +10,7 @@ init:
 install:
   ps: Bootstrap
 
-cache:
+#cache:
 #  - C:\RLibrary
 
 # Adapt as necessary starting from here
