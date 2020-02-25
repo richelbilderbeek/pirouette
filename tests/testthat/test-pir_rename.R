@@ -1,7 +1,7 @@
 test_that("filenames must change", {
 
-  pir_params <- create_test_pir_params(
-    twinning_params = create_twinning_params()
+  pir_params <- pirouette::create_test_pir_params(
+    twinning_params = pirouette::create_twinning_params()
   )
 
   flat_pir_params <- unlist(pir_params)
@@ -12,7 +12,19 @@ test_that("filenames must change", {
   filenames_before <- as.character(unlist(flat_pir_params[filename_indices]))
 
   cache_pattern <- "/.cache/"
-  if (rappdirs::app_dir()$os == "win") cache_pattern <- "cache"
+  if (rappdirs::app_dir()$os == "win") {
+    if (all(grepl(
+      x = stats::na.omit(filenames_before), pattern = "cache")
+    )) {
+      cache_pattern <- "cache"
+    } else if (all(grepl(
+      x = stats::na.omit(filenames_before), pattern = "Cache")
+    )) {
+      cache_pattern <- "Cache"
+    } else {
+      cache_pattern <- basename(dirname(filenames_before[[1]]))
+    }
+  }
 
   testthat::expect_true(
     all(
