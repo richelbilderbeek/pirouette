@@ -3,8 +3,6 @@ test_that("minimal runs", {
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
 
-  skip("Issue 389. Issue #389")
-
   # Parameters. There will be as many pir_outs as there are parameters.
   pir_paramses <- list()
   pir_paramses[[1]] <- pirouette::create_test_pir_params()
@@ -26,8 +24,6 @@ test_that("minimal runs", {
 })
 
 test_that("abuse", {
-
-  skip("Issue 389. Issue #389")
 
   pir_paramses <- list()
   pir_paramses[[1]] <- pirouette::create_test_pir_params()

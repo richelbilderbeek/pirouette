@@ -122,10 +122,21 @@ create_dd_tree <- function(
   lambda <- 3 * (diff + mu)
   kk <- n_taxa
 
+  if (n_taxa == 2) {
+    sim_tree <- TESS::tess.sim.taxa.age(
+      n = 1,
+      nTaxa = n_taxa,
+      age = crown_age,
+      lambda = lambda,
+      mu = mu
+    )[[1]]
+    return(sim_tree)
+  }
+
   sim_trees <- list()
   gammas <- rep(-1, best_of_n_trees)
   i <- 1
-  while (i < best_of_n_trees) {
+  while (i <= best_of_n_trees) {
 
     sim <- DDD::dd_sim(
       pars = c(lambda, mu, kk),
