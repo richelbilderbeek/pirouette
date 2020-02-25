@@ -67,7 +67,7 @@ test_that("correct order of experiments", {
   )
 })
 
-test_that("same beast2_options_filenames and error fileanames in candidates", {
+test_that("same beast2_options_filenames and error filenames in candidates", {
 
   if (rappdirs::app_dir()$os == "win") return()
 
@@ -214,5 +214,20 @@ test_that("detect same model in two candidate models", {
   expect_error(
     check_experiments(experiments),
     "All inference models must be unique"
+  )
+})
+
+test_that("different error filenames between generative and candidate", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
+  experiments <- create_test_pir_params_setup(
+    has_candidate = TRUE
+  )$experiments
+  experiments[[1]]$errors_filename <- "errors.csv"
+  experiments[[2]]$errors_filename <- "errors.csv"
+  expect_error(
+    check_experiments(experiments),
+    "The errors filenames of generative and candidate experiments must differ"
   )
 })

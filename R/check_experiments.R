@@ -53,7 +53,6 @@ check_experiments <- function(
   if (length(experiments) == 1) return()
 
   testit::assert(length(experiments) >= 2)
-
   pirouette::check_candidates_save_to_same_files(experiments)
   pirouette::check_experiments_candidates_have_same_mcmcs(experiments)
 
@@ -73,4 +72,5 @@ check_experiments <- function(
     stop("If multiple experiments, generative is either first or absent")
   }
   pirouette::check_experiments_all_inference_models_are_unique(experiments)
+  pirouette::check_gen_and_cand_exps_save_to_different_files(experiments)
 }
