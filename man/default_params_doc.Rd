@@ -97,6 +97,7 @@ default_params_doc(
   rename_fun,
   result,
   rng_seed,
+  rng_seeds,
   rng_seed_twin_alignment,
   rng_seed_twin_tree,
   root_sequence,
@@ -493,6 +494,8 @@ Example rename functions are:
 }}
 
 \item{rng_seed}{a random number generator seed}
+
+\item{rng_seeds}{a vector of random number generator seeds}
 
 \item{rng_seed_twin_alignment}{the random number generator seed
 as used in the simulation of a twin alignment}

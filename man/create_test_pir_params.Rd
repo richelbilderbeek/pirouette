@@ -72,6 +72,11 @@ if (rappdirs::app_dir()$os != "win" &&
   pir_plot(pir_out)
 }
 }
+\seealso{
+Use \link{create_test_pir_params_setup} to create
+a test \link{pir_params} following a specific setup, such as
+having a candidate experiemnt and/or use twinning.
+}
 \author{
 Richèl J.C. Bilderbeek
 }

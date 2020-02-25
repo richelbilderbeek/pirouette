@@ -27,7 +27,7 @@
 create_pir_params_twin <- function(
   pir_params
 ) {
-  if (beautier::is_one_na(pir_params$twinning_params)) {
+  if (!pirouette::has_twinning(pir_params)) {
     stop(
       "'pir_params$twinning_params' must be a twinning parameter set. \n",
       "Tip: use 'create_twinning_params' \n"

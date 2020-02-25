@@ -98,7 +98,14 @@ if (rappdirs::app_dir()$os != "win" &&
 }
 }
 \seealso{
-Use \link{pir_run} to run the \link{pirouette} pipeline
+\itemize{
+    \item Use \link{pir_run} to run the \link{pirouette} pipeline
+    \item Use \link{create_test_pir_params} to create
+      a test \link{pir_params}
+    \item Use \link{create_test_pir_params_setup} to create
+      a test \link{pir_params} following a specific setup, such as
+      having a candidate experiemnt and/or use twinning.
+  }
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

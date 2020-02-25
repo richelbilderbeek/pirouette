@@ -117,7 +117,7 @@ pir_to_tables <- function(
     )
     sink()
 
-    if (!beautier::is_one_na(pir_params$twinning_params)) {
+    if (pirouette::has_twinning(pir_params)) {
       ################
       # Evidence, twin
       ################
@@ -173,7 +173,7 @@ pir_to_tables <- function(
     #######################
     # Generative, twin tree
     #######################
-    if (!beautier::is_one_na(pir_params$twinning_params)) {
+    if (pirouette::has_twinning(pir_params)) {
       esses_twin_gen <- tracerer::calc_esses(
         traces = tracerer::parse_beast_log(to_twin_filename(
           first_experiment$inference_model$mcmc$tracelog$filename)
@@ -228,7 +228,7 @@ pir_to_tables <- function(
     #######################
     # Candidate, twin tree
     #######################
-    if (!beautier::is_one_na(pir_params$twinning_params)) {
+    if (pirouette::has_twinning(pir_params)) {
       esses_twin_best <- tracerer::calc_esses(
         traces = tracerer::parse_beast_log(to_twin_filename(
           last_experiment$inference_model$mcmc$tracelog$filename)

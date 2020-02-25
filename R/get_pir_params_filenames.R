@@ -42,7 +42,7 @@ get_pir_params_filenames <- function(
   filenames <- stats::na.omit(filenames)
   filenames <- filenames[filenames != ""]
   testthat::expect_true(all(filenames != ""))
-  if (!beautier::is_one_na(pir_params$twinning_params)) {
+  if (pirouette::has_twinning(pir_params)) {
     twin_filenames <- pirouette::get_experiments_filenames(
       pir_params$experiments
     )
@@ -57,7 +57,7 @@ get_pir_params_filenames <- function(
     # Normal evidence
     filenames <- filenames[filenames != pir_params$evidence_filename]
     # Twin evidence
-    if (!beautier::is_one_na(pir_params$twinning_params)) {
+    if (pirouette::has_twinning(pir_params)) {
       filenames <- filenames[
         filenames != pir_params$twinning_params$twin_evidence_filename
       ]

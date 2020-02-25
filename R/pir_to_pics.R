@@ -265,7 +265,7 @@ pir_to_pics <- function(
     filenames <- c(filenames, filename)
   }
 
-  if (!beautier::is_one_na(pir_params$twinning_params)) {
+  if (pirouette::has_twinning(pir_params)) {
     twin_filenames <- pir_to_pics_twin(
       pir_params = pir_params,
       consensus = consensus,
@@ -288,7 +288,7 @@ pir_to_pics_twin <- function(
     pir_params$twinning_params$twin_tree_filename)$tip.label)),
   folder = tempdir()
 ) {
-  testit::assert(!beautier::is_one_na(pir_params$twinning_params))
+  testit::assert(pirouette::has_twinning(pir_params))
 
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 

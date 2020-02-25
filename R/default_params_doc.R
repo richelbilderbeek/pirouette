@@ -260,6 +260,7 @@
 #'       Will be NA if these are not measured.
 #'   }
 #' @param rng_seed a random number generator seed
+#' @param rng_seeds a vector of random number generator seeds
 #' @param rng_seed_twin_alignment the random number generator seed
 #'   as used in the simulation of a twin alignment
 #' @param rng_seed_twin_tree the random number generator seed as used in the
@@ -531,7 +532,7 @@ default_params_doc <- function(
   project_folder_name,
   rename_fun,
   result,
-  rng_seed,
+  rng_seed, rng_seeds,
   rng_seed_twin_alignment,
   rng_seed_twin_tree,
   root_sequence,
