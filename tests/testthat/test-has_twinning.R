@@ -10,4 +10,3 @@ test_that("twinning", {
   )
   expect_true(has_twinning(pir_params))
 })
-
