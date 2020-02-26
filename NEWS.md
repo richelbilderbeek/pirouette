@@ -6,12 +6,15 @@ Newest versions at top.
 
 ### NEW FEATURES
 
+ * Added `pir_rename_to_std` to conformize all files created by a pirouette run
  * Added 'pir_rename' to rename all files created by a pirouette run
  * Depend on beautier v2.3.5 (for `rename_mcmc_filenames`)
 
 ### MINOR IMPROVEMENTS
 
  * Use at-least versions of packages, instead of exact versions
+ * Check if there is need for an evidence file. Will stop if there
+   is an evidence filename specified without needing one and vice versa
 
 ### BUG FIXES
 
