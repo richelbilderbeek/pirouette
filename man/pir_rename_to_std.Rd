@@ -36,7 +36,7 @@ that is generative:
     becomes \code{[folder_name]/gen.xml.state}
   \item
     \code{pir_params$experiments[[i]]$beast2_options$input_filename}
-    becomes \code{[folder_name]/errors_gen.csv},
+    becomes \code{[folder_name]/gen_errors.csv},
   \item
     \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
     becomes \code{[folder_name]/gen.log}
@@ -56,7 +56,39 @@ that is generative:
     \code{pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename}
     becomes \code{[folder_name]/gen_evidence.trees}
 }
+
+For the (zero or more) experiments at index \code{i}
+that is a candidate:
+
+\itemize{
+  \item \code{pir_params$experiments[[i]]$beast2_options$input_filename}
+    becomes \code{[folder_name]/best.xml}
+  \item
+    \code{pir_params$experiments[[i]]$beast2_options$output_state_filename}
+    becomes \code{[folder_name]/best.xml.state}
+  \item
+    \code{pir_params$experiments[[i]]$beast2_options$input_filename}
+    becomes \code{[folder_name]/best_errors.csv},
+  \item
+    \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
+    becomes \code{[folder_name]/best.log}
+  \item
+    \code{pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename}
+    becomes \code{[folder_name]/best.csv}
+  \item
+    \code{pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename}
+    becomes \code{[folder_name]/best.trees}
+  \item
+    \code{pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename}
+    becomes \code{[folder_name]/best_evidence.log}
+  \item
+    \code{pir_params$experiments[[i]]$est_evidence_mcmc$screenlog$filename}
+    becomes \code{[folder_name]/best_evidence.csv}
+  \item
+    \code{pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename}
+    becomes \code{[folder_name]/best_evidence.trees}
+}
 }
 \seealso{
-use \link{get_pir_params_filenames} to obtain all the filenames
+Use \link{get_pir_params_filenames} to obtain all the filenames
 }
