@@ -71,7 +71,10 @@ test_that("use, 2 pir paramses", {
     create_test_pir_params_setup(TRUE, TRUE)
   )
   rng_seeds <- c(4, 2)
-  pir_paramses <- renum_rng_seeds(pir_paramses, )
+  pir_paramses <- renum_rng_seeds(
+    pir_paramses = pir_paramses,
+    rng_seeds = rng_seeds
+  )
 
   expect_equal(
     pir_paramses[[1]]$alignment_params$rng_seed, rng_seeds[1]
