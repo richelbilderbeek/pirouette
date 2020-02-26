@@ -109,6 +109,9 @@ test_that("use, twinning, evidence estimation", {
   # We measure the evidence of at least one experiment
   pir_params$experiments[[1]]$inference_conditions$do_measure_evidence <-
     TRUE
+  pir_params$evidence_filename <- get_temp_evidence_filename()
+  pir_params$twinning_params$twin_evidence_filename <-
+    get_temp_evidence_filename()
 
   # Initialize so the tracelog and treelog filenames are filled in
   pir_params <- init_pir_params(pir_params)

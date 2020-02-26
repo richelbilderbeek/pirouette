@@ -178,7 +178,7 @@ test_that("element values", {
         twin_evidence_filename = 13
       )
     ),
-    "'twin_evidence_filename' must be a character vector"
+    "'twin_evidence_filename' must be NA or a character vector"
   )
 
 })
