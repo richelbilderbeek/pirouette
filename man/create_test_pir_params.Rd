@@ -9,7 +9,7 @@ create_test_pir_params(
   twinning_params = NA,
   experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = get_temp_evidence_filename(),
+  evidence_filename = NA,
   verbose = FALSE
 )
 }
