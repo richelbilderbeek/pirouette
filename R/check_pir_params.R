@@ -91,6 +91,24 @@ check_pir_params_data_types <- function(pir_params) {
       stop(msg)
     }
   )
+  # Cannot use the 'has_twinning' function, as this will check
+  # the pir_params, leading to infinite recursion
+  has_twinning <- !beautier::is_one_na(pir_params$twinning_params)
+
+  if (has_twinning) {
+    tryCatch(
+      pirouette::check_twinning_params(pir_params$twinning_params),
+      error = function(e) {
+        msg <- paste0(
+          "'twinning_params' must be NA or a set of twinning parameters.\n",
+          "Tip: use 'create_twinning_params'\n",
+          "Error message: ", e$message, "\n",
+          "Actual value: ", pir_params$twinning_params
+        )
+        stop(msg)
+      }
+    )
+  }
   tryCatch(
     pirouette::check_error_measure_params(pir_params$error_measure_params),
     error = function(e) {
@@ -132,12 +150,31 @@ check_pir_params_data_types <- function(pir_params) {
         "if there is an evidence estimation"
       )
     }
+    if (has_twinning) {
+      if (!is.character(pir_params$twinning_params$twin_evidence_filename)) {
+        stop(
+          "'twinning_params$twin_evidence_filename' must be a string ",
+          "if there is an evidence estimation"
+        )
+      }
+
+    }
   } else {
     if (!beautier::is_one_na(pir_params$evidence_filename)) {
       stop(
         "'evidence_filename' must be NA ",
         "if there is no evidence estimation"
       )
+    }
+    if (has_twinning) {
+      if (
+        !beautier::is_one_na(pir_params$twinning_params$twin_evidence_filename)
+      ) {
+        stop(
+          "'twinning_params$twin_evidence_filename' must be NA ",
+          "if there is no evidence estimation"
+        )
+      }
     }
   }
   if (!beautier::is_one_bool(pir_params$verbose)) {

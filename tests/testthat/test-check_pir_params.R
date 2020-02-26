@@ -97,17 +97,51 @@ test_that("use", {
 })
 
 test_that("evidence_filename only when there are candidates", {
-  pir_params <- create_test_pir_params_setup(has_candidate = FALSE)
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = FALSE,
+    has_twinning = FALSE
+  )
   pir_params$evidence_filename <- "should_be_na.csv"
   expect_error(
     check_pir_params(pir_params),
     "'evidence_filename' must be NA if there is no evidence estimation"
   )
 
-  pir_params <- create_test_pir_params_setup(has_candidate = TRUE)
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = TRUE,
+    has_twinning = FALSE
+  )
   pir_params$evidence_filename <- NA
   expect_error(
     check_pir_params(pir_params),
     "'evidence_filename' must be a string if there is an evidence estimation"
   )
+
+
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = FALSE,
+    has_twinning = TRUE
+  )
+  pir_params$twinning_params$twin_evidence_filename <- "should_be_na.csv"
+  expect_error(
+    check_pir_params(pir_params),
+    paste0(
+      "'twinning_params$evidence_filename' must be NA ",
+      "if there is no evidence estimation"
+    )
+  )
+
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = TRUE,
+    has_twinning = TRUE
+  )
+  pir_params$twinning_params$twin_evidence_filename <- NA
+  expect_error(
+    check_pir_params(pir_params),
+    paste0(
+      "'twinning_params$evidence_filename' must be a string ",
+      "if there is an evidence estimation"
+    )
+  )
+
 })
