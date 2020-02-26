@@ -216,16 +216,18 @@ candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
-  beast2_options <- create_beast2_options(rng_seed = 314)
-  experiment_yule <- create_test_cand_experiment(
-    beast2_options = beast2_options  
-  )
+  mcmc <- create_test_mcmc()
+  experiment_yule <- create_test_cand_experiment()
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior()  
-    ),
-    beast2_options = beast2_options  
+      tree_prior = create_bd_tree_prior()  ,
+    )
   )
+  # Candidat experiments must produce the same files
+  experiment_yule$beast2_options <- experiment_bd$beast2_options
+  experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
+  experiment_yule$errors_filename <- experiment_bd$errors_filename
+  
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
   
@@ -245,10 +247,7 @@ if (rappdirs::app_dir()$os != "win" &&
     is_beast2_ns_pkg_installed()) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
-    pir_params = create_pir_params(
-      alignment_params = alignment_params,
-      experiments = experiments
-    )
+    pir_params = pir_params
   )
   knitr::kable(df)
   pirouette::pir_plot(df)
