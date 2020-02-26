@@ -82,7 +82,7 @@ test_that("use", {
     check_pir_params(
       pir_params_2
     ),
-    "'evidence_filename' must be a csv filename"
+    "'evidence_filename' must be NA"
   )
 
   # Verbose

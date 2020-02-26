@@ -1,12 +1,10 @@
-context("test-create_pir_params")
-
 test_that("use", {
 
   alignment_params <- create_test_alignment_params()
   twinning_params <- create_twinning_params()
   experiments <- list(create_test_experiment())
   error_measure_params <- create_error_measure_params()
-  evidence_filename <- tempfile(fileext = ".csv")
+  evidence_filename <- NA
   verbose <- FALSE
 
   pir_params <- create_pir_params(
