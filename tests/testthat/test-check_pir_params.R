@@ -31,7 +31,7 @@ test_that("use", {
 
   # Wrong alignment_params
   pir_params_2 <- pir_params
-  pir_params_2$alignment_params <- "pippobaudo"
+  pir_params_2$alignment_params <- "nonsense"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -41,7 +41,7 @@ test_that("use", {
 
   # Wrong error_measure_params
   pir_params_2 <- pir_params
-  pir_params_2$error_measure_params <- "pippobaudo"
+  pir_params_2$error_measure_params <- "nonsense"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -61,7 +61,7 @@ test_that("use", {
 
   # Experiments is a string
   pir_params_2 <- pir_params
-  pir_params_2$experiments <- "pippobaudo"
+  pir_params_2$experiments <- "nonsense"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -79,7 +79,7 @@ test_that("use", {
     "'evidence_filename' must be a string"
   )
   pir_params_2 <- pir_params
-  pir_params_2$evidence_filename <- "pippobaudo"
+  pir_params_2$evidence_filename <- "nonsense"
   expect_error(
     check_pir_params(
       pir_params_2
