@@ -18,16 +18,6 @@ get_pir_params_filenames <- function(
   # Initialize so the tracelog and treelog filenames are filled in
   pir_params <- pirouette::init_pir_params(pir_params)
 
-  # If there is at least one experiment that has its evidence/marginal
-  # likelihood measured, willl there be a file wih evidences
-  has_evidence_file <- FALSE
-  for (experiment in pir_params$experiments) {
-    if (experiment$inference_conditions$do_measure_evidence) {
-      has_evidence_file <- TRUE
-      break
-    }
-  }
-
   filenames <- NA
   flat_pir_params <- unlist(pir_params)
   filename_indices <- stringr::str_detect(
@@ -52,16 +42,5 @@ get_pir_params_filenames <- function(
     filenames <- c(filenames, twin_filenames)
   }
 
-  # Remove evidence files
-  if (!has_evidence_file) {
-    # Normal evidence
-    filenames <- filenames[filenames != pir_params$evidence_filename]
-    # Twin evidence
-    if (pirouette::has_twinning(pir_params)) {
-      filenames <- filenames[
-        filenames != pir_params$twinning_params$twin_evidence_filename
-      ]
-    }
-  }
   unique(sort(filenames))
 }

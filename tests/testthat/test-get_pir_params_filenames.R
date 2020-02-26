@@ -5,8 +5,6 @@ test_that("use, no twinning, no evidence estimation", {
   filenames <- get_pir_params_filenames(pir_params)
 
   expect_true(pir_params$alignment_params$fasta_filename %in% filenames)
-  skip("Issue #404, Issue 404")
-  expect_true(pir_params$evidence_filename %in% filenames)
 
   # Initialize so the tracelog and treelog filenames are filled in
   pir_params <- init_pir_params(pir_params)
