@@ -148,7 +148,7 @@ test_that("differ each beast2_options_filename and error filename", {
   experiment_2$inference_model$mcmc$tracelog$filename <- "different"
   expect_error(
     check_experiments(list(experiment_1, experiment_2)),
-    "Candidate models must have same BEAST2 output log filename"
+    "Candidate models must have same MCMC tracelog filename"
   )
   experiment_2 <- good_experiment_2
   expect_silent(check_experiments(list(experiment_1, experiment_2)))
@@ -157,7 +157,7 @@ test_that("differ each beast2_options_filename and error filename", {
   experiment_2$inference_model$mcmc$treelog$filename <- "different"
   expect_error(
     check_experiments(list(experiment_1, experiment_2)),
-    "Candidate models must have same BEAST2 output trees filename"
+    "Candidate models must have same MCMC treelog filename"
   )
   experiment_2 <- good_experiment_2
   expect_silent(check_experiments(list(experiment_1, experiment_2)))
