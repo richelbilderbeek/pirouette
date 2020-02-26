@@ -200,25 +200,13 @@ test_that("most_evidence, one candidate", {
   # All weights and errors are random, but possibly valid, numbers
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-
-  experiment_yule <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = beautier::create_inference_model(
-      tree_prior = beautier::create_yule_tree_prior(),
-      mcmc = beautier::create_mcmc(chain_length = 2000, store_every = 1000)
-    ),
-    beast2_options = beastier::create_beast2_options(rng_seed = 314),
-    est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 100.0)
-  )
+  experiment_yule <- create_test_cand_experiment()
   experiments <- list(experiment_yule)
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
-    experiments = experiments
+    experiments = experiments,
+    evidence_filename = get_temp_evidence_filename()
   )
 
   # Files not yet created
@@ -324,43 +312,27 @@ test_that("most_evidence, with twinning", {
   )
   errors_filename <- tempfile(pattern = "errors_", fileext = ".csv")
 
-  experiment_yule <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = beautier::create_inference_model(
-      tree_prior = beautier::create_yule_tree_prior(),
-      mcmc = beautier::create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    beast2_options = beast2_options,
-    errors_filename = errors_filename,
-    est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 100.0)
-  )
-  experiment_bd <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
+  experiment_yule <- create_test_cand_experiment()
+  experiment_bd <- create_test_cand_experiment(
     inference_model = beautier::create_inference_model(
       tree_prior = beautier::create_bd_tree_prior(),
-      mcmc = beautier::create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    beast2_options = beast2_options,
-    errors_filename = errors_filename,
-    est_evidence_mcmc = beautier::create_ns_mcmc(epsilon = 100.0)
+    )
   )
+  experiment_yule$beast2_options <- experiment_bd$beast2_options
+  experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
+  experiment_yule$errors_filename <- experiment_bd$errors_filename
+
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
 
   pir_params <- create_pir_params(
     alignment_params = create_test_alignment_params(),
     experiments = experiments,
-    twinning_params = create_twinning_params()
+    twinning_params = create_twinning_params(
+      twin_evidence_filename = get_temp_evidence_filename()
+    ),
+    evidence_filename = get_temp_evidence_filename()
   )
-
   filenames <- get_pir_params_filenames(pir_params)
   testit::assert(all(!file.exists(filenames)))
   pir_params$verbose <- TRUE

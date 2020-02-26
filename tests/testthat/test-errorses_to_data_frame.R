@@ -1,5 +1,3 @@
-context("test-errorses_to_data_frame")
-
 test_that("use", {
 
   # Takes too long..
@@ -7,14 +5,8 @@ test_that("use", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-  pir_params <- create_pir_params(
-    alignment_params = create_test_alignment_params(),
-    twinning_params = create_twinning_params(),
-    experiments = list(create_test_experiment()),
-    error_measure_params = create_error_measure_params(),
-    evidence_filename = tempfile(fileext = ".csv"),
-    verbose = FALSE
-  )
+  pir_params <- create_test_pir_params_setup()
+
   # For developers only, using functions used by developers only
   pir_params <- init_pir_params(pir_params)
 
@@ -59,21 +51,9 @@ test_that("abuse", {
   if (rappdirs::app_dir()$os == "win") return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-
-  pir_params <- create_test_pir_params(
-    experiments = c(
-      list(
-        create_test_gen_experiment()
-      ), list(
-        create_test_cand_experiment(
-          inference_model = create_test_inference_model(
-            tree_prior = create_bd_tree_prior()
-          )
-        )
-      )
-    )
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = TRUE
   )
-  check_pir_params(pir_params)
 
   # For developers only, using functions used by developers only
   pir_params <- init_pir_params(pir_params)

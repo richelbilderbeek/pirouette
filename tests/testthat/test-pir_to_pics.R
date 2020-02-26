@@ -18,8 +18,10 @@ test_that("use", {
         site_model = create_hky_site_model()
       )
     )
+    pir_params$evidence_filename <- get_temp_evidence_filename()
+    pir_params$twinning_params$twin_evidence_filename <-
+      get_temp_evidence_filename()
   }
-  check_experiments(pir_params$experiments)
 
   pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 
