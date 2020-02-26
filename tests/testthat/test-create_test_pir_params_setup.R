@@ -37,4 +37,3 @@ test_that("gen + cand + twin", {
   expect_true(has_twinning(pir_params))
   expect_true(has_candidate_experiments(pir_params))
 })
-

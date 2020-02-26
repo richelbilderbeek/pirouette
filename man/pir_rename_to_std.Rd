@@ -46,7 +46,9 @@ that is generative:
     \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
     becomes \code{[folder_name]/gen.log}
   \item
-    \code{pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename}
+    \code{
+      pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename
+     }
     becomes \code{[folder_name]/gen.csv}
   \item
     \code{pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename}
@@ -78,7 +80,9 @@ that is a candidate:
     \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
     becomes \code{[folder_name]/best.log}
   \item
-    \code{pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename}
+    \code{
+      pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename
+    }
     becomes \code{[folder_name]/best.csv}
   \item
     \code{pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename}

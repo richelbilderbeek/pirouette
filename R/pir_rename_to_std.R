@@ -32,7 +32,9 @@
 #'     \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
 #'     becomes \code{[folder_name]/gen.log}
 #'   \item
-#'     \code{pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename}
+#'     \code{
+#'       pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename
+#'      }
 #'     becomes \code{[folder_name]/gen.csv}
 #'   \item
 #'     \code{pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename}
@@ -64,7 +66,9 @@
 #'     \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
 #'     becomes \code{[folder_name]/best.log}
 #'   \item
-#'     \code{pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename}
+#'     \code{
+#'       pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename
+#'     }
 #'     becomes \code{[folder_name]/best.csv}
 #'   \item
 #'     \code{pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename}
@@ -162,7 +166,9 @@ pir_rename_to_std <- function(
       file.path(folder_name, "twin.newick")
     pir_params$twinning_params$twin_alignment_filename <-
       file.path(folder_name, "alignment_twin.fas")
-    if (!beautier::is_one_na(pir_params$twinning_params$twin_evidence_filename)) {
+    if (
+      !beautier::is_one_na(pir_params$twinning_params$twin_evidence_filename)
+    ) {
       pir_params$twinning_params$twin_evidence_filename <-
         file.path(folder_name, "evidence_twin.csv")
     }
