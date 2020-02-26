@@ -126,7 +126,9 @@
 #' @param evidence_epsilon relative error in estimating the
 #'   evidence (aka marginal likelihood).
 #' @param evidence_filename filename to store the estimated
-#'   evidences (aka marginal likelihoods)
+#'   evidences (aka marginal likelihoods).
+#'   Must be \link{NA} if there is evidence
+#'   estimation (as determined by \link{will_measure_evidence}).
 #' @param exclude_model an inference model that has to be excluded, as can be
 #'   created by \link[beautier]{create_inference_model}
 #' @param experiment a \link{pirouette} experiment,

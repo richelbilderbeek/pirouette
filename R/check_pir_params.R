@@ -20,16 +20,16 @@ check_pir_params <- function(
   pirouette::check_pir_params_names(pir_params)
   pirouette::check_pir_params_data_types(pir_params)
 
-  # Cannot call 'has_candidate_experiments', as that function calls
+  # Cannot call 'will_measure_evidence', as that function calls
   # 'check_pir_params', resulting in infinite recursion
-  has_candididate <- FALSE
+  will_measure_evidence <- FALSE
   for (experiment in pir_params$experiments) {
-    if (experiment$inference_conditions$model_type == "candidate") {
-      has_candididate <- TRUE
+    if (isTRUE(experiment$inference_conditions$do_measure_evidence)) {
+      will_measure_evidence <- TRUE
     }
   }
   evidence_filename <- pir_params$evidence_filename
-  if (has_candididate) {
+  if (will_measure_evidence) {
     file_extenstion <- substr(
       basename(evidence_filename),
       nchar(basename(evidence_filename)) - 3,
@@ -117,26 +117,26 @@ check_pir_params_data_types <- function(pir_params) {
       stop(msg)
     }
   )
-  # Cannot call 'has_candidate_experiments', as that function calls
+  # Cannot call 'will_measure_evidence', as that function calls
   # 'check_pir_params', resulting in infinite recursion
-  has_candididate <- FALSE
+  will_measure_evidence <- FALSE
   for (experiment in pir_params$experiments) {
-    if (experiment$inference_conditions$model_type == "candidate") {
-      has_candididate <- TRUE
+    if (isTRUE(experiment$inference_conditions$do_measure_evidence)) {
+      will_measure_evidence <- TRUE
     }
   }
-  if (has_candididate) {
+  if (will_measure_evidence) {
     if (!is.character(pir_params$evidence_filename)) {
       stop(
         "'evidence_filename' must be a string ",
-        "if there are candidate experiments"
+        "if there is an evidence estimation"
       )
     }
   } else {
     if (!beautier::is_one_na(pir_params$evidence_filename)) {
       stop(
         "'evidence_filename' must be NA ",
-        "if there are no candidate experiments"
+        "if there is no evidence estimation"
       )
     }
   }

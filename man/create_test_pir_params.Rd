@@ -47,7 +47,9 @@ Use \link{create_error_measure_params} to create such
 a parameter set}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods)}
+evidences (aka marginal likelihoods).
+Must be \link{NA} if there is evidence
+estimation (as determined by \link{will_measure_evidence}).}
 
 \item{verbose}{if TRUE, show more output}
 }

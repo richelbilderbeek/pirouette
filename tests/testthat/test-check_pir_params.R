@@ -101,13 +101,13 @@ test_that("evidence_filename only when there are candidates", {
   pir_params$evidence_filename <- "should_be_na.csv"
   expect_error(
     check_pir_params(pir_params),
-    "'evidence_filename' must be NA if there are no candidate experiments"
+    "'evidence_filename' must be NA if there is no evidence estimation"
   )
 
   pir_params <- create_test_pir_params_setup(has_candidate = TRUE)
   pir_params$evidence_filename <- NA
   expect_error(
     check_pir_params(pir_params),
-    "'evidence_filename' must be a string if there are candidate experiments"
+    "'evidence_filename' must be a string if there is an evidence estimation"
   )
 })
