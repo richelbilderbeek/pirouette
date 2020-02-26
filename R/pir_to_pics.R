@@ -245,7 +245,7 @@ pir_to_pics <- function(
     testthat::expect_true(file.exists(csv_filename))
     df_errors <- utils::read.csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
-    df_errors_gen <- data.frame(error = df_errors)
+    df_errors_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_violin_gen.png")
     ggplot2::ggplot(

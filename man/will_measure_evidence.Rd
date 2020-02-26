@@ -25,5 +25,6 @@ pir_params <- create_test_pir_params_setup(has_candidate = FALSE)
 expect_true(!will_measure_evidence(pir_params))
 
 pir_params$experiments[[1]]$inference_conditions$do_measure_evidence <- TRUE
+pir_params$evidence_filename <- get_temp_evidence_filename()
 expect_true(will_measure_evidence(pir_params))
 }

@@ -67,7 +67,7 @@ alignment_params <- create_test_alignment_params()
 twinning_params <- create_twinning_params()
 experiments <- list(create_test_gen_experiment())
 error_measure_params <- create_error_measure_params()
-evidence_filename <- tempfile(fileext = ".csv")
+evidence_filename <- NA
 verbose <- FALSE
 
 # Create the pirouette parameter set

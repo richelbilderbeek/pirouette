@@ -82,10 +82,14 @@ experiment <- create_test_cand_experiment(
   inference_conditions = inference_conditions
 )
 
+evidence_filename <- NA
+if (do_measure_evidence) evidence_filename <- get_temp_evidence_filename()
+
 # Use the experiment to create the full pirouette parameter set
 pir_params <- create_pir_params(
   alignment_params = create_test_alignment_params(),
-  experiments = list(experiment)
+  experiments = list(experiment),
+  evidence_filename = evidence_filename
 )
 
 # Run that experiment on a continuous integration service,

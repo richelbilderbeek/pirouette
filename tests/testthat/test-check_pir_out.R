@@ -15,7 +15,9 @@ test_that("simulated data", {
   )
 
   pir_params <- create_test_pir_params(
-    twinning_params = create_twinning_params(),
+    twinning_params = create_twinning_params(
+      twin_evidence_filename = get_temp_evidence_filename()
+    ),
     experiments = experiments,
     evidence_filename = get_temp_evidence_filename()
   )
@@ -26,7 +28,6 @@ test_that("simulated data", {
   )
   expect_silent(check_pir_out(pir_out))
 })
-
 
 test_that("minimal use", {
   expect_silent(
