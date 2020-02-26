@@ -2,7 +2,7 @@
 
 Newest versions at top.
 
-## `pirouette` 1.6.3 (unreleased)
+## `pirouette` 1.6.3 (2020-02-26)
 
 ### NEW FEATURES
 
