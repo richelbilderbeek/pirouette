@@ -37,11 +37,11 @@ pir_plot <- function(pir_out) {
   first_col_index <- which(names(df) == "error_1")
   testthat::expect_equal(1, length(first_col_index))
 
-  testthat::expect_true("error_index" %in% names(df))
-  testthat::expect_true("error_value" %in% names(df))
   df_long <- tidyr::gather(
     df, "error_index", "error_value", first_col_index:ncol(df)
   )
+  testthat::expect_true("error_index" %in% names(df_long))
+  testthat::expect_true("error_value" %in% names(df_long))
 
   # Convert factor values to human-readable strings
   df_long$site_model <- plyr::revalue(
