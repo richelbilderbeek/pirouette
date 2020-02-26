@@ -1,4 +1,7 @@
 test_that("use", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
   experiments <- list(
     create_gen_experiment(
       inference_model = create_inference_model(

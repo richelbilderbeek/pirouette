@@ -38,8 +38,6 @@ test_that("diversity_dependent, use", {
     create_dd_tree(n_taxa = 10, crown_age = 10, best_of_n_trees = -123.456)
   )
 
-  skip("Issue 383. Issue #383")
-  skip("Cases that do not work")
   expect_silent(create_dd_tree(n_taxa = 2, crown_age = 1))
   expect_silent(
     create_dd_tree(n_taxa = 10, crown_age = 1, extinction_rate = 0.0)
