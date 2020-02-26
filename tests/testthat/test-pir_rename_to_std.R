@@ -117,14 +117,41 @@ test_that("use, gen + twin", {
   )
   get_pir_params_filenames(pir_params)
   expect_silent(check_pir_params(pir_params))
+  expect_true(beautier::is_one_na(pir_params$evidence_filename))
+  expect_true(
+    beautier::is_one_na(pir_params$twinning_params$twin_evidence_filename)
+  )
+  # Twin
+  expect_equal(
+    pir_params$twinning_params$twin_tree_filename,
+    file.path(folder_name, "twin.newick")
+  )
+  expect_equal(
+    pir_params$twinning_params$twin_alignment_filename,
+    file.path(folder_name, "alignment_twin.fas")
+  )
+})
+
+test_that("use, gen + cand + twin", {
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = TRUE,
+    has_twinning = TRUE
+  )
+  folder_name <- tempfile("pir_rename_to_std_4_")
+  pir_params <- pir_rename_to_std(
+    pir_params,
+    folder_name = folder_name
+  )
+  get_pir_params_filenames(pir_params)
+  expect_silent(check_pir_params(pir_params))
+
+  # Evidences
   expect_equal(
     pir_params$evidence_filename,
-    file.path(folder_name, "alignment.fas")
+    file.path(folder_name, "evidence.csv")
   )
-  # Generative
   expect_equal(
-    pir_params$experiments[[1]]$beast2_options$input_filename,
-      file.path(folder_name, "gen.xml")
+    pir_params$twinning_params$twin_evidence_filename,
+    file.path(folder_name, "evidence_twin.csv")
   )
-
 })

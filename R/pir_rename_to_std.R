@@ -6,9 +6,14 @@
 #' a human-friendly form.
 #'
 #' The standard naming scheme is this:
+#'
 #' \itemize{
 #'   \item \code{pir_params$alignment_params$fasta_filename}
 #'     becomes \code{[folder_name]/alignment.fas}
+#'   \item
+#'     \code{pir_params$evidence_filename}
+#'     becomes \code{[folder_name]/evidence.csv},
+#'     if at least one evidence is measured
 #' }
 #'
 #' For the (zero or one) experiment at index \code{i}
@@ -74,6 +79,20 @@
 #'     \code{pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename}
 #'     becomes \code{[folder_name]/best_evidence.trees}
 #' }
+#'
+#' If twinning is used:
+#'
+#' \itemize{
+#'   \item \code{pir_params$twinning_params$twin_tree_filename}
+#'     becomes \code{[folder_name]/twin.newick}
+#'   \item
+#'     \code{pir_params$twinning_params$twin_alignment_filename}
+#'     becomes \code{[folder_name]/alignment_twin.fas}
+#'   \item
+#'     \code{pir_params$twinning_params$twin_evidence_filename}
+#'     becomes \code{[folder_name]/evidence_twin.csv},
+#'     if at least one evidence is measured
+#' }
 #' @inheritParams default_params_doc
 #' @seealso Use \link{get_pir_params_filenames} to obtain all the filenames
 #' @export
@@ -85,6 +104,10 @@ pir_rename_to_std <- function(
 
   pir_params$alignment_params$fasta_filename <-
     file.path(folder_name, "alignment.fas")
+
+  if (!beautier::is_one_na(pir_params$evidence_filename)) {
+    pir_params$evidence_filename <- file.path(folder_name, "evidence.csv")
+  }
 
   for (i in seq_along(pir_params$experiments)) {
     if (pir_params$experiments[[i]]$inference_conditions$model_type ==
@@ -133,5 +156,17 @@ pir_rename_to_std <- function(
         file.path(folder_name, "best_evidence.trees")
     }
   }
+
+  if (!beautier::is_one_na(pir_params$twinning_params)) {
+    pir_params$twinning_params$twin_tree_filename <-
+      file.path(folder_name, "twin.newick")
+    pir_params$twinning_params$twin_alignment_filename <-
+      file.path(folder_name, "alignment_twin.fas")
+    if (!beautier::is_one_na(pir_params$twinning_params$twin_evidence_filename)) {
+      pir_params$twinning_params$twin_evidence_filename <-
+        file.path(folder_name, "evidence_twin.csv")
+    }
+  }
+
   pir_params
 }

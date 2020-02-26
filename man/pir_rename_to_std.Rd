@@ -20,9 +20,14 @@ a human-friendly form.
 }
 \details{
 The standard naming scheme is this:
+
 \itemize{
   \item \code{pir_params$alignment_params$fasta_filename}
     becomes \code{[folder_name]/alignment.fas}
+  \item
+    \code{pir_params$evidence_filename}
+    becomes \code{[folder_name]/evidence.csv},
+    if at least one evidence is measured
 }
 
 For the (zero or one) experiment at index \code{i}
@@ -87,6 +92,20 @@ that is a candidate:
   \item
     \code{pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename}
     becomes \code{[folder_name]/best_evidence.trees}
+}
+
+If twinning is used:
+
+\itemize{
+  \item \code{pir_params$twinning_params$twin_tree_filename}
+    becomes \code{[folder_name]/twin.newick}
+  \item
+    \code{pir_params$twinning_params$twin_alignment_filename}
+    becomes \code{[folder_name]/alignment_twin.fas}
+  \item
+    \code{pir_params$twinning_params$twin_evidence_filename}
+    becomes \code{[folder_name]/evidence_twin.csv},
+    if at least one evidence is measured
 }
 }
 \seealso{
