@@ -51,6 +51,9 @@ create_test_pir_params_setup <- function(
     twinning_params <- create_twinning_params()
   }
   experiments <- list(create_test_gen_experiment())
+
+
+  evidence_filename <- NA
   if (isTRUE(has_candidate)) {
     experiments <- list(
       create_test_gen_experiment(
@@ -60,9 +63,11 @@ create_test_pir_params_setup <- function(
       ),
       create_test_cand_experiment()
     )
+    evidence_filename <- get_temp_evidence_filename()
   }
   create_test_pir_params(
     experiments = experiments,
-    twinning_params = twinning_params
+    twinning_params = twinning_params,
+    evidence_filename = evidence_filename
   )
 }

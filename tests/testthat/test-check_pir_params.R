@@ -1,5 +1,3 @@
-context("test-check_pir_params")
-
 test_that("minimal use", {
   expect_silent(check_pir_params(create_test_pir_params()))
 })
@@ -31,7 +29,7 @@ test_that("use", {
 
   # Wrong alignment_params
   pir_params_2 <- pir_params
-  pir_params_2$alignment_params <- "nonsense"
+  pir_params_2$alignment_params <- "pippobaudo"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -41,7 +39,7 @@ test_that("use", {
 
   # Wrong error_measure_params
   pir_params_2 <- pir_params
-  pir_params_2$error_measure_params <- "nonsense"
+  pir_params_2$error_measure_params <- "pippobaudo"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -61,7 +59,7 @@ test_that("use", {
 
   # Experiments is a string
   pir_params_2 <- pir_params
-  pir_params_2$experiments <- "nonsense"
+  pir_params_2$experiments <- "pippobaudo"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -79,7 +77,7 @@ test_that("use", {
     "'evidence_filename' must be a string"
   )
   pir_params_2 <- pir_params
-  pir_params_2$evidence_filename <- "nonsense"
+  pir_params_2$evidence_filename <- "pippobaudo"
   expect_error(
     check_pir_params(
       pir_params_2
@@ -95,5 +93,21 @@ test_that("use", {
       pir_params_2
     ),
     "'verbose' must be one boolean"
+  )
+})
+
+test_that("evidence_filename only when there are candidates", {
+  pir_params <- create_test_pir_params_setup(has_candidate = FALSE)
+  pir_params$evidence_filename <- "should_be_na.csv"
+  expect_error(
+    check_pir_params(pir_params),
+    "'evidence_filename' must be NA if there are no candidate experiments"
+  )
+
+  pir_params <- create_test_pir_params_setup(has_candidate = TRUE)
+  pir_params$evidence_filename <- NA
+  expect_error(
+    check_pir_params(pir_params),
+    "'evidence_filename' must be a string if there are candidate experiments"
   )
 })

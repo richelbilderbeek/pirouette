@@ -19,14 +19,25 @@ check_pir_params <- function(
 ) {
   pirouette::check_pir_params_names(pir_params)
   pirouette::check_pir_params_data_types(pir_params)
-  filename <- pir_params$evidence_filename
-  file_extenstion <- substr(
-    basename(filename),
-    nchar(basename(filename)) - 3,
-    nchar(basename(filename))
-  )
-  if (file_extenstion != ".csv") {
-    stop("'evidence_filename' must be a csv filename")
+
+  # Cannot call 'has_candidate_experiments', as that function calls
+  # 'check_pir_params', resulting in infinite recursion
+  has_candididate <- FALSE
+  for (experiment in pir_params$experiments) {
+    if (experiment$inference_conditions$model_type == "candidate") {
+      has_candididate <- TRUE
+    }
+  }
+  evidence_filename <- pir_params$evidence_filename
+  if (has_candididate) {
+    file_extenstion <- substr(
+      basename(evidence_filename),
+      nchar(basename(evidence_filename)) - 3,
+      nchar(basename(evidence_filename))
+    )
+    if (file_extenstion != ".csv") {
+      stop("'evidence_filename' must be a csv filename")
+    }
   }
 }
 
@@ -106,8 +117,28 @@ check_pir_params_data_types <- function(pir_params) {
       stop(msg)
     }
   )
-  if (!is.character(pir_params$evidence_filename)) {
-    stop("'evidence_filename' must be a string")
+  # Cannot call 'has_candidate_experiments', as that function calls
+  # 'check_pir_params', resulting in infinite recursion
+  has_candididate <- FALSE
+  for (experiment in pir_params$experiments) {
+    if (experiment$inference_conditions$model_type == "candidate") {
+      has_candididate <- TRUE
+    }
+  }
+  if (has_candididate) {
+    if (!is.character(pir_params$evidence_filename)) {
+      stop(
+        "'evidence_filename' must be a string ",
+        "if there are candidate experiments"
+      )
+    }
+  } else {
+    if (!beautier::is_one_na(pir_params$evidence_filename)) {
+      stop(
+        "'evidence_filename' must be NA ",
+        "if there are no candidate experiments"
+      )
+    }
   }
   if (!beautier::is_one_bool(pir_params$verbose)) {
     stop("'verbose' must be one boolean")
