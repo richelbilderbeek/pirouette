@@ -39,7 +39,9 @@ check_twinning_params <- function(
   if (!assertive::is_a_string(twinning_params$twin_alignment_filename)) {
     stop("'twin_alignment_filename' must be a character vector")
   }
-  if (!is.character(twinning_params$twin_evidence_filename)) {
-    stop("'twin_evidence_filename' must be a character vector")
+  if (!beautier::is_one_na(twinning_params$twin_evidence_filename) &&
+      !is.character(twinning_params$twin_evidence_filename)
+  ) {
+    stop("'twin_evidence_filename' must be NA or a character vector")
   }
 }

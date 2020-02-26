@@ -64,7 +64,9 @@ create_test_pir_params_setup <- function(
       create_test_cand_experiment()
     )
     evidence_filename <- get_temp_evidence_filename()
-    twinning_params$twin_evidence_filename <- get_temp_evidence_filename()
+    if (isTRUE(has_twinning)) {
+      twinning_params$twin_evidence_filename <- get_temp_evidence_filename()
+    }
   }
   create_test_pir_params(
     experiments = experiments,

@@ -126,11 +126,10 @@ test_that("evidence_filename only when there are candidates", {
   expect_error(
     check_pir_params(pir_params),
     paste0(
-      "'twinning_params$evidence_filename' must be NA ",
+      "'twinning_params.twin_evidence_filename' must be NA ",
       "if there is no evidence estimation"
     )
   )
-
   pir_params <- create_test_pir_params_setup(
     has_candidate = TRUE,
     has_twinning = TRUE
@@ -139,9 +138,8 @@ test_that("evidence_filename only when there are candidates", {
   expect_error(
     check_pir_params(pir_params),
     paste0(
-      "'twinning_params$evidence_filename' must be a string ",
+      "'twinning_params.twin_evidence_filename' must be a string ",
       "if there is an evidence estimation"
     )
   )
-
 })
