@@ -22,7 +22,7 @@
 #'     becomes \code{[folder_name]/gen.xml.state}
 #'   \item
 #'     \code{pir_params$experiments[[i]]$beast2_options$input_filename}
-#'     becomes \code{[folder_name]/errors_gen.csv},
+#'     becomes \code{[folder_name]/gen_errors.csv},
 #'   \item
 #'     \code{pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename}
 #'     becomes \code{[folder_name]/gen.log}
@@ -63,7 +63,7 @@ pir_rename_to_std <- function(
       pir_params$experiments[[i]]$beast2_options$output_state_filename <-
         file.path(folder_name, "gen.xml.state")
       pir_params$experiments[[i]]$errors_filename <-
-        file.path(folder_name, "errors_gen.csv")
+        file.path(folder_name, "gen_errors.csv")
       pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename <-
         file.path(folder_name, "gen.log")
       pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename <-
@@ -76,6 +76,29 @@ pir_rename_to_std <- function(
         file.path(folder_name, "gen_evidence.csv")
       pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename <-
         file.path(folder_name, "gen_evidence.trees")
+    } else {
+      testthat::expect_equal(
+        pir_params$experiments[[i]]$inference_conditions$model_type,
+        "candidate"
+      )
+      pir_params$experiments[[i]]$beast2_options$input_filename <-
+        file.path(folder_name, "best.xml")
+      pir_params$experiments[[i]]$beast2_options$output_state_filename <-
+        file.path(folder_name, "best.xml.state")
+      pir_params$experiments[[i]]$errors_filename <-
+        file.path(folder_name, "best_errors.csv")
+      pir_params$experiments[[i]]$inference_model$mcmc$tracelog$filename <-
+        file.path(folder_name, "best.log")
+      pir_params$experiments[[i]]$inference_model$mcmc$screenlog$filename <-
+        file.path(folder_name, "best.csv")
+      pir_params$experiments[[i]]$inference_model$mcmc$treelog$filename <-
+        file.path(folder_name, "best.trees")
+      pir_params$experiments[[i]]$est_evidence_mcmc$tracelog$filename <-
+        file.path(folder_name, "best_evidence.log")
+      pir_params$experiments[[i]]$est_evidence_mcmc$screenlog$filename <-
+        file.path(folder_name, "best_evidence.csv")
+      pir_params$experiments[[i]]$est_evidence_mcmc$treelog$filename <-
+        file.path(folder_name, "best_evidence.trees")
     }
   }
   pir_params
