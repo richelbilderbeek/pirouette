@@ -2,6 +2,25 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.4 (unreleased)
+
+### NEW FEATURES
+
+ * Added `check_pir_params` to check a list of `pir_params` for validity
+
+### MINOR IMPROVEMENTS
+
+ * None
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
+
 ## `pirouette` 1.6.3 (2020-02-26)
 
 ### NEW FEATURES
