@@ -53,6 +53,9 @@ test_that("use, gen only", {
 })
 
 test_that("use, gen + cand", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
   pir_params <- create_test_pir_params_setup(
     has_candidate = TRUE,
     has_twinning = FALSE
@@ -133,6 +136,9 @@ test_that("use, gen + twin", {
 })
 
 test_that("use, gen + cand + twin", {
+
+  if (rappdirs::app_dir()$os == "win") return()
+
   pir_params <- create_test_pir_params_setup(
     has_candidate = TRUE,
     has_twinning = TRUE

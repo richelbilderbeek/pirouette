@@ -32,6 +32,8 @@ test_that("minimal use, 1 pir paramses, gen + twin", {
 
 test_that("minimal use, 1 pir paramses, cand", {
 
+  if (rappdirs::app_dir()$os == "win") return()
+
   rng_seed <- 42
   pir_params <- create_test_pir_params_setup(
     has_candidate = TRUE,
@@ -47,6 +49,8 @@ test_that("minimal use, 1 pir paramses, cand", {
 })
 
 test_that("minimal use, 1 pir paramses, gen + cand + twin", {
+
+  if (rappdirs::app_dir()$os == "win") return()
 
   rng_seed <- 3141
   pir_params <- create_test_pir_params_setup(
@@ -65,6 +69,8 @@ test_that("minimal use, 1 pir paramses, gen + cand + twin", {
 })
 
 test_that("use, 2 pir paramses", {
+
+  if (rappdirs::app_dir()$os == "win") return()
 
   pir_paramses <- list(
     create_test_pir_params_setup(FALSE, FALSE),

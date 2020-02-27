@@ -1,4 +1,6 @@
 test_that("use", {
+  if (rappdirs::app_dir()$os == "win") return()
+
   n <- 2
   pir_paramses <- create_std_pir_paramses(n = n)
   expect_equal(length(pir_paramses), n)
