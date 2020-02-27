@@ -6,7 +6,9 @@ Newest versions at top.
 
 ### NEW FEATURES
 
- * Added `check_pir_params` to check a list of `pir_params` for validity
+ * Added `check_pir_paramses` to check a list of `pir_params` for validity
+ * Add `create_std_pir_paramses` and `create_std_pir_params` to easily create
+   one or more `pir_params` in a standard way
 
 ### MINOR IMPROVEMENTS
 
