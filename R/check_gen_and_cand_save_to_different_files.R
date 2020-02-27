@@ -5,7 +5,7 @@
 #' @inheritParams default_params_doc
 #' @export
 check_gen_and_cand_exps_save_to_different_files <- function(experiments) { # nolint indeed a long function name
-  if (length(experiments) < 2) return()
+  testthat::expect_true(length(experiments) >= 2)
   if (experiments[[1]]$inference_conditions$model_type != "generative") {
     return()
   }

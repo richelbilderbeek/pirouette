@@ -107,6 +107,18 @@ test_that("evidence_filename only when there are candidates", {
     "'evidence_filename' must be NA if there is no evidence estimation"
   )
 
+  if (rappdirs::app_dir()$os == "win") return()
+
+  pir_params <- create_test_pir_params_setup(
+    has_candidate = TRUE,
+    has_twinning = FALSE
+  )
+  pir_params$evidence_filename <- "wrong.extension"
+  expect_error(
+    check_pir_params(pir_params),
+    "'evidence_filename' must be a csv filename"
+  )
+
   pir_params <- create_test_pir_params_setup(
     has_candidate = TRUE,
     has_twinning = FALSE
