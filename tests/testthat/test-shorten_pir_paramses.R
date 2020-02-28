@@ -4,29 +4,17 @@ test_that("use", {
 
   pir_paramses <- create_std_pir_paramses(n = 2)
 
-  for (i in seq_along(pir_paramses)) {
-    for (j in seq_along(pir_params$experiments)) {
-      expect_false(
-        3000 ==
-        pir_paramses[[i]]$experiments[[j]]$inference_model$mcmc$chain_length
-      )
-      expect_false(
-        3000 ==
-        pir_paramses[[i]]$experiments[[j]]$est_evidence_mcmc$chain_length
-      )
+  for (pir_params in pir_paramses) {
+    for (experiment in pir_params$experiments)) {
+      expect_false(experiment$inference_model$mcmc$chain_length == 3000)
+      expect_false(experiment$est_evidence_mcmc$chain_length == 3000)
     }
   }
   pir_paramses <- shorten_pir_paramses(pir_paramses)
-  for (i in seq_along(pir_paramses)) {
-    for (j in seq_along(pir_params$experiments)) {
-      expect_true(
-        3000 ==
-        pir_paramses[[i]]$experiments[[j]]$inference_model$mcmc$chain_length
-      )
-      expect_true(
-        3000 ==
-        pir_paramses[[i]]$experiments[[j]]$est_evidence_mcmc$chain_length
-      )
+  for (pir_params in pir_paramses) {
+    for (experiment in pir_params$experiments)) {
+      expect_true(experiment$inference_model$mcmc$chain_length == 3000)
+      expect_true(experiment$est_evidence_mcmc$chain_length == 3000)
     }
   }
 })
