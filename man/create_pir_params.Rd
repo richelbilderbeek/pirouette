@@ -9,7 +9,7 @@ create_pir_params(
   twinning_params = NA,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = get_temp_evidence_filename(),
+  evidence_filename = NA,
   verbose = FALSE
 )
 }
@@ -47,7 +47,9 @@ Use \link{create_error_measure_params} to create such
 a parameter set}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods)}
+evidences (aka marginal likelihoods).
+Must be \link{NA} if there is evidence
+estimation (as determined by \link{will_measure_evidence}).}
 
 \item{verbose}{if TRUE, show more output}
 }
@@ -65,7 +67,7 @@ alignment_params <- create_test_alignment_params()
 twinning_params <- create_twinning_params()
 experiments <- list(create_test_gen_experiment())
 error_measure_params <- create_error_measure_params()
-evidence_filename <- tempfile(fileext = ".csv")
+evidence_filename <- NA
 verbose <- FALSE
 
 # Create the pirouette parameter set
@@ -98,7 +100,14 @@ if (rappdirs::app_dir()$os != "win" &&
 }
 }
 \seealso{
-Use \link{pir_run} to run the \link{pirouette} pipeline
+\itemize{
+    \item Use \link{pir_run} to run the \link{pirouette} pipeline
+    \item Use \link{create_test_pir_params} to create
+      a test \code{pir_params}
+    \item Use \link{create_test_pir_params_setup} to create
+      a test \code{pir_params} following a specific setup, such as
+      having a candidate experiemnt and/or use twinning.
+  }
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

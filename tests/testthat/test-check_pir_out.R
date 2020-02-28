@@ -14,18 +14,20 @@ test_that("simulated data", {
     experiments[[2]]$inference_model$mcmc$chain_length
   )
 
-  check_experiments(experiments)
+  pir_params <- create_test_pir_params(
+    twinning_params = create_twinning_params(
+      twin_evidence_filename = get_temp_evidence_filename()
+    ),
+    experiments = experiments,
+    evidence_filename = get_temp_evidence_filename()
+  )
 
   pir_out <- pir_run(
     phylogeny =  phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-    pir_params = create_test_pir_params(
-      twinning_params = create_twinning_params(),
-      experiments = experiments
-    )
+    pir_params = pir_params
   )
   expect_silent(check_pir_out(pir_out))
 })
-
 
 test_that("minimal use", {
   expect_silent(

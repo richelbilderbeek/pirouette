@@ -201,9 +201,12 @@ pir_to_pics <- function(
   # Hist
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
-    df_errors_gen <- data.frame(
-      error = utils::read.csv(first_experiment$errors_filename)$x
-    )
+
+    csv_filename <- first_experiment$errors_filename
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+    df_errors_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_histogram_gen.png")
     ggplot2::ggplot(
@@ -216,8 +219,13 @@ pir_to_pics <- function(
 
   # True, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
+
+    csv_filename <- last_experiment$errors_filename
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
     df_errors_best <- data.frame(
-      error = utils::read.csv(last_experiment$errors_filename)$x
+      error = df_errors$x
     )
 
     filename <- file.path(folder, "true_error_histogram_best.png")
@@ -232,9 +240,12 @@ pir_to_pics <- function(
   # Violin plots
   # True, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
-    df_errors_gen <- data.frame(
-      error = utils::read.csv(first_experiment$errors_filename)$x
-    )
+
+    csv_filename <- first_experiment$errors_filename
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+    df_errors_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_violin_gen.png")
     ggplot2::ggplot(
@@ -249,9 +260,12 @@ pir_to_pics <- function(
 
   # True, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
-    df_errors_best <- data.frame(
-      error = utils::read.csv(last_experiment$errors_filename)$x
-    )
+
+    csv_filename <- last_experiment$errors_filename
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+    df_errors_best <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_violin_best.png")
     ggplot2::ggplot(
@@ -264,7 +278,7 @@ pir_to_pics <- function(
     filenames <- c(filenames, filename)
   }
 
-  if (!beautier::is_one_na(pir_params$twinning_params)) {
+  if (pirouette::has_twinning(pir_params)) {
     twin_filenames <- pir_to_pics_twin(
       pir_params = pir_params,
       consensus = consensus,
@@ -287,7 +301,7 @@ pir_to_pics_twin <- function(
     pir_params$twinning_params$twin_tree_filename)$tip.label)),
   folder = tempdir()
 ) {
-  testit::assert(!beautier::is_one_na(pir_params$twinning_params))
+  testit::assert(pirouette::has_twinning(pir_params))
 
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 
@@ -379,11 +393,13 @@ pir_to_pics_twin <- function(
       pirouette::to_twin_filename(first_experiment$errors_filename)
     )
 
-    df_errors_twin_gen <- data.frame(
-      error = utils::read.csv(
-        pirouette::to_twin_filename(first_experiment$errors_filename)
-      )$x
+    csv_filename <- pirouette::to_twin_filename(
+      first_experiment$errors_filename
     )
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+    df_errors_twin_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "twin_error_histogram_gen.png")
     ggplot2::ggplot(
@@ -396,11 +412,13 @@ pir_to_pics_twin <- function(
 
   # Twin, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
-    df_errors_twin_best <- data.frame(
-      error = utils::read.csv(
-        pirouette::to_twin_filename(last_experiment$errors_filename)
-      )$x
-    )
+
+    csv_filename <- pirouette::to_twin_filename(last_experiment$errors_filename)
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+
+    df_errors_twin_best <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "twin_error_histogram_best.png")
     ggplot2::ggplot(
@@ -414,11 +432,15 @@ pir_to_pics_twin <- function(
   # Violin plots
   # Twin, gen
   if (first_experiment$inference_conditions$model_type == "generative") {
-    df_errors_twin_gen <- data.frame(
-      error = utils::read.csv(
-        pirouette::to_twin_filename(first_experiment$errors_filename)
-      )$x
+
+    csv_filename <- pirouette::to_twin_filename(
+      first_experiment$errors_filename
     )
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+
+    df_errors_twin_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "twin_error_violin_gen.png")
     ggplot2::ggplot(
@@ -433,11 +455,13 @@ pir_to_pics_twin <- function(
 
   # Twin, best
   if (last_experiment$inference_conditions$model_type == "candidate") {
-    df_errors_twin_best <- data.frame(
-      error = utils::read.csv(
-        pirouette::to_twin_filename(last_experiment$errors_filename)
-      )$x
-    )
+
+    csv_filename <- pirouette::to_twin_filename(last_experiment$errors_filename)
+    testthat::expect_true(file.exists(csv_filename))
+    df_errors <- utils::read.csv(csv_filename)
+    testthat::expect_true("x" %in% names(df_errors))
+
+    df_errors_twin_best <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "twin_error_violin_best.png")
     ggplot2::ggplot(

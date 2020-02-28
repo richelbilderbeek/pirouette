@@ -35,6 +35,7 @@ test_that("use, no twinning, evidence estimation", {
 
   # We measure the evidence of at least one experiment
   pir_params$experiments[[1]]$inference_conditions$do_measure_evidence <- TRUE
+  pir_params$evidence_filename <- get_temp_evidence_filename()
 
   filenames <- get_pir_params_filenames(pir_params)
 
@@ -95,6 +96,7 @@ test_that("use, twinning, no evidence estimation", {
   expect_true(pir_params$twinning_params$twin_alignment_filename %in% filenames)
 
   # Evidence is never estimated, thus no evidence files
+  expect_false(will_measure_evidence(pir_params))
   expect_false(pir_params$evidence_filename %in% filenames)
   expect_false(pir_params$twinning_params$twin_evidence_filename %in% filenames)
 })
@@ -107,6 +109,9 @@ test_that("use, twinning, evidence estimation", {
   # We measure the evidence of at least one experiment
   pir_params$experiments[[1]]$inference_conditions$do_measure_evidence <-
     TRUE
+  pir_params$evidence_filename <- get_temp_evidence_filename()
+  pir_params$twinning_params$twin_evidence_filename <-
+    get_temp_evidence_filename()
 
   # Initialize so the tracelog and treelog filenames are filled in
   pir_params <- init_pir_params(pir_params)

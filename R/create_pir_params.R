@@ -1,7 +1,15 @@
 #' Create the parameters for \link{pirouette}
 #' @inheritParams default_params_doc
 #' @return a list with all \link{pirouette} parameters
-#' @seealso Use \link{pir_run} to run the \link{pirouette} pipeline
+#' @seealso
+#'   \itemize{
+#'     \item Use \link{pir_run} to run the \link{pirouette} pipeline
+#'     \item Use \link{create_test_pir_params} to create
+#'       a test \code{pir_params}
+#'     \item Use \link{create_test_pir_params_setup} to create
+#'       a test \code{pir_params} following a specific setup, such as
+#'       having a candidate experiemnt and/or use twinning.
+#'   }
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)
@@ -11,7 +19,7 @@
 #' twinning_params <- create_twinning_params()
 #' experiments <- list(create_test_gen_experiment())
 #' error_measure_params <- create_error_measure_params()
-#' evidence_filename <- tempfile(fileext = ".csv")
+#' evidence_filename <- NA
 #' verbose <- FALSE
 #'
 #' # Create the pirouette parameter set
@@ -48,7 +56,7 @@ create_pir_params <- function(
   twinning_params = NA,
   experiments = list(create_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = get_temp_evidence_filename(),
+  evidence_filename = NA,
   verbose = FALSE
 ) {
   pir_params <- list(
@@ -66,6 +74,9 @@ create_pir_params <- function(
 #' Create a set of testing parameters for \link{pirouette}
 #' @inheritParams default_params_doc
 #' @return a list with all \link{pirouette} parameters
+#' @seealso Use \link{create_test_pir_params_setup} to create
+#' a test \code{pir_params} following a specific setup, such as
+#' having a candidate experiemnt and/or use twinning.
 #' @examples
 #' if (rappdirs::app_dir()$os != "win" &&
 #'   is_on_ci() &&
@@ -87,7 +98,7 @@ create_test_pir_params <- function(
   twinning_params = NA,
   experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = get_temp_evidence_filename(),
+  evidence_filename = NA,
   verbose = FALSE
 ) {
   create_pir_params(

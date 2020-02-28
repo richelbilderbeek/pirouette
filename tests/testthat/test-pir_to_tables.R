@@ -15,6 +15,7 @@ test_that("use, no twinning", {
       site_model = create_hky_site_model()
     )
   )
+  pir_params$evidence_filename <- get_temp_evidence_filename()
 
   pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 
@@ -105,6 +106,9 @@ test_that("use, twinning", {
         site_model = create_hky_site_model()
       )
     )
+    pir_params$evidence_filename <- get_temp_evidence_filename()
+    pir_params$twinning_params$twin_evidence_filename <-
+      get_temp_evidence_filename()
   }
   pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
 
@@ -126,6 +130,4 @@ test_that("use, twinning", {
   )
 
   expect_true(all(file.exists(expected_filenames)))
-
-
 })

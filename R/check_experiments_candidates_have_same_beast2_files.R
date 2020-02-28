@@ -11,15 +11,22 @@ check_candidates_save_to_same_files <- function( # nolint long function
   testit::assert(length(experiments) >= 2)
 
   for (i in seq(1, length(experiments) - 1)) {
+    testthat::expect_true(i >= 1)
+    testthat::expect_true(i <= length(experiments))
     experiment_1 <- experiments[[i]]
     for (j in seq(i + 1, length(experiments))) {
-      testit::assert(j > i)
+      testthat::expect_true(j >= 1)
+      testthat::expect_true(j > i)
+      testthat::expect_true(j <= length(experiments))
+
       experiment_2 <- experiments[[j]]
       if (experiment_1$inference_conditions$model_type == "candidate" &&
           experiment_2$inference_conditions$model_type == "candidate"
       ) {
         input_filename_1 <- experiment_1$beast2_options$input_filename
         input_filename_2 <- experiment_2$beast2_options$input_filename
+        state_filename_1 <- experiment_1$beast2_options$output_state_filename
+        state_filename_2 <- experiment_2$beast2_options$output_state_filename
 
         # An unitialized log filename is NA
         log_filename_1 <- experiment_1$inference_model$mcmc$tracelog$filename
@@ -28,8 +35,6 @@ check_candidates_save_to_same_files <- function( # nolint long function
         screen_filename_2 <- experiment_2$inference_model$mcmc$screenlog$filename # nolint long name, sorry Demeter
         trees_filename_1 <- experiment_1$inference_model$mcmc$treelog$filename
         trees_filename_2 <- experiment_2$inference_model$mcmc$treelog$filename
-        state_filename_1 <- experiment_1$beast2_options$output_state_filename
-        state_filename_2 <- experiment_2$beast2_options$output_state_filename
         if (input_filename_1 != input_filename_2) {
           stop(
             "Candidate models must have same BEAST2 input filename. \n",
@@ -43,7 +48,7 @@ check_candidates_save_to_same_files <- function( # nolint long function
         # Check if only 1 NA
         if (sum(is.na(c(log_filename_1, log_filename_2))) == 1) {
           stop(
-            "Candidate models must have same BEAST2 output log filename. \n",
+            "Candidate models must have same MCMC tracelog filename. \n",
             "Difference between experiments #", i, " and #", j, ". \n",
             "Filename #", i, ": ", log_filename_1, "\n",
             "Filename #", j, ": ", log_filename_2, "\n"
@@ -53,7 +58,7 @@ check_candidates_save_to_same_files <- function( # nolint long function
         if (!beautier::is_one_na(log_filename_1) &&
             log_filename_1 != log_filename_2) {
           stop(
-            "Candidate models must have same BEAST2 output log filename. \n",
+            "Candidate models must have same MCMC tracelog filename. \n",
             "Difference between experiments #", i, " and #", j, ". \n",
             "Filename #", i, ": ", log_filename_1, "\n",
             "Filename #", j, ": ", log_filename_2, "\n"
@@ -61,7 +66,7 @@ check_candidates_save_to_same_files <- function( # nolint long function
         }
         if (screen_filename_1 != screen_filename_2) {
           stop(
-            "Candidate models must have same BEAST2 output screen filename. \n",
+            "Candidate models must have same MCMC screenlog filename. \n",
             "Difference between experiments #", i, " and #", j, ". \n",
             "Filename #", i, ": ", screen_filename_1, "\n",
             "Filename #", j, ": ", screen_filename_2, "\n"
@@ -69,7 +74,7 @@ check_candidates_save_to_same_files <- function( # nolint long function
         }
         if (trees_filename_1 != trees_filename_2) {
           stop(
-            "Candidate models must have same BEAST2 output trees filename. \n",
+            "Candidate models must have same MCMC treelog filename. \n",
             "Difference between experiments #", i, " and #", j, ". \n",
             "Filename #", i, ": ", trees_filename_1, "\n",
             "Filename #", j, ": ", trees_filename_2, "\n"

@@ -15,17 +15,23 @@
 #' pir_params <- init_pir_params(pir_params)
 #'
 #'
-#' df <- pir_run_true_tree(
-#'   true_phylogeny = ape::rcoal(4),
-#'   pir_params = pir_params
-#' )
+#' if (
+#'   rappdirs::app_dir()$os != "win" &&
+#'   is_on_ci() &&
+#'   is_beast2_installed()
+#' ) {
+#'   df <- pir_run_true_tree(
+#'     true_phylogeny = ape::rcoal(4),
+#'     pir_params = pir_params
+#'   )
 #'
-#' expect_equal(1, nrow(df))
-#' expected_col_names <- c(
-#'   "tree", "inference_model", "inference_model_weight", "site_model",
-#'   "clock_model", "tree_prior", "error_1", "error_2", "error_3"
-#' )
-#' expect_true(all(expected_col_names %in% names(df)))
+#'   expect_equal(1, nrow(df))
+#'   expected_col_names <- c(
+#'     "tree", "inference_model", "inference_model_weight", "site_model",
+#'     "clock_model", "tree_prior", "error_1", "error_2", "error_3"
+#'   )
+#'   expect_true(all(expected_col_names %in% names(df)))
+#' }
 #' @export
 pir_run_true_tree <- function(
   true_phylogeny,

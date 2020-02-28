@@ -11,7 +11,7 @@ create_twinning_params(
   sim_twal_fun = get_sim_twal_with_std_nsm_fun(),
   twin_tree_filename = to_twin_filename(get_temp_tree_filename()),
   twin_alignment_filename = to_twin_filename(get_temp_fasta_filename()),
-  twin_evidence_filename = to_twin_filename(get_temp_evidence_filename())
+  twin_evidence_filename = NA
 )
 }
 \arguments{

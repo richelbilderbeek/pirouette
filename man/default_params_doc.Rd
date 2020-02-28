@@ -97,6 +97,7 @@ default_params_doc(
   rename_fun,
   result,
   rng_seed,
+  rng_seeds,
   rng_seed_twin_alignment,
   rng_seed_twin_tree,
   root_sequence,
@@ -306,7 +307,9 @@ as can be created by \link[beautier]{create_ns_mcmc}.}
 evidence (aka marginal likelihood).}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods)}
+evidences (aka marginal likelihoods).
+Must be \link{NA} if there is evidence
+estimation (as determined by \link{will_measure_evidence}).}
 
 \item{exclude_model}{an inference model that has to be excluded, as can be
 created by \link[beautier]{create_inference_model}}
@@ -493,6 +496,8 @@ Example rename functions are:
 }}
 
 \item{rng_seed}{a random number generator seed}
+
+\item{rng_seeds}{a vector of random number generator seeds}
 
 \item{rng_seed_twin_alignment}{the random number generator seed
 as used in the simulation of a twin alignment}

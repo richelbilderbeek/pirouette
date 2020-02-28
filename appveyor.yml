@@ -10,7 +10,7 @@ init:
 install:
   ps: Bootstrap
 
-cache:
+#cache:
 #  - C:\RLibrary
 
 # Adapt as necessary starting from here
@@ -23,6 +23,8 @@ environment:
 
 build_script:
   - travis-tool.sh install_r curl
+  - travis-tool.sh install_github ropensci/beautier
+  - travis-tool.sh install_github ropensci/beastier
   - travis-tool.sh install_github ropensci/babette
   - travis-tool.sh install_github Giappo/mbd
   - travis-tool.sh install_github jimhester/covr
@@ -42,6 +44,10 @@ test_script:
 on_failure:
   - 7z a failure.zip *.Rcheck\*
   - appveyor PushArtifact failure.zip
+  - Rscript -e "mcbette::mcbette_report()"
+
+on_success:
+  - Rscript -e "mcbette::mcbette_report()"
 
 artifacts:
   - path: '*.Rcheck\**\*.log'

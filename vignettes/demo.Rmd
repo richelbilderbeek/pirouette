@@ -136,7 +136,8 @@ if (rappdirs::app_dir()$os != "win") {
   
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    experiments = experiments
+    experiments = experiments,
+    evidence_filename = get_temp_evidence_filename()
   )
 }
 ```
@@ -202,17 +203,22 @@ if (rappdirs::app_dir()$os != "win") {
     ) 
   )
   experiments <- list(experiment_yule, experiment_bd)
-  check_experiments(experiments)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments,
+    evidence_filename = get_temp_evidence_filename()
+  )
   
 } else {
   experiments <- list(experiment_yule)
-  check_experiments(experiments)
+
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments
+  )
 }
 
-pir_params <- create_pir_params(
-  alignment_params = create_test_alignment_params(),
-  experiments = experiments
-)
 ```
 
 Note that we select the model with the heighest evidence from a set of

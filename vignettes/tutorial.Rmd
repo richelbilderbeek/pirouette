@@ -216,42 +216,25 @@ candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
-  beast2_options <- create_beast2_options(rng_seed = 314)
-  errors_filename <- tempfile(pattern = "errors_", fileext = ".csv")
-  experiment_yule <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
+  mcmc <- create_test_mcmc()
+  experiment_yule <- create_test_cand_experiment()
+  experiment_bd <- create_test_cand_experiment(
     inference_model = create_inference_model(
-      tree_prior = create_yule_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_ns_mcmc(epsilon = 100.0),
-    beast2_options = beast2_options,
-    errors_filename = errors_filename
+      tree_prior = create_bd_tree_prior()  ,
+    )
   )
-  experiment_bd <- create_experiment(
-    inference_conditions = create_inference_conditions(
-      model_type = "candidate",
-      run_if = "best_candidate",
-      do_measure_evidence = TRUE
-    ),
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
-      mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
-    ),
-    est_evidence_mcmc = create_ns_mcmc(epsilon = 100.0),
-    beast2_options = beast2_options,
-    errors_filename = errors_filename
-  )
+  # Candidat experiments must produce the same files
+  experiment_yule$beast2_options <- experiment_bd$beast2_options
+  experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
+  experiment_yule$errors_filename <- experiment_bd$errors_filename
+  
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
   
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
-    experiments = experiments
+    experiments = experiments,
+    evidence_filename = get_temp_evidence_filename()
   )
 }
 ```
@@ -264,10 +247,7 @@ if (rappdirs::app_dir()$os != "win" &&
     is_beast2_ns_pkg_installed()) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
-    pir_params = create_pir_params(
-      alignment_params = alignment_params,
-      experiments = experiments
-    )
+    pir_params = pir_params
   )
   knitr::kable(df)
   pirouette::pir_plot(df)

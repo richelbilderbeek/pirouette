@@ -35,7 +35,9 @@ one has to be the first in the list. See also:
 }}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods)}
+evidences (aka marginal likelihoods).
+Must be \link{NA} if there is evidence
+estimation (as determined by \link{will_measure_evidence}).}
 
 \item{verbose}{if TRUE, show more output}
 }

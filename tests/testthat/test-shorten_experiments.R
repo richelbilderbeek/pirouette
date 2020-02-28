@@ -10,7 +10,6 @@ test_that("use", {
     ),
     create_cand_experiment()
   )
-  check_experiments(experiments)
   for (i in seq_along(experiments)) {
     expect_false(
       experiments[[i]]$inference_model$mcmc$chain_length == 3000
@@ -20,7 +19,6 @@ test_that("use", {
     )
   }
   experiments <- shorten_experiments(experiments)
-  check_experiments(experiments)
   for (i in seq_along(experiments)) {
     expect_true(
       experiments[[i]]$inference_model$mcmc$chain_length == 3000

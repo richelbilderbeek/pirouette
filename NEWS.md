@@ -2,16 +2,43 @@
 
 Newest versions at top.
 
-## `pirouette` 1.6.3 (unreleased)
+## `pirouette` 1.6.4 (unreleased)
 
 ### NEW FEATURES
 
+ * Added `check_pir_paramses` to check a list of `pir_params` for validity
+ * Add `create_std_pir_paramses` and `create_std_pir_params` to easily create
+   one or more `pir_params` in a standard way
+ * Add `shorten_pir_params` and `shorten_pir_paramses` to shorten run-time
+   (for example, on Travis CI) easily
+ * Add `pir_save` to save all pirouette output in a standarized way
+
+### MINOR IMPROVEMENTS
+
+ * None
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
+
+## `pirouette` 1.6.3 (2020-02-26)
+
+### NEW FEATURES
+
+ * Added `pir_rename_to_std` to conformize all files created by a pirouette run
  * Added 'pir_rename' to rename all files created by a pirouette run
  * Depend on beautier v2.3.5 (for `rename_mcmc_filenames`)
 
 ### MINOR IMPROVEMENTS
 
  * Use at-least versions of packages, instead of exact versions
+ * Check if there is need for an evidence file. Will stop if there
+   is an evidence filename specified without needing one and vice versa
 
 ### BUG FIXES
 

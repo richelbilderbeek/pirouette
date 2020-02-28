@@ -33,7 +33,8 @@
 #'
 #'    pir_params <- create_pir_params(
 #'      alignment_params = create_test_alignment_params(),
-#'      experiments = experiments
+#'      experiments = experiments,
+#'      evidence_filename = get_temp_evidence_filename()
 #'    )
 #' }
 #'

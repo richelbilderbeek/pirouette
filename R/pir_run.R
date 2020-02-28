@@ -105,7 +105,7 @@ pir_run <- function(
   )
 
   # Run for the twin tree
-  if (!beautier::is_one_na(pir_params$twinning_params)) {
+  if (pirouette::has_twinning(pir_params)) {
 
     # Create twin tree
     twin_tree <- pirouette::create_twin_tree(

@@ -9,7 +9,7 @@ create_test_pir_params(
   twinning_params = NA,
   experiments = list(create_test_experiment()),
   error_measure_params = create_error_measure_params(),
-  evidence_filename = get_temp_evidence_filename(),
+  evidence_filename = NA,
   verbose = FALSE
 )
 }
@@ -47,7 +47,9 @@ Use \link{create_error_measure_params} to create such
 a parameter set}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods)}
+evidences (aka marginal likelihoods).
+Must be \link{NA} if there is evidence
+estimation (as determined by \link{will_measure_evidence}).}
 
 \item{verbose}{if TRUE, show more output}
 }
@@ -71,6 +73,11 @@ if (rappdirs::app_dir()$os != "win" &&
   )
   pir_plot(pir_out)
 }
+}
+\seealso{
+Use \link{create_test_pir_params_setup} to create
+a test \code{pir_params} following a specific setup, such as
+having a candidate experiemnt and/or use twinning.
 }
 \author{
 Richèl J.C. Bilderbeek

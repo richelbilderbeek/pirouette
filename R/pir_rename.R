@@ -50,7 +50,7 @@ pir_rename <- function(
     )
 
   # Twinning parameters
-  if (!beautier::is_one_na(pir_params$twinning_params)) {
+  if (pirouette::has_twinning(pir_params)) {
     pir_params$twinning_params$twin_tree_filename <-
       rename_fun(pir_params$twinning_params$twin_tree_filename)
     pir_params$twinning_params$twin_alignment_filename <-
