@@ -10,7 +10,8 @@ create_std_pir_paramses(
   rng_seed = 314,
   crown_age = 10,
   sequence_length = 1000,
-  mutation_rate = 1/crown_age
+  mutation_rate = 1/crown_age,
+  os = rappdirs::app_dir()$os
 )
 }
 \arguments{
@@ -27,6 +28,10 @@ to let it be estimated}
 
 \item{mutation_rate}{the mutation rate per base pair per time unit.
 Use \link{check_mutation_rate} to check if a mutation rate is valid.}
+
+\item{os}{name of the operating system, can be \code{mac}, \code{unix}
+or \code{win}. Use \link[beastier]{check_os} if the operating system
+is valid.}
 }
 \description{
 Create a number of standard \code{pir_params}

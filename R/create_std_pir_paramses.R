@@ -8,7 +8,8 @@ create_std_pir_paramses <- function(
   rng_seed = 314,
   crown_age = 10,
   sequence_length = 1000,
-  mutation_rate = 1.0 / crown_age
+  mutation_rate = 1.0 / crown_age,
+  os = rappdirs::app_dir()$os
 ) {
   pir_paramses <- list()
   for (i in seq_len(n)) {
@@ -17,8 +18,8 @@ create_std_pir_paramses <- function(
       rng_seed = rng_seed,
       crown_age = crown_age,
       sequence_length = sequence_length,
-      mutation_rate = mutation_rate
-
+      mutation_rate = mutation_rate,
+      os = os
     )
   }
 
