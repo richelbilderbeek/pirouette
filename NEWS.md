@@ -9,6 +9,8 @@ Newest versions at top.
  * Added `check_pir_paramses` to check a list of `pir_params` for validity
  * Add `create_std_pir_paramses` and `create_std_pir_params` to easily create
    one or more `pir_params` in a standard way
+ * Add `shorten_pir_params` and `shorten_pir_paramses` to shorten run-time
+   (for example, on Travis CI) easily
 
 ### MINOR IMPROVEMENTS
 
