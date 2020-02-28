@@ -7,10 +7,12 @@ test_that("use", {
   for (i in seq_along(pir_paramses)) {
     for (j in seq_along(pir_params$experiments)) {
       expect_false(
-        pir_paramses[[i]]$experiments[[j]]$inference_model$mcmc$chain_length == 3000
+        3000 ==
+        pir_paramses[[i]]$experiments[[j]]$inference_model$mcmc$chain_length
       )
       expect_false(
-        pir_paramses[[i]]$experiments[[j]]$est_evidence_mcmc$chain_length == 3000
+        3000 ==
+        pir_paramses[[i]]$experiments[[j]]$est_evidence_mcmc$chain_length
       )
     }
   }
@@ -18,10 +20,12 @@ test_that("use", {
   for (i in seq_along(pir_paramses)) {
     for (j in seq_along(pir_params$experiments)) {
       expect_true(
-        pir_paramses[[i]]$experiments[[j]]$inference_model$mcmc$chain_length == 3000
+        3000 ==
+        pir_paramses[[i]]$experiments[[j]]$inference_model$mcmc$chain_length
       )
       expect_true(
-        pir_paramses[[i]]$experiments[[j]]$est_evidence_mcmc$chain_length == 3000
+        3000 ==
+        pir_paramses[[i]]$experiments[[j]]$est_evidence_mcmc$chain_length
       )
     }
   }
