@@ -7,6 +7,8 @@ pir_save <- function(
   pir_out,
   folder_name
 ) {
+  # Create a folder, do not warn if it already exists
+  dir.create(folder_name, recursive = TRUE, showWarnings = FALSE)
   ape::write.tree(
     phylogeny,
     file = file.path(folder_name, "phylogeny.newick")
