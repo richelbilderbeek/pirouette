@@ -11,6 +11,7 @@ Newest versions at top.
    one or more `pir_params` in a standard way
  * Add `shorten_pir_params` and `shorten_pir_paramses` to shorten run-time
    (for example, on Travis CI) easily
+ * Add `pir_save` to save all pirouette output in a standarized way
 
 ### MINOR IMPROVEMENTS
 
