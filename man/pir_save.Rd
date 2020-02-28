@@ -4,10 +4,13 @@
 \alias{pir_save}
 \title{Save all output from \link{pir_run}}
 \usage{
-pir_save(phylogeny, pir_out, folder_name)
+pir_save(phylogeny, pir_params, pir_out, folder_name)
 }
 \arguments{
 \item{phylogeny}{a phylogeny of class \link[ape]{phylo}}
+
+\item{pir_params}{the parameters of \link[pirouette]{pirouette}.
+They are created by \link{create_pir_params}.}
 
 \item{pir_out}{the output of \link{pir_run}}
 

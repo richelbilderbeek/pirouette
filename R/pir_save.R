@@ -3,6 +3,7 @@
 #' @export
 pir_save <- function(
   phylogeny,
+  pir_params,
   pir_out,
   folder_name
 ) {
