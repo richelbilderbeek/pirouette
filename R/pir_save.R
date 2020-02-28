@@ -26,10 +26,8 @@ pir_save <- function(
     pir_params = pir_params,
     folder = folder_name
   )
-
   pir_to_tables(
     pir_params = pir_params,
     folder = folder_name
   )
-
 }
