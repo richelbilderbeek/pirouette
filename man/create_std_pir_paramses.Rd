@@ -33,6 +33,30 @@ Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 or \code{win}. Use \link[beastier]{check_os} if the operating system
 is valid.}
 }
+\value{
+a \link{list} or \code{pir_params}, dubbed a \code{pir_paramses}.
+  Use \link{check_pir_paramses} to check this list for validity.
+}
 \description{
 Create a number of standard \code{pir_params}
+}
+\examples{
+library(testthat)
+
+n <- 2
+pir_paramses <- create_std_pir_paramses(n = n)
+expect_equal(length(pir_paramses), n)
+expect_silent(check_pir_paramses(pir_paramses))
+
+# RNG seeds are different
+expect_true(
+  pir_paramses[[1]]$alignment_params$rng_seed !=
+  pir_paramses[[2]]$alignment_params$rng_seed
+)
+
+# Folders are different
+expect_true(
+  pir_paramses[[1]]$alignment_params$fasta_filename !=
+  pir_paramses[[2]]$alignment_params$fasta_filename
+)
 }
