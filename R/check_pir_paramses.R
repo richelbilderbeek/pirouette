@@ -7,6 +7,14 @@ check_pir_paramses <- function(pir_paramses) {
   if (!is.list(pir_paramses)) {
     stop("'pir_paramses' must be a list. Actual class: ", class(pir_paramses))
   }
+  if (pirouette::is_pir_params(pir_paramses)) {
+    stop(
+      "'pir_paramses' must be a list of 'pir_params'. ",
+      "Actual value is a 'pir_params'. ",
+      "Tip: use 'list([your pir_params])'."
+    )
+  }
+
   for (i in seq_along(pir_paramses)) {
     tryCatch(
       check_pir_params(pir_paramses[[i]]),

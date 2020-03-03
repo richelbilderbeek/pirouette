@@ -7,6 +7,13 @@ test_that("abuse", {
   expect_error(check_pir_paramses("nonsense"), "'pir_paramses' must be a list")
   expect_error(check_pir_paramses(NA), "'pir_paramses' must be a list")
   expect_error(check_pir_paramses(NULL), "'pir_paramses' must be a list")
+  expect_error(
+    check_pir_paramses(create_test_pir_params()),
+    paste0(
+      "'pir_paramses' must be a list of 'pir_params'. ",
+      "Actual value is a 'pir_params'"
+    )
+  )
 
   pir_paramses <- list(create_test_pir_params(), create_test_pir_params())
   pir_paramses[[1]] <- "nonsense"
