@@ -16,10 +16,10 @@ check_sim_twal_fun <- function(sim_twal_fun) {
 
   # sim_twal_fun must return a DNAbin
   # Use a simple testing twin phylogeny and true alignment
-  twin_phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  twin_phylogeny <- ape::read.tree(text = "(A:1, B:1);")
   beautier::check_phylogeny(twin_phylogeny)
 
-  root_sequence <- "aaaa"
+  root_sequence <- "acgt"
   pirouette::check_root_sequence(root_sequence)
 
   true_alignment <- pirouette::get_test_alignment(
