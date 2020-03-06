@@ -61,7 +61,6 @@ create_std_pir_params <- function(
     evidence_filename = evidence_filename
   )
 
-
   # Rename
   pir_params <- pir_rename_to_std(
     pir_params = pir_params,
