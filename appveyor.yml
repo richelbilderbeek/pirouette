@@ -24,7 +24,9 @@ environment:
 build_script:
   - travis-tool.sh install_r curl
   - travis-tool.sh install_github ropensci/beautier
+  - travis-tool.sh install_github ropensci/tracerer
   - travis-tool.sh install_github ropensci/beastier
+  - travis-tool.sh install_github ropensci/mauricer
   - travis-tool.sh install_github ropensci/babette
   - travis-tool.sh install_github Giappo/mbd
   - travis-tool.sh install_github jimhester/covr
