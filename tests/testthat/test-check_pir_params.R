@@ -2,7 +2,7 @@ test_that("minimal use", {
   expect_silent(check_pir_params(create_test_pir_params()))
 })
 
-test_that("use", {
+test_that("use, gen, no twin", {
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params(
@@ -94,6 +94,29 @@ test_that("use", {
     ),
     "'verbose' must be one boolean"
   )
+})
+
+test_that("use, gen, twin", {
+
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  alignment_params <- create_alignment_params(
+    root_sequence = create_mono_nuc_dna(length = 4)
+  )
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    twinning_params = create_twinning_params()
+
+  )
+
+  # OK
+  expect_silent(check_pir_params(pir_params))
+
+  # Twinning
+  pir_params_bad <- pir_params
+  pir_params_bad$twinning_params <- "nonsense"
+  expect_silent(check_pir_params(pir_params_bad))
+
+
 })
 
 test_that("evidence_filename only when there are candidates", {
