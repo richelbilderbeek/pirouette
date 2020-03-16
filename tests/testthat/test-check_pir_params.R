@@ -114,7 +114,7 @@ test_that("use, gen, twin", {
   # Twinning
   pir_params_bad <- pir_params
   pir_params_bad$twinning_params <- "nonsense"
-  expect_silent(check_pir_params(pir_params_bad))
+  expect_error(check_pir_params(pir_params_bad))
 
 
 })
