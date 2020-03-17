@@ -78,9 +78,8 @@ create_bd_tree <- function(
 #' Or: create a DD tree with a strong DD effect.
 #'
 #' This algorithm does so, by simulating \code{best_of_n_trees}
-#' trees, then pick the first tree that has a gamma statistic
-#' within the lowest 5 percent of all gammas. Trees with such
-#' a low gamma, have the strongest DD effect, as these
+#' trees, then picks the tree that has the lowest gamma statistic
+#' Trees with a low gamma statistic, have the strongest DD effect, as these
 #' deviate strongest from the expected exponential growth
 #' that regular birth-death (BD) trees have.
 #' @inheritParams default_params_doc
@@ -151,11 +150,7 @@ create_exemplary_dd_tree <- function(
       i <- i + 1
     }
   }
-  # Pick the first tree that has a gamma within the lowest 5% of all gammas.
-  # Why not the lowest?
-  tree_id <- which(
-    abs(gammas - stats::quantile(gammas, probs = c(0.05))) ==
-      min(abs(gammas - stats::quantile(gammas, probs = c(0.05))))
-  )
+  # Pick the tree that has the lowest gamma
+  tree_id <- which(gammas == min(gammas))
   sim_trees[[tree_id]]
 }

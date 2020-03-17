@@ -27,9 +27,8 @@ Or: create a DD tree with a strong DD effect.
 }
 \details{
 This algorithm does so, by simulating \code{best_of_n_trees}
-trees, then pick the first tree that has a gamma statistic
-within the lowest 5 percent of all gammas. Trees with such
-a low gamma, have the strongest DD effect, as these
+trees, then picks the tree that has the lowest gamma statistic
+Trees with a low gamma statistic, have the strongest DD effect, as these
 deviate strongest from the expected exponential growth
 that regular birth-death (BD) trees have.
 }
