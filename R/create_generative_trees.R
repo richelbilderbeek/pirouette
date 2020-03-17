@@ -93,7 +93,7 @@ create_bd_tree <- function(
 #' n_taxa <- 3
 #' crown_age <- 1
 #'
-#' phylogeny <- create_dd_tree(
+#' phylogeny <- create_exemplary_dd_tree(
 #'   n_taxa = n_taxa,
 #'   crown_age = crown_age
 #' )
@@ -101,7 +101,7 @@ create_bd_tree <- function(
 #' expect_equal(n_taxa, ape::Ntip(phylogeny))
 #' expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 #' @export
-create_dd_tree <- function(
+create_exemplary_dd_tree <- function(
   n_taxa = 6,
   crown_age = 10,
   extinction_rate = 0.1,

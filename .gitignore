@@ -50,7 +50,5 @@ output_evidence.xml.state
 example_
 inst/extdata/alignment_evidence.fas
 *.fas
-example_9_314
-example_26_314/
-example_23_314/
-example_30_314/
+example_.*/
+
