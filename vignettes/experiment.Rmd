@@ -61,17 +61,15 @@ Now, per extinction rate, we simulate one phylogeny:
 ```{r fig.width=7, fig.height=7}
 set.seed(42)
 crown_age <- 4.0
+n_taxa <- 6
 phylogenies <- list()
 for (i in seq_along(ext_rates)) {
   ext_rate <- ext_rates[i]
-  phylogeny <- becosys::bd_sim(
-    bd_params = becosys::create_bd_params(
-      spec_rate = spec_rate,  
-      ext_rate = ext_rate
-    ),
+  phylogeny <- create_exemplary_dd_tree(
+    n_taxa = n_taxa,
     crown_age = crown_age,
-    conditioned_on = "non_extinction"
-  )$reconstructed_tree
+    extinction_rate = ext_rate
+  )
   phylogenies[[i]] <- phylogeny
 }
 ape::plot.phylo(phylogenies[[1]])

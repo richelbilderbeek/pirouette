@@ -47,7 +47,6 @@ Imports:
     tracerer (>= 2.0.2),
     xtable
 Suggests:
-    becosys,
     devtools,
     ggplot2,
     knitr,

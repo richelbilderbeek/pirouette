@@ -56,11 +56,7 @@ Here we go, the true phylogeny of the world:
 
 ```{r fig.width=7, fig.height=7}
 set.seed(42)
-phylogeny <- becosys::bd_sim(
-  bd_params = becosys::create_bd_params(spec_rate = 0.25,  ext_rate = 0.025),
-  crown_age = 0.5,
-  conditioned_on = "non_extinction"
-)$reconstructed_tree
+phylogeny <- create_exemplary_dd_tree(n_taxa = 6)
 ape::plot.phylo(main = "The True Phylogeny", phylogeny)
 ```
  
