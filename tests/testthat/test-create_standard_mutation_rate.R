@@ -1,6 +1,6 @@
 test_that("use", {
-  skip("Not now")
-  phylogeny <- create_yule_tree(n_taxa = 3, crown_age = 15)
+  crown_age <- 15
+  phylogeny <- create_yule_tree(n_taxa = 3, crown_age = crown_age)
   expect_equal(
     create_standard_mutation_rate(phylogeny),
     1.0 / crown_age
