@@ -32,8 +32,6 @@ r_github_packages:
   - jimhester/lintr
   - richelbilderbeek/mcbette
   - rsetienne/DDD
-  - rsetienne/PBD/PBD
-  - richelbilderbeek/becosys
   - thijsjanzen/nodeSub
 
 before_install:

@@ -2,7 +2,7 @@
 
 Awesome that you are reading this.
 
-This GitHub follows the [Contributor Covenant Code of Conduct](doc/code_of_conduct.md).
+This GitHub follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md).
 
  * For questions, you can create an Issue
  * Code changes go via Pull Requests
@@ -45,10 +45,10 @@ git clone https://github.com/richelbilderbeek/pirouette
 
 Development is done on the `develop` branch. 
 To download and checkout the `develop` branch, 
-first go into the `beautier` folder (`cd pirouette`), then do:
+first go into the `pirouette` folder (`cd pirouette`), then do:
 
 ```
-git checkout -b develop origin/develop
+git checkout develop
 ```
 
 Then the workflow is the common `git` workflow:

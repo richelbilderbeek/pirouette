@@ -47,13 +47,11 @@ Imports:
     tracerer (>= 2.0.2),
     xtable
 Suggests:
-    becosys,
     devtools,
     ggplot2,
     knitr,
     lintr,
     nLTT (>= 1.4.3),
-    PBD,
     rmarkdown,
     testthat (>= 2.1.0)
 SystemRequirements: BEAST2 (https://www.beast2.org/)
