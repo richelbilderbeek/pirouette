@@ -35,6 +35,8 @@ r_github_packages:
   - thijsjanzen/nodeSub
 
 before_install:
+  # From https://stackoverflow.com/a/20042195
+  - Rscript -e "update.packages(checkBuilt = TRUE, ask = FALSE)"
   - echo $TRAVIS_R_VERSION_STRING
   # ImageMagick
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository -y ppa:opencpu/imagemagick; fi
