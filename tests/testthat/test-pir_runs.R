@@ -2,6 +2,7 @@ test_that("minimal runs", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+  skip("Takes too long")
 
   pir_paramses <- list()
   pir_paramses[[1]] <- pirouette::create_test_pir_params()
