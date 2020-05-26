@@ -2,6 +2,7 @@ test_that("generative", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+
   skip("Takes too long?")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
@@ -73,6 +74,7 @@ test_that("short run with unusual logging intervals", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+
   skip("Takes too long?")
 
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
@@ -105,6 +107,7 @@ test_that("nodeSub: true and twin alignments must differ", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+
   skip("Takes too long?")
 
   phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
@@ -185,6 +188,7 @@ test_that("most_evidence, one candidate", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+
   skip("Takes too long?")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
@@ -230,6 +234,7 @@ test_that("generative with twin", {
 
   if (!beastier::is_on_travis()) return()
   if (!beastier::is_beast2_installed()) return()
+
   skip("Takes too long?")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
@@ -288,6 +293,8 @@ test_that("most_evidence, with twinning", {
   if (!beastier::is_on_travis()) return()
   if (!mcbette::can_run_mcbette()) return()
 
+  skip("Takes too long?")
+
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
   # -----------|----------------|----------|-----------
@@ -307,7 +314,6 @@ test_that("most_evidence, with twinning", {
 
   testit::assert(beastier::is_beast2_installed())
   testit::assert(mauricer::is_beast2_ns_pkg_installed())
-  skip("Takes too long?")
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   beast2_options <- create_beast2_options(
