@@ -1,4 +1,7 @@
-#' Get an error function that uses the difference in gamma statistic
+#' Get an error function that uses the difference in gamma statistic.
+#' @note the gamma statistic can be found in Pybus and Harvey, 2000,
+#' 'Testing macro-evolutionary models using incomplete molecular phylogenies.',
+#' Proc. R. Soc. Lond. B, 267, 2267-2272.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)
