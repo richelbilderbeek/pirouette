@@ -1,8 +1,4 @@
-context("test-pir_plot")
-
 test_that("use", {
-
-  suppressPackageStartupMessages(library(ggplot2))
 
   invisible(
     pirouette::pir_plot(
