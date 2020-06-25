@@ -68,8 +68,8 @@ Show the true tree in red and bd twin tree in gray:
 
 ```{r fig.width=7, fig.height=7}
 babette::plot_densitree(
-  phylos = c(bd_twin, yule_twin, copy_twin), 
-  col = c("red", "blue", "gray"), 
+  phylos = c(bd_twin, yule_twin, copy_twin),
+  col = c("red", "blue", "gray"),
   width = 4,
   consensus = phylogeny,
   alpha = 0.5
@@ -80,8 +80,8 @@ Show the true tree in red and bd twin tree in green:
 
 ```{r fig.width=7, fig.height=7}
 babette::plot_densitree(
-  phylos = c(phylogeny, yule_twin), 
-  col = c("red", "green"), 
+  phylos = c(phylogeny, yule_twin),
+  col = c("red", "green"),
   width = 4,
   consensus = phylogeny,
   alpha = 0.5

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-The goal of `pirouette` is to estimate the error BEAST2 makes from a known 
+The goal of `pirouette` is to estimate the error BEAST2 makes from a known
 phylogeny. This phylogeny can be created using a non-BEAST speciation model,
 for example the PBD or MBD models.
 
@@ -37,7 +37,7 @@ true_phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 ape::plot.phylo(true_phylogeny, main = "The 'true' phylogeny")
 ```
 
-As this vignette is a demo (and not a thorough research), 
+As this vignette is a demo (and not a thorough research),
 we'll use a short alignment:
 
 ```{r}
@@ -49,7 +49,7 @@ alignment_params <- create_alignment_params(
 ## 1. Only use the generative model in inference
 
 There are multiple ways to select for an inference model.
-In the simplest case, which is the default, 
+In the simplest case, which is the default,
 we will do our inference with the generative model only:
 
 type       | run_if         | measure evidence  | inference model
@@ -62,7 +62,7 @@ experiments <- list(experiment)
 ```
 
 Here we measure the baseline error: the error that BEAST2 makes
-when the inference model is the correct generative 
+when the inference model is the correct generative
 model (JC69 and strict clock):
 
 ```{r}
@@ -107,33 +107,33 @@ pir_plot(errors)
 Again, there are multiple ways to select for which inference model(s)
 to use. Here we assume we do not know the generative model.
 Instead, we only run the inference model that has the highest evidence (also
-called 'marginal likelihood'). 
+called 'marginal likelihood').
 
 type       | run_if         | measure evidence | inference model
 -----------|----------------|------------------|----------------
-candidate  | best_candidate |TRUE              |Yule       
+candidate  | best_candidate |TRUE              |Yule      
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 if (rappdirs::app_dir()$os != "win") {
   experiment_yule <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
-      tree_prior = create_yule_tree_prior()  
-    ) 
+      tree_prior = create_yule_tree_prior() 
+    )
   )
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
-      tree_prior = create_bd_tree_prior()  
-    ) 
+      tree_prior = create_bd_tree_prior() 
+    )
   )
   # Use the same files to work on, as only one will actually run an experiment
   experiment_bd$beast2_options <- experiment_yule$beast2_options
   experiment_bd$inference_model$mcmc <- experiment_yule$inference_model$mcmc
   experiment_bd$errors_filename <- experiment_yule$errors_filename
-    
+   
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
-  
+ 
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
     experiments = experiments,
@@ -148,7 +148,7 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && 
+if (rappdirs::app_dir()$os != "win" &&
     is_beast2_installed() &&
     is_beast2_ns_pkg_installed()
 ) {
@@ -179,7 +179,7 @@ pir_plot(errors)
 Again, there are multiple ways to select for which inference model(s)
 to use. Next to the known generative model (JC69 and strict clock),
 here we use the inference model that has the highest evidence (also
-called 'marginal likelihood'). 
+called 'marginal likelihood').
 
 Here we measure the baseline error, from the generative model,
 and the error that BEAST2 makes
@@ -187,20 +187,20 @@ when the inference model is the one with most evidence:
 
 type       | run_if         | measure evidence | inference model
 -----------|----------------|------------------|----------------
-generative | always         |FALSE             |Yule       
+generative | always         |FALSE             |Yule      
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 experiment_yule <- create_test_gen_experiment(
   inference_model = create_test_inference_model(
-    tree_prior = create_yule_tree_prior()  
-  ) 
+    tree_prior = create_yule_tree_prior() 
+  )
 )
 if (rappdirs::app_dir()$os != "win") {
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
-      tree_prior = create_bd_tree_prior()  
-    ) 
+      tree_prior = create_bd_tree_prior() 
+    )
   )
   experiments <- list(experiment_yule, experiment_bd)
 
@@ -209,7 +209,7 @@ if (rappdirs::app_dir()$os != "win") {
     experiments = experiments,
     evidence_filename = get_temp_evidence_filename()
   )
-  
+ 
 } else {
   experiments <- list(experiment_yule)
 
@@ -227,7 +227,7 @@ just one model (JC69, strict, Yule).
 Run this setup:
 
 ```{r}
-if (rappdirs::app_dir()$os != "win" && 
+if (rappdirs::app_dir()$os != "win" &&
     is_beast2_installed() &&
     is_beast2_ns_pkg_installed()
 ) {
