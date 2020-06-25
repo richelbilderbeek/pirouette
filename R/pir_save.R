@@ -23,12 +23,12 @@ pir_save <- function(
   pir_plot(pir_out) +
     ggplot2::ggsave(file.path(folder_name, "errors.png"))
 
-  pir_to_pics(
-    phylogeny = phylogeny,
+  pir_to_tables(
     pir_params = pir_params,
     folder = folder_name
   )
-  pir_to_tables(
+  pir_to_pics(
+    phylogeny = phylogeny,
     pir_params = pir_params,
     folder = folder_name
   )
