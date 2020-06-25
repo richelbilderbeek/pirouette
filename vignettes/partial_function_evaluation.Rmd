@@ -261,7 +261,7 @@ so:
 
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
-  root_sequence = root_sequence 
+  root_sequence = root_sequence
 )
 true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
@@ -276,7 +276,7 @@ the `alignment_params$sim_tral_fun`:
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
   sim_tral_fun = sim_tral_with_std_nsm,
-  root_sequence = root_sequence 
+  root_sequence = root_sequence
 )
 true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
@@ -309,7 +309,7 @@ my_fun <- function(
 # Putting my function in the alignment_params
 alignment_params <- pirouette::create_alignment_params(
   sim_tral_fun = my_fun,
-  root_sequence = root_sequence 
+  root_sequence = root_sequence
 )
 # Simulate the true alignment using my function
 true_alignment <- pirouette::sim_true_alignment(
@@ -339,7 +339,7 @@ ellipsis (`...`) argument that will fill in the values you specified:
 ```{r}
 sim_tral_fun <- pryr::partial(
   sim_tral_with_std_nsm,
-  mutation_rate = 0.5,                    
+  mutation_rate = 0.5,         
   site_model = beautier::create_hky_site_model()
 )
 head(sim_tral_fun)
@@ -348,7 +348,7 @@ head(sim_tral_fun)
 ```{r}
 alignment_params <- pirouette::create_alignment_params(
   sim_tral_fun = sim_tral_fun,
-  root_sequence = root_sequence 
+  root_sequence = root_sequence
 )
 true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
@@ -364,7 +364,7 @@ supplies this function as `get_sim_tral_with_std_nsm_fun`:
 alignment_params <- pirouette::create_alignment_params(
   sim_tral_fun =
     pirouette::get_sim_tral_with_std_nsm_fun(
-    mutation_rate = 0.5,                    
+    mutation_rate = 0.5,         
     site_model = beautier::create_hky_site_model()
   ),
   root_sequence = root_sequence
@@ -406,7 +406,7 @@ alignment_params <- pirouette::create_alignment_params(
       node_mutation_rate = 2.0,
       node_time = 0.1
     ),
-  root_sequence = root_sequence 
+  root_sequence = root_sequence
 )
 true_alignment <- pirouette::sim_true_alignment(
   true_phylogeny = true_phylogeny,
@@ -476,7 +476,7 @@ Put this function in the `twinning_params`:
 
 ```{r}
 twinning_params <- pirouette::create_twinning_params(
-  sim_twal_fun = my_fun 
+  sim_twal_fun = my_fun
 )
 ```
 
@@ -485,7 +485,7 @@ twin_alignment <- pirouette::sim_twin_alignment(
   twin_phylogeny = twin_phylogeny,
   true_alignment = true_alignment,
   alignment_params = pirouette::create_test_alignment_params(
-    root_sequence = root_sequence 
+    root_sequence = root_sequence
   ),
   twinning_params = twinning_params
 )

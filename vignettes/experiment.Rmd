@@ -125,7 +125,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
     idx = seq(1, n_errors),
     error = NA
   )
- 
+
   for (i in seq_along(ext_rates)) {
     this_df <- errors[[i]]
     nltts <- this_df[1, first_error_col:last_error_col]

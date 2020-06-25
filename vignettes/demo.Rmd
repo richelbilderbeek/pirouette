@@ -111,29 +111,29 @@ called 'marginal likelihood').
 
 type       | run_if         | measure evidence | inference model
 -----------|----------------|------------------|----------------
-candidate  | best_candidate |TRUE              |Yule      
+candidate  | best_candidate |TRUE              |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 if (rappdirs::app_dir()$os != "win") {
   experiment_yule <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
-      tree_prior = create_yule_tree_prior() 
+      tree_prior = create_yule_tree_prior()
     )
   )
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
-      tree_prior = create_bd_tree_prior() 
+      tree_prior = create_bd_tree_prior()
     )
   )
   # Use the same files to work on, as only one will actually run an experiment
   experiment_bd$beast2_options <- experiment_yule$beast2_options
   experiment_bd$inference_model$mcmc <- experiment_yule$inference_model$mcmc
   experiment_bd$errors_filename <- experiment_yule$errors_filename
-   
+
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
- 
+
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
     experiments = experiments,
@@ -187,19 +187,19 @@ when the inference model is the one with most evidence:
 
 type       | run_if         | measure evidence | inference model
 -----------|----------------|------------------|----------------
-generative | always         |FALSE             |Yule      
+generative | always         |FALSE             |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 experiment_yule <- create_test_gen_experiment(
   inference_model = create_test_inference_model(
-    tree_prior = create_yule_tree_prior() 
+    tree_prior = create_yule_tree_prior()
   )
 )
 if (rappdirs::app_dir()$os != "win") {
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_test_inference_model(
-      tree_prior = create_bd_tree_prior() 
+      tree_prior = create_bd_tree_prior()
     )
   )
   experiments <- list(experiment_yule, experiment_bd)
@@ -209,7 +209,7 @@ if (rappdirs::app_dir()$os != "win") {
     experiments = experiments,
     evidence_filename = get_temp_evidence_filename()
   )
- 
+
 } else {
   experiments <- list(experiment_yule)
 
