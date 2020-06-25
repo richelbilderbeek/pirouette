@@ -9,6 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -148,7 +150,7 @@ Now we have all in place to do a `pirouette` run:
 ```{r}
 df <- NULL
 if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
- 
+
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
     pir_params = create_pir_params(
@@ -207,7 +209,7 @@ correct estimation by setting `epsilon` to a high value:
 
 type       | run_if         | measure evidence | inference model
 -----------|----------------|------------------|----------------
-candidate  | best_candidate |TRUE              |Yule      
+candidate  | best_candidate |TRUE              |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
@@ -223,10 +225,10 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   experiment_yule$beast2_options <- experiment_bd$beast2_options
   experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
   experiment_yule$errors_filename <- experiment_bd$errors_filename
- 
+
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
- 
+
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
     experiments = experiments,
