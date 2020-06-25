@@ -84,11 +84,6 @@ if (rappdirs::app_dir()$os != "win") {
   )
   experiment_1$inference_conditions$do_measure_evidence <- TRUE
 
-  # MUST NOT Must share same BEAST2 options, MCMC and errors filenae
-  #experiment_1$beast2_options <- experiment_2$beast2_options
-  #experiment_1$inference_model$mcmc <- experiment_2$inference_model$mcmc
-  #experiment_1$errors_filename <- experiment_2$errors_filename
-
   experiments <- list(experiment_1, experiment_2)
 
   twinning_params$twin_evidence_filename <- get_temp_evidence_filename()
