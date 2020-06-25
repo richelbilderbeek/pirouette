@@ -293,7 +293,7 @@ test_that("most_evidence, with twinning", {
   if (!beastier::is_on_travis()) return()
   if (!mcbette::can_run_mcbette()) return()
 
-  skip("Takes too long 14")
+  # skip("Takes too long 14")
 
   # type       | run_if         | measure  | inference                          # nolint this is no commented code
   #            |                | evidence | model
