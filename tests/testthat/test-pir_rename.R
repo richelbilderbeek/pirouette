@@ -63,7 +63,7 @@ test_that("filenames must change", {
 
 test_that("use", {
 
-  skip("Takes too long 18")
+  # skip("Takes too long 18")
 
   testthat::expect_silent(
     pir_rename(
