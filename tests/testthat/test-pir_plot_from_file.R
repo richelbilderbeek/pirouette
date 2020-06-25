@@ -79,7 +79,7 @@ test_that("use, generative + best_candidate + twinning", {
 
   if (!beastier::is_on_travis()) return()
 
-  #skip("Takes too long 23")
+  skip("Takes too long 23")
 
   pir_out_filename <- tempfile(fileext = ".csv")
   url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_3/master/example_3_314/errors.csv" # nolint indeed a long URL
