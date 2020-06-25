@@ -1,6 +1,6 @@
 test_that("filenames must change", {
 
-  skip("Takes too long?")
+  skip("Takes too long 17")
 
   pir_params <- pirouette::create_test_pir_params(
     twinning_params = pirouette::create_twinning_params()
@@ -63,7 +63,7 @@ test_that("filenames must change", {
 
 test_that("use", {
 
-  skip("Takes too long?")
+  skip("Takes too long 18")
 
   testthat::expect_silent(
     pir_rename(

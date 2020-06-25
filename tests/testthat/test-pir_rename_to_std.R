@@ -1,6 +1,6 @@
 test_that("use, gen only", {
 
-  skip("Takes too long?")
+  skip("Takes too long 2")
 
   pir_params <- create_test_pir_params_setup(
     has_candidate = FALSE,
@@ -57,7 +57,7 @@ test_that("use, gen only", {
 
 test_that("use, gen + cand", {
 
-  skip("Takes too long?")
+  skip("Takes too long 3")
 
   if (rappdirs::app_dir()$os == "win") return()
 
@@ -115,7 +115,7 @@ test_that("use, gen + cand", {
 
 test_that("use, gen + twin", {
 
-  skip("Takes too long?")
+  skip("Takes too long 4")
 
   pir_params <- create_test_pir_params_setup(
     has_candidate = FALSE,
@@ -145,7 +145,7 @@ test_that("use, gen + twin", {
 
 test_that("use, gen + cand + twin", {
 
-  skip("Takes too long?")
+  skip("Takes too long 5")
 
   if (rappdirs::app_dir()$os == "win") return()
 
