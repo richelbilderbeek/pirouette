@@ -83,7 +83,7 @@ that is simple and easy to interpret visually, as well
 as an RNG seed:
 
 ```{r}
-alignment_params = pirouette::create_alignment_params(
+alignment_params <- pirouette::create_alignment_params(
   root_sequence = create_blocked_dna(length = 20),
   rng_seed = 314
 )
@@ -216,7 +216,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   experiment_yule <- create_test_cand_experiment()
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior()  ,
+      tree_prior = create_bd_tree_prior(),
     )
   )
   # Candidat experiments must produce the same files
