@@ -339,7 +339,7 @@ ellipsis (`...`) argument that will fill in the values you specified:
 ```{r}
 sim_tral_fun <- pryr::partial(
   sim_tral_with_std_nsm,
-  mutation_rate = 0.5,         
+  mutation_rate = 0.5,
   site_model = beautier::create_hky_site_model()
 )
 head(sim_tral_fun)
@@ -364,7 +364,7 @@ supplies this function as `get_sim_tral_with_std_nsm_fun`:
 alignment_params <- pirouette::create_alignment_params(
   sim_tral_fun =
     pirouette::get_sim_tral_with_std_nsm_fun(
-    mutation_rate = 0.5,         
+    mutation_rate = 0.5,
     site_model = beautier::create_hky_site_model()
   ),
   root_sequence = root_sequence
