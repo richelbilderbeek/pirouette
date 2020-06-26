@@ -27,6 +27,7 @@ r_github_packages:
   - richelbilderbeek/beautier
   - richelbilderbeek/beastier
   - richelbilderbeek/babette
+  - richelbilderbeek/tiebeaur
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr

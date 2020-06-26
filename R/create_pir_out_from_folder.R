@@ -33,7 +33,9 @@ create_pir_out_from_folder <- function(
     full.names = TRUE
   )
   testthat::expect_equal(1, length(gen_xml_filename))
-  gen_inf_model <- xmltob2im::create_inference_model_from_file(gen_xml_filename)
+  gen_inf_model <- tiebeaur::create_inference_model_from_file(
+    gen_xml_filename
+  )
 
 
   # Errors

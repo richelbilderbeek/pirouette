@@ -44,6 +44,7 @@ Imports:
     TESS,
     testit,
     tidyr,
+    tiebeaur,
     tracerer (>= 2.0.2),
     xtable
 Suggests:
