@@ -6,4 +6,5 @@ test_that("use", {
 
   pir_out <- create_pir_out_from_folder(folder_name)
   expect_silent(check_pir_out(pir_out))
+  pir_plot(pir_out)
 })
