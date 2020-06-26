@@ -28,10 +28,9 @@ check_pir_out <- function(
   testit::assert(!is.factor(pir_out$error_1))
 
   pirouette::check_tree_types(pir_out$tree)
-
-  if (!all(pir_out$inference_model %in% get_model_type_names())) {
-    stop("Invalid 'inference_model' value")
-  }
+  pirouette::check_inference_model_type_names(
+    model_type_names = pir_out$inference_model
+  )
 
   for (i in seq_along(pir_out$inference_model_weight)) {
     weight <- pir_out$inference_model_weight[i]

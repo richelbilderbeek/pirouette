@@ -43,8 +43,8 @@ create_pir_out_from_folder <- function(
   }
   # Errors
   errors_filenames <- c(
-    list.files(path = folder_name, pattern = "^gen_errors.csv$", full.names = TRUE),
-    list.files(path = folder_name, pattern = "^best_errors.csv$", full.names = TRUE),
+    list.files(path = folder_name, pattern = "^gen_errors.csv$", full.names = TRUE), # nolint indeed a long line
+    list.files(path = folder_name, pattern = "^best_errors.csv$", full.names = TRUE), # nolint indeed a long line
     list.files(path = folder_name, pattern = "^gen_errors_twin.csv$", full.names = TRUE), # nolint indeed a long line
     list.files(path = folder_name, pattern = "^best_errors_twin.csv$", full.names = TRUE) # nolint indeed a long line
   )
