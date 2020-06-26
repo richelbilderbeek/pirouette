@@ -31,18 +31,9 @@ check_pir_out <- function(
   pirouette::check_inference_model_type_names(
     model_type_names = pir_out$inference_model
   )
-
-  for (i in seq_along(pir_out$inference_model_weight)) {
-    weight <- pir_out$inference_model_weight[i]
-    if (beautier::is_one_na(weight)) next
-    if (!beautier::is_one_double(weight)) {
-      stop("Each 'model_weight' must be NA or a double")
-    }
-    if (weight < 0.0 || weight > 1.0) {
-      stop("Each 'model_weight' must be a double in range [0.0, 1.0]")
-    }
-  }
-
+  pirouette::check_inference_model_weights(
+    inference_model_weight = pir_out$inference_model_weight
+  )
   for (i in seq_along(pir_out$site_model)) {
      if (!pir_out$site_model[i] %in% beautier::get_site_model_names()) {
       stop(
