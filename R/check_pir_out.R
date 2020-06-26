@@ -44,10 +44,14 @@ check_pir_out <- function(
     }
   }
 
-  if (!all(pir_out$site_model %in% beautier::get_site_model_names())) {
-    stop("Invalid 'site_model' value")
+  for (i in seq_along(pir_out$site_model)) {
+     if (!pir_out$site_model[i] %in% beautier::get_site_model_names()) {
+      stop(
+        "Invalid 'site_model' value. ",
+        "Actual value of 'pir_out$site_model[", i, "]': ", pir_out$site_model[i]
+      )
+    }
   }
-
   if (!all(pir_out$clock_model %in% beautier::get_clock_model_names())) {
     stop("Invalid 'clock_model' value")
   }
