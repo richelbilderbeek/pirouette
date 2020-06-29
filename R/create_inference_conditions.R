@@ -3,7 +3,7 @@
 #' a model for the inference
 #' @inheritParams default_params_doc
 #' @return the inference conditions
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)
 #'

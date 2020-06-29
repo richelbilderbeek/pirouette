@@ -1,7 +1,7 @@
 # Create figure bd file
 #' @inheritParams default_params_doc
 #' @return the name of the file the plot is saved to
-#' @author Richel J.C. Bilderbeek, Giovanni Laudanno
+#' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_fig_bd_file <- function(
   fig_bd_filename = "figure_bd.png"

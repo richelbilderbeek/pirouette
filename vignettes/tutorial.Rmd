@@ -9,6 +9,8 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -16,7 +18,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-This vignette demonstrates the `pirouette` package, 
+This vignette demonstrates the `pirouette` package,
 with a focus on the research questions that `pirouette` can answer.
 
 # Main question
@@ -28,7 +30,7 @@ The main question that `pirouette` answers is:
 The same question, but from the point of view of a theoretician:
 
 > Would we know the true phylogeny in nature,
-> how well would we be able to infer it 
+> how well would we be able to infer it
 > from a DNA alignment?
 
 ```{r}
@@ -38,7 +40,7 @@ library(pirouette)
 # Inferring a simplest world
 
 Let's assume we know speciation (we don't) and we assume that speciation
-is as simple as possible (it is not). 
+is as simple as possible (it is not).
 
 In that simplest world:
 
@@ -46,10 +48,10 @@ In that simplest world:
  * DNA sequences of all species have the same mutation rate
  * In DNA mutations, mutation rates between all nucleotides are equal
 
-We can now try to answer `pirouette`'s main question: 
+We can now try to answer `pirouette`'s main question:
 
 > Would we know the true phylogeny in nature,
-> how well would we be able to infer it 
+> how well would we be able to infer it
 > from a DNA alignment?
 
 Here we go, the true phylogeny of the world:
@@ -59,32 +61,32 @@ set.seed(42)
 phylogeny <- create_exemplary_dd_tree(n_taxa = 6)
 ape::plot.phylo(main = "The True Phylogeny", phylogeny)
 ```
- 
-This phylogeny cannot be measured in nature directly. Instead, we can measure 
-(and align) the DNA sequences of our species. 
+
+This phylogeny cannot be measured in nature directly. Instead, we can measure
+(and align) the DNA sequences of our species.
 
 `pirouette` needs an approximate idea of how an alignment in nature behaves.
 
-What we do know (or: assumed in our simples world) 
-is (1) that the DNA sequences of all species have the same 
-mutation rate, and (2) In DNA mutations, mutation rates between all nucleotides 
-are equal. This amounts to (1) the clock model is a strict clock model, 
+What we do know (or: assumed in our simples world)
+is (1) that the DNA sequences of all species have the same
+mutation rate, and (2) In DNA mutations, mutation rates between all nucleotides
+are equal. This amounts to (1) the clock model is a strict clock model,
 and (2) the site model is a Jukes-Cantor model.
 
 What we need to have approximately right is a mutation rate, which must not
 be too low, nor too high.
-A mutation rate that is too low (e.g. zero) would result in an uninformative 
-alignment (e.g. all species would have the same sequence). 
+A mutation rate that is too low (e.g. zero) would result in an uninformative
+alignment (e.g. all species would have the same sequence).
 A mutation rate that is too high, results in uninformative alignments as well,
 consisting of random noise.
 
 What we do for convenience is specify an ancestral DNA sequence
-that is simple and easy to interpret visually, as well 
+that is simple and easy to interpret visually, as well
 as an RNG seed:
 
 ```{r}
-alignment_params = pirouette::create_alignment_params(
-  root_sequence = create_blocked_dna(length = 20), 
+alignment_params <- pirouette::create_alignment_params(
+  root_sequence = create_blocked_dna(length = 20),
   rng_seed = 314
 )
 print(alignment_params$root_sequence)
@@ -94,9 +96,9 @@ From here, we can already predict the DNA alignment `pirouette` will generate:
 
 ```{r fig.width=7, fig.height=7}
 alignment <- create_true_alignment(
-  true_phylogeny = phylogeny, 
+  true_phylogeny = phylogeny,
   alignment_params = alignment_params
-) 
+)
 ape::image.DNAbin(
   alignment,
   main = "A Possibly-True Alignment",
@@ -107,7 +109,7 @@ ape::image.DNAbin(
 Back to our main question:
 
 > Would we know the true phylogeny in nature,
-> how well would we be able to infer it 
+> how well would we be able to infer it
 > from a DNA alignment?
 
 To infer a phylogeny from an alignment, we need:
@@ -148,7 +150,7 @@ Now we have all in place to do a `pirouette` run:
 ```{r}
 df <- NULL
 if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
-  
+
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
     pir_params = create_pir_params(
@@ -172,11 +174,11 @@ pirouette::pir_plot(df)
 
 From the Simplest World scenarion, we drop one piece of knowledge:
 we assumre we do not know the tree prior anymore. We do still know
-The True Phylogeny, but do not know the speciation model that generated 
+The True Phylogeny, but do not know the speciation model that generated
 it (even though we generated the phylogeny using a birth-death model).
 
 > Would we know the true phylogeny in nature,
-> how well would we be able to infer it 
+> how well would we be able to infer it
 > from a DNA alignment?
 
 So, again, here is the true phylogeny:
@@ -207,7 +209,7 @@ correct estimation by setting `epsilon` to a high value:
 
 type       | run_if         | measure evidence | inference model
 -----------|----------------|------------------|----------------
-candidate  | best_candidate |TRUE              |Yule       
+candidate  | best_candidate |TRUE              |Yule
 candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
@@ -216,17 +218,17 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
   experiment_yule <- create_test_cand_experiment()
   experiment_bd <- create_test_cand_experiment(
     inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior()  ,
+      tree_prior = create_bd_tree_prior(),
     )
   )
   # Candidat experiments must produce the same files
   experiment_yule$beast2_options <- experiment_bd$beast2_options
   experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
   experiment_yule$errors_filename <- experiment_bd$errors_filename
-  
+
   experiments <- list(experiment_yule, experiment_bd)
   check_experiments(experiments)
-  
+
   pir_params <- create_pir_params(
     alignment_params = alignment_params,
     experiments = experiments,
@@ -238,7 +240,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
 Now we again have all in place to do a `pirouette` run:
 
 ```{r fig.width=7, fig.height=7}
-if (rappdirs::app_dir()$os != "win" && 
+if (rappdirs::app_dir()$os != "win" &&
     is_beast2_installed() &&
     is_beast2_ns_pkg_installed()) {
   df <- pirouette::pir_run(

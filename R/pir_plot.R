@@ -19,6 +19,7 @@
 #' pir_plot(pir_out)
 #' @export
 pir_plot <- function(pir_out) {
+  pirouette::check_pir_out(pir_out)
 
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable

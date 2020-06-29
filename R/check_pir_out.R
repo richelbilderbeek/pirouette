@@ -28,26 +28,20 @@ check_pir_out <- function(
   testit::assert(!is.factor(pir_out$error_1))
 
   pirouette::check_tree_types(pir_out$tree)
-
-  if (!all(pir_out$inference_model %in% get_model_type_names())) {
-    stop("Invalid 'inference_model' value")
-  }
-
-  for (i in seq_along(pir_out$inference_model_weight)) {
-    weight <- pir_out$inference_model_weight[i]
-    if (beautier::is_one_na(weight)) next
-    if (!beautier::is_one_double(weight)) {
-      stop("Each 'model_weight' must be NA or a double")
+  pirouette::check_inference_model_type_names(
+    model_type_names = pir_out$inference_model
+  )
+  pirouette::check_inference_model_weights(
+    inference_model_weight = pir_out$inference_model_weight
+  )
+  for (i in seq_along(pir_out$site_model)) {
+     if (!pir_out$site_model[i] %in% beautier::get_site_model_names()) {
+      stop(
+        "Invalid 'site_model' value. ",
+        "Actual value of 'pir_out$site_model[", i, "]': ", pir_out$site_model[i]
+      )
     }
-    if (weight < 0.0 || weight > 1.0) {
-      stop("Each 'model_weight' must be a double in range [0.0, 1.0]")
-    }
   }
-
-  if (!all(pir_out$site_model %in% beautier::get_site_model_names())) {
-    stop("Invalid 'site_model' value")
-  }
-
   if (!all(pir_out$clock_model %in% beautier::get_clock_model_names())) {
     stop("Invalid 'clock_model' value")
   }

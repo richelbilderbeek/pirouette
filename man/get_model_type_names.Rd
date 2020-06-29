@@ -20,5 +20,5 @@ expect_true("generative" \%in\% get_model_type_names())
 expect_false("Jensen Ackles" \%in\% get_model_type_names())
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

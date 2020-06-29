@@ -2,8 +2,6 @@ context("test-create_all_experiments")
 
 test_that("use", {
   if (rappdirs::app_dir()$os == "win")  return()
-
-  # This test takes too long
   if (!beastier::is_on_ci()) return()
 
   all_experiments <- create_all_experiments()
@@ -21,8 +19,6 @@ test_that("use", {
 
 test_that("it can exclude an experiment", {
   if (rappdirs::app_dir()$os == "win")  return()
-
-  # This test takes too long
   if (!beastier::is_on_ci()) return()
 
   all_experiments <- create_all_experiments(
@@ -42,8 +38,6 @@ test_that("it can exclude an experiment", {
 test_that("should exclude one model, code from article", {
 
   if (rappdirs::app_dir()$os == "win")  return()
-
-  # This test takes too long
   if (!beastier::is_on_ci()) return()
 
     generative_experiment <- create_experiment(

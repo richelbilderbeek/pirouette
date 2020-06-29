@@ -103,5 +103,5 @@ if (is_on_ci() && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
 }
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

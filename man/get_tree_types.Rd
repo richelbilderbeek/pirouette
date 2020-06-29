@@ -20,5 +20,5 @@ expect_true("twin" \%in\% get_tree_types())
 expect_false("Jensen Ackles" \%in\% get_tree_types())
 }
 \author{
-Giovanni Laudanno, Richel J.C. Bilderbeek
+Giovanni Laudanno, Richèl J.C. Bilderbeek
 }

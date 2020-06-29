@@ -2,12 +2,17 @@
 % Please edit documentation in R/get_gamma_error_fun.R
 \name{get_gamma_error_fun}
 \alias{get_gamma_error_fun}
-\title{Get an error function that uses the difference in gamma statistic}
+\title{Get an error function that uses the difference in gamma statistic.}
 \usage{
 get_gamma_error_fun()
 }
 \description{
-Get an error function that uses the difference in gamma statistic
+Get an error function that uses the difference in gamma statistic.
+}
+\note{
+the gamma statistic can be found in Pybus and Harvey, 2000,
+'Testing macro-evolutionary models using incomplete molecular phylogenies.',
+Proc. R. Soc. Lond. B, 267, 2267-2272.
 }
 \examples{
 library(testthat)

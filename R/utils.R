@@ -59,7 +59,7 @@ get_twin_methods <- function() {
 
 #' Get the names of the model types
 #' @return the model types
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)
 #'
@@ -73,7 +73,7 @@ get_model_type_names <- function() {
 
 #' Get the names of the tree types
 #' @return the tree types
-#' @author Giovanni Laudanno, Richel J.C. Bilderbeek
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' library(testthat)
 #'

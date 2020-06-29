@@ -19,14 +19,15 @@ matrix:
     os: linux
   - r: devel
     os: linux
-  - r: release
-    os: osx
+  #- r: release
+  #  os: osx
 
 
 r_github_packages:
-  - richelbilderbeek/beautier
-  - richelbilderbeek/beastier
-  - richelbilderbeek/babette
+  - ropensci/beautier
+  - ropensci/beastier
+  - ropensci/babette
+  - richelbilderbeek/tiebeaur
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
@@ -35,6 +36,8 @@ r_github_packages:
   - thijsjanzen/nodeSub
 
 before_install:
+  # From https://stackoverflow.com/a/20042195
+  - Rscript -e "update.packages(checkBuilt = TRUE, ask = FALSE)"
   - echo $TRAVIS_R_VERSION_STRING
   # ImageMagick
   - if [ "$TRAVIS_OS_NAME" == "linux" ]; then sudo add-apt-repository -y ppa:opencpu/imagemagick; fi
