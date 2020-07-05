@@ -1,10 +1,21 @@
 library(pirouette)
 library(testthat)
 
-filename <- "~/pirouette_example_42/pirouette_example_42/errors.png"
-expect_true(file.exists(filename))
 
-pir_plot
-?pirouette
-pir_plot_from_file(filename)
+#super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
+super_folder <- "/media/richel/D2B40C93B40C7BEB/pirouette_examples/pirouette_example_18/example_18"
+
+folder_names <- list.dirs(
+  super_folder
+)
+folder_names <- folder_names[folder_names != super_folder]
+folder_names
+expect_true(all(dir.exists(folder_names)))
+
+pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
+
+Sys.time()
+p <- pir_plots(pir_outs)
+p + ggplot2::ggtitle("") + ggplot2::ggsave("example_42.png", width = 7, height = 7)
+Sys.time()
 
