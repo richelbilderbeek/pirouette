@@ -204,7 +204,7 @@ pir_to_pics <- function(
 
     csv_filename <- first_experiment$errors_filename
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
     df_errors_gen <- data.frame(error = df_errors$x)
 
@@ -222,7 +222,7 @@ pir_to_pics <- function(
 
     csv_filename <- last_experiment$errors_filename
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
     df_errors_best <- data.frame(
       error = df_errors$x
@@ -243,7 +243,7 @@ pir_to_pics <- function(
 
     csv_filename <- first_experiment$errors_filename
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
     df_errors_gen <- data.frame(error = df_errors$x)
 
@@ -263,7 +263,7 @@ pir_to_pics <- function(
 
     csv_filename <- last_experiment$errors_filename
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
     df_errors_best <- data.frame(error = df_errors$x)
 
@@ -397,7 +397,7 @@ pir_to_pics_twin <- function(
       first_experiment$errors_filename
     )
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
     df_errors_twin_gen <- data.frame(error = df_errors$x)
 
@@ -415,7 +415,7 @@ pir_to_pics_twin <- function(
 
     csv_filename <- pirouette::to_twin_filename(last_experiment$errors_filename)
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
 
     df_errors_twin_best <- data.frame(error = df_errors$x)
@@ -437,7 +437,7 @@ pir_to_pics_twin <- function(
       first_experiment$errors_filename
     )
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
 
     df_errors_twin_gen <- data.frame(error = df_errors$x)
@@ -458,7 +458,7 @@ pir_to_pics_twin <- function(
 
     csv_filename <- pirouette::to_twin_filename(last_experiment$errors_filename)
     testthat::expect_true(file.exists(csv_filename))
-    df_errors <- utils::read.csv(csv_filename)
+    df_errors <- readr::read_csv(csv_filename)
     testthat::expect_true("x" %in% names(df_errors))
 
     df_errors_twin_best <- data.frame(error = df_errors$x)

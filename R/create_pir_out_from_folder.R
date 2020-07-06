@@ -50,13 +50,13 @@ create_pir_out_from_folder <- function(
   )
   testthat::expect_equal(4, length(errors_filenames))
 
-  n_errors <- nrow(read.csv(errors_filenames[1]))
+  n_errors <- nrow(readr::read_csv(errors_filenames[1]))
   df_errors <- data.frame(matrix(nrow = 4, ncol = n_errors, data = 0.0))
   colnames(df_errors) <- paste0("error_", 1:n_errors)
   t_errors <- tibble::as_tibble(df_errors)
 
   for (i in seq_len(4)) {
-    t_errors[i, 1:n_errors] <- t(read.csv(errors_filenames[i])$x)
+    t_errors[i, 1:n_errors] <- t(readr::read_csv(errors_filenames[i])$x)
   }
 
   t <- cbind(t, t_errors)

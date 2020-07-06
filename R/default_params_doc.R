@@ -81,6 +81,10 @@
 #'   that will be discarded,
 #'   must be a value from 0.0 (keep all), to 1.0 (discard all).
 #' @param chain_length something
+#' @param check_input boolean to indicate if the input is checked.
+#'   If set to \link{TRUE}, input is checked, resulting in a proper
+#'   error message. Else, input is left unchecked, possibly resulting
+#'   in unhelpful error messages.
 #' @param clock_model a clock model,
 #'   as created by \link[beautier]{create_clock_model}
 #' @param clock_models a list of one or more clock models,
@@ -156,6 +160,7 @@
 #'   Use \link{get_alignment_id} to get the ID of the alignment
 #' @param filename the file's name, without the path
 #' @param folder_name name of the main folder
+#' @param folder_names one or more folder names
 #' @param ideal_method method to generate the "ideal" tree
 #' @param inference_conditions conditions under which the inference model
 #'   is used in the inference
@@ -470,6 +475,7 @@ default_params_doc <- function(
   brts,
   burn_in_fraction,
   chain_length,
+  check_input,
   clock_model, clock_models,
   clock_model_name,
   consensus,
@@ -489,6 +495,7 @@ default_params_doc <- function(
   fasta_filename,
   filename,
   folder_name,
+  folder_names,
   ideal_method,
   inference_model,
   inference_conditions,

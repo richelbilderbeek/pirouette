@@ -196,7 +196,7 @@ if (rappdirs::app_dir()$os != "win" &&
     is_beast2_installed() &&
     is_beast2_ns_pkg_installed()
 ) {
-  knitr::kable(utils::read.csv(pir_params$evidence_filename))
+  knitr::kable(readr::read_csv(pir_params$evidence_filename))
 }
 ```
 
@@ -318,7 +318,7 @@ if (rappdirs::app_dir()$os != "win" &&
 ) {
   twin_evidence_filename <- pir_params$twinning_params$twin_evidence_filename
   check_file_exists(twin_evidence_filename)
-  knitr::kable(utils::read.csv(twin_evidence_filename))
+  knitr::kable(readr::read_csv(twin_evidence_filename))
 }
 ```
 

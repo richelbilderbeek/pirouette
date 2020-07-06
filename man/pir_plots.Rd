@@ -4,10 +4,15 @@
 \alias{pir_plots}
 \title{Plot the output of \link{pir_runs}.}
 \usage{
-pir_plots(pir_outs)
+pir_plots(pir_outs, check_input = TRUE)
 }
 \arguments{
 \item{pir_outs}{the output of \link{pir_runs}}
+
+\item{check_input}{boolean to indicate if the input is checked.
+If set to \link{TRUE}, input is checked, resulting in a proper
+error message. Else, input is left unchecked, possibly resulting
+in unhelpful error messages.}
 }
 \value{
 a \code{ggplot2} plot

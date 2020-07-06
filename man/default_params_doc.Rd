@@ -30,6 +30,7 @@ default_params_doc(
   brts,
   burn_in_fraction,
   chain_length,
+  check_input,
   clock_model,
   clock_models,
   clock_model_name,
@@ -51,6 +52,7 @@ default_params_doc(
   fasta_filename,
   filename,
   folder_name,
+  folder_names,
   ideal_method,
   inference_model,
   inference_conditions,
@@ -249,6 +251,11 @@ must be a value from 0.0 (keep all), to 1.0 (discard all).}
 
 \item{chain_length}{something}
 
+\item{check_input}{boolean to indicate if the input is checked.
+If set to \link{TRUE}, input is checked, resulting in a proper
+error message. Else, input is left unchecked, possibly resulting
+in unhelpful error messages.}
+
 \item{clock_model}{a clock model,
 as created by \link[beautier]{create_clock_model}}
 
@@ -344,6 +351,8 @@ Use \link{get_alignment_id} to get the ID of the alignment}
 \item{filename}{the file's name, without the path}
 
 \item{folder_name}{name of the main folder}
+
+\item{folder_names}{one or more folder names}
 
 \item{ideal_method}{method to generate the "ideal" tree}
 

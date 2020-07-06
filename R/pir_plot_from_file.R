@@ -21,7 +21,7 @@
 #' @export
 pir_plot_from_file <- function(pir_out_filename) {
 
-  pir_out <- utils::read.csv(pir_out_filename)
+  pir_out <- readr::read_csv(pir_out_filename)
   pirouette::check_pir_out(pir_out)
   pirouette::pir_plot(pir_out)
 }

@@ -121,8 +121,8 @@ grDevices::dev.off()
 # histogram of errors
 ################################################################################
 
-df_errors <- data.frame(error = utils::read.csv(pir_params$experiments[[1]]$errors_filename)$x)
-df_errors_twin <- data.frame(error = utils::read.csv(to_twin_filename(pir_params$experiments[[1]]$errors_filename))$x)
+df_errors <- data.frame(error = readr::read_csv(pir_params$experiments[[1]]$errors_filename)$x)
+df_errors_twin <- data.frame(error = readr::read_csv(to_twin_filename(pir_params$experiments[[1]]$errors_filename))$x)
 
 ggplot2::ggplot(
   df_errors,

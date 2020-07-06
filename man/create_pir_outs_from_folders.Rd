@@ -6,6 +6,9 @@
 \usage{
 create_pir_outs_from_folders(folder_names)
 }
+\arguments{
+\item{folder_names}{one or more folder names}
+}
 \value{
 a \code{pir_out}, as can be checked by \link{check_pir_out}
 }
