@@ -4,7 +4,7 @@
 \alias{pir_plots}
 \title{Plot the output of \link{pir_runs}.}
 \usage{
-pir_plots(pir_outs, check_input = TRUE)
+pir_plots(pir_outs, check_input = TRUE, verbose = FALSE)
 }
 \arguments{
 \item{pir_outs}{the output of \link{pir_runs}}
@@ -13,6 +13,8 @@ pir_plots(pir_outs, check_input = TRUE)
 If set to \link{TRUE}, input is checked, resulting in a proper
 error message. Else, input is left unchecked, possibly resulting
 in unhelpful error messages.}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 a \code{ggplot2} plot

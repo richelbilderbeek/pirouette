@@ -16,18 +16,24 @@
 #' # Plot the (fake) output
 #' expect_silent(pir_plots(pir_outs))
 #' @export
-pir_plots <- function(pir_outs, check_input = TRUE) {
+pir_plots <- function(pir_outs, check_input = TRUE, verbose = FALSE) {
   # Check input
   if (isTRUE(check_input)) {
-    # message("Check input: ", Sys.time()) # nolint
+    if (isTRUE(verbose)) message("Check inputs: ", Sys.time())
     testit::assert(length(pir_outs) >= 1)
     for (pir_out in pir_outs) {
+      if (isTRUE(verbose)) message("Check input: ", Sys.time())
       check_pir_out(pir_out)
     }
   }
 
   # All elements must have the same number of rows and columns
-  # message("All elements must have the same number of rows and columns: ", Sys.time()) # nolint
+  if (isTRUE(verbose)) {
+    message(
+      "All elements must have the same number of rows and columns: ",
+      Sys.time()
+    )
+  }
   pir_out <- pir_outs[[1]]
   n_rows <- nrow(pir_out)
   n_cols <- ncol(pir_out)
@@ -37,19 +43,24 @@ pir_plots <- function(pir_outs, check_input = TRUE) {
   }
 
   # Count the number of errors
-  #message("Count the number of errors: ", Sys.time())  # nolint
+  if (isTRUE(verbose)) message("Count the number of errors: ", Sys.time())
   first_col_index <- which(names(pir_out) == "error_1")
   n_errors <- n_cols - first_col_index + 1
 
   # Resize pir_out to be able to hold the errors of all data frames
-  # message("Resize pir_out to be able to hold the errors of all data frames: ", Sys.time()) # nolint
+  if (isTRUE(verbose)) {
+    message(
+      "Resize pir_out to be able to hold the errors of all data frames: ",
+      Sys.time()
+    )
+  }
   n_all_errors <- n_errors * length(pir_outs)
   pir_out[, paste0("error_", seq(1, n_all_errors))] <- NA
 
   # Copy the errors
-  # message("Copy the errors: ", Sys.time()) # nolint
+  if (isTRUE(verbose)) message("Copy the errors: ", Sys.time())
   for (i in seq_along(pir_outs)) {
-    # message("Copy the errors ", i, ": ", Sys.time()) # nolint
+    if (isTRUE(verbose)) message("Copy the errors ", i, ": ", Sys.time())
     from_begin_col <- first_col_index
     from_end_col <- n_cols
     to_begin_col <- from_begin_col + ((i - 1) * n_errors)
@@ -59,6 +70,6 @@ pir_plots <- function(pir_outs, check_input = TRUE) {
   }
 
   # Plot it
-  # message("Plot it: ", Sys.time()) # nolint
+  if (isTRUE(verbose)) message("Plot it: ", Sys.time())
   pirouette::pir_plot(pir_out)
 }
