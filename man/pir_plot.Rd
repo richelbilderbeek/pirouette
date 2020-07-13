@@ -4,7 +4,7 @@
 \alias{pir_plot}
 \title{Plot the error 'BEAST2' makes from a known phylogeny}
 \usage{
-pir_plot(pir_out)
+pir_plot(pir_out, verbose = FALSE)
 }
 \arguments{
 \item{pir_out}{the output created by \code{\link{pir_run}}}
