@@ -16,7 +16,11 @@
 #' # Plot the (fake) output
 #' expect_silent(pir_plots(pir_outs))
 #' @export
-pir_plots <- function(pir_outs, check_input = TRUE, verbose = FALSE) {
+pir_plots <- function( # nolint indeed high cyclomatic complexity, will fix after getting correct code
+  pir_outs,
+  check_input = TRUE,
+  verbose = FALSE
+) {
   # Check input
   if (isTRUE(check_input)) {
     if (isTRUE(verbose)) message("Check inputs: ", Sys.time())

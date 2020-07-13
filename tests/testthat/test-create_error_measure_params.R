@@ -1,5 +1,3 @@
-context("test-create_error_measure_params")
-
 test_that("use", {
   expect_silent(create_error_measure_params())
 })
