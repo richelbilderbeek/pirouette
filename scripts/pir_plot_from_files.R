@@ -3,7 +3,8 @@ library(testthat)
 
 
 #super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
-super_folder <- "/media/richel/D2B40C93B40C7BEB/pirouette_examples/pirouette_example_18/example_18"
+#super_folder <- "/media/richel/D2B40C93B40C7BEB/pirouette_examples/pirouette_example_18/example_18"
+super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
 
 folder_names <- list.dirs(
   super_folder
