@@ -6,9 +6,14 @@
 #' @export
 pir_plot_from_long <- function(df_long) {
   testthat::expect_false("inference_model" %in% names(df_long))
+  testthat::expect_false("tree" %in% names(df_long))
+  testthat::expect_false("inference_model_weight" %in% names(df_long))
+  testthat::expect_false("site_model" %in% names(df_long))
+  testthat::expect_false("clock_model" %in% names(df_long))
+  testthat::expect_false("tree_prior" %in% names(df_long))
+
   testthat::expect_true("error_index" %in% names(df_long))
   testthat::expect_true("error_value" %in% names(df_long))
-  testthat::expect_true("tree_and_model" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
   testthat::expect_true("model_setting" %in% names(df_long))
 

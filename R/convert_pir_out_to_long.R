@@ -63,7 +63,16 @@ convert_pir_out_to_long <- function(
   df_long <- df_long[order(df_long$tree), ]
   df_long$model_setting <-
     factor(df_long$model_setting, levels = unique(df_long$model_setting))
+
+  # Remove useless columns
   df_long$inference_model <- NULL
+  df_long$tree <- NULL
+  df_long$inference_model_weight <- NULL
+  df_long$site_model <- NULL
+  df_long$clock_model <- NULL
+  df_long$tree_prior <- NULL
+
+
   rownames(df_long) <- mapply(seq_len(nrow(df_long)), FUN = toString)
 
   if (isTRUE(verbose)) {
