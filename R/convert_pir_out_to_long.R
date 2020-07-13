@@ -72,6 +72,7 @@ convert_pir_out_to_long <- function(
   df_long$site_model <- NULL
   df_long$clock_model <- NULL
   df_long$tree_prior <- NULL
+  df_long$model_setting <- NULL
 
 
   rownames(df_long) <- mapply(seq_len(nrow(df_long)), FUN = toString)

@@ -15,13 +15,13 @@ pir_plot_from_long <- function(
   testthat::expect_false("clock_model" %in% names(df_long))
   testthat::expect_false("tree_prior" %in% names(df_long))
   testthat::expect_false("error_index" %in% names(df_long))
+  # The deprecated description, such as 'JC, RLN, BD',
+  # which is now in 'tree_and_model_labels'
+  testthat::expect_false("model_setting" %in% names(df_long))
 
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
 
-   # The description, such as 'JC, RLN, BD'
-  testthat::expect_true("model_setting" %in% names(df_long))
-  df_long$model_setting <- NULL
 
   # Either 'generative' or 'best'
   df_long$inference_model <- forcats::fct_collapse(

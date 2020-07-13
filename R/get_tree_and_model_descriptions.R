@@ -1,6 +1,6 @@
-#' Internal function to creat a mapping from a \link{tree_and_model}
-#' @return a \link[tibble]{tibble} with columns \link{tree_and_model}
-#'   and \link{description}
+#' Internal function to creat a mapping from a \code{tree_and_model}
+#' @return a \link[tibble]{tibble} with columns \code{tree_and_model}
+#'   and \code{description}
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 get_tree_and_model_descriptions <- function() {

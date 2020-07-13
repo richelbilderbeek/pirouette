@@ -2,16 +2,16 @@
 % Please edit documentation in R/get_tree_and_model_descriptions.R
 \name{get_tree_and_model_descriptions}
 \alias{get_tree_and_model_descriptions}
-\title{Internal function to creat a mapping from a \link{tree_and_model}}
+\title{Internal function to creat a mapping from a \code{tree_and_model}}
 \usage{
 get_tree_and_model_descriptions()
 }
 \value{
-a \link[tibble]{tibble} with columns \link{tree_and_model}
-  and \link{description}
+a \link[tibble]{tibble} with columns \code{tree_and_model}
+  and \code{description}
 }
 \description{
-Internal function to creat a mapping from a \link{tree_and_model}
+Internal function to creat a mapping from a \code{tree_and_model}
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
