@@ -15,17 +15,6 @@ convert_pir_out_to_long <- function(
 ) {
   pirouette::check_pir_out(pir_out)
 
-  # Satisfy R CMD check
-  tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
-  error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
-  inference_model <- NULL; rm(inference_model) # nolint, fixes warning: no visible binding for global variable
-  quantile <- NULL; rm(quantile) # nolint, fixes warning: no visible binding for global variable
-  ..y.. <- NULL; rm(..y..) # nolint, fixes warning: no visible binding for global variable
-  model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
-  tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
-  median <- NULL; rm(median) # nolint, fixes warning: no visible binding for global variable
-  ..density.. <- NULL; rm(..density..) # nolint, fixes warning: no visible binding for global variable
-
   ##### Data wrangling #####
   # Convert to long form
   df <- pir_out

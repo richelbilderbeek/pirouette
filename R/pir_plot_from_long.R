@@ -5,36 +5,29 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 pir_plot_from_long <- function(df_long) {
-  ##### Theme #####
-  label_size <- 13
-  label_face <- "italic"
-  title_size <- 18
-  title_face <- "bold"
-  ticks_size <- 12
-  ticks_face <- "plain"
-  ticks_color <- "black"
-  theme_title <- ggplot2::element_text(
-    hjust = 0.5, face = title_face, size = title_size
-  )
-  theme_major_label <- ggplot2::element_text(
-    face = label_face, size = label_size
-  )
-  theme_minor_label <- ggplot2::element_text(
-    face = ticks_face, color = ticks_color, size = ticks_size
-  )
-  theme <- ggplot2::theme(
-    plot.title = theme_title,
-    axis.title.x = theme_major_label,
-    axis.title.y = theme_major_label,
-    legend.title = theme_major_label,
-    axis.text.x = theme_minor_label,
-    axis.text.y = theme_minor_label,
-    legend.text = theme_minor_label,
-    strip.text.x = ggplot2::element_text(size = 12)
-  ) +
-    ggplot2::theme_bw()
+  testthat::expect_true("inference_model" %in% names(df_long))
+  testthat::expect_true("error_index" %in% names(df_long))
+  testthat::expect_true("error_value" %in% names(df_long))
+  testthat::expect_true("tree_and_model" %in% names(df_long))
+  testthat::expect_true("tree_and_model" %in% names(df_long))
+  testthat::expect_true("model_setting" %in% names(df_long))
+
+  # Satisfy R CMD check
+  tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
+  error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
+  inference_model <- NULL; rm(inference_model) # nolint, fixes warning: no visible binding for global variable
+  quantile <- NULL; rm(quantile) # nolint, fixes warning: no visible binding for global variable
+  ..y.. <- NULL; rm(..y..) # nolint, fixes warning: no visible binding for global variable
+  model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
+  tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
+  median <- NULL; rm(median) # nolint, fixes warning: no visible binding for global variable
+  ..density.. <- NULL; rm(..density..) # nolint, fixes warning: no visible binding for global variable
+
+  theme <- pirouette::get_pir_plot_theme()
 
   ##### Legend labels #####
+  # Get the 'model_setting' (e.g. JC, RLN, BD) from the 'tree_and_model'
+  # (e.g. 'true_generative')
   get_first <- function(x) utils::head(x, n = 1)
   # True, Generative
   tg_label <- NULL
