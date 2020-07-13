@@ -65,9 +65,10 @@ pir_plot_from_long <- function(
         alpha = alpha,
         position = "identity"
       )
-  }
-  ##### Split Candidate plot from Generative Plot #####
-  if (length(unique(df_long$inference_model)) > 1) {
+  } else {
+
+    testthat::expect_true(length(unique(df_long$inference_model)) > 1)
+
     medians$inference_model <- gsub(
       x = gsub(
         x = medians$tree_and_model,
