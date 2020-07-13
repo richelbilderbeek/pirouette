@@ -18,11 +18,14 @@ the \code{pir_out} in long form
 Convert a \code{pir_out} to its long form
 }
 \examples{
-pir_out <- create_test_pir_run_output(
-  add_twin = TRUE,
-  add_best = TRUE
-)
-convert_pir_out_to_long(pir_out)
+library(testthat)
+
+pir_out <- create_test_pir_run_output()
+t <- convert_pir_out_to_long(pir_out)
+expect_equal(2, ncol(t))
+expect_true("error_value" \%in\% names(t))
+expect_true("tree_and_model" \%in\% names(t))
+expect_silent(pir_plot_from_long(t))
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

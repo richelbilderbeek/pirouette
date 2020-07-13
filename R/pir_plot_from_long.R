@@ -8,21 +8,9 @@ pir_plot_from_long <- function(
   df_long,
   tree_and_model_labels = get_tree_and_model_descriptions()
 ) {
-  testthat::expect_false("inference_model" %in% names(df_long))
-  testthat::expect_false("tree" %in% names(df_long))
-  testthat::expect_false("inference_model_weight" %in% names(df_long))
-  testthat::expect_false("site_model" %in% names(df_long))
-  testthat::expect_false("clock_model" %in% names(df_long))
-  testthat::expect_false("tree_prior" %in% names(df_long))
-  testthat::expect_false("error_index" %in% names(df_long))
-
-  # The description, such as 'JC, RLN, BD',
-  # these are in 'tree_and_model_labels'
-  testthat::expect_false("model_setting" %in% names(df_long))
-
+  testthat::expect_equal(2, ncol(df_long))
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
-
 
   # Either 'generative' or 'best'
   df_long$inference_model <- forcats::fct_collapse(
@@ -42,8 +30,6 @@ pir_plot_from_long <- function(
   median <- NULL; rm(median) # nolint, fixes warning: no visible binding for global variable
   ..density.. <- NULL; rm(..density..) # nolint, fixes warning: no visible binding for global variable
 
-  theme <- pirouette::get_pir_plot_theme()
-
   ##### Legend labels #####
   tree_and_model_labels <- tree_and_model_labels[
     tree_and_model_labels$tree_and_model %in% df_long$tree_and_model,
@@ -51,23 +37,6 @@ pir_plot_from_long <- function(
 
 
   ##### Fill and line colors #####
-
-  # Line colors: must be darker than the fill color
-  tree_and_model_line_colors <- c(
-    "true_generative" = "#FF0000", # Red
-    "twin_generative" = "#E77E22", # Orange
-    "true_candidate" = "#0000FF", # Blue
-    "twin_candidate" = "#229955"  # Green
-  )
-
-  # Fill colors: must be lighter than the colors at the edges
-  tree_and_model_fill_colors <- c(
-    "true_generative" = "#FF3333", # Red
-    "twin_generative" = "#F99F55", # Orange
-    "true_candidate" = "#3333FF", # Blue
-    "twin_candidate" = "#559988"  # Green
-  )
-
   medians <- df_long %>%
     dplyr::group_by(tree_and_model) %>%
     dplyr::summarise(median = stats::median(error_value), .groups = "keep")
@@ -150,11 +119,11 @@ pir_plot_from_long <- function(
       )
   }
   plot + ggplot2::scale_color_manual(
-    values = tree_and_model_line_colors,
+    values = pirouette::get_pir_plot_line_colors(),
     labels = tree_and_model_labels
   ) +
   ggplot2::scale_fill_manual(
-    values = tree_and_model_fill_colors,
+    values = pirouette::get_pir_plot_fill_colors(),
     labels = tree_and_model_labels
   ) +
   ggplot2::scale_x_continuous(
@@ -176,5 +145,5 @@ pir_plot_from_long <- function(
     y = "Density",
     fill = "Model and tree",
     color = "Model and tree"
-  ) + theme
+  ) + pirouette::get_pir_plot_theme()
 }
