@@ -28,5 +28,5 @@ test_that("strip", {
   t <- subset(t, select = -site_model)
   t <- subset(t, select = -clock_model)
   t <- subset(t, select = -tree_prior)
-  pir_plot_from_long(t)
+  pir_plot_from_long(df_long = t)
 })

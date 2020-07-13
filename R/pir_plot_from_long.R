@@ -12,6 +12,29 @@ pir_plot_from_long <- function(df_long) {
   testthat::expect_true("tree_and_model" %in% names(df_long))
   testthat::expect_true("model_setting" %in% names(df_long))
 
+  df_long$inference_model <- NULL
+  df_long$inference_model <- forcats::fct_collapse(
+    df_long$tree_and_model,
+    generative = c("true_generative", "twin_generative"),
+    candidate = c("true_candidate", "twin_candidate")
+  )
+
+
+  for (i in seq_len(nrow(df_long))) {
+    if (df_long$tree_and_model[i] == "true_generative") {
+      testthat::expect_true(df_long$inference_model[i] == "generative")
+    }
+    if (as.character(df_long$tree_and_model[i]) == "twin_generative") {
+      testthat::expect_true(df_long$inference_model[i] == "generative")
+    }
+    if (df_long$tree_and_model[i] == "true_candidate") {
+      testthat::expect_true(df_long$inference_model[i] == "candidate")
+    }
+    if (df_long$tree_and_model[i] == "twin_candidate") {
+      testthat::expect_true(df_long$inference_model[i] == "candidate")
+    }
+  }
+
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
   error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
