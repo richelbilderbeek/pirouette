@@ -14,4 +14,5 @@ test_that("use", {
   expect_true("error_value" %in% names(t))
   expect_true("tree_and_model" %in% names(t))
   expect_true("model_setting"  %in% names(t))
+  expect_silent(pir_plot_from_long(t))
 })
