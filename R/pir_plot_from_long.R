@@ -5,14 +5,13 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 pir_plot_from_long <- function(df_long) {
-  testthat::expect_true("inference_model" %in% names(df_long))
+  testthat::expect_false("inference_model" %in% names(df_long))
   testthat::expect_true("error_index" %in% names(df_long))
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
   testthat::expect_true("model_setting" %in% names(df_long))
 
-  df_long$inference_model <- NULL
   df_long$inference_model <- forcats::fct_collapse(
     df_long$tree_and_model,
     generative = c("true_generative", "twin_generative"),

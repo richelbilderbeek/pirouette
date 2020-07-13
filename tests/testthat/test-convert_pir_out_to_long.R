@@ -5,7 +5,6 @@ test_that("use", {
   )
   t <- convert_pir_out_to_long(pir_out)
   expect_true("tree" %in% names(t))
-  expect_true("inference_model" %in% names(t))
   expect_true("inference_model_weight" %in% names(t))
   expect_true("site_model" %in% names(t))
   expect_true("clock_model" %in% names(t))

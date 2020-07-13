@@ -63,8 +63,7 @@ convert_pir_out_to_long <- function(
   df_long <- df_long[order(df_long$tree), ]
   df_long$model_setting <-
     factor(df_long$model_setting, levels = unique(df_long$model_setting))
-  df_long$inference_model <-
-    factor(df_long$inference_model, levels = unique(df_long$inference_model))
+  df_long$inference_model <- NULL
   rownames(df_long) <- mapply(seq_len(nrow(df_long)), FUN = toString)
 
   if (isTRUE(verbose)) {
