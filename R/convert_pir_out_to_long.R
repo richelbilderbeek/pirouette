@@ -13,6 +13,8 @@ convert_pir_out_to_long <- function(
   pir_out,
   verbose = FALSE
 ) {
+  tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
+
   pirouette::check_pir_out(pir_out)
 
   df <- pir_out

@@ -7,7 +7,9 @@
 pir_plot(pir_out, verbose = FALSE)
 }
 \arguments{
-\item{pir_out}{the output created by \code{\link{pir_run}}}
+\item{pir_out}{the output of \link{pir_run}}
+
+\item{verbose}{if TRUE, show more output}
 }
 \value{
 a \code{ggplot2} plot

@@ -3,7 +3,7 @@
 #'   and \code{description}
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-get_tree_and_model_descriptions <- function() {
+get_tree_and_model_descriptions <- function() {# nolint long function name is fine for an internal function
   t <- tibble::tribble(
     ~tree_and_model, ~description,
     "true_generative", "Generative, true",

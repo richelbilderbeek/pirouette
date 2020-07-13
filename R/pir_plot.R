@@ -1,5 +1,5 @@
 #' Plot the error 'BEAST2' makes from a known phylogeny
-#' @param pir_out the output created by \code{\link{pir_run}}
+#' @inheritParams default_params_doc
 #' @return a \code{ggplot2} plot
 #' @seealso
 #' \itemize{

@@ -1,9 +1,14 @@
 #' Internal function to obtain the \link{pir_plot} legend labels
-#' @param pir_plot the output created by \code{\link{pir_run}} in the long form
+#' @inheritParams default_params_doc
 #' @return the \link{pir_plot} legend labels
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @export
 get_pir_plot_tree_and_model_labels <- function(pir_out) {# nolint long function name is fine for an internal function
+
+  tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
+  model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable
+  description <- NULL; rm(description) # nolint, fixes warning: no visible binding for global variable
+
 
   default_descriptions <- pirouette::get_tree_and_model_descriptions()
 
@@ -42,8 +47,11 @@ get_pir_plot_tree_and_model_labels <- function(pir_out) {# nolint long function 
 
 
   t <- plyr::join(
-    x = default_descriptions, y = pir_out, by = "tree_and_model", type = "inner") %>%
-    dplyr::select(tree_and_model, description, model_setting)
+    x = default_descriptions,
+    y = pir_out,
+    by = "tree_and_model",
+    type = "inner"
+  ) %>% dplyr::select(tree_and_model, description, model_setting)
 
   t$description <- paste0(t$description, ": ", t$model_setting)
   t$model_setting <- NULL

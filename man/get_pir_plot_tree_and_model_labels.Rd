@@ -7,7 +7,7 @@
 get_pir_plot_tree_and_model_labels(pir_out)
 }
 \arguments{
-\item{pir_plot}{the output created by \code{\link{pir_run}} in the long form}
+\item{pir_out}{the output of \link{pir_run}}
 }
 \value{
 the \link{pir_plot} legend labels
