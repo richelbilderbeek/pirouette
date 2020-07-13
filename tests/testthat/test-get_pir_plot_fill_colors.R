@@ -8,4 +8,3 @@ test_that("c", {
   expect_equal(as.character(fill_colors["true_candidate"]), "#3333FF") # Blue
   expect_equal(as.character(fill_colors["twin_candidate"]), "#559988") # Green
 })
-
