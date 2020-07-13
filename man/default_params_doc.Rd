@@ -122,6 +122,8 @@ default_params_doc(
   sum_lamu,
   t_0,
   tree,
+  tree_and_model,
+  tree_and_models,
   tree_and_model_labels,
   treelog_filename,
   tree_filename,
@@ -658,6 +660,12 @@ algorithm to estimate the marginal likelihood}
 \item{t_0}{starting time of a tree}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
+
+\item{tree_and_model}{one combination of a tree and model,
+as created by \link{get_tree_and_model_values}}
+
+\item{tree_and_models}{one or more combination of a tree and model,
+as created by \link{get_tree_and_model_values}}
 
 \item{tree_and_model_labels}{tabular data that maps
 a \code{tree_and_model} (e.g. \code{generative_true}) to

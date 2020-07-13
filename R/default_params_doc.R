@@ -395,6 +395,10 @@
 #' @param sum_lamu is the sum lambda + mu
 #' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
+#' @param tree_and_model one combination of a tree and model,
+#'   as created by \link{get_tree_and_model_values}
+#' @param tree_and_models one or more combination of a tree and model,
+#'   as created by \link{get_tree_and_model_values}
 #' @param tree_and_model_labels tabular data that maps
 #'   a \code{tree_and_model} (e.g. \code{generative_true}) to
 #'   a description (e.g. "Generative, true"),
@@ -569,6 +573,7 @@ default_params_doc <- function(
   sum_lamu,
   t_0,
   tree,
+  tree_and_model, tree_and_models,
   tree_and_model_labels,
   treelog_filename,
   tree_filename,

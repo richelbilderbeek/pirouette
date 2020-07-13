@@ -11,6 +11,8 @@ pir_plot_from_long <- function(
   testthat::expect_equal(2, ncol(df_long))
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
+  pirouette::check_tree_and_models(df_long$tree_and_model)
+
 
   # Either 'generative' or 'best'
   df_long$inference_model <- forcats::fct_collapse(
