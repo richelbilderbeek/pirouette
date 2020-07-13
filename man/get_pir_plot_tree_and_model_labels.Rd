@@ -4,7 +4,7 @@
 \alias{get_pir_plot_tree_and_model_labels}
 \title{Internal function to obtain the \link{pir_plot} legend labels}
 \usage{
-get_pir_plot_tree_and_model_labels(df_long)
+get_pir_plot_tree_and_model_labels(pir_out)
 }
 \arguments{
 \item{df_long}{the output created by \code{\link{pir_run}} in the long form}

@@ -22,6 +22,12 @@ pir_plot <- function(
   pir_out,
   verbose = FALSE
 ) {
+  tree_and_model_labels <- get_pir_plot_tree_and_model_labels(pir_out)
+
   df_long <- convert_pir_out_to_long(pir_out, verbose = verbose)
-  pirouette::pir_plot_from_long(df_long)
+
+  pirouette::pir_plot_from_long(
+    df_long,
+    tree_and_model_labels = tree_and_model_labels
+  )
 }

@@ -1,51 +1,51 @@
 #' Internal function to obtain the \link{pir_plot} legend labels
-#' @param df_long the output created by \code{\link{pir_run}} in the long form
+#' @param pir_plot the output created by \code{\link{pir_run}} in the long form
 #' @return the \link{pir_plot} legend labels
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @export
-get_pir_plot_tree_and_model_labels <- function(df_long) {# nolint long function name is fine for an internal function
-  # Get the 'model_setting' (e.g. JC, RLN, BD) from the 'tree_and_model'
-  # (e.g. 'true_generative')
-  get_first <- function(x) utils::head(x, n = 1)
-  # True, Generative
-  tg_label <- NULL
-  tg_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "true_generative"]
-  )
-  if (length(tg_model)) {
-    tg_label <- paste("Generative, true:", tg_model)
-  }
-  # Twin, Generative
-  wg_label <- NULL
-  wg_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "twin_generative"]
-  )
-  if (length(wg_model)) {
-    wg_label <- paste("Generative, twin:", wg_model)
-  }
-  # True, Best
-  tb_label <- NULL
-  tb_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "true_candidate"]
-  )
-  if (length(tb_model)) {
-    tb_label <- paste("Best, true:", tb_model)
-  }
-  # Twin, Best
-  wb_label <- NULL
-  wb_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "twin_candidate"]
-  )
-  if (length(wb_model)) {
-    wb_label <- paste("Best, twin:", wb_model)
-  }
+get_pir_plot_tree_and_model_labels <- function(pir_out) {# nolint long function name is fine for an internal function
 
-  # Collect all labels. Absent models have NULL labels and are thus ignored
-  tree_and_model_labels <- c(
-    tg_label,
-    wg_label,
-    tb_label,
-    wb_label
+  default_descriptions <- pirouette::get_tree_and_model_descriptions()
+
+  # Convert factor values to human-readable strings
+  pir_out$site_model <- plyr::revalue(
+    pir_out$site_model, c("JC69" = "JC", "TN93" = "TN"), warn_missing = FALSE)
+  pir_out$clock_model <- plyr::revalue(
+    pir_out$clock_model,
+    c("strict" = "Strict", "relaxed_log_normal" = "RLN"), warn_missing = FALSE
   )
-  tree_and_model_labels
+  pir_out$tree_prior <- plyr::revalue(
+    pir_out$tree_prior,
+    c(
+      "yule" = "Yule",
+      "birth_death" = "BD",
+      "coalescent_bayesian_skyline" = "CBS",
+      "coalescent_constant_population" = "CCP",
+      "coalescent_exp_population" = "CEP"
+    ),
+    warn_missing = FALSE
+  )
+
+
+  pir_out$model_setting <- paste(
+    pir_out$site_model,
+    pir_out$clock_model,
+    pir_out$tree_prior,
+    sep = ", "
+  )
+  pir_out$tree_and_model <- paste(
+    pir_out$tree,
+    pir_out$inference_model,
+    sep = "_"
+  )
+  pir_out$tree_and_model <- as.factor(pir_out$tree_and_model)
+
+
+  t <- plyr::join(
+    x = default_descriptions, y = pir_out, by = "tree_and_model", type = "inner") %>%
+    dplyr::select(tree_and_model, description, model_setting)
+
+  t$description <- paste0(t$description, ": ", t$model_setting)
+  t$model_setting <- NULL
+  t
 }

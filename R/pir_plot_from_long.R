@@ -43,11 +43,6 @@ pir_plot_from_long <- function(
   theme <- pirouette::get_pir_plot_theme()
 
   ##### Legend labels #####
-  tree_and_model_labels <- pirouette::get_pir_plot_tree_and_model_labels(
-    df_long
-  )
-
-  tree_and_model_labels <- get_tree_and_model_descriptions()
   tree_and_model_labels <- tree_and_model_labels[
     tree_and_model_labels$tree_and_model %in% df_long$tree_and_model,
   ]$description
