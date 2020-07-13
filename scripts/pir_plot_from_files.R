@@ -19,7 +19,8 @@ pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
 message("2: ", Sys.time()) # Takes 1 minute and 5 secs
 
 Sys.time()
-p <- pir_plots(pir_outs, verbose = TRUE)
+# p <- pir_plots(pir_outs, verbose = TRUE)
+p <- pir_plot_from_long(convert_pir_out_to_long(pir_outs))
 p + ggplot2::ggtitle("") + ggplot2::ggsave("example_42.png", width = 7, height = 7)
 Sys.time()
 
