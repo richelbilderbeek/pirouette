@@ -93,6 +93,7 @@
 #' @param consensus the order of which the taxon labels are plotted
 #' @param crown_age the fixed crown age of the posterior. Set to NA
 #'   to let it be estimated
+#' @param df_long the output created by \code{\link{pir_run}} in the long form
 #' @param do_measure_evidence boolean to indicate if the
 #'   evidence (aka marginal likelihood) of an experiment must be
 #'   measured
@@ -394,6 +395,10 @@
 #' @param sum_lamu is the sum lambda + mu
 #' @param t_0 starting time of a tree
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
+#' @param tree_and_model_labels tabular data that maps
+#'   a \code{tree_and_model} (e.g. \code{generative_true}) to
+#'   a description (e.g. "Generative, true"),
+#'   as created by \link{get_tree_and_model_descriptions}
 #' @param treelog_filename name of the MCMC's treelog file,
 #'   which is \code{$(tree).trees} by default.
 #'   Use \link{complete_treelog_filename} to obtain the complete path to
@@ -480,6 +485,7 @@ default_params_doc <- function(
   clock_model_name,
   consensus,
   crown_age,
+  df_long,
   do_measure_evidence,
   epsilon,
   error_fun,
@@ -563,6 +569,7 @@ default_params_doc <- function(
   sum_lamu,
   t_0,
   tree,
+  tree_and_model_labels,
   treelog_filename,
   tree_filename,
   tree_model,

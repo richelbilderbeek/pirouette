@@ -1,10 +1,13 @@
 #' Plot the error 'BEAST2' makes from a known phylogeny
 #' from tidy data
-#' @param df_long the output created by \code{\link{pir_run}} in the long form
+#' @inheritParams default_params_doc
 #' @return a \code{ggplot2} plot
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
-pir_plot_from_long <- function(df_long) {
+pir_plot_from_long <- function(
+  df_long,
+  tree_and_model_labels = get_tree_and_model_descriptions()
+) {
   testthat::expect_false("inference_model" %in% names(df_long))
   testthat::expect_false("tree" %in% names(df_long))
   testthat::expect_false("inference_model_weight" %in% names(df_long))
@@ -43,6 +46,12 @@ pir_plot_from_long <- function(df_long) {
   tree_and_model_labels <- pirouette::get_pir_plot_tree_and_model_labels(
     df_long
   )
+
+  tree_and_model_labels <- get_tree_and_model_descriptions()
+  tree_and_model_labels <- tree_and_model_labels[
+    tree_and_model_labels$tree_and_model %in% df_long$tree_and_model,
+  ]$description
+
 
   ##### Fill and line colors #####
 
