@@ -45,4 +45,3 @@ test_that("11", {
   expect_true("tree_and_model" %in% names(t))
   expect_silent(pir_plot_from_long(t))
 })
-
