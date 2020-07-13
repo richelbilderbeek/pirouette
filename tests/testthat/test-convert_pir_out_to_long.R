@@ -4,7 +4,7 @@ test_that("use", {
     add_best = TRUE
   )
   t <- convert_pir_out_to_long(pir_out)
-  expect_true("error_index" %in% names(t))
+  expect_false("error_index" %in% names(t))
   expect_true("error_value" %in% names(t))
   expect_true("tree_and_model" %in% names(t))
   expect_true("model_setting"  %in% names(t))

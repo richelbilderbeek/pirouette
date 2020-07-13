@@ -25,6 +25,7 @@ convert_pir_out_to_long <- function(
     df, "error_index", "error_value", first_col_index:ncol(df)
   )
   testthat::expect_true("error_index" %in% names(df_long))
+  df_long$error_index <- NULL
   testthat::expect_true("error_value" %in% names(df_long))
 
   # Convert factor values to human-readable strings

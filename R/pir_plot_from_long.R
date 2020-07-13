@@ -11,8 +11,11 @@ pir_plot_from_long <- function(df_long) {
   testthat::expect_false("site_model" %in% names(df_long))
   testthat::expect_false("clock_model" %in% names(df_long))
   testthat::expect_false("tree_prior" %in% names(df_long))
+  testthat::expect_false("error_index" %in% names(df_long))
 
-  testthat::expect_true("error_index" %in% names(df_long))
+  #testthat::expect_true("error_index" %in% names(df_long))
+  #df_long$error_index <- NULL
+
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
 
@@ -66,7 +69,9 @@ pir_plot_from_long <- function(df_long) {
   # Collect the medians
   medians <- df_long %>%
     dplyr::group_by(tree_and_model) %>%
-    dplyr::summarise(median = stats::median(error_value))
+    dplyr::summarise(median = stats::median(error_value), .groups = "keep")
+  expect_true("tree_and_model" %in% names(medians))
+  expect_true("median" %in% names(medians))
 
   ##### Only keep 95% of x axis values #####
 
@@ -75,8 +80,9 @@ pir_plot_from_long <- function(df_long) {
 
   ##### More aesthetic settings for the plots #####
 
-  n_errors <- length(unique(df_long$error_index))
-  bindwidth <- 0.1 / sqrt(n_errors)
+
+  #n_errors <- length(unique(df_long$error_index))
+  #bindwidth <- 0.1 / sqrt(n_errors)
   alpha <- 0.5
 
   ##### Plot it (Single Plot) #####
@@ -93,8 +99,9 @@ pir_plot_from_long <- function(df_long) {
     ) +
       ggplot2::geom_histogram(
         data = df_long,
-        ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
-        binwidth = bindwidth,
+        #ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
+        #binwidth = bindwidth,
+        bins = 30,
         alpha = alpha,
         position = "identity"
       ) +
@@ -171,8 +178,9 @@ pir_plot_from_long <- function(df_long) {
     ) +
       ggplot2::geom_histogram(
       data = df_long,
-      ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
-      binwidth = bindwidth,
+      #ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
+      #binwidth = bindwidth,
+      bins = 30,
       alpha = alpha,
       position = "identity"
     ) +
