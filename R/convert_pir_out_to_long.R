@@ -41,8 +41,6 @@ convert_pir_out_to_long <- function(
   testthat::expect_true("error_index" %in% names(df_long))
   df_long$error_index <- NULL
 
-  rownames(df_long) <- mapply(seq_len(nrow(df_long)), FUN = toString)
-
   if (isTRUE(verbose)) {
     message(utils::head(df_long))
   }
