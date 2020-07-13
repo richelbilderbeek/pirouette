@@ -15,6 +15,8 @@ pir_plot_from_long <- function(df_long) {
   testthat::expect_true("error_index" %in% names(df_long))
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
+
+   # The description, such as 'JC, RLN, BD'
   testthat::expect_true("model_setting" %in% names(df_long))
 
   df_long$inference_model <- forcats::fct_collapse(
@@ -22,22 +24,6 @@ pir_plot_from_long <- function(df_long) {
     generative = c("true_generative", "twin_generative"),
     candidate = c("true_candidate", "twin_candidate")
   )
-
-
-  for (i in seq_len(nrow(df_long))) {
-    if (df_long$tree_and_model[i] == "true_generative") {
-      testthat::expect_true(df_long$inference_model[i] == "generative")
-    }
-    if (as.character(df_long$tree_and_model[i]) == "twin_generative") {
-      testthat::expect_true(df_long$inference_model[i] == "generative")
-    }
-    if (df_long$tree_and_model[i] == "true_candidate") {
-      testthat::expect_true(df_long$inference_model[i] == "candidate")
-    }
-    if (df_long$tree_and_model[i] == "twin_candidate") {
-      testthat::expect_true(df_long$inference_model[i] == "candidate")
-    }
-  }
 
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
@@ -53,48 +39,8 @@ pir_plot_from_long <- function(df_long) {
   theme <- pirouette::get_pir_plot_theme()
 
   ##### Legend labels #####
-  # Get the 'model_setting' (e.g. JC, RLN, BD) from the 'tree_and_model'
-  # (e.g. 'true_generative')
-  get_first <- function(x) utils::head(x, n = 1)
-  # True, Generative
-  tg_label <- NULL
-  tg_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "true_generative"]
-  )
-  if (length(tg_model)) {
-    tg_label <- paste("Generative, true:", tg_model)
-  }
-  # Twin, Generative
-  wg_label <- NULL
-  wg_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "twin_generative"]
-  )
-  if (length(wg_model)) {
-    wg_label <- paste("Generative, twin:", wg_model)
-  }
-  # True, Best
-  tb_label <- NULL
-  tb_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "true_candidate"]
-  )
-  if (length(tb_model)) {
-    tb_label <- paste("Best, true:", tb_model)
-  }
-  # Twin, Best
-  wb_label <- NULL
-  wb_model <- get_first(
-    df_long$model_setting[df_long$tree_and_model == "twin_candidate"]
-  )
-  if (length(wb_model)) {
-    wb_label <- paste("Best, twin:", wb_model)
-  }
-
-  # Collect all labels. Absent models have NULL labels and are thus ignored
-  tree_and_model_labels <- c(
-    tg_label,
-    wg_label,
-    tb_label,
-    wb_label
+  tree_and_model_labels <- pirouette::get_pir_plot_tree_and_model_labels(
+    df_long
   )
 
   ##### Fill and line colors #####

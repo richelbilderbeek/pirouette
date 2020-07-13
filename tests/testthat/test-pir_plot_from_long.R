@@ -5,6 +5,7 @@ test_that("00", {
   )
   t <- convert_pir_out_to_long(pir_out)
   expect_silent(pir_plot_from_long(t))
+  pir_plot_from_long(t)
 })
 
 test_that("01", {
@@ -14,6 +15,7 @@ test_that("01", {
   )
   t <- convert_pir_out_to_long(pir_out)
   expect_silent(pir_plot_from_long(t))
+  pir_plot_from_long(t)
 })
 
 test_that("10", {
@@ -23,6 +25,7 @@ test_that("10", {
   )
   t <- convert_pir_out_to_long(pir_out)
   expect_silent(pir_plot_from_long(t))
+  pir_plot_from_long(t)
 })
 
 test_that("11", {
@@ -32,4 +35,5 @@ test_that("11", {
   )
   t <- convert_pir_out_to_long(pir_out)
   expect_silent(pir_plot_from_long(t))
+  pir_plot_from_long(t)
 })
