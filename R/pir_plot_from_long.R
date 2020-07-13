@@ -13,15 +13,13 @@ pir_plot_from_long <- function(df_long) {
   testthat::expect_false("tree_prior" %in% names(df_long))
   testthat::expect_false("error_index" %in% names(df_long))
 
-  #testthat::expect_true("error_index" %in% names(df_long))
-  #df_long$error_index <- NULL
-
   testthat::expect_true("error_value" %in% names(df_long))
   testthat::expect_true("tree_and_model" %in% names(df_long))
 
    # The description, such as 'JC, RLN, BD'
   testthat::expect_true("model_setting" %in% names(df_long))
 
+  # Either 'generative' or 'best'
   df_long$inference_model <- forcats::fct_collapse(
     df_long$tree_and_model,
     generative = c("true_generative", "twin_generative"),
@@ -64,29 +62,18 @@ pir_plot_from_long <- function(df_long) {
     "twin_candidate" = "#559988"  # Green
   )
 
-  ##### Medians for the vertical lines #####
-
-  # Collect the medians
   medians <- df_long %>%
     dplyr::group_by(tree_and_model) %>%
     dplyr::summarise(median = stats::median(error_value), .groups = "keep")
-  expect_true("tree_and_model" %in% names(medians))
-  expect_true("median" %in% names(medians))
-
-  ##### Only keep 95% of x axis values #####
+  testthat::expect_true("tree_and_model" %in% names(medians))
+  testthat::expect_true("median" %in% names(medians))
 
   index <- trunc(0.95 * length(df_long$error_value))
   x_top <- sort(df_long$error_value)[index]
 
-  ##### More aesthetic settings for the plots #####
-
-
-  #n_errors <- length(unique(df_long$error_index))
-  #bindwidth <- 0.1 / sqrt(n_errors)
   alpha <- 0.5
 
-  ##### Plot it (Single Plot) #####
-
+  # Only generative
   if (length(unique(df_long$inference_model)) == 1) {
 
     plot <- ggplot2::ggplot(
@@ -99,8 +86,6 @@ pir_plot_from_long <- function(df_long) {
     ) +
       ggplot2::geom_histogram(
         data = df_long,
-        #ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
-        #binwidth = bindwidth,
         bins = 30,
         alpha = alpha,
         position = "identity"
@@ -178,8 +163,6 @@ pir_plot_from_long <- function(df_long) {
     ) +
       ggplot2::geom_histogram(
       data = df_long,
-      #ggplot2::aes(y = bindwidth * ..density..), # nolint the dots in ..density.. are not improper ways to separate words here
-      #binwidth = bindwidth,
       bins = 30,
       alpha = alpha,
       position = "identity"
