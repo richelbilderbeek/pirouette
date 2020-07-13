@@ -4,12 +4,13 @@ library(testthat)
 
 #super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
 #super_folder <- "/media/richel/D2B40C93B40C7BEB/pirouette_examples/pirouette_example_18/example_18"
-super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
+#super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
+super_folder <- "/home/richel/pirouette_example_32/pirouette_example_32/example_32"
 
 folder_names <- list.dirs(
   super_folder
 )
-folder_names <- folder_names[folder_names != super_folder]
+folder_names <- folder_names[folder_names != super_folder][1:5]
 folder_names
 expect_true(all(dir.exists(folder_names)))
 
