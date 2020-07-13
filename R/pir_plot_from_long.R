@@ -79,7 +79,7 @@ pir_plot_from_long <- function(
   alpha <- 0.5
 
   # Only generative
-  if (length(unique(df_long$inference_model)) == 1) {
+  if (length(unique(df_long$inference_model)) == 1 && 1 == 2) {
 
     plot <- ggplot2::ggplot(
       data = df_long,
@@ -125,9 +125,7 @@ pir_plot_from_long <- function(
         color = "Model and tree"
       ) + theme
   }
-  ##### Split Candidate plot from Generative Plot #####
-
-  if (length(unique(df_long$inference_model)) > 1) {
+  else {
     medians$inference_model <- gsub(
       x = gsub(
         x = medians$tree_and_model,
