@@ -21,6 +21,7 @@ pir_plot_from_long <- function(
 
    # The description, such as 'JC, RLN, BD'
   testthat::expect_true("model_setting" %in% names(df_long))
+  df_long$model_setting <- NULL
 
   # Either 'generative' or 'best'
   df_long$inference_model <- forcats::fct_collapse(
