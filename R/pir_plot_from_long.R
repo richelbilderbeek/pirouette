@@ -47,7 +47,7 @@ pir_plot_from_long <- function(
     x = tree_and_model_errors$error_value,
     probs = 0.95
   )
-
+  binwidth <- x_top / 30
 
   alpha <- 0.5
 
@@ -64,7 +64,7 @@ pir_plot_from_long <- function(
     ) +
       ggplot2::geom_histogram(
         data = tree_and_model_errors,
-        bins = 30,
+        binwidth = binwidth,
         alpha = alpha,
         position = "identity"
       )
@@ -114,7 +114,7 @@ pir_plot_from_long <- function(
     ) +
       ggplot2::geom_histogram(
       data = tree_and_model_errors,
-      bins = 30,
+      binwidth = binwidth,
       alpha = alpha,
       position = "identity"
     ) +
@@ -132,9 +132,7 @@ pir_plot_from_long <- function(
     values = pirouette::get_pir_plot_fill_colors(),
     labels = tree_and_model_labels
   ) +
-  ggplot2::coord_cartesian(
-    xlim = c(0.0, x_top)
-  ) +
+  ggplot2::coord_cartesian(xlim = c(0.0, x_top)) +
   ggplot2::geom_vline(
     data = medians,
     ggplot2::aes(
