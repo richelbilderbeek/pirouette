@@ -54,7 +54,6 @@ default_params_doc(
   filename,
   folder_name,
   folder_names,
-  ideal_method,
   inference_model,
   inference_conditions,
   init_speciation_rate,
@@ -358,8 +357,6 @@ Use \link{get_alignment_id} to get the ID of the alignment}
 \item{folder_name}{name of the main folder}
 
 \item{folder_names}{one or more folder names}
-
-\item{ideal_method}{method to generate the "ideal" tree}
 
 \item{inference_model}{an inference model, which is a combination
 of site model, clock model, tree prior and BEAST2 input and
