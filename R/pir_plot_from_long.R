@@ -6,7 +6,7 @@
 #' @export
 pir_plot_from_long <- function(
   tree_and_model_errors,
-  tree_and_model_labels = get_tree_and_model_descriptions()
+  tree_and_model_descriptions = get_tree_and_model_descriptions()
 ) {
   pirouette::check_tree_and_model_errors(tree_and_model_errors)
 
@@ -30,8 +30,8 @@ pir_plot_from_long <- function(
   ..density.. <- NULL; rm(..density..) # nolint, fixes warning: no visible binding for global variable
 
   ##### Legend labels #####
-  tree_and_model_labels <- tree_and_model_labels[
-    tree_and_model_labels$tree_and_model %in% tree_and_model_errors$tree_and_model,
+  tree_and_model_labels <- tree_and_model_descriptions[
+    tree_and_model_descriptions$tree_and_model %in% tree_and_model_errors$tree_and_model,
   ]$description
 
 

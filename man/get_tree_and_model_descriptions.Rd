@@ -2,7 +2,8 @@
 % Please edit documentation in R/get_tree_and_model_descriptions.R
 \name{get_tree_and_model_descriptions}
 \alias{get_tree_and_model_descriptions}
-\title{Internal function to creat a mapping from a \code{tree_and_model}}
+\title{Internal function to create a mapping from a \code{tree_and_model}
+to a description}
 \usage{
 get_tree_and_model_descriptions()
 }
@@ -11,7 +12,15 @@ a \link[tibble]{tibble} with columns \code{tree_and_model}
   and \code{description}
 }
 \description{
-Internal function to creat a mapping from a \code{tree_and_model}
+Internal function to create a mapping from a \code{tree_and_model}
+to a description
+}
+\examples{
+library(testthat)
+
+t <- get_tree_and_model_descriptions()
+
+expect_silent(check_tree_and_models(t$tree_and_model))
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

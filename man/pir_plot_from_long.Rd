@@ -7,14 +7,14 @@ from tidy data}
 \usage{
 pir_plot_from_long(
   tree_and_model_errors,
-  tree_and_model_labels = get_tree_and_model_descriptions()
+  tree_and_model_descriptions = get_tree_and_model_descriptions()
 )
 }
 \arguments{
 \item{tree_and_model_errors}{a tibble of a \code{tree_and_model}
 and errors, which passes \link{check_tree_and_model_errors}}
 
-\item{tree_and_model_labels}{tabular data that maps
+\item{tree_and_model_descriptions}{tabular data that maps
 a \code{tree_and_model} (e.g. \code{generative_true}) to
 a description (e.g. "Generative, true"),
 as created by \link{get_tree_and_model_descriptions}}
