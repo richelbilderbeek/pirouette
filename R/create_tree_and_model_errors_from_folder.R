@@ -14,6 +14,9 @@ create_tree_and_model_errors_from_folder <- function(# nolint indeed a long func
     list.files(path = folder_name, pattern = "^best_errors.csv$", full.names = TRUE), # nolint indeed a long line
     list.files(path = folder_name, pattern = "^best_errors_twin.csv$", full.names = TRUE) # nolint indeed a long line
   )
+  if (length(errors_filenames) != 4) {
+    stop("Not all four files found in folder ", folder_name)
+  }
   testthat::expect_equal(4, length(errors_filenames))
   testthat::expect_true(all(file.exists(errors_filenames)))
 
