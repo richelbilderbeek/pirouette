@@ -1,10 +1,11 @@
-#' Plot the error 'BEAST2' makes from a known phylogeny
-#' from tidy data
+#' Internal function to create a \code{tree_and_model_errors}
+#' from the files in a folder
 #' @inheritParams default_params_doc
-#' @return a \code{ggplot2} plot
+#' @return a \code{tree_and_model_errors},
+#'   as can be checked by \link{check_tree_and_model_errors}
 #' @author Richèl J.C. Bilderbeek
 #' @export
-create_long_pir_out_from_folder <- function(# nolint indeed a long function name
+create_tree_and_model_errors_from_folder <- function(# nolint indeed a long function name
   folder_name
 ) {
   errors_filenames <- c(

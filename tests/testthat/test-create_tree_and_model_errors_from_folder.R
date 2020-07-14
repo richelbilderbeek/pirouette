@@ -6,6 +6,6 @@ test_that("use", {
   folder_name <- folder_names[1]
 
 
-  long_pir_out <- create_long_pir_out_from_folder(folder_name)
-  pirouette::check_tree_and_model_errors(long_pir_out)
+  tree_and_model_errors <- create_tree_and_model_errors_from_folder(folder_name)
+  pirouette::check_tree_and_model_errors(tree_and_model_errors)
 })
