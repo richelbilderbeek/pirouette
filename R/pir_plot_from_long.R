@@ -140,7 +140,7 @@ pir_plot_from_long <- function(
       color = tree_and_model
     ),
     linetype = "dashed"
-  ) + ggplot2::ggtitle("Inference error distribution") +
+  ) +
     ggplot2::labs(
     x = "Error",
     y = "Density",
