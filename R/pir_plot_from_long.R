@@ -31,7 +31,7 @@ pir_plot_from_long <- function(
 
   ##### Legend labels #####
   tree_and_model_labels <- tree_and_model_descriptions[
-    tree_and_model_descriptions$tree_and_model %in% tree_and_model_errors$tree_and_model,
+    tree_and_model_descriptions$tree_and_model %in% tree_and_model_errors$tree_and_model, # nolint indeed a long line
   ]$description
 
 
@@ -66,7 +66,9 @@ pir_plot_from_long <- function(
       )
   } else {
 
-    testthat::expect_true(length(unique(tree_and_model_errors$inference_model)) > 1)
+    testthat::expect_true(
+      length(unique(tree_and_model_errors$inference_model)) > 1
+    )
 
     medians$inference_model <- gsub(
       x = gsub(
