@@ -51,6 +51,8 @@ pir_plot_from_long <- function(
 
   alpha <- 0.5
 
+
+
   # Only generative
   if (length(unique(tree_and_model_errors$inference_model)) == 1) {
 
@@ -74,32 +76,28 @@ pir_plot_from_long <- function(
       length(unique(tree_and_model_errors$inference_model)) > 1
     )
 
-    medians$inference_model <- gsub(
-      x = gsub(
-        x = medians$tree_and_model,
-        pattern = "true_",
-        replacement = ""
-      ),
-      pattern = "twin_",
-      replacement = ""
+    medians$inference_model <- forcats::fct_collapse(
+      medians$tree_and_model,
+      generative = c("true_generative", "twin_generative"),
+      candidate = c("true_candidate", "twin_candidate")
     )
     tree_and_model_errors$inference_model <- plyr::revalue(
       tree_and_model_errors$inference_model,
       c(
-        "candidate" = "Best",
-        "generative" = "Generative"
+        "generative" = "Generative",
+        "candidate" = "Best"
       ),
       warn_missing = FALSE
     )
     medians$inference_model <- plyr::revalue(
       medians$inference_model,
       c(
-        "candidate" = "Best",
-        "generative" = "Generative"
+        "generative" = "Generative",
+        "candidate" = "Best"
       ),
       warn_missing = FALSE
     )
-    inference_model_labels <- c("Best", "Generative")
+    inference_model_labels <- c("Generative", "Best")
     names(inference_model_labels) <- c("Generative", "Best")
 
     ##### Plot it (Double plot) #####
@@ -113,13 +111,12 @@ pir_plot_from_long <- function(
       )
     ) +
       ggplot2::geom_histogram(
-      data = tree_and_model_errors,
       binwidth = binwidth,
       alpha = alpha,
       position = "identity"
     ) +
       ggplot2::facet_wrap(
-        .~ inference_model,
+        . ~ inference_model,
         ncol = 1,
         labeller = ggplot2::labeller(inference_model = inference_model_labels)
       )

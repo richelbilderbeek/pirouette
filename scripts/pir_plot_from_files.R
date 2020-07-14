@@ -15,10 +15,11 @@ folder_names
 expect_true(all(dir.exists(folder_names)))
 
 Sys.time()
-long_pir_out <- create_tree_and_model_errors_from_folders(
+tree_and_model_errors <- create_tree_and_model_errors_from_folders(
   folder_names = folder_names
 )
-p <- pir_plot_from_long(long_pir_out)
-p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
+p <- pir_plot_from_long(tree_and_model_errors)
+p
+p <- p  + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
 p
 Sys.time()
