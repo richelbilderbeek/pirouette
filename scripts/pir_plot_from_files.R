@@ -10,24 +10,11 @@ super_folder <- "/home/richel/pirouette_example_32/pirouette_example_32/example_
 folder_names <- list.dirs(
   super_folder
 )
-folder_names <- folder_names[folder_names != super_folder][1:5]
+folder_names <- folder_names[folder_names != super_folder]
 folder_names
 expect_true(all(dir.exists(folder_names)))
 
-oldskool <- function(folder_names) {
-  pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
-  p <- pir_plots(pir_outs, verbose = TRUE)
-  p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
-}
-
-newskool <- function(folder_names) {
-  pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
-  p <- pir_plot_from_long(convert_pir_out_to_long(pir_outs))
-  p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
-}
-
-microbenchmark::microbenchmark(
-  oldskool(folder_names),
-  newskool(folder_names),
-  times = 1
-)
+long_pir_out <- create_long_pir_out_from_folders(folder_names = folder_names)
+p <- pir_plot_from_long(long_pir_out)
+p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
+p

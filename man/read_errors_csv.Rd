@@ -2,7 +2,7 @@
 % Please edit documentation in R/read_errors_csv.R
 \name{read_errors_csv}
 \alias{read_errors_csv}
-\title{Create a \code{pir_out} from a folder}
+\title{Read the errors from a \code{.csv} file}
 \usage{
 read_errors_csv(errors_filename)
 }
@@ -10,10 +10,10 @@ read_errors_csv(errors_filename)
 \item{errors_filename}{baseline name for errors filenames}
 }
 \value{
-a \code{pir_out}, as can be checked by \link{check_pir_out}
+a numeric vector of error values
 }
 \description{
-Create a \code{pir_out} from a folder
+Read the errors from a \code{.csv} file
 }
 \author{
 Richèl J.C. Bilderbeek
