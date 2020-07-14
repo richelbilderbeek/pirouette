@@ -120,7 +120,6 @@ default_params_doc(
   sub_chain_length,
   subst_matrix,
   sum_lamu,
-  t_0,
   tree,
   tree_and_model,
   tree_and_models,
@@ -657,8 +656,6 @@ algorithm to estimate the marginal likelihood}
 \item{subst_matrix}{nucleotide substitution matrix}
 
 \item{sum_lamu}{is the sum lambda + mu}
-
-\item{t_0}{starting time of a tree}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 
