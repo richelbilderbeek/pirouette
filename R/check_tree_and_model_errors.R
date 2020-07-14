@@ -1,7 +1,12 @@
-#' Plot the error 'BEAST2' makes from a known phylogeny
-#' from tidy data
+#' Check if the \code{tree_and_model_errors} is valid.
+#'
+#' Check if the \code{tree_and_model_errors} is valid, will \link{stop} if not.
+#'
+#' A \code{tree_and_model_errors} must be a \link[tibble]{tibble}
+#' with two columns, named \code{tree_and_model} and \code{error_value},
+#' of which \code{tree_and_model} must be a factor.
 #' @inheritParams default_params_doc
-#' @return a \code{ggplot2} plot
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_tree_and_model_errors <- function(tree_and_model_errors) {

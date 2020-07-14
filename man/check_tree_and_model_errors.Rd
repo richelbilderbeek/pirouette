@@ -2,17 +2,24 @@
 % Please edit documentation in R/check_tree_and_model_errors.R
 \name{check_tree_and_model_errors}
 \alias{check_tree_and_model_errors}
-\title{Plot the error 'BEAST2' makes from a known phylogeny
-from tidy data}
+\title{Check if the \code{tree_and_model_errors} is valid.}
 \usage{
 check_tree_and_model_errors(tree_and_model_errors)
 }
+\arguments{
+\item{tree_and_model_errors}{a tibble of a \code{tree_and_model}
+and errors, which passes \link{check_tree_and_model_errors}}
+}
 \value{
-a \code{ggplot2} plot
+nothing
 }
 \description{
-Plot the error 'BEAST2' makes from a known phylogeny
-from tidy data
+Check if the \code{tree_and_model_errors} is valid, will \link{stop} if not.
+}
+\details{
+A \code{tree_and_model_errors} must be a \link[tibble]{tibble}
+with two columns, named \code{tree_and_model} and \code{error_value},
+of which \code{tree_and_model} must be a factor.
 }
 \author{
 Richèl J.C. Bilderbeek

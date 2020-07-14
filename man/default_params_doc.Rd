@@ -124,6 +124,7 @@ default_params_doc(
   tree,
   tree_and_model,
   tree_and_models,
+  tree_and_model_errors,
   tree_and_model_labels,
   treelog_filename,
   tree_filename,
@@ -666,6 +667,9 @@ as created by \link{get_tree_and_model_values}}
 
 \item{tree_and_models}{one or more combination of a tree and model,
 as created by \link{get_tree_and_model_values}}
+
+\item{tree_and_model_errors}{a tibble of a \code{tree_and_model}
+and errors, which passes \link{check_tree_and_model_errors}}
 
 \item{tree_and_model_labels}{tabular data that maps
 a \code{tree_and_model} (e.g. \code{generative_true}) to

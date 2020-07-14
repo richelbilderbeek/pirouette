@@ -20,7 +20,7 @@ convert_pir_out_to_long <- function(
 
   pirouette::check_pir_out(pir_out)
 
-  df <- pir_out
+  df <- tibble::as_tibble(pir_out)
   df <- dplyr::rename(df, tree_and_model = tree)
   df$tree_and_model <- interaction(
     df$tree_and_model,
@@ -49,5 +49,7 @@ convert_pir_out_to_long <- function(
   if (isTRUE(verbose)) {
     message(utils::head(df_long))
   }
+  df_long$tree_and_model <- forcats::as_factor(df_long$tree_and_model)
+
   df_long
 }

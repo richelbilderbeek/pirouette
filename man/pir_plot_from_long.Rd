@@ -6,12 +6,13 @@
 from tidy data}
 \usage{
 pir_plot_from_long(
-  df_long,
+  tree_and_model_errors,
   tree_and_model_labels = get_tree_and_model_descriptions()
 )
 }
 \arguments{
-\item{df_long}{the output created by \code{\link{pir_run}} in the long form}
+\item{tree_and_model_errors}{a tibble of a \code{tree_and_model}
+and errors, which passes \link{check_tree_and_model_errors}}
 
 \item{tree_and_model_labels}{tabular data that maps
 a \code{tree_and_model} (e.g. \code{generative_true}) to

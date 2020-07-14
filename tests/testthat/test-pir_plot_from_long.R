@@ -4,6 +4,7 @@ test_that("raw", {
     tree_and_model = rep(get_tree_and_model_values(), each = n),
     error_value = stats::rnorm(4 * n, 0.5, 0.1)
   )
+  t$tree_and_model <- forcats::as_factor(t$tree_and_model)
   expect_silent(pir_plot_from_long(t))
   pir_plot_from_long(t)
 })

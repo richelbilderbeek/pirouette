@@ -5,18 +5,15 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 pir_plot_from_long <- function(
-  df_long,
+  tree_and_model_errors,
   tree_and_model_labels = get_tree_and_model_descriptions()
 ) {
-  testthat::expect_equal(2, ncol(df_long))
-  testthat::expect_true("error_value" %in% names(df_long))
-  testthat::expect_true("tree_and_model" %in% names(df_long))
-  pirouette::check_tree_and_models(df_long$tree_and_model)
+  pirouette::check_tree_and_model_errors(tree_and_model_errors)
 
 
   # Either 'generative' or 'best'
-  df_long$inference_model <- forcats::fct_collapse(
-    df_long$tree_and_model,
+  tree_and_model_errors$inference_model <- forcats::fct_collapse(
+    tree_and_model_errors$tree_and_model,
     generative = c("true_generative", "twin_generative"),
     candidate = c("true_candidate", "twin_candidate")
   )
@@ -34,27 +31,27 @@ pir_plot_from_long <- function(
 
   ##### Legend labels #####
   tree_and_model_labels <- tree_and_model_labels[
-    tree_and_model_labels$tree_and_model %in% df_long$tree_and_model,
+    tree_and_model_labels$tree_and_model %in% tree_and_model_errors$tree_and_model,
   ]$description
 
 
   ##### Fill and line colors #####
-  medians <- df_long %>%
+  medians <- tree_and_model_errors %>%
     dplyr::group_by(tree_and_model) %>%
     dplyr::summarise(median = stats::median(error_value), .groups = "keep")
   testthat::expect_true("tree_and_model" %in% names(medians))
   testthat::expect_true("median" %in% names(medians))
 
-  index <- trunc(0.95 * length(df_long$error_value))
-  x_top <- sort(df_long$error_value)[index]
+  index <- trunc(0.95 * length(tree_and_model_errors$error_value))
+  x_top <- sort(tree_and_model_errors$error_value)[index]
 
   alpha <- 0.5
 
   # Only generative
-  if (length(unique(df_long$inference_model)) == 1) {
+  if (length(unique(tree_and_model_errors$inference_model)) == 1) {
 
     plot <- ggplot2::ggplot(
-      data = df_long,
+      data = tree_and_model_errors,
       ggplot2::aes(
         x = error_value,
         color = tree_and_model,
@@ -62,14 +59,14 @@ pir_plot_from_long <- function(
       )
     ) +
       ggplot2::geom_histogram(
-        data = df_long,
+        data = tree_and_model_errors,
         bins = 30,
         alpha = alpha,
         position = "identity"
       )
   } else {
 
-    testthat::expect_true(length(unique(df_long$inference_model)) > 1)
+    testthat::expect_true(length(unique(tree_and_model_errors$inference_model)) > 1)
 
     medians$inference_model <- gsub(
       x = gsub(
@@ -80,8 +77,8 @@ pir_plot_from_long <- function(
       pattern = "twin_",
       replacement = ""
     )
-    df_long$inference_model <- plyr::revalue(
-      df_long$inference_model,
+    tree_and_model_errors$inference_model <- plyr::revalue(
+      tree_and_model_errors$inference_model,
       c(
         "candidate" = "Best",
         "generative" = "Generative"
@@ -102,7 +99,7 @@ pir_plot_from_long <- function(
     ##### Plot it (Double plot) #####
 
     plot <- ggplot2::ggplot(
-      data = df_long,
+      data = tree_and_model_errors,
       ggplot2::aes(
         x = error_value,
         color = tree_and_model,
@@ -110,7 +107,7 @@ pir_plot_from_long <- function(
       )
     ) +
       ggplot2::geom_histogram(
-      data = df_long,
+      data = tree_and_model_errors,
       bins = 30,
       alpha = alpha,
       position = "identity"
@@ -133,7 +130,7 @@ pir_plot_from_long <- function(
     minor_breaks = seq(0.0, 1.0, 0.01)
   ) +
   ggplot2::coord_cartesian(
-    xlim = c(min(df_long$error_value), x_top)
+    xlim = c(min(tree_and_model_errors$error_value), x_top)
   ) +
   ggplot2::geom_vline(
     data = medians,
