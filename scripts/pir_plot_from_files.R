@@ -14,13 +14,15 @@ folder_names <- folder_names[folder_names != super_folder][1:5]
 folder_names
 expect_true(all(dir.exists(folder_names)))
 
-message("1: ", Sys.time())
-pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
-message("2: ", Sys.time()) # Takes 1 minute and 5 secs
+oldskool <- function(folder_names) {
+  pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
+  p <- pir_plots(pir_outs, verbose = TRUE)
+  p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
+}
 
-Sys.time()
-# p <- pir_plots(pir_outs, verbose = TRUE)
-p <- pir_plot_from_long(convert_pir_out_to_long(pir_outs))
-p + ggplot2::ggtitle("") + ggplot2::ggsave("example_42.png", width = 7, height = 7)
-Sys.time()
+newskool <- function(folder_names) {
+  pir_outs <- create_pir_outs_from_folders(folder_names = folder_names)
+  p <- pir_plot_from_long(convert_pir_out_to_long(pir_outs))
+  p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
+}
 
