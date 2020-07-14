@@ -32,7 +32,6 @@ convert_pir_out_to_long <- function(
   df$site_model <- NULL
   df$clock_model <- NULL
   df$tree_prior <- NULL
-  df
 
   first_col_index <- which(names(df) == "error_1")
   testthat::expect_equal(1, length(first_col_index))

@@ -3,7 +3,7 @@
 #' @return the \link{pir_plot} legend labels
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @export
-get_pir_plot_tree_and_model_labels <- function(pir_out) {# nolint long function name is fine for an internal function
+get_pir_plot_tree_and_model_descriptions <- function(pir_out) {# nolint long function name is fine for an internal function
 
   tree_and_model <- NULL; rm(tree_and_model) # nolint, fixes warning: no visible binding for global variable
   model_setting <- NULL; rm(model_setting) # nolint, fixes warning: no visible binding for global variable

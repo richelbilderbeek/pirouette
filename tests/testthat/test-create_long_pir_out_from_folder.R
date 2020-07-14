@@ -7,10 +7,5 @@ test_that("use", {
 
 
   long_pir_out <- create_long_pir_out_from_folder(folder_name)
-
-  df_long <- long_pir_out
-  testthat::expect_equal(2, ncol(df_long))
-  testthat::expect_true("error_value" %in% names(df_long))
-  testthat::expect_true("tree_and_model" %in% names(df_long))
-  pirouette::check_tree_and_models(df_long$tree_and_model)
+  pirouette::check_tree_and_model_errors(long_pir_out)
 })
