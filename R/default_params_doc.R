@@ -392,7 +392,6 @@
 #' @param subst_matrix nucleotide substitution matrix
 #' @param sub_chain_length length of the sub-chain used by the Nested Sampling
 #'   algorithm to estimate the marginal likelihood
-#' @param sum_lamu is the sum lambda + mu
 #' @param tree an ultrametric phylogenetic tree of class \link[ape]{phylo}
 #' @param tree_and_model one combination of a tree and model,
 #'   as created by \link{get_tree_and_model_values}
@@ -571,7 +570,6 @@ default_params_doc <- function(
   site_model_name,
   sub_chain_length,
   subst_matrix,
-  sum_lamu,
   tree,
   tree_and_model, tree_and_models,
   tree_and_model_descriptions,

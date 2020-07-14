@@ -119,7 +119,6 @@ default_params_doc(
   site_model_name,
   sub_chain_length,
   subst_matrix,
-  sum_lamu,
   tree,
   tree_and_model,
   tree_and_models,
@@ -654,8 +653,6 @@ as created by \link[beautier]{create_site_model}}
 algorithm to estimate the marginal likelihood}
 
 \item{subst_matrix}{nucleotide substitution matrix}
-
-\item{sum_lamu}{is the sum lambda + mu}
 
 \item{tree}{an ultrametric phylogenetic tree of class \link[ape]{phylo}}
 
