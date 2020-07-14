@@ -26,3 +26,8 @@ newskool <- function(folder_names) {
   p + ggplot2::ggtitle("") + ggplot2::ggsave("~/example_42.png", width = 7, height = 7)
 }
 
+microbenchmark::microbenchmark(
+  oldskool(folder_names),
+  newskool(folder_names),
+  times = 1
+)
