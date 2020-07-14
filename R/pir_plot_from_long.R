@@ -42,8 +42,12 @@ pir_plot_from_long <- function(
   testthat::expect_true("tree_and_model" %in% names(medians))
   testthat::expect_true("median" %in% names(medians))
 
-  index <- trunc(0.95 * length(tree_and_model_errors$error_value))
-  x_top <- sort(tree_and_model_errors$error_value)[index]
+  # Prevent the long tail
+  x_top <- stats::quantile(
+    x = tree_and_model_errors$error_value,
+    probs = 0.95
+  )
+
 
   alpha <- 0.5
 
@@ -128,11 +132,8 @@ pir_plot_from_long <- function(
     values = pirouette::get_pir_plot_fill_colors(),
     labels = tree_and_model_labels
   ) +
-  ggplot2::scale_x_continuous(
-    minor_breaks = seq(0.0, 1.0, 0.01)
-  ) +
   ggplot2::coord_cartesian(
-    xlim = c(min(tree_and_model_errors$error_value), x_top)
+    xlim = c(0.0, x_top)
   ) +
   ggplot2::geom_vline(
     data = medians,
