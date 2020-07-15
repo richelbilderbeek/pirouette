@@ -39,7 +39,7 @@ for (super_folder in super_folders) {
   )
 
   target <- stringr::str_replace(
-    super_folder,
+    replicates_folder,
     pattern = ".*/(pirouette_example_[:digit:]{2})/example_[:digit:]{2}",
     "~/GitHubs/\\1/errors.png"
   )
