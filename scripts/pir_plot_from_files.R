@@ -1,40 +1,35 @@
 library(pirouette)
 library(testthat)
 
+# The main folder that stores all examples
+pirouette_examples_folder <- "/media/richel/D2B40C93B40C7BEB/pirouette_examples"
+expect_true(dir.exists(pirouette_examples_folder))
 
-super_folders <- list.dirs(
-  "/media/richel/D2B40C93B40C7BEB/pirouette_examples",
+pirouette_example_folders <- list.dirs(
+  pirouette_examples_folder,
   full.names = TRUE,
   recursive = FALSE
 )
 
-super_folders <- tail(super_folders, n = 1)
-super_folder <- super_folders[1]
-super_folder
+# Create figures
+for (pirouette_example_folder in pirouette_example_folders) {
 
-for (super_folder in super_folders) {
+  message(pirouette_example_folder)
+  testthat::expect_true(dir.exists(pirouette_example_folder))
 
-  message(super_folder)
-
-  example_number <- stringr::str_match(super_folder, "[:digit:]{2}$")[, 1]
+  example_number <- stringr::str_match(pirouette_example_folder, "[:digit:]{2}$")[, 1]
 
 
-  replicates_folder <- file.path(super_folder, paste0("example_", example_number))
-  expect_true(dir.exists(replicates_folder))
+  replicates_folder <- file.path(pirouette_example_folder, paste0("example_", example_number))
+  testthat::expect_true(dir.exists(replicates_folder))
 
-  #super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
-  #super_folder <- "/media/richel/D2B40C93B40C7BEB/pirouette_examples/pirouette_example_18/example_18"
-  #super_folder <- "/home/richel/pirouette_example_42/pirouette_example_42/example_42"
-  #super_folder <- "/home/richel/pirouette_example_32/pirouette_example_32/example_32"
+  folder_names <- list.dirs(replicates_folder)
 
-  folder_names <- list.dirs(
-    replicates_folder
-  )
+  # Remove 'replicates_folder' itself
   folder_names <- folder_names[folder_names != replicates_folder]
-  folder_names
-  expect_true(all(dir.exists(folder_names)))
+  testthat::expect_true(all(dir.exists(folder_names)))
 
-  tree_and_model_errors <- create_tree_and_model_errors_from_folders(
+  tree_and_model_errors <- pirouette::create_tree_and_model_errors_from_folders(
     folder_names = folder_names
   )
 
@@ -43,7 +38,35 @@ for (super_folder in super_folders) {
     pattern = ".*/(pirouette_example_[:digit:]{2})/example_[:digit:]{2}",
     "~/GitHubs/\\1/errors.png"
   )
-  expect_true(file.exists(target))
+  testthat::expect_true(file.exists(target))
 
-  pir_plot_from_long(tree_and_model_errors) + ggplot2::ggsave(target, width = 7, height = 7)
+  pirouette::pir_plot_from_long(tree_and_model_errors) +
+    ggplot2::ggsave(target, width = 7, height = 7)
 }
+
+tibbles <- list()
+
+for (pirouette_example_folder in pirouette_example_folders) {
+
+  message(pirouette_example_folder)
+  testthat::expect_true(dir.exists(pirouette_example_folder))
+
+  example_number <- stringr::str_match(pirouette_example_folder, "[:digit:]{2}$")[, 1]
+  message(example_number)
+
+  all_log_files <- list.files(path = pirouette_example_folder, pattern = ".log", full.names = TRUE)
+  log_files <- stringr::str_subset(all_log_files, "run_r_script")
+  log_file <- tail(log_files, n = 1)
+  message(log_files)
+
+  testthat::expect_equal(1, length(log_file))
+  text <- readLines(log_file)
+  str <- stringr::str_subset(text, "Used walltime.*")
+  n_secs <- peregrine::time_str_to_n_sec(str)
+
+  tibbles[[example_number]] <- tibble::tibble(example_number = example_number, n_secs = n_secs)
+
+
+}
+
+dplyr::bind_rows(tibbles)
