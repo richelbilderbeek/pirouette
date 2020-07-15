@@ -69,4 +69,9 @@ for (pirouette_example_folder in pirouette_example_folders) {
 
 }
 
-dplyr::bind_rows(tibbles)
+walltimes <- dplyr::bind_rows(tibbles)
+walltimes$n_mins <- walltimes$n_secs / 60
+walltimes$n_hours <- walltimes$n_mins / 60
+walltimes$n_days <- walltimes$n_hours / 24
+
+walltimes %>% dplyr::select(example_number, n_days) %>% readr::write_csv("walltimes.csv")
