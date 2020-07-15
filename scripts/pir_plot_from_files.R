@@ -44,6 +44,7 @@ for (pirouette_example_folder in pirouette_example_folders) {
     ggplot2::ggsave(target, width = 7, height = 7)
 }
 
+# Collect the wall clock times and replicates
 tibbles <- list()
 
 for (pirouette_example_folder in pirouette_example_folders) {
@@ -53,6 +54,12 @@ for (pirouette_example_folder in pirouette_example_folders) {
 
   example_number <- stringr::str_match(pirouette_example_folder, "[:digit:]{2}$")[, 1]
   message(example_number)
+
+  replicates_folder <- file.path(pirouette_example_folder, paste0("example_", example_number))
+  testthat::expect_true(dir.exists(replicates_folder))
+
+  folder_names <- list.dirs(replicates_folder)
+  n_replicates <- length(folder_names) - 1
 
   all_log_files <- list.files(path = pirouette_example_folder, pattern = ".log", full.names = TRUE)
   log_files <- stringr::str_subset(all_log_files, "run_r_script")
@@ -64,7 +71,11 @@ for (pirouette_example_folder in pirouette_example_folders) {
   str <- stringr::str_subset(text, "Used walltime.*")
   n_secs <- peregrine::time_str_to_n_sec(str)
 
-  tibbles[[example_number]] <- tibble::tibble(example_number = example_number, n_secs = n_secs)
+  tibbles[[example_number]] <- tibble::tibble(
+    example_number = example_number,
+    n_secs = n_secs,
+    n_replicates = n_replicates
+  )
 
 
 }
@@ -74,4 +85,5 @@ walltimes$n_mins <- walltimes$n_secs / 60
 walltimes$n_hours <- walltimes$n_mins / 60
 walltimes$n_days <- walltimes$n_hours / 24
 
-walltimes %>% dplyr::select(example_number, n_days) %>% readr::write_csv("walltimes.csv")
+walltimes %>% dplyr::select(example_number, n_replicates, n_days) %>% readr::write_csv("~/GitHubs/pirouette_examples/walltimes.csv")
+
