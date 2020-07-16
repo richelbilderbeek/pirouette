@@ -85,5 +85,7 @@ walltimes$n_mins <- walltimes$n_secs / 60
 walltimes$n_hours <- walltimes$n_mins / 60
 walltimes$n_days <- walltimes$n_hours / 24
 
-walltimes %>% dplyr::select(example_number, n_replicates, n_days) %>% readr::write_csv("~/GitHubs/pirouette_examples/walltimes.csv")
+if (1 == 2) {
+  walltimes %>% dplyr::select(example_number, n_replicates, n_days) %>% readr::write_csv("~/GitHubs/pirouette_examples/walltimes.csv")
+}
 
