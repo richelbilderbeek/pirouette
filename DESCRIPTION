@@ -41,7 +41,6 @@ Imports:
     rappdirs,
     readr,
     remotes,
-    Rmpfr,
     stringr,
     TESS,
     testit,
@@ -56,5 +55,6 @@ Suggests:
     lintr,
     nLTT (>= 1.4.3),
     rmarkdown,
+    Rmpfr,
     testthat (>= 2.1.0)
 SystemRequirements: BEAST2 (https://www.beast2.org/)
