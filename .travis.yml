@@ -27,7 +27,6 @@ r_github_packages:
   - ropensci/beautier
   - ropensci/beastier
   - ropensci/babette
-  - richelbilderbeek/tiebeaur
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
