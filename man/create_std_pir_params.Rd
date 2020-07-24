@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_std_pir_params.R
 \name{create_std_pir_params}
 \alias{create_std_pir_params}
-\title{Create a standard \code{pir_params}, as used in the paper}
+\title{Create a standard \code{pir_params}}
 \usage{
 create_std_pir_params(
   folder_name = rappdirs::user_cache_dir(),
@@ -31,5 +31,41 @@ or \code{win}. Use \link[beastier]{check_os} if the operating system
 is valid.}
 }
 \description{
-Create a standard \code{pir_params}, as used in the paper
+Create a standard \code{pir_params}, as used in Bilderbeek, Laudanno
+and Etienne.
+}
+\details{
+Create a standard \code{pir_params}, as used in Bilderbeek, Laudanno
+and Etienne,
+by calling \link{create_pir_params} with these settings:
+
+\itemize{
+  \item alignment_params default alignment parameters,
+    in which the alignment is simulated using the Jukes-Cantor
+    nucleotide substitution model and a strict clock
+    (as created by \link{create_alignment_params})
+  \item twinning_params default twinning parameters,
+    in which the twin tree is simulated using a Birth-Death process
+    (using \link{get_sim_bd_twin_tree_fun}),
+    the twin alignment is simulated using the Jukes-Cantor
+    nucleotide substitution model and a strict clock
+    and has an equal amount of nucleotide substitutions as the
+    true alignment (using \link{get_sim_twal_same_n_muts_fun})
+  \item experiments
+    a list of a generative and multiple candidate models.
+    The generative model is the default generative model,
+    which uses JC69, strict, and Yule,
+    as created by \link{create_gen_experiment}.
+    The candidate models are all other
+    (that is, excluding the generative model)
+    birth-death (including Yule) models, which are
+    all nucleotide substitution models (see \link{create_site_models}),
+    all clock models (see \link{create_clock_models}),
+    and the Yule and BD model
+    (see \link{create_yule_tree_prior} and \link{create_bd_tree_prior})
+  \item error_measure_params the default error measurement parameters,
+    (as created by \link{create_error_measure_params})
+    which uses the nLTT statistic to determine the difference between
+    two (or more) trees
+}
 }
