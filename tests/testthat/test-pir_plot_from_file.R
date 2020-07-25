@@ -7,6 +7,7 @@ test_that("use, generative", {
   utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
   expect_true(file.exists(pir_out_filename))
 
+
   plot <- pir_plot_from_file(pir_out_filename)
 
   expect_equal(class(plot), c("gg", "ggplot"))
