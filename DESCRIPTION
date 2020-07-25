@@ -28,6 +28,8 @@ Imports:
     assertive,
     beastier (>= 2.1.3),
     DDD,
+    dplyr,
+    forcats,
     magrittr,
     mauricer (>= 2.0.5),
     mcbette (>= 1.7),
@@ -37,10 +39,12 @@ Imports:
     plyr,
     pryr,
     rappdirs,
+    readr,
     remotes,
+    stringr,
     TESS,
     testit,
-    tidyverse,
+    tibble,
     tracerer (>= 2.0.2),
     xtable
 Suggests:
