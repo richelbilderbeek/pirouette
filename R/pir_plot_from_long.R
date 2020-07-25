@@ -12,12 +12,17 @@ pir_plot_from_long <- function(
 
 
   # Either 'generative' or 'best'
-  tree_and_model_errors$inference_model <- forcats::fct_collapse(
-    tree_and_model_errors$tree_and_model,
-    generative = c("true_generative", "twin_generative"),
-    candidate = c("true_candidate", "twin_candidate")
+  # Suppress warning message:
+  # Unknown levels in `f`: twin_generative, true_candidate, twin_candidate
+  # which happens, for example, when tree_and_model_errors$tree_and_model
+  # contains only true_generative
+  suppressWarnings(
+    tree_and_model_errors$inference_model <- forcats::fct_collapse(
+      tree_and_model_errors$tree_and_model,
+      generative = c("true_generative", "twin_generative"),
+      candidate = c("true_candidate", "twin_candidate")
+    )
   )
-
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
   error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
