@@ -56,3 +56,12 @@ test_that("values from files are correctly placed", {
     tolerance = 0.01
   )
 })
+
+test_that("abuse", {
+  expect_error(
+    create_tree_and_model_errors_from_folder(
+      folder_name = "absent"
+    ),
+    "Not all four files found in folder"
+  )
+})

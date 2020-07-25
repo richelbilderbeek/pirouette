@@ -120,9 +120,6 @@ pir_run <- function(
       dirname(twin_tree_filename),
       showWarnings = FALSE, recursive = TRUE
     )
-    if (isTRUE(pir_params$verbose)) {
-      message("Saving twin tree to '", twin_tree_filename, "'")
-    }
     ape::write.tree(phy = twin_tree, file = twin_tree_filename)
     beautier::check_file_exists(twin_tree_filename, "twin_tree_filename")
 
