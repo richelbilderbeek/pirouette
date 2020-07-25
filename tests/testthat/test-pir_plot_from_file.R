@@ -1,10 +1,6 @@
-context("test-pir_plot_from_file")
-
 test_that("use, generative", {
 
   if (!beastier::is_on_travis()) return()
-
-  skip("Takes too long 19")
 
   pir_out_filename <- tempfile(fileext = ".csv")
   url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_1/master/example_1_314/errors.csv" # nolint indeed a long URL
