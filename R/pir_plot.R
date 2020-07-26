@@ -24,7 +24,7 @@ pir_plot <- function(
 ) {
   descriptions <- pirouette::get_pir_plot_tree_and_model_descriptions(pir_out)
 
-  df_long <- convert_pir_out_to_long(pir_out, verbose = verbose)
+  df_long <- pirouette::convert_pir_out_to_long(pir_out, verbose = verbose)
 
   pirouette::pir_plot_from_long(
     tree_and_model_errors = df_long,

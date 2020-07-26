@@ -17,6 +17,19 @@ Will \link{stop} if not.
 A valid \link{pirouette} parameter set
 can be created by \link{create_pir_params}.
 }
+\details{
+A \code{pir_out} contains:
+
+\enumerate{
+  \item tree true or twin tree
+  \item inference_model generative or candidate
+  \item inference_model_weight
+  \item site_model the site model name
+  \item clock_model the clock model name
+  \item tree_prior the tree model name
+  \item error_1, error_2, etcetera: inference errors
+}
+}
 \examples{
 library(testthat)
 

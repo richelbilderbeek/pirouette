@@ -15,17 +15,27 @@ convert_pir_out_to_long(pir_out, verbose = FALSE)
 the \code{pir_out} in long form
 }
 \description{
-Convert a \code{pir_out} to its long form
+A \code{pir_out} is a table with
+columns \code{tree} (for true or twin tree), a column
+\code{inference_model} (for generative or candidate) and columns named
+\code{error_1}, \code{error_2}, etcetera, containing the inference errors.
+}
+\details{
+Converting this to a long form, results in a tibble like this:
+
+\enumerate{
+  \item tree_and_model: either \code{true_generative},
+    or \code{twin_generative}, or \code{true_candidate},
+    or \code{twin_candidate}
+  \item error_value: inference errors
+}
 }
 \examples{
-library(testthat)
-
-pir_out <- create_test_pir_run_output()
-t <- convert_pir_out_to_long(pir_out)
-expect_equal(2, ncol(t))
-expect_true("error_value" \%in\% names(t))
-expect_true("tree_and_model" \%in\% names(t))
-expect_silent(pir_plot_from_long(t))
+pir_out <- create_test_pir_run_output(
+  add_twin = TRUE,
+  add_best = TRUE
+)
+convert_pir_out_to_long(pir_out)
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

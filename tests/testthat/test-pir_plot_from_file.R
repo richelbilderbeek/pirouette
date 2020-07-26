@@ -2,13 +2,13 @@ test_that("use, generative", {
 
   if (!beastier::is_on_travis()) return()
 
-  pir_out_filename <- tempfile(fileext = ".csv")
+  errors_filename <- tempfile(fileext = ".csv")
   url <- "https://raw.githubusercontent.com/richelbilderbeek/pirouette_example_1/master/example_1_314/errors.csv" # nolint indeed a long URL
-  utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
-  expect_true(file.exists(pir_out_filename))
+  utils::download.file(url = url, destfile = errors_filename, quiet = TRUE)
+  expect_true(file.exists(errors_filename))
 
 
-  plot <- pir_plot_from_file(pir_out_filename)
+  plot <- pir_plot_from_file(errors_filename)
 
   expect_equal(class(plot), c("gg", "ggplot"))
 })
