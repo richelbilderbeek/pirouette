@@ -11,6 +11,22 @@ pir_plot_from_long <- function(
   pirouette::check_tree_and_model_errors(tree_and_model_errors)
 
 
+  # 'generative' must be the first level for the facet plot
+  tree_and_model_errors$tree_and_model <- forcats::fct_relevel(
+    tree_and_model_errors$tree_and_model,
+    c(
+      "true_generative",
+      "twin_generative",
+      "true_candidate",
+      "twin_candidate"
+    )
+  )
+  testthat::expect_equal(
+    levels(tree_and_model_errors$tree_and_model)[1],
+    "true_generative"
+  )
+
+
   # Either 'generative' or 'best'
   # Suppress warning message:
   # Unknown levels in `f`: twin_generative, true_candidate, twin_candidate
@@ -23,6 +39,16 @@ pir_plot_from_long <- function(
       candidate = c("true_candidate", "twin_candidate")
     )
   )
+  # 'generative' must be the first level for the facet plot
+  tree_and_model_errors$inference_model <- forcats::fct_relevel(
+    tree_and_model_errors$inference_model,
+    c("generative", "candidate")
+  )
+  testthat::expect_equal(
+    levels(tree_and_model_errors$inference_model)[1],
+    "generative"
+  )
+
   # Satisfy R CMD check
   tree <- NULL; rm(tree) # nolint, fixes warning: no visible binding for global variable
   error_value <- NULL; rm(error_value) # nolint, fixes warning: no visible binding for global variable
@@ -86,6 +112,16 @@ pir_plot_from_long <- function(
       generative = c("true_generative", "twin_generative"),
       candidate = c("true_candidate", "twin_candidate")
     )
+    # 'generative' must be the first level for the facet plot
+    medians$inference_model <- forcats::fct_relevel(
+      medians$inference_model,
+      c("generative", "candidate")
+    )
+    testthat::expect_equal(
+      levels(medians$inference_model)[1],
+      "generative"
+    )
+
     tree_and_model_errors$inference_model <- plyr::revalue(
       tree_and_model_errors$inference_model,
       c(
@@ -122,8 +158,7 @@ pir_plot_from_long <- function(
     ) +
       ggplot2::facet_wrap(
         . ~ inference_model,
-        ncol = 1,
-        labeller = ggplot2::labeller(inference_model = inference_model_labels)
+        ncol = 1
       )
   }
   plot + ggplot2::scale_color_manual(
