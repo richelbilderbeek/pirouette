@@ -6,8 +6,6 @@
 #' of taxa, but this is not always the case.
 #'
 #' @inheritParams default_params_doc
-#' @param best_of_n_trees simulate this number of DD trees with
-#' the desired number of taxa,
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @seealso Use \link{create_exemplary_dd_tree_giappo}
 #' for a different way to generate exemplary trees with

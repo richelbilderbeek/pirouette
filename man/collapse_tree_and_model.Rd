@@ -11,7 +11,7 @@ collapse_tree_and_model(tree_and_model)
 as created by \link{get_tree_and_model_values}}
 }
 \value{
-a releveled \link{tree_and_model}
+a releveled \code{tree_and_model}
 }
 \description{
 Internal function to relevel the \code{tree_and_model}, so that

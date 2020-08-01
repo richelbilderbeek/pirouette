@@ -13,9 +13,6 @@ create_exemplary_dd_tree(n_taxa = 6, crown_age = 10, extinction_rate = 0.1)
 to let it be estimated}
 
 \item{extinction_rate}{per-species extinction rate}
-
-\item{best_of_n_trees}{simulate this number of DD trees with
-the desired number of taxa,}
 }
 \description{
 Create an exemplary diversity-dependent (DD) birth-death tree,

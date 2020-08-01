@@ -3,7 +3,7 @@
 #' Internal function to relevel the \code{tree_and_model}, so that
 #' \link{pir_plot} has the legend labels in the right order
 #' @inheritParams default_params_doc
-#' @return a releveled \link{tree_and_model}
+#' @return a releveled \code{tree_and_model}
 #' @author Richèl J.C. Bilderbeek
 #' @export
 relevel_tree_and_model <- function(tree_and_model) {

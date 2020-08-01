@@ -11,7 +11,7 @@ relevel_inference_model(inference_model)
 \code{generative} or \code{candidate}}
 }
 \value{
-a releveled \link{inference_model}
+a releveled \code{inference_model}
 }
 \description{
 Internal function to relevel the \code{inference_model}, so that

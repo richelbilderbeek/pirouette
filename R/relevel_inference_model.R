@@ -4,7 +4,7 @@
 #' \link{pir_plot} has the legend labels in the right order
 #' @param inference_model one or more inference model types, either
 #' \code{generative} or \code{candidate}
-#' @return a releveled \link{inference_model}
+#' @return a releveled \code{inference_model}
 #' @author Richèl J.C. Bilderbeek
 #' @export
 relevel_inference_model <- function(inference_model) {
