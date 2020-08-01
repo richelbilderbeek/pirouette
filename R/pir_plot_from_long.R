@@ -11,42 +11,20 @@ pir_plot_from_long <- function(
   pirouette::check_tree_and_model_errors(tree_and_model_errors)
 
 
-  # 'generative' must be the first level for the facet plot
-  tree_and_model_errors$tree_and_model <- forcats::fct_relevel(
-    tree_and_model_errors$tree_and_model,
-    c(
-      "true_generative",
-      "twin_generative",
-      "true_candidate",
-      "twin_candidate"
-    )
-  )
-  testthat::expect_equal(
-    levels(tree_and_model_errors$tree_and_model)[1],
-    "true_generative"
+  # Put the levels in the order of the plot's labels
+  tree_and_model_errors$tree_and_model <- pirouette::relevel_tree_and_model(
+    tree_and_model_errors$tree_and_model
   )
 
 
   # Either 'generative' or 'best'
-  # Suppress warning message:
-  # Unknown levels in `f`: twin_generative, true_candidate, twin_candidate
-  # which happens, for example, when tree_and_model_errors$tree_and_model
-  # contains only true_generative
-  suppressWarnings(
-    tree_and_model_errors$inference_model <- forcats::fct_collapse(
-      tree_and_model_errors$tree_and_model,
-      generative = c("true_generative", "twin_generative"),
-      candidate = c("true_candidate", "twin_candidate")
-    )
+  tree_and_model_errors$inference_model <- pirouette::collapse_tree_and_model(
+    tree_and_model_errors$tree_and_model
   )
+
   # 'generative' must be the first level for the facet plot
-  tree_and_model_errors$inference_model <- forcats::fct_relevel(
-    tree_and_model_errors$inference_model,
-    c("generative", "candidate")
-  )
-  testthat::expect_equal(
-    levels(tree_and_model_errors$inference_model)[1],
-    "generative"
+  tree_and_model_errors$inference_model <- pirouette::relevel_inference_model(
+    tree_and_model_errors$inference_model
   )
 
   # Satisfy R CMD check
@@ -107,19 +85,12 @@ pir_plot_from_long <- function(
       length(unique(tree_and_model_errors$inference_model)) > 1
     )
 
-    medians$inference_model <- forcats::fct_collapse(
-      medians$tree_and_model,
-      generative = c("true_generative", "twin_generative"),
-      candidate = c("true_candidate", "twin_candidate")
+    medians$inference_model <- pirouette::collapse_tree_and_model(
+      medians$tree_and_model
     )
     # 'generative' must be the first level for the facet plot
-    medians$inference_model <- forcats::fct_relevel(
-      medians$inference_model,
-      c("generative", "candidate")
-    )
-    testthat::expect_equal(
-      levels(medians$inference_model)[1],
-      "generative"
+    medians$inference_model <- pirouette::relevel_inference_model(
+      medians$inference_model
     )
 
     tree_and_model_errors$inference_model <- plyr::revalue(

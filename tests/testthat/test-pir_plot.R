@@ -1,4 +1,4 @@
-test_that("use", {
+test_that("use on test output", {
 
   invisible(
     pir_plot(
@@ -33,4 +33,51 @@ test_that("use", {
     )
   )
 
+})
+
+test_that("use on test runs", {
+
+  if (!is_on_travis()) return()
+
+  pir_plot(
+    pir_out = pir_run(
+      phylogeny = create_test_phylogeny(),
+      pir_params = create_test_pir_params_setup(
+        has_twinning = FALSE,
+        has_candidate = FALSE
+      )
+    )
+  )
+  pir_plot(
+    pir_out = pir_run(
+      phylogeny = create_test_phylogeny(),
+      pir_params = create_test_pir_params_setup(
+        has_twinning = TRUE,
+        has_candidate = FALSE
+      )
+    )
+  )
+
+  # Runs with candidates
+  if (rappdirs::app_dir()$os == "win") return()
+
+  pir_plot(
+    pir_out = pir_run(
+      phylogeny = create_test_phylogeny(),
+      pir_params = create_test_pir_params_setup(
+        has_twinning = FALSE,
+        has_candidate = TRUE
+      )
+    )
+  )
+
+  pir_plot(
+    pir_out = pir_run(
+      phylogeny = create_test_phylogeny(),
+      pir_params = create_test_pir_params_setup(
+        has_twinning = TRUE,
+        has_candidate = TRUE
+      )
+    )
+  )
 })
