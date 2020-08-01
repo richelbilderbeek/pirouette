@@ -16,9 +16,10 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r}
+```{r message=FALSE}
 library(pirouette)
 library(phangorn)
+library(pryr)
 ```
 
 First create a tree, then you can twin it. Currently there are two different way to do so.
