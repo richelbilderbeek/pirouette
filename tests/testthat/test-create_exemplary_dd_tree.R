@@ -8,7 +8,7 @@ test_that("diversity_dependent, use", {
   )
   expect_error(
     create_exemplary_dd_tree(
-      n_taxa = 10, crown_age = 10, best_of_n_trees = -123.456
+      n_taxa = 10, crown_age = 10
     )
   )
 
@@ -17,7 +17,7 @@ test_that("diversity_dependent, use", {
     create_exemplary_dd_tree(n_taxa = 10, crown_age = 1, extinction_rate = 0.0)
   )
   expect_silent(
-    create_exemplary_dd_tree(n_taxa = 10, crown_age = 1, best_of_n_trees = 1)
+    create_exemplary_dd_tree(n_taxa = 10, crown_age = 1)
   )
 })
 

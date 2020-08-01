@@ -2,13 +2,16 @@
 #'
 #' Create an exemplary diversity-dependent (DD) birth-death tree,
 #' that is, a DD tree with a strong DD effect.
+#' The DD tree produced most likely has the desired number
+#' of taxa, but this is not always the case.
 #'
-#' This was the algorithm found in the pirouette examples,
-#' instead of \link{create_exemplary_dd_tree_giappo}.
 #' @inheritParams default_params_doc
 #' @param best_of_n_trees simulate this number of DD trees with
 #' the desired number of taxa,
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
+#' @seealso Use \link{create_exemplary_dd_tree_giappo}
+#' for a different way to generate exemplary trees with
+#' a strong DD effect.
 #' @examples
 #' create_exemplary_dd_tree(
 #'   n_taxa = 3,
