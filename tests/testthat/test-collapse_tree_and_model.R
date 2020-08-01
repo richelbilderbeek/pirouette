@@ -59,4 +59,3 @@ test_that("cand + twin", {
   )
   expect_equal(expected, as.character(inference_model))
 })
-

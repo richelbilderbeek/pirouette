@@ -23,7 +23,7 @@
 #'   crown_age = crown_age
 #' )
 #' @export
-create_exemplary_dd_tree_giappo <- function(
+create_exemplary_dd_tree_giappo <- function(#nolint indeed a long function name
   n_taxa = 6,
   crown_age = 10,
   extinction_rate = 0.1,
@@ -77,4 +77,3 @@ create_exemplary_dd_tree_giappo <- function(
   tree_id <- which(abs(gammas) == max(abs(gammas)))
   sim_trees[[tree_id]]
 }
-

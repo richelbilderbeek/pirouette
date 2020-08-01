@@ -20,4 +20,3 @@ test_that("diversity_dependent, use", {
     create_exemplary_dd_tree(n_taxa = 10, crown_age = 1)
   )
 })
-
