@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 ```
 
 ```{r message=FALSE}
+library(babette)
 library(pirouette)
 library(phangorn)
 library(pryr)
@@ -35,7 +36,7 @@ ape::plot.phylo(phylogeny)
 The BD twinning parameters:
 
 ```{r}
-bd_twin <- pirouette::create_twin_tree(
+bd_twin <- create_twin_tree(
   phylogeny = phylogeny,
   twinning_params = create_twinning_params(
     sim_twin_tree_fun = get_sim_bd_twin_tree_fun()
@@ -68,7 +69,7 @@ copy_twin <- create_twin_tree(
 Show the true tree in red and bd twin tree in gray:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(
+plot_densitree(
   phylos = c(bd_twin, yule_twin, copy_twin),
   col = c("red", "blue", "gray"),
   width = 4,
@@ -80,7 +81,7 @@ babette::plot_densitree(
 Show the true tree in red and bd twin tree in green:
 
 ```{r fig.width=7, fig.height=7}
-babette::plot_densitree(
+plot_densitree(
   phylos = c(phylogeny, yule_twin),
   col = c("red", "green"),
   width = 4,
