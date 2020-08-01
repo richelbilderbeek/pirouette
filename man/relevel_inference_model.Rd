@@ -7,9 +7,8 @@
 relevel_inference_model(inference_model)
 }
 \arguments{
-\item{inference_model}{an inference model, which is a combination
-of site model, clock model, tree prior and BEAST2 input and
-input filenames.}
+\item{inference_model}{one or more inference model types, either
+\code{generative} or \code{candidate}}
 }
 \value{
 a releveled \link{inference_model}

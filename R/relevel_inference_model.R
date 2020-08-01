@@ -2,7 +2,8 @@
 #'
 #' Internal function to relevel the \code{inference_model}, so that
 #' \link{pir_plot} has the legend labels in the right order
-#' @inheritParams default_params_doc
+#' @param inference_model one or more inference model types, either
+#' \code{generative} or \code{candidate}
 #' @return a releveled \link{inference_model}
 #' @author Richèl J.C. Bilderbeek
 #' @export
