@@ -66,6 +66,8 @@ after_success:
   - if [ "$TRAVIS_OS_NAME" == "linux" ] && [ "$TRAVIS_R_VERSION_STRING" == "release" ]; then proselint *.md | egrep -v "typography\.symbols\.curly_quotes"; fi
   # Report
   - Rscript -e 'mcbette::mcbette_report()'
+  # Download thesis
+  - Rscript -e 'download.file("https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf", tempfile())'
 
 after_failure:
   # Report
@@ -78,4 +80,6 @@ after_failure:
   - cd ~; find . | egrep "\.xml"
   - cd ~; find . | egrep "\.xml\.state"
   - cd ~; find . | egrep "\.fasta"
+  # Download thesis
+  - Rscript -e 'download.file("https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf", tempfile())'
 
