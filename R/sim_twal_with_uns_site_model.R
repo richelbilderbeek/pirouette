@@ -23,7 +23,7 @@ sim_twal_with_uns_nsm <- function(
   beautier::check_phylogeny(twin_phylogeny)
   pirouette::check_root_sequence(root_sequence)
   pirouette::check_reconstructed_phylogeny(twin_phylogeny)
-  alignment_phydat <- nodeSub::sim_dual_independent(
+  alignment_phydat <- nodeSub::sim_unlinked(
     phy = twin_phylogeny,
     Q1 = branch_subst_matrix,
     Q2 = node_subst_matrix,
