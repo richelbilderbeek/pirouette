@@ -22,7 +22,7 @@ sim_twal_with_lns_nsm <- function(
   beautier::check_phylogeny(twin_phylogeny)
   pirouette::check_reconstructed_phylogeny(twin_phylogeny)
   pirouette::check_root_sequence(root_sequence)
-  nodesub_result <- nodeSub::sim_dual_linked(
+  nodesub_result <- nodeSub::sim_linked(
     phy = twin_phylogeny,
     Q = subst_matrix,
     rate = branch_mutation_rate,
