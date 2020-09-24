@@ -21,30 +21,21 @@ a data frame with errors, with as many rows as model selection
 The phylogeny can be the true tree or its twin.
 }
 \examples{
-
 pir_params <- create_test_pir_params()
 
 # The user should never need to initialize the pir_params
 # but a develop calling this function needs to
 pir_params <- init_pir_params(pir_params)
 
-
 if (
   rappdirs::app_dir()$os != "win" &&
   is_on_ci() &&
   is_beast2_installed()
 ) {
-  df <- pir_run_true_tree(
+  pir_run_true_tree(
     true_phylogeny = ape::rcoal(4),
     pir_params = pir_params
   )
-
-  expect_equal(1, nrow(df))
-  expected_col_names <- c(
-    "tree", "inference_model", "inference_model_weight", "site_model",
-    "clock_model", "tree_prior", "error_1", "error_2", "error_3"
-  )
-  expect_true(all(expected_col_names \%in\% names(df)))
 }
 }
 \author{

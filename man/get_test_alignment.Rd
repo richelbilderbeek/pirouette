@@ -15,17 +15,9 @@ get_test_alignment(n_taxa = 3, sequence_length = 4)
 Get an alignment for testing.
 }
 \examples{
-
-n_taxa <- 7
-sequence_length <- 11
 alignment <- get_test_alignment(
-  n_taxa = n_taxa,
-  sequence_length = sequence_length
+  n_taxa = 3,
+  sequence_length = 4
 )
-expect_silent(check_alignment(alignment))
-expect_equal(n_taxa, get_alignment_n_taxa(alignment))
-expect_equal(
-  sequence_length,
-  get_alignment_sequence_length(alignment)
-)
+check_alignment(alignment)
 }

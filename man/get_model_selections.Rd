@@ -11,8 +11,8 @@ Get the possible ways to select an inference model
 }
 \examples{
 
-expect_true("generative" \%in\% get_model_selections())
-expect_true("most_evidence" \%in\% get_model_selections())
+"generative" \%in\% get_model_selections())
+"most_evidence" \%in\% get_model_selections())
 }
 \author{
 Richèl J.C. Bilderbeek

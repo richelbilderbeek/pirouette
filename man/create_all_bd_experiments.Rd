@@ -42,21 +42,17 @@ created by \link[beautier]{create_bd_tree_prior}).
 These experiments are used in the \link{create_pir_params} function
 }
 \examples{
-
 if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
-   # it does not work on Windows
-   experiments <- create_all_bd_experiments()
-   check_experiments(experiments)
+  # it does not work on Windows
+  experiments <- create_all_bd_experiments()
+  check_experiments(experiments)
 
-   expect_true(length(experiments) >= 16)
-
-   pir_params <- create_pir_params(
-     alignment_params = create_test_alignment_params(),
-     experiments = experiments,
-     evidence_filename = get_temp_evidence_filename()
-   )
+  pir_params <- create_pir_params(
+    alignment_params = create_test_alignment_params(),
+    experiments = experiments,
+    evidence_filename = get_temp_evidence_filename()
+  s)
 }
-
 }
 \seealso{
 \itemize{

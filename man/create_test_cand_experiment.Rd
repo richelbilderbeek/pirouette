@@ -44,16 +44,9 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} candidate experiment.
 }
 \examples{
-
 if (rappdirs::app_dir()$os != "win") {
   experiment <- create_test_cand_experiment()
-
-  expect_true("inference_conditions" \%in\% names(experiment))
-  expect_true("inference_model" \%in\% names(experiment))
-  expect_true("beast2_options" \%in\% names(experiment))
-  expect_true("est_evidence_mcmc" \%in\% names(experiment))
-  expect_true("beast2_bin_path" \%in\% names(experiment))
-  expect_silent(check_experiment(experiment))
+  check_experiment(experiment)
 }
 }
 \author{

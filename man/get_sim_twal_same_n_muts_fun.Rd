@@ -51,16 +51,6 @@ with the purpose of passing \link{check_sim_twal_fun},
 by being a function with the function arguments \code{twin_phylogeny}
 and \code{true_alignment}.
 }
-\examples{
-
-if (1 == 2) {
-expect_silent(
-  check_sim_twal_fun(
-    get_sim_twal_same_n_muts_fun
-  )
-)
-}
-}
 \seealso{
 See \link{check_sim_twal_fun} to the the other
 functions to simulate a twin alignment.

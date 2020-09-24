@@ -120,7 +120,7 @@ if (rappdirs::app_dir()$os != "win" &&
     file.path(folder, "true_error_violin_gen.png"),
     file.path(folder, "twin_error_violin_gen.png")
   )
-  expect_true(all(!file.exists(expected_filenames)))
+  all(!file.exists(expected_filenames)))
 
   created_filenames <- pir_to_pics(
     phylogeny = phylogeny,
@@ -128,7 +128,7 @@ if (rappdirs::app_dir()$os != "win" &&
     folder = folder
   )
 
-  expect_true(all(file.exists(expected_filenames)))
+  all(file.exists(expected_filenames)))
 }
 }
 \author{

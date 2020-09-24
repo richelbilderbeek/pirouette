@@ -14,10 +14,10 @@ Twin methods
 }
 \examples{
 
-expect_true("random_tree" \%in\% get_twin_methods())
-expect_true("max_clade_cred" \%in\% get_twin_methods())
-expect_true("max_likelihood" \%in\% get_twin_methods())
-expect_false("nonsense" \%in\% get_twin_methods())
+"random_tree" \%in\% get_twin_methods())
+"max_clade_cred" \%in\% get_twin_methods())
+"max_likelihood" \%in\% get_twin_methods())
+"nonsense" \%in\% get_twin_methods())
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

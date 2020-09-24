@@ -22,21 +22,17 @@
 #' }
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
 #' if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
-#'    # it does not work on Windows
-#'    experiments <- create_all_bd_experiments()
-#'    check_experiments(experiments)
+#'   # it does not work on Windows
+#'   experiments <- create_all_bd_experiments()
+#'   check_experiments(experiments)
 #'
-#'    length(experiments) >= 16)
-#'
-#'    pir_params <- create_pir_params(
-#'      alignment_params = create_test_alignment_params(),
-#'      experiments = experiments,
-#'      evidence_filename = get_temp_evidence_filename()
-#'    )
+#'   pir_params <- create_pir_params(
+#'     alignment_params = create_test_alignment_params(),
+#'     experiments = experiments,
+#'     evidence_filename = get_temp_evidence_filename()
+#'   s)
 #' }
-#'
 #' @export
 create_all_bd_experiments <- function(
   site_models = beautier::create_site_models(),
@@ -51,7 +47,7 @@ create_all_bd_experiments <- function(
   tree_prior_names <- unlist(
     lapply(tree_priors, function(x) x$name)
   )
-  testthat::all(tree_prior_names %in% c("yule", "birth_death")))
+  testthat::expect_true(all(tree_prior_names %in% c("yule", "birth_death")))
 
 
   pirouette::create_all_experiments(

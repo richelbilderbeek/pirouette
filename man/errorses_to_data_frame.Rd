@@ -68,7 +68,7 @@ if (beastier::is_beast2_installed()) {
       tree_priors = list(create_yule_tree_prior())
     )
   )
-  expect_true(is.data.frame(df))
+  is.data.frame(df))
 }
 }
 \author{

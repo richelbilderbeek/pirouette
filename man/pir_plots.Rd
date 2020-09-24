@@ -33,7 +33,7 @@ pir_outs[[1]] <- create_test_pir_run_output(
 pir_outs[[2]] <- pir_outs[[1]]
 
 # Plot the (fake) output
-expect_silent(pir_plots(pir_outs))
+pir_plots(pir_outs)
 }
 \author{
 Richèl J.C. Bilderbeek

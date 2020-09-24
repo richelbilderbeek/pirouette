@@ -6,7 +6,7 @@
 #' @examples
 #' # Creates 'aaa'
 #' create_mono_nuc_dna(length = 3)
-#' 
+#'
 #' # Creates 'ccccc'
 #' create_mono_nuc_dna(nucleotide = "c", length = 5)
 #' @seealso Use \link{create_blocked_dna} to create

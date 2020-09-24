@@ -14,10 +14,10 @@ Twin models
 }
 \examples{
 
-expect_true("yule" \%in\% get_twin_models())
-expect_true("birth_death" \%in\% get_twin_models())
-expect_true("copy_true" \%in\% get_twin_models())
-expect_false("nonsense" \%in\% get_twin_models())
+"yule" \%in\% get_twin_models())
+"birth_death" \%in\% get_twin_models())
+"copy_true" \%in\% get_twin_models())
+"nonsense" \%in\% get_twin_models())
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

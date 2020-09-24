@@ -14,9 +14,9 @@ Get the names of the model types
 }
 \examples{
 
-expect_true("candidate" \%in\% get_model_type_names())
-expect_true("generative" \%in\% get_model_type_names())
-expect_false("Jensen Ackles" \%in\% get_model_type_names())
+"candidate" \%in\% get_model_type_names())
+"generative" \%in\% get_model_type_names())
+"Jensen Ackles" \%in\% get_model_type_names())
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

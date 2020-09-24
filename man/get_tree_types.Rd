@@ -14,9 +14,9 @@ Get the names of the tree types
 }
 \examples{
 
-expect_true("true" \%in\% get_tree_types())
-expect_true("twin" \%in\% get_tree_types())
-expect_false("Jensen Ackles" \%in\% get_tree_types())
+"true" \%in\% get_tree_types())
+"twin" \%in\% get_tree_types())
+"Jensen Ackles" \%in\% get_tree_types())
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

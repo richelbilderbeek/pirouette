@@ -47,12 +47,9 @@ by being a function with the function arguments \code{twin_phylogeny}
 and \code{true_alignment}
 }
 \examples{
-
 # This adapter function must be a sim_twin_alignment function
-expect_silent(
-  check_sim_twal_fun(
-    sim_twal_with_std_nsm
-  )
+check_sim_twal_fun(
+  sim_twal_with_std_nsm
 )
 
 # Simulate a twin DNA alignment
@@ -61,7 +58,7 @@ alignment <- sim_twal_with_std_nsm(
   root_sequence = "aaaa",
   mutation_rate = 0.1
 )
-expect_silent(check_alignment(alignment))
+check_alignment(alignment)
 }
 \seealso{
 Use \link{sim_twin_alignment} to use this function to

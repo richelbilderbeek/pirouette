@@ -18,9 +18,8 @@ Converts true tree filenames to twin tree filenames
 \examples{
 
 filename <- "beast2_output.xml.state"
-created <- to_twin_filename(filename)
-expected <- "beast2_output_twin.xml.state"
-expect_equal(expected, created)
+# beast2_output_twin.xml.state
+to_twin_filename(filename)
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

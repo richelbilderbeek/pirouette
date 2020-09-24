@@ -52,7 +52,7 @@ create_all_coal_experiments <- function(
   tree_prior_names <- unlist(
     lapply(tree_priors, function(x) x$name)
   )
-  testthat::
+  testthat::expect_true(
     all(
       tree_prior_names %in% c(
         "coalescent_bayesian_skyline",

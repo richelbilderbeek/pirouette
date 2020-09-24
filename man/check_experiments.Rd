@@ -35,12 +35,7 @@ A valid \link{pirouette} experiment
 can be created by \link{create_experiment}.
 }
 \examples{
-
-expect_silent(check_experiments(list(create_test_experiment())))
-expect_error(check_experiments(create_test_experiment()))
-expect_error(check_experiments("nonsense"))
-expect_error(check_experiments(NA))
-expect_error(check_experiments(NULL))
+check_experiments(list(create_test_experiment()))
 
 if (rappdirs::app_dir()$os != "win") {
   experiments <- list(
@@ -50,7 +45,7 @@ if (rappdirs::app_dir()$os != "win") {
   # Experiments must have different inference models
   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
 
-  expect_silent(check_experiments(experiments))
+  check_experiments(experiments)
 }
 }
 \seealso{

@@ -50,9 +50,8 @@ Use \link{get_alignment_id} to get the ID of the alignment}
 }
 \value{
 a list of alignment parameters
-
 alignment_params <- create_test_alignment_params()
-expect_silent(check_alignment_params(alignment_params))
+check_alignment_params(alignment_params)
 }
 \description{
 Create testing parameters for the alignment simulation.

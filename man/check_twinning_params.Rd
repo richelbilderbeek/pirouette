@@ -20,11 +20,7 @@ A valid twinning parameters structure can be created
 by \link{create_twinning_params}.
 }
 \examples{
-
-expect_silent(check_twinning_params(create_twinning_params()))
-expect_error(check_twinning_params("nonsense"))
-expect_error(check_twinning_params(NULL))
-expect_error(check_twinning_params(NA))
+check_twinning_params(create_twinning_params())
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -23,7 +23,7 @@ of a phylogeny, while preserving its topology.
 \examples{
 # Branching times as 3 (crown age) and 2 (branch of A and B) time units ago
 phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-# Branching times will be c(3, 2), 
+# Branching times will be c(3, 2)
 as.numeric(ape::branching.times(phylogeny))
 # Will be 2
 ape::dist.nodes(phylogeny)[1, ape::getMRCA(phylogeny, c("A", "B"))]

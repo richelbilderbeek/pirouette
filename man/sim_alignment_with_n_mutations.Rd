@@ -59,23 +59,19 @@ the true (see \link{create_true_alignment})
 and twin alignment (see \link{sim_twin_alignment}).
 }
 \examples{
-
 # Create the phylogeny to simulate the alignment on
 n_taxa <- 5
 phylogeny <- ape::rcoal(n_taxa)
 
 # Use default settings to create the alignment
-alignment_params <- pirouette::create_alignment_params()
+alignment_params <- create_alignment_params()
 
 # Simulate the alignment
 alignment <- sim_true_alignment(
    true_phylogeny = phylogeny,
    alignment_params = alignment_params,
  )
-
-expect_silent(check_alignment(alignment))
-expect_equal(nrow(alignment), n_taxa)
-expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
+check_alignment(alignment)
 }
 \seealso{
 Use \link{create_tral_file}

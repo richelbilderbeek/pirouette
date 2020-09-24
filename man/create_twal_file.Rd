@@ -23,10 +23,10 @@ nothing
 The simulation is performed by \link{sim_twin_alignment}.
 }
 \examples{
-
 # Create a true phylogeny to simulate the DNA sequences on
 n_taxa <- 5
-set.seed(1); phylogeny <- ape::rcoal(n_taxa)
+set.seed(1)
+phylogeny <- ape::rcoal(n_taxa)
 
 # Create the ancestor's DNA sequence
 n_base_pairs <- 4
@@ -42,11 +42,11 @@ create_tral_file(
 )
 
 # Create a twin phylogeny to simulate the DNA sequences on
-set.seed(2); twin_phylogeny <- ape::rcoal(n_taxa)
+set.seed(2)
+twin_phylogeny <- ape::rcoal(n_taxa)
 
 # File does not exist yet
 twinning_params <- create_twinning_params()
-expect_true(!file.exists(twinning_params$twin_alignment_filename))
 
 # Simulate and save the twin alignment
 alignment <- create_twal_file(
@@ -54,8 +54,6 @@ alignment <- create_twal_file(
  alignment_params = alignment_params,
  twinning_params = twinning_params
 )
-# File does exist now
-expect_true(file.exists(twinning_params$twin_alignment_filename))
 }
 \seealso{
 Use \link{sim_twin_alignment} to only simulate

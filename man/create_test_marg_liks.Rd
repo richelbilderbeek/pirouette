@@ -27,21 +27,7 @@ a data frame
 Create a testing marginal likelihoods data frame.
 }
 \examples{
-
-df <- create_test_marg_liks()
-
-expect_true("site_model_name" \%in\% names(df))
-expect_true("clock_model_name" \%in\% names(df))
-expect_true("tree_prior_name" \%in\% names(df))
-expect_true("marg_log_lik" \%in\% names(df))
-expect_true("marg_log_lik_sd" \%in\% names(df))
-expect_true("weight" \%in\% names(df))
-
-# Log likelihoods are zero or less
-expect_true(all(df$marg_log_lik <= 0.0))
-
-# Sum of all weights is one hundred percent
-expect_equal(sum(df$weight), 1.0)
+create_test_marg_liks()
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -21,11 +21,7 @@ as created by \link{create_alignment_params}.
 Will \link{stop} if not.
 }
 \examples{
-
-expect_silent(check_alignment_params(create_test_alignment_params()))
-expect_error(check_alignment_params("nonsense"))
-expect_error(check_alignment_params(NA))
-expect_error(check_alignment_params(NULL))
+check_alignment_params(create_test_alignment_params())
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -4,7 +4,7 @@
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' # Will be a matrix like this:
-#' # 
+#' #
 #' #   |   a     c     g     t
 #' # --+-----------------------
 #' # a | -1.00, 0.50, 0.25, 0.25

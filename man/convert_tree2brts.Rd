@@ -25,9 +25,8 @@ interval of 4 days (1 million years / 10^8 = 1 year / 100) as simultaneous.
 \examples{
 phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
-branching_times <- convert_tree2brts(phylogeny)
-
-expect_equal(c(3.0, 2.0), as.numeric(branching_times))
+# c(3.0, 2.0)
+convert_tree2brts(phylogeny)
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

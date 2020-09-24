@@ -15,14 +15,9 @@ Create a function that can simulate the twin tree from the true tree,
 by just copying the true tree
 }
 \examples{
-
 f <- create_copy_twtr_from_true_fun()
 phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-phylo_out <- f(phylo_in)
-expect_equal(
-  ape::branching.times(phylo_in),
-  ape::branching.times(phylo_out)
-)
+f(phylo_in)
 }
 \seealso{
 Use \link{create_sim_yule_twin_tree_fun} to get a function to

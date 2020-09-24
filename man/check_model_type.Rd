@@ -26,12 +26,8 @@ Checks if model type is valid
 Will \link{stop} if not.
 }
 \examples{
-
-expect_silent(check_model_type(get_model_type_names()[1]))
-expect_silent(check_model_type(get_model_type_names()[2]))
-expect_error(check_model_type("nonsense"))
-expect_error(check_model_type(NA))
-expect_error(check_model_type(NULL))
+check_model_type(get_model_type_names()[1])
+check_model_type(get_model_type_names()[2])
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

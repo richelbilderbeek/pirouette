@@ -19,11 +19,7 @@ A valid \link{pirouette} parameter set
 can be created by \link{create_pir_params}.
 }
 \examples{
-
-expect_silent(check_pir_params(create_test_pir_params()))
-expect_error(check_pir_params("nonsense"))
-expect_error(check_pir_params(NULL))
-expect_error(check_pir_params(NA))
+check_pir_params(create_test_pir_params())
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

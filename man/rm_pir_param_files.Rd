@@ -17,7 +17,6 @@ Nothing
 Deletes all files
 }
 \examples{
-
 pir_params <- create_test_pir_params(
   experiments = list(create_test_gen_experiment())
 )
@@ -33,9 +32,6 @@ if (is_on_travis() && is_beast2_installed()) {
   )
   # Removing the files
   rm_pir_param_files(pir_params)
-
-  # All files should be gone
-  expect_true(all(!file.exists(filenames)))
 }
 }
 \author{

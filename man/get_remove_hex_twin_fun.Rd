@@ -17,17 +17,16 @@ between the filename description (\code{tracelog}) and the hex
 string, this function removes both.
 }
 \examples{
-
 f <- get_remove_hex_twin_fun()
-expect_equal(
-  f("/home/john/beast2_186c7404208c_twin.xml.state"),
-  "/home/john/beast2_twin.xml.state"
-)
-expect_equal(
-  f("beast2_186c7404208c_twin.xml.state"),
-  "beast2_twin.xml.state"
-)
-expect_equal(f(NA), NA)
+
+# /home/john/beast2_twin.xml.state
+f("/home/john/beast2_186c7404208c_twin.xml.state")
+
+# beast2_twin.xml.state
+f("beast2_186c7404208c_twin.xml.state")
+
+# NA
+f(NA)
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -19,11 +19,7 @@ Checks if the tree types are valid
 Will \link{stop} if not.
 }
 \examples{
-
-expect_silent(check_tree_types(get_tree_types()))
-expect_error(check_tree_types("nonsense"))
-expect_error(check_tree_types(NA))
-expect_error(check_tree_types(NULL))
+check_tree_types(get_tree_types())
 }
 \author{
 Richèl J.C. Bilderbeek

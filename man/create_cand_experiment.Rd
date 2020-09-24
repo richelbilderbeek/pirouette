@@ -36,27 +36,16 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} candidate experiment.
 }
 \examples{
-
 # Create a candidate experiment
 if (rappdirs::app_dir()$os != "win") {
   # it does not work on Windows
   experiment <- create_cand_experiment()
-  expect_true("inference_conditions" \%in\% names(experiment))
-  expect_true("inference_model" \%in\% names(experiment))
-  expect_true("beast2_options" \%in\% names(experiment))
-  expect_true("est_evidence_mcmc" \%in\% names(experiment))
-  expect_true("beast2_bin_path" \%in\% names(experiment))
-  expect_silent(check_experiment(experiment))
+  check_experiment(experiment)
 }
 
 # Create a generative experiment
 experiment <- create_gen_experiment()
-expect_true("inference_conditions" \%in\% names(experiment))
-expect_true("inference_model" \%in\% names(experiment))
-expect_true("beast2_options" \%in\% names(experiment))
-expect_true("est_evidence_mcmc" \%in\% names(experiment))
-expect_true("beast2_bin_path" \%in\% names(experiment))
-expect_silent(check_experiment(experiment))
+check_experiment(experiment)
 
 # Use the experiment to create the full pirouette parameter set
 pir_params <- create_pir_params(
@@ -64,9 +53,9 @@ pir_params <- create_pir_params(
   experiments = list(experiment)
 )
 
- if (rappdirs::app_dir()$os != "win" &&
-   is_on_ci() && is_beast2_installed()
- ) {
+if (rappdirs::app_dir()$os != "win" &&
+  is_on_ci() && is_beast2_installed()
+) {
   pir_out <- pir_run(
     phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
     pir_params = pir_params

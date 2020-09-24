@@ -22,7 +22,6 @@ in nature, when assuming the true phylogeny is the true
 evolutionary history.
 }
 \examples{
-
 # Create the ancestor's DNA sequence
 n_base_pairs <- 4
 root_sequence <- create_blocked_dna(length = n_base_pairs)
@@ -41,10 +40,7 @@ alignment <- create_true_alignment(
    true_phylogeny = phylogeny,
    alignment_params = alignment_params
  )
-
-expect_silent(check_alignment(alignment))
-expect_equal(nrow(alignment), n_taxa)
-expect_equal(ncol(alignment), n_base_pairs)
+check_alignment(alignment)
 }
 \seealso{
 Use \link{create_tral_file} to save the created alignment

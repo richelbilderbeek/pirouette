@@ -20,17 +20,12 @@ to let it be estimated}
 Create a (constant-rate) birth-death (BD) tree
 }
 \examples{
-
 n_taxa <- 31
 crown_age <- 41
-
 phylogeny <- create_bd_tree(
   n_taxa = n_taxa,
   crown_age = crown_age
 )
-
-expect_equal(n_taxa, ape::Ntip(phylogeny))
-expect_equal(crown_age, beautier::get_crown_age(phylogeny))
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

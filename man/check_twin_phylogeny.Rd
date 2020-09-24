@@ -13,12 +13,8 @@ check_twin_phylogeny(twin_phylogeny)
 Check if a twin phylogeny is a valid phylogeny
 }
 \examples{
-
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-expect_silent(check_twin_phylogeny(phylogeny))
-expect_error(check_twin_phylogeny("nonsense"))
-expect_error(check_twin_phylogeny(NULL))
-expect_error(check_twin_phylogeny(NA))
+check_twin_phylogeny(phylogeny)
 }
 \seealso{
 Use \link[beautier]{check_phylogeny}

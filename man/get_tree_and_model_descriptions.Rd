@@ -16,10 +16,8 @@ Internal function to create a mapping from a \code{tree_and_model}
 to a description
 }
 \examples{
-
 t <- get_tree_and_model_descriptions()
-
-expect_silent(check_tree_and_models(t$tree_and_model))
+check_tree_and_models(t$tree_and_model)
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno

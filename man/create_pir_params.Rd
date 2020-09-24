@@ -60,7 +60,6 @@ a list with all \link{pirouette} parameters
 Create the parameters for \link{pirouette}
 }
 \examples{
-
 # Create all elements to create a pirouette parameter set
 alignment_params <- create_test_alignment_params()
 twinning_params <- create_twinning_params()
@@ -78,13 +77,6 @@ pir_params <- create_pir_params(
   evidence_filename = evidence_filename,
   verbose = verbose
 )
-
-expect_equal(alignment_params, pir_params$alignment_params)
-expect_equal(twinning_params, pir_params$twinning_params)
-expect_equal(experiments, pir_params$experiments)
-expect_equal(error_measure_params, pir_params$error_measure_params)
-expect_equal(evidence_filename, pir_params$evidence_filename)
-expect_equal(verbose, pir_params$verbose)
 
 # Run that experiment on a continuous integration service,
 # only when BEAST2 is unstalled

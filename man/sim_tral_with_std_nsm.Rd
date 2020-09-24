@@ -41,12 +41,9 @@ which can be:
 Adapter function to simulate a twin alignment using a standard site model
 }
 \examples{
-
 # This adapter function must be a sim_true_alignment function
-expect_silent(
-  check_sim_tral_fun(
-    sim_tral_with_std_nsm
-  )
+check_sim_tral_fun(
+  sim_tral_with_std_nsm
 )
 
 # Simulate the true DNA alignment
@@ -55,7 +52,7 @@ alignment <- sim_tral_with_std_nsm(
   root_sequence = "aaaa",
   mutation_rate = 0.1
 )
-expect_silent(check_alignment(alignment))
+check_alignment(alignment)
 }
 \author{
 Richèl J.C. Bilderbeek

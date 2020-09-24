@@ -13,11 +13,9 @@ to_twin_filenames(filenames)
 Convert multiple filenames to their twin equivalent
 }
 \examples{
-
 filenames <- c("a.csv", "b.xml")
-created <- to_twin_filenames(filenames)
-expected <- c("a_twin.csv", "b_twin.xml")
-expect_equal(expected, created)
+# c("a_twin.csv", "b_twin.xml")
+to_twin_filenames(filenames)
 }
 \author{
 Richèl J.C. Bilderbeek
