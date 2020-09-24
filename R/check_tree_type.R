@@ -4,12 +4,8 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' expect_silent(check_tree_type(get_tree_types()[1]))
-#' expect_silent(check_tree_type(get_tree_types()[2]))
-#' expect_error(check_tree_type("nonsense"))
-#' expect_error(check_tree_type(NA))
-#' expect_error(check_tree_type(NULL))
+#' check_tree_type(get_tree_types()[1])
+#' check_tree_type(get_tree_types()[2])
 #' @export
 check_tree_type <- function(
   tree_type

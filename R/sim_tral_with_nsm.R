@@ -15,7 +15,7 @@
 #'   root_sequence = "aaaa",
 #'   mutation_rate = 0.1
 #' )
-#' expect_silent(check_alignment(alignment))
+#' check_alignment(alignment)
 #' @author Richèl J.C. Bilderbeek
 #' @export
 sim_tral_with_std_nsm <- function(

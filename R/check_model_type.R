@@ -4,12 +4,8 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' expect_silent(check_model_type(get_model_type_names()[1]))
-#' expect_silent(check_model_type(get_model_type_names()[2]))
-#' expect_error(check_model_type("nonsense"))
-#' expect_error(check_model_type(NA))
-#' expect_error(check_model_type(NULL))
+#' check_model_type(get_model_type_names()[1])
+#' check_model_type(get_model_type_names()[2])
 #' @export
 check_model_type <- function(
   model_type
