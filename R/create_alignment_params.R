@@ -10,22 +10,17 @@
 #' # DNA sequence at the root
 #' n_base_pairs <- 4
 #' root_sequence <- create_blocked_dna(length = n_base_pairs)
-#' expect_equal("acgt", root_sequence)
 #'
 #' # Only specify root sequence and mutation rate, use defaults
 #' alignment_params <- create_alignment_params(
 #'   root_sequence = root_sequence
 #' )
 #'
-#' "root_sequence" %in% names(alignment_params))
-#'
 #' # Use defaults explicitly
 #' alignment_params <- create_alignment_params(
 #'   root_sequence = root_sequence,
 #'   rng_seed = 0
 #' )
-#'
-#' "rng_seed" %in% names(alignment_params))
 #'
 #' # Create a pirouette parameter set
 #' pir_params <- create_test_pir_params(alignment_params = alignment_params)

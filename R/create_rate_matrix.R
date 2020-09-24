@@ -97,11 +97,16 @@ create_rate_matrix <- function(
 #'   corresponding type). The sum of the four values equals 1.0
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' expect_equal(calc_base_freq("acgt"), c(0.25, 0.25, 0.25, 0.25))
-#' expect_equal(calc_base_freq("aaaa"), c(1.0, 0.0, 0.0, 0.0))
-#' expect_equal(calc_base_freq("cccc"), c(0.0, 1.0, 0.0, 0.0))
-#' expect_equal(calc_base_freq("gggg"), c(0.0, 0.0, 1.0, 0.0))
-#' expect_equal(calc_base_freq("tttt"), c(0.0, 0.0, 0.0, 1.0))
+#' # c(0.25, 0.25, 0.25, 0.25)
+#' calc_base_freq("acgt")
+#' # c(1.0, 0.0, 0.0, 0.0)
+#' calc_base_freq("aaaa")
+#' # c(0.0, 1.0, 0.0, 0.0)
+#' calc_base_freq("cccc")
+#' # c(0.0, 0.0, 1.0, 0.0)
+#' calc_base_freq("gggg")
+#' # c(0.0, 0.0, 0.0, 1.0)
+#' calc_base_freq("tttt")
 #' @noRd
 calc_base_freq <- function(
   root_sequence

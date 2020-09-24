@@ -3,21 +3,7 @@
 #' @inheritParams default_params_doc
 #' @return a data frame
 #' @examples
-#'
-#' df <- create_test_marg_liks()
-#'
-#' "site_model_name" %in% names(df))
-#' "clock_model_name" %in% names(df))
-#' "tree_prior_name" %in% names(df))
-#' "marg_log_lik" %in% names(df))
-#' "marg_log_lik_sd" %in% names(df))
-#' "weight" %in% names(df))
-#'
-#' # Log likelihoods are zero or less
-#' all(df$marg_log_lik <= 0.0))
-#'
-#' # Sum of all weights is one hundred percent
-#' expect_equal(sum(df$weight), 1.0)
+#' create_test_marg_liks()
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_test_marg_liks <- function(
