@@ -3,7 +3,6 @@
 #' @return a \link{pirouette} experiment.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' experiment <- create_test_experiment()
 #'

@@ -3,7 +3,6 @@
 #'
 #' @inheritParams default_params_doc
 #' @examples
-#' library(testthat)
 #'
 #' if (rappdirs::app_dir()$os != "win") {
 #'   pir_params <- create_test_pir_params_setup(has_candidate = TRUE)

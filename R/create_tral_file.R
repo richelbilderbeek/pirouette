@@ -6,7 +6,6 @@
 #' @seealso Use \link{create_true_alignment} to only simulate the alignment,
 #'   without saving the alignment to file
 #' @examples
-#' library(testthat)
 #'
 #' # Create the ancestor's DNA sequence
 #' n_base_pairs <- 4

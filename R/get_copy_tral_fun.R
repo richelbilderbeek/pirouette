@@ -3,7 +3,6 @@
 #' @return the function
 #' \link{copy_true_alignment}
 #' @examples
-#' library(testthat)
 #'
 #' f <- get_copy_tral_fun()
 #' # This adapter function must be a sim_twin_alignment function

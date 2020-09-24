@@ -3,7 +3,6 @@
 #' @return the number of mutations
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # Create an AAAA alignent
 #' alignment <- ape::as.DNAbin(

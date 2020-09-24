@@ -4,7 +4,6 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_silent(check_model_type(get_model_type_names()[1]))
 #' expect_silent(check_model_type(get_model_type_names()[2]))

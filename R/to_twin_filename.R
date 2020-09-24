@@ -4,7 +4,6 @@
 #' @export
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' filename <- "beast2_output.xml.state"
 #' created <- to_twin_filename(filename)

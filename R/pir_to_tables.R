@@ -5,31 +5,12 @@
 #' @return the names of all files created
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
-#'
-#' pir_params <- pirouette::init_pir_params(create_test_pir_params())
+#' pir_params <- init_pir_params(create_test_pir_params())
 #'
 #' # Run only the true tree part
-#' pirouette::pir_run_true_tree(
+#' pir_run_true_tree(
 #'   true_phylogeny = ape::rcoal(4),
 #'   pir_params = pir_params
-#' )
-#'
-#' # Alignment
-#' testthat::expect_true(
-#'   file.exists(pir_params$alignment_params$fasta_filename)
-#' )
-#' # Parameter estimates
-#' testthat::expect_true(
-#'   file.exists(
-#'     pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename
-#'   )
-#' )
-#' # Posterior trees
-#' testthat::expect_true(
-#'   file.exists(
-#'     pir_params$experiments[[1]]$inference_model$mcmc$treelog$filename
-#'   )
 #' )
 #' @export
 pir_to_tables <- function(

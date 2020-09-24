@@ -6,7 +6,6 @@
 #' parameter sets. The output can be checked using \link{check_pir_out}.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_silent(
 #'   check_pir_out(

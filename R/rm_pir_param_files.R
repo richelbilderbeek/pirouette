@@ -3,7 +3,6 @@
 #' @return Nothing
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' pir_params <- create_test_pir_params(
 #'   experiments = list(create_test_gen_experiment())

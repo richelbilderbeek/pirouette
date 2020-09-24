@@ -13,7 +13,6 @@
 #' the desired number of taxa,
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' n_taxa <- 3
 #' crown_age <- 1

@@ -5,7 +5,6 @@
 #' @seealso Use \link{create_tral_file} to save
 #' the simulated alignment directly to a file
 #' @examples
-#' library(testthat)
 #'
 #' # Create the phylogeny to simulate the alignment on
 #' n_taxa <- 5

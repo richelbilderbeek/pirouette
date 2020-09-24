@@ -4,13 +4,11 @@
 #' @param nucleotide number of nucleotides
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'   library(testthat)
-#'
-#'   expect_equal(create_mono_nuc_dna(length = 3), "aaa")
-#'   expect_equal(
-#'     create_mono_nuc_dna(nucleotide = "c", length = 5),
-#'     "ccccc"
-#'   )
+#' # Creates 'aaa'
+#' create_mono_nuc_dna(length = 3)
+#' 
+#' # Creates 'ccccc'
+#' create_mono_nuc_dna(nucleotide = "c", length = 5)
 #' @seealso Use \link{create_blocked_dna} to create
 #'   a DNA sequence of four equally-sized mono-noculeotide block
 #' @export

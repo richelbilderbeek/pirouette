@@ -2,7 +2,6 @@
 #' @inheritParams default_params_doc
 #' @return TRUE if the pir_params uses twinnning
 #' @examples
-#' library(testthat)
 #'
 #' pir_params <- create_test_pir_params()
 #' expect_false(has_twinning(pir_params))

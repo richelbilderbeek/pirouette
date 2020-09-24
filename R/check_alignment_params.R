@@ -5,7 +5,6 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_silent(check_alignment_params(create_test_alignment_params()))
 #' expect_error(check_alignment_params("nonsense"))

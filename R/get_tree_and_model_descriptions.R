@@ -4,7 +4,6 @@
 #'   and \code{description}
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#' library(testthat)
 #'
 #' t <- get_tree_and_model_descriptions()
 #'

@@ -72,7 +72,6 @@
 #' @return the names of all files created
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #'

@@ -7,7 +7,6 @@
 #' and \code{true_alignment}.
 #' @inheritParams default_params_doc
 #' @examples
-#' library(testthat)
 #'
 #' # This adapter function must be a sim_twin_alignment function
 #' expect_silent(

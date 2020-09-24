@@ -4,7 +4,6 @@
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' library(babette)
-#' library(testthat)
 #'
 #' # We need BEAST2 installed
 #' if (is_beast2_installed()) {

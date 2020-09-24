@@ -3,7 +3,6 @@
 #' @return a \code{ggplot2} plot
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # Create fake pir_run output
 #' pir_outs <- list()

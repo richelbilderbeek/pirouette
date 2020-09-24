@@ -3,7 +3,6 @@
 #' @inheritParams default_params_doc
 #' @return a data frame
 #' @examples
-#' library(testthat)
 #'
 #' df <- create_test_marg_liks()
 #'

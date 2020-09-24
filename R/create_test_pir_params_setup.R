@@ -3,7 +3,6 @@
 #' @param has_candidate TRUE to have a candidate experiment
 #' @param has_twinning TRUE to use twinning
 #' @examples
-#' library(testthat)
 #'
 #' # Minimal use
 #' expect_silent(

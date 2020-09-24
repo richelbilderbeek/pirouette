@@ -5,7 +5,6 @@
 #' @return nothing. Will \link{stop} if nit
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#' library(testthat)
 #'
 #' expect_silent(check_error_measure_params(create_error_measure_params()))
 #' expect_error(check_error_measure_params("nonsense"))

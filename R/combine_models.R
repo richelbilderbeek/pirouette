@@ -5,7 +5,6 @@
 #' this will result in `x * y * z` inference models.
 #' @inheritParams default_params_doc
 #' @examples
-#' library(testthat)
 #'
 #' site_models <- beautier::create_site_models()
 #' clock_models <- beautier::create_clock_models()

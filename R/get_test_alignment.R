@@ -1,7 +1,6 @@
 #' Get an alignment for testing.
 #' @inheritParams default_params_doc
 #' @examples
-#' library(testthat)
 #'
 #' n_taxa <- 7
 #' sequence_length <- 11

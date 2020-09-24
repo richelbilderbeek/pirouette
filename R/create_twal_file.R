@@ -7,7 +7,6 @@
 #'   the twin alignment, without saving the alignment to file
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # Create a true phylogeny to simulate the DNA sequences on
 #' n_taxa <- 5

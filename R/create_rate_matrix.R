@@ -3,18 +3,15 @@
 #' @return a rate matrix
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'   created <- create_rate_matrix(site_model = create_hky_site_model())
-#'
-#'   expected <- matrix(nrow = 4, ncol = 4)
-#'   rownames(expected) <- c("a", "c", "g", "t")
-#'   colnames(expected) <- c("a", "c", "g", "t")
-#'   expected[1, ] <- c(-1.00, 0.50, 0.25, 0.25)
-#'   expected[2, ] <- c( 0.50,-1.00, 0.25, 0.25)
-#'   expected[3, ] <- c( 0.25, 0.25,-1.00, 0.50)
-#'   expected[4, ] <- c( 0.25, 0.25, 0.50,-1.00)
-#'
-#'   library(testthat)
-#'   expect_equal(created, expected)
+#' # Will be a matrix like this:
+#' # 
+#' #   |   a     c     g     t
+#' # --+-----------------------
+#' # a | -1.00, 0.50, 0.25, 0.25
+#' # c |  0.50,-1.00, 0.25, 0.25
+#' # g |  0.25, 0.25,-1.00, 0.50
+#' # t |  0.25, 0.25, 0.50,-1.00
+#' create_rate_matrix(site_model = create_hky_site_model())
 #' @noRd
 create_rate_matrix <- function(
   site_model,
@@ -100,7 +97,6 @@ create_rate_matrix <- function(
 #'   corresponding type). The sum of the four values equals 1.0
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #' expect_equal(calc_base_freq("acgt"), c(0.25, 0.25, 0.25, 0.25))
 #' expect_equal(calc_base_freq("aaaa"), c(1.0, 0.0, 0.0, 0.0))
 #' expect_equal(calc_base_freq("cccc"), c(0.0, 1.0, 0.0, 0.0))

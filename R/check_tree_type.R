@@ -4,7 +4,6 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_silent(check_tree_type(get_tree_types()[1]))
 #' expect_silent(check_tree_type(get_tree_types()[2]))

@@ -2,7 +2,6 @@
 #' @inheritParams default_params_doc
 #' @return an alignment of type \code{DNAbin}
 #' @examples
-#' library(testthat)
 #'
 #' alignment <- sim_alignment_with_std_nsm(
 #'   phylogeny = ape::read.tree(text = "((A:1, B:1):2, C:3);"),

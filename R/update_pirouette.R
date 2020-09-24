@@ -1,7 +1,6 @@
 #' Update all babette dependencies
 #' @inheritParams remotes::install_github
 #' @examples
-#' library(testthat)
 #'
 #' if (is_on_travis()) {
 #'

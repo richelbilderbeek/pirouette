@@ -8,7 +8,6 @@
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' if (1 == 2) { # Issue 377
-#' library(testthat)
 #'
 #' pir_out_filename <- tempfile(fileext = ".csv")
 #' url <- paste0(

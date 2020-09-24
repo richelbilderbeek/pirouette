@@ -2,7 +2,6 @@
 #' @inheritParams default_params_doc
 #' @return a single \link{pir_run} output as produced by a single pir run.
 #' @examples
-#' library(testthat)
 #'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'

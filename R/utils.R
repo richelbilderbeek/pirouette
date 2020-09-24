@@ -14,7 +14,6 @@
 #'
 #' branching_times <- convert_tree2brts(phylogeny)
 #'
-#' library(testthat)
 #' expect_equal(c(3.0, 2.0), as.numeric(branching_times))
 #' @export
 convert_tree2brts <- function(tree, precision = 8) {
@@ -26,7 +25,6 @@ convert_tree2brts <- function(tree, precision = 8) {
 #' @return the twin models
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_true("yule" %in% get_twin_models())
 #' expect_true("birth_death" %in% get_twin_models())
@@ -42,7 +40,6 @@ get_twin_models <- function() {
 #' @return the twin methods
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_true("random_tree" %in% get_twin_methods())
 #' expect_true("max_clade_cred" %in% get_twin_methods())
@@ -61,7 +58,6 @@ get_twin_methods <- function() {
 #' @return the model types
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_true("candidate" %in% get_model_type_names())
 #' expect_true("generative" %in% get_model_type_names())
@@ -75,7 +71,6 @@ get_model_type_names <- function() {
 #' @return the tree types
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_true("true" %in% get_tree_types())
 #' expect_true("twin" %in% get_tree_types())

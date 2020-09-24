@@ -8,7 +8,6 @@
 #' @examples
 #' twinning_params <- create_twinning_params()
 #'
-#' library(testthat)
 #' expect_true("rng_seed_twin_tree" %in% names(twinning_params))
 #' expect_true("rng_seed_twin_alignment" %in% names(twinning_params))
 #' expect_true("twin_tree_filename" %in% names(twinning_params))

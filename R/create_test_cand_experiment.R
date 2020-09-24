@@ -3,7 +3,6 @@
 #' @return a \link{pirouette} experiment.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' if (rappdirs::app_dir()$os != "win") {
 #'   experiment <- create_test_cand_experiment()

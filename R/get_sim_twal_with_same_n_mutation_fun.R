@@ -20,7 +20,6 @@
 #' Use \link{sim_twin_alignment} to use this function to
 #' create a twin alignment.
 #' @examples
-#' library(testthat)
 #'
 #' if (1 == 2) {
 #' expect_silent(

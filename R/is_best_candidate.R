@@ -3,7 +3,6 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' marg_liks <- create_test_marg_liks(
 #'   site_models = list(create_jc69_site_model()),

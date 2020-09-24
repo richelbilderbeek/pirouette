@@ -7,7 +7,6 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' expect_silent(check_pir_params(create_test_pir_params()))
 #' expect_error(check_pir_params("nonsense"))

@@ -6,7 +6,6 @@
 #'   parameter sets
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#' library(testthat)
 #'
 #' pir_params <- create_test_pir_params()
 #'

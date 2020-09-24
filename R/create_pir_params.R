@@ -12,7 +12,6 @@
 #'   }
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # Create all elements to create a pirouette parameter set
 #' alignment_params <- create_test_alignment_params()

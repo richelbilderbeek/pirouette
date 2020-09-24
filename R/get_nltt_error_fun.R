@@ -1,7 +1,6 @@
 #' Get an error function that uses the nLTT statistic
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' error_fun <- get_nltt_error_fun()
 #'

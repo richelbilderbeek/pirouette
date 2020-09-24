@@ -5,7 +5,6 @@
 #'   of at least one base pair
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # OK: valid and lowercase characters
 #' expect_true(is_dna_seq("acgt"))

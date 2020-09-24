@@ -5,7 +5,6 @@
 #'   is a list of experiments
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' evidences <- create_test_marg_liks(
 #'   site_models = list(create_jc69_site_model()),

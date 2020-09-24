@@ -2,7 +2,6 @@
 #' @param filenames the paths to files, may be relative or absolute paths
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' filenames <- c("a.csv", "b.xml")
 #' created <- to_twin_filenames(filenames)

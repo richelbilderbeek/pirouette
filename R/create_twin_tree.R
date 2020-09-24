@@ -10,7 +10,6 @@
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' twin_phylogeny <- create_twin_tree(phylogeny)
 #'
-#' library(testthat)
 #' # Twin is a phylogeny
 #' expect_true(is_phylo(twin_phylogeny))
 #'

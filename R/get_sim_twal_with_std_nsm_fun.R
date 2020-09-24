@@ -4,7 +4,6 @@
 #' @return a partially evaluated function of
 #' \link{sim_twal_with_std_nsm}
 #' @examples
-#' library(testthat)
 #'
 #' f <- get_sim_twal_with_std_nsm_fun(
 #'   mutation_rate = 0.1

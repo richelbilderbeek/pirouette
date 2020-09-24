@@ -5,7 +5,6 @@
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' n_taxa <- 31
 #' crown_age <- 41
@@ -41,7 +40,6 @@ create_yule_tree <- function(
 #' @inheritParams default_params_doc
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' n_taxa <- 31
 #' crown_age <- 41

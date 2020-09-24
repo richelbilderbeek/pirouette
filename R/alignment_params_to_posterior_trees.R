@@ -6,7 +6,6 @@
 #'   as a \link[ape]{multiphylo}
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'

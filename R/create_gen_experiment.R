@@ -3,7 +3,6 @@
 #' @return a \link{pirouette} experiment.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # Create a candidate experiment
 #' if (rappdirs::app_dir()$os != "win") {

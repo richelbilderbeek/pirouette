@@ -3,7 +3,6 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' if (rappdirs::app_dir()$os != "win") {
 #'   experiment_1 <- create_test_gen_experiment()

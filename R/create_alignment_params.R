@@ -6,7 +6,6 @@
 #'   simulation of an alignment
 #' @return a list of alignment parameters
 #' @examples
-#' library(testthat)
 #'
 #' # DNA sequence at the root
 #' n_base_pairs <- 4
@@ -61,7 +60,6 @@ create_alignment_params <- function(
 #' Create testing parameters for the alignment simulation.
 #' @inheritParams default_params_doc
 #' @return a list of alignment parameters
-#' library(testthat)
 #'
 #' alignment_params <- create_test_alignment_params()
 #' expect_silent(check_alignment_params(alignment_params))

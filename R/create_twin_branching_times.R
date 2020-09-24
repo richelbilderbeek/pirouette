@@ -14,7 +14,6 @@
 #'   method = "random_tree"
 #' )
 #'
-#' library(testthat)
 #' expect_equal(
 #'   length(ape::branching.times(phylogeny)),
 #'   length(branching_times)

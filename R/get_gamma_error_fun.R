@@ -4,7 +4,6 @@
 #' Proc. R. Soc. Lond. B, 267, 2267-2272.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' error_fun <- get_gamma_error_fun()
 #'

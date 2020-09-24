@@ -5,7 +5,6 @@
 #' @return the inference conditions
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' library(testthat)
 #'
 #' # Create the inference conditions parameter set
 #' if (rappdirs::app_dir()$os != "win") {

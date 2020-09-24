@@ -8,7 +8,6 @@
 #' @seealso Use \link{create_tral_file} to save the created alignment
 #'   directly to a file
 #' @examples
-#' library(testthat)
 #'
 #' # Create the ancestor's DNA sequence
 #' n_base_pairs <- 4
