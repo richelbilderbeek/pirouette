@@ -15,7 +15,6 @@ the gamma statistic can be found in Pybus and Harvey, 2000,
 Proc. R. Soc. Lond. B, 267, 2267-2272.
 }
 \examples{
-library(testthat)
 
 error_fun <- get_gamma_error_fun()
 

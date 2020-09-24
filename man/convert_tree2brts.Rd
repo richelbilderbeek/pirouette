@@ -27,7 +27,6 @@ phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 
 branching_times <- convert_tree2brts(phylogeny)
 
-library(testthat)
 expect_equal(c(3.0, 2.0), as.numeric(branching_times))
 }
 \author{

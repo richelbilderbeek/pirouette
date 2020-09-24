@@ -56,7 +56,6 @@ a list of alignment parameters
 These parameters are used in the \link{create_pir_params} function
 }
 \examples{
-library(testthat)
 
 # DNA sequence at the root
 n_base_pairs <- 4

@@ -13,7 +13,6 @@ the twin models
 Twin models
 }
 \examples{
-library(testthat)
 
 expect_true("yule" \%in\% get_twin_models())
 expect_true("birth_death" \%in\% get_twin_models())

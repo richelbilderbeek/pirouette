@@ -17,7 +17,6 @@ TRUE if the pir_params uses twinnning
 Determine if these \code{pir_params} use twinning
 }
 \examples{
-library(testthat)
 
 pir_params <- create_test_pir_params()
 expect_false(has_twinning(pir_params))

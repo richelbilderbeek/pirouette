@@ -16,7 +16,6 @@ a single \link{pir_run} output as produced by a single pir run.
 Collect the results of multiple \link{pirouette} runs
 }
 \examples{
-library(testthat)
 
 if (is_on_travis() && is_beast2_installed()) {
 

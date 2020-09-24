@@ -13,7 +13,6 @@ to_twin_filenames(filenames)
 Convert multiple filenames to their twin equivalent
 }
 \examples{
-library(testthat)
 
 filenames <- c("a.csv", "b.xml")
 created <- to_twin_filenames(filenames)

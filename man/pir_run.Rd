@@ -26,7 +26,6 @@ an alignment is created using a known site model and clock model,
 as given by \code{alignment_params}.
 }
 \examples{
-library(testthat)
 
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 pir_params <- create_test_pir_params()

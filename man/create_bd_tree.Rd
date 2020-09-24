@@ -20,7 +20,6 @@ to let it be estimated}
 Create a (constant-rate) birth-death (BD) tree
 }
 \examples{
-library(testthat)
 
 n_taxa <- 31
 crown_age <- 41

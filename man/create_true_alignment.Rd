@@ -22,7 +22,6 @@ in nature, when assuming the true phylogeny is the true
 evolutionary history.
 }
 \examples{
-library(testthat)
 
 # Create the ancestor's DNA sequence
 n_base_pairs <- 4

@@ -22,7 +22,6 @@ the number of mutations
 Count mutations
 }
 \examples{
-library(testthat)
 
 # Create an AAAA alignent
 alignment <- ape::as.DNAbin(

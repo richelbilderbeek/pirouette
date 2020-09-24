@@ -42,7 +42,6 @@ a list of inference models
 Select the experiments to do a Bayesian inference with.
 }
 \examples{
-library(testthat)
 
 evidences <- create_test_marg_liks(
   site_models = list(create_jc69_site_model()),

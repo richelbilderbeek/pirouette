@@ -34,7 +34,6 @@ Get a function to simulate the true alignment with,
 that uses a standard site model.
 }
 \examples{
-library(testthat)
 
 f <- get_sim_tral_with_std_nsm_fun(
   mutation_rate = 0.1

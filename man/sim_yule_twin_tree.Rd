@@ -33,7 +33,6 @@ a twin Yule tree of class \link[ape]{phylo},
 Create a twin tree from a phylogeny using a Yule process
 }
 \examples{
-library(testthat)
 
 phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 twinning_params <- create_twinning_params()

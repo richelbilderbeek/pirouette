@@ -16,7 +16,6 @@ evidence tree filename
 Converts a filename to an evidence filename
 }
 \examples{
-library(testthat)
 
 filename <- "beast2_output.xml.state"
 created <- to_evidence_filename(filename)

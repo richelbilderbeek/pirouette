@@ -27,7 +27,6 @@ The function \link{sim_bd_twin_tree} simulates a twin tree
 using the Birth-Death (BD) speciation model.
 }
 \examples{
-library(testthat)
 
 f <- get_sim_bd_twin_tree_fun()
 phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")

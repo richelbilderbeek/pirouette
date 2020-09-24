@@ -13,7 +13,6 @@ the model types
 Get the names of the model types
 }
 \examples{
-library(testthat)
 
 expect_true("candidate" \%in\% get_model_type_names())
 expect_true("generative" \%in\% get_model_type_names())

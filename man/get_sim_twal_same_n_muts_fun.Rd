@@ -52,7 +52,6 @@ by being a function with the function arguments \code{twin_phylogeny}
 and \code{true_alignment}.
 }
 \examples{
-library(testthat)
 
 if (1 == 2) {
 expect_silent(

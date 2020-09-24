@@ -19,7 +19,6 @@ A Yule model is also known as a pure-birth model;
 a birth-death model without extinction.
 }
 \examples{
-library(testthat)
 
 n_taxa <- 31
 crown_age <- 41

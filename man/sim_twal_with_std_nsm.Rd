@@ -47,7 +47,6 @@ by being a function with the function arguments \code{twin_phylogeny}
 and \code{true_alignment}
 }
 \examples{
-library(testthat)
 
 # This adapter function must be a sim_twin_alignment function
 expect_silent(

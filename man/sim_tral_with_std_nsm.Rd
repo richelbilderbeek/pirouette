@@ -41,7 +41,6 @@ which can be:
 Adapter function to simulate a twin alignment using a standard site model
 }
 \examples{
-library(testthat)
 
 # This adapter function must be a sim_true_alignment function
 expect_silent(

@@ -19,7 +19,6 @@ Checks if tree type is valid
 Will \link{stop} if not.
 }
 \examples{
-library(testthat)
 
 expect_silent(check_tree_type(get_tree_types()[1]))
 expect_silent(check_tree_type(get_tree_types()[2]))

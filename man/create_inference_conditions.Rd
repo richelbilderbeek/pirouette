@@ -47,7 +47,6 @@ Create the parameters to determine how to choose
 a model for the inference
 }
 \examples{
-library(testthat)
 
 # Create the inference conditions parameter set
 if (rappdirs::app_dir()$os != "win") {

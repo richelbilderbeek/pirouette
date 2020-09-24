@@ -21,7 +21,6 @@ nothing
 The simulation is performed by \link{create_true_alignment}.
 }
 \examples{
-library(testthat)
 
 # Create the ancestor's DNA sequence
 n_base_pairs <- 4

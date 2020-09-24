@@ -23,7 +23,6 @@ nothing
 The simulation is performed by \link{sim_twin_alignment}.
 }
 \examples{
-library(testthat)
 
 # Create a true phylogeny to simulate the DNA sequences on
 n_taxa <- 5

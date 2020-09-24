@@ -17,7 +17,6 @@ A test data frame can be created by \link{create_test_marg_liks}}
 Is the experiment the one with the most evidence?
 }
 \examples{
-library(testthat)
 
 marg_liks <- create_test_marg_liks(
   site_models = list(create_jc69_site_model()),

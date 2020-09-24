@@ -94,7 +94,6 @@ These are the files created:
 Items marked [1] are created dependent on the setup.
 }
 \examples{
-library(testthat)
 
 phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 

@@ -13,7 +13,6 @@ the tree types
 Get the names of the tree types
 }
 \examples{
-library(testthat)
 
 expect_true("true" \%in\% get_tree_types())
 expect_true("twin" \%in\% get_tree_types())

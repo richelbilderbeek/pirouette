@@ -31,7 +31,6 @@ A \code{pir_out} contains:
 }
 }
 \examples{
-library(testthat)
 
 expect_silent(check_pir_out(create_test_pir_run_output()))
 expect_error(check_pir_out("nonsense"))

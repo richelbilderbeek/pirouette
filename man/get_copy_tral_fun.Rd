@@ -16,7 +16,6 @@ Get a function to 'simulate' a twin alignment by simply
 copying the true alignment.
 }
 \examples{
-library(testthat)
 
 f <- get_copy_tral_fun()
 # This adapter function must be a sim_twin_alignment function

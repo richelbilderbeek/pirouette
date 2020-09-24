@@ -15,7 +15,6 @@ Create a function that can simulate the twin tree from the true tree,
 by just copying the true tree
 }
 \examples{
-library(testthat)
 
 f <- create_copy_twtr_from_true_fun()
 phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")

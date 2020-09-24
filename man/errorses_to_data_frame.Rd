@@ -35,7 +35,6 @@ A test data frame can be created by \link{create_test_marg_liks}}
 Convert the collect of errors to a data frame
 }
 \examples{
-library(testthat)
 
 if (beastier::is_beast2_installed()) {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")

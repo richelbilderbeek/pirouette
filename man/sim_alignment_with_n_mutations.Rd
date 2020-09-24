@@ -59,7 +59,6 @@ the true (see \link{create_true_alignment})
 and twin alignment (see \link{sim_twin_alignment}).
 }
 \examples{
-library(testthat)
 
 # Create the phylogeny to simulate the alignment on
 n_taxa <- 5

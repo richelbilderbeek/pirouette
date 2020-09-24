@@ -27,7 +27,6 @@ a data frame
 Create a testing marginal likelihoods data frame.
 }
 \examples{
-library(testthat)
 
 df <- create_test_marg_liks()
 

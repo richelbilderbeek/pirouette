@@ -17,13 +17,11 @@ Create a 'blocked' DNA sequence, which is a sequence
 with four equal-sized nucleotide sections
 }
 \examples{
-  library(testthat)
+# Creates 'aaa'
+create_mono_nuc_dna(length = 3)
 
-  expect_equal(create_mono_nuc_dna(length = 3), "aaa")
-  expect_equal(
-    create_mono_nuc_dna(nucleotide = "c", length = 5),
-    "ccccc"
-  )
+# Creates 'ccccc'
+create_mono_nuc_dna(nucleotide = "c", length = 5)
 }
 \seealso{
 Use \link{create_blocked_dna} to create

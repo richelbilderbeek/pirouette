@@ -26,7 +26,6 @@ Checks if model type is valid
 Will \link{stop} if not.
 }
 \examples{
-library(testthat)
 
 expect_silent(check_model_type(get_model_type_names()[1]))
 expect_silent(check_model_type(get_model_type_names()[2]))

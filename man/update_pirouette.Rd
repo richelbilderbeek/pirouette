@@ -18,7 +18,6 @@ to "always". \code{TRUE} and \code{FALSE} are also accepted and correspond to
 Update all babette dependencies
 }
 \examples{
-library(testthat)
 
 if (is_on_travis()) {
 

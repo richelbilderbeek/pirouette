@@ -16,7 +16,6 @@ twin tree filename
 Converts true tree filenames to twin tree filenames
 }
 \examples{
-library(testthat)
 
 filename <- "beast2_output.xml.state"
 created <- to_twin_filename(filename)

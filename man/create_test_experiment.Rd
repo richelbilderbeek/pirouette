@@ -43,7 +43,6 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} experiment.
 }
 \examples{
-library(testthat)
 
 experiment <- create_test_experiment()
 

@@ -26,7 +26,6 @@ If there are `x` site models, `y` clock models and `z` tree priors,
 this will result in `x * y * z` inference models.
 }
 \examples{
-library(testthat)
 
 site_models <- beautier::create_site_models()
 clock_models <- beautier::create_clock_models()

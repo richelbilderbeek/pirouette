@@ -36,7 +36,6 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} candidate experiment.
 }
 \examples{
-library(testthat)
 
 # Create a candidate experiment
 if (rappdirs::app_dir()$os != "win") {

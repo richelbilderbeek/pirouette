@@ -21,7 +21,6 @@ as created by \link{create_alignment_params}.
 Will \link{stop} if not.
 }
 \examples{
-library(testthat)
 
 expect_silent(check_alignment_params(create_test_alignment_params()))
 expect_error(check_alignment_params("nonsense"))

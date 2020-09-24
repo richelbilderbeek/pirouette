@@ -13,7 +13,6 @@ check_twin_phylogeny(twin_phylogeny)
 Check if a twin phylogeny is a valid phylogeny
 }
 \examples{
-library(testthat)
 
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 expect_silent(check_twin_phylogeny(phylogeny))

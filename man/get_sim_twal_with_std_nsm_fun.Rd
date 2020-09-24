@@ -38,7 +38,6 @@ Get a function to simulate a twin alignment which uses a standard
 site model
 }
 \examples{
-library(testthat)
 
 f <- get_sim_twal_with_std_nsm_fun(
   mutation_rate = 0.1

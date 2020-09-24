@@ -20,7 +20,6 @@ A valid twinning parameters structure can be created
 by \link{create_twinning_params}.
 }
 \examples{
-library(testthat)
 
 expect_silent(check_twinning_params(create_twinning_params()))
 expect_error(check_twinning_params("nonsense"))

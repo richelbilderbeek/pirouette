@@ -16,7 +16,6 @@ Determine if there is an experiment in which the evidence will
 be measured.
 }
 \examples{
-library(testthat)
 
 if (rappdirs::app_dir()$os != "win") {
   pir_params <- create_test_pir_params_setup(has_candidate = TRUE)

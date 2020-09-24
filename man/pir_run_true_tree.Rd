@@ -21,7 +21,6 @@ a data frame with errors, with as many rows as model selection
 The phylogeny can be the true tree or its twin.
 }
 \examples{
-library(testthat)
 
 pir_params <- create_test_pir_params()
 

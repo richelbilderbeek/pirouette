@@ -59,22 +59,11 @@ if (rappdirs::app_dir()$os != "win" && is_on_travis() &&
   # Create a single one candidate experiment
   experiments <- list(create_test_cand_experiment())
 
-  evidences <- est_evidences(
+  # Collect the evidences
+  est_evidences(
     fasta_filename = fasta_filename,
     experiments = experiments
   )
-
-  library(testthat)
-  expect_true("site_model_name" \%in\% names(evidences))
-  expect_true("clock_model_name" \%in\% names(evidences))
-  expect_true("tree_prior_name" \%in\% names(evidences))
-  expect_true("marg_log_lik" \%in\% names(evidences))
-  expect_true("marg_log_lik_sd" \%in\% names(evidences))
-  expect_true("weight" \%in\% names(evidences))
-  expect_true("ess" \%in\% names(evidences))
-
-  # As the only experiment, its weight is 1.0
-  expect_equal(1.0, evidences$weight[1])
 }
 }
 \author{

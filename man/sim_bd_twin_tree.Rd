@@ -39,7 +39,6 @@ a twin BD tree of class \link[ape]{phylo},
 Simulate a Birth-Death (BD) twin tree from the true phylogeny
 }
 \examples{
-library(testthat)
 
 phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 twinning_params <- create_twinning_params()

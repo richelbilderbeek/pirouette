@@ -41,7 +41,6 @@ a \link{list} or \code{pir_params}, dubbed a \code{pir_paramses}.
 Create a number of standard \code{pir_params}
 }
 \examples{
-library(testthat)
 
 n <- 2
 pir_paramses <- create_std_pir_paramses(n = n)

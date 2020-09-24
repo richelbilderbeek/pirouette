@@ -13,7 +13,6 @@ the twin methods
 Twin methods
 }
 \examples{
-library(testthat)
 
 expect_true("random_tree" \%in\% get_twin_methods())
 expect_true("max_clade_cred" \%in\% get_twin_methods())

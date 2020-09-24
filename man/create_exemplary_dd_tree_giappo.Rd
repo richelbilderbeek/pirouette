@@ -34,7 +34,6 @@ deviate strongest from the expected exponential growth
 that regular birth-death (BD) trees have.
 }
 \examples{
-library(testthat)
 
 n_taxa <- 3
 crown_age <- 1

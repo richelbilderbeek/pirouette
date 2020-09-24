@@ -19,7 +19,6 @@ Determine if the string is a lowercase DNA sequence
 of at least one base pair
 }
 \examples{
-library(testthat)
 
 # OK: valid and lowercase characters
 expect_true(is_dna_seq("acgt"))

@@ -36,7 +36,6 @@ A test data frame can be created by \link{create_test_marg_liks}}
 Select the evidences for candidate experiments
 }
 \examples{
-library(testthat)
 
 if (rappdirs::app_dir()$os != "win") {
   experiment_1 <- create_test_gen_experiment()

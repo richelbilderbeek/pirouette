@@ -15,7 +15,6 @@ create_test_pir_params_setup(has_candidate = FALSE, has_twinning = FALSE)
 Create a \code{pir_params} that follows a specific setup
 }
 \examples{
-library(testthat)
 
 # Minimal use
 expect_silent(

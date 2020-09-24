@@ -22,7 +22,6 @@ as \link{pirouette} parameter sets. For each phylogeny-parameters
 pair, \link{pir_run} is called.
 }
 \examples{
-library(testthat)
 
 if (is_on_travis() && is_beast2_installed()) {
 

@@ -16,7 +16,6 @@ Internal function to create a mapping from a \code{tree_and_model}
 to a description
 }
 \examples{
-library(testthat)
 
 t <- get_tree_and_model_descriptions()
 

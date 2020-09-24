@@ -38,7 +38,6 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} generative experiment.
 }
 \examples{
-library(testthat)
 
 # Create a candidate experiment
 if (rappdirs::app_dir()$os != "win") {

@@ -15,7 +15,6 @@ get_test_alignment(n_taxa = 3, sequence_length = 4)
 Get an alignment for testing.
 }
 \examples{
-library(testthat)
 
 n_taxa <- 7
 sequence_length <- 11

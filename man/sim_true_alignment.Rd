@@ -26,7 +26,6 @@ an alignment of type \link[ape]{DNAbin}
 Simulate the true alignment from the true phylogeny
 }
 \examples{
-library(testthat)
 
 # Create the phylogeny to simulate the alignment on
 n_taxa <- 5

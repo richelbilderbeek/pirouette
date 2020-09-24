@@ -43,7 +43,6 @@ using the nLTT statistics. These nLTT statistics, all with values
 betweem (including) zero and (including) one, are returned.
 }
 \examples{
-library(testthat)
 
 phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 

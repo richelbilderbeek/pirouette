@@ -10,7 +10,6 @@ get_nltt_error_fun()
 Get an error function that uses the nLTT statistic
 }
 \examples{
-library(testthat)
 
 error_fun <- get_nltt_error_fun()
 

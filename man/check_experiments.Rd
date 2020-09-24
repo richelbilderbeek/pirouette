@@ -35,7 +35,6 @@ A valid \link{pirouette} experiment
 can be created by \link{create_experiment}.
 }
 \examples{
-library(testthat)
 
 expect_silent(check_experiments(list(create_test_experiment())))
 expect_error(check_experiments(create_test_experiment()))

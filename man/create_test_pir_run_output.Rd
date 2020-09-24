@@ -21,7 +21,6 @@ Create the same output of \link{pir_run}
 to be used for testing
 }
 \examples{
-library(testthat)
 
 expect_silent(
   check_pir_out(
