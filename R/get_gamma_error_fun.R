@@ -4,7 +4,6 @@
 #' Proc. R. Soc. Lond. B, 267, 2267-2272.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
 #' error_fun <- get_gamma_error_fun()
 #'
 #' phylogeny <- ape::read.tree(text = "((A:1.5, B:1.5):1.5, C:3.0);")
@@ -13,12 +12,9 @@
 #' tree_2 <- ape::read.tree(text = "((A:2.0, B:2.0):1.0, C:3.0);")
 #' trees <- c(tree_1, tree_2)
 #'
-#' lowest_error <- error_fun(phylogeny, c(phylogeny))
-#' error_1 <- error_fun(phylogeny, c(tree_1))
-#' error_2 <- error_fun(phylogeny, c(tree_2))
-#' lowest_error < error_1)
-#' lowest_error < error_2)
-#' expect_equal(2, length(error_fun(phylogeny, trees)))
+#' error_fun(phylogeny, c(phylogeny))
+#' error_fun(phylogeny, c(tree_1))
+#' error_fun(phylogeny, c(tree_2))
 #' @export
 get_gamma_error_fun <- function() {
   gamma_error_fun <- function(tree, trees) {

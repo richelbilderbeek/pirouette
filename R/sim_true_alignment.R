@@ -23,13 +23,10 @@
 #'
 #' # Simulate the alignment
 #' alignment <- sim_true_alignment(
-#'    true_phylogeny = true_phylogeny,
-#'    alignment_params = alignment_params,
-#'  )
-#'
-#' expect_silent(check_alignment(alignment))
-#' expect_equal(nrow(alignment), n_taxa)
-#' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
+#'   true_phylogeny = true_phylogeny,
+#'   alignment_params = alignment_params,
+#' )
+#' check_alignment(alignment)
 #' @author Richèl J.C. Bilderbeek
 #' @export
 sim_true_alignment <- function(

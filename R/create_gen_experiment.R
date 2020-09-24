@@ -8,12 +8,12 @@
 #' if (rappdirs::app_dir()$os != "win") {
 #'   # it does not work on Windows
 #'   experiment <- create_cand_experiment()
-#'   expect_silent(check_experiment(experiment))
+#'   check_experiment(experiment)
 #' }
 #'
 #' # Create a generative experiment
 #' experiment <- create_gen_experiment()
-#' expect_silent(check_experiment(experiment))
+#' check_experiment(experiment)
 #'
 #' # Use the experiment to create the full pirouette parameter set
 #' pir_params <- create_pir_params(

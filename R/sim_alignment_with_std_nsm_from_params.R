@@ -4,7 +4,6 @@
 #' @seealso use \link{sim_alignment_with_std_nsm} to simulate an alignment
 #' directlt from a mutation rate, root sequence and site model
 #' @examples
-#'
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' alignment_params <- create_alignment_params(
 #'   root_sequence = "aaaa",
@@ -16,8 +15,7 @@
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
-#'
-#' expect_silent(check_alignment(alignment))
+#' check_alignment(alignment)
 #' @author Richèl J.C. Bilderbeek
 #' @export
 sim_alignment_with_std_nsm_from_params <- function( # nolint indeed a long function name

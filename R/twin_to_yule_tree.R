@@ -3,26 +3,8 @@
 #' @return a twin Yule tree of class \link[ape]{phylo},
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#'
 #' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
-#' twinning_params <- create_twinning_params()
 #' yule_tree <- sim_yule_twin_tree(phylogeny)
-#'
-#' expect_equal(class(yule_tree), "phylo")
-#'
-#' # Branching times will differ, except the crown
-#' 
-#'   all(
-#'     ape::branching.times(phylogeny) ==
-#'     ape::branching.times(yule_tree)
-#'   )
-#' )
-#'
-#' # Crown age stays the same
-#' expect_equal(
-#'   max(ape::branching.times(yule_tree)),
-#'   max(ape::branching.times(phylogeny))
-#' )
 #' @seealso
 #' Use \link{sim_bd_twin_tree} to simulate a Birth-Death twin tree.
 #' Use \link{create_sim_yule_twin_tree_fun} to get a partially

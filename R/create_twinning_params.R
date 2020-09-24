@@ -8,15 +8,12 @@
 #' @examples
 #' twinning_params <- create_twinning_params()
 #'
-#' "rng_seed_twin_tree" %in% names(twinning_params))
-#' "rng_seed_twin_alignment" %in% names(twinning_params))
-#' "twin_tree_filename" %in% names(twinning_params))
-#' expect_silent(check_twinning_params(twinning_params))
+#' check_twinning_params(twinning_params)
 #'
 #' pir_params <- create_test_pir_params(
 #'   twinning_params = twinning_params
 #' )
-#' expect_silent(check_pir_params(pir_params))
+#' check_pir_params(pir_params)
 #'
 #' if (is_on_ci() &&
 #'   rappdirs::app_dir()$os == "unix" &&

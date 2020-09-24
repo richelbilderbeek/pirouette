@@ -6,12 +6,11 @@
 #' @inheritParams default_params_doc
 #' @return a list of \link{pir_run} outputs.
 #' @examples
-#'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
 #'   pir_paramses <- list()
-#'   pir_paramses[[1]] <- pirouette::create_test_pir_params()
-#'   pir_paramses[[2]] <- pirouette::create_test_pir_params()
+#'   pir_paramses[[1]] <- create_test_pir_params()
+#'   pir_paramses[[2]] <- create_test_pir_params()
 #'
 #'   phylogenies <- list()
 #'   phylogenies[[1]] <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
@@ -22,7 +21,7 @@
 #'     pir_paramses = pir_paramses
 #'   )
 #'   for (pir_out in pir_outs) {
-#'     expect_silent(check_pir_out(pir_out))
+#'     check_pir_out(pir_out)
 #'   }
 #' }
 #' @seealso

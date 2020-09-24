@@ -8,12 +8,7 @@
 #' @seealso Use \link{check_experiment} to check if an object
 #'   is one valid experiment
 #' @examples
-#'
-#' expect_silent(check_experiments(list(create_test_experiment())))
-#' expect_error(check_experiments(create_test_experiment()))
-#' expect_error(check_experiments("nonsense"))
-#' expect_error(check_experiments(NA))
-#' expect_error(check_experiments(NULL))
+#' check_experiments(list(create_test_experiment()))
 #'
 #' if (rappdirs::app_dir()$os != "win") {
 #'   experiments <- list(
@@ -23,7 +18,7 @@
 #'   # Experiments must have different inference models
 #'   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
 #'
-#'   expect_silent(check_experiments(experiments))
+#'   check_experiments(experiments)
 #' }
 #' @author Richèl J.C. Bilderbeek
 #' @export

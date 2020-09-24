@@ -15,23 +15,19 @@
 #' @seealso Use \link{create_tral_file}
 #' to save the simulated alignment directly to a file.
 #' @examples
-#'
 #' # Create the phylogeny to simulate the alignment on
 #' n_taxa <- 5
 #' phylogeny <- ape::rcoal(n_taxa)
 #'
 #' # Use default settings to create the alignment
-#' alignment_params <- pirouette::create_alignment_params()
+#' alignment_params <- create_alignment_params()
 #'
 #' # Simulate the alignment
 #' alignment <- sim_true_alignment(
 #'    true_phylogeny = phylogeny,
 #'    alignment_params = alignment_params,
 #'  )
-#'
-#' expect_silent(check_alignment(alignment))
-#' expect_equal(nrow(alignment), n_taxa)
-#' expect_equal(ncol(alignment), nchar(alignment_params$root_sequence))
+#' check_alignment(alignment)
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @seealso Use \link{sim_tral_with_std_nsm}
 #' simulate the true alignment with a standard site model.

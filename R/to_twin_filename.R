@@ -6,9 +6,8 @@
 #' @examples
 #'
 #' filename <- "beast2_output.xml.state"
-#' created <- to_twin_filename(filename)
-#' expected <- "beast2_output_twin.xml.state"
-#' expect_equal(expected, created)
+#' # beast2_output_twin.xml.state
+#' to_twin_filename(filename)
 to_twin_filename <- function(
   filename
 ) {

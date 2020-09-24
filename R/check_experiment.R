@@ -9,15 +9,11 @@
 #'   is a list of experiments
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' expect_silent(check_experiment(create_test_experiment()))
-#' expect_silent(check_experiment(create_test_gen_experiment()))
+#' check_experiment(create_test_experiment())
+#' check_experiment(create_test_gen_experiment())
 #' if (rappdirs::app_dir()$os != "win") {
-#'   expect_silent(check_experiment(create_test_cand_experiment()))
+#'   check_experiment(create_test_cand_experiment())
 #' }
-#' expect_error(check_experiment("nonsense"))
-#' expect_error(check_experiment(NA))
-#' expect_error(check_experiment(NULL))
 #' @export
 check_experiment <- function(
   experiment

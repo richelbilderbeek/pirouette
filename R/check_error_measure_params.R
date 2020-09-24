@@ -5,11 +5,7 @@
 #' @return nothing. Will \link{stop} if nit
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#'
-#' expect_silent(check_error_measure_params(create_error_measure_params()))
-#' expect_error(check_error_measure_params("nonsense"))
-#' expect_error(check_error_measure_params(NA))
-#' expect_error(check_error_measure_params(NULL))
+#' check_error_measure_params(create_error_measure_params())
 #' @export
 check_error_measure_params <- function(
   error_measure_params

@@ -5,11 +5,7 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' expect_silent(check_alignment_params(create_test_alignment_params()))
-#' expect_error(check_alignment_params("nonsense"))
-#' expect_error(check_alignment_params(NA))
-#' expect_error(check_alignment_params(NULL))
+#' check_alignment_params(create_test_alignment_params())
 #' @export
 check_alignment_params <- function(
   alignment_params

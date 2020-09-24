@@ -1,15 +1,13 @@
 #' Update all babette dependencies
 #' @inheritParams remotes::install_github
 #' @examples
-#'
-#' if (is_on_travis()) {
-#'
+#' \dontrun{
 #'   # Updates the pirouette dependencies without asking
 #'   update_pirouette(upgrade = "always")
 #'
 #'   # Updating again should produce no output,
 #'   # as there is nothing to upgrade left
-#'   expect_silent(update_pirouette(upgrade = "always"))
+#'   update_pirouette(upgrade = "always")
 #' }
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @export

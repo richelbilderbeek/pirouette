@@ -12,9 +12,8 @@
 #' @examples
 #' phylogeny <- ape::read.tree(text = "((A:2, B:2):1, C:3);")
 #'
-#' branching_times <- convert_tree2brts(phylogeny)
-#'
-#' expect_equal(c(3.0, 2.0), as.numeric(branching_times))
+#' # c(3.0, 2.0)
+#' convert_tree2brts(phylogeny)
 #' @export
 convert_tree2brts <- function(tree, precision = 8) {
   round(ape::branching.times(tree), digits = precision)

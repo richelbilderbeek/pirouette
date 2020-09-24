@@ -21,11 +21,7 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' expect_silent(check_pir_out(create_test_pir_run_output()))
-#' expect_error(check_pir_out("nonsense"))
-#' expect_error(check_pir_out(NULL))
-#' expect_error(check_pir_out(NA))
+#' check_pir_out(create_test_pir_run_output())
 #' @export
 check_pir_out <- function(
   pir_out

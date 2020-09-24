@@ -6,17 +6,6 @@
 #'   Use \link{pir_plot} to directly plot the return value
 #'   of \link{pir_run}
 #' @author Richèl J.C. Bilderbeek
-#' @examples
-#' if (1 == 2) { # Issue 377
-#'
-#' pir_out_filename <- tempfile(fileext = ".csv")
-#' url <- paste0(
-#'   "https://raw.githubusercontent.com/richelbilderbeek/",
-#'   "pirouette_example_3/master/example_3_314/errors.csv"
-#' )
-#' utils::download.file(url = url, destfile = pir_out_filename, quiet = TRUE)
-#' expect_silent(pir_plot_from_file(pir_out_filename))
-#' }
 #' @export
 pir_plot_from_file <- function(pir_out_filename) {
 

@@ -9,18 +9,6 @@
 #' @examples
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 #' twin_phylogeny <- create_twin_tree(phylogeny)
-#'
-#' # Twin is a phylogeny
-#' is_phylo(twin_phylogeny))
-#'
-#' # Twin tree has the same number of taxa as the original tree
-#' expect_equal(ape::Ntip(phylogeny), ape::Ntip(twin_phylogeny))
-#'
-#' # Twin tree has the same crown age as the original tree
-#' expect_equal(
-#'   max(ape::branching.times(phylogeny)),
-#'   max(ape::branching.times(twin_phylogeny))
-#' )
 #' @export
 create_twin_tree <- function(
   phylogeny,

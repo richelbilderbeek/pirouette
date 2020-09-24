@@ -4,11 +4,9 @@
 #' @export
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
 #' filename <- "beast2_output.xml.state"
-#' created <- to_evidence_filename(filename)
-#' expected <- "beast2_output_evidence.xml.state"
-#' expect_equal(expected, created)
+#' # beast2_output_evidence.xml.state
+#' to_evidence_filename(filename)
 to_evidence_filename <- function(
   filename
 ) {

@@ -6,17 +6,12 @@
 #' @examples
 #' phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 #'
-#' branching_times <- create_twin_branching_times(
+#' create_twin_branching_times(
 #'   lambda = 0.1,
 #'   mu = 1.0,
 #'   phylogeny = phylogeny,
 #'   n_replicates = 1,
 #'   method = "random_tree"
-#' )
-#'
-#' expect_equal(
-#'   length(ape::branching.times(phylogeny)),
-#'   length(branching_times)
 #' )
 #' @export
 create_twin_branching_times <- function(

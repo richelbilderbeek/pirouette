@@ -4,12 +4,8 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
 #' phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
-#' expect_silent(check_twin_phylogeny(phylogeny))
-#' expect_error(check_twin_phylogeny("nonsense"))
-#' expect_error(check_twin_phylogeny(NULL))
-#' expect_error(check_twin_phylogeny(NA))
+#' check_twin_phylogeny(phylogeny)
 #' @export
 check_twin_phylogeny <- function(twin_phylogeny) {
   tryCatch(

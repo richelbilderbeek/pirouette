@@ -1,12 +1,9 @@
 #' Adapter function to simulate a twin alignment using a standard site model
 #' @inheritParams default_params_doc
 #' @examples
-#'
 #' # This adapter function must be a sim_true_alignment function
-#' expect_silent(
-#'   check_sim_tral_fun(
-#'     sim_tral_with_std_nsm
-#'   )
+#' check_sim_tral_fun(
+#'   sim_tral_with_std_nsm
 #' )
 #'
 #' # Simulate the true DNA alignment

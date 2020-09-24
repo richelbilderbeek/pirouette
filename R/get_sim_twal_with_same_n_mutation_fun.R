@@ -19,15 +19,6 @@
 #' functions to simulate a twin alignment.
 #' Use \link{sim_twin_alignment} to use this function to
 #' create a twin alignment.
-#' @examples
-#'
-#' if (1 == 2) {
-#' expect_silent(
-#'   check_sim_twal_fun(
-#'     get_sim_twal_same_n_muts_fun
-#'   )
-#' )
-#' }
 #' @export
 get_sim_twal_same_n_muts_fun <- function(
   mutation_rate = 1.0,
