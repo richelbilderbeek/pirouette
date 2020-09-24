@@ -28,7 +28,7 @@
 #'    experiments <- create_all_coal_experiments()
 #'    check_experiments(experiments)
 #'
-#'    expect_true(length(experiments) >= 24)
+#'    length(experiments) >= 24)
 #'
 #'    pir_params <- create_pir_params(
 #'      alignment_params = create_test_alignment_params(),
@@ -52,7 +52,7 @@ create_all_coal_experiments <- function(
   tree_prior_names <- unlist(
     lapply(tree_priors, function(x) x$name)
   )
-  testthat::expect_true(
+  testthat::
     all(
       tree_prior_names %in% c(
         "coalescent_bayesian_skyline",

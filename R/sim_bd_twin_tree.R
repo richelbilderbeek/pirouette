@@ -12,7 +12,7 @@
 #' expect_equal(class(bd_tree), "phylo")
 #'
 #' # Branching times will differ, except the crown
-#' expect_false(
+#' 
 #'   all(
 #'     ape::branching.times(phylogeny) ==
 #'     ape::branching.times(bd_tree)

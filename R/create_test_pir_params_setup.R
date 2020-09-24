@@ -14,8 +14,8 @@
 #'   has_candidate = FALSE,
 #'   has_twinning = FALSE
 #' )
-#' expect_true(!has_twinning(pir_params))
-#' expect_true(!has_candidate_experiments(pir_params))
+#' !has_twinning(pir_params))
+#' !has_candidate_experiments(pir_params))
 #'
 #' # Generative and candidate experiment, without twinning
 #' if (rappdirs::app_dir()$os != "win") {
@@ -23,8 +23,8 @@
 #'     has_candidate = TRUE,
 #'     has_twinning = FALSE
 #'   )
-#'   expect_true(!has_twinning(pir_params))
-#'   expect_true(has_candidate_experiments(pir_params))
+#'   !has_twinning(pir_params))
+#'   has_candidate_experiments(pir_params))
 #' }
 #'
 #' # Generative experiment only, with twinning
@@ -32,8 +32,8 @@
 #'   has_candidate = FALSE,
 #'   has_twinning = TRUE
 #' )
-#' expect_true(has_twinning(pir_params))
-#' expect_true(!has_candidate_experiments(pir_params))
+#' has_twinning(pir_params))
+#' !has_candidate_experiments(pir_params))
 #'
 #' # Generative and candidate experiment, with twinning
 #' if (rappdirs::app_dir()$os != "win") {
@@ -41,8 +41,8 @@
 #'     has_candidate = TRUE,
 #'     has_twinning = TRUE
 #'   )
-#'   expect_true(has_twinning(pir_params))
-#'   expect_true(has_candidate_experiments(pir_params))
+#'   has_twinning(pir_params))
+#'   has_candidate_experiments(pir_params))
 #' }
 #' @export
 create_test_pir_params_setup <- function(

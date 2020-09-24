@@ -6,7 +6,6 @@
 #'   as a \link[ape]{multiphylo}
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
 #' if (is_on_travis() && is_beast2_installed()) {
 #'
 #'   alignment_params <- create_test_alignment_params()
@@ -15,13 +14,10 @@
 #'     alignment_params = alignment_params
 #'   )
 #'
-#'   expect_true(file.exists(alignment_params$fasta_filename))
-#'
-#'   trees <- alignment_params_to_posterior_trees(
+#'   alignment_params_to_posterior_trees(
 #'     alignment_params = alignment_params,
 #'     experiment = create_test_experiment()
 #'   )
-#'   expect_equal("multiPhylo", class(trees))
 #' }
 #' @noRd
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name

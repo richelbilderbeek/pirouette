@@ -11,7 +11,7 @@
 #' twin_phylogeny <- create_twin_tree(phylogeny)
 #'
 #' # Twin is a phylogeny
-#' expect_true(is_phylo(twin_phylogeny))
+#' is_phylo(twin_phylogeny))
 #'
 #' # Twin tree has the same number of taxa as the original tree
 #' expect_equal(ape::Ntip(phylogeny), ape::Ntip(twin_phylogeny))

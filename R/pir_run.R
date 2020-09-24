@@ -36,39 +36,39 @@
 #' }
 #'
 #' # Return value
-#' expect_true("tree" %in% names(errors))
-#' expect_true(is.factor(errors$tree))
-#' expect_true("true" %in% errors$tree)
+#' "tree" %in% names(errors))
+#' is.factor(errors$tree))
+#' "true" %in% errors$tree)
 #'
-#' expect_true("inference_model" %in% names(errors))
-#' expect_true(is.factor(errors$inference_model))
-#' expect_true("generative" %in% errors$inference_model)
+#' "inference_model" %in% names(errors))
+#' is.factor(errors$inference_model))
+#' "generative" %in% errors$inference_model)
 #'
-#' expect_true("inference_model_weight" %in% names(errors))
-#' expect_true(!is.factor(errors$inference_model_weight))
+#' "inference_model_weight" %in% names(errors))
+#' !is.factor(errors$inference_model_weight))
 #'
-#' expect_true("site_model" %in% names(errors))
-#' expect_true(is.factor(errors$site_model))
-#' expect_true("JC69" %in% errors$site_model)
+#' "site_model" %in% names(errors))
+#' is.factor(errors$site_model))
+#' "JC69" %in% errors$site_model)
 #'
-#' expect_true("clock_model" %in% names(errors))
-#' expect_true(is.factor(errors$clock_model))
+#' "clock_model" %in% names(errors))
+#' is.factor(errors$clock_model))
 #'
-#' expect_true("tree_prior" %in% names(errors))
-#' expect_true(is.factor(errors$tree_prior))
-#' expect_true("birth_death" %in% errors$tree_prior ||
+#' "tree_prior" %in% names(errors))
+#' is.factor(errors$tree_prior))
+#' "birth_death" %in% errors$tree_prior ||
 #'   "yule" %in% errors$tree_prior
 #' )
 #'
-#' expect_true("error_1" %in% names(errors))
-#' expect_true(!is.factor(errors$error_1))
+#' "error_1" %in% names(errors))
+#' !is.factor(errors$error_1))
 #'
 #' # Errors more than zero
 #' col_first_error <- which(colnames(errors) == "error_1")
 #' col_last_error <- ncol(errors)
-#' expect_true(all(errors[, col_first_error:col_last_error] > 0.0))
+#' all(errors[, col_first_error:col_last_error] > 0.0))
 #' n_errors <- col_last_error - col_first_error + 1
-#' expect_true(n_errors < 11) # due to burn-in
+#' n_errors < 11) # due to burn-in
 #' @export
 pir_run <- function(
   phylogeny,

@@ -3,7 +3,6 @@
 #' @return Nothing
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'
 #' pir_params <- create_test_pir_params(
 #'   experiments = list(create_test_gen_experiment())
 #' )
@@ -20,9 +19,6 @@
 #"
 #'   # Removing the files
 #'   rm_pir_param_files(pir_params)
-#'
-#'   # All files should be gone
-#'   expect_true(all(!file.exists(filenames)))
 #' }
 #' @export
 rm_pir_param_files <- function(pir_params) {

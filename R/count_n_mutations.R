@@ -9,12 +9,16 @@
 #'   x = list(species_1 = strsplit("aaaa", split = "")[[1]])
 #' )
 #' # Count the number of mutations from AAAA
-#' expect_equal(count_n_mutations(alignment, "aaaa"), 0)
-#' expect_equal(count_n_mutations(alignment, "acaa"), 1)
-#' expect_equal(count_n_mutations(alignment, "acga"), 2)
-#' expect_equal(count_n_mutations(alignment, "acgt"), 3)
-#' expect_equal(count_n_mutations(alignment, "ccgt"), 4)
-#'
+#' # 0
+#' count_n_mutations(alignment, "aaaa")
+#' # 1
+#' count_n_mutations(alignment, "acaa")
+#' # 2
+#' count_n_mutations(alignment, "acga")
+#' # 3
+#' count_n_mutations(alignment, "acgt")
+#' # 4
+#' count_n_mutations(alignment, "ccgt")
 #' @export
 count_n_mutations <- function(
   alignment,

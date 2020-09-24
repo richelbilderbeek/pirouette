@@ -4,10 +4,8 @@
 #'   and \code{description}
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#'
 #' t <- get_tree_and_model_descriptions()
-#'
-#' expect_silent(check_tree_and_models(t$tree_and_model))
+#' check_tree_and_models(t$tree_and_model)
 #' @export
 get_tree_and_model_descriptions <- function() {# nolint long function name is fine for an internal function
   t <- tibble::tribble(

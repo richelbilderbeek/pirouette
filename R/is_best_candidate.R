@@ -22,8 +22,8 @@
 #'     tree_prior = create_bd_tree_prior()
 #'   )
 #' )
-#' expect_true(is_best_candidate(experiment_yule, marg_liks))
-#' expect_false(is_best_candidate(experiment_bd, marg_liks))
+#' is_best_candidate(experiment_yule, marg_liks))
+#' is_best_candidate(experiment_bd, marg_liks))
 #' @export
 is_best_candidate <- function(experiment, marg_liks) {
 

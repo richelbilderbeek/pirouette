@@ -17,7 +17,7 @@
 #'   root_sequence = root_sequence
 #' )
 #'
-#' expect_true("root_sequence" %in% names(alignment_params))
+#' "root_sequence" %in% names(alignment_params))
 #'
 #' # Use defaults explicitly
 #' alignment_params <- create_alignment_params(
@@ -25,7 +25,7 @@
 #'   rng_seed = 0
 #' )
 #'
-#' expect_true("rng_seed" %in% names(alignment_params))
+#' "rng_seed" %in% names(alignment_params))
 #'
 #' # Create a pirouette parameter set
 #' pir_params <- create_test_pir_params(alignment_params = alignment_params)

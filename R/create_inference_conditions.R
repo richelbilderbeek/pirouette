@@ -30,9 +30,6 @@
 #'   run_if = run_if,
 #'   do_measure_evidence = do_measure_evidence
 #' )
-#' expect_true("model_type" %in% names(inference_conditions))
-#' expect_true("run_if" %in% names(inference_conditions))
-#' expect_true("do_measure_evidence" %in% names(inference_conditions))
 #'
 #' # Using the inference conditions, create a testing candidate experiment
 #' experiment <- create_test_cand_experiment(

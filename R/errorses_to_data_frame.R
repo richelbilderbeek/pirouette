@@ -37,7 +37,7 @@
 #'       tree_priors = list(create_yule_tree_prior())
 #'     )
 #'   )
-#'   expect_true(is.data.frame(df))
+#'   is.data.frame(df))
 #' }
 #' @export
 errorses_to_data_frame <- function(

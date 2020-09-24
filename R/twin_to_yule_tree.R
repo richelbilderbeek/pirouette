@@ -11,7 +11,7 @@
 #' expect_equal(class(yule_tree), "phylo")
 #'
 #' # Branching times will differ, except the crown
-#' expect_false(
+#' 
 #'   all(
 #'     ape::branching.times(phylogeny) ==
 #'     ape::branching.times(yule_tree)

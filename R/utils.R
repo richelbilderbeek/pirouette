@@ -26,10 +26,10 @@ convert_tree2brts <- function(tree, precision = 8) {
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'
-#' expect_true("yule" %in% get_twin_models())
-#' expect_true("birth_death" %in% get_twin_models())
-#' expect_true("copy_true" %in% get_twin_models())
-#' expect_false("nonsense" %in% get_twin_models())
+#' "yule" %in% get_twin_models())
+#' "birth_death" %in% get_twin_models())
+#' "copy_true" %in% get_twin_models())
+#' "nonsense" %in% get_twin_models())
 #' @export
 get_twin_models <- function() {
   c("birth_death", "yule", "copy_true")
@@ -41,10 +41,10 @@ get_twin_models <- function() {
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'
-#' expect_true("random_tree" %in% get_twin_methods())
-#' expect_true("max_clade_cred" %in% get_twin_methods())
-#' expect_true("max_likelihood" %in% get_twin_methods())
-#' expect_false("nonsense" %in% get_twin_methods())
+#' "random_tree" %in% get_twin_methods())
+#' "max_clade_cred" %in% get_twin_methods())
+#' "max_likelihood" %in% get_twin_methods())
+#' "nonsense" %in% get_twin_methods())
 #' @export
 get_twin_methods <- function() {
   c(
@@ -59,9 +59,9 @@ get_twin_methods <- function() {
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'
-#' expect_true("candidate" %in% get_model_type_names())
-#' expect_true("generative" %in% get_model_type_names())
-#' expect_false("Jensen Ackles" %in% get_model_type_names())
+#' "candidate" %in% get_model_type_names())
+#' "generative" %in% get_model_type_names())
+#' "Jensen Ackles" %in% get_model_type_names())
 #' @export
 get_model_type_names <- function() {
   c("generative", "candidate")
@@ -72,9 +72,9 @@ get_model_type_names <- function() {
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'
-#' expect_true("true" %in% get_tree_types())
-#' expect_true("twin" %in% get_tree_types())
-#' expect_false("Jensen Ackles" %in% get_tree_types())
+#' "true" %in% get_tree_types())
+#' "twin" %in% get_tree_types())
+#' "Jensen Ackles" %in% get_tree_types())
 #' @export
 get_tree_types <- function() {
   c("true", "twin")

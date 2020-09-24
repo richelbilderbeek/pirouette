@@ -98,7 +98,7 @@
 #'     file.path(folder, "true_error_violin_gen.png"),
 #'     file.path(folder, "twin_error_violin_gen.png")
 #'   )
-#'   expect_true(all(!file.exists(expected_filenames)))
+#'   all(!file.exists(expected_filenames)))
 #'
 #'   created_filenames <- pir_to_pics(
 #'     phylogeny = phylogeny,
@@ -106,7 +106,7 @@
 #'     folder = folder
 #'   )
 #'
-#'   expect_true(all(file.exists(expected_filenames)))
+#'   all(file.exists(expected_filenames)))
 #' }
 #' @export
 pir_to_pics <- function(
@@ -202,9 +202,9 @@ pir_to_pics <- function(
   if (first_experiment$inference_conditions$model_type == "generative") {
 
     csv_filename <- first_experiment$errors_filename
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
     df_errors_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_histogram_gen.png")
@@ -220,9 +220,9 @@ pir_to_pics <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
 
     csv_filename <- last_experiment$errors_filename
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
     df_errors_best <- data.frame(
       error = df_errors$x
     )
@@ -241,9 +241,9 @@ pir_to_pics <- function(
   if (first_experiment$inference_conditions$model_type == "generative") {
 
     csv_filename <- first_experiment$errors_filename
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
     df_errors_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_violin_gen.png")
@@ -261,9 +261,9 @@ pir_to_pics <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
 
     csv_filename <- last_experiment$errors_filename
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
     df_errors_best <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "true_error_violin_best.png")
@@ -395,9 +395,9 @@ pir_to_pics_twin <- function(
     csv_filename <- pirouette::to_twin_filename(
       first_experiment$errors_filename
     )
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
     df_errors_twin_gen <- data.frame(error = df_errors$x)
 
     filename <- file.path(folder, "twin_error_histogram_gen.png")
@@ -413,9 +413,9 @@ pir_to_pics_twin <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
 
     csv_filename <- pirouette::to_twin_filename(last_experiment$errors_filename)
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
 
     df_errors_twin_best <- data.frame(error = df_errors$x)
 
@@ -435,9 +435,9 @@ pir_to_pics_twin <- function(
     csv_filename <- pirouette::to_twin_filename(
       first_experiment$errors_filename
     )
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
 
     df_errors_twin_gen <- data.frame(error = df_errors$x)
 
@@ -456,9 +456,9 @@ pir_to_pics_twin <- function(
   if (last_experiment$inference_conditions$model_type == "candidate") {
 
     csv_filename <- pirouette::to_twin_filename(last_experiment$errors_filename)
-    testthat::expect_true(file.exists(csv_filename))
+    testthat::file.exists(csv_filename))
     df_errors <- readr::read_csv(csv_filename)
-    testthat::expect_true("x" %in% names(df_errors))
+    testthat::"x" %in% names(df_errors))
 
     df_errors_twin_best <- data.frame(error = df_errors$x)
 

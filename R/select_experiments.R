@@ -24,13 +24,10 @@
 #'
 #'   # Select the experiment.
 #'   # In this case, select the candidate experiment with the highest evidence
-#'   selected <- select_experiments(
+#'   select_experiments(
 #'     experiments = experiments,
 #'     marg_liks = evidences
 #'   )
-#'
-#'   expect_equal(1, length(selected))
-#'   expect_equal("yule", selected[[1]]$inference_model$tree_prior$name)
 #' }
 #' @export
 select_experiments <- function(

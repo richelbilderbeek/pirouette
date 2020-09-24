@@ -28,7 +28,7 @@
 #'    experiments <- create_all_bd_experiments()
 #'    check_experiments(experiments)
 #'
-#'    expect_true(length(experiments) >= 16)
+#'    length(experiments) >= 16)
 #'
 #'    pir_params <- create_pir_params(
 #'      alignment_params = create_test_alignment_params(),
@@ -51,7 +51,7 @@ create_all_bd_experiments <- function(
   tree_prior_names <- unlist(
     lapply(tree_priors, function(x) x$name)
   )
-  testthat::expect_true(all(tree_prior_names %in% c("yule", "birth_death")))
+  testthat::all(tree_prior_names %in% c("yule", "birth_death")))
 
 
   pirouette::create_all_experiments(

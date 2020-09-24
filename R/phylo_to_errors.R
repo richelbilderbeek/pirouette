@@ -22,7 +22,7 @@
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
-#' expect_true(file.exists(alignment_params$fasta_filename))
+#' file.exists(alignment_params$fasta_filename))
 #'
 #' experiment <- create_test_gen_experiment()
 #'
@@ -46,9 +46,9 @@
 #'     experiment = experiment
 #'   )
 #'
-#'   expect_true(is.numeric(nltts))
-#'   expect_true(length(nltts) > 0)
-#'   expect_true(all(nltts > 0) & all(nltts < 1))
+#'   is.numeric(nltts))
+#'   length(nltts) > 0)
+#'   all(nltts > 0) & all(nltts < 1))
 #' }
 #' @export
 phylo_to_errors <- function(

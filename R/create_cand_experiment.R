@@ -8,21 +8,21 @@
 #' if (rappdirs::app_dir()$os != "win") {
 #'   # it does not work on Windows
 #'   experiment <- create_cand_experiment()
-#'   expect_true("inference_conditions" %in% names(experiment))
-#'   expect_true("inference_model" %in% names(experiment))
-#'   expect_true("beast2_options" %in% names(experiment))
-#'   expect_true("est_evidence_mcmc" %in% names(experiment))
-#'   expect_true("beast2_bin_path" %in% names(experiment))
+#'   "inference_conditions" %in% names(experiment))
+#'   "inference_model" %in% names(experiment))
+#'   "beast2_options" %in% names(experiment))
+#'   "est_evidence_mcmc" %in% names(experiment))
+#'   "beast2_bin_path" %in% names(experiment))
 #'   expect_silent(check_experiment(experiment))
 #' }
 #'
 #' # Create a generative experiment
 #' experiment <- create_gen_experiment()
-#' expect_true("inference_conditions" %in% names(experiment))
-#' expect_true("inference_model" %in% names(experiment))
-#' expect_true("beast2_options" %in% names(experiment))
-#' expect_true("est_evidence_mcmc" %in% names(experiment))
-#' expect_true("beast2_bin_path" %in% names(experiment))
+#' "inference_conditions" %in% names(experiment))
+#' "inference_model" %in% names(experiment))
+#' "beast2_options" %in% names(experiment))
+#' "est_evidence_mcmc" %in% names(experiment))
+#' "beast2_bin_path" %in% names(experiment))
 #' expect_silent(check_experiment(experiment))
 #'
 #' # Use the experiment to create the full pirouette parameter set

@@ -6,17 +6,17 @@
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #'
-#' # OK: valid and lowercase characters
-#' expect_true(is_dna_seq("acgt"))
+#' # TRUE: valid and lowercase characters
+#' is_dna_seq("acgt"))
 #'
-#' # Must be lowercase
-#' expect_false(is_dna_seq("AGCT"))
+#' # FALSE: Must be lowercase
+#' is_dna_seq("AGCT"))
 #'
-#' # Must be only valid characters
-#' expect_false(is_dna_seq("xxxx"))
+#' # FALSE: Must be only valid characters
+#' is_dna_seq("xxxx"))
 #'
-#' # Must have at least one nucleotide
-#' expect_false(is_dna_seq(""))
+#' # FALSE: Must have at least one nucleotide
+#' is_dna_seq(""))
 #' @export
 is_dna_seq <- function(s) {
   stringr::str_match(s, "[acgt]*")[1, 1] != ""

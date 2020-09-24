@@ -29,7 +29,7 @@
 #'     "tree", "inference_model", "inference_model_weight", "site_model",
 #'     "clock_model", "tree_prior", "error_1", "error_2", "error_3"
 #'   )
-#'   expect_true(all(expected_col_names %in% names(df)))
+#'   all(expected_col_names %in% names(df)))
 #' }
 #' @export
 pir_run_true_tree <- function(
