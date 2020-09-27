@@ -237,10 +237,10 @@ BEAST2 binary file path.}
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
 \item{branch_mutation_rate}{mutation rate along the branch.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{branch_subst_matrix}{substitution matrix along the branches.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{brts}{numeric vector of (all postive) branching times,
 in time units before the present. Assuming no stem, the heighest
@@ -436,13 +436,13 @@ Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 twin tree}
 
 \item{node_mutation_rate}{mutation rate on the node.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{node_subst_matrix}{substitution matrix on the nodes.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{node_time}{amount of time spent at the nodes.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
 

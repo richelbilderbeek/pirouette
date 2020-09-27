@@ -16,23 +16,23 @@ get_sim_tral_with_uns_nsm_fun(
 }
 \arguments{
 \item{branch_subst_matrix}{substitution matrix along the branches.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{node_subst_matrix}{substitution matrix on the nodes.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{branch_mutation_rate}{mutation rate along the branch.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{node_mutation_rate}{mutation rate on the node.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{base_frequencies}{the four base frequencies (a, c, g, t) to be
 specified to create the rate matrix (i.e. Q matrix)
 used to simulate alignments}
 
 \item{node_time}{amount of time spent at the nodes.
-See, among others, \link[nodeSub]{sim_dual_independent} for more details}
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 }
 \value{
 A partially evaluated function of
