@@ -20,16 +20,11 @@
 #' n_taxa <- 5
 #' phylogeny <- ape::rcoal(n_taxa)
 #'
-#' # File does not exist yet
-#' file.exists(alignment_params$fasta_filename))
-#'
 #' # Simulate and save the alignment
-#' alignment <- create_tral_file(
+#' create_tral_file(
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
-#' # File does exist now
-#' file.exists(alignment_params$fasta_filename))
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_tral_file <- function(

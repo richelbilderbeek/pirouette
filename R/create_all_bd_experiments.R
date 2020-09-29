@@ -31,7 +31,7 @@
 #'     alignment_params = create_test_alignment_params(),
 #'     experiments = experiments,
 #'     evidence_filename = get_temp_evidence_filename()
-#'   s)
+#'   )
 #' }
 #' @export
 create_all_bd_experiments <- function(

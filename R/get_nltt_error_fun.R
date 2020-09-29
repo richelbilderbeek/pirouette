@@ -11,8 +11,6 @@
 #' trees <- c(tree_1, tree_2)
 #'
 #' lowest_error <- error_fun(phylogeny, c(phylogeny))
-#' error_fun(phylogeny, c(tree_1)
-#' error_fun(phylogeny, c(tree_2)
 #' @export
 get_nltt_error_fun <- function() {
   nLTT::nltts_diff

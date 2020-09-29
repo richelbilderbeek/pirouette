@@ -34,9 +34,9 @@ new_phylogeny <- combine_brts_and_topology(
   brts = c(5, 4),
   tree = phylogeny
 )
-#' Will be c(5, 4)
-as.numeric(ape::branching.times(new_phylogeny)))
-#' Will be 4
+# Will be c(5, 4)
+as.numeric(ape::branching.times(new_phylogeny))
+# Will be 4
 ape::dist.nodes(new_phylogeny)[
     1, ape::getMRCA(new_phylogeny, c("A", "B"))
 ]

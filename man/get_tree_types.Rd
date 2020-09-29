@@ -13,10 +13,7 @@ the tree types
 Get the names of the tree types
 }
 \examples{
-
-"true" \%in\% get_tree_types())
-"twin" \%in\% get_tree_types())
-"Jensen Ackles" \%in\% get_tree_types())
+get_tree_types()
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

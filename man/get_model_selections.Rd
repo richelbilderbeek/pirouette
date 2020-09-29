@@ -10,9 +10,7 @@ get_model_selections()
 Get the possible ways to select an inference model
 }
 \examples{
-
-"generative" \%in\% get_model_selections())
-"most_evidence" \%in\% get_model_selections())
+get_model_selections()
 }
 \author{
 Richèl J.C. Bilderbeek

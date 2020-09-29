@@ -48,8 +48,6 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
    experiments <- create_all_coal_experiments()
    check_experiments(experiments)
 
-   length(experiments) >= 24)
-
    pir_params <- create_pir_params(
      alignment_params = create_test_alignment_params(),
      experiments = experiments,

@@ -13,10 +13,7 @@
 #'
 #' f <- create_sim_yule_twin_tree_fun()
 #' phylo_in <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-#' phylo_out <- f(phylo_in)
-#'
-#'   !all(ape::branching.times(phylo_in) == ape::branching.times(phylo_out))
-#' )
+#' f(phylo_in)
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_sim_yule_twin_tree_fun <- function(

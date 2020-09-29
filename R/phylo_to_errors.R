@@ -22,8 +22,6 @@
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
-#' file.exists(alignment_params$fasta_filename))
-#'
 #' experiment <- create_test_gen_experiment()
 #'
 #' # A normal user should never need to initialize the experiment,
@@ -40,15 +38,11 @@
 #' if (rappdirs::app_dir()$os != "win" &&
 #'   is_on_ci() && is_beast2_installed()
 #' ) {
-#'   nltts <- phylo_to_errors(
+#'   phylo_to_errors(
 #'     phylogeny = phylogeny,
 #'     alignment_params = alignment_params,
 #'     experiment = experiment
 #'   )
-#'
-#'   is.numeric(nltts))
-#'   length(nltts) > 0)
-#'   all(nltts > 0) & all(nltts < 1))
 #' }
 #' @export
 phylo_to_errors <- function(

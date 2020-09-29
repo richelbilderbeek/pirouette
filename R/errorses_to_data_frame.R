@@ -28,7 +28,7 @@
 #'     verbose = pir_params$verbose
 #'   )
 #'
-#'   df <- errorses_to_data_frame(
+#'   errorses_to_data_frame(
 #'     errorses = errorses,
 #'     experiments = list(pir_params$experiments[[1]]),
 #'     marg_liks = create_test_marg_liks(
@@ -37,7 +37,6 @@
 #'       tree_priors = list(create_yule_tree_prior())
 #'     )
 #'   )
-#'   is.data.frame(df))
 #' }
 #' @export
 errorses_to_data_frame <- function(

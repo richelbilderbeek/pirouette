@@ -13,11 +13,7 @@ the twin models
 Twin models
 }
 \examples{
-
-"yule" \%in\% get_twin_models())
-"birth_death" \%in\% get_twin_models())
-"copy_true" \%in\% get_twin_models())
-"nonsense" \%in\% get_twin_models())
+get_twin_models()
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

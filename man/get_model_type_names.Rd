@@ -13,10 +13,7 @@ the model types
 Get the names of the model types
 }
 \examples{
-
-"candidate" \%in\% get_model_type_names())
-"generative" \%in\% get_model_type_names())
-"Jensen Ackles" \%in\% get_model_type_names())
+get_model_type_names()
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

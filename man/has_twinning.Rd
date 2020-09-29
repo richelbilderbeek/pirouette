@@ -19,10 +19,12 @@ Determine if these \code{pir_params} use twinning
 \examples{
 
 pir_params <- create_test_pir_params()
-has_twinning(pir_params))
+# Returns FALSE
+has_twinning(pir_params)
 
 pir_params <- create_test_pir_params(
   twinning_params = create_twinning_params()
 )
-has_twinning(pir_params))
+# Returns TRUE
+has_twinning(pir_params)
 }

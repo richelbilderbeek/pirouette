@@ -51,7 +51,7 @@ if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
     alignment_params = create_test_alignment_params(),
     experiments = experiments,
     evidence_filename = get_temp_evidence_filename()
-  s)
+  )
 }
 }
 \seealso{

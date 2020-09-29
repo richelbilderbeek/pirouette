@@ -13,11 +13,7 @@ the twin methods
 Twin methods
 }
 \examples{
-
-"random_tree" \%in\% get_twin_methods())
-"max_clade_cred" \%in\% get_twin_methods())
-"max_likelihood" \%in\% get_twin_methods())
-"nonsense" \%in\% get_twin_methods())
+get_twin_methods()
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

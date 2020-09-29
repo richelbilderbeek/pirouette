@@ -24,11 +24,7 @@ convert_tree2brts <- function(tree, precision = 8) {
 #' @return the twin models
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' "yule" %in% get_twin_models())
-#' "birth_death" %in% get_twin_models())
-#' "copy_true" %in% get_twin_models())
-#' "nonsense" %in% get_twin_models())
+#' get_twin_models()
 #' @export
 get_twin_models <- function() {
   c("birth_death", "yule", "copy_true")
@@ -39,11 +35,7 @@ get_twin_models <- function() {
 #' @return the twin methods
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' "random_tree" %in% get_twin_methods())
-#' "max_clade_cred" %in% get_twin_methods())
-#' "max_likelihood" %in% get_twin_methods())
-#' "nonsense" %in% get_twin_methods())
+#' get_twin_methods()
 #' @export
 get_twin_methods <- function() {
   c(
@@ -57,10 +49,7 @@ get_twin_methods <- function() {
 #' @return the model types
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' "candidate" %in% get_model_type_names())
-#' "generative" %in% get_model_type_names())
-#' "Jensen Ackles" %in% get_model_type_names())
+#' get_model_type_names()
 #' @export
 get_model_type_names <- function() {
   c("generative", "candidate")
@@ -70,10 +59,7 @@ get_model_type_names <- function() {
 #' @return the tree types
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#'
-#' "true" %in% get_tree_types())
-#' "twin" %in% get_tree_types())
-#' "Jensen Ackles" %in% get_tree_types())
+#' get_tree_types()
 #' @export
 get_tree_types <- function() {
   c("true", "twin")

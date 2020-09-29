@@ -50,26 +50,6 @@ Create a valid testing \link{pirouette} generative experiment.
 
  # Create a testing generative experiment
  create_test_gen_experiment()
-
- # Use the generative experiment
- # to create the full pirouette parameter set
- pir_params <- create_pir_params(
-   alignment_params = create_test_alignment_params(),
-   experiments = list(experiment)
- )
-
- # Run that experiment on a continuous integration service,
- # only when BEAST2 is unstalled
- if (rappdirs::app_dir()$os != "win" &&
-   is_on_ci() &&
-   is_beast2_installed()
- ) {
-   pir_out <- pir_run(
-     phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-     pir_params = pir_params
-   )
-   pir_plot(pir_out)
- }
 }
 \author{
 Richèl J.C. Bilderbeek
