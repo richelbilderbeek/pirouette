@@ -19,7 +19,7 @@ module load XZ/5.2.2-foss-2016a
 module load R
 module load ImageMagick
 
-Rscript -e 'remotes::install_github("richelbilderbeek/mcbette")'
+Rscript -e 'remotes::install_github("ropensci/mcbette")'
 Rscript -e 'if (!beastier::is_beast2_installed()) beastier::install_beast2()'
 Rscript -e 'if (!mauricer::is_beast2_ns_pkg_installed()) mauricer::install_beast2_pkg("NS")'
 

@@ -17,7 +17,7 @@ update_pirouette <- function(upgrade = "default") {
     quiet = TRUE, dependencies = TRUE, upgrade = upgrade
   )
   remotes::install_github(
-    "richelbilderbeek/mcbette",
+    "ropensci/mcbette",
     quiet = TRUE, dependencies = TRUE, upgrade = upgrade
   )
   babette::update_babette(upgrade = upgrade)

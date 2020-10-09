@@ -30,7 +30,7 @@ r_github_packages:
   - Giappo/mbd
   - jimhester/covr
   - jimhester/lintr
-  - richelbilderbeek/mcbette
+  - ropensci/mcbette
   - rsetienne/DDD
   - thijsjanzen/nodeSub
 
