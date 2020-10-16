@@ -19,16 +19,12 @@ be measured.
 
 if (rappdirs::app_dir()$os != "win") {
   pir_params <- create_test_pir_params_setup(has_candidate = TRUE)
-  will_measure_evidence(pir_params))
+
+  # Yes, the evidence will be measured on Linux with candidate models
+  will_measure_evidence(pir_params)
 }
 
 pir_params <- create_test_pir_params_setup(has_candidate = FALSE)
-!will_measure_evidence(pir_params))
-
-if (rappdirs::app_dir()$os != "win") {
-  pir_params$experiments[[1]]$inference_conditions$do_measure_evidence <-
-    TRUE
-  pir_params$evidence_filename <- get_temp_evidence_filename()
-  will_measure_evidence(pir_params))
-}
+# No, the evidence will be measured without candidate models
+will_measure_evidence(pir_params)
 }

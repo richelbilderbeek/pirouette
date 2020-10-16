@@ -98,15 +98,14 @@
 #'     file.path(folder, "true_error_violin_gen.png"),
 #'     file.path(folder, "twin_error_violin_gen.png")
 #'   )
-#'   all(!file.exists(expected_filenames)))
 #'
+#'   # created_filenames are the filenames of the pictures
 #'   created_filenames <- pir_to_pics(
 #'     phylogeny = phylogeny,
 #'     pir_params = pir_params,
 #'     folder = folder
 #'   )
 #'
-#'   all(file.exists(expected_filenames)))
 #' }
 #' @export
 pir_to_pics <- function(

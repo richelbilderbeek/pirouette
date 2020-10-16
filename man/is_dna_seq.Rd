@@ -21,16 +21,16 @@ of at least one base pair
 \examples{
 
 # TRUE: valid and lowercase characters
-is_dna_seq("acgt"))
+is_dna_seq("acgt")
 
 # FALSE: Must be lowercase
-is_dna_seq("AGCT"))
+is_dna_seq("AGCT")
 
 # FALSE: Must be only valid characters
-is_dna_seq("xxxx"))
+is_dna_seq("xxxx")
 
 # FALSE: Must have at least one nucleotide
-is_dna_seq(""))
+is_dna_seq("")
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -36,56 +36,16 @@ pir_params <- create_pir_params(
   experiments = experiments
 )
 
-errors <- NA
 if (rappdirs::app_dir()$os != "win" &&
   is_on_ci() && is_beast2_installed()
 ) {
-  errors <- pir_run(
+  pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params
   )
 } else {
-  errors <- create_test_pir_run_output()
+  create_test_pir_run_output()
 }
-
-# Return value
-"tree" \%in\% names(errors))
-is.factor(errors$tree))
-"true" \%in\% errors$tree)
-
-"inference_model" \%in\% names(errors))
-is.factor(errors$inference_model))
-"generative" \%in\% errors$inference_model)
-
-"inference_model_weight" \%in\% names(errors))
-!is.factor(errors$inference_model_weight))
-
-"site_model" \%in\% names(errors))
-is.factor(errors$site_model))
-"JC69" \%in\% errors$site_model)
-
-"clock_model" \%in\% names(errors))
-is.factor(errors$clock_model))
-"strict" \%in\% errors$clock_model
-  || "relaxed_log_normal" \%in\% errors$clock_model
-)
-
-"tree_prior" \%in\% names(errors))
-is.factor(errors$tree_prior))
-"birth_death" \%in\% errors$tree_prior ||
-  "yule" \%in\% errors$tree_prior
-)
-
-"error_1" \%in\% names(errors))
-!is.factor(errors$error_1))
-
-# Errors more than zero
-col_first_error <- which(colnames(errors) == "error_1")
-col_last_error <- ncol(errors)
-all(errors[, col_first_error:col_last_error] > 0.0))
-n_errors <- col_last_error - col_first_error + 1
-n_errors < 11) # due to burn-in
-
 }
 \seealso{
 \itemize{

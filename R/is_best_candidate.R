@@ -17,13 +17,11 @@
 #'     tree_prior = create_yule_tree_prior()
 #'   )
 #' )
-#' experiment_bd <- create_experiment(
+#' create_experiment(
 #'   inference_model = create_inference_model(
 #'     tree_prior = create_bd_tree_prior()
 #'   )
 #' )
-#' is_best_candidate(experiment_yule, marg_liks))
-#' is_best_candidate(experiment_bd, marg_liks))
 #' @export
 is_best_candidate <- function(experiment, marg_liks) {
 

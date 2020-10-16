@@ -31,13 +31,11 @@ experiment_yule <- create_experiment(
     tree_prior = create_yule_tree_prior()
   )
 )
-experiment_bd <- create_experiment(
+create_experiment(
   inference_model = create_inference_model(
     tree_prior = create_bd_tree_prior()
   )
 )
-is_best_candidate(experiment_yule, marg_liks))
-is_best_candidate(experiment_bd, marg_liks))
 }
 \author{
 Richèl J.C. Bilderbeek
