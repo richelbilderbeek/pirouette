@@ -63,7 +63,7 @@ after_success:
   # Report
   - Rscript -e 'mcbette::mcbette_report()'
   # Download thesis
-  - Rscript -e 'download.file("https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf", tempfile())'
+  - wget https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf"
 
 after_failure:
   # Report
@@ -77,5 +77,5 @@ after_failure:
   - cd ~; find . | egrep "\.xml\.state"
   - cd ~; find . | egrep "\.fasta"
   # Download thesis
-  - Rscript -e 'download.file("https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf", tempfile())'
+  - wget https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf"
 
