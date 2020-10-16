@@ -24,7 +24,6 @@ matrix:
 
 
 r_github_packages:
-  - ropensci/beautier
   - ropensci/beastier
   - ropensci/babette
   - Giappo/mbd
