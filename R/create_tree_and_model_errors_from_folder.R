@@ -21,13 +21,21 @@ create_tree_and_model_errors_from_folder <- function(# nolint indeed a long func
   testthat::expect_true(all(file.exists(errors_filenames)))
 
   # Filenames and 'tree_and_model' values must match
-  testthat::expect_equal(get_tree_and_model_values()[1], "true_generative")
+  testthat::expect_equal(
+    pirouette::get_tree_and_model_values()[1], "true_generative"
+  )
   testthat::expect_match(errors_filenames[1], "gen_errors")
-  testthat::expect_equal(get_tree_and_model_values()[2], "twin_generative")
+  testthat::expect_equal(
+    pirouette::get_tree_and_model_values()[2], "twin_generative"
+  )
   testthat::expect_match(errors_filenames[2], "gen_errors_twin")
-  testthat::expect_equal(get_tree_and_model_values()[3], "true_candidate")
+  testthat::expect_equal(
+    pirouette::get_tree_and_model_values()[3], "true_candidate"
+  )
   testthat::expect_match(errors_filenames[3], "best_errors")
-  testthat::expect_equal(get_tree_and_model_values()[4], "twin_candidate")
+  testthat::expect_equal(
+    pirouette::get_tree_and_model_values()[4], "twin_candidate"
+  )
   testthat::expect_match(errors_filenames[4], "best_errors_twin")
 
   n_errors <- length(pirouette::read_errors_csv(errors_filenames[1]))

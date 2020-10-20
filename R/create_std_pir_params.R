@@ -68,7 +68,7 @@ create_std_pir_params <- function(
   twin_evidence_filename <- NA
   # Hand-pick a generating model
   # By default, this is JC69, strict, Yule
-  generative_experiment <- create_gen_experiment()
+  generative_experiment <- pirouette::create_gen_experiment()
   if (os != "win") {
     # Create the set of candidate birth-death experiments
     candidate_experiments <- create_all_bd_experiments(
@@ -77,8 +77,8 @@ create_std_pir_params <- function(
     # Combine all experiments
     experiments <- c(list(generative_experiment), candidate_experiments)
 
-    evidence_filename <- get_temp_evidence_filename()
-    twin_evidence_filename <- get_temp_evidence_filename()
+    evidence_filename <- pirouette::get_temp_evidence_filename()
+    twin_evidence_filename <- pirouette::get_temp_evidence_filename()
   } else {
     experiments <- list()
     experiments[[1]] <- generative_experiment

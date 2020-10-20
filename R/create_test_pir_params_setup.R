@@ -40,27 +40,28 @@ create_test_pir_params_setup <- function(
 ) {
   twinning_params <- NA
   if (isTRUE(has_twinning)) {
-    twinning_params <- create_twinning_params()
+    twinning_params <- pirouette::create_twinning_params()
   }
-  experiments <- list(create_test_gen_experiment())
+  experiments <- list(pirouette::create_test_gen_experiment())
 
 
   evidence_filename <- NA
   if (isTRUE(has_candidate)) {
     experiments <- list(
-      create_test_gen_experiment(
-        inference_model = create_test_inference_model(
-          site_model = create_hky_site_model()
+      pirouette::create_test_gen_experiment(
+        inference_model = beautier::create_test_inference_model(
+          site_model = beautier::create_hky_site_model()
         )
       ),
       create_test_cand_experiment()
     )
-    evidence_filename <- get_temp_evidence_filename()
+    evidence_filename <- pirouette::get_temp_evidence_filename()
     if (isTRUE(has_twinning)) {
-      twinning_params$twin_evidence_filename <- get_temp_evidence_filename()
+      twinning_params$twin_evidence_filename <-
+        pirouette::get_temp_evidence_filename()
     }
   }
-  create_test_pir_params(
+  pirouette::create_test_pir_params(
     experiments = experiments,
     twinning_params = twinning_params,
     evidence_filename = evidence_filename
