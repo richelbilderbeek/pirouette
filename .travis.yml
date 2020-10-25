@@ -26,6 +26,8 @@ matrix:
 
 
 r_github_packages:
+  - ropensci/beastier
+  - ropensci/mauricer
   - ropensci/babette
   - Giappo/mbd
   - jimhester/covr
