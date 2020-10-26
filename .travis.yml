@@ -50,7 +50,6 @@ before_install:
 before_script:
   - if [[ "$INSTALL_BEAST2" == true ]]; then Rscript -e "beastier::install_beast2()"; fi
   - if [[ "$INSTALL_BEAST2" == true ]]; then Rscript -e 'mauricer::install_beast2_pkg("NS")'; fi
-  - if [ -f ".lintr" ]; then echo "Do use Hadley Wickham's style guide"; exit 1; fi
 
 script:
   - travis_wait 60 R CMD build .
