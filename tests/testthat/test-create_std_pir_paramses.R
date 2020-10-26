@@ -1,4 +1,5 @@
 test_that("use, Windows", {
+  skip("Takes too long 26")
   n <- 2
   pir_paramses <- create_std_pir_paramses(
     n = n,
@@ -19,6 +20,7 @@ test_that("use, Windows", {
 
 test_that("use", {
   if (rappdirs::app_dir()$os == "win") return()
+  skip("Takes too long 26")
 
   n <- 2
   pir_paramses <- create_std_pir_paramses(n = n)
