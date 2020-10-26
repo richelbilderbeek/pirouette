@@ -72,14 +72,6 @@ after_success:
 after_failure:
   # Report
   - Rscript -e 'mcbette::mcbette_report()'
-  # Check files
-  - cat /home/travis/build/richelbilderbeek/pirouette/pirouette.Rcheck/00check.log
-  - cd ~; find . | egrep "beast"
-  - cd ~; find . | egrep "\.log"
-  - cd ~; find . | egrep "\.trees"
-  - cd ~; find . | egrep "\.xml"
-  - cd ~; find . | egrep "\.xml\.state"
-  - cd ~; find . | egrep "\.fasta"
   # Download thesis
   - wget https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf"
 
