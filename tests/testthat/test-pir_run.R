@@ -155,6 +155,8 @@ test_that("nodeSub: true and twin alignments must differ", {
 
 test_that("abuse: generative, CBS with too few taxa", {
 
+  if (!beastier::is_beast2_installed()) return()
+
   # https://github.com/richelbilderbeek/pirouette/issues/153
   #
   # For n_taxa < 5, the Coalalescent Bayesian Skyline plot throws an exception

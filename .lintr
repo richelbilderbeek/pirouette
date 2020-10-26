@@ -1,0 +1,5 @@
+exclusions: list("R/sim_twal_with_lns_nsm.R", "R/sim_tral_with_lns_nsm.R", "R/sim_tral_with_uns_nsm.R", "R/sim_twal_with_uns_nsm.R", "R/get_sim_tral_with_lns_nsm_fun.R", "R/get_sim_tral_with_uns_nsm_fun.R")
+
+
+
+

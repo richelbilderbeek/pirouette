@@ -20,13 +20,15 @@ the names of all files created
 Create all tables to checks \link{pirouette} pipeline
 }
 \examples{
-pir_params <- init_pir_params(create_test_pir_params())
+if (beastier::is_beast2_installed()) {
+  pir_params <- init_pir_params(create_test_pir_params())
 
-# Run only the true tree part
-pir_run_true_tree(
-  true_phylogeny = ape::rcoal(4),
-  pir_params = pir_params
-)
+  # Run only the true tree part
+  pir_run_true_tree(
+    true_phylogeny = ape::rcoal(4),
+    pir_params = pir_params
+  )
+}
 }
 \author{
 Richèl J.C. Bilderbeek

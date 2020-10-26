@@ -9,4 +9,5 @@
 ^pull_upstream\.sh$
 ^CODE_OF_CONDUCT\.md$
 ^LICENSE$
-.github/
+^.github$
+^.lintr$

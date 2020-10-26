@@ -1,4 +1,7 @@
 test_that("use", {
+  skip("Takes too long 28")
+  if (!beastier::is_beast2_installed()) return()
+
   pir_params <- create_test_pir_params()
   pir_out <- pir_run(
     phylogeny = create_test_phylogeny(),

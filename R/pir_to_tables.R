@@ -5,13 +5,15 @@
 #' @return the names of all files created
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' pir_params <- init_pir_params(create_test_pir_params())
+#' if (beastier::is_beast2_installed()) {
+#'   pir_params <- init_pir_params(create_test_pir_params())
 #'
-#' # Run only the true tree part
-#' pir_run_true_tree(
-#'   true_phylogeny = ape::rcoal(4),
-#'   pir_params = pir_params
-#' )
+#'   # Run only the true tree part
+#'   pir_run_true_tree(
+#'     true_phylogeny = ape::rcoal(4),
+#'     pir_params = pir_params
+#'   )
+#' }
 #' @export
 pir_to_tables <- function(
   pir_params,

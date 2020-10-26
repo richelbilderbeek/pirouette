@@ -1,9 +1,10 @@
 test_that("use", {
+  if (!beastier::is_beast2_installed()) return()
+
   beast2_options <- beastier::create_beast2_options()
 
-
   # Will delete nothing, as file is absent
-  testit::assert(!file.exists(beast2_options$output_state_filename))
+  expect_true(!file.exists(beast2_options$output_state_filename))
   delete_beast2_state_files(
     beast2_optionses = list(beast2_options)
   )
@@ -14,7 +15,7 @@ test_that("use", {
     beast2_options = beast2_options
   )
 
-  testit::assert(file.exists(beast2_options$output_state_filename))
+  expect_true(file.exists(beast2_options$output_state_filename))
 
   suppressMessages(
     delete_beast2_state_files(
@@ -23,5 +24,5 @@ test_that("use", {
     )
   )
 
-  testit::assert(!file.exists(beast2_options$output_state_filename))
+  expect_true(!file.exists(beast2_options$output_state_filename))
 })

@@ -23,16 +23,6 @@ Some standard functions:\cr
   \item Use \link{get_sim_tral_with_std_nsm_fun}
   to get a function (\link{sim_tral_with_std_nsm})
   the use a standard site model.
-  \item Use
-  \link{get_sim_tral_with_lns_nsm_fun}
-  to get a function
-  (\link{sim_tral_with_lns_nsm})
-  the use a linked node substitution site model.
-  \item Use
-  \link{get_sim_tral_with_uns_nsm_fun}
-  to get a function
-  (\link{sim_tral_with_uns_nsm})
-  the use an unlinked node substitution site model.
 }}
 }
 \description{

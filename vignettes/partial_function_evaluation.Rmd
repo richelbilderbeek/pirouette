@@ -380,39 +380,43 @@ Or to use the linked node substitution model, use
 `get_sim_tral_with_lns_nsm_fun`:
 
 ```{r}
-alignment_params <- pirouette::create_alignment_params(
-  sim_tral_fun =
-    pirouette::get_sim_tral_with_lns_nsm_fun(
-    branch_mutation_rate = 0.1,
-    node_mutation_rate = 0.2
-  ),
-  root_sequence = root_sequence
-)
-true_alignment <- pirouette::sim_true_alignment(
-  true_phylogeny = true_phylogeny,
-  alignment_params = alignment_params
-)
-ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
+if (1 == 2) { # nodeSub is not yet on CRAN
+  alignment_params <- pirouette::create_alignment_params(
+    sim_tral_fun =
+      get_sim_tral_with_lns_nsm_fun(
+      branch_mutation_rate = 0.1,
+      node_mutation_rate = 0.2
+    ),
+    root_sequence = root_sequence
+  )
+  true_alignment <- pirouette::sim_true_alignment(
+    true_phylogeny = true_phylogeny,
+    alignment_params = alignment_params
+  )
+  ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
+}
 ```
 
 Or to use the unlinked node substitution model, use
 `get_sim_tral_with_uns_nsm_fun`:
 
 ```{r}
-alignment_params <- pirouette::create_alignment_params(
-  sim_tral_fun =
-    pirouette::get_sim_tral_with_uns_nsm_fun(
-      branch_mutation_rate = 1.0,
-      node_mutation_rate = 2.0,
-      node_time = 0.1
-    ),
-  root_sequence = root_sequence
-)
-true_alignment <- pirouette::sim_true_alignment(
-  true_phylogeny = true_phylogeny,
-  alignment_params = alignment_params
-)
-ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
+if (1 == 2) { # nodeSub is not yet on CRAN
+  alignment_params <- pirouette::create_alignment_params(
+    sim_tral_fun =
+      pirouette::get_sim_tral_with_uns_nsm_fun(
+        branch_mutation_rate = 1.0,
+        node_mutation_rate = 2.0,
+        node_time = 0.1
+      ),
+    root_sequence = root_sequence
+  )
+  true_alignment <- pirouette::sim_true_alignment(
+    true_phylogeny = true_phylogeny,
+    alignment_params = alignment_params
+  )
+  ape::image.DNAbin(true_alignment, main = "True alignment", legend = FALSE)
+}
 ```
 
 
