@@ -1,5 +1,21 @@
-exclusions: list("R/sim_twal_with_lns_nsm.R", "R/sim_tral_with_lns_nsm.R", "R/sim_tral_with_uns_nsm.R", "R/sim_twal_with_uns_nsm.R", "R/get_sim_tral_with_lns_nsm_fun.R", "R/get_sim_tral_with_uns_nsm_fun.R")
-
-
-
+exclusions: list(
+  "R/sim_twal_with_lns_nsm.R",
+  "R/sim_tral_with_uns_nsm.R",
+  "R/get_sim_tral_with_lns_nsm_fun.R",
+  "R/get_sim_tral_with_uns_nsm_fun.R",
+  "R/get_sim_tral_with_lns_site_model.R",
+  "R/get_sim_tral_with_uns_site_model.R",
+  "R/get_sim_tral_with_lns_site_model_fun.R",
+  "R/get_sim_tral_with_uns_site_model_fun.R",
+  "R/sim_twal_with_lns_site_model.R",
+  "R/sim_twal_with_uns_site_model.R",
+  "tests/testthat/test-check_sim_tral_fun.R",
+  "tests/testthat/test-create_alignment_with_linked_node_sub_site_model.R",
+  "tests/testthat/test-get_sim_tral_with_linked_node_sub_site_model_fun.R",
+  "tests/testthat/test-get_sim_tral_with_unlinked_node_sub_site_model_fun.R",
+  "tests/testthat/test-sim_tral_with_lns_site_model.R",
+  "tests/testthat/test-sim_tral_with_unlinked_node_sub_site_model.R",
+  "tests/testthat/test-sim_twal_with_lns_nsm.R",
+  "tests/testthat/test-sim_twal_with_uns_nsm.R"
+)
 
