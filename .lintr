@@ -16,6 +16,5 @@ exclusions: list(
   "tests/testthat/test-sim_tral_with_lns_site_model.R",
   "tests/testthat/test-sim_tral_with_unlinked_node_sub_site_model.R",
   "tests/testthat/test-sim_twal_with_lns_nsm.R",
-  "tests/testthat/test-sim_twal_with_uns_nsm.R"
-)
+  "tests/testthat/test-sim_twal_with_uns_nsm.R")
 
