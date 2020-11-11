@@ -99,7 +99,7 @@ est_evidences <- function(
 
   if (verbose) {
     for (i in seq_along(beast2_optionses)) {
-      print(
+      message(
         paste(
           i,
           beast2_optionses[[i]]$input_filename,

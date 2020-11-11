@@ -11,7 +11,7 @@ phylogeny_example_3 <- ape::read.tree( # taken from example 3
 max_seed <- 3
 pir_outs <- vector("list", max_seed)
 for (seed in 1:max_seed) {
-  print(seed)
+  message(seed)
   twin_seed <- seed
 
   # generate "true" phylogeny

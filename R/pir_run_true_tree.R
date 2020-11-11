@@ -82,7 +82,7 @@ pir_run_true_tree <- function(
     # Save errors to file
     errors_filename <- experiment$errors_filename
     if (isTRUE(pir_params$verbose)) {
-      print(
+      message(
         paste0("Saving experiment #", i, " errors to '", errors_filename, "'")
       )
     }

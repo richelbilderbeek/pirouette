@@ -86,7 +86,7 @@ sim_alignment_with_n_mutations <- function(
     )
 
     if (verbose == TRUE) {
-      print(
+      message(
         paste0(
           "Mutations needed: ", n_mutations,
           ", got: ", actual_n_mutations,

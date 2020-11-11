@@ -23,11 +23,11 @@ is_non_beast_path <- function(variable) {
 }
 
 print_no_change <- function(x) {
-  y <- set_right_path(x); print(x); print(y); return(x)
+  y <- set_right_path(x); message(x); message(y); return(x)
 }
 
 print_and_change <- function(x) {
-  y <- set_right_path(x); print(y); return(y)
+  y <- set_right_path(x); message(y); return(y)
 }
 
 modify_pir_params <- function(

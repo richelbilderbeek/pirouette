@@ -55,7 +55,7 @@ count_n_mutations <- function(
       strsplit(root_sequence, "")[[1]] != strsplit(sequence, "")[[1]]
     )
     if (verbose) {
-      print(
+      message(
         paste0(
           "Sequence ", i, "/", length(sequences),
           " has ", n_mutations_here, " mutations when comparing ",

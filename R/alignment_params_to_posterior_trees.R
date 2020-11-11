@@ -38,25 +38,25 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
     beast2_options = experiment$beast2_options
   )
   if (verbose) {
-    print(
+    message(
       paste0(
         "Saved BEAST2 input file to '",
         experiment$beast2_options$input_filename, "'"
       )
     )
-    print(
+    message(
       paste0(
         "Saved BEAST2 output log file to '",
         experiment$inference_model$mcmc$tracelog$filename, "'"
       )
     )
-    print(
+    message(
       paste0(
         "Saved BEAST2 output trees file to '",
         experiment$inference_model$mcmc$treelog$filename, "'"
       )
     )
-    print(
+    message(
       paste0(
         "Saved BEAST2 output state file to '",
         experiment$beast2_options$output_state_filename, "'"

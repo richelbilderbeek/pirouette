@@ -63,7 +63,7 @@ select_experiments <- function(
   if (verbose == TRUE) {
     for (i in seq_along(selected_experiments)) {
       inference_model <- selected_experiments[[i]]$inference_model
-      print(
+      message(
         paste0(
           "Selected model ", i, "/", length(selected_experiments), " with ",
           inference_model$site_model$name,

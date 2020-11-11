@@ -31,7 +31,7 @@ set.seed(314)
 
 
 for (i in seq(1, n_repeats)) {
-  print(paste0("Progress: ", i, "/", n_repeats))
+  message(paste0("Progress: ", i, "/", n_repeats))
   # Create a random tree
   candidate_tree <- sim_bd_tree(n_tips)
   testit::assert(ape::Ntip(candidate_tree) == n_tips)
@@ -65,7 +65,7 @@ for (i in seq(1, n_repeats)) {
   if (sum_errors < lowest_sum_errors) {
     lowest_sum_errors <- sum_errors
     best_phylogeny <- candidate_tree
-    print(paste("Better tree found with sum errors:", sum_errors))
+    message(paste("Better tree found with sum errors:", sum_errors))
     ape::plot.phylo(best_phylogeny)
   }
 }
