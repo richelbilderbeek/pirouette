@@ -28,7 +28,6 @@ matrix:
 r_github_packages:
   - jimhester/covr
   - jimhester/lintr
-  - ropensci/mcbette
   - rsetienne/DDD
   - thijsjanzen/nodeSub
 

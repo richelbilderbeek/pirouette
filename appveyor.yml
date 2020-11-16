@@ -23,14 +23,10 @@ environment:
 
 build_script:
   - travis-tool.sh install_r curl
-  - travis-tool.sh install_github ropensci/beastier
-  - travis-tool.sh install_github ropensci/mauricer
-  - travis-tool.sh install_github ropensci/babette
   - travis-tool.sh install_github Giappo/mbd
   - travis-tool.sh install_github jimhester/covr
   - travis-tool.sh install_github jimhester/lintr
   - travis-tool.sh install_github ropensci/mcbette
-  - travis-tool.sh install_github thijsjanzen/nLTT
   - travis-tool.sh install_r fansi
   - travis-tool.sh install_github thijsjanzen/nodeSub
   - travis-tool.sh install_deps
