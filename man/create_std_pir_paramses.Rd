@@ -42,5 +42,4 @@ Create a number of standard \code{pir_params}
 }
 \examples{
 pir_paramses <- create_std_pir_paramses(n = 2)
-check_pir_paramses(pir_paramses)
 }

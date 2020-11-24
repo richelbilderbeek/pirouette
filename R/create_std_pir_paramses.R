@@ -5,7 +5,6 @@
 #'   Use \link{check_pir_paramses} to check this list for validity.
 #' @examples
 #' pir_paramses <- create_std_pir_paramses(n = 2)
-#' check_pir_paramses(pir_paramses)
 #' @export
 create_std_pir_paramses <- function(
   n,
