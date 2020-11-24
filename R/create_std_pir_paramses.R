@@ -4,7 +4,10 @@
 #' @return a \link{list} or \code{pir_params}, dubbed a \code{pir_paramses}.
 #'   Use \link{check_pir_paramses} to check this list for validity.
 #' @examples
-#' pir_paramses <- create_std_pir_paramses(n = 2)
+#' \donttest{
+#'   pir_paramses <- create_std_pir_paramses(n = 2)
+#'   check_pir_paramses(pir_paramses)
+#' }
 #' @export
 create_std_pir_paramses <- function(
   n,
