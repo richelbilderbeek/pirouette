@@ -9,7 +9,7 @@
 #'
 #' filenames <- get_pir_params_filenames(pir_params)
 #'
-#' if (is_on_travis() && is_beast2_installed()) {
+#' if (is_on_ci() && is_beast2_installed()) {
 #'
 #'   # Minimal pirouette run
 #'   errors <- pir_run(
