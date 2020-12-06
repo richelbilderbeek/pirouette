@@ -58,6 +58,9 @@ jobs:
             eval sudo $cmd
           done < <(Rscript -e 'writeLines(remotes::system_requirements("ubuntu", "20.04"))')
 
+      - name: Install libmpfr-dev for Rmpfr
+        run: sudo apt install -qq libmpfr-dev
+
       - name: Install dependencies
         run: |
           remotes::install_deps(dependencies = TRUE)
@@ -66,9 +69,13 @@ jobs:
           remotes::install_cran("lintr")
         shell: Rscript {0}
 
-      - name: Install shinytest (so that phantomJS can be installed)
-        run: |
-          Rscript -e "remotes::install_local('.')"
+      - name: Install BEAST2
+        run: beastier::install_beast2()
+        shell: Rscript {0}
+
+      - name: Install the BEAST2 NS package
+        run: mauricer::install_beast2_pkg("NS")
+        shell: Rscript {0}
 
       - name: Check
         env:
