@@ -60,3 +60,7 @@ jobs:
         run: goodpractice::gp()
         shell: Rscript {0}
 
+      - name: Report
+        run: mcbette::mcbette_report()
+        shell: Rscript {0}
+
