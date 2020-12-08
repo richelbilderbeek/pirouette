@@ -26,6 +26,14 @@ jobs:
           remotes::install_github("MangoTheCat/goodpractice")
         shell: Rscript {0}
 
+      - name: Install BEAST2
+        run: beastier::install_beast2()
+        shell: Rscript {0}
+
+      - name: Install the BEAST2 NS package
+        run: mauricer::install_beast2_pkg("NS")
+        shell: Rscript {0}
+
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
         shell: Rscript {0}
