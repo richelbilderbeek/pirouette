@@ -8,6 +8,12 @@ name: R-CMD-check
 
 jobs:
   R-CMD-check:
+    strategy:
+      matrix:
+        include:
+          - install_beast2_ns: "true" 
+          - install_beast2_ns: "false"
+
     runs-on: ubuntu-18.04
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -37,13 +43,15 @@ jobs:
           remotes::install_github("MangoTheCat/goodpractice")
         shell: Rscript {0}
 
-      #- name: Install BEAST2
-      #  run: beastier::install_beast2()
-      #  shell: Rscript {0}
+      - name: Install BEAST2
+        env:
+          INSTALL_BEAST2_NS: ${{ matrix.install_beast2_ns }}
+        run: if [[ "$INSTALL_BEAST2_NS" == true ]]; then Rscript -e 'beastier::install_beast2()'; fi
 
-      #- name: Install the BEAST2 NS package
-      #  run: mauricer::install_beast2_pkg("NS")
-      #  shell: Rscript {0}
+      - name: Install BEAST2 NS package
+        env:
+          INSTALL_BEAST2_NS: ${{ matrix.install_beast2_ns }}
+        run: if [[ "$INSTALL_BEAST2_NS" == true ]]; then Rscript -e 'mauricer::install_beast2_pkg("NS")'; fi
 
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")
