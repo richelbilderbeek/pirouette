@@ -19,6 +19,9 @@ jobs:
       - name: Install libmpfr-dev for Rmpfr
         run: sudo apt install -qq libmpfr-dev
 
+      - name: Install libcurl4-openssl-dev
+        run: sudo apt install -qq libcurl4-openssl-dev
+
       - name: Install dependencies
         run: |
           install.packages(c("remotes", "rcmdcheck"))
