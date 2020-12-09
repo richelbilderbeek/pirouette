@@ -13,7 +13,7 @@ test_that("minimal use", {
 
 test_that("check verbosity", {
 
-  expect_output(
+  expect_message(
     sim_alignment_with_n_mutations(
       phylogeny = ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);"),
       root_sequence = "acgt",
@@ -22,6 +22,7 @@ test_that("check verbosity", {
     )
   )
 })
+
 test_that("input is checked", {
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   alignment_params <- create_alignment_params()
