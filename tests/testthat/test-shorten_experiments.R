@@ -12,19 +12,21 @@ test_that("use", {
   )
   for (i in seq_along(experiments)) {
     expect_false(
-      experiments[[i]]$inference_model$mcmc$chain_length == 3000
+      experiments[[i]]$inference_model$mcmc$chain_length == 2000
     )
     expect_false(
-      experiments[[i]]$est_evidence_mcmc$chain_length == 3000
+      experiments[[i]]$est_evidence_mcmc$chain_length == 2000
     )
   }
   experiments <- shorten_experiments(experiments)
   for (i in seq_along(experiments)) {
-    expect_true(
-      experiments[[i]]$inference_model$mcmc$chain_length == 3000
+    expect_equal(
+      2000,
+      experiments[[i]]$inference_model$mcmc$chain_length
     )
-    expect_true(
-      experiments[[i]]$est_evidence_mcmc$chain_length == 3000
+    expect_equal(
+      2000,
+      experiments[[i]]$est_evidence_mcmc$chain_length
     )
   }
 })

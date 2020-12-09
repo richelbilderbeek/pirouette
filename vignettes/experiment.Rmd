@@ -92,7 +92,7 @@ experiment <- create_experiment(
   ),
   inference_model = create_inference_model(
     tree_prior = create_bd_tree_prior(),
-    mcmc = create_mcmc(chain_length = 3000, store_every = 1000)
+    mcmc = create_test_mcmc()
   )
 )
 experiments <- list(experiment)

@@ -88,8 +88,9 @@ test_that("short run with unusual logging intervals", {
     experiments = experiments
   )
 
-  testit::assert(
-    3000 == pir_params$experiments[[1]]$inference_model$mcmc$chain_length
+  testthat::expect_equal(
+    2000,
+    pir_params$experiments[[1]]$inference_model$mcmc$chain_length
   )
   pir_params$experiments[[1]]$inference_model$mcmc$tracelog$log_every <- 300
   pir_params$experiments[[1]]$inference_model$mcmc$treelog$log_every <- 500
