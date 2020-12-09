@@ -135,7 +135,8 @@ experiment <- create_experiment(
   ),
   inference_model = create_inference_model(
     tree_prior = create_bd_tree_prior(),
-    mcmc = create_test_mcmc(),
+    mcmc = create_test_mcmc()
+  ),
   beast2_options = create_beast2_options(rng_seed = 314)
 )
 experiments <- list(experiment)
