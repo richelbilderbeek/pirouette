@@ -1,5 +1,3 @@
-context("test-count_n_mutations")
-
 test_that("use, single taxon", {
 
   #
@@ -264,7 +262,7 @@ test_that("use, verbose", {
   alignment <- ape::as.DNAbin(
     x = list(species_1 = strsplit("aagg", split = "")[[1]])
   )
-  expect_output(
+  expect_message(
     count_n_mutations(
       alignment = alignment,
       root_sequence = "aaaa",

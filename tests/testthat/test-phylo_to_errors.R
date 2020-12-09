@@ -1,5 +1,3 @@
-context("test-phylo_to_errors")
-
 test_that("use", {
 
   if (!beastier::is_on_travis()) return()
