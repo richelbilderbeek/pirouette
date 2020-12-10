@@ -20,11 +20,11 @@
 #   branch_mutation_rate = 1.0,
 #   node_mutation_rate = 1.0,
 #   base_frequencies = rep(0.25, 4),
-#   node_time = 0.001
+#   node_time = 0.001 # nolint allow commented code until nodeSub is on CRAN
 # ) {
-  # beautier::check_phylogeny(true_phylogeny)
-  # pirouette::check_root_sequence(root_sequence)
-  # pirouette::check_reconstructed_phylogeny(true_phylogeny)
+  # beautier::check_phylogeny(true_phylogeny) # nolint allow commented code until nodeSub is on CRAN
+  # pirouette::check_root_sequence(root_sequence) # nolint allow commented code until nodeSub is on CRAN
+  # pirouette::check_reconstructed_phylogeny(true_phylogeny) # nolint allow commented code until nodeSub is on CRAN
   # alignment_phydat <- nodeSub::sim_unlinked(
   #   phy = true_phylogeny,
   #   Q1 = branch_subst_matrix,
@@ -34,12 +34,12 @@
   #   bf = base_frequencies,
   #   rootseq = strsplit(root_sequence, split = "")[[1]],
   #   l = nchar(root_sequence),
-  #   node_time = node_time
+  #   node_time = node_time # nolint allow commented code until nodeSub is on CRAN
   # )$alignment
   #
-  # testthat::expect_equal(class(alignment_phydat), "phyDat")
-  # testit::assert(class(alignment_phydat) == "phyDat")
+  # testthat::expect_equal(class(alignment_phydat), "phyDat") # nolint allow commented code until nodeSub is on CRAN
+  # testit::assert(class(alignment_phydat) == "phyDat") # nolint allow commented code until nodeSub is on CRAN
   #
-  # alignment <- ape::as.DNAbin(alignment_phydat)
-  # alignment
+  # alignment <- ape::as.DNAbin(alignment_phydat) # nolint allow commented code until nodeSub is on CRAN
+  # alignment # nolint allow commented code until nodeSub is on CRAN
 # }
