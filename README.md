@@ -14,8 +14,8 @@ for example the Protracted Birth-Death or Multiple-Birth-Death models.
 
  * [Installation](doc/install.md).
  * [Examples](https://github.com/richelbilderbeek/pirouette_examples)
- * [Pre-print of the pirouette article](https://www.biorxiv.org/content/10.1101/2019.12.17.879098v1)
  * [Interpretation](doc/interpretation.md).
+ * [Academic article](https://github.com/richelbilderbeek/pirouette_article)
 
 ## Common abbreviations
 
@@ -78,4 +78,8 @@ Package                                                                       | 
 ## External links
 
  * [BEAST2 GitHub](https://github.com/CompEvol/beast2)
+
+## References
+
+ *  Bilderbeek, RJC, Laudanno, G, Etienne, RS. Quantifying the impact of an inference model in Bayesian phylogenetics. Methods Ecol Evol. 2020; 00: 1– 8. https://doi.org/10.1111/2041-210X.13514
 

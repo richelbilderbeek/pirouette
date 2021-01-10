@@ -1,4 +1,5 @@
 test_that("use without extension", {
+  if (rappdirs::app_dir()$os == "win") return()
   filename <- "firefox"
   created <- to_evidence_filename(filename)
   expected <- "firefox_evidence"
