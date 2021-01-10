@@ -67,13 +67,19 @@ Errors                             |`true_error_violin_best.png`
 Errors                             |`twin_error_violin_gen.png`
 Errors                             |`twin_error_violin_best.png`
 
-## Why the name?
+### Why the name?
 
 `pirouette` started out as a working title, as it is an elegant
 combination of `phylogeny` and `babette`. Other name contenders 
 were `phyrouette`, `palette` and many more...
 
 The name stuck.
+
+### Why is the code coverage less than 100%?
+
+Because too much needs to be done in one hour.
+
+Also, `pirouette` lacks mocks. 
 
 ## BEAST2
 
