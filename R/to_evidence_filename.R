@@ -45,5 +45,5 @@ to_evidence_filename <- function(
 
   testit::assert(evidence_path != filename)
 
-evidence_path
+  evidence_path
 }

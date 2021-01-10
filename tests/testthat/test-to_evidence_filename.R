@@ -1,5 +1,3 @@
-context("test-to_evidence_filename")
-
 test_that("use without extension", {
   filename <- "firefox"
   created <- to_evidence_filename(filename)
@@ -8,6 +6,7 @@ test_that("use without extension", {
 })
 
 test_that("use", {
+  if (rappdirs::app_dir()$os == "win") return()
   filename <- "beast2_output.log"
   created <- to_evidence_filename(filename)
   expected <- "beast2_output_evidence.log"
@@ -15,6 +14,7 @@ test_that("use", {
 })
 
 test_that("use on filesnames with two dots", {
+  if (rappdirs::app_dir()$os == "win") return()
   filename <- "example_3_beast2_output.xml.state"
   created <- to_evidence_filename(filename)
   expected <- "example_3_beast2_output_evidence.xml.state"
@@ -22,6 +22,7 @@ test_that("use on filesnames with two dots", {
 })
 
 test_that("convert file correctly from path with dots", {
+  if (rappdirs::app_dir()$os == "win") return()
   filename <- "/my/path.with.dots/file.csv" # nolint do use absolute paths in testing
   expected <- "/my/path.with.dots/file_evidence.csv" # nolint do use absolute paths in testing
   created <- to_evidence_filename(filename)
@@ -29,6 +30,7 @@ test_that("convert file correctly from path with dots", {
 })
 
 test_that("abuse", {
+  if (rappdirs::app_dir()$os == "win") return()
   expect_silent(to_evidence_filename("OK"))
   expect_error(to_evidence_filename(NA), "'filename' must be one string")
   expect_error(to_evidence_filename(NULL), "'filename' must be one string")

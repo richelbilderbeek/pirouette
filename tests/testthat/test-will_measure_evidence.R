@@ -1,12 +1,11 @@
 test_that("use", {
+  if (rappdirs::app_dir()$os == "win") return()
 
   expect_true(
     !will_measure_evidence(
       create_test_pir_params_setup(has_candidate = FALSE)
     )
   )
-
-  if (rappdirs::app_dir()$os == "win") return()
 
   pir_params <- create_test_pir_params_setup(has_candidate = TRUE)
   expect_true(will_measure_evidence(pir_params))
