@@ -52,6 +52,7 @@ Suggests:
     ggplot2,
     knitr,
     lintr,
+    markdown,
     nLTT (>= 1.4.3),
     rmarkdown,
     Rmpfr,
