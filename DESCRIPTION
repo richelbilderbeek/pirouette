@@ -29,7 +29,7 @@ Imports:
     DDD,
     forcats,
     magrittr,
-    mauricer (>= 2.0.5),
+    mauricer (>= 2.5),
     mcbette (>= 1.7),
     phangorn,
     phytools,
