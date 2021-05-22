@@ -54,12 +54,13 @@ jobs:
           remotes::install_github("ropensci/mauricer")
           remotes::install_github("ropensci/babette")
           remotes::install_github("ropensci/mcbette")
+          remotes::install_github("richelbilderbeek/beastierinstall")
         shell: Rscript {0}
 
       - name: Install BEAST2
         env:
           INSTALL_BEAST2_NS: ${{ matrix.install_beast2_ns }}
-        run: if [[ "$INSTALL_BEAST2_NS" == true ]]; then Rscript -e 'beastier::install_beast2()'; fi
+        run: if [[ "$INSTALL_BEAST2_NS" == true ]]; then Rscript -e 'beastierinstall::install_beast2()'; fi
 
       - name: Install BEAST2 NS package
         env:
