@@ -25,7 +25,7 @@ Depends:
 Imports:
     ape,
     assertive,
-    beastier (>= 2.3.1),
+    beastier (>= 2.4),
     DDD,
     forcats,
     magrittr,
