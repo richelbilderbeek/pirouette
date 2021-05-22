@@ -30,7 +30,7 @@ check_is_ns_beast2_pkg_installed <- function() { # nolint long function name ind
       if (!mauricer::is_beast2_ns_pkg_installed()) {
         stop(
           "BEAST2 package 'NS' is not installed\n",
-          "Tip: use 'mauricer::install_beast2_pkg(\"NS\")'\n"
+          "Tip: use 'mauricerinstall::install_beast2_pkg(\"NS\")'\n"
         )
       }
     }, error = function() {} # nolint we ignore the error
