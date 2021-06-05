@@ -30,7 +30,6 @@ r_github_packages:
   - jimhester/lintr
   - rsetienne/DDD
   - thijsjanzen/nodeSub
-  - richelbilderbeek/beautier@develop
   - richelbilderbeek/beastier@develop
 
 before_install:
