@@ -210,8 +210,7 @@ pir_to_pics <- function(
     ggplot2::ggplot(
       df_errors_gen,
       ggplot2::aes(x = error)
-    ) + ggplot2::geom_histogram(binwidth = 0.01) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_histogram(binwidth = 0.01);   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -230,8 +229,7 @@ pir_to_pics <- function(
     ggplot2::ggplot(
       df_errors_best,
       ggplot2::aes(x = error)
-    ) + ggplot2::geom_histogram(binwidth = 0.01) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_histogram(binwidth = 0.01);   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -249,10 +247,7 @@ pir_to_pics <- function(
     ggplot2::ggplot(
       df_errors_gen,
       ggplot2::aes(x = "", y = error)
-    ) + ggplot2::geom_violin() +
-      ggplot2::xlab("") +
-      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_violin();   ggplot2::xlab("");   ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02));   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -269,10 +264,7 @@ pir_to_pics <- function(
     ggplot2::ggplot(
       df_errors_best,
       ggplot2::aes(x = "", y = error)
-    ) + ggplot2::geom_violin() +
-      ggplot2::xlab("") +
-      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_violin();   ggplot2::xlab("");   ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02));   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -403,8 +395,7 @@ pir_to_pics_twin <- function(
     ggplot2::ggplot(
       df_errors_twin_gen,
       ggplot2::aes(x = error)
-    ) + ggplot2::geom_histogram(binwidth = 0.01) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_histogram(binwidth = 0.01);   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -422,8 +413,7 @@ pir_to_pics_twin <- function(
     ggplot2::ggplot(
       df_errors_twin_best,
       ggplot2::aes(x = error)
-    ) + ggplot2::geom_histogram(binwidth = 0.01) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_histogram(binwidth = 0.01);   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -444,10 +434,7 @@ pir_to_pics_twin <- function(
     ggplot2::ggplot(
       df_errors_twin_gen,
       ggplot2::aes(x = "", y = error)
-    ) + ggplot2::geom_violin() +
-      ggplot2::xlab("") +
-      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_violin();   ggplot2::xlab("");   ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02));   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
 
@@ -465,10 +452,7 @@ pir_to_pics_twin <- function(
     ggplot2::ggplot(
       df_errors_twin_best,
       ggplot2::aes(x = "", y = error)
-    ) + ggplot2::geom_violin() +
-      ggplot2::xlab("") +
-      ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-      ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
+    ) + ggplot2::geom_violin();   ggplot2::xlab("");   ggplot2::scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02));   ggplot2::ggsave(filename, width = 7, height = 7, units = "in")
     filenames <- c(filenames, filename)
   }
   filenames

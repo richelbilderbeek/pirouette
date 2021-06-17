@@ -130,8 +130,7 @@ for (pirouette_example_folder in pirouette_example_folders) {
   )
   testthat::expect_true(file.exists(target))
 
-  pirouette::pir_plot_from_long(tree_and_model_errors) +
-    ggplot2::ggsave(target, width = 7, height = 7)
+  pirouette::pir_plot_from_long(tree_and_model_errors); ggplot2::ggsave(target, width = 7, height = 7)
 }
 
 # Collect the wall clock times and replicates

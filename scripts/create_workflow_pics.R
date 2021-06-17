@@ -131,7 +131,7 @@ ggplot2::ggplot(
   ggplot2::theme(
     axis.text = element_text(size = 20),
     axis.title = element_text(size = 30, face = "bold")
-  ) + ggsave(file.path(root_folder, "errors.png"))
+  ); ggsave(file.path(root_folder, "errors.png"))
 
 ggplot2::ggplot(
   df_errors_twin,
@@ -140,20 +140,18 @@ ggplot2::ggplot(
   ggplot2::theme(
     axis.text = element_text(size = 20),
     axis.title = element_text(size = 30, face = "bold")
-  ) + ggsave(file.path(root_folder, "errors_twin.png"))
+  ); ggsave(file.path(root_folder, "errors_twin.png"))
 
 ggplot2::ggplot(
   df_errors,
   aes(x = "", y = error)
 ) + geom_violin() +
   xlab("") +
-  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-  ggsave(file.path(root_folder, "errors_violin.png"))
+  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)); ggsave(file.path(root_folder, "errors_violin.png"))
 
 ggplot2::ggplot(
   df_errors_twin,
   aes(x = "", y = error)
 ) + geom_violin() +
   xlab("") +
-  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)) +
-  ggsave(file.path(root_folder, "errors_violin_twin.png"))
+  scale_y_continuous(breaks = seq(0.0, 1.0, by = 0.02)); ggsave(file.path(root_folder, "errors_violin_twin.png"))
