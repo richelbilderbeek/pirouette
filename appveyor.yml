@@ -26,6 +26,7 @@ build_script:
   - travis-tool.sh install_github Giappo/mbd
   - travis-tool.sh install_r fansi
   - travis-tool.sh install_github thijsjanzen/nodeSub
+  - travis-tool.sh install_github ropensci/mauricer
   - travis-tool.sh install_github richelbilderbeek/beastierinstall
   - travis-tool.sh install_github richelbilderbeek/mauricerinstall
   - travis-tool.sh install_deps
