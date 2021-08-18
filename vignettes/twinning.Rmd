@@ -238,7 +238,7 @@ if (rappdirs::app_dir()$os != "win" &&
   check_file_exists(
     pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename
   )
-  df <- tracerer::parse_beast_log(
+  df <- tracerer::parse_beast_tracelog_file(
     pir_params$experiments[[1]]$inference_model$mcmc$tracelog$filename
   )
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
@@ -256,7 +256,7 @@ if (rappdirs::app_dir()$os != "win" &&
   experiment <- pir_params$experiments[[2]]
   log_filename <- experiment$inference_model$mcmc$tracelog$filename
   check_file_exists(log_filename)
-  df <- tracerer::parse_beast_log(log_filename)
+  df <- tracerer::parse_beast_tracelog_file(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
 ```
@@ -348,7 +348,7 @@ if (rappdirs::app_dir()$os != "win" &&
     pir_params$experiments[[2]]$inference_model$mcmc$tracelog$filename
     )
   check_file_exists(log_filename)
-  df <- tracerer::parse_beast_log(log_filename)
+  df <- tracerer::parse_beast_tracelog_file(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
 ```
@@ -365,7 +365,7 @@ if (rappdirs::app_dir()$os != "win" &&
     pir_params$experiments[[2]]$inference_model$mcmc$tracelog$filename
   )
   check_file_exists(log_filename)
-  df <- tracerer::parse_beast_log(log_filename)
+  df <- tracerer::parse_beast_tracelog_file(log_filename)
   ggplot(data = df, aes(x = Sample, y = likelihood)) + geom_line()
 }
 ```
