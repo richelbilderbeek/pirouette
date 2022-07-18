@@ -1,6 +1,6 @@
 test_that("use, 2 candidates", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
@@ -24,7 +24,7 @@ test_that("use, 2 candidates", {
 
 test_that("use, 1 candidate", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
@@ -47,7 +47,7 @@ test_that("use, 1 candidate", {
 
 test_that("use, 1 candidate, CBS tree prior that should give error", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
@@ -69,7 +69,7 @@ test_that("use, 1 candidate, CBS tree prior that should give error", {
 
 test_that("cleans up", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 
@@ -147,7 +147,7 @@ test_that("abuse", {
     "'experiments' must be a list of one or more experiments"
   )
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 

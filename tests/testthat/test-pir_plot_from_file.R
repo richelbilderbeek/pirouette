@@ -1,6 +1,6 @@
 test_that("use, generative", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   skip("Fails on Travis, passes locally")
 
@@ -17,7 +17,7 @@ test_that("use, generative", {
 
 test_that("use, best_candidate", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   skip("Issue 377, Issue #377")
 
@@ -32,7 +32,7 @@ test_that("use, best_candidate", {
 
 test_that("use, generative + best_candidate", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   skip("Takes too long 20")
 
@@ -47,7 +47,7 @@ test_that("use, generative + best_candidate", {
 
 test_that("use, generative + twinning", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   skip("Takes too long 21")
 
@@ -62,7 +62,7 @@ test_that("use, generative + twinning", {
 
 test_that("use, best_candidate + twinning", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   skip("Takes too long 22")
 
@@ -77,7 +77,7 @@ test_that("use, best_candidate + twinning", {
 
 test_that("use, generative + best_candidate + twinning", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   skip("Takes too long 23")
 

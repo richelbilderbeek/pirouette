@@ -1,6 +1,6 @@
 test_that("use", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
@@ -44,7 +44,7 @@ test_that("use", {
 
 test_that("abuse", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
   if (rappdirs::app_dir()$os == "win") return()
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")

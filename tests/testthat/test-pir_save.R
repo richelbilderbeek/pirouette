@@ -1,6 +1,6 @@
 test_that("use", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 8")

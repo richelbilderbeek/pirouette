@@ -2,7 +2,7 @@ context("test-create_all_experiments")
 
 test_that("use", {
   if (rappdirs::app_dir()$os == "win")  return()
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
 
   all_experiments <- create_all_experiments()
 
@@ -19,7 +19,7 @@ test_that("use", {
 
 test_that("it can exclude an experiment", {
   if (rappdirs::app_dir()$os == "win")  return()
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
 
   all_experiments <- create_all_experiments(
     exclude_model = create_inference_model(
@@ -38,7 +38,7 @@ test_that("it can exclude an experiment", {
 test_that("should exclude one model, code from article", {
 
   if (rappdirs::app_dir()$os == "win")  return()
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
 
     generative_experiment <- create_experiment(
       inference_conditions = create_inference_conditions(

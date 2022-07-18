@@ -165,7 +165,7 @@ test_that("node distances should remain in the same order, brute-force", {
   # Or:
   #  - taxa that are closest, should remain closest in the twin tree
   #  - taxa that are farthest, should remain farthest in the twin tree
-  max_seed <- 5 + beastier::is_on_travis() * 95
+  max_seed <- 5 + beautier::is_on_gha() * 95
   for (seed in seq(1, max_seed)) {
     set.seed(seed)
     tree <- beastier:::create_random_phylogeny(n_taxa = 4)

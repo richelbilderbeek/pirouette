@@ -22,7 +22,7 @@
 #' }
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
+#' if (rappdirs::app_dir()$os != "win" && beautier::is_on_gha()) {
 #'   # it does not work on Windows
 #'   experiments <- create_all_bd_experiments()
 #'   check_experiments(experiments)

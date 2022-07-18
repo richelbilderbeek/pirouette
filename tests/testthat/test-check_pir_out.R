@@ -1,7 +1,7 @@
 context("test-check_pir_out")
 
 test_that("simulated data", {
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
   if (!beastier::is_beast2_installed()) return()
 
   experiments <- list(

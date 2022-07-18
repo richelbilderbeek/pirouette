@@ -1,6 +1,6 @@
 test_that("minimal runs", {
 
-  if (!beastier::is_on_travis()) return()
+  if (!beautier::is_on_gha()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 7")

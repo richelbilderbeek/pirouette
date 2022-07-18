@@ -2,7 +2,7 @@ context("test-check_is_ns_beast2_pkg_installed")
 
 test_that("use", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (rappdirs::app_dir()$os == "win") return()
   if (!beastier::is_beast2_installed()) return()
 

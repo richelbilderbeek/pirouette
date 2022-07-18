@@ -2,7 +2,7 @@ context("test-pir_to_tables")
 
 test_that("use, no twinning", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (!beastier::is_beast2_installed()) return()
   if (rappdirs::app_dir()$os == "win") return()
   skip("Takes too long 15")
@@ -91,7 +91,7 @@ test_that("use, no twinning", {
 
 test_that("use, twinning", {
 
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
   if (!beastier::is_beast2_installed()) return()
   if (rappdirs::app_dir()$os == "win") return()
   skip("Takes too long 16")

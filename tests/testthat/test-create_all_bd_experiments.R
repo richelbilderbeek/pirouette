@@ -3,7 +3,7 @@ test_that("use", {
   if (rappdirs::app_dir()$os == "win")  return()
 
   # This test takes too long
-  if (!beastier::is_on_ci()) return()
+  if (!beautier::is_on_ci()) return()
 
   experiments <- create_all_bd_experiments()
 
