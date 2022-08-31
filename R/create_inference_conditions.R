@@ -48,7 +48,9 @@
 #'
 #' # Run that experiment on a continuous integration service,
 #' # only when BEAST2 is installed
-#' if (is_on_ci() && is_beast2_installed() && is_beast2_ns_pkg_installed()) {
+#' if (beautier::is_on_ci() &&
+#'   is_beast2_installed() &&
+#'   is_beast2_ns_pkg_installed()) {
 #'   pir_out <- pir_run(
 #'     phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
 #'     pir_params = pir_params

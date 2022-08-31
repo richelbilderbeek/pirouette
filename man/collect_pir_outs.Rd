@@ -17,7 +17,7 @@ Collect the results of multiple \link{pirouette} runs
 }
 \examples{
 
-if (is_on_ci() && is_beast2_installed()) {
+if (beautier::is_on_ci() && is_beast2_installed()) {
 
   pir_paramses <- list()
   pir_paramses[[1]] <- pirouette::create_test_pir_params()

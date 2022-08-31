@@ -90,7 +90,7 @@ pir_params <- create_test_pir_params(
 )
 check_pir_params(pir_params)
 
-if (is_on_ci() &&
+if (beautier::is_on_ci() &&
   rappdirs::app_dir()$os == "unix" &&
   is_beast2_installed()) {
   pir_out <- pir_run(

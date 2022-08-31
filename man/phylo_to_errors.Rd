@@ -68,7 +68,7 @@ experiment <- init_experiment(
 experiments <- list(experiment)
 
 if (rappdirs::app_dir()$os != "win" &&
-  is_on_ci() && is_beast2_installed()
+  beautier::is_on_ci() && is_beast2_installed()
 ) {
   phylo_to_errors(
     phylogeny = phylogeny,

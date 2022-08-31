@@ -37,7 +37,7 @@ pir_params <- create_pir_params(
 )
 
 if (rappdirs::app_dir()$os != "win" &&
-  is_on_ci() && is_beast2_installed()
+  beautier::is_on_ci() && is_beast2_installed()
 ) {
   pir_run(
     phylogeny = phylogeny,

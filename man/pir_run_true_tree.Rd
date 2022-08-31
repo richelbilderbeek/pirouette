@@ -29,7 +29,7 @@ pir_params <- init_pir_params(pir_params)
 
 if (
   rappdirs::app_dir()$os != "win" &&
-  is_on_ci() &&
+  beautier::is_on_ci() &&
   is_beast2_installed()
 ) {
   pir_run_true_tree(

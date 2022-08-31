@@ -24,7 +24,7 @@
 #' errors <- NA
 #' if (
 #'   rappdirs::app_dir()$os != "win" &&
-#'   is_on_ci() &&
+#'   beautier::is_on_ci() &&
 #'   is_beast2_installed()
 #' ) {
 #'   pir_run(

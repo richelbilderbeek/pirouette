@@ -80,7 +80,7 @@
 #' )
 #'
 #' if (rappdirs::app_dir()$os != "win" &&
-#'   is_on_ci() && is_beast2_installed()
+#'   beautier::is_on_ci() && is_beast2_installed()
 #' ) {
 #'
 #'   pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
