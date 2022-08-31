@@ -35,6 +35,9 @@ jobs:
       - name: Install libcurl4-openssl-dev
         run: sudo apt install -qq libcurl4-openssl-dev
 
+      - name: Install libharfbuzz-dev libfribidi-dev
+        run: sudo apt install -qq libharfbuzz-dev libfribidi-dev
+
       # from https://travis-ci.community/t/cannot-connect-to-java-from-r/9754/8
       - name: Fix rJava error
         run: sudo $(which R) CMD javareconf
