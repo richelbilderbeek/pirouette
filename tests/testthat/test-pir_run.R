@@ -1,6 +1,6 @@
 test_that("generative", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 9")
@@ -72,7 +72,7 @@ test_that("generative", {
 
 test_that("short run with unusual logging intervals", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 10")
@@ -106,7 +106,7 @@ test_that("short run with unusual logging intervals", {
 
 test_that("nodeSub: true and twin alignments must differ", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 11")
@@ -189,7 +189,7 @@ test_that("abuse: generative, CBS with too few taxa", {
 
 test_that("most_evidence, one candidate", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 12")
@@ -235,7 +235,7 @@ test_that("most_evidence, one candidate", {
 
 test_that("generative with twin", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   skip("Takes too long 13")
@@ -293,7 +293,7 @@ test_that("generative with twin", {
 
 test_that("most_evidence, with twinning", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!mcbette::can_run_mcbette()) return()
 
   skip("Takes too long 14")

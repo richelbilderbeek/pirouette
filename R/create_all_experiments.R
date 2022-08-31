@@ -17,7 +17,7 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #'
-#' if (rappdirs::app_dir()$os != "win" && beautier::is_on_gha()) {
+#' if (rappdirs::app_dir()$os != "win" && beautier::is_on_github_actions()) {
 #'    # it does not work on Windows
 #'    experiments <- create_all_experiments()
 #'    check_experiments(experiments)

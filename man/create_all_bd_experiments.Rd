@@ -42,7 +42,7 @@ created by \link[beautier]{create_bd_tree_prior}).
 These experiments are used in the \link{create_pir_params} function
 }
 \examples{
-if (rappdirs::app_dir()$os != "win" && beautier::is_on_gha()) {
+if (rappdirs::app_dir()$os != "win" && beautier::is_on_github_actions()) {
   # it does not work on Windows
   experiments <- create_all_bd_experiments()
   check_experiments(experiments)

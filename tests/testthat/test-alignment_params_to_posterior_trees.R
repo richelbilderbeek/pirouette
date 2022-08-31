@@ -2,7 +2,7 @@ context("test-alignment_params_to_posterior_trees")
 
 test_that("returns a multiPhylo", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   alignment_params <- create_test_alignment_params()

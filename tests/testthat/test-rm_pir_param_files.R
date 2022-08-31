@@ -2,7 +2,7 @@ context("test-rm_pir_param_files")
 
 test_that("use", {
 
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   pir_params <- create_test_pir_params(

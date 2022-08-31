@@ -1,7 +1,7 @@
 context("test-check_pir_out")
 
 test_that("simulated data", {
-  if (!beautier::is_on_gha()) return()
+  if (!beautier::is_on_github_actions()) return()
   if (!beastier::is_beast2_installed()) return()
 
   experiments <- list(
