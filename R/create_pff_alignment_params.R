@@ -1,5 +1,5 @@
 #' Create alignment parameters with PFF
-#' @inheritParams pirouette::create_alignment_params
+#' @inheritParams default_params_doc
 #' @export
 create_pff_alignment_params <- function(
   root_sequence = pirouette::create_alignment_params()$root_sequence,

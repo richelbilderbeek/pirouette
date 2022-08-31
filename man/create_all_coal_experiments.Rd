@@ -43,7 +43,7 @@ These experiments are used in the \link{create_pir_params} function
 }
 \examples{
 
-if (rappdirs::app_dir()$os != "win" && beastier::is_on_travis()) {
+if (rappdirs::app_dir()$os != "win" && beautier::is_on_gha()) {
    # it does not work on Windows
    experiments <- create_all_coal_experiments()
    check_experiments(experiments)

@@ -5,8 +5,8 @@
 \title{Create a valid testing \link{pirouette} candidate experiment.}
 \usage{
 create_test_cand_experiment(
-  inference_conditions = pirouette::create_inference_conditions(model_type =
-    "candidate", run_if = "best_candidate", do_measure_evidence = TRUE),
+  inference_conditions = pirouette::create_inference_conditions(model_type = "candidate",
+    run_if = "best_candidate", do_measure_evidence = TRUE),
   inference_model = beautier::create_test_inference_model(),
   beast2_options = beastier::create_beast2_options(),
   est_evidence_mcmc = beautier::create_test_ns_mcmc(),

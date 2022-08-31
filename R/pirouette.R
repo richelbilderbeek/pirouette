@@ -78,5 +78,5 @@
 #' }
 #' @docType package
 #' @name pirouette
-#' @import beautier babette
+#' @import babette
 NULL
