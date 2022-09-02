@@ -79,7 +79,7 @@ pir_run_twin_tree <- function(
     marg_liks = marg_liks, # For most evidence
     verbose = pir_params$verbose
   )
-  testit::assert(length(experiments) > 0)
+  testthat::expect_true(length(experiments) > 0)
 
   # Measure the errors per inference model
   errorses <- list() # Reduplicated plural, a list of errors

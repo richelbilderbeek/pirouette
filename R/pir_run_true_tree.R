@@ -63,7 +63,7 @@ pir_run_true_tree <- function(
     marg_liks = marg_liks, # For most evidence
     verbose = pir_params$verbose
   )
-  testit::assert(length(experiments) > 0)
+  testthat::expect_true(length(experiments) > 0)
 
   # Measure the errors per inference model
   errorses <- list() # Reduplicated plural, a list of errors
@@ -77,7 +77,7 @@ pir_run_true_tree <- function(
       experiment = experiment,
       verbose = pir_params$verbose
     )
-    testit::assert(is.numeric(errorses[[i]]))
+    testthat::expect_true(is.numeric(errorses[[i]]))
 
     # Save errors to file
     errors_filename <- experiment$errors_filename

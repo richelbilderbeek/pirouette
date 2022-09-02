@@ -70,7 +70,7 @@ est_evidences <- function(
   i <- 1
   for (experiment in experiments) {
     if (experiment$inference_conditions$do_measure_evidence) {
-      testit::assert(
+      testthat::expect_true(
         beautier::is_nested_sampling_mcmc(experiment$est_evidence_mcmc)
       )
       inference_models[[i]] <- experiment$inference_model
@@ -89,12 +89,12 @@ est_evidences <- function(
       i <- i + 1
     }
   }
-  testit::assert(length(inference_models) == length(beast2_optionses))
+  testthat::expect_true(length(inference_models) == length(beast2_optionses))
   if (length(inference_models) == 0) {
     return(NULL)
   }
 
-  testit::assert(length(inference_models) > 0)
+  testthat::expect_true(length(inference_models) > 0)
   beautier::check_inference_models(inference_models)
   beastier::check_beast2_optionses(beast2_optionses)
   pirouette::check_is_ns_beast2_pkg_installed()

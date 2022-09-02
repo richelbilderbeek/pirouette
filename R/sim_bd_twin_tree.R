@@ -36,7 +36,7 @@ sim_bd_twin_tree <- function(
   )
   n_tips <- ape::Ntip(phylogeny)
   soc <- 1 + n_tips - length(phylo_brts)
-  testit::assert(soc == 1 | soc == 2)
+  testthat::expect_true(soc == 1 | soc == 2)
   difference <- (log(n_tips) - log(soc)) / age
   mu <- 0.1
   lambda <- mu + difference
@@ -73,8 +73,8 @@ sim_bd_twin_tree <- function(
 
   lambda_bd <- as.numeric(unname(bd_pars[1]))
   mu_bd <- as.numeric(unname(bd_pars[2]))
-  testit::assert(beautier::is_one_double(lambda_bd))
-  testit::assert(beautier::is_one_double(mu_bd))
+  testthat::expect_true(beautier::is_one_double(lambda_bd))
+  testthat::expect_true(beautier::is_one_double(mu_bd))
 
   # generate bd branching times from the inferred parameters
   bd_brts0 <- pirouette::create_twin_branching_times(

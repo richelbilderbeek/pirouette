@@ -22,9 +22,9 @@ happens to be the BEAUti default:
 
 ```{r}
 generative_model <- beautier::create_inference_model()
-testit::assert(generative_model$site_model$name == "JC69")
-testit::assert(generative_model$clock_model$name == "strict")
-testit::assert(generative_model$tree_prior$name == "yule")
+testthat::expect_true(generative_model$site_model$name == "JC69")
+testthat::expect_true(generative_model$clock_model$name == "strict")
+testthat::expect_true(generative_model$tree_prior$name == "yule")
 ```
 
 We create one experiment:

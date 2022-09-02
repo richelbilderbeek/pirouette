@@ -20,13 +20,13 @@ create_twin_tree <- function(
   set.seed(twinning_params$rng_seed_twin_tree)
   twin_tree <- twinning_params$sim_twin_tree_fun(phylogeny)
 
-  testit::assert(beautier::is_phylo(twin_tree))
+  testthat::expect_true(beautier::is_phylo(twin_tree))
 
   # Same number of tips
-  testit::assert(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
+  testthat::expect_true(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
 
   # Same crown age
-  testit::assert(
+  testthat::expect_true(
     all.equal(
       max(ape::branching.times(phylogeny)),
       max(ape::branching.times(twin_tree))

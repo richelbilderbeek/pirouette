@@ -1,7 +1,7 @@
 test_that("minimal use", {
   pir_params <- create_test_pir_params()
-  testit::assert(length(pir_params$experiments) == 1)
-  testit::assert(
+  testthat::expect_true(length(pir_params$experiments) == 1)
+  testthat::expect_true(
     pir_params$experiments[[1]]$inference_conditions$model_type ==
       "generative"
   )

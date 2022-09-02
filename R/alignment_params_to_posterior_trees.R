@@ -28,7 +28,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   pirouette::check_alignment_params(alignment_params)
   pirouette::check_experiment(experiment)
   beautier::check_file_exists(alignment_params$fasta_filename)
-  testit::assert(
+  testthat::expect_true(
     !beautier::is_nested_sampling_mcmc(experiment$inference_model$mcmc)
   )
 
@@ -66,7 +66,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   beautier::check_file_exists(experiment$beast2_options$input_filename)
 
   # tracelog must be uninitialized, won't do it here
-  testit::assert(
+  testthat::expect_true(
     !beautier::is_one_na(experiment$inference_model$mcmc$tracelog$filename)
   )
   # Well, if you'd really want to, this is how:
@@ -81,7 +81,7 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
   # }
   #
   # treelog must be initialized, won't do it here
-  testit::assert(
+  testthat::expect_true(
     stringr::str_count(
       string = experiment$inference_model$mcmc$treelog$filename,
       pattern = "\\$"
@@ -95,9 +95,9 @@ alignment_params_to_posterior_trees <- function(# nolint indeed a long name
 
   # Check the number of trees
   mcmc <- experiment$inference_model$mcmc
-  testit::assert(!beautier::is_nested_sampling_mcmc(mcmc))
+  testthat::expect_true(!beautier::is_nested_sampling_mcmc(mcmc))
   expected_n_trees <- 1 + (mcmc$chain_length / mcmc$treelog$log_every)
-  testit::assert(length(trees) == expected_n_trees)
+  testthat::expect_true(length(trees) == expected_n_trees)
 
   trees
 }

@@ -32,10 +32,10 @@ collect_pir_outs <- function(pir_outs) {
   len1 <- length(pir_outs)
   for (i in seq_len(len1)) {
     rcount <- rcount + nrow(pir_outs[[i]])
-    testit::assert(ncol(pir_outs[[i]]) == ccount)
+    testthat::expect_true(ncol(pir_outs[[i]]) == ccount)
   }
-  testit::assert(dim(out_mat)[1] == rcount)
-  testit::assert(dim(out_mat)[2] == ccount)
+  testthat::expect_true(dim(out_mat)[1] == rcount)
+  testthat::expect_true(dim(out_mat)[2] == ccount)
 
   i_err_1 <- which(colnames(out_mat) == "error_1")
   i_string <- 1:(i_err_1 - 1)

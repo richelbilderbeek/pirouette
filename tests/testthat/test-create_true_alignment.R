@@ -1,7 +1,7 @@
 test_that("basic", {
   n_taxa <- 3
   phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
-  testit::assert(length(phylogeny$tip.label) == n_taxa)
+  testthat::expect_true(length(phylogeny$tip.label) == n_taxa)
   sequence_length <- 10
   root_sequence <- create_mono_nuc_dna(length = sequence_length)
   alignment_params <- create_alignment_params(

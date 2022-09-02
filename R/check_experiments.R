@@ -46,7 +46,7 @@ check_experiments <- function(
   }
   if (length(experiments) == 1) return()
 
-  testit::assert(length(experiments) >= 2)
+  testthat::expect_true(length(experiments) >= 2)
   pirouette::check_candidates_save_to_same_files(experiments)
   pirouette::check_experiments_candidates_have_same_mcmcs(experiments)
 
@@ -57,7 +57,7 @@ check_experiments <- function(
   if (sum(model_types == "generative") > 1) {
     stop("Specifying more than one 'generative' model experiment is redundant")
   }
-  testit::assert(length(experiments) >= 2)
+  testthat::expect_true(length(experiments) >= 2)
   exp_types <- rep(NA, length(experiments))
   for (i in seq_along(experiments)) {
     exp_types[i] <- experiments[[i]]$inference_conditions$model_type

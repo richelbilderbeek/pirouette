@@ -52,7 +52,7 @@ phylo_to_errors <- function(
   error_measure_params = create_error_measure_params(),
   verbose = FALSE
 ) {
-  testit::assert(experiment$beast2_options$overwrite == TRUE)
+  testthat::expect_true(experiment$beast2_options$overwrite == TRUE)
   # Run
   trees <- alignment_params_to_posterior_trees(
     alignment_params = alignment_params,
@@ -62,9 +62,9 @@ phylo_to_errors <- function(
 
   # Check the number of trees
   mcmc <- experiment$inference_model$mcmc
-  testit::assert(!beautier::is_nested_sampling_mcmc(mcmc))
+  testthat::expect_true(!beautier::is_nested_sampling_mcmc(mcmc))
   expected_n_trees <- 1 + (mcmc$chain_length / mcmc$treelog$log_every)
-  testit::assert(length(trees) == expected_n_trees)
+  testthat::expect_true(length(trees) == expected_n_trees)
 
   # Measure error by comparing true tree with BEAST2 posterior trees
   all_errors <- error_measure_params$error_fun(phylogeny, trees)

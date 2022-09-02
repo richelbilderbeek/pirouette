@@ -37,7 +37,7 @@ sim_true_alignment <- function(
   beautier::check_phylogeny(true_phylogeny)
   pirouette::check_alignment_params(alignment_params)
   pirouette::check_reconstructed_phylogeny(true_phylogeny)
-  testit::assert(beautier::is_one_bool(verbose))
+  testthat::expect_true(beautier::is_one_bool(verbose))
 
   set.seed(alignment_params$rng_seed)
   alignment <- alignment_params$sim_tral_fun(

@@ -127,7 +127,7 @@ test_that("abuse", {
     )
     return()
   }
-  testit::assert(beastier::is_beast2_installed())
+  testthat::expect_true(beastier::is_beast2_installed())
 
   # fasta_filename
   expect_error(

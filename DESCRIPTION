@@ -40,7 +40,6 @@ Imports:
     remotes,
     stringr,
     TESS,
-    testit,
     tibble,
     tidyr,
     tracerer (>= 2.0.2),

@@ -23,7 +23,7 @@ test_that("use, no twinning, no evidence estimation", {
     expect_true(experiment$errors_filename %in% filenames)
 
     # Nope, evidence is never estimated ...
-    testit::assert(!experiment$inference_conditions$do_measure_evidence)
+    testthat::expect_true(!experiment$inference_conditions$do_measure_evidence)
   }
   # Evidence is never estimated, thus no filename
   expect_false(pir_params$evidence_filename %in% filenames)
@@ -89,7 +89,7 @@ test_that("use, twinning, no evidence estimation", {
     expect_true(to_twin_filename(experiment$errors_filename) %in% filenames)
 
     # Nope, evidence is never estimated ...
-    testit::assert(!experiment$inference_conditions$do_measure_evidence)
+    testthat::expect_true(!experiment$inference_conditions$do_measure_evidence)
 
   }
   expect_true(pir_params$twinning_params$twin_tree_filename %in% filenames)

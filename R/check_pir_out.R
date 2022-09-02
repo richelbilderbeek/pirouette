@@ -28,13 +28,13 @@ check_pir_out <- function(
 ) {
   pirouette::check_pir_out_names(pir_out)
 
-  testit::assert(is.factor(pir_out$tree))
-  testit::assert(is.factor(pir_out$inference_model))
-  testit::assert(is.factor(pir_out$site_model))
-  testit::assert(!is.factor(pir_out$inference_model_weight))
-  testit::assert(is.factor(pir_out$clock_model))
-  testit::assert(is.factor(pir_out$tree_prior))
-  testit::assert(!is.factor(pir_out$error_1))
+  testthat::expect_true(is.factor(pir_out$tree))
+  testthat::expect_true(is.factor(pir_out$inference_model))
+  testthat::expect_true(is.factor(pir_out$site_model))
+  testthat::expect_true(!is.factor(pir_out$inference_model_weight))
+  testthat::expect_true(is.factor(pir_out$clock_model))
+  testthat::expect_true(is.factor(pir_out$tree_prior))
+  testthat::expect_true(!is.factor(pir_out$error_1))
 
   pirouette::check_tree_types(pir_out$tree)
   pirouette::check_inference_model_type_names(

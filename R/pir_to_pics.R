@@ -299,7 +299,7 @@ pir_to_pics_twin <- function(
     pir_params$twinning_params$twin_tree_filename)$tip.label)),
   folder = tempdir()
 ) {
-  testit::assert(pirouette::has_twinning(pir_params))
+  testthat::expect_true(pirouette::has_twinning(pir_params))
 
   error <- NULL; rm(error) # nolint, fixes warning: no visible binding for global variable
 

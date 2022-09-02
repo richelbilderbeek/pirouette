@@ -34,7 +34,7 @@ for (i in seq(1, n_repeats)) {
   message(paste0("Progress: ", i, "/", n_repeats))
   # Create a random tree
   candidate_tree <- sim_bd_tree(n_tips)
-  testit::assert(ape::Ntip(candidate_tree) == n_tips)
+  testthat::expect_true(ape::Ntip(candidate_tree) == n_tips)
   ape::plot.phylo(candidate_tree)
 
   # Do a pirouette run and select the best

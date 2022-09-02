@@ -53,6 +53,6 @@ for (seed in seq_along(pir_outs)) {
   }
 }
 colnames(errors) <- paste0("error_", 1:ncol(errors))
-testit::assert(ncol(errors) == max_seed * ncol(temp))
+testthat::expect_true(ncol(errors) == max_seed * ncol(temp))
 all_errors <- cbind(pir_outs[[seed]][, 1:6], errors)
 pir_plot(all_errors)

@@ -8,7 +8,7 @@
 check_candidates_save_to_same_files <- function( # nolint long function
   experiments
 ) {
-  testit::assert(length(experiments) >= 2)
+  testthat::expect_true(length(experiments) >= 2)
 
   for (i in seq(1, length(experiments) - 1)) {
     testthat::expect_true(i >= 1)

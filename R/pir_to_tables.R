@@ -32,15 +32,15 @@ pir_to_tables <- function(
 
   first_experiment <- pir_params$experiments[[1]]
   last_experiment <- pir_params$experiments[[length(pir_params$experiments)]]
-  testit::assert(first_experiment$inference_model$mcmc$store_every != -1)
-  testit::assert(last_experiment$inference_model$mcmc$store_every != -1)
+  testthat::expect_true(first_experiment$inference_model$mcmc$store_every != -1)
+  testthat::expect_true(last_experiment$inference_model$mcmc$store_every != -1)
 
   ##############################################################################
   # Evidence
   ##############################################################################
   # Very custom layout function
   tidy_df <- function(df) {
-    testit::assert(
+    testthat::expect_true(
       all(
         c(
           "site_model_name",

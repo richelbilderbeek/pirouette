@@ -48,9 +48,9 @@ sim_alignment_with_n_mutations <- function(
   pirouette::check_reconstructed_phylogeny(phylogeny)
   pirouette::check_root_sequence(root_sequence)
   pirouette::check_mutation_rate(mutation_rate)
-  testit::assert(beautier::is_one_int(n_mutations))
-  testit::assert(n_mutations >= 0)
-  testit::assert(beautier::is_one_bool(verbose))
+  testthat::expect_true(beautier::is_one_int(n_mutations))
+  testthat::expect_true(n_mutations >= 0)
+  testthat::expect_true(beautier::is_one_bool(verbose))
 
   # Higher-level checks
   n_taxa <- ape::Ntip(phylogeny)
@@ -108,11 +108,11 @@ sim_alignment_with_n_mutations <- function(
   }
 
   pirouette::check_alignment(alignment)
-  testit::assert(
+  testthat::expect_true(
     pirouette::get_alignment_sequence_length(alignment) ==
     nchar(root_sequence)
   )
-  testit::assert(
+  testthat::expect_true(
     pirouette::get_alignment_n_taxa(alignment) ==
     ape::Ntip(phylogeny)
   )

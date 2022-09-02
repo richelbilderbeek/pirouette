@@ -17,7 +17,7 @@ test_that("minimal runs", {
     phylogenies = phylogenies,
     pir_paramses = pir_paramses
   )
-  testit::assert(length(pir_outs) == length(phylogenies))
+  testthat::expect_true(length(pir_outs) == length(phylogenies))
   for (pir_out in pir_outs) {
     testthat::expect_silent(pirouette::check_pir_out(pir_out))
   }

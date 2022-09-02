@@ -37,7 +37,7 @@
   # )$alignment
   #
   # testthat::expect_equal(class(alignment_phydat), "phyDat")
-  # testit::assert(class(alignment_phydat) == "phyDat")
+  # testthat::expect_true(class(alignment_phydat) == "phyDat")
   #
   # alignment <- ape::as.DNAbin(alignment_phydat)
   # alignment

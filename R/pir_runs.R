@@ -36,7 +36,7 @@ pir_runs <- function(
   phylogenies,
   pir_paramses
 ) {
-  testit::assert(length(phylogenies) == length(pir_paramses))
+  testthat::expect_true(length(phylogenies) == length(pir_paramses))
   n_runs <- length(phylogenies)
 
   pir_outs <- list()
@@ -47,6 +47,6 @@ pir_runs <- function(
       pir_params = pir_paramses[[i]]
     )
   }
-  testit::assert(length(pir_outs) == n_runs)
+  testthat::expect_true(length(pir_outs) == n_runs)
   pir_outs
 }

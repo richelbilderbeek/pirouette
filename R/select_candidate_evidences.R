@@ -40,12 +40,12 @@ select_candidate_evidences <- function(
         experiment$inference_model$tree_prior$name
       )
       # Should be the same names for the same site/clock/tree models
-      testit::assert(marg_liks_names[1] %in% beautier::get_site_model_names())
-      testit::assert(marg_liks_names[2] %in% beautier::get_clock_model_names())
-      testit::assert(marg_liks_names[3] %in% beautier::get_tree_prior_names())
-      testit::assert(experiment_names[1] %in% beautier::get_site_model_names())
-      testit::assert(experiment_names[2] %in% beautier::get_clock_model_names())
-      testit::assert(experiment_names[3] %in% beautier::get_tree_prior_names())
+      testthat::expect_true(marg_liks_names[1] %in% beautier::get_site_model_names())
+      testthat::expect_true(marg_liks_names[2] %in% beautier::get_clock_model_names())
+      testthat::expect_true(marg_liks_names[3] %in% beautier::get_tree_prior_names())
+      testthat::expect_true(experiment_names[1] %in% beautier::get_site_model_names())
+      testthat::expect_true(experiment_names[2] %in% beautier::get_clock_model_names())
+      testthat::expect_true(experiment_names[3] %in% beautier::get_tree_prior_names())
 
       if (all(identical(marg_liks_names, experiment_names))) {
         selected_row_indices <- c(selected_row_indices, i)

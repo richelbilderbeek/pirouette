@@ -19,7 +19,7 @@ test_that("minimal runs", {
     sim_phylo_fun = sim_phylo_fun,
     pir_paramses = pir_paramses
   )
-  testit::assert(length(pir_outs) == length(pir_paramses))
+  testthat::expect_true(length(pir_outs) == length(pir_paramses))
   for (pir_out in pir_outs) {
     testthat::expect_silent(pirouette::check_pir_out(pir_out))
   }

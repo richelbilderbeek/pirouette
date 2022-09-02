@@ -11,7 +11,7 @@ test_that("use", {
 
   # Files not yet created
   filenames <- get_pir_params_filenames(pir_params)
-  testit::assert(all(!file.exists(filenames)))
+  testthat::expect_true(all(!file.exists(filenames)))
 
   # Running all one experiments
   errors <- pir_run(

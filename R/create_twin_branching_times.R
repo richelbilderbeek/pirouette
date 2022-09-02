@@ -73,7 +73,7 @@ create_twin_branching_times <- function(
     best_n <- which(liks == max(liks))
     tree0 <- sim_trees[[best_n]]
   } else {
-    testit::assert(method == "max_clade_cred" || method == "random_tree")
+    testthat::expect_true(method == "max_clade_cred" || method == "random_tree")
     tree0 <- phangorn::maxCladeCred(sim_trees)
   }
   brts0 <- pirouette::convert_tree2brts(tree0)

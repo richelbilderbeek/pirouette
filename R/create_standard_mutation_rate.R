@@ -20,7 +20,7 @@ create_standard_mutation_rate <- function(
 ) {
   beautier::check_phylogeny(phylogeny)
   crown_age <- beautier::get_crown_age(phylogeny)
-  testit::assert(crown_age > .Machine$double.xmin)
+  testthat::expect_true(crown_age > .Machine$double.xmin)
   mutation_rate <- 1.0 / crown_age
   mutation_rate
 }

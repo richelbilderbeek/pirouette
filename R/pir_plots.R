@@ -23,7 +23,7 @@ pir_plots <- function( # nolint indeed high cyclomatic complexity, will fix afte
   # Check input
   if (isTRUE(check_input)) {
     if (isTRUE(verbose)) message("Check inputs: ", Sys.time())
-    testit::assert(length(pir_outs) >= 1)
+    testthat::expect_true(length(pir_outs) >= 1)
     for (pir_out in pir_outs) {
       if (isTRUE(verbose)) message("Check input: ", Sys.time())
       pirouette::check_pir_out(pir_out)

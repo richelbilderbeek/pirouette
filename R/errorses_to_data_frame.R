@@ -45,8 +45,8 @@ errorses_to_data_frame <- function(
   marg_liks
 ) {
   pirouette::check_experiments(experiments)
-  testit::assert(length(errorses) > 0)
-  testit::assert(length(experiments) == length(errorses))
+  testthat::expect_true(length(errorses) > 0)
+  testthat::expect_true(length(experiments) == length(errorses))
   if (length(errorses) > 1) {
     if (length(errorses[[1]]) != length(errorses[[2]])) {
       stop(
@@ -54,7 +54,7 @@ errorses_to_data_frame <- function(
         " vs ", length(errorses[[2]]), ")."
       )
     }
-    testit::assert(length(errorses[[1]]) == length(errorses[[2]]))
+    testthat::expect_true(length(errorses[[1]]) == length(errorses[[2]]))
   }
 
   # Put inference models and errors a data frame

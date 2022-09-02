@@ -16,10 +16,10 @@ to_evidence_filename <- function(
       "Actual value: ", filename
     )
   }
-  testit::assert(assertive::is_a_string(filename))
+  testthat::expect_true(assertive::is_a_string(filename))
   # Get the basename with extension
   base_filename <- basename(filename)
-  testit::assert(assertive::is_a_string(base_filename))
+  testthat::expect_true(assertive::is_a_string(base_filename))
 
   if (!stringr::str_count(base_filename, pattern = "\\.")) {
     evidence_basename <- paste0(base_filename, "_evidence")
@@ -43,7 +43,7 @@ to_evidence_filename <- function(
     pattern = "^\\./", ""
   )
 
-  testit::assert(evidence_path != filename)
+  testthat::expect_true(evidence_path != filename)
 
   evidence_path
 }

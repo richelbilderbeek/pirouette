@@ -72,7 +72,7 @@ test_that("abuse", {
     verbose = pir_params$verbose
   )
   errorses[[2]] <- errorses[[1]][1:2]
-  testit::assert(length(errorses[[1]]) != length(errorses[[2]]))
+  testthat::expect_true(length(errorses[[1]]) != length(errorses[[2]]))
 
   expect_error(
     errorses_to_data_frame(

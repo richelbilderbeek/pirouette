@@ -39,11 +39,11 @@ sim_alignment_with_std_nsm <- function(
 
   alignment <- ape::as.DNAbin(alignment_phydat)
   pirouette::check_alignment(alignment)
-  testit::assert(
+  testthat::expect_true(
     pirouette::get_alignment_sequence_length(alignment) ==
     nchar(root_sequence)
   )
-  testit::assert(
+  testthat::expect_true(
     pirouette::get_alignment_n_taxa(alignment) ==
     ape::Ntip(phylogeny)
   )

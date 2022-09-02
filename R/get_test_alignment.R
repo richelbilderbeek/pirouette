@@ -12,7 +12,7 @@ get_test_alignment <- function(
   sequence_length = 4
 ) {
   # Only have 26 letters in the alphabet
-  testit::assert(n_taxa <= 26)
+  testthat::expect_true(n_taxa <= 26)
   x <- list()
   for (i in seq_len(n_taxa)) {
     x[[i]] <- rep(

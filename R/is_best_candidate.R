@@ -27,7 +27,7 @@ is_best_candidate <- function(experiment, marg_liks) {
 
   if (nrow(marg_liks) == 0) return(FALSE)
 
-  testit::assert(
+  testthat::expect_true(
     all(
       c("weight", "site_model_name", "clock_model_name", "tree_prior_name")
       %in% names(marg_liks)

@@ -221,7 +221,7 @@ test_that("most_evidence, one candidate", {
 
   # Files not yet created
   filenames <- get_pir_params_filenames(pir_params)
-  testit::assert(all(!file.exists(filenames)))
+  testthat::expect_true(all(!file.exists(filenames)))
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -269,7 +269,7 @@ test_that("generative with twin", {
   )
 
   filenames <- get_pir_params_filenames(pir_params)
-  testit::assert(all(!file.exists(filenames)))
+  testthat::expect_true(all(!file.exists(filenames)))
 
   errors <- pir_run(
     phylogeny = phylogeny,
@@ -315,8 +315,8 @@ test_that("most_evidence, with twinning", {
   #
   # All weights and errors are random, but possibly valid, numbers
 
-  testit::assert(beastier::is_beast2_installed())
-  testit::assert(mauricer::is_beast2_ns_pkg_installed())
+  testthat::expect_true(beastier::is_beast2_installed())
+  testthat::expect_true(mauricer::is_beast2_ns_pkg_installed())
 
   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
   beast2_options <- create_beast2_options(
@@ -348,7 +348,7 @@ test_that("most_evidence, with twinning", {
     evidence_filename = get_temp_evidence_filename()
   )
   filenames <- get_pir_params_filenames(pir_params)
-  testit::assert(all(!file.exists(filenames)))
+  testthat::expect_true(all(!file.exists(filenames)))
   pir_params$verbose <- TRUE
 
   errors <- pir_run(

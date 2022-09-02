@@ -26,7 +26,7 @@ get_alignment_sequences <- function(
   }
   if (is.list(alignment)) {
     n_taxa <- length(labels(alignment))
-    testit::assert(n_taxa > 0)
+    testthat::expect_true(n_taxa > 0)
     # Nah, 'byrow' really must be TRUE here
     alignment_sequences <- matrix(
       unname(unlist(as.character(alignment))),

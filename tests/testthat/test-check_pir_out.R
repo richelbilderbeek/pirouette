@@ -9,7 +9,7 @@ test_that("simulated data", {
     create_test_cand_experiment()
   )
   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
-  testit::assert(
+  testthat::expect_true(
     experiments[[1]]$inference_model$mcmc$chain_length ==
     experiments[[2]]$inference_model$mcmc$chain_length
   )
