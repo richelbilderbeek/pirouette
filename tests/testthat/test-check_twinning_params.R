@@ -207,7 +207,7 @@ test_that("add sim_twal_fun", {
 
   testthat::expect_silent(
     pirouette::check_twinning_params(
-      pirouette::create_twinning_params(
+      twinning_params = pirouette::create_twinning_params(
         sim_twal_fun =
           pirouette::get_sim_twal_with_std_nsm_fun()
       )

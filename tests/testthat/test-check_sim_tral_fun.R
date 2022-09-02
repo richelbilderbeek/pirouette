@@ -1,6 +1,6 @@
 test_that("use on adapter functions", {
 
-  expect_silent(check_sim_tral_fun(sim_tral_with_std_nsm))
+  expect_silent(check_sim_tral_fun(sim_tral_fun = sim_tral_with_std_nsm))
 
   # nodeSub is not on CRAN yet
   # # This test will call nodeSub, which will call geiger.

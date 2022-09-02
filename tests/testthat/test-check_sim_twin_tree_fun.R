@@ -2,7 +2,7 @@ test_that("use", {
 
   expect_silent(
     check_sim_twin_tree_fun(
-      get_sim_bd_twin_tree_fun()
+      sim_twin_tree_fun = get_sim_bd_twin_tree_fun()
     )
   )
 

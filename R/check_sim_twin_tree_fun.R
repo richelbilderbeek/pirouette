@@ -24,7 +24,7 @@ check_sim_twin_tree_fun <- function(sim_twin_tree_fun) {
       out <- sim_twin_tree_fun(
       true_phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);")
     )
-    }, condition = function(c) {
+    }, error = function(c) {
       stop(
         "'sim_twin_tree_fun' must be a function ",
         "with one argument called 'true_phylogeny'"
