@@ -36,7 +36,7 @@ sim_bd_twin_tree <- function(
   )
   n_tips <- ape::Ntip(phylogeny)
   soc <- 1 + n_tips - length(phylo_brts)
-  testthat::expect_true(soc == 1 | soc == 2)
+  testthat::expect_true(all(soc == 1 | soc == 2))
   difference <- (log(n_tips) - log(soc)) / age
   mu <- 0.1
   lambda <- mu + difference

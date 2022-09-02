@@ -1,5 +1,3 @@
-context("test-check_twinning_params")
-
 test_that("minimal use", {
 
   testthat::expect_silent(
@@ -205,11 +203,11 @@ test_that("add sim_twin_tree_fun", {
 
 test_that("add sim_twal_fun", {
 
-  testthat::expect_silent(
-    pirouette::check_twinning_params(
-      twinning_params = pirouette::create_twinning_params(
+  expect_silent(
+    check_twinning_params(
+      twinning_params = create_twinning_params(
         sim_twal_fun =
-          pirouette::get_sim_twal_with_std_nsm_fun()
+          get_sim_twal_with_std_nsm_fun()
       )
     )
   )

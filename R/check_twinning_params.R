@@ -19,7 +19,7 @@ check_twinning_params <- function(
     sim_twin_tree_fun = twinning_params$sim_twin_tree_fun
   )
   pirouette::check_sim_twal_fun(
-    twinning_params$sim_twal_fun
+    sim_twal_fun = twinning_params$sim_twal_fun
   )
 
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_tree)) {

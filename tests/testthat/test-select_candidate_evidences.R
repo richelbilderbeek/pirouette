@@ -16,7 +16,7 @@ test_that("one if there is one candidate", {
       do_measure_evidence = TRUE
     )
   )
-  testthat::expect_true(experiment$inference_conditions$model_type == "candidate")
+  expect_equal(experiment$inference_conditions$model_type, "candidate")
 
   candidate_evidences <- select_candidate_evidences(
     experiments = list(experiment),
@@ -34,8 +34,8 @@ test_that("one if there is one candidate and one generative", {
   # Candidates must have different model than generative model
   experiment_2$inference_model$site_model <-
     beautier::create_tn93_site_model()
-  testthat::expect_true(experiment_1$inference_conditions$model_type == "generative")
-  testthat::expect_true(experiment_2$inference_conditions$model_type == "candidate")
+  expect_equal(experiment_1$inference_conditions$model_type, "generative")
+  expect_equal(experiment_2$inference_conditions$model_type, "candidate")
   experiments <- list(experiment_1, experiment_2)
 
   candidate_evidences <- select_candidate_evidences(

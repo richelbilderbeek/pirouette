@@ -246,7 +246,10 @@ test_that("Bug #269, no mutations for mutation rate zero", {
   )
   alignment_dnabin <- ape::as.DNAbin(alignment_phydat)
   alignment <- alignment_dnabin
-  testthat::expect_true(get_alignment_sequence_length(alignment) == sequence_length)
+  expect_equal(
+    get_alignment_sequence_length(alignment),
+    sequence_length
+  )
   image(alignment_dnabin)
   expect_equal(
     0,

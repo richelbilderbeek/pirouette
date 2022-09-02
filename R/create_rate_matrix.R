@@ -18,8 +18,6 @@ create_rate_matrix <- function(
   base_frequencies = rep(0.25, 4)
 ) {
   implemented_models <- beautier::get_site_model_names()
-  testthat::expect_true(site_model != "lns")
-  testthat::expect_true(site_model != "uns")
   testthat::expect_true("name" %in% names(site_model))
   if (!(site_model$name %in% implemented_models)) {
     stop(
