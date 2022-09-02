@@ -23,7 +23,6 @@ Depends:
     babette (>= 2.1.1)
 Imports:
     ape,
-    assertive,
     beautier (>= 2.6.2),
     beastier (>= 2.4.6),
     DDD,

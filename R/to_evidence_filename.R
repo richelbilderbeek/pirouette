@@ -10,16 +10,10 @@
 to_evidence_filename <- function(
   filename
 ) {
-  if (!assertive::is_a_string(filename)) {
-    stop(
-      "'filename' must be one string. \n",
-      "Actual value: ", filename
-    )
-  }
-  testthat::expect_true(assertive::is_a_string(filename))
+  beautier::check_filename(filename)
   # Get the basename with extension
   base_filename <- basename(filename)
-  testthat::expect_true(assertive::is_a_string(base_filename))
+  testthat::expect_silent(beautier::check_filename(base_filename))
 
   if (!stringr::str_count(base_filename, pattern = "\\.")) {
     evidence_basename <- paste0(base_filename, "_evidence")

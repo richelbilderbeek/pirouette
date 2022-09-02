@@ -11,29 +11,11 @@
 to_twin_filename <- function(
   filename
 ) {
-  if (beautier::is_one_na(filename)) {
-    stop(
-      "'filename' must be one string. \n",
-      "Actual value: '", filename, "'. ",
-      "Maybe forgot to initialize the 'pir_params'?"
-    )
-  }
-  if (!assertive::is_a_string(filename)) {
-    stop(
-      "'filename' must be one string. \n",
-      "Actual value: ", filename
-    )
-  }
-  if (filename == "") {
-    stop(
-      "'filename' must be one string with at least one character",
-      "Actual value: ", filename
-    )
-  }
-  testthat::expect_true(assertive::is_a_string(filename))
+  beautier::check_filename(filename)
   # Get the basename with extension
   base_filename <- basename(filename)
-  testthat::expect_true(assertive::is_a_string(base_filename))
+
+  testthat::expect_silent(beautier::check_filename(base_filename))
 
   if (!stringr::str_count(base_filename, pattern = "\\.")) {
     twin_basename <- paste0(base_filename, "_twin")

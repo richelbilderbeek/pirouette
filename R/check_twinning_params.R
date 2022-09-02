@@ -28,15 +28,10 @@ check_twinning_params <- function(
   if (!beautier::is_one_int(twinning_params$rng_seed_twin_alignment)) {
     stop("'rng_seed_twin_alignment' must be a whole number")
   }
-  if (!assertive::is_a_string(twinning_params$twin_tree_filename)) {
-    stop("'twin_tree_filename' must be a character vector")
-  }
-  if (!assertive::is_a_string(twinning_params$twin_alignment_filename)) {
-    stop("'twin_alignment_filename' must be a character vector")
-  }
-  if (!beautier::is_one_na(twinning_params$twin_evidence_filename) &&
-      !is.character(twinning_params$twin_evidence_filename)
-  ) {
-    stop("'twin_evidence_filename' must be NA or a character vector")
-  }
+  beautier::check_filename(twinning_params$twin_tree_filename)
+  beautier::check_filename(twinning_params$twin_alignment_filename)
+  beautier::check_filename(
+    twinning_params$twin_evidence_filename,
+    allow_na = TRUE
+  )
 }
