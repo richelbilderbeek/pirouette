@@ -19,10 +19,12 @@ A valid \link{pirouette} experiment
 can be created by \link{create_experiment}.
 }
 \examples{
-check_experiment(create_test_experiment())
-check_experiment(create_test_gen_experiment())
-if (rappdirs::app_dir()$os != "win") {
-  check_experiment(create_test_cand_experiment())
+if (beautier::is_on_ci()) {
+  check_experiment(create_test_experiment())
+  check_experiment(create_test_gen_experiment())
+  if (rappdirs::app_dir()$os != "win") {
+    check_experiment(create_test_cand_experiment())
+  }
 }
 }
 \seealso{

@@ -5,15 +5,17 @@
 #' this will result in `x * y * z` inference models.
 #' @inheritParams default_params_doc
 #' @examples
-#' site_models <- beautier::create_site_models()
-#' clock_models <- beautier::create_clock_models()
-#' tree_priors <- beautier::create_tree_priors()
+#' if (beautier::is_on_ci()) {
+#'   site_models <- beautier::create_site_models()
+#'   clock_models <- beautier::create_clock_models()
+#'   tree_priors <- beautier::create_tree_priors()
 #'
-#' inference_models <- combine_models(
-#'   site_models = site_models,
-#'   clock_models = clock_models,
-#'   tree_priors = tree_priors
-#' )
+#'   inference_models <- combine_models(
+#'     site_models = site_models,
+#'     clock_models = clock_models,
+#'     tree_priors = tree_priors
+#'   )
+#' }
 #' @export
 combine_models <- function(
   site_models = beautier::create_site_models(),

@@ -15,34 +15,37 @@ create_test_pir_params_setup(has_candidate = FALSE, has_twinning = FALSE)
 Create a \code{pir_params} that follows a specific setup
 }
 \examples{
-# Minimal use
-check_pir_params(create_test_pir_params_setup())
+if (beautier::is_on_ci()) {
 
-# Generative experiment only, without twinning
-create_test_pir_params_setup(
-  has_candidate = FALSE,
-  has_twinning = FALSE
-)
+  # Minimal use
+  check_pir_params(create_test_pir_params_setup())
 
-# Generative and candidate experiment, without twinning
-if (rappdirs::app_dir()$os != "win") {
+  # Generative experiment only, without twinning
   create_test_pir_params_setup(
-    has_candidate = TRUE,
+    has_candidate = FALSE,
     has_twinning = FALSE
   )
-}
 
-# Generative experiment only, with twinning
-create_test_pir_params_setup(
-  has_candidate = FALSE,
-  has_twinning = TRUE
-)
+  # Generative and candidate experiment, without twinning
+  if (rappdirs::app_dir()$os != "win") {
+    create_test_pir_params_setup(
+      has_candidate = TRUE,
+      has_twinning = FALSE
+    )
+  }
 
-# Generative and candidate experiment, with twinning
-if (rappdirs::app_dir()$os != "win") {
+  # Generative experiment only, with twinning
   create_test_pir_params_setup(
-    has_candidate = TRUE,
+    has_candidate = FALSE,
     has_twinning = TRUE
   )
+
+  # Generative and candidate experiment, with twinning
+  if (rappdirs::app_dir()$os != "win") {
+    create_test_pir_params_setup(
+      has_candidate = TRUE,
+      has_twinning = TRUE
+    )
+  }
 }
 }
