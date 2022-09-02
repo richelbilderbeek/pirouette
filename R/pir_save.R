@@ -20,7 +20,8 @@ pir_save <- function(
     row.names = FALSE
   )
 
-  pir_plot(pir_out); ggplot2::ggsave(file.path(folder_name, "errors.png"))
+  pir_plot(pir_out)
+  ggplot2::ggsave(file.path(folder_name, "errors.png"))
 
   pir_to_tables(
     pir_params = pir_params,

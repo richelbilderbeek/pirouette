@@ -37,7 +37,8 @@ test_that("use on test output", {
 
 test_that("use on test runs", {
 
-  if (!is_on_travis()) return()
+  if (!is_on_ci()) return()
+  if (!beastier::is_beast2_installed()) return()
 
   pir_plot(
     pir_out = pir_run(

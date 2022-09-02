@@ -31,4 +31,5 @@ get_gamma_error_fun <- function() {
     }
     errors
   }
+  gamma_error_fun
 }
