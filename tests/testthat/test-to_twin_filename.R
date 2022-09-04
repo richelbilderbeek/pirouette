@@ -36,13 +36,13 @@ test_that("abuse", {
   expect_error(to_twin_filename(Inf), "filename")
   expect_error(to_twin_filename(NULL), "filename")
   expect_error(to_twin_filename(c()), "filename")
-  expect_error(to_twin_filename(c("a", "b")), "'filename' must be one string")
+  expect_error(to_twin_filename(c("a", "b")), "filename")
   expect_error(
     to_twin_filename(NA),
-    "'filename' must be one string.*forgot to initialize the 'pir_params'?"
+    "filename"
   )
   expect_error(
     to_twin_filename(""),
-    "'filename' must be one string with at least one character"
+    "filename"
   )
 })
