@@ -52,12 +52,12 @@ test_that("abuse", {
     create_twinning_params(
       twin_tree_filename = NA
     ),
-    "twin_tree_filename"
+    "filename"
   )
   expect_error(
     create_twinning_params(
       twin_alignment_filename = 42
     ),
-    "twin_alignment_filename"
+    "filename"
   )
 })

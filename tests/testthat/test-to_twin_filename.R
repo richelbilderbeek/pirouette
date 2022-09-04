@@ -33,9 +33,9 @@ test_that("convert file correctly from path with dots", {
 test_that("abuse", {
   if (rappdirs::app_dir()$os == "win") return()
   expect_silent(to_twin_filename("OK"))
-  expect_error(to_twin_filename(Inf), "'filename' must be one string")
-  expect_error(to_twin_filename(NULL), "'filename' must be one string")
-  expect_error(to_twin_filename(c()), "'filename' must be one string")
+  expect_error(to_twin_filename(Inf), "filename")
+  expect_error(to_twin_filename(NULL), "filename")
+  expect_error(to_twin_filename(c()), "filename")
   expect_error(to_twin_filename(c("a", "b")), "'filename' must be one string")
   expect_error(
     to_twin_filename(NA),
