@@ -42,29 +42,32 @@ a list of inference models
 Select the experiments to do a Bayesian inference with.
 }
 \examples{
+if (beautier::is_on_ci()) {
 
-evidences <- create_test_marg_liks(
-  site_models = list(create_jc69_site_model()),
-  clock_models = list(create_strict_clock_model()),
-  tree_priors = list(create_yule_tree_prior(), create_bd_tree_prior())
-)
-evidences$weight <- c(0.9, 0.1) # in favor of Yule
-
-if (rappdirs::app_dir()$os != "win") {
-  experiment_yule <- create_test_cand_experiment()
-  experiment_bd <- create_test_cand_experiment()
-  experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
-  experiment_yule$beast2_options <- experiment_bd$beast2_options
-  experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
-  experiment_yule$errors_filename <- experiment_bd$errors_filename
-  experiments <- list(experiment_yule, experiment_bd)
-
-  # Select the experiment.
-  # In this case, select the candidate experiment with the highest evidence
-  select_experiments(
-    experiments = experiments,
-    marg_liks = evidences
+  evidences <- create_test_marg_liks(
+    site_models = list(create_jc69_site_model()),
+    clock_models = list(create_strict_clock_model()),
+    tree_priors = list(create_yule_tree_prior(), create_bd_tree_prior())
   )
+  evidences$weight <- c(0.9, 0.1) # in favor of Yule
+
+  if (rappdirs::app_dir()$os != "win") {
+    experiment_yule <- create_test_cand_experiment()
+    experiment_bd <- create_test_cand_experiment()
+    experiment_bd$inference_model$tree_prior <- create_bd_tree_prior()
+    experiment_yule$beast2_options <- experiment_bd$beast2_options
+    experiment_yule$inference_model$mcmc <- experiment_bd$inference_model$mcmc
+    experiment_yule$errors_filename <- experiment_bd$errors_filename
+    experiments <- list(experiment_yule, experiment_bd)
+
+    # Select the experiment.
+    # In this case, select the candidate experiment with the highest evidence
+    select_experiments(
+      experiments = experiments,
+      marg_liks = evidences
+    )
+  }
+
 }
 }
 \seealso{

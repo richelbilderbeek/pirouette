@@ -3,7 +3,7 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' if (rappdirs::app_dir()$os != "win") {
+#' if (beautier::is_on_ci() && rappdirs::app_dir()$os != "win") {
 #'   experiment_1 <- create_test_gen_experiment()
 #'   experiment_2 <- create_test_cand_experiment()
 #'   experiments <- list(experiment_1, experiment_2)

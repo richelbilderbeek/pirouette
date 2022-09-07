@@ -38,32 +38,35 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} generative experiment.
 }
 \examples{
+if (beautier::is_on_ci()) {
 
-# Create a candidate experiment
-if (rappdirs::app_dir()$os != "win") {
-  # it does not work on Windows
-  experiment <- create_cand_experiment()
+  # Create a candidate experiment
+  if (rappdirs::app_dir()$os != "win") {
+    # it does not work on Windows
+    experiment <- create_cand_experiment()
+    check_experiment(experiment)
+  }
+
+  # Create a generative experiment
+  experiment <- create_gen_experiment()
   check_experiment(experiment)
-}
 
-# Create a generative experiment
-experiment <- create_gen_experiment()
-check_experiment(experiment)
-
-# Use the experiment to create the full pirouette parameter set
-pir_params <- create_pir_params(
-  alignment_params = create_alignment_params(),
-  experiments = list(experiment)
-)
-
-if (rappdirs::app_dir()$os != "win" &&
-  beautier::is_on_ci() && is_beast2_installed()
-) {
-  pir_out <- pir_run(
-    phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-    pir_params = pir_params
+  # Use the experiment to create the full pirouette parameter set
+  pir_params <- create_pir_params(
+    alignment_params = create_alignment_params(),
+    experiments = list(experiment)
   )
-  pir_plot(pir_out)
+
+  if (rappdirs::app_dir()$os != "win" &&
+    beautier::is_on_ci() && is_beast2_installed()
+  ) {
+    pir_out <- pir_run(
+      phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
+      pir_params = pir_params
+    )
+    pir_plot(pir_out)
+  }
+
 }
 }
 \author{
