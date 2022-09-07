@@ -33,9 +33,7 @@
   #   l = nchar(root_sequence),
   #   node_time = node_time # nolint allow commented code until nodeSub is on CRAN
   # )
-  # testthat::expect_true("alignment" %in% names(sim_result)) # nolint allow commented code until nodeSub is on CRAN
   # alignment_phydat <- sim_result$alignment # nolint allow commented code until nodeSub is on CRAN
-  # testthat::expect_equal(class(alignment_phydat), "phyDat") # nolint allow commented code until nodeSub is on CRAN
   # alignment <- ape::as.DNAbin(alignment_phydat) # nolint allow commented code until nodeSub is on CRAN
   # pirouette::check_alignment(alignment) # nolint allow commented code until nodeSub is on CRAN
   # alignment

@@ -27,6 +27,6 @@ plot_alignment_from_file <- function(
       )
     }
   )
-  testthat::expect_true(class(alignment) == "DNAbin")
+  testthat::expect_true(inherits(alignment, "DNAbin"))
   ape::image.DNAbin(alignment, main = title, show.bases = TRUE)
 }

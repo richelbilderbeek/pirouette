@@ -25,7 +25,7 @@ check_sim_tral_fun <- function(sim_tral_fun) {
       )
     }
   )
-  if (class(out) != "DNAbin") {
+  if (!inherits(out, "DNAbin")) {
     stop(
       "'sim_tral_fun' must be a function that returns",
       " an ape::DNAbin. \n",

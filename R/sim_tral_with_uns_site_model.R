@@ -37,9 +37,6 @@
   #   node_time = node_time # nolint allow commented code until nodeSub is on CRAN
   # )$alignment
   #
-  # testthat::expect_equal(class(alignment_phydat), "phyDat") # nolint allow commented code until nodeSub is on CRAN
-  # testthat::expect_true(class(alignment_phydat) == "phyDat") # nolint allow commented code until nodeSub is on CRAN
-  #
   # alignment <- ape::as.DNAbin(alignment_phydat) # nolint allow commented code until nodeSub is on CRAN
   # alignment # nolint allow commented code until nodeSub is on CRAN
 # }

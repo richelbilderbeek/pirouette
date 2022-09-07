@@ -10,11 +10,6 @@
 #
 # test_that("is valid function", {
 #
-#   testthat::expect_silent(
-#     pirouette::check_sim_tral_fun(
-#       pirouette::get_sim_tral_with_lns_nsm_fun()
-#     )
-#   )
 #
 # })
 #

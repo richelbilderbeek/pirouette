@@ -13,7 +13,7 @@
 #' )
 #' @export
 get_alignment_sequence_length <- function(alignment) {
-  testthat::expect_true(class(alignment) == "DNAbin")
+  testthat::expect_true(inherits(alignment, "DNAbin"))
   n_nucleotides <- length(alignment[[1]])
   if (is.null(n_nucleotides) || n_nucleotides == 1) {
     n_nucleotides <- ncol(alignment)

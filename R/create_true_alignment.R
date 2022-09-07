@@ -33,12 +33,7 @@ create_true_alignment <- function(
   true_phylogeny,
   alignment_params
 ) {
-  if (class(true_phylogeny) != "phylo") {
-    stop(
-      "'true_phylogeny' must be a valid phylogeny. \n",
-      "Actual value: ", true_phylogeny
-    )
-  }
+  beautier::check_phylogeny(true_phylogeny)
   pirouette::check_reconstructed_phylogeny(true_phylogeny)
   tryCatch(
     pirouette::check_alignment_params(alignment_params),

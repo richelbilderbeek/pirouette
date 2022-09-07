@@ -33,10 +33,7 @@
   #   l = nchar(root_sequence),
   #   node_time = node_time
   # )
-  # testthat::expect_true("alignment" %in% names(nodesub_result))
   # alignment_phydat <- nodesub_result$alignment
-  # testthat::expect_equal(class(alignment_phydat), "phyDat")
-  # testthat::expect_true(class(alignment_phydat) == "phyDat")
   # alignment <- ape::as.DNAbin(alignment_phydat)
   # alignment
 # }
