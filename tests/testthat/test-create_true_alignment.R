@@ -34,8 +34,7 @@ test_that("create_true_alignment: abuse", {
     create_true_alignment(
       true_phylogeny = "not a phylogeny",
       alignment_params = alignment_params
-    ),
-    "'true_phylogeny' must be a valid phylogeny" #nolint
+    ), "phylogeny" #nolint
   )
 
   expect_error(
