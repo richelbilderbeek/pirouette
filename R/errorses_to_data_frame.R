@@ -5,7 +5,7 @@
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #'
-#' if (beastier::is_beast2_installed()) {
+#' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 #'   pir_params <- create_test_pir_params()
 #'

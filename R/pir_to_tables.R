@@ -5,7 +5,7 @@
 #' @return the names of all files created
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' if (beastier::is_beast2_installed()) {
+#' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'   pir_params <- init_pir_params(create_test_pir_params())
 #'
 #'   # Run only the true tree part

@@ -8,17 +8,20 @@
 #' @seealso Use \link{check_experiment} to check if an object
 #'   is one valid experiment
 #' @examples
-#' check_experiments(list(create_test_experiment()))
+#' if (beautier::is_on_ci()) {
 #'
-#' if (rappdirs::app_dir()$os != "win") {
-#'   experiments <- list(
-#'     create_test_experiment(),
-#'     create_test_cand_experiment()
-#'   )
-#'   # Experiments must have different inference models
-#'   experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+#'   check_experiments(list(create_test_experiment()))
 #'
-#'   check_experiments(experiments)
+#'   if (rappdirs::app_dir()$os != "win") {
+#'     experiments <- list(
+#'       create_test_experiment(),
+#'       create_test_cand_experiment()
+#'     )
+#'     # Experiments must have different inference models
+#'     experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+#'
+#'     check_experiments(experiments)
+#'   }
 #' }
 #' @author Richèl J.C. Bilderbeek
 #' @export

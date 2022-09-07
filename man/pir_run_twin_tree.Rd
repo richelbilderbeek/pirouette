@@ -20,7 +20,7 @@ a data frame with errors, with as many rows as model selection
 The phylogeny can be the true tree or its twin.
 }
 \examples{
-if (beastier::is_beast2_installed()) {
+if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 
   # Create a true phylogeny to simulate the DNA sequences on
   n_taxa <- 5
