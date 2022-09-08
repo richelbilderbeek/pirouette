@@ -6,31 +6,34 @@
 #'   simulation of an alignment
 #' @return a list of alignment parameters
 #' @examples
-#' # DNA sequence at the root
-#' n_base_pairs <- 4
-#' root_sequence <- create_blocked_dna(length = n_base_pairs)
+#' if (beautier::is_on_ci()) {
 #'
-#' # Only specify root sequence and mutation rate, use defaults
-#' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence
-#' )
+#'   # DNA sequence at the root
+#'   n_base_pairs <- 4
+#'   root_sequence <- create_blocked_dna(length = n_base_pairs)
 #'
-#' # Use defaults explicitly
-#' alignment_params <- create_alignment_params(
-#'   root_sequence = root_sequence,
-#'   rng_seed = 0
-#' )
-#'
-#' # Create a pirouette parameter set
-#' pir_params <- create_test_pir_params(alignment_params = alignment_params)
-#'
-#' # Run pirouette
-#' if (beautier::is_on_ci() && is_beast2_installed()) {
-#'   pir_out <- pir_run(
-#'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
-#'     pir_params = pir_params
+#'   # Only specify root sequence and mutation rate, use defaults
+#'   alignment_params <- create_alignment_params(
+#'     root_sequence = root_sequence
 #'   )
-#'   pir_plot(pir_out)
+#'
+#'   # Use defaults explicitly
+#'   alignment_params <- create_alignment_params(
+#'     root_sequence = root_sequence,
+#'     rng_seed = 0
+#'   )
+#'
+#'   # Create a pirouette parameter set
+#'   pir_params <- create_test_pir_params(alignment_params = alignment_params)
+#'
+#'   # Run pirouette
+#'   if (beautier::is_on_ci() && is_beast2_installed()) {
+#'     pir_out <- pir_run(
+#'       phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),
+#'       pir_params = pir_params
+#'     )
+#'     pir_plot(pir_out)
+#'   }
 #' }
 #' @export
 #' @author Richèl J.C. Bilderbeek

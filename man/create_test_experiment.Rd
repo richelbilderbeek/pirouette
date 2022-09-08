@@ -43,8 +43,10 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} experiment.
 }
 \examples{
-experiment <- create_test_experiment()
-check_experiment(experiment)
+if (beautier::is_on_ci()) {
+  experiment <- create_test_experiment()
+  check_experiment(experiment)
+}
 }
 \author{
 Richèl J.C. Bilderbeek

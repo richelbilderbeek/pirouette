@@ -60,34 +60,37 @@ a list with all \link{pirouette} parameters
 Create the parameters for \link{pirouette}
 }
 \examples{
-# Create all elements to create a pirouette parameter set
-alignment_params <- create_test_alignment_params()
-twinning_params <- create_twinning_params()
-experiments <- list(create_test_gen_experiment())
-error_measure_params <- create_error_measure_params()
-evidence_filename <- NA
-verbose <- FALSE
+if (beautier::is_on_ci()) {
 
-# Create the pirouette parameter set
-pir_params <- create_pir_params(
-  alignment_params = alignment_params,
-  twinning_params = twinning_params,
-  experiments = experiments,
-  error_measure_params = error_measure_params,
-  evidence_filename = evidence_filename,
-  verbose = verbose
-)
+  # Create all elements to create a pirouette parameter set
+  alignment_params <- create_test_alignment_params()
+  twinning_params <- create_twinning_params()
+  experiments <- list(create_test_gen_experiment())
+  error_measure_params <- create_error_measure_params()
+  evidence_filename <- NA
+  verbose <- FALSE
 
-# Run that experiment on a continuous integration service,
-# only when BEAST2 is unstalled
-if (rappdirs::app_dir()$os != "win" &&
-  beautier::is_on_ci() && is_beast2_installed()
-) {
-  pir_out <- pir_run(
-    phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-    pir_params = pir_params
+  # Create the pirouette parameter set
+  pir_params <- create_pir_params(
+    alignment_params = alignment_params,
+    twinning_params = twinning_params,
+    experiments = experiments,
+    error_measure_params = error_measure_params,
+    evidence_filename = evidence_filename,
+    verbose = verbose
   )
-  pir_plot(pir_out)
+
+  # Run that experiment on a continuous integration service,
+  # only when BEAST2 is unstalled
+  if (rappdirs::app_dir()$os != "win" &&
+    beautier::is_on_ci() && is_beast2_installed()
+  ) {
+    pir_out <- pir_run(
+      phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
+      pir_params = pir_params
+    )
+    pir_plot(pir_out)
+  }
 }
 }
 \seealso{

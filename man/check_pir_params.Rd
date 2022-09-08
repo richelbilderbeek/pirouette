@@ -19,7 +19,9 @@ A valid \link{pirouette} parameter set
 can be created by \link{create_pir_params}.
 }
 \examples{
-check_pir_params(create_test_pir_params())
+if (beautier::is_on_ci()) {
+  check_pir_params(create_test_pir_params())
+}
 }
 \author{
 Giovanni Laudanno, Richèl J.C. Bilderbeek

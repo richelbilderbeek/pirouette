@@ -30,9 +30,11 @@ one has to be the first in the list. See also:
 Extract the filesnames in the experiments
 }
 \examples{
-get_experiments_filenames(
-  experiments = list(create_test_experiment())
-)
+if (beautier::is_on_ci()) {
+  get_experiments_filenames(
+    experiments = list(create_test_experiment())
+  )
+}
 }
 \author{
 Richèl J.C. Bilderbeek

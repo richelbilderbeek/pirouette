@@ -14,9 +14,11 @@ as can be created by \link{create_experiment}}
 Extract the filenames from an experiment
 }
 \examples{
-get_experiment_filenames(
-  experiment = create_test_experiment()
-)
+if (beautier::is_on_ci()) {
+  get_experiment_filenames(
+    experiment = create_test_experiment()
+  )
+}
 }
 \author{
 Richèl J.C. Bilderbeek

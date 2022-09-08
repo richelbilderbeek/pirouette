@@ -2,9 +2,11 @@
 #' @inheritParams default_params_doc
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' get_experiments_filenames(
-#'   experiments = list(create_test_experiment())
-#' )
+#' if (beautier::is_on_ci()) {
+#'   get_experiments_filenames(
+#'     experiments = list(create_test_experiment())
+#'   )
+#' }
 #' @export
 get_experiments_filenames <- function(experiments) {
   pirouette::check_experiments(experiments)

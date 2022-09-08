@@ -17,21 +17,24 @@ Nothing
 Deletes all files
 }
 \examples{
-pir_params <- create_test_pir_params(
-  experiments = list(create_test_gen_experiment())
-)
+if (beautier::is_on_ci()) {
 
-filenames <- get_pir_params_filenames(pir_params)
-
-if (beautier::is_on_ci() && is_beast2_installed()) {
-
-  # Minimal pirouette run
-  errors <- pir_run(
-    phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
-    pir_params = pir_params
+  pir_params <- create_test_pir_params(
+    experiments = list(create_test_gen_experiment())
   )
-  # Removing the files
-  rm_pir_param_files(pir_params)
+
+  filenames <- get_pir_params_filenames(pir_params)
+
+  if (beautier::is_on_ci() && is_beast2_installed()) {
+
+    # Minimal pirouette run
+    errors <- pir_run(
+      phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
+      pir_params = pir_params
+    )
+    # Removing the files
+    rm_pir_param_files(pir_params)
+  }
 }
 }
 \author{

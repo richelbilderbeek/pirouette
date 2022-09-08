@@ -17,25 +17,27 @@ A test data frame can be created by \link{create_test_marg_liks}}
 Is the experiment the one with the most evidence?
 }
 \examples{
+if (beautier::is_on_ci()) {
 
-marg_liks <- create_test_marg_liks(
-  site_models = list(create_jc69_site_model()),
-  clock_models = list(create_strict_clock_model()),
-  tree_priors = list(create_yule_tree_prior(), create_bd_tree_prior())
-)
-
-marg_liks$weight <- c(0.9, 0.1) # in favor of Yule
-
-experiment_yule <- create_experiment(
-  inference_model = create_inference_model(
-    tree_prior = create_yule_tree_prior()
+  marg_liks <- create_test_marg_liks(
+    site_models = list(create_jc69_site_model()),
+    clock_models = list(create_strict_clock_model()),
+    tree_priors = list(create_yule_tree_prior(), create_bd_tree_prior())
   )
-)
-create_experiment(
-  inference_model = create_inference_model(
-    tree_prior = create_bd_tree_prior()
+
+  marg_liks$weight <- c(0.9, 0.1) # in favor of Yule
+
+  experiment_yule <- create_experiment(
+    inference_model = create_inference_model(
+      tree_prior = create_yule_tree_prior()
+    )
   )
-)
+  create_experiment(
+    inference_model = create_inference_model(
+      tree_prior = create_bd_tree_prior()
+    )
+  )
+}
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -9,27 +9,27 @@
 #' authored by R. J. C. Bilderbeek, G. Laudanno and R. S. Etienne.
 #'
 #' @examples
+#' if (beautier::is_on_ci()) {
 #'
-#' phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+#'   phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 #'
-#' # Select all experiments with 'run_if' is 'always'
-#' experiment <- create_test_gen_experiment()
-#' experiments <- list(experiment)
+#'   # Select all experiments with 'run_if' is 'always'
+#'   experiment <- create_test_gen_experiment()
+#'   experiments <- list(experiment)
 #'
-#' pir_params <- create_pir_params(
-#'   alignment_params = create_test_alignment_params(),
-#'   experiments = experiments
-#' )
-#'
-#' if (rappdirs::app_dir()$os != "win" &&
-#'   beautier::is_on_ci() && is_beast2_installed()
-#' ) {
-#'   pir_run(
-#'     phylogeny = phylogeny,
-#'     pir_params = pir_params
+#'   pir_params <- create_pir_params(
+#'     alignment_params = create_test_alignment_params(),
+#'     experiments = experiments
 #'   )
-#' } else {
-#'   create_test_pir_run_output()
+#'
+#'   if (rappdirs::app_dir()$os != "win" && is_beast2_installed()) {
+#'     pir_run(
+#'       phylogeny = phylogeny,
+#'       pir_params = pir_params
+#'     )
+#'   } else {
+#'     create_test_pir_run_output()
+#'   }
 #' }
 #' @note
 #'   These abbeviations are commonly used throughout the package:

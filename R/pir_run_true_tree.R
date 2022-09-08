@@ -6,21 +6,23 @@
 #'   parameter sets
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
-#' pir_params <- create_test_pir_params()
+#' if (beautier::is_on_ci()) {
 #'
-#' # The user should never need to initialize the pir_params
-#' # but a develop calling this function needs to
-#' pir_params <- init_pir_params(pir_params)
+#'   pir_params <- create_test_pir_params()
 #'
-#' if (
-#'   rappdirs::app_dir()$os != "win" &&
-#'   beautier::is_on_ci() &&
-#'   is_beast2_installed()
-#' ) {
-#'   pir_run_true_tree(
-#'     true_phylogeny = ape::rcoal(4),
-#'     pir_params = pir_params
-#'   )
+#'   # The user should never need to initialize the pir_params
+#'   # but a develop calling this function needs to
+#'  pir_params <- init_pir_params(pir_params)
+#'
+#'   if (
+#'     rappdirs::app_dir()$os != "win" &&
+#'     is_beast2_installed()
+#'   ) {
+#'     pir_run_true_tree(
+#'       true_phylogeny = ape::rcoal(4),
+#'       pir_params = pir_params
+#'     )
+#'   }
 #' }
 #' @export
 pir_run_true_tree <- function(

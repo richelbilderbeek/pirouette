@@ -7,7 +7,9 @@
 #' @return nothing. Will \link{stop} if not
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
-#' check_pir_params(create_test_pir_params())
+#' if (beautier::is_on_ci()) {
+#'   check_pir_params(create_test_pir_params())
+#' }
 #' @export
 check_pir_params <- function(
   pir_params

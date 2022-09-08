@@ -94,40 +94,42 @@ These are the files created:
 Items marked [1] are created dependent on the setup.
 }
 \examples{
+if (beautier::is_on_ci()) {
 
-phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
+  phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")
 
-pir_params <- create_test_pir_params(
-  twinning_params = create_twinning_params()
-)
-
-if (rappdirs::app_dir()$os != "win" &&
-  beautier::is_on_ci() && is_beast2_installed()
-) {
-
-  pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
-
-  folder <- tempdir()
-  expected_filenames <- c(
-    file.path(folder, "true_tree.png"),
-    file.path(folder, "true_alignment.png"),
-    file.path(folder, "twin_tree.png"),
-    file.path(folder, "twin_alignment.png"),
-    file.path(folder, "true_posterior_gen.png"),
-    file.path(folder, "twin_posterior_gen.png"),
-    file.path(folder, "true_error_histogram_gen.png"),
-    file.path(folder, "twin_error_histogram_gen.png"),
-    file.path(folder, "true_error_violin_gen.png"),
-    file.path(folder, "twin_error_violin_gen.png")
+  pir_params <- create_test_pir_params(
+    twinning_params = create_twinning_params()
   )
 
-  # created_filenames are the filenames of the pictures
-  created_filenames <- pir_to_pics(
-    phylogeny = phylogeny,
-    pir_params = pir_params,
-    folder = folder
-  )
+  if (rappdirs::app_dir()$os != "win" &&
+    beautier::is_on_ci() && is_beast2_installed()
+  ) {
 
+    pir_out <- pir_run(phylogeny = phylogeny, pir_params = pir_params)
+
+    folder <- tempdir()
+    expected_filenames <- c(
+      file.path(folder, "true_tree.png"),
+      file.path(folder, "true_alignment.png"),
+      file.path(folder, "twin_tree.png"),
+      file.path(folder, "twin_alignment.png"),
+      file.path(folder, "true_posterior_gen.png"),
+      file.path(folder, "twin_posterior_gen.png"),
+      file.path(folder, "true_error_histogram_gen.png"),
+      file.path(folder, "twin_error_histogram_gen.png"),
+      file.path(folder, "true_error_violin_gen.png"),
+      file.path(folder, "twin_error_violin_gen.png")
+    )
+
+    # created_filenames are the filenames of the pictures
+    created_filenames <- pir_to_pics(
+      phylogeny = phylogeny,
+      pir_params = pir_params,
+      folder = folder
+    )
+
+  }
 }
 }
 \author{

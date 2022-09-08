@@ -3,8 +3,10 @@
 #' @return a \link{pirouette} experiment.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' experiment <- create_test_experiment()
-#' check_experiment(experiment)
+#' if (beautier::is_on_ci()) {
+#'   experiment <- create_test_experiment()
+#'   check_experiment(experiment)
+#' }
 #' @export
 create_test_experiment <- function(
   inference_conditions = create_inference_conditions(),
