@@ -4,7 +4,9 @@
 #' @inheritParams default_params_doc
 #' @return a \link{pirouette} experiment.
 #' @examples
-#' create_experiment()
+#' if (beautier::is_on_ci()) {
+#'   create_experiment()
+#' }
 #' @export
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 create_experiment <- function(

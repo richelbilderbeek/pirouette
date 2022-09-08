@@ -46,7 +46,9 @@ a \link{pirouette} experiment.
 The arguments are checked by \link{check_experiment}.
 }
 \examples{
-create_experiment()
+if (beautier::is_on_ci()) {
+  create_experiment()
+}
 }
 \author{
 Richèl J.C. Bilderbeek, Giovanni Laudanno
