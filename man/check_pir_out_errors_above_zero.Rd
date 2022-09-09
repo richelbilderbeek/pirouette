@@ -15,3 +15,6 @@ nothing
 \description{
 Checks that \code{pir_out} errors all are more than zero
 }
+\author{
+Richèl J.C. Bilderbeek
+}

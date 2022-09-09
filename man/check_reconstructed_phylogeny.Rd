@@ -15,3 +15,6 @@ nothing
 \description{
 Will \link{stop} if there are extinct species in the phylogeny
 }
+\author{
+Richèl J.C. Bilderbeek
+}

@@ -17,3 +17,6 @@ nothing
 \description{
 Check that the \code{twinning_params} has all the list elements' names
 }
+\author{
+Richèl J.C. Bilderbeek
+}

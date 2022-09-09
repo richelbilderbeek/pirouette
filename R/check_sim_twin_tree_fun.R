@@ -6,6 +6,7 @@
 #' @seealso
 #' Use \link{check_sim_twal_fun} to check a function to
 #' generate a twin alignment.
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_sim_twin_tree_fun <- function(sim_twin_tree_fun) {
   if (!is.function(sim_twin_tree_fun)) {

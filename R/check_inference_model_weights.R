@@ -1,6 +1,7 @@
 #' Check the one or more inference model's weights
 #' @param inference_model_weight the one or more inference model's weights
 #' @return nothing
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_inference_model_weights <- function( # nolint indeed a long function name
   inference_model_weight

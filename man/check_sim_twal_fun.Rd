@@ -47,3 +47,6 @@ generate a true alignment.
 Use \link{check_sim_twin_tree_fun} to check a function to
 generate a twin phylogeny.
 }
+\author{
+Richèl J.C. Bilderbeek
+}

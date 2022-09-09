@@ -9,6 +9,7 @@
 #' generate a true alignment.
 #' Use \link{check_sim_twin_tree_fun} to check a function to
 #' generate a twin phylogeny.
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_sim_twal_fun <- function(sim_twal_fun) {
   if (!is.function(sim_twal_fun)) {

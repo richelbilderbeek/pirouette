@@ -4,6 +4,7 @@
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
 #' @return nothing
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_gen_and_cand_exps_save_to_different_files <- function(experiments) { # nolint indeed a long function name
   testthat::expect_true(length(experiments) >= 2)

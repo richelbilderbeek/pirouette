@@ -16,3 +16,6 @@ nothing
 \description{
 Check the model type names
 }
+\author{
+Richèl J.C. Bilderbeek
+}

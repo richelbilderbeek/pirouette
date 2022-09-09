@@ -32,3 +32,6 @@ Will \link{stop} if not
 Use \link{check_sim_twal_fun} to check a function to
 generate a twin alignment.
 }
+\author{
+Richèl J.C. Bilderbeek
+}

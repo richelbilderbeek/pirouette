@@ -15,3 +15,6 @@ nothing
 \description{
 Check the one or more inference model's weights
 }
+\author{
+Richèl J.C. Bilderbeek
+}

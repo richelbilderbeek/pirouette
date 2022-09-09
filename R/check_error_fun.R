@@ -3,6 +3,7 @@
 #' Will \link{stop} if not.
 #' @inheritParams default_params_doc
 #' @return nothing
+#' @author Richèl J.C. Bilderbeek
 #' @export
 check_error_fun <- function(error_fun) {
   # check if error_fun is indeed a function

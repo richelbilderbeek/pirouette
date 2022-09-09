@@ -9,3 +9,6 @@ check_beast2_installed()
 \description{
 Will \link{stop} if not.
 }
+\author{
+Richèl J.C. Bilderbeek
+}
