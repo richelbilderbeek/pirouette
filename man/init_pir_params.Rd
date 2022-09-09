@@ -10,6 +10,9 @@ init_pir_params(pir_params)
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
 }
+\value{
+a `pir_params`
+}
 \description{
 A normal user should never need to call this function.
 }

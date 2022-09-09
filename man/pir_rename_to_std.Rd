@@ -12,6 +12,9 @@ They are created by \link{create_pir_params}.}
 
 \item{folder_name}{name of the main folder}
 }
+\value{
+a `pir_params`
+}
 \description{
 By default, \code{pir_params} uses temporary filenames for all files.
 For \link{pir_run}, when only a computer reads those filenames,

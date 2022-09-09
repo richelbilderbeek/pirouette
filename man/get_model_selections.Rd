@@ -6,6 +6,9 @@
 \usage{
 get_model_selections()
 }
+\value{
+a character vector
+}
 \description{
 Get the possible ways to select an inference model
 }

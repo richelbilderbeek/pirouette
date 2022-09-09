@@ -1,5 +1,6 @@
 #' Delete the BEAST2 state files, if present.
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 delete_beast2_state_files <- function(
   beast2_optionses,
@@ -17,4 +18,5 @@ delete_beast2_state_files <- function(
       file.remove(beast2_options$output_state_filename)
     }
   }
+  invisible(beast2_optionses)
 }

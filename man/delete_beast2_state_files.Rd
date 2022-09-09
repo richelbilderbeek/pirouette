@@ -12,6 +12,9 @@ as can be created by \link[beastier]{create_beast2_options}}
 
 \item{verbose}{if TRUE, show more output}
 }
+\value{
+nothing
+}
 \description{
 Delete the BEAST2 state files, if present.
 }

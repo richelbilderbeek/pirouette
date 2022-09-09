@@ -10,6 +10,9 @@ get_experiment_filenames(experiment)
 \item{experiment}{a \link{pirouette} experiment,
 as can be created by \link{create_experiment}}
 }
+\value{
+a character vector
+}
 \description{
 Extract the filenames from an experiment
 }

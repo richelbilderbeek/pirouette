@@ -4,6 +4,7 @@
 #' @seealso Use \link{check_init_pir_params} to check
 #'   if a \code{pir_params} is initialized
 #' @inheritParams default_params_doc
+#' @return a `pir_params`
 #' @export
 init_pir_params <- function(pir_params) {
 

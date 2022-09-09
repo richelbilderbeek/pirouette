@@ -13,6 +13,9 @@ as can be created by \link{create_experiment}}
 \item{alignment_params}{parameters to simulate an alignment,
 as can be created by \link{create_alignment_params}}
 }
+\value{
+an `experiment`
+}
 \description{
 A normal user should never need to call this function.
 }

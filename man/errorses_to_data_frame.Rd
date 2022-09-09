@@ -31,6 +31,9 @@ one has to be the first in the list. See also:
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}
 }
+\value{
+a data frame
+}
 \description{
 Convert the collect of errors to a data frame
 }

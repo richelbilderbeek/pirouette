@@ -2,6 +2,7 @@
 #' be measured.
 #'
 #' @inheritParams default_params_doc
+#' @return TRUE if yes, FALSE otherwise
 #' @examples
 #' if (beautier::is_on_ci()) {
 #'

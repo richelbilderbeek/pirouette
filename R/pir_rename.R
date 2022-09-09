@@ -1,6 +1,7 @@
 #' Rename the filenames in a \code{pir_params}
 #' using a rename function.
 #' @inheritParams default_params_doc
+#' @return a `pir_params` with renamed filename
 #' @author Richèl J.C. Bilderbeek
 #' @export
 pir_rename <- function(

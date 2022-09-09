@@ -12,6 +12,9 @@ They are created by \link{create_pir_params}.}
 
 \item{verbose}{if TRUE, show more output}
 }
+\value{
+a boolean
+}
 \description{
 Determine if the \code{pir_params} is valid.
 }

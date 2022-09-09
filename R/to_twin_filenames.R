@@ -1,5 +1,6 @@
 #' Convert multiple filenames to their twin equivalent
 #' @param filenames the paths to files, may be relative or absolute paths
+#' @return a character vector with filenames
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' filenames <- c("a.csv", "b.xml")

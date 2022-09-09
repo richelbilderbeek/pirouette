@@ -11,6 +11,9 @@ will_measure_evidence(pir_params)
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
 }
+\value{
+TRUE if yes, FALSE otherwise
+}
 \description{
 Determine if there is an experiment in which the evidence will
 be measured.

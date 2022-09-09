@@ -13,6 +13,9 @@ as can be created by \link{create_experiment}}
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}
 }
+\value{
+a boolean
+}
 \description{
 Is the experiment the one with the most evidence?
 }

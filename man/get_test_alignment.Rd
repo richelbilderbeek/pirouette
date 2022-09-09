@@ -11,6 +11,9 @@ get_test_alignment(n_taxa = 3, sequence_length = 4)
 
 \item{sequence_length}{the length of each DNA sequence in an alignment}
 }
+\value{
+an alignment, as can be checked by \link{check_alignment}
+}
 \description{
 Get an alignment for testing.
 }

@@ -51,6 +51,8 @@ the last DNA alignment simulated.}
 \item{verbose}{if TRUE, show more output}
 }
 \value{
+an alignment
+
 an alignment of type \code{DNAbin}
 }
 \description{

@@ -45,6 +45,9 @@ which can be:
 
 \item{verbose}{if TRUE, show more output}
 }
+\value{
+an alignment
+}
 \description{
 This is an adapter function
 (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),

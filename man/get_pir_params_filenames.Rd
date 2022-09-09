@@ -10,6 +10,9 @@ get_pir_params_filenames(pir_params)
 \item{pir_params}{the parameters of \link[pirouette]{pirouette}.
 They are created by \link{create_pir_params}.}
 }
+\value{
+a character vector of filenames
+}
 \description{
 Extract the filenames from a \code{pir_params}
 }

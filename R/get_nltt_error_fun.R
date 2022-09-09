@@ -1,4 +1,5 @@
 #' Get an error function that uses the nLTT statistic
+#' @return a numeric vector of errors
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #'

@@ -1,5 +1,6 @@
 #' Save all output from \link{pir_run}
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 pir_save <- function(
   phylogeny,
@@ -32,4 +33,5 @@ pir_save <- function(
     pir_params = pir_params,
     folder = folder_name
   )
+  invisible(phylogeny)
 }

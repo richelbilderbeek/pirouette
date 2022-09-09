@@ -24,6 +24,9 @@ Example rename functions are:
     paths from the filenames
 }}
 }
+\value{
+a `pir_params` with renamed filename
+}
 \description{
 Rename the filenames in a \code{pir_params}
 using a rename function.

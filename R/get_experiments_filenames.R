@@ -1,5 +1,6 @@
 #' Extract the filesnames in the experiments
 #' @inheritParams default_params_doc
+#' @return a character vector
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' if (beautier::is_on_ci()) {

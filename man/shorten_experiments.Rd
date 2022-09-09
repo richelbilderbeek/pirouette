@@ -26,6 +26,9 @@ one has to be the first in the list. See also:
     of the list of experiments
 }}
 }
+\value{
+a \link{list} of `experiment`
+}
 \description{
 Shorten the experiments' runtime
 }

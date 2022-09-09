@@ -29,6 +29,9 @@ which can be:
   }
 }}
 }
+\value{
+a function
+}
 \description{
 Get a function to simulate the true alignment with,
 that uses a standard site model.

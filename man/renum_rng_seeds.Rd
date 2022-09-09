@@ -12,6 +12,9 @@ each element created by \link{create_pir_params}.}
 
 \item{rng_seeds}{a vector of random number generator seeds}
 }
+\value{
+a `pir_paramses` with renumbered RNG seeds
+}
 \description{
 Renumber the RNG seeds
 }

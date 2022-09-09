@@ -17,6 +17,7 @@
 #' \code{[alignment_folder]} is obtained by using \link{dirname}
 #' on \code{alignment_params$fasta_filename}
 #' @inheritParams default_params_doc
+#' @return an `experiment`
 #' @export
 init_experiment <- function(
   experiment,

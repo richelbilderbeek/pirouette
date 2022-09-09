@@ -7,6 +7,9 @@ alignment in the FASTA format}
 \usage{
 get_temp_fasta_filename()
 }
+\value{
+one string
+}
 \description{
 Get the name for a temporary file to store an
 alignment in the FASTA format

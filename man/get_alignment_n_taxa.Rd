@@ -11,6 +11,9 @@ get_alignment_n_taxa(alignment, verbose = FALSE)
 
 \item{verbose}{if TRUE, show more output}
 }
+\value{
+the number of taxa
+}
 \description{
 Get the number of taxa of an alignment
 }

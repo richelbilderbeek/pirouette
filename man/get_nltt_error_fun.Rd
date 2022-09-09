@@ -6,6 +6,9 @@
 \usage{
 get_nltt_error_fun()
 }
+\value{
+a numeric vector of errors
+}
 \description{
 Get an error function that uses the nLTT statistic
 }

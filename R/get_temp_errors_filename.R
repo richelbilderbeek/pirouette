@@ -1,10 +1,10 @@
 #' Get the name for a temporary file to store
 #' inference errors.
+#' @return one string
 #' @export
 get_temp_errors_filename <- function() {
-  tempfile(
+  beautier::get_beautier_tempfilename(
     pattern = "errors_",
-    tmpdir = rappdirs::user_cache_dir(),
     fileext = ".csv"
   )
 }

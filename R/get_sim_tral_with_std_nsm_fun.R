@@ -1,6 +1,7 @@
 #' Get a function to simulate the true alignment with,
 #' that uses a standard site model.
 #' @inheritParams default_params_doc
+#' @return a function
 #' @examples
 #'
 #' f <- get_sim_tral_with_std_nsm_fun(

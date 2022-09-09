@@ -9,6 +9,9 @@ to_twin_filenames(filenames)
 \arguments{
 \item{filenames}{the paths to files, may be relative or absolute paths}
 }
+\value{
+a character vector with filenames
+}
 \description{
 Convert multiple filenames to their twin equivalent
 }

@@ -8,6 +8,7 @@
 #'   alignment_params = alignment_params
 #' )
 #' plot_alignment_from_file(fasta_filename = alignment_params$fasta_filename)
+#' @return an \link[ape]{image.DNAbin}
 #' @export
 plot_alignment_from_file <- function(
   fasta_filename,

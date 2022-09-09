@@ -1,5 +1,6 @@
 #' Get the number of taxa of an alignment
 #' @inheritParams default_params_doc
+#' @return the number of taxa
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' get_alignment_n_taxa(

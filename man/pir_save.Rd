@@ -16,6 +16,9 @@ They are created by \link{create_pir_params}.}
 
 \item{folder_name}{name of the main folder}
 }
+\value{
+nothing
+}
 \description{
 Save all output from \link{pir_run}
 }

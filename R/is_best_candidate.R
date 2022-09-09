@@ -1,6 +1,7 @@
 #' Is the experiment the one with the most evidence?
 #'
 #' @inheritParams default_params_doc
+#' @return a boolean
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' if (beautier::is_on_ci()) {

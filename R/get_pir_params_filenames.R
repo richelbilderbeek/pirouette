@@ -1,5 +1,6 @@
 #' Extract the filenames from a \code{pir_params}
 #' @inheritParams default_params_doc
+#' @return a character vector of filenames
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' if (beautier::is_on_ci()) {

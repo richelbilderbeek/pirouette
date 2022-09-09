@@ -4,6 +4,7 @@
 #' alignments of different sizes. Due to that, this
 #' function is more complicated as one would expect
 #' @inheritParams default_params_doc
+#' @return the length
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' get_alignment_sequence_length(

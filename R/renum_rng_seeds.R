@@ -1,5 +1,6 @@
 #' Renumber the RNG seeds
 #' @inheritParams default_params_doc
+#' @return a `pir_paramses` with renumbered RNG seeds
 #' @export
 renum_rng_seeds <- function(
   pir_paramses,

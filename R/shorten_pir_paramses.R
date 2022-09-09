@@ -1,5 +1,6 @@
 #' Shorten the list of \code{pir_params}
 #' @inheritParams default_params_doc
+#' @return a shortened \link{list} of \code{pir_params}
 #' @export
 shorten_pir_paramses <- function(pir_paramses) {
   pirouette::check_pir_paramses(pir_paramses)

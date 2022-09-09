@@ -6,6 +6,9 @@
 \usage{
 get_gamma_error_fun()
 }
+\value{
+an error function
+}
 \description{
 Get an error function that uses the difference in gamma statistic.
 }

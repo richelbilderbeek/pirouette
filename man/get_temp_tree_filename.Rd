@@ -7,6 +7,9 @@ in Newick format}
 \usage{
 get_temp_tree_filename()
 }
+\value{
+one string
+}
 \description{
 Get the name for a temporary file to store a tree
 in Newick format

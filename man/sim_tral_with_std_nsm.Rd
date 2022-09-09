@@ -37,6 +37,9 @@ which can be:
   }
 }}
 }
+\value{
+an alignment
+}
 \description{
 Adapter function to simulate a twin alignment using a standard site model
 }

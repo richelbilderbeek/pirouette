@@ -1,6 +1,7 @@
 #' Select the evidences for candidate experiments
 #'
 #' @inheritParams default_params_doc
+#' @return the evidences for the candidate experiments, as a numeric vector
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' if (beautier::is_on_ci() && rappdirs::app_dir()$os != "win") {

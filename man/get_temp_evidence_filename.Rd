@@ -8,6 +8,9 @@ a comma-separated file}
 \usage{
 get_temp_evidence_filename()
 }
+\value{
+one string
+}
 \description{
 Get the name for a temporary file to store the
 evidences (aka marginal likelihoods) as

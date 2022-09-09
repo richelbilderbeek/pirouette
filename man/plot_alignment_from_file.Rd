@@ -18,6 +18,9 @@ alignment <- create_tral_file(
 )
 plot_alignment_from_file(fasta_filename = alignment_params$fasta_filename)}
 }
+\value{
+an \link[ape]{image.DNAbin}
+}
 \description{
 Plot an alignment stored as a file
 }

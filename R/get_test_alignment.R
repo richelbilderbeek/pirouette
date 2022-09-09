@@ -1,5 +1,6 @@
 #' Get an alignment for testing.
 #' @inheritParams default_params_doc
+#' @return an alignment, as can be checked by \link{check_alignment}
 #' @examples
 #' alignment <- get_test_alignment(
 #'   n_taxa = 3,

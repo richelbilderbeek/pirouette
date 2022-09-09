@@ -1,5 +1,6 @@
 #' Determine if the \code{pir_params} is valid.
 #' @inheritParams default_params_doc
+#' @return a boolean
 #' @export
 is_pir_params <- function(pir_params, verbose = FALSE
 ) {

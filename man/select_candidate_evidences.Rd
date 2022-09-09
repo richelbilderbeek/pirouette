@@ -32,6 +32,9 @@ one has to be the first in the list. See also:
 \item{marg_liks}{a data frame with marginal likelihoods/evidences.
 A test data frame can be created by \link{create_test_marg_liks}}
 }
+\value{
+the evidences for the candidate experiments, as a numeric vector
+}
 \description{
 Select the evidences for candidate experiments
 }

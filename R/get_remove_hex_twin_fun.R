@@ -9,6 +9,7 @@
 #' between the filename description (\code{tracelog}) and the hex
 #' string, this function removes both.
 #'
+#' @return a function
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' f <- get_remove_hex_twin_fun()

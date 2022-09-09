@@ -9,6 +9,9 @@ get_alignment_sequence_length(alignment)
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 }
+\value{
+the length
+}
 \description{
 It appears DNAbin stores its internals differently for
 alignments of different sizes. Due to that, this

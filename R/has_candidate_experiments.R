@@ -1,6 +1,7 @@
-#' Detect if there is at least one candidate model amongst the
+#' Detect if there is at least one candidate model among the
 #' set of experiments.
 #' @inheritParams default_params_doc
+#' @return one boolean
 #' @export
 has_candidate_experiments <- function(
   pir_params

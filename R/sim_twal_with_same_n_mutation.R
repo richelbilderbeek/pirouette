@@ -6,6 +6,7 @@
 #' by being a function with the function arguments \code{twin_phylogeny}
 #' and \code{true_alignment}.
 #' @inheritParams default_params_doc
+#' @return an alignment
 #' @examples
 #'
 #' # This adapter function must be a sim_twin_alignment function

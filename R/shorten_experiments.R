@@ -1,5 +1,6 @@
 #' Shorten the experiments' runtime
 #' @inheritParams default_params_doc
+#' @return a \link{list} of `experiment`
 #' @export
 shorten_experiments <- function(
   experiments

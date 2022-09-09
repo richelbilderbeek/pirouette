@@ -2,6 +2,7 @@
 #' @note the gamma statistic can be found in Pybus and Harvey, 2000,
 #' 'Testing macro-evolutionary models using incomplete molecular phylogenies.',
 #' Proc. R. Soc. Lond. B, 267, 2267-2272.
+#' @return an error function
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' error_fun <- get_gamma_error_fun()

@@ -2,6 +2,7 @@
 #'
 #' @inheritParams default_params_doc
 #' @param errorses a collection of errors (hence the reduplicated plural)
+#' @return a data frame
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #'

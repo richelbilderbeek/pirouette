@@ -39,6 +39,9 @@ which can be:
   }
 }}
 }
+\value{
+a alignment
+}
 \description{
 This is an adapter function
 (see \url{https://en.wikipedia.org/wiki/Adapter_pattern}),

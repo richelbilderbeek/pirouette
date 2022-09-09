@@ -98,6 +98,7 @@
 #'     if at least one evidence is measured
 #' }
 #' @inheritParams default_params_doc
+#' @return a `pir_params`
 #' @seealso Use \link{get_pir_params_filenames} to obtain all the filenames
 #' @export
 pir_rename_to_std <- function(

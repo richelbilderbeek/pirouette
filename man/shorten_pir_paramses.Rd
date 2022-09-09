@@ -10,6 +10,9 @@ shorten_pir_paramses(pir_paramses)
 \item{pir_paramses}{a list of \link[pirouette]{pirouette} parameters,
 each element created by \link{create_pir_params}.}
 }
+\value{
+a shortened \link{list} of \code{pir_params}
+}
 \description{
 Shorten the list of \code{pir_params}
 }
