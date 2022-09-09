@@ -4,12 +4,7 @@
 \alias{est_evidences}
 \title{Estimate the evidences}
 \usage{
-est_evidences(
-  fasta_filename,
-  experiments,
-  evidence_filename = get_temp_evidence_filename(),
-  verbose = FALSE
-)
+est_evidences(fasta_filename, experiments, evidence_filename, verbose = FALSE)
 }
 \arguments{
 \item{fasta_filename}{name of a FASTA file.
@@ -35,7 +30,8 @@ one has to be the first in the list. See also:
 }}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods).
+evidences (aka marginal likelihoods),
+as can be created by \link{get_temp_evidence_filename()}.
 Must be \link{NA} if there is evidence
 estimation (as determined by \link{will_measure_evidence}).}
 

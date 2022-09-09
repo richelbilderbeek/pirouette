@@ -29,7 +29,8 @@ the evidence (aka marginal likelihood).
 The MCMC must be a Nested Sampling MCMC,
 as can be created by \link[beautier]{create_ns_mcmc}.}
 
-\item{errors_filename}{baseline name for errors filenames}
+\item{errors_filename}{baseline name for errors filenames,
+as created by \link{get_temp_errors_filename}}
 }
 \value{
 a \link{pirouette} experiment.

@@ -7,7 +7,8 @@
 read_errors_csv(errors_filename)
 }
 \arguments{
-\item{errors_filename}{baseline name for errors filenames}
+\item{errors_filename}{baseline name for errors filenames,
+as created by \link{get_temp_errors_filename}}
 }
 \value{
 a numeric vector of error values

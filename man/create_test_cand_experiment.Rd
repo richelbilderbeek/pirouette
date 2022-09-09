@@ -35,7 +35,8 @@ binary BEAST2 file is required for estimation of the evidence (aka
 marginal likelihood). The default BEAST2 binary path can be
 obtained using \link[beastier]{get_default_beast2_bin_path}}
 
-\item{errors_filename}{baseline name for errors filenames}
+\item{errors_filename}{baseline name for errors filenames,
+as created by \link{get_temp_errors_filename}}
 }
 \value{
 a \link{pirouette} experiment.

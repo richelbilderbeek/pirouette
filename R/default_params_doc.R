@@ -125,7 +125,8 @@
 #'   a parameter set
 #' @param errors a numeric vector of (positive) Bayesian inference errors.
 #'   Use \link{NA} if these are not measured (yet)
-#' @param errors_filename baseline name for errors filenames
+#' @param errors_filename baseline name for errors filenames,
+#' as created by \link{get_temp_errors_filename}
 #' @param est_evidence_mcmc MCMC used in the estimation of
 #'   the evidence (aka marginal likelihood).
 #'   The MCMC must be a Nested Sampling MCMC,
@@ -133,9 +134,10 @@
 #' @param evidence_epsilon relative error in estimating the
 #'   evidence (aka marginal likelihood).
 #' @param evidence_filename filename to store the estimated
-#'   evidences (aka marginal likelihoods).
-#'   Must be \link{NA} if there is evidence
-#'   estimation (as determined by \link{will_measure_evidence}).
+#' evidences (aka marginal likelihoods),
+#' as can be created by \link{get_temp_evidence_filename()}.
+#' Must be \link{NA} if there is evidence
+#' estimation (as determined by \link{will_measure_evidence}).
 #' @param exclude_model an inference model that has to be excluded, as can be
 #'   created by \link[beautier]{create_inference_model}
 #' @param experiment a \link{pirouette} experiment,

@@ -26,7 +26,7 @@
 est_evidences <- function(
   fasta_filename,
   experiments,
-  evidence_filename = get_temp_evidence_filename(),
+  evidence_filename,
   verbose = FALSE
 ) {
   pirouette::check_beast2_installed()

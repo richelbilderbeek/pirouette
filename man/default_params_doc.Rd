@@ -305,7 +305,8 @@ a parameter set}
 \item{errors}{a numeric vector of (positive) Bayesian inference errors.
 Use \link{NA} if these are not measured (yet)}
 
-\item{errors_filename}{baseline name for errors filenames}
+\item{errors_filename}{baseline name for errors filenames,
+as created by \link{get_temp_errors_filename}}
 
 \item{est_evidence_mcmc}{MCMC used in the estimation of
 the evidence (aka marginal likelihood).
@@ -316,7 +317,8 @@ as can be created by \link[beautier]{create_ns_mcmc}.}
 evidence (aka marginal likelihood).}
 
 \item{evidence_filename}{filename to store the estimated
-evidences (aka marginal likelihoods).
+evidences (aka marginal likelihoods),
+as can be created by \link{get_temp_evidence_filename()}.
 Must be \link{NA} if there is evidence
 estimation (as determined by \link{will_measure_evidence}).}
 
