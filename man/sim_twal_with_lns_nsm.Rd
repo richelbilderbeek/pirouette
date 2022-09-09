@@ -27,15 +27,18 @@ Use \link{check_root_sequence} to check if a root sequence is valid.}
 
 \item{subst_matrix}{nucleotide substitution matrix}
 
-\item{branch_mutation_rate}{mutation rate along the branch.}
+\item{branch_mutation_rate}{mutation rate along the branch.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
-\item{node_mutation_rate}{mutation rate on the node.}
+\item{node_mutation_rate}{mutation rate on the node.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{base_frequencies}{the four base frequencies (a, c, g, t) to be
 specified to create the rate matrix (i.e. Q matrix)
 used to simulate alignments}
 
-\item{node_time}{amount of time spent at the nodes.}
+\item{node_time}{amount of time spent at the nodes.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 }
 \value{
 an alignment of type \code{DNAbin}

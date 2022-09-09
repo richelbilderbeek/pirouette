@@ -70,11 +70,9 @@
 #'   BEAST2 binary file path.
 #' @param beast2_rng_seed The random number generator seed used by BEAST2
 #' @param branch_mutation_rate mutation rate along the branch.
-# NO DOC YET, as NodeSub is not on CRAN yet
-# See, among others, \link[nodeSub]{sim_unlinked} for more details
+#' See, among others, \link[nodeSub]{sim_unlinked} for more details
 #' @param branch_subst_matrix substitution matrix along the branches.
-# NO DOC YET, as NodeSub is not on CRAN yet
-# See, among others, \link[nodeSub]{sim_unlinked} for more details
+#' See, among others, \link[nodeSub]{sim_unlinked} for more details
 #' @param brts numeric vector of (all postive) branching times,
 #'   in time units before the present. Assuming no stem, the heighest
 #'   value equals the crown age.
@@ -220,14 +218,11 @@
 #' @param n_replicates number of replicas to evaluate in order to create the
 #'   twin tree
 #' @param node_mutation_rate mutation rate on the node.
-# NO DOC YET, as NodeSub is not on CRAN yet
-# See, among others, \link[nodeSub]{sim_unlinked} for more details
+#' See, among others, \link[nodeSub]{sim_unlinked} for more details
 #' @param node_subst_matrix substitution matrix on the nodes.
-# NO DOC YET, as NodeSub is not on CRAN yet
-# See, among others, \link[nodeSub]{sim_unlinked} for more details
+#' See, among others, \link[nodeSub]{sim_unlinked} for more details
 #' @param node_time amount of time spent at the nodes.
-# NO DOC YET, as NodeSub is not on CRAN yet
-# See, among others, \link[nodeSub]{sim_unlinked} for more details
+#' See, among others, \link[nodeSub]{sim_unlinked} for more details
 #' @param nu the rate at which a multiple-birth specation is triggered
 #' @param nu_events the number of nu-triggered events that have to be
 #'  present in the simulated tree
@@ -321,17 +316,16 @@
 #'   \item Use \link{get_sim_tral_with_std_nsm_fun}
 #'   to get a function (\link{sim_tral_with_std_nsm})
 #'   the use a standard site model.
-#   NO DOC yet, as nodeSub is not on CRAN yet
-#   \item Use
-#   \link{get_sim_tral_with_lns_nsm_fun}
-#   to get a function
-#   (\link{sim_tral_with_lns_nsm})
-#   the use a linked node substitution site model.
-#   \item Use
-#   \link{get_sim_tral_with_uns_nsm_fun}
-#   to get a function
-#   (\link{sim_tral_with_uns_nsm})
-#   the use an unlinked node substitution site model.
+#'   \item Use
+#'   \link{get_sim_tral_with_lns_nsm_fun}
+#'   to get a function
+#'   (\link{sim_tral_with_lns_nsm})
+#'   the use a linked node substitution site model.
+#'   \item Use
+#'   \link{get_sim_tral_with_uns_nsm_fun}
+#'   to get a function
+#'   (\link{sim_tral_with_uns_nsm})
+#'   the use an unlinked node substitution site model.
 #' }
 #' @param sim_twal_fun function to simulate a
 #' twin alignment with.
@@ -358,13 +352,12 @@
 #'     (\link{sim_twal_with_same_n_mutation})
 #'     that simulates -using a standard model- a twin alignment with as much
 #'     mutations compared to the root sequence as the true alignment has
-#   NO DOC yet, as nodeSub is not on CRAN yet
-#   \item Use \link{sim_twal_with_lns_nsm}
-#     that simulates a twin alignment using a linked node substitution
-#     model
-#   \item Use \link{sim_twal_with_uns_nsm}
-#     that simulates a twin alignment using an unlinked node substitution
-#     model
+#'   \item Use \link{sim_twal_with_lns_nsm}
+#'     that simulates a twin alignment using a linked node substitution
+#'     model
+#'   \item Use \link{sim_twal_with_uns_nsm}
+#'     that simulates a twin alignment using an unlinked node substitution
+#'     model
 #' }
 #' @param sim_twin_tree_fun function to simulate a twin tree with.
 #' This function must have one argument called \code{phylogeny}

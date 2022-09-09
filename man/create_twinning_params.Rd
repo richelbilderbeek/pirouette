@@ -61,6 +61,12 @@ Some standard functions:\cr
     (\link{sim_twal_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
+  \item Use \link{sim_twal_with_lns_nsm}
+    that simulates a twin alignment using a linked node substitution
+    model
+  \item Use \link{sim_twal_with_uns_nsm}
+    that simulates a twin alignment using an unlinked node substitution
+    model
 }}
 
 \item{twin_tree_filename}{name of the (\code{.newick}) file the twin

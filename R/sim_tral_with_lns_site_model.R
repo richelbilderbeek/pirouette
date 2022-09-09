@@ -17,11 +17,11 @@ sim_tral_with_lns_nsm <- function(
   branch_mutation_rate = 1.0,
   node_mutation_rate = 1.0,
   base_frequencies = rep(0.25, 4),
-  node_time = 0.001 # nolint allow commented code until nodeSub is on CRAN
+  node_time = 0.001
 ) {
-  beautier::check_phylogeny(true_phylogeny) # nolint allow commented code until nodeSub is on CRAN
-  pirouette::check_root_sequence(root_sequence) # nolint allow commented code until nodeSub is on CRAN
-  pirouette::check_reconstructed_phylogeny(true_phylogeny) # nolint allow commented code until nodeSub is on CRAN
+  beautier::check_phylogeny(true_phylogeny)
+  pirouette::check_root_sequence(root_sequence)
+  pirouette::check_reconstructed_phylogeny(true_phylogeny)
   sim_result <- nodeSub::sim_linked(
     phy = true_phylogeny,
     Q = subst_matrix,
@@ -30,10 +30,10 @@ sim_tral_with_lns_nsm <- function(
     bf = base_frequencies,
     rootseq = strsplit(root_sequence, split = "")[[1]],
     l = nchar(root_sequence),
-    node_time = node_time # nolint allow commented code until nodeSub is on CRAN
+    node_time = node_time
   )
-  alignment_phydat <- sim_result$alignment # nolint allow commented code until nodeSub is on CRAN
-  alignment <- ape::as.DNAbin(alignment_phydat) # nolint allow commented code until nodeSub is on CRAN
-  pirouette::check_alignment(alignment) # nolint allow commented code until nodeSub is on CRAN
+  alignment_phydat <- sim_result$alignment
+  alignment <- ape::as.DNAbin(alignment_phydat)
+  pirouette::check_alignment(alignment)
   alignment
 }

@@ -236,9 +236,11 @@ BEAST2 binary file path.}
 
 \item{beast2_rng_seed}{The random number generator seed used by BEAST2}
 
-\item{branch_mutation_rate}{mutation rate along the branch.}
+\item{branch_mutation_rate}{mutation rate along the branch.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
-\item{branch_subst_matrix}{substitution matrix along the branches.}
+\item{branch_subst_matrix}{substitution matrix along the branches.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{brts}{numeric vector of (all postive) branching times,
 in time units before the present. Assuming no stem, the heighest
@@ -435,11 +437,14 @@ Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 \item{n_replicates}{number of replicas to evaluate in order to create the
 twin tree}
 
-\item{node_mutation_rate}{mutation rate on the node.}
+\item{node_mutation_rate}{mutation rate on the node.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
-\item{node_subst_matrix}{substitution matrix on the nodes.}
+\item{node_subst_matrix}{substitution matrix on the nodes.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
-\item{node_time}{amount of time spent at the nodes.}
+\item{node_time}{amount of time spent at the nodes.
+See, among others, \link[nodeSub]{sim_unlinked} for more details}
 
 \item{nu}{the rate at which a multiple-birth specation is triggered}
 
@@ -563,6 +568,16 @@ Some standard functions:\cr
   \item Use \link{get_sim_tral_with_std_nsm_fun}
   to get a function (\link{sim_tral_with_std_nsm})
   the use a standard site model.
+  \item Use
+  \link{get_sim_tral_with_lns_nsm_fun}
+  to get a function
+  (\link{sim_tral_with_lns_nsm})
+  the use a linked node substitution site model.
+  \item Use
+  \link{get_sim_tral_with_uns_nsm_fun}
+  to get a function
+  (\link{sim_tral_with_uns_nsm})
+  the use an unlinked node substitution site model.
 }}
 
 \item{sim_twal_fun}{function to simulate a
@@ -590,6 +605,12 @@ Some standard functions:\cr
     (\link{sim_twal_with_same_n_mutation})
     that simulates -using a standard model- a twin alignment with as much
     mutations compared to the root sequence as the true alignment has
+  \item Use \link{sim_twal_with_lns_nsm}
+    that simulates a twin alignment using a linked node substitution
+    model
+  \item Use \link{sim_twal_with_uns_nsm}
+    that simulates a twin alignment using an unlinked node substitution
+    model
 }}
 
 \item{sim_twin_tree_fun}{function to simulate a twin tree with.
