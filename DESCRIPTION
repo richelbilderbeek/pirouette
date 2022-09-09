@@ -39,7 +39,6 @@ Imports:
     pryr,
     rappdirs,
     readr,
-    remotes,
     stringr,
     TESS,
     tibble,
