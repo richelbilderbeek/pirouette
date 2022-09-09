@@ -12,6 +12,9 @@ create_mono_nuc_dna(length, nucleotide = "a")
 
 \item{nucleotide}{number of nucleotides}
 }
+\value{
+a string
+}
 \description{
 Create a 'blocked' DNA sequence, which is a sequence
 with four equal-sized nucleotide sections

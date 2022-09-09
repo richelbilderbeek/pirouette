@@ -3,6 +3,7 @@
 #' A Yule model is also known as a pure-birth model;
 #' a birth-death model without extinction.
 #' @inheritParams default_params_doc
+#' @return a \link[ape]{phylo}
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' n_taxa <- 31

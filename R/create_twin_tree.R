@@ -5,6 +5,7 @@
 #' calling \code{twinning_paramssim_twin_tree_fun} on the
 #' given tree.
 #' @inheritParams default_params_doc
+#' @return a phylogeny of type \link[ape]{phylo}
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
 #' phylogeny <- ape::read.tree(text = "((A:1, B:1):1, C:2);")

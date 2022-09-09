@@ -1,5 +1,6 @@
 #' Complete a treelog's filename
 #' @inheritParams default_params_doc
+#' @return the filename for the treelog
 #' @export
 complete_treelog_filename <- function(
   treelog_filename,

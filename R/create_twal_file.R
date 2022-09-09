@@ -76,4 +76,5 @@ create_twal_file <- function(
     twin_alignment_filename,
     "twin_alignment_filename"
   )
+  invisible(twin_phylogeny)
 }

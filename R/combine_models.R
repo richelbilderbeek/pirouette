@@ -4,6 +4,8 @@
 #' If there are `x` site models, `y` clock models and `z` tree priors,
 #' this will result in `x * y * z` inference models.
 #' @inheritParams default_params_doc
+#' @return a list of inference models
+#' (see \link[beautier]{create_inference_model})
 #' @examples
 #' if (beautier::is_on_ci()) {
 #'   site_models <- beautier::create_site_models()

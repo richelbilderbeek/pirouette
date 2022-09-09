@@ -15,6 +15,9 @@ the MCMC's treelog file.}
 \item{fasta_filename}{name of a FASTA file.
 Use \link{get_alignment_id} to get the ID of the alignment}
 }
+\value{
+the filename for the treelog
+}
 \description{
 Complete a treelog's filename
 }

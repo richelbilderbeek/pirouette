@@ -30,6 +30,9 @@ Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 or \code{win}. Use \link[beastier]{check_os} if the operating system
 is valid.}
 }
+\value{
+a `pir_params`, as can be checked by \link{check_pir_params}
+}
 \description{
 Create a standard \code{pir_params}, as used in Bilderbeek, Laudanno
 and Etienne.

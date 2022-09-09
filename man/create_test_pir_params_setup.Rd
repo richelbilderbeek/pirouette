@@ -11,6 +11,9 @@ create_test_pir_params_setup(has_candidate = FALSE, has_twinning = FALSE)
 
 \item{has_twinning}{TRUE to use twinning}
 }
+\value{
+a `pir_params` (see \link{create_pir_params})
+}
 \description{
 Create a \code{pir_params} that follows a specific setup
 }

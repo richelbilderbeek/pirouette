@@ -21,6 +21,9 @@ copy_true_alignment(
 By default, this will consist out of an equal amount of each letter
 Use \link{check_root_sequence} to check if a root sequence is valid.}
 }
+\value{
+the true alignment
+}
 \description{
 Adapter function to create
 a twin alignment by simply copying the

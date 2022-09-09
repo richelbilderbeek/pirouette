@@ -13,6 +13,9 @@ create_twin_tree(phylogeny, twinning_params = create_twinning_params())
 or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 }
+\value{
+a phylogeny of type \link[ape]{phylo}
+}
 \description{
 It sets the seed with value \code{twinning_params$rng_seed_twin_tree},
 then generates a tree by

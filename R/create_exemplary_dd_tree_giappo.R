@@ -9,6 +9,7 @@
 #' deviate strongest from the expected exponential growth
 #' that regular birth-death (BD) trees have.
 #' @inheritParams default_params_doc
+#' @return a \link[ape]{phylo}
 #' @param best_of_n_trees simulate this number of DD trees with
 #' the desired number of taxa,
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek

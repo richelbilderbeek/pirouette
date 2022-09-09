@@ -1,6 +1,7 @@
 #' Create a 'blocked' DNA sequence, which is a sequence
 #' with four equal-sized nucleotide sections
 #' @param length number of nucleotides. Must be a multiple of four.
+#' @return a string
 #' @examples
 #' # Will be acgt
 #' create_blocked_dna(length = 4)

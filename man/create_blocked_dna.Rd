@@ -10,6 +10,9 @@ create_blocked_dna(length)
 \arguments{
 \item{length}{number of nucleotides. Must be a multiple of four.}
 }
+\value{
+a string
+}
 \description{
 Create a 'blocked' DNA sequence, which is a sequence
 with four equal-sized nucleotide sections

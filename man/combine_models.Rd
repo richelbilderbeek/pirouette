@@ -21,6 +21,10 @@ as created by \link[beautier]{create_clock_model}}
 \item{tree_priors}{a list of one or more tree priors,
 as created by \link[beautier]{create_tree_prior}}
 }
+\value{
+a list of inference models
+(see \link[beautier]{create_inference_model})
+}
 \description{
 If there are `x` site models, `y` clock models and `z` tree priors,
 this will result in `x * y * z` inference models.

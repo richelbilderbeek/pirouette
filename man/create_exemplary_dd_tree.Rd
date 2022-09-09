@@ -14,6 +14,9 @@ to let it be estimated}
 
 \item{extinction_rate}{per-species extinction rate}
 }
+\value{
+a \link[ape]{phylo}
+}
 \description{
 Create an exemplary diversity-dependent (DD) birth-death tree,
 that is, a DD tree with a strong DD effect.

@@ -14,6 +14,9 @@ to let it be estimated}
 
 \item{n_0}{number of starting species}
 }
+\value{
+a \link[ape]{phylo}
+}
 \description{
 A Yule model is also known as a pure-birth model;
 a birth-death model without extinction.

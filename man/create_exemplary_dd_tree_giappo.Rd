@@ -22,6 +22,9 @@ to let it be estimated}
 \item{best_of_n_trees}{simulate this number of DD trees with
 the desired number of taxa,}
 }
+\value{
+a \link[ape]{phylo}
+}
 \description{
 Or: create a DD tree with a strong DD effect.
 }

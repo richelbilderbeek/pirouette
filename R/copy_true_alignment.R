@@ -2,6 +2,7 @@
 #' a twin alignment by simply copying the
 #' true alignment
 #' @inheritParams default_params_doc
+#' @return the true alignment
 #' @export
 copy_true_alignment <- function(
   true_alignment,

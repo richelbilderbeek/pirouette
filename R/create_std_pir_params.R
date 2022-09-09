@@ -39,6 +39,7 @@
 #'     two (or more) trees
 #' }
 #' @inheritParams default_params_doc
+#' @return a `pir_params`, as can be checked by \link{check_pir_params}
 #' @export
 create_std_pir_params <- function(
   folder_name = rappdirs::user_cache_dir(),

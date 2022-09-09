@@ -2,6 +2,7 @@
 #'
 #' @param has_candidate TRUE to have a candidate experiment
 #' @param has_twinning TRUE to use twinning
+#' @return a `pir_params` (see \link{create_pir_params})
 #' @examples
 #' if (beautier::is_on_ci()) {
 #'

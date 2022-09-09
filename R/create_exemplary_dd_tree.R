@@ -6,6 +6,7 @@
 #' of taxa, but this is not always the case.
 #'
 #' @inheritParams default_params_doc
+#' @return a \link[ape]{phylo}
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @seealso Use \link{create_exemplary_dd_tree_giappo}
 #' for a different way to generate exemplary trees with
