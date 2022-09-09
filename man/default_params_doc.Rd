@@ -320,7 +320,7 @@ evidence (aka marginal likelihood).}
 
 \item{evidence_filename}{filename to store the estimated
 evidences (aka marginal likelihoods),
-as can be created by \link{get_temp_evidence_filename()}.
+as can be created by \link{get_temp_evidence_filename}.
 Must be \link{NA} if there is evidence
 estimation (as determined by \link{will_measure_evidence}).}
 
