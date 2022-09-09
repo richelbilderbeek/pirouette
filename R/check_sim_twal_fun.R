@@ -3,6 +3,7 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @seealso
 #' Use \link{check_sim_tral_fun} to check a function to
 #' generate a true alignment.
@@ -62,4 +63,5 @@ check_sim_twal_fun <- function(sim_twal_fun) {
     pirouette::get_alignment_sequence_length(out),
     pirouette::get_alignment_sequence_length(true_alignment)
   )
+  invisible(sim_twal_fun)
 }

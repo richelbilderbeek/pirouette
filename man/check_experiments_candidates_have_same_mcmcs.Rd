@@ -26,6 +26,9 @@ one has to be the first in the list. See also:
     of the list of experiments
 }}
 }
+\value{
+nothing
+}
 \description{
 If all the candidates share a same MCMC, they share the same
 tracelog and treelog. In this way, one can predict where the parameter

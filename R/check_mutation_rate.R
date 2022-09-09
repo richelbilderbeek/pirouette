@@ -2,6 +2,7 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 check_mutation_rate <- function(mutation_rate) {
   if (is.function(mutation_rate)) {
@@ -24,5 +25,5 @@ check_mutation_rate <- function(mutation_rate) {
       )
     }
   }
-
+  invisible(mutation_rate)
 }

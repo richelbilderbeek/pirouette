@@ -34,4 +34,5 @@ check_twinning_params <- function(
     twinning_params$twin_evidence_filename,
     allow_na = TRUE
   )
+  invisible(twinning_params)
 }

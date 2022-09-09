@@ -2,6 +2,7 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 check_init_pir_params <- function(pir_params) {
   pirouette::check_pir_params(pir_params)
@@ -43,4 +44,5 @@ check_init_pir_params <- function(pir_params) {
       )
     }
   }
+  invisible(pir_params)
 }

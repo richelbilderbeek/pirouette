@@ -2,6 +2,7 @@
 #' @seealso Use \link[beautier]{check_phylogeny}
 #' for checking phylogenies in general
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
@@ -17,4 +18,5 @@ check_twin_phylogeny <- function(twin_phylogeny) {
       )
     }
   )
+  invisible(twin_phylogeny)
 }

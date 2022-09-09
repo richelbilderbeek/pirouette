@@ -177,4 +177,5 @@ check_pir_params_data_types <- function(pir_params) {
   if (!beautier::is_one_bool(pir_params$verbose)) {
     stop("'verbose' must be one boolean")
   }
+  invisible(pir_params)
 }

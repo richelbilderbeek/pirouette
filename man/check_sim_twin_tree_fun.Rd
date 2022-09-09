@@ -22,6 +22,9 @@ Some standard functions:\cr
     Birth-Death process
 }}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not
 }

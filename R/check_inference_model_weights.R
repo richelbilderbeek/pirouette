@@ -1,5 +1,6 @@
 #' Check the one or more inference model's weights
 #' @param inference_model_weight the one or more inference model's weights
+#' @return nothing
 #' @export
 check_inference_model_weights <- function( # nolint indeed a long function name
   inference_model_weight
@@ -14,4 +15,5 @@ check_inference_model_weights <- function( # nolint indeed a long function name
       stop("Each 'model_weight' must be a double in range [0.0, 1.0]")
     }
   }
+  invisible(inference_model_weight)
 }

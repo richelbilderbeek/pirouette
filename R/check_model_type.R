@@ -23,4 +23,5 @@ check_model_type <- function(
       )
     )
   }
+  invisible(model_type)
 }

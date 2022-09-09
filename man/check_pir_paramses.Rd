@@ -10,6 +10,9 @@ check_pir_paramses(pir_paramses)
 \item{pir_paramses}{a list of \link[pirouette]{pirouette} parameters,
 each element created by \link{create_pir_params}.}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not
 }

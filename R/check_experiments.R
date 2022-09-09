@@ -70,4 +70,5 @@ check_experiments <- function(
   }
   pirouette::check_experiments_all_inference_models_are_unique(experiments)
   pirouette::check_gen_and_cand_exps_save_to_different_files(experiments)
+  invisible(experiments)
 }

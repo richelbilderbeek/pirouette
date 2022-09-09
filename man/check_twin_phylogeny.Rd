@@ -9,6 +9,9 @@ check_twin_phylogeny(twin_phylogeny)
 \arguments{
 \item{twin_phylogeny}{a phylogeny of class \link[ape]{phylo}}
 }
+\value{
+nothing
+}
 \description{
 Check if a twin phylogeny is a valid phylogeny
 }

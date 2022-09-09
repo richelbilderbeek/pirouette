@@ -88,4 +88,5 @@ check_pir_out_names <- function(
       )
     }
   }
+  invisible(pir_out)
 }

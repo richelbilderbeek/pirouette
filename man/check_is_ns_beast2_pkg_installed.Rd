@@ -6,6 +6,9 @@
 \usage{
 check_is_ns_beast2_pkg_installed()
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not.
 }

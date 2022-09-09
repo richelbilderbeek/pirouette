@@ -35,6 +35,9 @@ Some standard functions:\cr
     mutations compared to the root sequence as the true alignment has
 }}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not
 }

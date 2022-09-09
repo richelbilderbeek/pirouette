@@ -33,5 +33,5 @@ check_error_measure_params <- function(
   pirouette::check_error_fun(
     error_measure_params$error_fun
   )
-
+  invisible(error_measure_params)
 }

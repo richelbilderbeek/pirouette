@@ -23,6 +23,9 @@ Example functions are:
   \item \link{get_nltt_error_fun}: use the nLTT statistic
 }}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not.
 }

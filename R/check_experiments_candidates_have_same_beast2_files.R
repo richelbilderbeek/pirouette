@@ -3,6 +3,7 @@
 #' Will \link{stop} if two experiments save to a different input,
 #' trace, state, screen or tree file.
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_candidates_save_to_same_files <- function( # nolint long function
@@ -99,4 +100,5 @@ check_candidates_save_to_same_files <- function( # nolint long function
       }
     }
   }
+  invisible(experiments)
 }

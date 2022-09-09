@@ -2,9 +2,11 @@
 #'
 #' Will \link{stop} if not.
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 check_alignment <- function(alignment) {
   if (!inherits(alignment, "DNAbin")) {
     stop("'alignment' must be of class 'ape::DNAbin'")
   }
+  invisible(alignment)
 }

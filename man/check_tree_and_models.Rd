@@ -11,7 +11,7 @@ check_tree_and_models(tree_and_models)
 as created by \link{get_tree_and_model_values}}
 }
 \value{
-a \code{ggplot2} plot
+nothing
 }
 \description{
 Check if the \code{tree_and_model} is valid

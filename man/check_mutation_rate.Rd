@@ -10,6 +10,9 @@ check_mutation_rate(mutation_rate)
 \item{mutation_rate}{the mutation rate per base pair per time unit.
 Use \link{check_mutation_rate} to check if a mutation rate is valid.}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not
 }

@@ -27,6 +27,9 @@ one has to be the first in the list. See also:
     of the list of experiments
 }}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if two models have a same site and clock and tree prior.
 Note that experiments that differ in their MRCA priors only

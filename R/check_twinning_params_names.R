@@ -1,5 +1,6 @@
 #' Check that the \code{twinning_params} has all the list elements' names
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 check_twinning_params_names <- function(twinning_params) { # nolint indeed long function name, which is fine for an internal function
   argument_names <- c(
@@ -19,4 +20,5 @@ check_twinning_params_names <- function(twinning_params) { # nolint indeed long 
       )
     }
   }
+  invisible(twinning_params)
 }

@@ -25,6 +25,9 @@ Some standard functions:\cr
   the use a standard site model.
 }}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not
 }

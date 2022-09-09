@@ -13,4 +13,5 @@ check_tree_types <- function(tree_types) {
   for (i in seq_along(tree_types)) {
     pirouette::check_tree_type(tree_types[i])
   }
+  invisible(tree_types)
 }

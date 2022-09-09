@@ -27,6 +27,9 @@ one has to be the first in the list. See also:
     of the list of experiments
 }}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if two experiments save to a different input,
 trace, state, screen or tree file.

@@ -9,6 +9,9 @@ check_inference_model_weights(inference_model_weight)
 \arguments{
 \item{inference_model_weight}{the one or more inference model's weights}
 }
+\value{
+nothing
+}
 \description{
 Check the one or more inference model's weights
 }

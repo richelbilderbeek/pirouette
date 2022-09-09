@@ -11,6 +11,9 @@ check_twinning_params_names(twinning_params)
 or can be the twinning parameters,
 as can be created by \link{create_twinning_params}}
 }
+\value{
+nothing
+}
 \description{
 Check that the \code{twinning_params} has all the list elements' names
 }

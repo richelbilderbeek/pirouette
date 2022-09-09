@@ -10,6 +10,9 @@ check_inference_model_type_names(model_type_names)
 \item{model_type_names}{one or more model type names, each
 element must equal a value in \link{get_model_type_names}}
 }
+\value{
+nothing
+}
 \description{
 Check the model type names
 }

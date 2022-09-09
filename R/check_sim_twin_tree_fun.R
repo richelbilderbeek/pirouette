@@ -2,6 +2,7 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @seealso
 #' Use \link{check_sim_twal_fun} to check a function to
 #' generate a twin alignment.
@@ -64,4 +65,5 @@ check_sim_twin_tree_fun <- function(sim_twin_tree_fun) {
       "'sim_twin_tree_fun' must return a tree with the same taxon labels"
     )
   }
+  invisible(sim_twin_tree_fun)
 }

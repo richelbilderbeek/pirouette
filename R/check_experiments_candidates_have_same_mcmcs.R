@@ -5,6 +5,7 @@
 #' estimates (the trace) and posterior trees are written to, as only the
 #' best candidate will run.
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_experiments_candidates_have_same_mcmcs <- function( # nolint indeed a long name
@@ -36,4 +37,5 @@ check_experiments_candidates_have_same_mcmcs <- function( # nolint indeed a long
       }
     }
   }
+  invisible(experiments)
 }

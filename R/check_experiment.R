@@ -96,4 +96,5 @@ check_experiment <- function(
   if (tools::file_ext(experiment$errors_filename) != "csv") {
     stop("'errors_filename' must be a csv file")
   }
+  invisible(experiment)
 }

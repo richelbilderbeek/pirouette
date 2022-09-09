@@ -44,4 +44,5 @@ check_inference_conditions <- function(
       "is a configuration that makes no sense"
     )
   }
+  invisible(inference_conditions)
 }

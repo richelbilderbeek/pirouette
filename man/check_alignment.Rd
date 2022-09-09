@@ -9,6 +9,9 @@ check_alignment(alignment)
 \arguments{
 \item{alignment}{a DNA alignment, of class \link[ape]{DNAbin}}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not.
 }

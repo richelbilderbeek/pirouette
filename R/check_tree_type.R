@@ -23,4 +23,5 @@ check_tree_type <- function(
       )
     )
   }
+  invisible(tree_type)
 }

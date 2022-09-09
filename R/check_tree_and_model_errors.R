@@ -25,4 +25,5 @@ check_tree_and_model_errors <- function(tree_and_model_errors) {
   if (!is.factor(tree_and_model_errors$tree_and_model)) {
     stop("'tree_and_model_errors$tree_and_model' must be a factor")
   }
+  invisible(tree_and_model_errors)
 }

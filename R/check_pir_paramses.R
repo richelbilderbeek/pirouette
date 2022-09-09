@@ -2,6 +2,7 @@
 #'
 #' Will \link{stop} if not
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @export
 check_pir_paramses <- function(pir_paramses) {
   if (!is.list(pir_paramses)) {
@@ -27,4 +28,5 @@ check_pir_paramses <- function(pir_paramses) {
       }
     )
   }
+  invisible(pir_paramses)
 }

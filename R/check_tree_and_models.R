@@ -1,6 +1,6 @@
 #' Check if the \code{tree_and_model} is valid
 #' @inheritParams default_params_doc
-#' @return a \code{ggplot2} plot
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_tree_and_models <- function(tree_and_models) {
@@ -11,4 +11,5 @@ check_tree_and_models <- function(tree_and_models) {
   ) {
     stop("'tree_and_models' has at least one invalid value")
   }
+  invisible(tree_and_models)
 }

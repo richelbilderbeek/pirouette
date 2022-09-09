@@ -4,6 +4,7 @@
 #' Note that experiments that differ in their MRCA priors only
 #' are classified being the same.
 #' @inheritParams default_params_doc
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @export
 check_experiments_all_inference_models_are_unique <- function( # nolint indeed a long function, which is fine for an internal function
@@ -33,4 +34,5 @@ check_experiments_all_inference_models_are_unique <- function( # nolint indeed a
       }
     }
   }
+  invisible(experiments)
 }

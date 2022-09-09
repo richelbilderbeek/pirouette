@@ -1,6 +1,7 @@
 #' Checks if the \code{NS} BEAST2 package is installed.
 #'
 #' Will \link{stop} if not.
+#' @return nothing
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' library(babette)
@@ -35,4 +36,5 @@ check_is_ns_beast2_pkg_installed <- function() { # nolint long function name ind
       }
     }, error = function() {} # nolint we ignore the error
   )
+  invisible(NULL)
 }

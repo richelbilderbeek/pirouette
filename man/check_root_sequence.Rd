@@ -11,6 +11,9 @@ check_root_sequence(root_sequence)
 By default, this will consist out of an equal amount of each letter
 Use \link{check_root_sequence} to check if a root sequence is valid.}
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not
 }
