@@ -3,7 +3,7 @@
 #' @return a \link{pirouette} experiment.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' if (rappdirs::app_dir()$os != "win") {
+#' if (beautier::is_on_ci() && rappdirs::app_dir()$os != "win") {
 #'   experiment <- create_test_cand_experiment()
 #'   check_experiment(experiment)
 #' }

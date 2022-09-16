@@ -44,13 +44,15 @@ a \link{pirouette} experiment.
 Create a valid testing \link{pirouette} generative experiment.
 }
 \examples{
- # Create a testing candidate experiment
- if (rappdirs::app_dir()$os != "win") {
-   create_test_cand_experiment()
- }
+if (beautier::is_on_ci()) {
+  # Create a testing candidate experiment
+  if (rappdirs::app_dir()$os != "win") {
+    create_test_cand_experiment()
+  }
 
- # Create a testing generative experiment
- create_test_gen_experiment()
+  # Create a testing generative experiment
+  create_test_gen_experiment()
+}
 }
 \author{
 Richèl J.C. Bilderbeek

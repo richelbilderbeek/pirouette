@@ -3,13 +3,15 @@
 #' @return a \link{pirouette} experiment.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#'  # Create a testing candidate experiment
-#'  if (rappdirs::app_dir()$os != "win") {
-#'    create_test_cand_experiment()
-#'  }
+#' if (beautier::is_on_ci()) {
+#'   # Create a testing candidate experiment
+#'   if (rappdirs::app_dir()$os != "win") {
+#'     create_test_cand_experiment()
+#'   }
 #'
-#'  # Create a testing generative experiment
-#'  create_test_gen_experiment()
+#'   # Create a testing generative experiment
+#'   create_test_gen_experiment()
+#' }
 #' @export
 create_test_gen_experiment <- function(
   inference_conditions = create_inference_conditions(),

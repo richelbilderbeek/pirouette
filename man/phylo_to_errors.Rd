@@ -43,38 +43,38 @@ using the nLTT statistics. These nLTT statistics, all with values
 betweem (including) zero and (including) one, are returned.
 }
 \examples{
+if (beautier::is_on_ci()) {
 
-phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
+  phylogeny <- ape::read.tree(text = "(((A:1, B:1):1, C:2):1, D:3);")
 
-# 'phylo_to_errors' expects an alignment file to be present
-alignment_params <- create_test_alignment_params()
+  # 'phylo_to_errors' expects an alignment file to be present
+  alignment_params <- create_test_alignment_params()
 
-# Create the alignment
-create_tral_file(
-  phylogeny = phylogeny,
-  alignment_params = alignment_params
-)
-experiment <- create_test_gen_experiment()
-
-# A normal user should never need to initialize the experiment,
-# as this is done by 'pir_run'.
-# A develop, however, that wants to call 'phylo_to_errors',
-# should initialaze as such
-experiment <- init_experiment(
-  experiment = experiment,
-  alignment_params = alignment_params
-)
-
-experiments <- list(experiment)
-
-if (rappdirs::app_dir()$os != "win" &&
-  beautier::is_on_ci() && is_beast2_installed()
-) {
-  phylo_to_errors(
+  # Create the alignment
+  create_tral_file(
     phylogeny = phylogeny,
-    alignment_params = alignment_params,
-    experiment = experiment
+    alignment_params = alignment_params
   )
+  experiment <- create_test_gen_experiment()
+
+  # A normal user should never need to initialize the experiment,
+  # as this is done by 'pir_run'.
+  # A develop, however, that wants to call 'phylo_to_errors',
+  # should initialaze as such
+  experiment <- init_experiment(
+    experiment = experiment,
+    alignment_params = alignment_params
+  )
+
+  experiments <- list(experiment)
+
+  if (rappdirs::app_dir()$os != "win" && is_beast2_installed()) {
+    phylo_to_errors(
+      phylogeny = phylogeny,
+      alignment_params = alignment_params,
+      experiment = experiment
+    )
+  }
 }
 }
 \author{
