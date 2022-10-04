@@ -15,7 +15,7 @@ Description:
     can than be compared to the posterior phylogenies.
     Richèl J. C. Bilderbeek, Giovanni Laudanno, Rampal S. Etienne (2020)
     "Quantifying the impact of an inference model in Bayesian phylogenetics"
-    doi:10.1111/2041-210X.13514.
+    <doi:10.1111/2041-210X.13514>.
 License: GPL-3
 Encoding: UTF-8
 RoxygenNote: 7.2.1
