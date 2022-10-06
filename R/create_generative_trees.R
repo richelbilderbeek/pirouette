@@ -3,7 +3,7 @@
 #' A Yule model is also known as a pure-birth model;
 #' a birth-death model without extinction.
 #' @inheritParams default_params_doc
-#' @return a \link[ape]{phylo}
+#' @return a phylogenetic tree of type \link[ape]{phylo}
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' n_taxa <- 31
@@ -35,6 +35,7 @@ create_yule_tree <- function(
 
 #' Create a (constant-rate) birth-death (BD) tree
 #' @inheritParams default_params_doc
+#' @return a phylogenetic tree of type \link[ape]{phylo}
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #' n_taxa <- 31

@@ -16,6 +16,9 @@ to let it be estimated}
 
 \item{mu}{per-species extinction rate}
 }
+\value{
+a phylogenetic tree of type \link[ape]{phylo}
+}
 \description{
 Create a (constant-rate) birth-death (BD) tree
 }

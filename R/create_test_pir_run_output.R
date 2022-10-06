@@ -53,6 +53,8 @@ create_test_pir_run_output <- function(
 #' @param add_twin add rows for twin tree
 #' @param add_best add rows for best inference model
 #' @param n_errors number of errors in the pir_out
+#' @return a data frame with errors, with as many rows as model selection
+#' parameter sets. The output can be checked using \link{check_pir_out}.
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
 #'   pir_plot(

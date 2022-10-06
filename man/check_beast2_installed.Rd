@@ -6,6 +6,9 @@
 \usage{
 check_beast2_installed()
 }
+\value{
+nothing
+}
 \description{
 Will \link{stop} if not.
 }

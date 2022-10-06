@@ -14,6 +14,10 @@ create_test_pir_run_output2(add_twin = FALSE, add_best = FALSE, n_errors = 200)
 
 \item{n_errors}{number of errors in the pir_out}
 }
+\value{
+a data frame with errors, with as many rows as model selection
+parameter sets. The output can be checked using \link{check_pir_out}.
+}
 \description{
 Create the same output of \link{pir_run}
 to be used for testing, but with more data
