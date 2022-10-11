@@ -2,6 +2,26 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.5 (unreleased)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * Fix `Imports` [#432](https://github.com/richelbilderbeek/pirouette/issues/432)
+ * Fix `sim_true_alignment` example, 
+   that fails on Mac [#432](https://github.com/richelbilderbeek/pirouette/issues/432)
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.6.4 (2020-11-24)
 
 ### NEW FEATURES
