@@ -116,6 +116,6 @@ calc_base_freq <- function(
   f_t <- stringr::str_count(root_sequence, pattern = "t")
   freqs <- c(f_a, f_c, f_g, f_t)
   freqs <- freqs / sum(freqs)
-  testthat::expect_true(sum(freqs) == 1.0)
+  testthat::expect_equal(sum(freqs), 1.0)
   freqs
 }
