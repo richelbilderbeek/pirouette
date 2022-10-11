@@ -20,7 +20,7 @@ for example the Protracted Birth-Death or Multiple-Birth-Death models.
 ## Common abbreviations
 
  * `nsm`: Nucleotide Substitution Model
- * `tral`: TRin ALignment
+ * `tral`: TRue ALignment
  * `twal`: TWin ALignment
 
 ## [FAQ](doc/faq.md)
