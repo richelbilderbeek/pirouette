@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.6 (unreleased)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * None
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.6.5 (unreleased)
 
 ### NEW FEATURES
