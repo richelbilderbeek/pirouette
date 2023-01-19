@@ -2,7 +2,7 @@
 
 Newest versions at top.
 
-## `pirouette` 1.6.6 (unreleased)
+## `pirouette` 1.6.6 (submitted to CRAN)
 
 ### NEW FEATURES
 
