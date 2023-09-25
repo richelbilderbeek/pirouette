@@ -22,12 +22,11 @@ RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette/
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
-Depends:
-    babette (>= 2.1.1)
 Imports:
     ape,
     beautier (>= 2.6.2),
     beastier (>= 2.4.6),
+    babette (>= 2.1.1),
     DDD,
     forcats,
     magrittr,
