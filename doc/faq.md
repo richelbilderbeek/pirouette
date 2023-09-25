@@ -12,7 +12,7 @@ examples.
 
 `pirouette` depends on (non-CRAN) packages like this:
 
-![pirouette dependencies](pirouette.png)
+![pirouette dependencies](dependencies.png)
 
 ### [How to set up the experiments](how_to_set_up_experiments.md)?
 
