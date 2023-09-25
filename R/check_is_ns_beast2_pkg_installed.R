@@ -11,7 +11,9 @@
 #'
 #'   if (is_beast2_ns_pkg_installed()) {
 #'     # No error If NS is installed
-#'     check_is_ns_beast2_pkg_installed()
+#'     if (beautier::is_on_ci()) {
+#'       check_is_ns_beast2_pkg_installed()
+#'     }
 #'   }
 #' }
 #' @export

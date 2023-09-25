@@ -7,7 +7,9 @@
 #' @return nothing. Will \link{stop} if nit
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' check_twinning_params(create_twinning_params())
+#' if (beautier::is_on_ci()) {
+#'   check_twinning_params(create_twinning_params())
+#' }
 #' @export
 check_twinning_params <- function(
   twinning_params
