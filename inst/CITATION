@@ -1,18 +1,12 @@
-citEntry(
-  entry = "Article",
-  title = "pirouette: Quantifying the impact of a tree prior in Bayesian phylogenetics",
-  author = personList(
+bibentry(
+  bibtype = "Article",
+  author = author = personList(
     as.person("Richèl JC Bilderbeek"),
     as.person("Giovanni Laudanno"),
     as.person("Rampal S Etienne")
   ),
+  title = "pirouette: Quantifying the impact of a tree prior in Bayesian phylogenetics",
   journal = "Methods in Ecology and Evolution",
-  year = 2020,
-  #volume = 6,
-  #number = 1,
-  #pages = "7--11",
-  url = "https://github.com/richelbilderbeek/pirouette",
-  #pdf = "tbd",
-  textVersion =
-    "Richèl JC Bilderbeek, Giovanni Laudanno and Rampal S Etienne (2019). pirouette: Quantifying the impact of a tree prior in Bayesian phylogenetics"
+  year = 2021,
+  url = "https://doi.org/10.1111/2041-210X.13514",
 )
