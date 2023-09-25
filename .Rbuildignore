@@ -11,3 +11,4 @@
 ^LICENSE$
 ^.github$
 ^.lintr$
+^mlc_config.json$

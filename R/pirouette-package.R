@@ -76,7 +76,10 @@
 #'     \link{tracerer}: parse and analyse BEAST2 output
 #'   }
 #' }
-#' @docType package
-#' @name pirouette
-#' @import babette
+#' @author Richèl J.C. Bilderbeek
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
+## usethis namespace: end
 NULL
