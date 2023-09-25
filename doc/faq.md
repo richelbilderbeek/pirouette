@@ -85,7 +85,7 @@ Also, `pirouette` lacks mocks.
 
 ### How to install BEAST2?
 
-See [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md),
+See [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/doc/install.md#install-beast2),
 or use
 
 ```{r}

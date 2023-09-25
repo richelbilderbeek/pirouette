@@ -26,7 +26,7 @@ remotes::install_github("ropensci/mcbette", dependencies = TRUE)
 remotes::install_github("richelbilderbeek/pirouette")
 ```
 
-To install BEAST2, see [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/install_beast2.md)
+To install BEAST2, see [how to install BEAST2](https://github.com/ropensci/beastier/blob/master/doc/install.md#install-beast2)
 or use:
 
 ```{r}
