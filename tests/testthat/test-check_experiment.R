@@ -57,8 +57,8 @@ test_that("wrong parameter values", {
   expect_error(
     check_experiment(
       create_experiment(
-        inference_model = create_inference_model(
-          mcmc = create_ns_mcmc()
+        inference_model = beautier::create_inference_model(
+          mcmc = beautier::create_ns_mcmc()
         )
       )
     ),
@@ -67,7 +67,7 @@ test_that("wrong parameter values", {
   expect_error(
     check_experiment(
       create_experiment(
-        est_evidence_mcmc = create_mcmc()
+        est_evidence_mcmc = beautier::create_mcmc()
       )
     ),
     "'est_evidence_mcmc' must be a Nested Sampling MCMC"
