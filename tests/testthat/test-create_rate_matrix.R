@@ -58,7 +58,7 @@ test_that("use, GTR", {
 })
 
 test_that("abuse", {
-  site_model <- beautier::beautier::create_site_model(
+  site_model <- beautier::create_site_model(
     name = "JC69",
     id = NA
   )
