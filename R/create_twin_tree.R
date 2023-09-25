@@ -24,7 +24,7 @@ create_twin_tree <- function(
   testthat::expect_true(beautier::is_phylo(twin_tree))
 
   # Same number of tips
-  testthat::expect_true(ape::Ntip(phylogeny) == ape::Ntip(twin_tree))
+  testthat::expect_equal(ape::Ntip(phylogeny), ape::Ntip(twin_tree))
 
   if (1 == 2) {
     # Same crown age, is this really important?

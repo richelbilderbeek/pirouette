@@ -18,7 +18,7 @@ Description:
     <doi:10.1111/2041-210X.13514>.
 License: GPL-3
 Encoding: UTF-8
-RoxygenNote: 7.2.1
+RoxygenNote: 7.2.3
 VignetteBuilder: knitr
 URL: https://github.com/richelbilderbeek/pirouette/
 BugReports: https://github.com/richelbilderbeek/pirouette/issues
