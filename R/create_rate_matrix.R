@@ -43,6 +43,7 @@ create_rate_matrix <- function(
     # HKY model:
     #  * transition different from transversions
     kappa <- as.numeric(site_model$kappa_param$value)
+    testthat::expect_true(kappa >= 0)
     q_matrix[1, 2] <- q_matrix[1, 2] * kappa
     q_matrix[2, 1] <- q_matrix[2, 1] * kappa
     q_matrix[3, 4] <- q_matrix[3, 4] * kappa
@@ -71,6 +72,7 @@ create_rate_matrix <- function(
         site_model$rate_ct_param$value
       )
     )
+    testthat::expect_true(all(x >= 0))
     q_matrix[1, 2:4] <- q_matrix[1, 2:4] * x[1:3]
     q_matrix[2:4, 1] <- q_matrix[2:4, 1] * x[1:3]
     q_matrix[2, 3:4] <- q_matrix[2, 3:4] * x[4:5]

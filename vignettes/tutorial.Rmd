@@ -133,11 +133,11 @@ experiment <- create_experiment(
     run_if = "always",
     do_measure_evidence = FALSE
   ),
-  inference_model = create_inference_model(
-    tree_prior = create_bd_tree_prior(),
-    mcmc = create_test_mcmc()
+  inference_model = beautier::create_inference_model(
+    tree_prior = beautier::create_bd_tree_prior(),
+    mcmc = beautier::create_test_mcmc()
   ),
-  beast2_options = create_beast2_options(rng_seed = 314)
+  beast2_options = beastier::create_beast2_options(rng_seed = 314)
 )
 experiments <- list(experiment)
 ```
@@ -214,11 +214,11 @@ candidate  | best_candidate |TRUE              |Birth-Death
 
 ```{r}
 if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
-  mcmc <- create_test_mcmc()
-  experiment_yule <- create_test_cand_experiment()
-  experiment_bd <- create_test_cand_experiment(
-    inference_model = create_inference_model(
-      tree_prior = create_bd_tree_prior(),
+  mcmc <- beautier::create_test_mcmc()
+  experiment_yule <- pirouette::create_test_cand_experiment()
+  experiment_bd <- pirouette::create_test_cand_experiment(
+    inference_model = beautier::create_inference_model(
+      tree_prior = beautier::create_bd_tree_prior(),
     )
   )
   # Candidat experiments must produce the same files
@@ -241,8 +241,8 @@ Now we again have all in place to do a `pirouette` run:
 
 ```{r fig.width=7, fig.height=7}
 if (rappdirs::app_dir()$os != "win" &&
-    is_beast2_installed() &&
-    is_beast2_ns_pkg_installed()) {
+    beastier::is_beast2_installed() &&
+    mauricer::is_beast2_ns_pkg_installed()) {
   df <- pirouette::pir_run(
     phylogeny = phylogeny,
     pir_params = pir_params

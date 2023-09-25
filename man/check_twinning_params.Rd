@@ -20,7 +20,9 @@ A valid twinning parameters structure can be created
 by \link{create_twinning_params}.
 }
 \examples{
-check_twinning_params(create_twinning_params())
+if (beautier::is_on_ci()) {
+  check_twinning_params(create_twinning_params())
+}
 }
 \author{
 Richèl J.C. Bilderbeek
