@@ -18,7 +18,7 @@ test_that("must have same MCMC chain length", {
   if (rappdirs::app_dir()$os == "win") return()
 
   experiment_1 <- create_test_cand_experiment(
-    inference_model = create_test_inference_model(
+    inference_model = beautier::create_test_inference_model(
       tree_prior = beautier::create_bd_tree_prior()
     )
   )
@@ -185,7 +185,7 @@ test_that("detect same model in generative and candidate model", {
 
   if (rappdirs::app_dir()$os == "win") return()
 
-  inference_model <- create_inference_model()
+  inference_model <- beautier::create_inference_model()
   gen_exp <- create_test_gen_experiment(
     inference_model = inference_model
   )

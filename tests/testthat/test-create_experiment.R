@@ -8,7 +8,7 @@ test_that("use", {
   inference_model <- beautier::create_inference_model(
     tipdates_filename = "something_special.csv"
   )
-  beast2_options <- create_beast2_options(rng_seed = 42)
+  beast2_options <- beastier::create_beast2_options(rng_seed = 42)
 
   experiment <- create_experiment(
     inference_conditions = create_inference_conditions(
@@ -38,7 +38,7 @@ test_that("use", {
   inference_model <- beautier::create_inference_model(
     tipdates_filename = "something_special.csv"
   )
-  beast2_options <- create_beast2_options(rng_seed = 42)
+  beast2_options <- beastier::create_beast2_options(rng_seed = 42)
 
   expect_error(
     experiment <- create_experiment(

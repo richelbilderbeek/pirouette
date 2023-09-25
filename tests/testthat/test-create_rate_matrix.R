@@ -1,13 +1,13 @@
 context("test-create_rate_matrix")
 
 test_that("use, JC69", {
-  created <- create_rate_matrix(site_model = create_jc69_site_model())
+  created <- create_rate_matrix(site_model = beautier::create_jc69_site_model())
   expected <- NULL
   expect_equal(created, expected)
 })
 
 test_that("use, HKY", {
-  created <- create_rate_matrix(site_model = create_hky_site_model())
+  created <- create_rate_matrix(site_model = beautier::create_hky_site_model())
   #       a     c     g     t
   # a -1.00  0.50  0.25  0.25
   # c  0.50 -1.00  0.25  0.25
@@ -24,7 +24,7 @@ test_that("use, HKY", {
 })
 
 test_that("use, TN93", {
-  created <- create_rate_matrix(site_model = create_tn93_site_model())
+  created <- create_rate_matrix(site_model = beautier::create_tn93_site_model())
   #       a     c     g     t
   # a -1.00  0.50  0.25  0.25
   # c  0.50 -1.00  0.25  0.25
@@ -41,7 +41,7 @@ test_that("use, TN93", {
 })
 
 test_that("use, GTR", {
-  created <- create_rate_matrix(site_model = create_gtr_site_model())
+  created <- create_rate_matrix(site_model = beautier::create_gtr_site_model())
   #       a     c     g     t
   # a -0.75  0.25  0.25  0.25
   # c  0.25 -0.75  0.25  0.25
@@ -58,7 +58,7 @@ test_that("use, GTR", {
 })
 
 test_that("abuse", {
-  site_model <- create_site_model(
+  site_model <- beautier::beautier::create_site_model(
     name = "JC69",
     id = NA
   )

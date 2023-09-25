@@ -14,6 +14,6 @@ test_that("use", {
     length(site_models) * length(clock_models) * length(tree_priors)
   )
   for (inference_model in inference_models) {
-    check_inference_model(inference_model)
+    beautier::check_inference_model(inference_model)
   }
 })

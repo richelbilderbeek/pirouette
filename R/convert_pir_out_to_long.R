@@ -47,9 +47,12 @@ convert_pir_out_to_long <- function(
   first_col_index <- which(names(df) == "error_1")
   testthat::expect_equal(1, length(first_col_index))
 
-  df_long <- tidyr::gather(
-    df, "error_index", "error_value", first_col_index:ncol(df)
-  )
+
+  df_long <- tidyr::pivot_longer(df, first_col_index:ncol(df))
+  names(df_long) <- c(names(df_long)[1], "error_index", "error_value")
+  # df_long <- tidyr::gather(
+  #   df, "error_index", "error_value", first_col_index:ncol(df)
+  # )
   testthat::expect_true("error_value" %in% names(df_long))
 
   # 'error_index' is added by gather, remove it

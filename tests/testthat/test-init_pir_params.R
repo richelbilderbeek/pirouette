@@ -4,7 +4,7 @@ test_that("use", {
 
   # create_test_pir_params also supplies an initialized MCMC.
   # overwrite it by an uninitialized one
-  pir_params$experiments[[1]]$inference_model$mcmc <- create_mcmc()
+  pir_params$experiments[[1]]$inference_model$mcmc <- beautier::create_mcmc()
   alignment_folder <- dirname(pir_params$alignment_params$fasta_filename)
 
   expect_true(
