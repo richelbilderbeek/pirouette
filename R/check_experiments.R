@@ -18,7 +18,8 @@
 #'       create_test_cand_experiment()
 #'     )
 #'     # Experiments must have different inference models
-#'     experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+#'     experiments[[1]]$inference_model$site_model <-
+#'       beautier::create_gtr_site_model()
 #'
 #'     check_experiments(experiments)
 #'   }
