@@ -7,25 +7,23 @@
 #   ./scripts/clean
 #
 #
-rm *.log
-rm *.trees
-rm *.xml
-rm *.xml.state
+rm ./*.log
+rm ./*.trees
+rm ./*.xml
+rm ./*.xml.state
 
-cd vignettes
+cd vignettes || exit 42
+(
+  rm ./*.log
+  rm ./*.trees
+  rm ./*.xml
+  rm ./*.xml.state
+)
 
-rm *.log
-rm *.trees
-rm *.xml
-rm *.xml.state
-
-cd ..
-
-cd tests/testthat
-
-rm *.log
-rm *.trees
-rm *.xml
-rm *.xml.state
-
-cd ..
+cd tests/testthat || exit 42
+(
+  rm ./*.log
+  rm ./*.trees
+  rm ./*.xml
+  rm ./*.xml.state
+)
