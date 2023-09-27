@@ -3,7 +3,7 @@
 #' @return a single \link{pir_run} output as produced by a single pir run.
 #' @examples
 #'
-#' if (beautier::is_on_ci() && is_beast2_installed()) {
+#' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'
 #'   pir_paramses <- list()
 #'   pir_paramses[[1]] <- pirouette::create_test_pir_params()

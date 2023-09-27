@@ -16,7 +16,7 @@
 #'
 #'   if (
 #'     rappdirs::app_dir()$os != "win" &&
-#'     is_beast2_installed()
+#'     beastier::is_beast2_installed()
 #'   ) {
 #'     pir_run_true_tree(
 #'       true_phylogeny = ape::rcoal(4),

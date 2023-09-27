@@ -92,7 +92,7 @@ if (beautier::is_on_ci()) {
   # Run that experiment on a continuous integration service,
   # only when BEAST2 is installed
   if (beautier::is_on_ci() &&
-    is_beast2_installed() &&
+    beastier::is_beast2_installed() &&
     is_beast2_ns_pkg_installed()
   ) {
     pir_out <- pir_run(

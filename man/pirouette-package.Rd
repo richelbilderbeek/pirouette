@@ -38,7 +38,7 @@ if (beautier::is_on_ci()) {
     experiments = experiments
   )
 
-  if (rappdirs::app_dir()$os != "win" && is_beast2_installed()) {
+  if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
     pir_run(
       phylogeny = phylogeny,
       pir_params = pir_params

@@ -36,7 +36,7 @@
 #'
 #'   experiments <- list(experiment)
 #'
-#'   if (rappdirs::app_dir()$os != "win" && is_beast2_installed()) {
+#'   if (rappdirs::app_dir()$os != "win" && beastier::is_beast2_installed()) {
 #'     phylo_to_errors(
 #'       phylogeny = phylogeny,
 #'       alignment_params = alignment_params,

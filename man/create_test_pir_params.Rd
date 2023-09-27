@@ -63,7 +63,7 @@ Create a set of testing parameters for \link{pirouette}
 \examples{
 if (rappdirs::app_dir()$os != "win" &&
   beautier::is_on_ci() &&
-  is_beast2_installed()
+  beastier::is_beast2_installed()
 ) {
   pir_params <- create_test_pir_params()
   check_pir_params(pir_params)

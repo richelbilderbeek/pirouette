@@ -35,7 +35,7 @@
 #'   # Run that experiment on a continuous integration service,
 #'   # only when BEAST2 is unstalled
 #'   if (rappdirs::app_dir()$os != "win" &&
-#'     beautier::is_on_ci() && is_beast2_installed()
+#'     beautier::is_on_ci() && beastier::is_beast2_installed()
 #'   ) {
 #'     pir_out <- pir_run(
 #'       phylogeny = ape::read.tree(text = "((A:2, B:2):1, C:3);"),
@@ -74,7 +74,7 @@ create_pir_params <- function(
 #' @examples
 #' if (rappdirs::app_dir()$os != "win" &&
 #'   beautier::is_on_ci() &&
-#'   is_beast2_installed()
+#'   beastier::is_beast2_installed()
 #' ) {
 #'   pir_params <- create_test_pir_params()
 #'   check_pir_params(pir_params)

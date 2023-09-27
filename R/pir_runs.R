@@ -6,7 +6,7 @@
 #' @inheritParams default_params_doc
 #' @return a list of \link{pir_run} outputs.
 #' @examples
-#' if (beautier::is_on_ci() && is_beast2_installed()) {
+#' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'
 #'   pir_paramses <- list()
 #'   pir_paramses[[1]] <- create_test_pir_params()

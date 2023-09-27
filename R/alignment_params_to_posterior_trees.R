@@ -6,7 +6,7 @@
 #'   as a \link[ape]{multiphylo}
 #' @author Richèl J.C. Bilderbeek
 #' @examples
-#' if (beautier::is_on_ci() && is_beast2_installed()) {
+#' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'
 #'   alignment_params <- create_test_alignment_params()
 #'   create_tral_file(

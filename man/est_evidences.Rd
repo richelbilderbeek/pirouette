@@ -47,7 +47,7 @@ Estimate the evidences
 \examples{
 if (rappdirs::app_dir()$os != "win" &&
   beautier::is_on_ci() &&
-  is_beast2_installed() &&
+  beastier::is_beast2_installed() &&
   is_beast2_ns_pkg_installed()
 ) {
   fasta_filename <- system.file(
