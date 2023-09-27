@@ -5,7 +5,7 @@ test_that("use", {
   experiments <- list(
     create_gen_experiment(
       inference_model = beautier::create_inference_model(
-        site_model = create_hky_site_model()
+        site_model = beautier::create_hky_site_model()
       )
     ),
     create_cand_experiment()
