@@ -22,11 +22,11 @@ test_that("it can exclude an experiment", {
   if (!beautier::is_on_ci()) return()
 
   all_experiments <- create_all_experiments(
-    exclude_model = create_inference_model(
-      site_model = create_site_model_jc69(),
-      clock_model = create_strict_clock_model(),
-      tree_prior = create_tree_prior_bd(),
-      mcmc = create_mcmc(store_every = 1000)
+    exclude_model = beautier::create_inference_model(
+      site_model = beautier::create_site_model_jc69(),
+      clock_model = beautier::create_strict_clock_model(),
+      tree_prior = beautier::create_tree_prior_bd(),
+      mcmc = beautier::create_mcmc(store_every = 1000)
     )
   )
   expect_equal(
@@ -45,10 +45,10 @@ test_that("should exclude one model, code from article", {
         model_type = "generative",
         run_if = "always"
       ),
-      inference_model = create_inference_model(
-        tree_prior = create_yule_tree_prior(),
-        clock_model = create_strict_clock_model(),
-        site_model = create_jc69_site_model()
+      inference_model = beautier::create_inference_model(
+        tree_prior = beautier::create_yule_tree_prior(),
+        clock_model = beautier::create_strict_clock_model(),
+        site_model = beautier::create_jc69_site_model()
       )
     )
 
