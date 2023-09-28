@@ -66,9 +66,9 @@ if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
     errorses = errorses,
     experiments = list(pir_params$experiments[[1]]),
     marg_liks = create_test_marg_liks(
-      site_models = list(create_jc69_site_model()),
-      clock_models = list(create_strict_clock_model()),
-      tree_priors = list(create_yule_tree_prior())
+      site_models = list(beautier::create_jc69_site_model()),
+      clock_models = list(beautier::create_strict_clock_model()),
+      tree_priors = list(beautier::create_yule_tree_prior())
     )
   )
 }

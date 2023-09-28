@@ -45,7 +45,8 @@ if (beautier::is_on_ci() && rappdirs::app_dir()$os != "win") {
   experiments <- list(experiment_1, experiment_2)
 
   # Experiments must have different inference models
-  experiments[[1]]$inference_model$site_model <- create_gtr_site_model()
+  experiments[[1]]$inference_model$site_model <- 
+    beautier::create_gtr_site_model()
 
   select_candidate_evidences(
     experiments = experiments,
