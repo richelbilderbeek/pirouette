@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.8 (2023-09-29)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * New CRAN submission
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.6.7 (2023-09-25)
 
 ### NEW FEATURES
