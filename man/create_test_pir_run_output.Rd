@@ -21,6 +21,9 @@ Create the same output of \link{pir_run}
 to be used for testing
 }
 \examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
 check_pir_out(
   create_test_pir_run_output(
     add_twin = TRUE,
@@ -34,6 +37,9 @@ pir_plot(
     add_best = TRUE
   )
 )
+
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -6,6 +6,9 @@
 #' parameter sets. The output can be checked using \link{check_pir_out}.
 #' @author Richèl J.C. Bilderbeek
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
 #' check_pir_out(
 #'   create_test_pir_run_output(
 #'     add_twin = TRUE,
@@ -19,6 +22,9 @@
 #'     add_best = TRUE
 #'   )
 #' )
+#'
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
 #' @export
 create_test_pir_run_output <- function(
   add_twin = FALSE,

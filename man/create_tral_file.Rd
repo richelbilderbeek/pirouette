@@ -21,6 +21,8 @@ nothing
 The simulation is performed by \link{create_true_alignment}.
 }
 \examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
 
 # Create the ancestor's DNA sequence
 n_base_pairs <- 4
@@ -40,6 +42,10 @@ create_tral_file(
   phylogeny = phylogeny,
   alignment_params = alignment_params
 )
+
+# Cleanup
+beastier::remove_beaustier_folders()
+beastier::check_empty_beaustier_folders()
 }
 \seealso{
 Use \link{create_true_alignment} to only simulate the alignment,

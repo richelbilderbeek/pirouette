@@ -6,6 +6,8 @@
 #' @seealso Use \link{create_true_alignment} to only simulate the alignment,
 #'   without saving the alignment to file
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
 #'
 #' # Create the ancestor's DNA sequence
 #' n_base_pairs <- 4
@@ -25,6 +27,10 @@
 #'   phylogeny = phylogeny,
 #'   alignment_params = alignment_params
 #' )
+#'
+#' # Cleanup
+#' beastier::remove_beaustier_folders()
+#' beastier::check_empty_beaustier_folders()
 #' @author Richèl J.C. Bilderbeek
 #' @export
 create_tral_file <- function(
