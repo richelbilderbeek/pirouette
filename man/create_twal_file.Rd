@@ -23,6 +23,9 @@ nothing
 The simulation is performed by \link{sim_twin_alignment}.
 }
 \examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
 # Create a true phylogeny to simulate the DNA sequences on
 n_taxa <- 5
 set.seed(1)
@@ -54,6 +57,10 @@ alignment <- create_twal_file(
  alignment_params = alignment_params,
  twinning_params = twinning_params
 )
+
+# Cleanup
+beastier::remove_beaustier_folders()
+beastier::check_empty_beaustier_folders()
 }
 \seealso{
 Use \link{sim_twin_alignment} to only simulate

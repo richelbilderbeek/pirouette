@@ -7,6 +7,9 @@
 #'   the twin alignment, without saving the alignment to file
 #' @author Richèl J.C. Bilderbeek
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
 #' # Create a true phylogeny to simulate the DNA sequences on
 #' n_taxa <- 5
 #' set.seed(1)
@@ -38,6 +41,10 @@
 #'  alignment_params = alignment_params,
 #'  twinning_params = twinning_params
 #' )
+#'
+#' # Cleanup
+#' beastier::remove_beaustier_folders()
+#' beastier::check_empty_beaustier_folders()
 #' @export
 create_twal_file <- function(
   twin_phylogeny,
