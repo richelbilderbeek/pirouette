@@ -4,8 +4,16 @@
 #' @author Richèl J.C. Bilderbeek
 #' @examples
 #' if (beautier::is_on_ci() && rappdirs::app_dir()$os != "win") {
+#'
+#'   # Check cleanup by other functions
+#'   beastier::check_empty_beaustier_folders()
+#'
 #'   experiment <- create_test_cand_experiment()
 #'   check_experiment(experiment)
+#'
+#'   # Cleanup
+#'   beastier::remove_beaustier_folders()
+#'   beastier::check_empty_beaustier_folders()
 #' }
 #' @export
 create_test_cand_experiment <- function(

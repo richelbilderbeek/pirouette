@@ -58,6 +58,8 @@ alignment <- create_twal_file(
  twinning_params = twinning_params
 )
 
+# File is at twinning_params$twin_alignment_filename
+
 # Cleanup
 beastier::remove_beaustier_folders()
 beastier::check_empty_beaustier_folders()

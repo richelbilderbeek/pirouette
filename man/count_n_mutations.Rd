@@ -22,6 +22,8 @@ the number of mutations
 Count mutations
 }
 \examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
 
 # Create an AAAA alignent
 alignment <- ape::as.DNAbin(

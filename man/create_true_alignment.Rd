@@ -22,6 +22,9 @@ in nature, when assuming the true phylogeny is the true
 evolutionary history.
 }
 \examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
 # Create the ancestor's DNA sequence
 n_base_pairs <- 4
 root_sequence <- create_blocked_dna(length = n_base_pairs)
@@ -41,6 +44,10 @@ alignment <- create_true_alignment(
    alignment_params = alignment_params
  )
 check_alignment(alignment)
+
+# Cleanup
+beastier::remove_beaustier_folders()
+beastier::check_empty_beaustier_folders()
 }
 \seealso{
 Use \link{create_tral_file} to save the created alignment

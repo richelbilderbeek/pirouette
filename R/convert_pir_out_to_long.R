@@ -17,6 +17,9 @@
 #' @return the \code{pir_out} in long form
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
 #' pir_out <- create_test_pir_run_output(
 #'   add_twin = TRUE,
 #'   add_best = TRUE

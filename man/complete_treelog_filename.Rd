@@ -21,3 +21,19 @@ the filename for the treelog
 \description{
 Complete a treelog's filename
 }
+\examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
+fasta_filename <- "/home/alignment_folder/my.fasta"
+
+# Will become '/home/alignment_folder/my.trees'
+complete_treelog_filename(
+  treelog_filename = "$(tree).trees",
+  fasta_filename = fasta_filename
+)
+
+}
+\author{
+Richèl J.C. Bilderbeek
+}

@@ -8,6 +8,9 @@
 #' @examples
 #' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'
+#'   # Check cleanup by other functions
+#'   beastier::check_empty_beaustier_folders()
+#'
 #'   alignment_params <- create_test_alignment_params()
 #'   create_tral_file(
 #'     phylogeny = ape::read.tree(text = "((A:1, B:1):1, C:2);"),

@@ -1,11 +1,16 @@
-#' Check if all experiments have unique inference models.
+#' Internal function
 #'
+#' Internal function to check if all experiments have unique inference models.
 #' Will \link{stop} if two models have a same site and clock and tree prior.
 #' Note that experiments that differ in their MRCA priors only
 #' are classified being the same.
 #' @inheritParams default_params_doc
 #' @return nothing
 #' @author Richèl J.C. Bilderbeek
+#' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
 #' @export
 check_experiments_all_inference_models_are_unique <- function( # nolint indeed a long function, which is fine for an internal function
   experiments

@@ -4,6 +4,13 @@
 #' @inheritParams default_params_doc
 #' @return nothing
 #' @author Richèl J.C. Bilderbeek
+#' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
+#' check_error_fun(get_gamma_error_fun())
+#' check_error_fun(get_nltt_error_fun())
+#'
 #' @export
 check_error_fun <- function(error_fun) {
   # check if error_fun is indeed a function

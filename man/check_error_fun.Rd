@@ -29,6 +29,14 @@ nothing
 \description{
 Will \link{stop} if not.
 }
+\examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
+check_error_fun(get_gamma_error_fun())
+check_error_fun(get_nltt_error_fun())
+
+}
 \author{
 Richèl J.C. Bilderbeek
 }

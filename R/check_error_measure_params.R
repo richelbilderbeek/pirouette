@@ -5,6 +5,9 @@
 #' @return nothing. Will \link{stop} if nit
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
 #' check_error_measure_params(create_error_measure_params())
 #' @export
 check_error_measure_params <- function(

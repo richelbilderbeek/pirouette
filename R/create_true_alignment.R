@@ -8,6 +8,9 @@
 #' @seealso Use \link{create_tral_file} to save the created alignment
 #'   directly to a file
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
+#'
 #' # Create the ancestor's DNA sequence
 #' n_base_pairs <- 4
 #' root_sequence <- create_blocked_dna(length = n_base_pairs)
@@ -27,6 +30,10 @@
 #'    alignment_params = alignment_params
 #'  )
 #' check_alignment(alignment)
+#'
+#' # Cleanup
+#' beastier::remove_beaustier_folders()
+#' beastier::check_empty_beaustier_folders()
 #' @author Richèl J.C. Bilderbeek, Giovanni Laudanno
 #' @export
 create_true_alignment <- function(

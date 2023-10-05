@@ -29,3 +29,15 @@ Adapter function to create
 a twin alignment by simply copying the
 true alignment
 }
+\examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
+true_alignment <- get_test_alignment()
+twin_alignment <- copy_true_alignment(true_alignment)
+
+# twin_alignment equals true_alignment
+}
+\author{
+Richèl J.C. Bilderbeek, Giovanni Laudanno
+}

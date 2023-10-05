@@ -5,6 +5,9 @@
 #'
 #' if (beautier::is_on_ci() && beastier::is_beast2_installed()) {
 #'
+#'   # Check cleanup by other functions
+#'   beastier::check_empty_beaustier_folders()
+#'
 #'   pir_paramses <- list()
 #'   pir_paramses[[1]] <- pirouette::create_test_pir_params()
 #'   pir_paramses[[2]] <- pirouette::create_test_pir_params()
@@ -18,8 +21,12 @@
 #'     pir_paramses = pir_paramses
 #'   )
 #'   pir_out_total <- collect_pir_outs(pir_outs)
+#'
+#'   # Cleanup
+#'   beastier::remove_beaustier_folders()
+#'   beastier::check_empty_beaustier_folders()
 #' }
-#' @author Giovanni Laudanno
+#' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @export
 collect_pir_outs <- function(pir_outs) {
   out_mat <- do.call(

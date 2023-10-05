@@ -37,6 +37,8 @@ can be created by \link{create_experiment}.
 \examples{
 if (beautier::is_on_ci()) {
 
+  # Check cleanup by other functions
+  beastier::check_empty_beaustier_folders()
   check_experiments(list(create_test_experiment()))
 
   if (rappdirs::app_dir()$os != "win") {

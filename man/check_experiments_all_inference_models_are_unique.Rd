@@ -3,7 +3,7 @@
 %   R/check_experiments_all_inference_models_are_unique.R
 \name{check_experiments_all_inference_models_are_unique}
 \alias{check_experiments_all_inference_models_are_unique}
-\title{Check if all experiments have unique inference models.}
+\title{Internal function}
 \usage{
 check_experiments_all_inference_models_are_unique(experiments)
 }
@@ -31,9 +31,15 @@ one has to be the first in the list. See also:
 nothing
 }
 \description{
+Internal function to check if all experiments have unique inference models.
 Will \link{stop} if two models have a same site and clock and tree prior.
 Note that experiments that differ in their MRCA priors only
 are classified being the same.
+}
+\examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
 }
 \author{
 Richèl J.C. Bilderbeek

@@ -9,6 +9,9 @@
 #' # We need BEAST2 installed
 #' if (is_beast2_installed()) {
 #'
+#'  # Check cleanup by other functions
+#'  beastier::check_empty_beaustier_folders()
+#'
 #'   if (is_beast2_ns_pkg_installed()) {
 #'     # No error If NS is installed
 #'     if (beautier::is_on_ci()) {

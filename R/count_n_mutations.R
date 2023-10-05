@@ -3,6 +3,8 @@
 #' @return the number of mutations
 #' @author Giovanni Laudanno, Richèl J.C. Bilderbeek
 #' @examples
+#' # Check cleanup by other functions
+#' beastier::check_empty_beaustier_folders()
 #'
 #' # Create an AAAA alignent
 #' alignment <- ape::as.DNAbin(

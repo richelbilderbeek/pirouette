@@ -12,6 +12,16 @@ nothing
 \description{
 Will \link{stop} if not.
 }
+\examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
+# Need to check if it is installed, else it will give the desired error
+if (beastier::is_beast2_installed()) {
+  check_beast2_installed()
+}
+
+}
 \author{
 Richèl J.C. Bilderbeek
 }

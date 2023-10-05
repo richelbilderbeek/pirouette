@@ -24,6 +24,9 @@ as created by \link{create_error_measure_params}.
 Will \link{stop} if not.
 }
 \examples{
+# Check cleanup by other functions
+beastier::check_empty_beaustier_folders()
+
 check_error_measure_params(create_error_measure_params())
 }
 \author{

@@ -17,12 +17,16 @@ test_that("must create file", {
     phylogeny = true_phylogeny,
     alignment_params = alignment_params
   )
+  expect_true(file.exists(alignment_params$fasta_filename))
+  expect_false(file.exists(twinning_params$twin_alignment_filename))
   create_twal_file(
     twin_phylogeny = twin_phylogeny,
     alignment_params = alignment_params,
     twinning_params =  twinning_params
   )
   expect_true(file.exists(alignment_params$fasta_filename))
+  expect_true(file.exists(twinning_params$twin_alignment_filename))
+
   expect_s3_class(
     ape::read.FASTA(alignment_params$fasta_filename),
     "DNAbin"

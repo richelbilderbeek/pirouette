@@ -11,6 +11,7 @@ test_that("use", {
   )
 })
 
+
 test_that("abuse", {
   expect_error(
     check_error_fun(
