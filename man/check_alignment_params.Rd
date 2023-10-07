@@ -25,6 +25,10 @@ Will \link{stop} if not.
 beastier::check_empty_beaustier_folders()
 
 check_alignment_params(create_test_alignment_params())
+
+# Cleanup
+beastier::remove_beaustier_folders()
+beastier::check_empty_beaustier_folders()
 }
 \author{
 Richèl J.C. Bilderbeek

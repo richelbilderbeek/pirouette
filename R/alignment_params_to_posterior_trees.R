@@ -21,6 +21,10 @@
 #'     alignment_params = alignment_params,
 #'     experiment = create_test_experiment()
 #'   )
+#'
+#'   # Cleanup
+#'   beastier::remove_beaustier_folders()
+#'   beastier::check_empty_beaustier_folders()
 #' }
 #' @noRd
 alignment_params_to_posterior_trees <- function(# nolint indeed a long name
