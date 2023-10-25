@@ -2,6 +2,24 @@
 
 Newest versions at top.
 
+## `pirouette` 1.6.9 (unreleased)
+
+### NEW FEATURES
+
+ * None
+
+### MINOR IMPROVEMENTS
+
+ * Remove dependencies on 'assertive'
+
+### BUG FIXES
+
+ * None
+
+### DEPRECATED AND DEFUNCT
+
+ * None
+
 ## `pirouette` 1.6.8 (2023-09-29)
 
 ### NEW FEATURES
