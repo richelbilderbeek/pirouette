@@ -2,8 +2,10 @@
 
 Branch   |[![GitHub Actions](man/figures/GitHubActions.png)](https://github.com/richelbilderbeek/pirouette/actions)   |[![Codecov logo](man/figures/Codecov.png)](https://www.codecov.io)
 ---------|------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
-`master` |![R-CMD-check](https://github.com/richelbilderbeek/pirouette/workflows/R-CMD-check/badge.svg?branch=master) |[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master)
-`develop`|![R-CMD-check](https://github.com/richelbilderbeek/pirouette/workflows/R-CMD-check/badge.svg?branch=develop)|[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/pirouette/branch/develop)
+`master` |![R-CMD-check](https://github.com/richelbilderbeek/pirouette/workflows/R-CMD-check/badge.svg?branch=master) |[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=master)](https://codecov.io/github/richelbilderbeek/pirouette/branch/master) [1]
+`develop`|![R-CMD-check](https://github.com/richelbilderbeek/pirouette/workflows/R-CMD-check/badge.svg?branch=develop)|[![codecov.io](https://codecov.io/github/richelbilderbeek/pirouette/coverage.svg?branch=develop)](https://codecov.io/github/richelbilderbeek/pirouette/branch/develop) [1]
+
+ * [1] Codecov is disabled, as it takes too much time on GitHub Actions
 
 ![](pics/pirouette_logo_50.png)
 ![](pics/errors_125.png)
