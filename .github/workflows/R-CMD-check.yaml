@@ -102,10 +102,10 @@ jobs:
         run: testthat::expect_equal(0, length(list.files(rappdirs::user_cache_dir(appname = "mcbette"))))
         shell: Rscript {0}
 
-      - name: Test coverage
-        env:
-          INSTALL_BEAST2: ${{ matrix.install_beast2 }}
-        run: if [[ "$INSTALL_BEAST2" == true ]]; then Rscript -e 'covr::codecov()'; fi
+#      - name: Test coverage
+#        env:
+#          INSTALL_BEAST2: ${{ matrix.install_beast2 }}
+#        run: if [[ "$INSTALL_BEAST2" == true ]]; then Rscript -e 'covr::codecov()'; fi
 
       - name: Install package
         run: R CMD INSTALL .
