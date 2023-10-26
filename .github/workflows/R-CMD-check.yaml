@@ -119,4 +119,3 @@ jobs:
         run: mcbette::mcbette_report()
         shell: Rscript {0}
 
-
