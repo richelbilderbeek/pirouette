@@ -25,7 +25,7 @@ BugReports: https://github.com/richelbilderbeek/pirouette/issues
 Imports:
     ape,
     beautier (>= 2.6.11),
-    beastier (>= 2.4.6),
+    beastier (>= 2.5),
     babette (>= 2.1.1),
     DDD,
     forcats,
