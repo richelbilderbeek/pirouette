@@ -12,3 +12,4 @@
 ^.github$
 ^.lintr$
 ^mlc_config.json$
+^CITATION\.cff$
